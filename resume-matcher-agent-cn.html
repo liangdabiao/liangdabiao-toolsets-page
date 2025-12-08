@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简历匹配器 - AI驱动的简历优化平台</title>
+    <meta name="description" content="AI驱动的简历优化平台，通过逆向工程招聘算法，帮助求职者精准定制简历，提供关键词匹配、格式优化和ATS筛选建议，提高简历通过率。">
+    <meta name="keywords" content="简历优化,ATS筛选,求职工具,AI简历分析,关键词匹配,求职助手,简历匹配">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span>🎯</span>
+                <span>简历优化工坊</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="./index.html" class="nav-link">主页</a></li>
+                <li><a href="#features" class="nav-link">核心功能</a></li>
+                <li><a href="#workflow" class="nav-link">工作流程</a></li>
+                <li><a href="#architecture" class="nav-link">技术架构</a></li>
+                <li><a href="#installation" class="nav-link">部署指南</a></li>
+                <li><a href="https://github.com/liangdabiao/resume-matcher-agent-cn" target="_blank" class="btn btn-primary">GitHub</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero 区域 -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">🎯 简历优化平台</div>
+                <h1>简历匹配器</h1>
+                <h2>AI驱动的简历逆向工程平台</h2>
+                <p class="hero-description">
+                    简历匹配器是一个AI驱动的平台，旨在逆向工程招聘算法，向您展示如何精准定制简历。获取那些能让你通过初步筛选、进入人工审阅阶段的关键词、格式和洞察。模拟HR怎样筛选你的简历，提前展示筛选结论，帮助您优化简历，提高通过ATS系统的可能性。
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">80%</div>
+                        <div class="stat-label">通过率提升</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">1000+</div>
+                        <div class="stat-label">关键词库</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">智能分析</div>
+                    </div>
+                </div>
+                <div class="hero-actions">
+                    <a href="https://github.com/liangdabiao/resume-matcher-agent-cn" target="_blank" class="btn btn-primary btn-large">
+                        <span>📦</span>
+                        免费下载使用
+                    </a>
+                    <a href="#installation" class="btn btn-secondary btn-large">
+                        <span>🚀</span>
+                        立即部署
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-image-container">
+                    <div class="hero-overlay">
+                        <div class="overlay-icon">🎯</div>
+                        <div class="overlay-text">AI驱动的简历优化和匹配分析</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心功能 -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>核心功能</h2>
+                <p>全面的简历分析和优化工具集</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📄</div>
+                    <h3>简历分析</h3>
+                    <p>支持上传PDF或DOCX格式的简历进行智能分析，提取关键信息并进行结构化处理</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📋</div>
+                    <h3>职位描述解析</h3>
+                    <p>深度解析职位描述，提取关键要求、技能需求和企业文化特征</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI驱动洞察</h3>
+                    <p>基于职位要求提供个性化简历改进建议，帮助求职者精准优化简历内容</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔑</div>
+                    <h3>关键词匹配</h3>
+                    <p>识别对ATS（申请人跟踪系统）重要的缺失关键词，提高自动筛选通过率</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>结构化数据提取</h3>
+                    <p>将非结构化的简历和职位数据转换为结构化JSON格式，便于分析和处理</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>本地AI处理</h3>
+                    <p>支持Ollama本地AI模型，确保数据隐私安全，也可选择OpenAI云端处理</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作流程 -->
+    <section id="workflow" class="workflow">
+        <div class="container">
+            <div class="section-header">
+                <h2>工作流程</h2>
+                <p>简单高效的三步简历优化流程</p>
+            </div>
+            <div class="workflow-content">
+                <div class="workflow-steps">
+                    <div class="workflow-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <div class="step-icon">📤</div>
+                            <h3>上传简历和职位</h3>
+                            <p>上传您的简历（PDF/DOCX格式）和目标职位描述</p>
+                            <div class="step-details">
+                                <ul>
+                                    <li>支持多种文档格式</li>
+                                    <li>智能文本提取</li>
+                                    <li>快速上传处理</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="workflow-arrow">→</div>
+                    <div class="workflow-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <div class="step-icon">🤖</div>
+                            <h3>AI智能分析</h3>
+                            <p>系统自动分析简历与职位的匹配度，识别关键差异</p>
+                            <div class="step-details">
+                                <ul>
+                                    <li>关键词匹配分析</li>
+                                    <li>技能差距评估</li>
+                                    <li>格式优化建议</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="workflow-arrow">→</div>
+                    <div class="workflow-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <div class="step-icon">📈</div>
+                            <h3>获取优化建议</h3>
+                            <p>获得详细的简历优化建议，提高ATS筛选通过率</p>
+                            <div class="step-details">
+                                <ul>
+                                    <li>个性化改进建议</li>
+                                    <li>关键词补充方案</li>
+                                    <li>格式调整指导</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="workflow-benefits">
+                    <div class="benefit-card">
+                        <h4>🎯 精准匹配</h4>
+                        <p>基于AI算法的精准职位匹配分析，确保简历内容与职位要求高度契合</p>
+                    </div>
+                    <div class="benefit-card">
+                        <h4>⚡ 快速优化</h4>
+                        <p>几分钟内完成简历分析和优化建议生成，大幅提升求职效率</p>
+                    </div>
+                    <div class="benefit-card">
+                        <h4>🔍 深度洞察</h4>
+                        <p>揭示HR筛选简历的关键标准，让您的简历在众多候选人中脱颖而出</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 技术架构 -->
+    <section id="architecture" class="architecture">
+        <div class="container">
+            <div class="section-header">
+                <h2>技术架构</h2>
+                <p>现代化的全栈技术架构</p>
+            </div>
+            <div class="architecture-content">
+                <div class="architecture-overview">
+                    <div class="arch-stack">
+                        <div class="arch-layer frontend">
+                            <h3>前端层</h3>
+                            <div class="tech-items">
+                                <div class="tech-item">Next.js 15+</div>
+                                <div class="tech-item">React 19</div>
+                                <div class="tech-item">TypeScript</div>
+                                <div class="tech-item">Tailwind CSS 4.x</div>
+                                <div class="tech-item">Radix UI</div>
+                            </div>
+                        </div>
+                        <div class="arch-layer backend">
+                            <h3>后端层</h3>
+                            <div class="tech-items">
+                                <div class="tech-item">FastAPI 0.115.12</div>
+                                <div class="tech-item">Python 3.12+</div>
+                                <div class="tech-item">SQLAlchemy</div>
+                                <div class="tech-item">Pydantic</div>
+                                <div class="tech-item">Uvicorn</div>
+                            </div>
+                        </div>
+                        <div class="arch-layer ai">
+                            <h3>AI层</h3>
+                            <div class="tech-items">
+                                <div class="tech-item">OpenAI API</div>
+                                <div class="tech-item">Ollama 0.6.7</div>
+                                <div class="tech-item">LlamaIndex</div>
+                                <div class="tech-item">MarkItDown</div>
+                                <div class="tech-item">自定义提示模板</div>
+                            </div>
+                        </div>
+                        <div class="arch-layer data">
+                            <h3>数据层</h3>
+                            <div class="tech-items">
+                                <div class="tech-item">SQLite 3.x</div>
+                                <div class="tech-item">本地存储</div>
+                                <div class="tech-item">异步数据库</div>
+                                <div class="tech-item">数据迁移</div>
+                                <div class="tech-item">日志系统</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-structure">
+                    <div class="structure-card">
+                        <h3>项目结构</h3>
+                        <div class="structure-grid">
+                            <div class="structure-section">
+                                <h4>后端结构</h4>
+                                <div class="code-block">
+                                    <pre><code>backend/
+├── app/
+│   ├── agent/          # AI模型集成
+│   ├── api/            # REST API路由
+│   ├── core/           # 配置和数据库
+│   ├── models/         # 数据库模型
+│   ├── prompt/         # AI提示模板
+│   ├── schemas/        # 数据验证模式
+│   ├── services/       # 业务逻辑
+│   └── main.py         # 应用入口
+├── Data/               # SQLite数据库
+├── logs/               # 应用日志
+└── requirements.txt    # Python依赖</code></pre>
+                                </div>
+                            </div>
+                            <div class="structure-section">
+                                <h4>前端结构</h4>
+                                <div class="code-block">
+                                    <pre><code>frontend/
+├── app/                # Next.js页面
+├── components/         # React组件
+├── lib/                # 工具函数
+├── public/             # 静态资源
+├── package.json        # Node.js依赖
+└── tailwind.config.js  # 样式配置</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- API接口 -->
+    <section class="api">
+        <div class="container">
+            <div class="section-header">
+                <h2>API接口</h2>
+                <p>完整的RESTful API，易于集成和扩展</p>
+            </div>
+            <div class="api-content">
+                <div class="api-endpoints">
+                    <div class="api-category">
+                        <h3>职位管理</h3>
+                        <div class="api-list">
+                            <div class="api-endpoint">
+                                <div class="method">POST</div>
+                                <div class="endpoint">/api/v1/job/upload</div>
+                                <div class="description">上传并处理职位描述</div>
+                            </div>
+                            <div class="api-endpoint">
+                                <div class="method">GET</div>
+                                <div class="endpoint">/api/v1/job/</div>
+                                <div class="description">根据职位ID检索职位数据</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="api-category">
+                        <h3>简历管理</h3>
+                        <div class="api-list">
+                            <div class="api-endpoint">
+                                <div class="method">POST</div>
+                                <div class="endpoint">/api/v1/resume/upload</div>
+                                <div class="description">上传并处理简历（PDF/DOCX）</div>
+                            </div>
+                            <div class="api-endpoint">
+                                <div class="method">POST</div>
+                                <div class="endpoint">/api/v1/resume/improve</div>
+                                <div class="description">获取简历改进建议</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ai-providers">
+                    <div class="providers-card">
+                        <h3>支持的AI提供商</h3>
+                        <div class="providers-grid">
+                            <div class="provider-card">
+                                <div class="provider-icon">🦙</div>
+                                <h4>Ollama</h4>
+                                <p>本地AI模型服务，确保数据隐私</p>
+                                <ul>
+                                    <li>本地部署</li>
+                                    <li>数据安全</li>
+                                    <li>离线使用</li>
+                                </ul>
+                            </div>
+                            <div class="provider-card">
+                                <div class="provider-icon">🧠</div>
+                                <h4>OpenAI</h4>
+                                <p>云端AI处理，强大的分析能力</p>
+                                <ul>
+                                    <li>高精度分析</li>
+                                    <li>快速响应</li>
+                                    <li>稳定服务</li>
+                                </ul>
+                            </div>
+                            <div class="provider-card">
+                                <div class="provider-icon">📚</div>
+                                <h4>LlamaIndex</h4>
+                                <p>额外的AI提供商支持</p>
+                                <ul>
+                                    <li>多模型支持</li>
+                                    <li>灵活配置</li>
+                                    <li>扩展性强</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 安装部署 -->
+    <section id="installation" class="installation">
+        <div class="container">
+            <div class="section-header">
+                <h2>安装部署</h2>
+                <p>简单快速部署，支持多种运行环境</p>
+            </div>
+            <div class="installation-content">
+                <div class="install-tabs">
+                    <div class="install-tab backend-tab active">
+                        <div class="tab-header">
+                            <h3>后端部署</h3>
+                        </div>
+                        <div class="tab-content">
+                            <div class="install-steps">
+                                <div class="step-item">
+                                    <div class="step-number">1</div>
+                                    <h4>克隆项目</h4>
+                                    <div class="code-block">
+                                        <pre><code>git clone https://github.com/liangdabiao/resume-matcher-agent-cn.git
+cd resume-matcher-agent-cn</code></pre>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <div class="step-number">2</div>
+                                    <h4>后端设置</h4>
+                                    <div class="code-block">
+                                        <pre><code>cd backend
+pip install -r requirements.txt</code></pre>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <div class="step-number">3</div>
+                                    <h4>环境配置</h4>
+                                    <div class="code-block">
+                                        <pre><code>cp .env.example .env
+# 编辑 .env 文件配置AI提供商
+LLM_PROVIDER="ollama"
+LL_MODEL="gemma3:4b"
+EMBEDDING_PROVIDER="ollama"
+EMBEDDING_MODEL="dengcao/Qwen3-Embedding-0.6B:Q8_0"</code></pre>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <div class="step-number">4</div>
+                                    <h4>启动后端</h4>
+                                    <div class="code-block">
+                                        <pre><code>uvicorn app.main:app --reload</code></pre>
+                                    </div>
+                                    <p>后端服务将在 http://localhost:8000 启动</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="install-tab frontend-tab">
+                        <div class="tab-header">
+                            <h3>前端部署</h3>
+                        </div>
+                        <div class="tab-content">
+                            <div class="install-steps">
+                                <div class="step-item">
+                                    <div class="step-number">1</div>
+                                    <h4>安装依赖</h4>
+                                    <div class="code-block">
+                                        <pre><code>cd frontend
+npm install
+# 或使用 yarn
+yarn install</code></pre>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <div class="step-number">2</div>
+                                    <h4>启动前端</h4>
+                                    <div class="code-block">
+                                        <pre><code>npm run dev
+# 或使用 yarn
+yarn dev</code></pre>
+                                    </div>
+                                    <p>前端应用将在 http://localhost:3000 启动</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="requirements">
+                    <div class="requirements-card">
+                        <h3>系统要求</h3>
+                        <div class="requirements-grid">
+                            <div class="requirement-item">
+                                <h4>Python</h4>
+                                <span class="version">3.12+</span>
+                            </div>
+                            <div class="requirement-item">
+                                <h4>Node.js</h4>
+                                <span class="version">18+</span>
+                            </div>
+                            <div class="requirement-item">
+                                <h4>数据库</h4>
+                                <span class="version">SQLite 3.x</span>
+                            </div>
+                            <div class="requirement-item">
+                                <h4>Ollama (可选)</h4>
+                                <span class="version">0.6.7+</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 数据库结构 -->
+    <section class="database">
+        <div class="container">
+            <div class="section-header">
+                <h2>数据库结构</h2>
+                <p>清晰的数据模型设计，支持高效的简历和职位管理</p>
+            </div>
+            <div class="database-content">
+                <div class="db-schema">
+                    <div class="table-card">
+                        <h3>核心数据表</h3>
+                        <div class="table-grid">
+                            <div class="table-item">
+                                <h4>resumes</h4>
+                                <p>存储原始简历内容</p>
+                                <ul>
+                                    <li>文件名和路径</li>
+                                    <li>上传时间</li>
+                                    <li>原始文本内容</li>
+                                    <li>文件类型</li>
+                                </ul>
+                            </div>
+                            <div class="table-item">
+                                <h4>processed_resumes</h4>
+                                <p>存储结构化简历数据</p>
+                                <ul>
+                                    <li>个人信息</li>
+                                    <li>工作经历</li>
+                                    <li>教育背景</li>
+                                    <li>技能列表</li>
+                                </ul>
+                            </div>
+                            <div class="table-item">
+                                <h4>jobs</h4>
+                                <p>存储原始职位描述</p>
+                                <ul>
+                                    <li>职位标题</li>
+                                    <li>公司信息</li>
+                                    <li>原始描述</li>
+                                    <li>发布时间</li>
+                                </ul>
+                            </div>
+                            <div class="table-item">
+                                <h4>processed_jobs</h4>
+                                <p>存储结构化职位数据</p>
+                                <ul>
+                                    <li>技能要求</li>
+                                    <li>经验要求</li>
+                                    <li>关键词列表</li>
+                                    <li>匹配规则</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 应用场景 -->
+    <section class="use-cases">
+        <div class="container">
+            <div class="section-header">
+                <h2>应用场景</h2>
+                <p>适用于各种求职场景，提升求职成功率</p>
+            </div>
+            <div class="use-cases-grid">
+                <div class="use-case-card">
+                    <div class="use-case-icon">🎓</div>
+                    <h3>应届生求职</h3>
+                    <p>帮助应届生优化简历，突出项目经验和技能，弥补工作经验不足的短板</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">💼</div>
+                    <h3>职场跳槽</h3>
+                    <p>为有经验的职场人士提供精准的简历优化建议，突出核心竞争力和成就</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">🔄</div>
+                    <h3>跨行业转型</h3>
+                    <p>帮助转行求职者调整简历重点，突出可转移技能和学习能力</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">🎯</div>
+                    <h3>精准投递</h3>
+                    <p>针对特定职位定制简历，提高ATS系统筛选通过率和面试邀请率</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>🎯 简历匹配器</h4>
+                    <p>AI驱动的简历优化平台，助您轻松通过HR筛选</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="./index.html">返回主页</a></li>
+                        <li><a href="https://github.com/liangdabiao/resume-matcher-agent-cn" target="_blank">GitHub仓库</a></li>
+                        <li><a href="#installation">部署指南</a></li>
+                        <li><a href="#workflow">使用流程</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>技术栈</h4>
+                    <ul>
+                        <li>Next.js</li>
+                        <li>FastAPI</li>
+                        <li>Ollama</li>
+                        <li>SQLite</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>联系我们</h4>
+                    <ul>
+                        <li><a href="https://github.com/liangdabiao/resume-matcher-agent-cn/issues" target="_blank">问题反馈</a></li>
+                        <li><a href="https://github.com/liangdabiao/resume-matcher-agent-cn/pulls" target="_blank">贡献代码</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 简历匹配器. 开源项目 - <a href="https://github.com/liangdabiao/resume-matcher-agent-cn" target="_blank">GitHub</a></p>
+                <p class="attribution">项目参考: <a href="https://github.com/srbhr/Resume-Matcher" target="_blank">Resume-Matcher</a> | 提示模板来源: 【角色】洞察人心的面试官与资深HRBP (v2.0)</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./script.js"></script>
+    <script>
+        // 添加页面特定的交互功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 平滑滚动
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // 安装选项卡切换
+            const backendTab = document.querySelector('.backend-tab');
+            const frontendTab = document.querySelector('.frontend-tab');
+
+            if (backendTab && frontendTab) {
+                backendTab.addEventListener('click', function() {
+                    document.querySelectorAll('.install-tab').forEach(tab => tab.classList.remove('active'));
+                    this.classList.add('active');
+                });
+
+                frontendTab.addEventListener('click', function() {
+                    document.querySelectorAll('.install-tab').forEach(tab => tab.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            }
+
+            // 添加滚动动画
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // 观察所有卡片
+            document.querySelectorAll('.feature-card, .workflow-step, .arch-layer, .tech-item, .api-endpoint, .provider-card, .use-case-card').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+
+            // 工作流程动画
+            const workflowSteps = document.querySelectorAll('.workflow-step');
+            workflowSteps.forEach((step, index) => {
+                step.style.opacity = '0';
+                step.style.transform = 'translateX(-20px)';
+                step.style.transition = `opacity 0.4s ease ${index * 0.1}s, transform 0.4s ease ${index * 0.1}s`;
+
+                setTimeout(() => {
+                    step.style.opacity = '1';
+                    step.style.transform = 'translateX(0)';
+                }, 500 + index * 100);
+            });
+
+            // 数字统计动画
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                const finalNumber = stat.textContent;
+                let currentNumber = 0;
+                const increment = parseInt(finalNumber) / 50;
+                const isPercentage = finalNumber.includes('%');
+                const isPlus = finalNumber.includes('+');
+
+                const updateNumber = () => {
+                    currentNumber += increment;
+                    if (currentNumber < parseInt(finalNumber)) {
+                        if (isPercentage) {
+                            stat.textContent = Math.floor(currentNumber) + '%';
+                        } else if (isPlus) {
+                            stat.textContent = Math.floor(currentNumber) + '+';
+                        } else {
+                            stat.textContent = Math.floor(currentNumber);
+                        }
+                        requestAnimationFrame(updateNumber);
+                    } else {
+                        stat.textContent = finalNumber;
+                    }
+                };
+
+                // 当元素进入视窗时开始动画
+                const statObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            updateNumber();
+                            statObserver.unobserve(entry.target);
+                        }
+                    });
+                });
+
+                statObserver.observe(stat);
+            });
+        });
+    </script>
+</body>
+</html>

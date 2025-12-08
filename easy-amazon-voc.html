@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon商品评论分析系统 - AI驱动的客户之声分析</title>
+    <meta name="description" content="针对Amazon商品评论进行AI多维度分析，用户画像分析，产品反馈，服务评价等智能分析工具">
+    <link rel="stylesheet" href="./styles.css">
+    <style>
+        .product-detail {
+            padding: 120px 0 60px;
+            min-height: 100vh;
+        }
+        .product-hero {
+            background: linear-gradient(135deg, var(--surface) 0%, var(--background) 100%);
+            padding: 60px 0;
+        }
+        .product-hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .product-hero-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .product-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        .product-hero .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        .product-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+        }
+        .product-features {
+            margin: 3rem 0;
+        }
+        .product-features h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .feature-item {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        .feature-item h4 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            font-size: 1.125rem;
+        }
+        .feature-item p {
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        .product-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .github-btn {
+            background: #24292e;
+            color: white;
+            padding: 14px 28px;
+            border-radius: var(--radius);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 500;
+            transition: var(--transition);
+            font-size: 1.0625rem;
+        }
+        .github-btn:hover {
+            background: #2f363d;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        .tech-stack {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: var(--surface);
+            border-radius: var(--radius);
+        }
+        .tech-stack h4 {
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+        .tech-tag {
+            background: var(--primary-color);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.9375rem;
+            font-weight: 500;
+        }
+        .analysis-types {
+            background: white;
+            padding: 4rem 0;
+            border-top: 1px solid var(--border-color);
+        }
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .analysis-category {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: var(--radius);
+            border-left: 4px solid var(--primary-color);
+        }
+        .analysis-category h4 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            font-size: 1.125rem;
+        }
+        .analysis-items {
+            list-style: none;
+            padding: 0;
+        }
+        .analysis-items li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .analysis-items li:last-child {
+            border-bottom: none;
+        }
+        .back-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        .back-link:hover {
+            color: var(--primary-dark);
+        }
+        .project-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .stat-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+        }
+        .code-example {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            font-family: monospace;
+            font-size: 0.9rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+        .workflow-section {
+            background: var(--surface);
+            padding: 4rem 0;
+        }
+        .workflow-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        .workflow-step {
+            text-align: center;
+            position: relative;
+        }
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+        .demo-section {
+            background: white;
+            padding: 4rem 0;
+            border-top: 1px solid var(--border-color);
+        }
+        .demo-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .demo-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .demo-card {
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            text-align: center;
+        }
+        .demo-card h4 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        .json-preview {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            font-family: monospace;
+            font-size: 0.8rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        @media (max-width: 768px) {
+            .product-hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+            .product-hero h1 {
+                font-size: 2rem;
+            }
+            .product-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            .github-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .feature-grid,
+            .analysis-grid,
+            .demo-images {
+                grid-template-columns: 1fr;
+            }
+            .project-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">智能工具集合</a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="/" class="nav-link">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/#products" class="nav-link">产品</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/#about" class="nav-link">关于</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/#contact" class="nav-link">联系</a>
+                </li>
+            </ul>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="product-detail">
+        <div class="container">
+            <a href="/" class="back-link">← 返回首页</a>
+
+            <div class="product-hero">
+                <div class="product-hero-content">
+                    <div>
+                        <div class="product-hero-icon">📦</div>
+                        <h1>Amazon商品评论分析系统</h1>
+                        <p class="subtitle">
+                            AI驱动的客户之声分析工具，针对Amazon商品评论进行多维度智能分析。
+                            用户只需上传CSV文件，系统自动分析用户画像、产品反馈、服务评价等维度。
+                        </p>
+                        <div class="product-tags">
+                            <span class="product-tag">VOC分析</span>
+                            <span class="product-tag">Amazon评论</span>
+                            <span class="product-tag">AI分析</span>
+                            <span class="product-tag">用户画像</span>
+                            <span class="product-tag">市场调研</span>
+                        </div>
+                        <div class="project-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">4+</div>
+                                <div class="stat-label">分析维度</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">🤖</div>
+                                <div class="stat-label">AI智能分析</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">📊</div>
+                                <div class="stat-label">可视化报告</div>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <a href="https://github.com/liangdabiao/easy-amazon-voc" class="github-btn" target="_blank">
+                                <span>📂</span>
+                                <span>查看 GitHub 仓库</span>
+                            </a>
+                            <a href="/" class="btn btn-secondary">返回首页</a>
+                        </div>
+                    </div>
+                    <div class="product-hero-visual">
+                        <div style="text-align: center;">
+                            <div style="font-size: 8rem; margin-bottom: 1rem;">📦</div>
+                            <div style="font-size: 1.25rem; color: var(--text-secondary);">智能驱动的VOC分析工具</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-features">
+                <h3>🌟 核心功能</h3>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <h4>📦 多维度评论分析</h4>
+                        <p>从人群场景、功能价值、保障价值、体验价值等4大维度进行深度分析，提取用户真实反馈</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>🤖 AI智能标签提取</h4>
+                        <p>使用大模型自动识别评论中的关键信息，生成结构化的标签体系和分析报告</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>📊 用户画像构建</h4>
+                        <p>分析使用场景、购买动机、价格感知等，构建完整的用户画像和行为模式</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>💰 产品反馈分析</h4>
+                        <p>深入分析产品优缺点、设计与外观、用户期望建议，为产品改进提供数据支持</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>🚀 一键式操作</h4>
+                        <p>从Easy Scraper爬取评论到上传分析，简单几步即可完成完整的VOC分析流程</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>📈 数据可视化</h4>
+                        <p>生成可视化分析报告，支持Excel筛选和多维度数据展示，便于深入分析</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tech-stack">
+                <h4>🛠️ 技术栈</h4>
+                <div class="tech-tags">
+                    <span class="tech-tag">Flask</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">OpenAI</span>
+                    <span class="tech-tag">Easy Scraper</span>
+                    <span class="tech-tag">ECharts</span>
+                    <span class="tech-tag">字节豆包</span>
+                    <span class="tech-tag">数据分析</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="analysis-types">
+            <div class="container">
+                <div style="text-align: center;">
+                    <h3>📊 多维度分析框架</h3>
+                    <p style="color: var(--text-secondary); margin: 1rem 0;">基于专业的VOC分析模型，从多个维度深度解析用户评论</p>
+                </div>
+                <div class="analysis-grid">
+                    <div class="analysis-category">
+                        <h4>👥 人群场景</h4>
+                        <ul class="analysis-items">
+                            <li><strong>使用场景</strong>：儿童玩乐、成人收藏、节日礼物、汽车爱好者</li>
+                            <li><strong>购买动机</strong>：价格优势、设计喜欢、替代乐高、性价比考虑</li>
+                            <li><strong>用户需求</strong>：功能需求、情感需求、社交需求</li>
+                        </ul>
+                    </div>
+                    <div class="analysis-category">
+                        <h4>🎯 功能价值</h4>
+                        <ul class="analysis-items">
+                            <li><strong>产品优点</strong>：零件齐全、组装容易、设计精美、功能多样</li>
+                            <li><strong>产品缺点</strong>：零件缺失、零件松动、组装困难、指示不明</li>
+                            <li><strong>用户建议</strong>：优化指示、提升质量、改进包装</li>
+                            <li><strong>设计外观</strong>：整体造型、内部细节、颜色搭配</li>
+                        </ul>
+                    </div>
+                    <div class="analysis-category">
+                        <h4>🛡️ 保障价值</h4>
+                        <ul class="analysis-items">
+                            <li><strong>物流配送</strong>：配送速度、包装完整性</li>
+                            <li><strong>售后服务</strong>：补发零件、退款处理、客服响应</li>
+                            <li><strong>售前服务</strong>：信息咨询、产品介绍、购买指导</li>
+                            <li><strong>品质保证</strong>：质量承诺、售后支持</li>
+                        </ul>
+                    </div>
+                    <div class="analysis-category">
+                        <h4>✨ 体验价值</h4>
+                        <ul class="analysis-items">
+                            <li><strong>推荐意愿</strong>：是否愿意推荐、推荐原因分析</li>
+                            <li><strong>品牌印象</strong>：质量认知、价格感知、品牌信任度</li>
+                            <li><strong>感官感受</strong>：外观美感、零件质感、使用体验</li>
+                            <li><strong>价格感知</strong>：价格合理性、性价比评估</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="background: white; padding: 2rem; border-radius: var(--radius); margin: 3rem 0;">
+                    <h4 style="margin-bottom: 1.5rem; color: var(--primary-color);">📋 AI分析结果示例</h4>
+                    <div class="json-preview">
+{
+    "人群场景": {
+        "用户需求与痛点-使用场景": [
+            "汽车爱好者", "儿童玩乐", "成人收藏", "节日礼物"
+        ],
+        "用户需求与痛点-购买动机": [
+            "价格优势", "设计喜欢", "替代乐高"
+        ]
+    },
+    "功能价值": {
+        "产品反馈-产品优点": [
+            "零件齐全", "组装容易", "设计精美", "功能多样", "细节丰富"
+        ],
+        "产品反馈-产品缺点": [
+            "零件缺失", "零件松动", "组装困难", "指示不明", "零件变形"
+        ]
+    },
+    "保障价值": {
+        "服务评价-物流配送": ["配送速度"],
+        "服务评价-售后服务": ["补发零件", "退款处理"],
+        "服务评价-售前服务": ["信息咨询"]
+    },
+    "体验价值": {
+        "品牌形象与口碑-推荐意愿原因分析": ["性价比高", "组装乐趣"],
+        "品牌形象与口碑-是否愿意推荐给他人": ["是", "否"],
+        "感官感受": ["外观美感", "零件质感"],
+        "价格感知": ["价格合理", "价格昂贵"]
+    }
+}
+                    </div>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 1rem;">
+                        每条评论都会生成类似的结构化分析结果，支持批量处理和深度分析
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="workflow-section">
+            <div class="container">
+                <h3 style="text-align: center; margin-bottom: 2rem;">🔄 简单易用的操作流程</h3>
+                <div class="workflow-steps">
+                    <div class="workflow-step">
+                        <div class="step-number">1</div>
+                        <h4>数据爬取</h4>
+                        <p style="color: var(--text-secondary);">使用Easy Scraper插件爬取Amazon商品评论</p>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">2</div>
+                        <h4>文件上传</h4>
+                        <p style="color: var(--text-secondary);">直接上传CSV评论文件到分析系统</p>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">3</div>
+                        <h4>AI分析</h4>
+                        <p style="color: var(--text-secondary);">系统自动进行多维度AI标签分析</p>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">4</div>
+                        <h4>结果下载</h4>
+                        <p style="color: var(--text-secondary);">下载带有分析结果的完整CSV文件</p>
+                    </div>
+                </div>
+
+                <div style="background: white; padding: 2rem; border-radius: var(--radius); margin: 3rem 0;">
+                    <h4 style="margin-bottom: 1.5rem; color: var(--primary-color);">🔧 Easy Scraper 插件使用</h4>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+                        Chrome浏览器插件，专门用于爬取Amazon商品评论
+                    </p>
+                    <div style="background: var(--surface); padding: 1rem; border-radius: var(--radius); margin: 1rem 0;">
+                        <strong>插件地址：</strong>
+                        <a href="https://chromewebstore.google.com/detail/cljbfnedccphacfneigoegkiieckjndh" target="_blank" style="color: var(--primary-color);">
+                            Chrome Web Store - Easy Scraper
+                        </a>
+                    </div>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                        1. 进入Amazon商品评论页面<br>
+                        2. 点击插件图标<br>
+                        3. 选择爬取评论数量<br>
+                        4. 导出CSV格式文件<br>
+                        5. 上传到本系统进行分析
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <div class="container">
+                <div class="demo-content">
+                    <h3 style="text-align: center; margin-bottom: 2rem;">🖥️ 系统界面展示</h3>
+                    <p style="color: var(--text-secondary); text-align: center; margin-bottom: 3rem;">
+                        简洁直观的用户界面，从文件上传到分析结果下载，一键完成
+                    </p>
+                    <div class="demo-images">
+                        <div class="demo-card">
+                            <h4>文件上传界面</h4>
+                            <p style="color: var(--text-secondary); margin-bottom: 1rem;">支持CSV文件拖拽上传，开始AI分析处理</p>
+                            <div style="background: #f3f4f6; padding: 1rem; border-radius: var(--radius); font-size: 0.85rem;">
+                                拖拽CSV文件到此处或点击上传<br>
+                                支持Amazon评论格式
+                            </div>
+                        </div>
+                        <div class="demo-card">
+                            <h4>分析处理中</h4>
+                            <p style="color: var(--text-secondary); margin-bottom: 1rem;">实时显示AI处理进度和状态</p>
+                            <div style="background: #f3f4f6; padding: 1rem; border-radius: var(--radius); font-size: 0.85rem;">
+                                正在进行AI多维度分析...<br>
+                                已处理 15/50 条评论
+                            </div>
+                        </div>
+                        <div class="demo-card">
+                            <h4>分析结果下载</h4>
+                            <p style="color: var(--text-secondary); margin-bottom: 1rem;">完成后提供更新文件的下载链接</p>
+                            <div style="background: #f3f4f6; padding: 1rem; border-radius: var(--radius); font-size: 0.85rem;">
+                                ✅ 分析完成！<br>
+                                <a href="#" style="color: var(--primary-color);">下载带分析的CSV文件</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" style="margin-top: 3rem;">
+            <div style="background: var(--surface); padding: 2rem; border-radius: var(--radius); text-align: center;">
+                <h3>🚀 快速开始</h3>
+
+                <div style="background: white; padding: 2rem; border-radius: var(--radius); margin: 2rem 0; text-align: left;">
+                    <h4 style="margin-bottom: 1.5rem; color: var(--primary-color);">环境准备</h4>
+                    <div class="code-example">
+# 1. 安装Python 3.10+
+# 2. 克隆项目
+git clone https://github.com/liangdabiao/easy-amazon-voc
+cd easy-amazon-voc
+
+# 3. 安装依赖
+pip install -r requirements.txt
+                    </div>
+                </div>
+
+                <div style="background: white; padding: 2rem; border-radius: var(--radius); margin: 2rem 0; text-align: left;">
+                    <h4 style="margin-bottom: 1.5rem; color: var(--primary-color);">配置大模型API</h4>
+                    <div class="code-example">
+# 在 function.py 中配置API密钥
+import openai
+openai.api_key = "your api key"
+
+# 支持兼容OpenAI接口的大模型
+# 目前使用字节豆包，也可配置其他模型
+model="doubao-1.5-pro-32k-250115"
+                    </div>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 1rem;">
+                        💡 支持所有兼容OpenAI API的大模型服务
+                    </p>
+                </div>
+
+                <div style="background: white; padding: 2rem; border-radius: var(--radius); margin: 2rem 0; text-align: left;">
+                    <h4 style="margin-bottom: 1.5rem; color: var(--primary-color);">运行系统</h4>
+                    <div class="code-example">
+# 启动Flask应用
+python app.py
+
+# 访问 http://localhost:5000 开始使用
+                    </div>
+                </div>
+
+                <div style="background: white; padding: 2rem; border-radius: var(--radius); margin: 2rem 0;">
+                    <h4 style="margin-bottom: 1rem; color: var(--primary-color);">📊 数据分析结果</h4>
+                    <div style="text-align: left; font-size: 0.9rem; color: var(--text-secondary);">
+                        <strong>分析内容：</strong><br>
+                        • 处理结果统计<br>
+                        • 词频分析结果<br>
+                        • 产品优缺点汇总<br>
+                        • 用户画像分析<br>
+                        • 品牌口碑评估<br>
+                        • 推荐意愿分析<br>
+                        • 感官感受反馈<br>
+                        • 价格感知评价
+                    </div>
+                </div>
+
+                <div style="margin: 2rem 0;">
+                    <a href="https://github.com/liangdabiao/easy-amazon-voc" class="btn btn-primary" target="_blank">
+                        在 GitHub 上查看源代码
+                    </a>
+                    <a href="https://github.com/liangdabiao/easy-amazon-voc" class="btn btn-secondary" target="_blank">
+                        开始评论分析
+                    </a>
+                </div>
+
+                <div style="background: white; padding: 1.5rem; border-radius: var(--radius); margin-top: 2rem;">
+                    <h4 style="margin-bottom: 1rem;">🆘 官方支持</h4>
+                    <p style="color: var(--text-secondary);">
+                        如需技术支持或有任何问题，欢迎联系：<br>
+                        📧 邮箱：<a href="mailto:497070928@qq.com" style="color: var(--primary-color);">497070928@qq.com</a><br>
+                        🌐 官网：<a href="https://liangdabiao.com" target="_blank" style="color: var(--primary-color);">liangdabiao.com</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>智能工具集合</h3>
+                    <p>专注于创造实用高效的工具产品</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/#products">产品</a></li>
+                        <li><a href="/#about">关于我们</a></li>
+                        <li><a href="/#contact">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>开源项目</h4>
+                    <ul>
+                        <li><a href="/product.html">AI 定格动画生成器</a></li>
+                        <li><a href="/claude-data-analysis.html">Claude 数据分析助手</a></li>
+                        <li><a href="/a-stock-analysis.html">A股智能分析系统</a></li>
+                        <li><a href="/business-idea-validator.html">商业创意验证器</a></li>
+                        <li><a href="/easy-amazon-voc.html">Amazon商品评论分析系统</a></li>
+                        <li><a href="https://github.com/liangdabiao" target="_blank">更多项目</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 智能工具集合. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./script.js"></script>
+</body>
+</html>

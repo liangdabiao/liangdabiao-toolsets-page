@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI生成英语播客视频 - 自动化视频生成工具</title>
+    <meta name="description" content="只需提供一篇文章，全自动生成播客视频对话文案、视频素材、字幕和背景音乐，合成高清播客短视频。支持Web界面和API，多种AI模型接入。">
+    <meta name="keywords" content="AI播客视频,英语播客,视频生成,自动化制作,Streamlit,语音合成,字幕生成">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙️</text></svg>">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span>🎙️</span>
+                <span>AI视频工坊</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="./index.html" class="nav-link">主页</a></li>
+                <li><a href="#features" class="nav-link">功能特性</a></li>
+                <li><a href="#demo" class="nav-link">界面演示</a></li>
+                <li><a href="#installation" class="nav-link">安装部署</a></li>
+                <li><a href="#models" class="nav-link">技术支持</a></li>
+                <li><a href="https://github.com/liangdabiao/AI-generated-English-podcast-videos" target="_blank" class="btn btn-primary">GitHub</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero 区域 -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">🎙️ AI视频生成</div>
+                <h1>AI生成英语播客视频</h1>
+                <h2>一键生成高质量播客短视频</h2>
+                <p class="hero-description">
+                    只需提供一篇文章，全自动生成播客视频对话文案、视频素材、字幕和背景音乐，合成高清播客短视频。
+                    支持 Web 界面和 API，多种 AI 模型接入，让英语学习和内容创作变得简单高效。
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">AI模型支持</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">1080P</div>
+                        <div class="stat-label">高清视频</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">2种</div>
+                        <div class="stat-label">界面模式</div>
+                    </div>
+                </div>
+                <div class="hero-actions">
+                    <a href="https://github.com/liangdabiao/AI-generated-English-podcast-videos" target="_blank" class="btn btn-primary btn-large">
+                        <span>📦</span>
+                        免费下载使用
+                    </a>
+                    <a href="#installation" class="btn btn-secondary btn-large">
+                        <span>🚀</span>
+                        立即部署
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-image-container">
+                    <div class="hero-overlay">
+                        <div class="overlay-icon">🎙️</div>
+                        <div class="overlay-text">AI驱动的播客视频生成</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心特性 -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>功能特性</h2>
+                <p>完整的MVC架构，支持多种AI模型，自动化视频生成流程</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI智能生成</h3>
+                    <p>支持视频播客文案AI自动生成，也可以自定义文案，智能转换文章为对话内容</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎬</div>
+                    <h3>多尺寸视频</h3>
+                    <p>支持竖屏9:16 (1080x1920) 和横屏16:9 (1920x1080) 两种高清视频尺寸</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>批量生成</h3>
+                    <p>支持批量视频生成，可以一次生成多个视频，然后选择最满意的结果</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎵</div>
+                    <h3>语音合成</h3>
+                    <p>支持多种语音合成，可实时试听效果，支持中英文两种语言</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📜</div>
+                    <h3>智能字幕</h3>
+                    <p>支持字幕生成，可调整字体、位置、颜色、大小，同时支持字幕描边设置</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎼</div>
+                    <h3>背景音乐</h3>
+                    <p>支持背景音乐，随机或指定音乐文件，可设置背景音乐音量</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>高清素材</h3>
+                    <p>视频素材来源高清且无版权，也可以使用自己的本地素材</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>多模型接入</h3>
+                    <p>支持OpenAI、Moonshot、Azure、DeepSeek、通义千问、Google Gemini等多种模型</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 界面演示 -->
+    <section id="demo" class="demo">
+        <div class="container">
+            <div class="section-header">
+                <h2>界面演示</h2>
+                <p>直观的Web界面和强大的API接口</p>
+            </div>
+            <div class="demo-showcase">
+                <div class="demo-item">
+                    <div class="demo-card">
+                        <div class="demo-header">
+                            <div class="demo-icon">🌐</div>
+                            <h3>Web界面</h3>
+                        </div>
+                        <div class="demo-content">
+                            <div class="demo-image-placeholder">
+                                <div class="demo-image-text">
+                                    <h4>Streamlit Web界面</h4>
+                                    <p>直观易用的Web界面，支持实时参数调整</p>
+                                    <ul>
+                                        <li>文章输入和编辑</li>
+                                        <li>视频参数配置</li>
+                                        <li>实时预览和下载</li>
+                                        <li>批量任务管理</li>
+                                    </ul>
+                                    <a href="http://0.0.0.0:8501" target="_blank" class="btn btn-primary">
+                                        <span>🔗</span>
+                                        访问Web界面
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="demo-item">
+                    <div class="demo-card">
+                        <div class="demo-header">
+                            <div class="demo-icon">🔌</div>
+                            <h3>API接口</h3>
+                        </div>
+                        <div class="demo-content">
+                            <div class="demo-image-placeholder">
+                                <div class="demo-image-text">
+                                    <h4>RESTful API</h4>
+                                    <p>完整的API接口，支持程序化调用</p>
+                                    <ul>
+                                        <li>RESTful API设计</li>
+                                        <li>OpenAPI文档</li>
+                                        <li>在线调试接口</li>
+                                        <li>批量处理支持</li>
+                                    </ul>
+                                    <a href="http://0.0.0.0:8080/docs" target="_blank" class="btn btn-secondary">
+                                        <span>🔗</span>
+                                        API文档
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 安装部署 -->
+    <section id="installation" class="installation">
+        <div class="container">
+            <div class="section-header">
+                <h2>安装部署</h2>
+                <p>简单的安装步骤，快速启动使用</p>
+            </div>
+            <div class="installation-content">
+                <div class="install-steps">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h3>克隆代码</h3>
+                        <div class="code-block">
+                            <pre><code>git clone https://github.com/liangdabiao/AI-generated-English-podcast-videos.git
+cd AI-generated-English-podcast-videos</code></pre>
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h3>创建虚拟环境</h3>
+                        <div class="code-block">
+                            <pre><code>conda create -n AI-podcast-videos python=3.11
+conda activate AI-podcast-videos
+pip install -r requirements.txt</code></pre>
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h3>安装ImageMagick</h3>
+                        <div class="install-options">
+                            <div class="install-option">
+                                <h4>Windows</h4>
+                                <p>下载静态库版本，修改config.toml中的路径</p>
+                            </div>
+                            <div class="install-option">
+                                <h4>MacOS</h4>
+                                <code>brew install imagemagick</code>
+                            </div>
+                            <div class="install-option">
+                                <h4>Ubuntu</h4>
+                                <code>sudo apt-get install imagemagick</code>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <h3>启动服务</h3>
+                        <div class="launch-options">
+                            <div class="launch-option">
+                                <h4>Web界面</h4>
+                                <div class="code-block">
+                                    <pre><code># Windows
+webui.bat
+
+# MacOS/Linux
+sh webui.sh
+
+# 访问 http://0.0.0.0:8501</code></pre>
+                                </div>
+                            </div>
+                            <div class="launch-option">
+                                <h4>API服务</h4>
+                                <div class="code-block">
+                                    <pre><code>python main.py
+
+# API文档 http://0.0.0.0:8080/docs</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 技术支持 -->
+    <section id="models" class="tech-stack">
+        <div class="container">
+            <div class="section-header">
+                <h2>技术支持</h2>
+                <p>强大的技术栈和丰富的模型支持</p>
+            </div>
+            <div class="tech-grid">
+                <div class="tech-category">
+                    <h3>🤖 AI模型接入</h3>
+                    <div class="tech-items">
+                        <div class="tech-item">OpenAI GPT</div>
+                        <div class="tech-item">Moonshot</div>
+                        <div class="tech-item">Azure OpenAI</div>
+                        <div class="tech-item">DeepSeek</div>
+                        <div class="tech-item">通义千问</div>
+                        <div class="tech-item">Google Gemini</div>
+                        <div class="tech-item">Ollama</div>
+                        <div class="tech-item">文心一言</div>
+                        <div class="tech-item">Pollinations</div>
+                    </div>
+                </div>
+                <div class="tech-category">
+                    <h3>🎬 视频处理</h3>
+                    <div class="tech-items">
+                        <div class="tech-item">FFmpeg</div>
+                        <div class="tech-item">ImageMagick</div>
+                        <div class="tech-item">OpenCV</div>
+                        <div class="tech-item">PIL/Pillow</div>
+                    </div>
+                </div>
+                <div class="tech-category">
+                    <h3>🗣️ 语音合成</h3>
+                    <div class="tech-items">
+                        <div class="tech-item">Azure TTS</div>
+                        <div class="tech-item">Edge TTS</div>
+                        <div class="tech-item">OpenAI TTS</div>
+                        <div class="tech-item">多种语音库</div>
+                    </div>
+                </div>
+                <div class="tech-category">
+                    <h3>📜 字幕生成</h3>
+                    <div class="tech-items">
+                        <div class="tech-item">Whisper</div>
+                        <div class="tech-item">Edge TTS</div>
+                        <div class="tech-item">自定义字体</div>
+                        <div class="tech-item">字幕样式</div>
+                    </div>
+                </div>
+                <div class="tech-category">
+                    <h3>🎵 素材来源</h3>
+                    <div class="tech-items">
+                        <div class="tech-item">Pexels API</div>
+                        <div class="tech-item">本地素材</div>
+                        <div class="tech-item">背景音乐</div>
+                        <div class="tech-item">无版权内容</div>
+                    </div>
+                </div>
+                <div class="tech-category">
+                    <h3>🔧 开发框架</h3>
+                    <div class="tech-items">
+                        <div class="tech-item">Streamlit</div>
+                        <div class="tech-item">FastAPI</div>
+                        <div class="tech-item">MVC架构</div>
+                        <div class="tech-item">Python 3.11</div>
+                    </div>
+                </div>
+            </div>
+            <div class="recommendations">
+                <div class="recommendation-card">
+                    <h3>💡 推荐配置</h3>
+                    <div class="recommendation-list">
+                        <div class="recommendation-item">
+                            <span class="recommendation-label">CPU:</span>
+                            <span class="recommendation-value">4核或以上</span>
+                        </div>
+                        <div class="recommendation-item">
+                            <span class="recommendation-label">内存:</span>
+                            <span class="recommendation-value">4G或以上</span>
+                        </div>
+                        <div class="recommendation-item">
+                            <span class="recommendation-label">显卡:</span>
+                            <span class="recommendation-value">非必须</span>
+                        </div>
+                        <div class="recommendation-item">
+                            <span class="recommendation-label">系统:</span>
+                            <span class="recommendation-value">Windows 10+ / macOS 11+</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="recommendation-card">
+                    <h3>🇨🇳 国内用户推荐</h3>
+                    <div class="recommendation-content">
+                        <p>建议使用 <strong>DeepSeek</strong> 或 <strong>Moonshot</strong> 作为大模型提供商：</p>
+                        <ul>
+                            <li>国内可直接访问，不需要VPN</li>
+                            <li>注册即送额度，基本够用</li>
+                            <li>响应速度快，质量稳定</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 使用场景 -->
+    <section class="use-cases">
+        <div class="container">
+            <div class="section-header">
+                <h2>应用场景</h2>
+                <p>广泛的应用领域，满足不同需求</p>
+            </div>
+            <div class="use-cases-grid">
+                <div class="use-case-card">
+                    <div class="use-case-icon">📚</div>
+                    <h3>英语学习</h3>
+                    <p>将文章转换为英语对话视频，提供沉浸式学习体验，提高英语听力理解能力</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">📱</div>
+                    <h3>短视频创作</h3>
+                    <p>快速生成抖音、B站等平台的英语播客内容，提高创作效率</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">🎓</div>
+                    <h3>教育培训</h3>
+                    <p>将教学材料制作成生动有趣的播客视频，增强学习体验</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">📰</div>
+                    <h3>新闻播报</h3>
+                    <p>将新闻文章转换为专业的播客视频，适合新闻类短视频制作</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>🎙️ AI生成英语播客视频</h4>
+                    <p>自动化播客视频生成工具，让内容创作更简单</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="./index.html">返回主页</a></li>
+                        <li><a href="https://github.com/liangdabiao/AI-generated-English-podcast-videos" target="_blank">GitHub仓库</a></li>
+                        <li><a href="#installation">安装部署</a></li>
+                        <li><a href="#demo">界面演示</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>技术栈</h4>
+                    <ul>
+                        <li>Streamlit</li>
+                        <li>FastAPI</li>
+                        <li>AI语音合成</li>
+                        <li>视频处理</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>联系我们</h4>
+                    <ul>
+                        <li><a href="https://github.com/liangdabiao/AI-generated-English-podcast-videos/issues" target="_blank">问题反馈</a></li>
+                        <li><a href="https://github.com/liangdabiao/AI-generated-English-podcast-videos/pulls" target="_blank">贡献代码</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 AI生成英语播客视频. 开源项目 - <a href="https://github.com/liangdabiao/AI-generated-English-podcast-videos" target="_blank">GitHub</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./script.js"></script>
+    <script>
+        // 添加页面特定的交互功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 平滑滚动
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // 添加滚动动画
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // 观察所有卡片
+            document.querySelectorAll('.feature-card, .step-card, .tech-category, .use-case-card, .demo-card').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

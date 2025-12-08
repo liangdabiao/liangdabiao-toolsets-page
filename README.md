@@ -137,13 +137,23 @@ npm run deploy:production
 
 ```
 cfpage/
-├── index.html          # 主页模板
-├── styles.css          # 样式文件
-├── script.js           # 前端交互脚本
-├── worker.js           # Cloudflare Workers 主脚本
-├── wrangler.toml       # Wrangler 配置文件
-├── package.json        # 项目依赖配置
-└── README.md          # 项目说明文档
+├── index.html                           # 主页模板
+├── product.html                         # AI 定格动画生成器详情页
+├── claude-data-analysis.html            # Claude 数据分析助手详情页
+├── a-stock-analysis.html                # A股智能分析系统详情页
+├── business-idea-validator.html         # 商业创意验证器详情页
+├── easy-amazon-voc.html                 # Amazon商品评论分析系统详情页
+├── ai-data-hub.html                     # AI数据枢纽详情页
+├── ai-generated-english-podcast-videos.html # AI生成英语播客视频详情页
+├── langgraph-multi-agent-rag-customer-support.html # LangGraph多智能体RAG客服系统详情页
+├── llm-agent-resume.html                    # 智能简历筛选系统详情页
+├── resume-matcher-agent-cn.html              # 简历匹配器详情页
+├── styles.css                           # 样式文件
+├── script.js                            # 前端交互脚本
+├── worker.js                            # Cloudflare Workers 主脚本
+├── wrangler.toml                        # Wrangler 配置文件
+├── package.json                         # 项目依赖配置
+└── README.md                            # 项目说明文档
 ```
 
 ## 🎨 自定义配置

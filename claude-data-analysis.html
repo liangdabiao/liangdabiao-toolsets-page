@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude 数据分析助手 - 智能数据分析平台</title>
+    <meta name="description" content="基于 Claude Code 构建的智能数据分析平台，使用 AI 子代理、斜杠命令和自动化钩子，革新你的数据分析工作流程">
+    <link rel="stylesheet" href="./styles.css">
+    <style>
+        .product-detail {
+            padding: 120px 0 60px;
+            min-height: 100vh;
+        }
+        .product-hero {
+            background: linear-gradient(135deg, var(--surface) 0%, var(--background) 100%);
+            padding: 60px 0;
+        }
+        .product-hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .product-hero-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .product-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        .product-hero .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        .product-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+        }
+        .product-features {
+            margin: 3rem 0;
+        }
+        .product-features h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .feature-item {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        .feature-item h4 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            font-size: 1.125rem;
+        }
+        .feature-item p {
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        .product-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .github-btn {
+            background: #24292e;
+            color: white;
+            padding: 14px 28px;
+            border-radius: var(--radius);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 500;
+            transition: var(--transition);
+            font-size: 1.0625rem;
+        }
+        .github-btn:hover {
+            background: #2f363d;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        .tech-stack {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: var(--surface);
+            border-radius: var(--radius);
+        }
+        .tech-stack h4 {
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+        .tech-tag {
+            background: var(--primary-color);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.9375rem;
+            font-weight: 500;
+        }
+        .commands-section {
+            background: white;
+            padding: 4rem 0;
+            border-top: 1px solid var(--border-color);
+        }
+        .commands-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .commands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .command-card {
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            border-left: 4px solid var(--primary-color);
+        }
+        .command-code {
+            font-family: monospace;
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 0.75rem;
+            border-radius: 4px;
+            margin: 0.75rem 0;
+            font-size: 0.9rem;
+        }
+        .workflow-section {
+            background: var(--surface);
+            padding: 4rem 0;
+        }
+        .workflow-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        .workflow-step {
+            text-align: center;
+            position: relative;
+        }
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+        .back-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        .back-link:hover {
+            color: var(--primary-dark);
+        }
+        .project-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .stat-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+        }
+        .code-example {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            font-family: monospace;
+            font-size: 0.9rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+        .agents-showcase {
+            background: white;
+            padding: 4rem 0;
+            border-top: 1px solid var(--border-color);
+        }
+        .agents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .agent-card {
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            text-align: center;
+            transition: var(--transition);
+        }
+        .agent-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        .agent-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-left: 0.5rem;
+        }
+        .status-completed {
+            background: #10b981;
+            color: white;
+        }
+        .status-upcoming {
+            background: #f59e0b;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .product-hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+            .product-hero h1 {
+                font-size: 2rem;
+            }
+            .product-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            .github-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .feature-grid,
+            .commands-grid,
+            .workflow-steps,
+            .agents-grid {
+                grid-template-columns: 1fr;
+            }
+            .project-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">AI动画工具</a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="/" class="nav-link">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/#products" class="nav-link">产品</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/#about" class="nav-link">关于</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/#contact" class="nav-link">联系</a>
+                </li>
+            </ul>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="product-detail">
+        <div class="container">
+            <a href="/" class="back-link">← 返回首页</a>
+
+            <div class="product-hero">
+                <div class="product-hero-content">
+                    <div>
+                        <div class="product-hero-icon">📊</div>
+                        <h1>Claude 数据分析助手</h1>
+                        <p class="subtitle">
+                            基于 Claude Code 构建的智能数据分析平台，使用 AI 子代理、斜杠命令和自动化钩子，
+                            革新你的数据分析工作流程。让 AI 助你从数据中发现洞察！
+                        </p>
+                        <div class="product-tags">
+                            <span class="product-tag">数据分析</span>
+                            <span class="product-tag">Claude Code</span>
+                            <span class="product-tag">AI子代理</span>
+                            <span class="product-tag">自动化</span>
+                            <span class="product-tag">开源项目</span>
+                        </div>
+                        <div class="project-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">🤖</div>
+                                <div class="stat-label">6个AI子代理</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">⚡</div>
+                                <div class="stat-label">智能斜杠命令</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">🔄</div>
+                                <div class="stat-label">自动化工作流</div>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <a href="https://github.com/liangdabiao/claude-data-analysis" class="github-btn" target="_blank">
+                                <span>📂</span>
+                                <span>查看 GitHub 仓库</span>
+                            </a>
+                            <a href="/" class="btn btn-secondary">返回首页</a>
+                        </div>
+                    </div>
+                    <div class="product-hero-visual">
+                        <div style="text-align: center;">
+                            <div style="font-size: 8rem; margin-bottom: 1rem;">📊</div>
+                            <div style="font-size: 1.25rem; color: var(--text-secondary);">智能驱动的数据分析工具</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-features">
+                <h3>🌟 核心功能</h3>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <h4>🤖 智能AI子代理</h4>
+                        <p>6个专业化AI子代理：数据探索、可视化专家、代码生成器、报告编写器、质量保证、假设生成器</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>⚡ 直观斜杠命令</h4>
+                        <p>简洁的斜杠命令界面：/analyze、/visualize、/generate、/report、/quality、/hypothesis</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>🔄 自动化工作流</h4>
+                        <p>数据验证、智能上下文、可重现分析，完整的自动化工作流程，提升分析效率</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>📈 多种分析类型</h4>
+                        <p>探索性分析、统计分析、预测分析、完整分析，满足不同的数据分析需求</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>🎨 丰富的可视化</h4>
+                        <p>趋势图、分布图、相关性图、对比图，全面的数据可视化解决方案</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>💻 多语言代码生成</h4>
+                        <p>支持Python、R、SQL、JavaScript，生成生产级分析代码</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tech-stack">
+                <h4>🛠️ 技术栈</h4>
+                <div class="tech-tags">
+                    <span class="tech-tag">Claude Code</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">R</span>
+                    <span class="tech-tag">SQL</span>
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">Pandas</span>
+                    <span class="tech-tag">NumPy</span>
+                    <span class="tech-tag">Scikit-learn</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="agents-showcase">
+            <div class="container">
+                <div style="text-align: center;">
+                    <h3>🤖 AI 子代理系统</h3>
+                    <p style="color: var(--text-secondary); margin: 1rem 0;">6个专业化AI子代理，覆盖数据分析全流程</p>
+                </div>
+                <div class="agents-grid">
+                    <div class="agent-card">
+                        <div class="agent-icon">🔍</div>
+                        <h4>数据探索专家</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">专业的统计分析与模式发现</p>
+                    </div>
+                    <div class="agent-card">
+                        <div class="agent-icon">📊</div>
+                        <h4>可视化专家</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">创建美观、有洞察力的图表</p>
+                    </div>
+                    <div class="agent-card">
+                        <div class="agent-icon">💻</div>
+                        <h4>代码生成器</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">生产级分析代码生成</p>
+                    </div>
+                    <div class="agent-card">
+                        <div class="agent-icon">📄</div>
+                        <h4>报告编写器</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">综合分析报告生成</p>
+                    </div>
+                    <div class="agent-card">
+                        <div class="agent-icon">✅</div>
+                        <h4>质量保证</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">数据验证与质量控制</p>
+                    </div>
+                    <div class="agent-card">
+                        <div class="agent-icon">💡</div>
+                        <h4>假设生成器</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">研究假设与洞察生成</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="commands-section">
+            <div class="container">
+                <div class="commands-content">
+                    <h3 style="text-align: center; margin-bottom: 2rem;">⚡ 斜杠命令示例</h3>
+                    <div class="commands-grid">
+                        <div class="command-card">
+                            <h4>基础探索分析</h4>
+                            <div class="command-code">/analyze user_behavior.csv exploratory</div>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem;">对数据集进行探索性分析，发现基本模式</p>
+                        </div>
+                        <div class="command-card">
+                            <h4>创建可视化</h4>
+                            <div class="command-code">/visualize user_behavior.csv all</div>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem;">生成全面的数据可视化图表</p>
+                        </div>
+                        <div class="command-card">
+                            <h4>生成分析代码</h4>
+                            <div class="command-code">/generate python data-cleaning</div>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem;">生成数据清洗的Python代码</p>
+                        </div>
+                        <div class="command-card">
+                            <h4>创建综合报告</h4>
+                            <div class="command-code">/report user_behavior.csv complete markdown</div>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem;">生成完整的Markdown格式分析报告</p>
+                        </div>
+                        <div class="command-card">
+                            <h4>数据质量检查</h4>
+                            <div class="command-code">/quality user_behavior.csv clean</div>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem;">检查并清理数据质量问题</p>
+                        </div>
+                        <div class="command-card">
+                            <h4>生成研究假设</h4>
+                            <div class="command-code">/hypothesis user_behavior.csv user-engagement</div>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem;">基于数据生成研究假设</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="workflow-section">
+            <div class="container">
+                <h3 style="text-align: center; margin-bottom: 2rem;">🔄 数据分析工作流</h3>
+                <div class="workflow-steps">
+                    <div class="workflow-step">
+                        <div class="step-number">1</div>
+                        <h4>数据准备</h4>
+                        <p style="color: var(--text-secondary);">将CSV、JSON或Excel文件放入data_storage目录</p>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">2</div>
+                        <h4>探索分析</h4>
+                        <p style="color: var(--text-secondary);">使用/analyze命令进行初步数据探索</p>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">3</div>
+                        <h4>创建可视化</h4>
+                        <p style="color: var(--text-secondary);">通过/visualize命令生成洞察图表</p>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">4</div>
+                        <h4>生成报告</h4>
+                        <p style="color: var(--text-secondary);">使用/report命令创建完整分析报告</p>
+                    </div>
+                </div>
+
+                <div style="background: white; padding: 2rem; border-radius: var(--radius); margin: 3rem 0;">
+                    <h4 style="margin-bottom: 1.5rem; color: var(--primary-color);">📋 使用示例：用户行为分析</h4>
+                    <div class="code-example">
+# 完整分析工作流
+/analyze user_behavior.csv exploratory
+/visualize user_behavior.csv trends
+/quality user_behavior.csv clean
+/report user_behavior.csv complete html
+/generate python user-segmentation
+                    </div>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                        一组命令即可完成从数据探索到代码生成的完整分析流程
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" style="margin-top: 3rem;">
+            <div style="background: var(--surface); padding: 2rem; border-radius: var(--radius); text-align: center;">
+                <h3>🏗️ 项目结构</h3>
+                <div style="text-align: left; margin: 2rem 0; background: white; padding: 1.5rem; border-radius: var(--radius);">
+                    <pre style="color: var(--text-primary); font-size: 0.9rem; margin: 0;">claude-data-analysis/
+├── .claude/
+│   ├── agents/          # 子代理配置
+│   ├── commands/        # 斜杠命令定义
+│   ├── hooks/          # 自动化脚本
+│   └── settings.json   # Claude Code 设置
+├── data_storage/       # 数据文件存储
+├── visualizations/     # 生成的图表
+├── generated_code/     # 分析代码
+├── analysis_reports/   # 分析报告
+├── examples/          # 示例数据集和工作流
+└── docs/             # 文档</pre>
+                </div>
+
+                <div style="background: white; padding: 1.5rem; border-radius: var(--radius); margin: 1.5rem 0;">
+                    <h4 style="margin-bottom: 1rem;">📊 项目状态</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; text-align: left;">
+                        <div>
+                            <strong>当前阶段</strong>: Week 1.1 - 项目初始化
+                            <span class="status-badge status-completed">✅ 完成</span>
+                        </div>
+                        <div>
+                            <strong>核心代理</strong>
+                            <span class="status-badge status-completed">✅ 已完成</span>
+                        </div>
+                        <div>
+                            <strong>斜杠命令</strong>
+                            <span class="status-badge status-completed">✅ 已完成</span>
+                        </div>
+                        <div>
+                            <strong>高级功能</strong>
+                            <span class="status-badge status-upcoming">🚀 开发中</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: white; padding: 1.5rem; border-radius: var(--radius); margin: 1.5rem 0;">
+                    <h4 style="margin-bottom: 1rem;">🎯 支持的分析类型</h4>
+                    <div style="text-align: left; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                        <div>
+                            <strong>探索性分析</strong><br>
+                            <small style="color: var(--text-secondary);">数据质量评估、汇总统计、模式发现</small>
+                        </div>
+                        <div>
+                            <strong>统计分析</strong><br>
+                            <small style="color: var(--text-secondary);">假设检验、相关性分析、回归分析</small>
+                        </div>
+                        <div>
+                            <strong>预测分析</strong><br>
+                            <small style="color: var(--text-secondary);">特征重要性、预测建模、变量关系</small>
+                        </div>
+                        <div>
+                            <strong>完整分析</strong><br>
+                            <small style="color: var(--text-secondary);">综合报告、可视化、可操作洞察</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin: 1.5rem 0;">
+                    <a href="https://github.com/liangdabiao/claude-data-analysis" class="btn btn-primary" target="_blank">
+                        在 GitHub 上查看源代码
+                    </a>
+                    <a href="https://github.com/liangdabiao/claude-data-analysis" class="btn btn-secondary" target="_blank">
+                        开始使用智能数据分析
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>AI动画工具</h3>
+                    <p>专注于创造实用高效的工具产品</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/#products">产品</a></li>
+                        <li><a href="/#about">关于我们</a></li>
+                        <li><a href="/#contact">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>开源项目</h4>
+                    <ul>
+                        <li><a href="/product.html">AI 定格动画生成器</a></li>
+                        <li><a href="/claude-data-analysis.html">Claude 数据分析助手</a></li>
+                        <li><a href="https://github.com/liangdabiao" target="_blank">更多项目</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 AI动画工具. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./script.js"></script>
+</body>
+</html>

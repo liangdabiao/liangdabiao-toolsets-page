@@ -20,90 +20,186 @@ const products = [
         difficulty: '中等'
     },
     {
-        id: 'text-converter',
-        name: '文本转换器',
-        description: '支持多种文本格式转换，包括大小写转换、编码解码、格式清理等功能。',
-        icon: '📝',
-        tags: ['文本处理', '格式转换', '实用工具'],
+        id: 'claude-data-analysis',
+        name: 'Claude 数据分析助手',
+        description: '基于 Claude Code 的智能数据分析平台，使用 AI 子代理和斜杠命令革新数据分析工作流程。',
+        icon: '📊',
+        tags: ['数据分析', 'Claude Code', 'AI子代理', '自动化'],
+        githubUrl: 'https://github.com/liangdabiao/claude-data-analysis',
         features: [
-            '大小写转换（大写、小写、首字母大写等）',
-            '编码解码（Base64, URL编码等）',
-            '文本格式清理（去除空格、特殊字符等）',
-            'JSON格式化和验证',
-            'Markdown转HTML'
-        ]
+            '6个专业AI子代理：数据探索、可视化、代码生成、报告、质量保证、假设生成',
+            '直观斜杠命令：/analyze、/visualize、/generate、/report、/quality、/hypothesis',
+            '自动化工作流：数据验证、智能上下文、可重现分析',
+            '多语言代码生成：Python、R、SQL、JavaScript支持',
+            '多种分析类型：探索性、统计、预测、完整分析',
+            '丰富的可视化：趋势图、分布图、相关性图、对比图'
+        ],
+        techStack: ['Claude Code', 'Python', 'R', 'SQL', 'JavaScript', 'Pandas', 'NumPy', 'Scikit-learn'],
+        category: '数据分析',
+        difficulty: '进阶'
     },
     {
-        id: 'color-picker',
-        name: '颜色选择器',
-        description: '专业的颜色选择和转换工具，支持多种颜色格式，提供调色板和渐变生成功能。',
-        icon: '🎨',
-        tags: ['设计工具', '颜色管理', '前端开发'],
+        id: 'a-stock-analysis',
+        name: 'A股智能分析系统',
+        description: '基于AKShare和CrewAI的专业A股投资分析平台，通过多Agent协作提供智能化的投资决策支持。',
+        icon: '📈',
+        tags: ['A股分析', 'CrewAI', 'AKShare', '金融科技', '投资分析'],
+        githubUrl: 'https://github.com/liangdabiao/easy_investment_Agent_crewai',
         features: [
-            '颜色选择器和吸管工具',
-            '多格式转换（HEX, RGB, HSL等）',
-            '调色板生成和管理',
-            '渐变色生成器',
-            '颜色对比度检查'
-        ]
+            '4个专业AI分析师：市场分析师、财务专家、情绪研究员、投资顾问',
+            '全面A股数据：实时行情、财务报表、资金流向、市场情绪',
+            'A股市场特色：涨跌停分析、政策影响、散户情绪、资金轮动',
+            '多维度分析：技术面、基本面、资金面、情绪面综合评估',
+            '智能投资建议：评级目标、策略建议、风险控制方案',
+            '专业工具集成：AKShare数据源、CrewAI多Agent协作'
+        ],
+        techStack: ['CrewAI', 'AKShare', 'Python', 'LangChain', 'Ollama', 'Poetry', 'Pandas'],
+        category: '金融科技',
+        difficulty: '高级'
     },
     {
-        id: 'qr-generator',
-        name: '二维码生成器',
-        description: '快速生成各种类型的二维码，支持自定义样式和批量生成功能。',
-        icon: '📱',
-        tags: ['二维码', '生成工具', '移动端'],
+        id: 'business-idea-validator',
+        name: '商业创意验证器',
+        description: 'AI驱动的市场调研应用，输入商业创意自动分析小红书、Reddit等平台用户评论，评估商业可行性。',
+        icon: '💼',
+        tags: ['商业调研', 'AI分析', '数据抓取', '市场验证', '创业工具'],
+        githubUrl: 'https://github.com/liangdabiao/Business_Idea_Validator',
         features: [
-            '文本、链接、WiFi等多种内容类型',
-            '自定义颜色和样式',
-            'Logo嵌入功能',
-            '批量生成和下载',
-            '扫描统计功能'
-        ]
+            '多平台数据源：小红书、Reddit、Hacker News、公众号等',
+            'AI智能分析：痛点、兴奋信号、竞争对手、风险信号识别',
+            '可视化报告：交互式图表展示验证评分和执行摘要',
+            '快速验证流程：一键完成从创意输入到报告生成',
+            '专业分析框架：结构化数据提取和评分机制',
+            '第三方API集成：ScraperAPI、TikHub等专业数据方案'
+        ],
+        techStack: ['Streamlit', 'Python', 'OpenAI', 'ScraperAPI', 'Pydantic', 'TikHub API', '数据抓取'],
+        category: '商业工具',
+        difficulty: '进阶'
     },
     {
-        id: 'password-generator',
-        name: '密码生成器',
-        description: '安全可靠的密码生成工具，支持自定义规则和强度检测。',
-        icon: '🔐',
-        tags: ['安全工具', '密码管理', '隐私保护'],
+        id: 'easy-amazon-voc',
+        name: 'Amazon商品评论分析系统',
+        description: 'AI驱动的客户之声分析工具，针对Amazon商品评论进行多维度智能分析，生成用户画像和产品反馈报告。',
+        icon: '📦',
+        tags: ['VOC分析', 'Amazon评论', 'AI分析', '用户画像', '市场调研'],
+        githubUrl: 'https://github.com/liangdabiao/easy-amazon-voc',
         features: [
-            '可自定义长度和字符类型',
-            '密码强度评估',
-            '密码安全性检查',
-            '批量密码生成',
-            '密码历史记录'
-        ]
+            '多维度分析：人群场景、功能价值、保障价值、体验价值四大维度',
+            'AI智能标签提取：使用大模型自动识别评论关键信息',
+            '用户画像构建：分析使用场景、购买动机、价格感知等',
+            '产品反馈分析：深入分析产品优缺点和用户改进建议',
+            '一键式操作：从Easy Scraper爬取到分析完成，简单快捷',
+            '数据可视化：生成结构化报告，支持Excel筛选和深度分析'
+        ],
+        techStack: ['Flask', 'Python', 'OpenAI', 'Easy Scraper', 'ECharts', '字节豆包', '数据分析'],
+        category: '商业工具',
+        difficulty: '进阶'
     },
     {
-        id: 'image-compressor',
-        name: '图片压缩器',
-        description: '在线图片压缩工具，支持多种格式，在保持质量的同时减小文件大小。',
-        icon: '🖼️',
-        tags: ['图片处理', '优化工具', '文件压缩'],
+        id: 'ai-data-hub',
+        name: 'AI数据枢纽',
+        description: 'AI项目适用的数据中心框架，提供数据摄取、转换、探索和检索的完整解决方案，集成多种数据库和AI工具。',
+        icon: '🏗️',
+        tags: ['数据中心', 'AI工具集成', '多数据库支持', 'RAG框架', 'FastAPI'],
+        githubUrl: 'https://github.com/liangdabiao/AI_data_hub',
         features: [
-            '多格式支持（JPG, PNG, WebP等）',
-            '智能质量压缩',
-            '批量处理功能',
-            '尺寸调整和裁剪',
-            '预览和对比功能'
-        ]
+            '四层数据架构：Ingestion数据摄取、Transform数据加工、Explore探索分析、Retrieve查询检索',
+            '多数据库支持：MongoDB、PostgreSQL、Chroma、Milvus、Aliyun OSS、Supabase等',
+            'AI工具集成：OpenAI、LangChain、LangGraph、Tavily Search、小红书、微信公众号',
+            '多模态处理：图片处理、文搜图、图搜图功能，向量数据库检索',
+            '自动化管道：定时任务调度、数据抓取、清洗转换、向量化处理',
+            'RESTful API：FastAPI服务，NL2SQL自然语言查询，多模态检索接口'
+        ],
+        techStack: ['FastAPI', 'LangChain', 'LangGraph', 'MongoDB', 'PostgreSQL', 'Chroma', 'Milvus', 'Aliyun OSS', 'Docker'],
+        category: '基础设施',
+        difficulty: '高级'
     },
     {
-        id: 'json-formatter',
-        name: 'JSON格式化工具',
-        description: '专业的JSON格式化、验证和转换工具，支持高亮显示和错误检查。',
-        icon: '{}',
-        tags: ['开发工具', '数据处理', '格式化'],
+        id: 'ai-generated-english-podcast-videos',
+        name: 'AI生成英语播客视频',
+        description: '只需提供一篇文章，全自动生成播客视频对话文案、视频素材、字幕和背景音乐，合成高清播客短视频。支持Web界面和API。',
+        icon: '🎙️',
+        tags: ['AI播客视频', '英语学习', '视频生成', 'Streamlit', '语音合成', '自动化制作'],
+        githubUrl: 'https://github.com/liangdabiao/AI-generated-English-podcast-videos',
         features: [
-            'JSON格式化和美化',
-            '语法验证和错误提示',
-            'JSON与其他格式转换',
-            'JSONPath查询和测试',
-            'API调试功能'
-        ]
-    }
-];
+            '完整MVC架构：代码结构清晰，易于维护，支持API和Web界面',
+            'AI文案生成：支持文章自动转换为播客对话文案，也可自定义文案',
+            '多尺寸视频：支持竖屏9:16(1080x1920)和横屏16:9(1920x1080)',
+            '批量生成：一次生成多个视频，选择最满意的结果',
+            '智能语音合成：支持多种语音，实时试听，支持中英文',
+            '字幕生成：支持字体、位置、颜色、大小调整，支持字幕描边',
+            '背景音乐：随机或指定音乐，可调节背景音乐音量',
+            '高清素材：无版权视频素材，支持本地素材上传',
+            '多模型接入：OpenAI、DeepSeek、Moonshot、Azure、通义千问、Gemini等'
+        ],
+        techStack: ['Streamlit', 'FastAPI', 'FFmpeg', 'ImageMagick', 'Azure TTS', 'OpenAI TTS', 'Whisper', 'Pexels API', 'Python 3.11'],
+        category: 'AI工具',
+        difficulty: '中等'
+    },
+    {
+        id: 'langgraph-multi-agent-rag-customer-support',
+        name: 'LangGraph多智能体RAG客服系统',
+        description: '基于多智能体和RAG技术的企业级客服系统，支持航班预订、酒店预订、租车、行程推荐、WooCommerce电商集成等功能，具备安全护栏和人工审核机制。',
+        icon: '🤝',
+        tags: ['多智能体', 'RAG', 'LangGraph', '客服系统', 'LangChain', '企业AI', '智能客服', '安全护栏'],
+        githubUrl: 'https://github.com/liangdabiao/langgraph_multi-agent-rag-customer-support',
+        features: [
+            '多智能体架构：7个专业智能体协作，主助手统筹协调处理复杂跨领域问题',
+            'RAG技术：检索增强生成，基于向量数据库的知识检索，确保回答准确性',
+            '完整旅行服务：航班预订、酒店预订、租车服务、行程推荐等一站式服务',
+            'WooCommerce集成：完整的电商功能，商品查询、订单管理、博客搜索、表单提交',
+            '安全护栏机制：越狱防护和相关性检查，智能过滤恶意输入和不相关请求',
+            '人工审核流程：GoHumanLoop框架支持，敏感操作需要管理员最终批准',
+            '可观测性：集成LangSmith追踪系统，完整监控请求生命周期和系统性能',
+            '状态管理：完整的对话状态管理和内存检查点，支持复杂多轮对话'
+        ],
+        techStack: ['LangGraph', 'LangChain', 'OpenAI', 'Qdrant', 'FastAPI', 'Docker', 'GoHumanLoop', 'WooCommerce API', 'Python 3.12'],
+        category: '企业AI',
+        difficulty: '高级'
+    },
+    {
+        id: 'llm-agent-resume',
+        name: '智能简历筛选系统',
+        description: '基于大型语言模型的智能简历筛选系统，通过自然语言交互、智能信息提取、量化匹配算法等功能，显著提高招聘流程中简历筛选的效率和准确性。',
+        icon: '📄',
+        tags: ['简历筛选', 'LLM', '智能招聘', 'HR工具', 'AI面试', '自然语言处理', '自动化招聘'],
+        githubUrl: 'https://github.com/liangdabiao/LLM-Agent-Resume',
+        features: [
+            '自然语言交互：HR可用自然语言描述招聘需求，系统智能理解并转化为结构化筛选条件',
+            '智能信息提取：利用LLM从PDF简历和JD中提取技能、经验、学历、薪资期望等结构化信息',
+            '量化匹配算法：结合语义理解和结构化信息，对候选人进行多维度量化评估',
+            '多层次筛选：语义初筛 → 硬性条件过滤 → 综合评分排序的漏斗式筛选流程',
+            '候选人分析：为HR提供详细的候选人匹配度分析和招聘决策建议',
+            'RESTful API：完整的Web API接口，易于与现有HR系统集成和二次开发',
+            '向量数据库：基于ChromaDB的简历向量存储和检索，支持高效的语义搜索',
+            '批量处理：支持批量上传简历和并发处理，提高大规模招聘的效率'
+        ],
+        techStack: ['OpenAI', 'FastAPI', 'ChromaDB', 'PyPDF2', 'Pydantic', 'Uvicorn', 'Docker', 'Python 3.8+'],
+        category: 'HR工具',
+        difficulty: '进阶'
+    },
+    {
+        id: 'resume-matcher-agent-cn',
+        name: '简历匹配器',
+        description: 'AI驱动的简历优化平台，通过逆向工程招聘算法，帮助求职者精准定制简历，提供关键词匹配、格式优化和ATS筛选建议，提高简历通过率。',
+        icon: '🎯',
+        tags: ['简历优化', 'ATS筛选', '求职工具', 'AI简历分析', '关键词匹配', '求职助手', '简历匹配'],
+        githubUrl: 'https://github.com/liangdabiao/resume-matcher-agent-cn',
+        features: [
+            '简历分析：支持上传PDF或DOCX格式的简历进行智能分析，提取关键信息',
+            '职位描述解析：深度解析职位描述，提取关键要求和技能需求',
+            'AI驱动洞察：基于职位要求提供个性化简历改进建议，帮助求职者精准优化',
+            '关键词匹配：识别对ATS（申请人跟踪系统）重要的缺失关键词，提高通过率',
+            '结构化数据提取：将非结构化的简历和职位数据转换为结构化JSON格式',
+            '本地AI处理：支持Ollama本地AI模型服务，确保数据隐私，也可选择OpenAI云端处理',
+            '全栈架构：基于Next.js + FastAPI的现代化全栈架构，用户体验优秀',
+            '实时优化建议：提供实时的简历优化建议，帮助求职者快速调整简历内容'
+        ],
+        techStack: ['Next.js 15+', 'React 19', 'FastAPI', 'Python 3.12+', 'Tailwind CSS 4.x', 'Ollama 0.6.7', 'SQLite 3.x', 'TypeScript'],
+        category: '求职工具',
+        difficulty: '中等'
+    },
+    ];
 
 // DOM元素
 const productsGrid = document.getElementById('productsGrid');
@@ -304,6 +400,60 @@ function useProduct(productId) {
     // 如果是AI定格动画生成器，直接跳转到产品详情页
     if (productId === 'ai-stop-motion') {
         window.location.href = '/product.html';
+        return;
+    }
+
+    // 如果是Claude数据分析助手，跳转到专门的页面
+    if (productId === 'claude-data-analysis') {
+        window.location.href = '/claude-data-analysis.html';
+        return;
+    }
+
+    // 如果是A股智能分析系统，跳转到专门的页面
+    if (productId === 'a-stock-analysis') {
+        window.location.href = '/a-stock-analysis.html';
+        return;
+    }
+
+    // 如果是商业创意验证器，跳转到专门的页面
+    if (productId === 'business-idea-validator') {
+        window.location.href = '/business-idea-validator.html';
+        return;
+    }
+
+    // 如果是Amazon商品评论分析系统，跳转到专门的页面
+    if (productId === 'easy-amazon-voc') {
+        window.location.href = '/easy-amazon-voc.html';
+        return;
+    }
+
+    // 如果是AI数据枢纽，跳转到专门的页面
+    if (productId === 'ai-data-hub') {
+        window.location.href = '/ai-data-hub.html';
+        return;
+    }
+
+    // 如果是AI生成英语播客视频，跳转到专门的页面
+    if (productId === 'ai-generated-english-podcast-videos') {
+        window.location.href = '/ai-generated-english-podcast-videos.html';
+        return;
+    }
+
+    // 如果是LangGraph多智能体RAG客服系统，跳转到专门的页面
+    if (productId === 'langgraph-multi-agent-rag-customer-support') {
+        window.location.href = '/langgraph-multi-agent-rag-customer-support.html';
+        return;
+    }
+
+    // 如果是智能简历筛选系统，跳转到专门的页面
+    if (productId === 'llm-agent-resume') {
+        window.location.href = '/llm-agent-resume.html';
+        return;
+    }
+
+    // 如果是简历匹配器，跳转到专门的页面
+    if (productId === 'resume-matcher-agent-cn') {
+        window.location.href = '/resume-matcher-agent-cn.html';
         return;
     }
 

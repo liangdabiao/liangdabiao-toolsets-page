@@ -2,12 +2,25 @@
 
 ## 📋 项目概述
 
-这是一个为 [AI 定格动画生成器](https://github.com/liangdabiao/ai-make-face-meme) 创建的落地页网站，基于 Cloudflare Workers 部署，完全免费且全球加速。
+这是一个展示多个AI工具产品的落地页网站，包括：
+- [AI 定格动画生成器](https://github.com/liangdabiao/ai-make-face-meme) - 基于Gemini Nano的动画生成工具
+- [Claude 数据分析助手](https://github.com/liangdabiao/claude-data-analysis) - 智能数据分析平台
+- [A股智能分析系统](https://github.com/liangdabiao/easy_investment_Agent_crewai) - 专业投资分析平台
+- [商业创意验证器](https://github.com/liangdabiao/Business_Idea_Validator) - AI驱动的市场调研应用
+- [Amazon商品评论分析系统](https://github.com/liangdabiao/easy-amazon-voc) - 客户之声分析工具
+- [AI数据枢纽](https://github.com/liangdabiao/AI_data_hub) - AI项目数据中心框架
+- [AI生成英语播客视频](https://github.com/liangdabiao/AI-generated-English-podcast-videos) - 自动化播客视频生成工具
+- [LangGraph多智能体RAG客服系统](https://github.com/liangdabiao/langgraph_multi-agent-rag-customer-support) - 企业级智能客服解决方案
+- [智能简历筛选系统](https://github.com/liangdabiao/LLM-Agent-Resume) - 基于LLM的自动化招聘解决方案
+- [简历匹配器](https://github.com/liangdabiao/resume-matcher-agent-cn) - AI驱动的简历优化平台
+
+基于 Cloudflare Workers 部署，完全免费且全球加速。
 
 ### 🎯 主要功能
 
-- **主页展示**: 突出展示 AI 定格动画生成器项目
+- **主页展示**: 展示 AI 定格动画生成器、Claude 数据分析助手、A股智能分析系统、商业创意验证器、Amazon商品评论分析系统、AI数据枢纽、AI生成英语播客视频、LangGraph多智能体RAG客服系统、智能简历筛选系统、简历匹配器等多个项目
 - **产品详情页**: 详细介绍项目功能、技术栈和使用方法
+- **多个产品页面**: 支持多个独立的产品展示页面
 - **响应式设计**: 完美适配桌面端和移动端
 - **Cloudflare Workers**: 全球 CDN 加速，零运维成本
 
@@ -16,7 +29,7 @@
 ### 方法一：直接使用静态文件（推荐）
 
 1. **上传文件到静态托管**
-   - 将 `index.html`、`styles.css`、`script.js`、`product.html` 上传到任意静态托管服务
+   - 将所有HTML文件（`index.html`、`product.html`、`claude-data-analysis.html`、`a-stock-analysis.html`、`business-idea-validator.html`、`easy-amazon-voc.html`、`ai-data-hub.html`、`ai-generated-english-podcast-videos.html`、`langgraph-multi-agent-rag-customer-support.html`、`llm-agent-resume.html`、`resume-matcher-agent-cn.html`）和资源文件上传
    - 支持：GitHub Pages、Vercel、Netlify、或者直接上传到 Cloudflare Pages
 
 2. **部署选项**
@@ -65,16 +78,30 @@
 
 ```
 cfpage/
-├── index.html          # 主页（重点展示 AI 定格动画生成器）
-├── product.html        # 项目详情页
-├── styles.css          # 样式文件
-├── script.js           # 交互脚本
-├── worker.js           # Cloudflare Workers 脚本
-├── wrangler.toml       # Workers 配置
-├── package.json        # 项目配置
-├── README.md          # 详细说明
-├── DEPLOYMENT.md      # 部署指南（本文件）
-└── 需求.txt           # 项目需求文档
+├── index.html                           # 主页（展示多个项目）
+├── product.html                         # AI 定格动画生成器详情页
+├── claude-data-analysis.html            # Claude 数据分析助手详情页
+├── a-stock-analysis.html                # A股智能分析系统详情页
+├── business-idea-validator.html         # 商业创意验证器详情页
+├── easy-amazon-voc.html                 # Amazon商品评论分析系统详情页
+├── ai-data-hub.html                     # AI数据枢纽详情页
+├── ai-generated-english-podcast-videos.html # AI生成英语播客视频详情页
+├── langgraph-multi-agent-rag-customer-support.html # LangGraph多智能体RAG客服系统详情页
+├── llm-agent-resume.html                    # 智能简历筛选系统详情页
+├── resume-matcher-agent-cn.html              # 简历匹配器详情页
+├── styles.css                           # 样式文件
+├── script.js                            # 交互脚本
+├── worker.js                            # Cloudflare Workers 脚本
+├── wrangler.toml                        # Workers 配置
+├── package.json                         # 项目配置
+├── README.md                           # 详细说明
+├── DEPLOYMENT.md                       # 部署指南（本文件）
+├── 需求.txt                            # 项目需求文档
+├── 子项目claude-data-analysis.md       # Claude数据分析助手需求文档
+├── 子项目easy_investment_Agent_crewai.md # A股智能分析系统需求文档
+├── 子项目Business_Idea_Validator.md    # 商业创意验证器需求文档
+├── 子项目easy-amazon-voc.md             # Amazon商品评论分析系统需求文档
+└── AI_data_hub.md                       # AI数据枢纽需求文档
 ```
 
 ## 🎨 自定义配置
@@ -166,8 +193,17 @@ cfpage/
 
 部署成功后，你应该能看到：
 
-- [ ] 主页显示 "AI 定格动画生成器" 标题
-- [ ] 点击 "立即体验" 按钮能跳转到产品详情页
+- [ ] 主页显示六个主要项目卡片
+- [ ] AI 定格动画生成器能正确跳转到 `/product.html`
+- [ ] Claude 数据分析助手能正确跳转到 `/claude-data-analysis.html`
+- [ ] A股智能分析系统能正确跳转到 `/a-stock-analysis.html`
+- [ ] 商业创意验证器能正确跳转到 `/business-idea-validator.html`
+- [ ] Amazon商品评论分析系统能正确跳转到 `/easy-amazon-voc.html`
+- [ ] AI数据枢纽能正确跳转到 `/ai-data-hub.html`
+- [ ] AI生成英语播客视频能正确跳转到 `/ai-generated-english-podcast-videos.html`
+- [ ] LangGraph多智能体RAG客服系统能正确跳转到 `/langgraph-multi-agent-rag-customer-support.html`
+- [ ] 智能简历筛选系统能正确跳转到 `/llm-agent-resume.html`
+- [ ] 简历匹配器能正确跳转到 `/resume-matcher-agent-cn.html`
 - [ ] 产品详情页显示完整的项目信息
 - [ ] GitHub 链接能正确跳转到项目仓库
 - [ ] 移动端显示正常

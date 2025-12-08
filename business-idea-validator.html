@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商业创意验证器 - AI驱动的市场调研应用</title>
+    <meta name="description" content="基于AI的商业创意验证工具，自动分析小红书、Reddit等平台的用户评论，评估市场需求、竞争水平和可行性">
+    <link rel="stylesheet" href="./styles.css">
+    <style>
+        .product-detail {
+            padding: 120px 0 60px;
+            min-height: 100vh;
+        }
+        .product-hero {
+            background: linear-gradient(135deg, var(--surface) 0%, var(--background) 100%);
+            padding: 60px 0;
+        }
+        .product-hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .product-hero-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .product-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        .product-hero .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        .product-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+        }
+        .product-features {
+            margin: 3rem 0;
+        }
+        .product-features h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .feature-item {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        .feature-item h4 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            font-size: 1.125rem;
+        }
+        .feature-item p {
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        .product-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .github-btn {
+            background: #24292e;
+            color: white;
+            padding: 14px 28px;
+            border-radius: var(--radius);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 500;
+            transition: var(--transition);
+            font-size: 1.0625rem;
+        }
+        .github-btn:hover {
+            background: #2f363d;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        .tech-stack {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: var(--surface);
+            border-radius: var(--radius);
+        }
+        .tech-stack h4 {
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+        .tech-tag {
+            background: var(--primary-color);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.9375rem;
+            font-weight: 500;
+        }
+        .platforms-section {
+            background: white;
+            padding: 4rem 0;
+            border-top: 1px solid var(--border-color);
+        }
+        .platforms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .platform-card {
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            text-align: center;
+            transition: var(--transition);
+        }
+        .platform-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        .platform-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .back-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        .back-link:hover {
+            color: var(--primary-dark);
+        }
+        .project-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .stat-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+        }
+        .code-example {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            font-family: monospace;
+            font-size: 0.9rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+        .workflow-section {
+            background: var(--surface);
+            padding: 4rem 0;
+        }
+        .workflow-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        .workflow-step {
+            text-align: center;
+            position: relative;
+        }
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+        .demo-section {
+            background: white;
+            padding: 4rem 0;
+            border-top: 1px solid var(--border-color);
+        }
+        .demo-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .demo-card {
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            text-align: center;
+        }
+        .demo-card h4 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        .analysis-types {
+            background: white;
+            padding: 4rem 0;
+            border-top: 1px solid var(--border-color);
+        }
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .analysis-item {
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            border-left: 4px solid #10b981;
+        }
+        .analysis-item.negative {
+            border-left-color: #ef4444;
+        }
+        .analysis-item.warning {
+            border-left-color: #f59e0b;
+        }
+
+        @media (max-width: 768px) {
+            .product-hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+            .product-hero h1 {
+                font-size: 2rem;
+            }
+            .product-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            .github-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .feature-grid,
+            .platforms-grid,
+            .analysis-grid,
+            .demo-grid {
+                grid-template-columns: 1fr;
+            }
+            .project-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">智能工具集合</a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="/" class="nav-link">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/#products" class="nav-link">产品</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/#about" class="nav-link">关于</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/#contact" class="nav-link">联系</a>
+                </li>
+            </ul>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="product-detail">
+        <div class="container">
+            <a href="/" class="back-link">← 返回首页</a>
+
+            <div class="product-hero">
+                <div class="product-hero-content">
+                    <div>
+                        <div class="product-hero-icon">💼</div>
+                        <h1>商业创意验证器</h1>
+                        <p class="subtitle">
+                            AI驱动的市场调研应用，输入商业创意自动分析小红书、Reddit等平台用户评论。
+                            通过智能分析识别用户痛点、市场信号和竞争情况，评估商业可行性。
+                        </p>
+                        <div class="product-tags">
+                            <span class="product-tag">商业调研</span>
+                            <span class="product-tag">AI分析</span>
+                            <span class="product-tag">数据抓取</span>
+                            <span class="product-tag">市场验证</span>
+                            <span class="product-tag">创业工具</span>
+                        </div>
+                        <div class="project-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">5+</div>
+                                <div class="stat-label">数据源平台</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">🤖</div>
+                                <div class="stat-label">AI智能分析</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">📊</div>
+                                <div class="stat-label">可视化报告</div>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <a href="https://github.com/liangdabiao/Business_Idea_Validator" class="github-btn" target="_blank">
+                                <span>📂</span>
+                                <span>查看 GitHub 仓库</span>
+                            </a>
+                            <a href="/" class="btn btn-secondary">返回首页</a>
+                        </div>
+                    </div>
+                    <div class="product-hero-visual">
+                        <div style="text-align: center;">
+                            <div style="font-size: 8rem; margin-bottom: 1rem;">💼</div>
+                            <div style="font-size: 1.25rem; color: var(--text-secondary);">智能驱动的商业调研工具</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-features">
+                <h3>🌟 核心功能</h3>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <h4>💡 商业创意验证</h4>
+                        <p>输入任意商业创意，系统自动生成相关关键词并分析市场接受度、竞争激烈程度和可行性</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>📊 智能数据分析</h4>
+                        <p>使用AI模型深度分析用户评论，提取痛点、兴奋信号、竞争对手信息和潜在风险</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>🌐 多平台数据源</h4>
+                        <p>支持小红书、Reddit、Hacker News、公众号等多个平台，集成第三方数据方案如ScraperAPI</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>📈 可视化报告</h4>
+                        <p>交互式图表展示验证评分，生成专业的执行摘要和详细的商业分析报告</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>🎯 精准市场洞察</h4>
+                        <p>基于真实用户反馈分析市场需求，识别趋势机会，为商业决策提供数据支持</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>⚡ 快速验证流程</h4>
+                        <p>从创意输入到验证报告生成，一键完成整个市场调研流程，大幅节省时间和成本</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tech-stack">
+                <h4>🛠️ 技术栈</h4>
+                <div class="tech-tags">
+                    <span class="tech-tag">Streamlit</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">OpenAI</span>
+                    <span class="tech-tag">ScraperAPI</span>
+                    <span class="tech-tag">Pydantic</span>
+                    <span class="tech-tag">TikHub API</span>
+                    <span class="tech-tag">数据抓取</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="platforms-section">
+            <div class="container">
+                <div style="text-align: center;">
+                    <h3>🌐 多平台数据支持</h3>
+                    <p style="color: var(--text-secondary); margin: 1rem 0;">整合多个主流社交媒体和讨论平台，获取真实用户反馈</p>
+                </div>
+                <div class="platforms-grid">
+                    <div class="platform-card">
+                        <div class="platform-icon">📱</div>
+                        <h4>小红书</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">中国主流生活方式分享平台，获取用户真实使用体验</p>
+                    </div>
+                    <div class="platform-card">
+                        <div class="platform-icon">💬</div>
+                        <h4>Reddit</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">全球热门讨论社区，获取海外用户观点和反馈</p>
+                    </div>
+                    <div class="platform-card">
+                        <div class="platform-icon">🔧</div>
+                        <h4>Hacker News</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">技术和创业者聚集地，获取专业市场分析</p>
+                    </div>
+                    <div class="platform-card">
+                        <div class="platform-icon">📢</div>
+                        <h4>微信公众号</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">专业内容平台，获取深度行业分析和用户评论</p>
+                    </div>
+                </div>
+
+                <div style="background: white; padding: 2rem; border-radius: var(--radius); margin: 3rem 0;">
+                    <h4 style="margin-bottom: 1.5rem; color: var(--primary-color);">🔧 第三方数据方案集成</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div>
+                            <strong>ScraperAPI</strong><br>
+                            <small style="color: var(--text-secondary);">专业的网页抓取API服务</small>
+                        </div>
+                        <div>
+                            <strong>API TikHub</strong><br>
+                            <small style="color: var(--text-secondary);">社交媒体数据获取方案</small>
+                        </div>
+                        <div>
+                            <strong>自定义扩展</strong><br>
+                            <small style="color: var(--text-secondary);">支持更多数据源接入</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="workflow-section">
+            <div class="container">
+                <h3 style="text-align: center; margin-bottom: 2rem;">🔄 智能验证工作流</h3>
+                <div class="workflow-steps">
+                    <div class="workflow-step">
+                        <div class="step-number">1</div>
+                        <h4>输入创意</h4>
+                        <p style="color: var(--text-secondary);">用户输入商业创意，如"在苏州卖陈皮"</p>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">2</div>
+                        <h4>关键词生成</h4>
+                        <p style="color: var(--text-secondary);">AI自动生成相关关键词和搜索策略</p>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">3</div>
+                        <h4>数据收集</h4>
+                        <p style="color: var(--text-secondary);">多平台抓取相关讨论和用户评论</p>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">4</div>
+                        <h4>智能分析</h4>
+                        <p style="color: var(--text-secondary);">AI模型深度分析用户反馈和市场信号</p>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="step-number">5</div>
+                        <h4>报告生成</h4>
+                        <p style="color: var(--text-secondary);">生成可视化的商业验证报告</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="analysis-types">
+            <div class="container">
+                <h3 style="text-align: center; margin-bottom: 2rem;">📊 多维度商业分析</h3>
+                <div class="analysis-grid">
+                    <div class="analysis-item">
+                        <h4>🎯 痛点分析</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">识别用户在相关产品或服务中遇到的问题和困扰</p>
+                    </div>
+                    <div class="analysis-item">
+                        <h4>🚀 兴奋信号</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">发现用户对相关领域的积极情绪和期待</p>
+                    </div>
+                    <div class="analysis-item negative">
+                        <h4>⚠️ 风险信号</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">识别潜在的商业模式风险和市场障碍</p>
+                    </div>
+                    <div class="analysis-item">
+                        <h4>🏢 竞争对手</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">分析现有市场竞争格局和主要玩家</p>
+                    </div>
+                    <div class="analysis-item">
+                        <h4>📈 市场需求</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">评估目标市场规模和用户需求强度</p>
+                    </div>
+                    <div class="analysis-item warning">
+                        <h4>💡 改进建议</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">基于分析结果提供商业优化建议</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <div class="container">
+                <div class="demo-content">
+                    <h3 style="text-align: center; margin-bottom: 2rem;">📱 应用界面展示</h3>
+                    <p style="color: var(--text-secondary); text-align: center; margin-bottom: 3rem;">
+                        支持多种分析模式，从商业调研到深度评论分析，满足不同需求
+                    </p>
+                    <div class="demo-grid">
+                        <div class="demo-card">
+                            <h4>小红书商业调研</h4>
+                            <p style="color: var(--text-secondary); margin-bottom: 1rem;">分析小红书用户对商业创意的反馈和市场表现</p>
+                            <div style="background: #f3f4f6; padding: 1rem; border-radius: var(--radius); font-family: monospace; font-size: 0.85rem;">
+                                streamlit run business_validator_ui_cn.py
+                            </div>
+                        </div>
+                        <div class="demo-card">
+                            <h4>Reddit 商业调研</h4>
+                            <p style="color: var(--text-secondary); margin-bottom: 1rem;">获取海外用户观点，了解国际市场反馈</p>
+                            <div style="background: #f3f4f6; padding: 1rem; border-radius: var(--radius); font-family: monospace; font-size: 0.85rem;">
+                                streamlit run business_validator_ui.py
+                            </div>
+                        </div>
+                        <div class="demo-card">
+                            <h4>评论深度分析</h4>
+                            <p style="color: var(--text-secondary); margin-bottom: 1rem;">针对特定产品或服务的用户评论进行深度分析</p>
+                            <div style="background: #f3f4f6; padding: 1rem; border-radius: var(--radius); font-family: monospace; font-size: 0.85rem;">
+                                python app.py (小红书)<br>
+                                python app_reddit.py (Reddit)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" style="margin-top: 3rem;">
+            <div style="background: var(--surface); padding: 2rem; border-radius: var(--radius); text-align: center;">
+                <h3>🚀 快速开始</h3>
+
+                <div style="background: white; padding: 2rem; border-radius: var(--radius); margin: 2rem 0; text-align: left;">
+                    <h4 style="margin-bottom: 1.5rem; color: var(--primary-color);">安装步骤</h4>
+                    <div class="code-example">
+# 1. 克隆项目
+git clone https://github.com/liangdabiao/Business_Idea_Validator
+cd Business_Idea_Validator
+
+# 2. 安装依赖
+pip install -r requirements.txt
+
+# 3. 配置API密钥
+# 编辑 business_validator/config.py 配置数据接口
+# 编辑 openai_llm.py 配置OpenAI API密钥
+                    </div>
+                </div>
+
+                <div style="background: white; padding: 2rem; border-radius: var(--radius); margin: 2rem 0; text-align: left;">
+                    <h4 style="margin-bottom: 1.5rem; color: var(--primary-color);">使用示例</h4>
+                    <div class="code-example">
+# 小红书商业调研
+streamlit run business_validator_ui_cn.py
+
+# Reddit 商业调研
+streamlit run business_validator_ui.py
+
+# 小红书评论分析
+python app.py
+
+# Reddit 评论分析
+python app_reddit.py
+                    </div>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 1rem;">
+                        💡 访问 http://localhost:8501 开始使用应用
+                    </p>
+                </div>
+
+                <div style="background: white; padding: 2rem; border-radius: var(--radius); margin: 2rem 0;">
+                    <h4 style="margin-bottom: 1rem; color: var(--primary-color);">📋 分析框架</h4>
+                    <div style="text-align: left; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                        <div>
+                            <strong>TextWithRelevance</strong><br>
+                            <small style="color: var(--text-secondary);">文本内容与相关性评分 (0-10)</small>
+                        </div>
+                        <div>
+                            <strong>BusinessIdeaAnalysis</strong><br>
+                            <small style="color: var(--text-secondary);">综合分析模型：痛点、信号、竞争、风险</small>
+                        </div>
+                        <div>
+                            <strong>KeywordModel</strong><br>
+                            <small style="color: var(--text-secondary);">验证关键词生成模型</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin: 2rem 0;">
+                    <a href="https://github.com/liangdabiao/Business_Idea_Validator" class="btn btn-primary" target="_blank">
+                        在 GitHub 上查看源代码
+                    </a>
+                    <a href="https://github.com/liangdabiao/Business_Idea_Validator" class="btn btn-secondary" target="_blank">
+                        开始验证商业创意
+                    </a>
+                </div>
+
+                <div style="background: white; padding: 1.5rem; border-radius: var(--radius); margin-top: 2rem;">
+                    <h4 style="margin-bottom: 1rem;">🔗 相关项目</h4>
+                    <p style="color: var(--text-secondary);">
+                        如需Amazon评论分析或Trustpilot评论分析，可查看另一个项目：<br>
+                        <a href="https://github.com/liangdabiao/easy-amazon-voc" target="_blank" style="color: var(--primary-color);">easy-amazon-voc</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>智能工具集合</h3>
+                    <p>专注于创造实用高效的工具产品</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/#products">产品</a></li>
+                        <li><a href="/#about">关于我们</a></li>
+                        <li><a href="/#contact">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>开源项目</h4>
+                    <ul>
+                        <li><a href="/product.html">AI 定格动画生成器</a></li>
+                        <li><a href="/claude-data-analysis.html">Claude 数据分析助手</a></li>
+                        <li><a href="/a-stock-analysis.html">A股智能分析系统</a></li>
+                        <li><a href="/business-idea-validator.html">商业创意验证器</a></li>
+                        <li><a href="https://github.com/liangdabiao" target="_blank">更多项目</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 智能工具集合. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./script.js"></script>
+</body>
+</html>

@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI数据枢纽 - AI项目数据中心框架</title>
+    <meta name="description" content="集成多种数据库、AI工具和数据功能的AI项目数据中心，支持数据摄取、转换、探索和检索">
+    <link rel="stylesheet" href="./styles.css">
+    <style>
+        .product-detail {
+            padding: 120px 0 60px;
+            min-height: 100vh;
+        }
+        .product-hero {
+            background: linear-gradient(135deg, var(--surface) 0%, var(--background) 100%);
+            padding: 60px 0;
+        }
+        .product-hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .product-hero-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .product-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        .product-hero .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        .product-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+        }
+        .product-features {
+            margin: 3rem 0;
+        }
+        .product-features h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .feature-item {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        .feature-item h4 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            font-size: 1.125rem;
+        }
+        .feature-item p {
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        .product-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .github-btn {
+            background: #24292e;
+            color: white;
+            padding: 14px 28px;
+            border-radius: var(--radius);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 500;
+            transition: var(--transition);
+            font-size: 1.0625rem;
+        }
+        .github-btn:hover {
+            background: #2f363d;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        .tech-stack {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: var(--surface);
+            border-radius: var(--radius);
+        }
+        .tech-stack h4 {
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+        .tech-tag {
+            background: var(--primary-color);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.9375rem;
+            font-weight: 500;
+        }
+        .architecture-section {
+            background: white;
+            padding: 4rem 0;
+            border-top: 1px solid var(--border-color);
+        }
+        .arch-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .arch-component {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: var(--radius);
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+        }
+        .arch-component:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        .arch-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .back-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        .back-link:hover {
+            color: var(--primary-dark);
+        }
+        .project-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .stat-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+        }
+        .code-example {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            font-family: monospace;
+            font-size: 0.9rem;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+        .database-section {
+            background: var(--surface);
+            padding: 4rem 0;
+        }
+        .database-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .database-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            border-left: 4px solid var(--primary-color);
+        }
+        .integration-section {
+            background: white;
+            padding: 4rem 0;
+            border-top: 1px solid var(--border-color);
+        }
+        .integration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .integration-item {
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+        .integration-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .product-hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+            .product-hero h1 {
+                font-size: 2rem;
+            }
+            .product-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            .github-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .feature-grid,
+            .arch-grid,
+            .database-grid,
+            .integration-grid {
+                grid-template-columns: 1fr;
+            }
+            .project-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">智能工具集合</a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="/" class="nav-link">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/#products" class="nav-link">产品</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/#about" class="nav-link">关于</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/#contact" class="nav-link">联系</a>
+                </li>
+            </ul>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="product-detail">
+        <div class="container">
+            <a href="/" class="back-link">← 返回首页</a>
+
+            <div class="product-hero">
+                <div class="product-hero-content">
+                    <div>
+                        <div class="product-hero-icon">🏗️</div>
+                        <h1>AI数据枢纽</h1>
+                        <p class="subtitle">
+                            AI项目适用的数据中心框架，提供数据摄取、转换、探索和检索的完整解决方案。
+                            集成多种数据库、AI工具和数据功能，为AI项目开发提供统一的数据基础设施。
+                        </p>
+                        <div class="product-tags">
+                            <span class="product-tag">数据中心</span>
+                            <span class="product-tag">AI工具集成</span>
+                            <span class="product-tag">多数据库支持</span>
+                            <span class="product-tag">RAG框架</span>
+                            <span class="product-tag">FastAPI</span>
+                        </div>
+                        <div class="project-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">4+</div>
+                                <div class="stat-label">数据库支持</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">🚀</div>
+                                <div class="stat-label">数据管道</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">🔍</div>
+                                <div class="stat-label">多模态检索</div>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <a href="https://github.com/liangdabiao/AI_data_hub" class="github-btn" target="_blank">
+                                <span>📂</span>
+                                <span>查看 GitHub 仓库</span>
+                            </a>
+                            <a href="/" class="btn btn-secondary">返回首页</a>
+                        </div>
+                    </div>
+                    <div class="product-hero-visual">
+                        <div style="text-align: center;">
+                            <div style="font-size: 8rem; margin-bottom: 1rem;">🏗️</div>
+                            <div style="font-size: 1.25rem; color: var(--text-secondary);">AI项目数据中心框架</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-features">
+                <h3>🌟 核心功能</h3>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <h4>📥 Ingestion（数据摄取）</h4>
+                        <p>集成多个AI处理API（OpenAI、Tavily Search）和数据抓取工具，支持小红书、微信公众号等多平台数据采集</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>🔄 Transform（数据加工）</h4>
+                        <p>非结构化到结构化的数据清洗和转换，确保数据准确性和一致性，支持向量化和RAG处理</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>🔍 Explore（探索分析）</h4>
+                        <p>多种数据库支持，灵活的数据存储和查询，包括MongoDB文档存储、PostgreSQL关系型数据库等</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>📊 Retrieve（查询检索）</h4>
+                        <p>NL2SQL自然语言查询、LangGraph RAG框架、多模态图片检索，FastAPI RESTful API接口</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>🖼️ 多模态支持</h4>
+                        <p>图片处理和上传到向量数据库，支持文搜图、图搜图功能，阿里云OSS对象存储集成</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>⚡ 快速部署</h4>
+                        <p>Docker容器化部署，Python Conda环境支持，FastAPI自动服务生成，定时任务调度</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tech-stack">
+                <h4>🛠️ 技术栈</h4>
+                <div class="tech-tags">
+                    <span class="tech-tag">FastAPI</span>
+                    <span class="tech-tag">LangChain</span>
+                    <span class="tech-tag">LangGraph</span>
+                    <span class="tech-tag">MongoDB</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                    <span class="tech-tag">Chroma</span>
+                    <span class="tech-tag">Milvus</span>
+                    <span class="tech-tag">Aliyun OSS</span>
+                    <span class="tech-tag">Docker</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="architecture-section">
+            <div class="container">
+                <div style="text-align: center;">
+                    <h3>🏗️ 四层数据架构</h3>
+                    <p style="color: var(--text-secondary); margin: 1rem 0;">从数据摄取到智能检索的完整数据生命周期管理</p>
+                </div>
+                <div class="arch-grid">
+                    <div class="arch-component">
+                        <div class="arch-icon">📥</div>
+                        <h4>Ingestion<br>数据摄取</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">集成外部API和数据抓取，OpenAI、Tavily Search、小红书、微信等多渠道数据收集</p>
+                    </div>
+                    <div class="arch-component">
+                        <div class="arch-icon">🔄</div>
+                        <h4>Transform<br>数据加工</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">数据清洗、转换、向量化处理，非结构化到结构化的智能转换</p>
+                    </div>
+                    <div class="arch-component">
+                        <div class="arch-icon">🔍</div>
+                        <h4>Explore<br>探索分析</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">多数据库支持，灵活存储查询，数据挖掘和洞察发现</p>
+                    </div>
+                    <div class="arch-component">
+                        <div class="arch-icon">📊</div>
+                        <h4>Retrieve<br>查询检索</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">NL2SQL、RAG框架、多模态检索、FastAPI接口服务</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="database-section">
+            <div class="container">
+                <h3 style="text-align: center; margin-bottom: 2rem;">🗄️ 多数据库支持</h3>
+                <p style="color: var(--text-secondary); text-align: center; margin-bottom: 3rem;">
+                    集成多种主流数据库，满足不同数据存储和查询需求
+                </p>
+                <div class="database-grid">
+                    <div class="database-card">
+                        <h4>📄 MongoDB</h4>
+                        <p style="color: var(--text-secondary);">灵活的文档数据库，支持JSON结构嵌入和抓取内容存储</p>
+                    </div>
+                    <div class="database-card">
+                        <h4>🗂️ PostgreSQL</h4>
+                        <p style="color: var(--text-secondary);">结构化关系型数据库，高效处理股票市场数据等结构化信息</p>
+                    </div>
+                    <div class="database-card">
+                        <h4>🔍 Chroma</h4>
+                        <p style="color: var(--text-secondary);">向量数据库，基于目录存储嵌入向量和相关元数据</p>
+                    </div>
+                    <div class="database-card">
+                        <h4>🧬 Milvus</h4>
+                        <p style="color: var(--text-secondary);">高性能向量数据库，支持大规模向量检索和相似性搜索</p>
+                    </div>
+                    <div class="database-card">
+                        <h4>☁️ Aliyun OSS</h4>
+                        <p style="color: var(--text-secondary);">阿里云对象存储，报告、处理数据和备份的云端存储</p>
+                    </div>
+                    <div class="database-card">
+                        <h4>🔧 Supabase</h4>
+                        <p style="color: var(--text-secondary);">开源Firebase替代方案，提供数据库和实时功能</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="integration-section">
+            <div class="container">
+                <h3 style="text-align: center; margin-bottom: 2rem;">🔗 AI工具和平台集成</h3>
+                <p style="color: var(--text-secondary); text-align: center; margin-bottom: 3rem;">
+                    整合主流AI工具和数据平台，提供开箱即用的AI开发能力
+                </p>
+                <div class="integration-grid">
+                    <div class="integration-item">
+                        <div class="integration-icon">🤖</div>
+                        <h4>OpenAI</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">GPT-4.1-mini模型集成，支持多种OpenAI兼容接口</p>
+                    </div>
+                    <div class="integration-item">
+                        <div class="integration-icon">🔍</div>
+                        <h4>Tavily Search</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">强大的搜索API，提供实时网络搜索能力</p>
+                    </div>
+                    <div class="integration-item">
+                        <div class="integration-icon">🔗</div>
+                        <h4>LangChain</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">LLM应用开发框架，简化AI应用构建</p>
+                    </div>
+                    <div class="integration-item">
+                        <div class="integration-icon">📈</div>
+                        <h4>LangGraph</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">StateGraph框架，实现复杂多步骤工作流</p>
+                    </div>
+                    <div class="integration-item">
+                        <div class="integration-icon">📱</div>
+                        <h4>小红书</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">通过tikhub.io集成，采集丰富的社交媒体数据</p>
+                    </div>
+                    <div class="integration-item">
+                        <div class="integration-icon">📢</div>
+                        <h4>微信公众号</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">公众号平台数据抓取，内容分析和处理</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" style="margin-top: 3rem;">
+            <div style="background: var(--surface); padding: 2rem; border-radius: var(--radius); text-align: center;">
+                <h3>🚀 快速开始</h3>
+
+                <div style="background: white; padding: 2rem; border-radius: var(--radius); margin: 2rem 0; text-align: left;">
+                    <h4 style="margin-bottom: 1.5rem; color: var(--primary-color);">1. 环境配置</h4>
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">将 <code>data.env-dev</code> 改为 <code>.env</code>，配置必要参数：</p>
+                    <div class="code-example">
+# AI Service APIs
+OPENAI_API_KEY=your_openai_key
+OPENAI_MODEL=gpt-4.1-mini
+TAVILY_API_KEY=your_tavily_key
+
+# Database Connections
+MONGO_URI=mongodb://localhost:27017
+POSTGRES_USERNAME=myuser
+POSTGRES_PASSWORD=mypassword
+POSTGRES_DB=mydatabase
+
+# Cloud Storage
+ALIYUN_OSS_ACCESS_KEY_ID=your_oss_key
+ALIYUN_OSS_BUCKET_NAME=your_bucket_name
+
+# Web Scraping
+XHS_AUTH_TOKEN=your_xhs_token
+GZH_AUTH_TOKEN=your_gzh_token
+SCRAPING_INTERVAL=3600
+                    </div>
+                </div>
+
+                <div style="background: white; padding: 2rem; border-radius: var(--radius); margin: 2rem 0; text-align: left;">
+                    <h4 style="margin-bottom: 1.5rem; color: var(--primary-color);">2. 数据库环境安装</h4>
+                    <div class="code-example">
+# Python conda环境
+conda create -n env_310 python=3.10
+conda activate env_310
+
+# Docker部署
+# PostgreSQL
+docker run --name my-postgres \
+  -e POSTGRES_USER=myuser \
+  -e POSTGRES_PASSWORD=mypassword \
+  -e POSTGRES_DB=mydatabase \
+  -p 5432:5432 \
+  -d postgres
+
+# MongoDB
+docker run -d --name mongodb -p 27017:27017 mongo
+
+# ChromaDB
+docker run -d --name chroma \
+  -p 8000:8000 \
+  -v chroma-data:/data \
+  chromadb/chroma
+
+# 本地安装
+pip install chromadb
+                    </div>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 1rem;">
+                        💡 ChromaDB测试：<br>
+                        <code style="background: var(--surface); padding: 0.25rem 0.5rem; border-radius: 4px;">import chromadb</code><br>
+                        <code style="background: var(--surface); padding: 0.25rem 0.5rem; border-radius: 4px;">client = chromadb.PersistentClient(path="VECTOR_DB_DIRECTORY")</code>
+                    </p>
+                </div>
+
+                <div style="background: white; padding: 2rem; border-radius: var(--radius); margin: 2rem 0; text-align: left;">
+                    <h4 style="margin-bottom: 1.5rem; color: var(--primary-color);">3. 依赖安装和服务启动</h4>
+                    <div class="code-example">
+# 安装依赖
+pip install -r requirements.txt
+
+# 启动服务
+python rest_api/main.py
+
+# 测试功能
+python -m rag_graphs.gzh_rag_graph.ingestion  # 测试RAG
+python -m scraper.xhs_scraper              # 测试爬虫
+
+# 访问服务
+http://localhost:8000
+                    </div>
+                </div>
+
+                <div style="background: white; padding: 2rem; border-radius: var(--radius); margin: 2rem 0;">
+                    <h4 style="margin-bottom: 1.5rem; color: var(--primary-color);">4. 定时任务配置</h4>
+                    <p style="color: var(--text-secondary); text-align: left; margin-bottom: 1rem;">
+                        在 <code>rest_api/main.py</code> 中设置数据处理定时任务：
+                    </p>
+                    <div class="code-example">
+# 设置定时任务
+from rest_api.main import scrape_in_interval, run_scrapers_in_background
+
+# 配置抓取间隔（秒）
+scrape_in_interval(interval: int=3600)
+
+# 后台运行爬虫任务
+run_scrapers_in_background()
+                    </div>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 1rem;">
+                        ⚡ 可以根据需要自定义定时任务的执行间隔和数据源配置
+                    </p>
+                </div>
+
+                <div style="margin: 2rem 0;">
+                    <a href="https://github.com/liangdabiao/AI_data_hub" class="btn btn-primary" target="_blank">
+                        在 GitHub 上查看源代码
+                    </a>
+                    <a href="https://github.com/liangdabiao/AI_data_hub" class="btn btn-secondary" target="_blank">
+                        开始构建AI数据中心
+                    </a>
+                </div>
+
+                <div style="background: white; padding: 1.5rem; border-radius: var(--radius); margin-top: 2rem;">
+                    <h4 style="margin-bottom: 1rem;">📖 代码参考</h4>
+                    <p style="color: var(--text-secondary);">
+                        本项目 fork自：<a href="https://github.com/vinay-gatech/stocks-insights-ai-agent" target="_blank" style="color: var(--primary-color);">stocks-insights-ai-agent</a><br>
+                        进行大量修改，适合国内使用，增加小红书、微信等大型数据平台抓取。修改成为适合作为AI数据通用中心，集成主流AI工具，可根据需求扩展。
+                    </p>
+                </div>
+
+                <div style="background: white; padding: 1.5rem; border-radius: var(--radius); margin-top: 2rem;">
+                    <h4 style="margin-bottom: 1rem;">🎯 适用场景</h4>
+                    <div style="text-align: left; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                        <div>
+                            <strong>AI项目开发</strong><br>
+                            <small style="color: var(--text-secondary);">为AI应用提供统一的数据基础设施</small>
+                        </div>
+                        <div>
+                            <strong>RAG应用构建</strong><br>
+                            <small style="color: var(--text-secondary);">向量数据库和检索增强生成</small>
+                        </div>
+                        <div>
+                            <strong>多模态搜索</strong><br>
+                            <small style="color: var(--text-secondary);">图片检索和文搜图功能</small>
+                        </div>
+                        <div>
+                            <strong>数据管道</strong><br>
+                            <small style="color: var(--text-secondary);">自动化数据采集和处理流程</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>智能工具集合</h3>
+                    <p>专注于创造实用高效的工具产品</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/#products">产品</a></li>
+                        <li><a href="/#about">关于我们</a></li>
+                        <li><a href="/#contact">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>开源项目</h4>
+                    <ul>
+                        <li><a href="/product.html">AI 定格动画生成器</a></li>
+                        <li><a href="/claude-data-analysis.html">Claude 数据分析助手</a></li>
+                        <li><a href="/a-stock-analysis.html">A股智能分析系统</a></li>
+                        <li><a href="/business-idea-validator.html">商业创意验证器</a></li>
+                        <li><a href="/easy-amazon-voc.html">Amazon商品评论分析系统</a></li>
+                        <li><a href="/ai-data-hub.html">AI数据枢纽</a></li>
+                        <li><a href="https://github.com/liangdabiao" target="_blank">更多项目</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 智能工具集合. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./script.js"></script>
+</body>
+</html>
