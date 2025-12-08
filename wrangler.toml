@@ -1,0 +1,13 @@
+name = "my-toolbox-landing"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+[env.production]
+name = "my-toolbox-landing"
+routes = [
+  { pattern = "your-domain.com/*", zone_name = "your-domain.com" }
+]
+
+[env.staging]
+name = "my-toolbox-landing-staging"

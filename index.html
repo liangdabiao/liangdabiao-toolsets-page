@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 定格动画生成器 - 让你的照片动起来</title>
+    <meta name="description" content="基于单张图片创建令人惊艳的定格动画！使用 Gemini Nano AI 技术生成姿势序列和动画帧，支持 GIF 导出和实时进度反馈">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">AI动画工具</a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#products" class="nav-link">产品</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">关于</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">联系</a>
+                </li>
+            </ul>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">AI 定格动画生成器</h1>
+                    <p class="hero-subtitle">基于单张图片创建令人惊艳的动画效果！使用 Gemini Nano AI 技术，让你的照片动起来</p>
+                    <div class="hero-actions">
+                        <a href="/product.html" class="btn btn-primary">立即体验</a>
+                        <a href="https://github.com/liangdabiao/ai-make-face-meme" class="btn btn-secondary" target="_blank">查看源码</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="floating-tools">
+                        <div class="tool-icon tool-icon-1">🛠️</div>
+                        <div class="tool-icon tool-icon-2">⚡</div>
+                        <div class="tool-icon tool-icon-3">📊</div>
+                        <div class="tool-icon tool-icon-4">🎨</div>
+                        <div class="tool-icon tool-icon-5">🔧</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="products" class="products">
+            <div class="container">
+                <div class="section-header">
+                    <h2>我们的产品</h2>
+                    <p>为解决实际问题而生的实用工具</p>
+                </div>
+                <div class="products-grid" id="productsGrid">
+                    <!-- 产品卡片将通过 JavaScript 动态生成 -->
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <div class="container">
+                <div class="section-header">
+                    <h2>为什么选择我们</h2>
+                    <p>专注于用户体验和实用性的工具设计</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>高效快速</h3>
+                        <p>优化的性能，让您的工作流程更加顺畅</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>精准实用</h3>
+                        <p>针对实际需求设计，解决真实问题</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3>安全可靠</h3>
+                        <p>数据安全是我们的首要考虑</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>响应式设计</h3>
+                        <p>完美适配各种设备和屏幕尺寸</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>关于我们</h2>
+                        <p>我们是一群热爱创新的技术爱好者，致力于创造能够真正解决问题的工具。每一个产品都经过精心设计和反复打磨，确保为用户提供最佳的使用体验。</p>
+                        <p>我们相信好的工具应该简单易用，功能强大，并且能够无缝集成到您的工作流程中。</p>
+                        <a href="#contact" class="btn btn-primary">联系我们</a>
+                    </div>
+                    <div class="about-stats">
+                        <div class="stat-card">
+                            <div class="stat-number">10+</div>
+                            <div class="stat-label">实用工具</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">1000+</div>
+                            <div class="stat-label">用户信赖</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">99.9%</div>
+                            <div class="stat-label">可用性</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <div class="section-header">
+                    <h2>联系我们</h2>
+                    <p>有任何问题或建议？我们很乐意听到您的声音</p>
+                </div>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <div class="contact-text">
+                                <h4>邮箱</h4>
+                                <p>contact@example.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">💬</div>
+                            <div class="contact-text">
+                                <h4>在线客服</h4>
+                                <p>工作日 9:00-18:00</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">🐦</div>
+                            <div class="contact-text">
+                                <h4>社交媒体</h4>
+                                <p>@yourtools</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <input type="text" id="name" name="name" placeholder="您的姓名" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" placeholder="您的邮箱" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="message" name="message" placeholder="您的消息" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-full">发送消息</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>我的工具箱</h3>
+                    <p>专注于创造实用高效的工具产品</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#products">产品</a></li>
+                        <li><a href="#about">关于我们</a></li>
+                        <li><a href="#contact">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>产品</h4>
+                    <ul id="footerProducts">
+                        <!-- 产品链接将通过 JavaScript 动态生成 -->
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 我的工具箱. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./script.js"></script>
+</body>
+</html>

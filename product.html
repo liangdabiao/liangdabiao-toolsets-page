@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 面包表情生成器 - 我的工作箱</title>
+    <meta name="description" content="基于 AI 技术的面部表情包生成工具，让你的表情包创作更加有趣和简单！">
+    <link rel="stylesheet" href="./styles.css">
+    <style>
+        .product-detail {
+            padding: 120px 0 60px;
+            min-height: 100vh;
+        }
+        .product-hero {
+            background: linear-gradient(135deg, var(--surface) 0%, var(--background) 100%);
+            padding: 60px 0;
+        }
+        .product-hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .product-hero-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .product-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        .product-hero .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        .product-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+        }
+        .product-features {
+            margin: 3rem 0;
+        }
+        .product-features h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .feature-item {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        .feature-item h4 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            font-size: 1.125rem;
+        }
+        .feature-item p {
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        .product-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        .github-btn {
+            background: #24292e;
+            color: white;
+            padding: 14px 28px;
+            border-radius: var(--radius);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 500;
+            transition: var(--transition);
+            font-size: 1.0625rem;
+        }
+        .github-btn:hover {
+            background: #2f363d;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        .tech-stack {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: var(--surface);
+            border-radius: var(--radius);
+        }
+        .tech-stack h4 {
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+        .tech-tag {
+            background: var(--primary-color);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.9375rem;
+            font-weight: 500;
+        }
+        .demo-section {
+            background: white;
+            padding: 4rem 0;
+            border-top: 1px solid var(--border-color);
+        }
+        .demo-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .demo-image {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: var(--surface);
+            border-radius: var(--radius);
+            border: 2px dashed var(--border-color);
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+        .back-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        .back-link:hover {
+            color: var(--primary-dark);
+        }
+        .project-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .stat-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9375rem;
+        }
+
+        @media (max-width: 768px) {
+            .product-hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+            .product-hero h1 {
+                font-size: 2rem;
+            }
+            .product-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            .github-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            .project-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">我的工具箱</a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="/" class="nav-link">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/#products" class="nav-link">产品</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/#about" class="nav-link">关于</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/#contact" class="nav-link">联系</a>
+                </li>
+            </ul>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="product-detail">
+        <div class="container">
+            <a href="/" class="back-link">← 返回首页</a>
+
+            <div class="product-hero">
+                <div class="product-hero-content">
+                    <div>
+                        <div class="product-hero-icon">🎬</div>
+                        <h1>AI 定格动画生成器</h1>
+                        <p class="subtitle">
+                            一个令人惊艳的定格动画生成器，基于单张图片创建流畅的动画效果！
+                            使用 Gemini Nano AI 技术生成姿势序列和动画帧，让你的照片动起来。
+                        </p>
+                        <div class="product-tags">
+                            <span class="product-tag">AI工具</span>
+                            <span class="product-tag">定格动画</span>
+                            <span class="product-tag">Gemini Nano</span>
+                            <span class="product-tag">Next.js</span>
+                            <span class="product-tag">开源项目</span>
+                        </div>
+                        <div class="project-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">🎬</div>
+                                <div class="stat-label">定格动画</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">🤖</div>
+                                <div class="stat-label">Gemini Nano</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">🎨</div>
+                                <div class="stat-label">帧率可调</div>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <a href="https://github.com/liangdabiao/ai-make-face-meme" class="github-btn" target="_blank">
+                                <span>📂</span>
+                                <span>查看 GitHub 仓库</span>
+                            </a>
+                            <a href="/" class="btn btn-secondary">返回首页</a>
+                        </div>
+                    </div>
+                    <div class="product-hero-visual">
+                        <div style="text-align: center;">
+                            <h4 style="margin-bottom: 1rem; color: var(--primary-color);">💻 项目界面预览</h4>
+                            <img src="https://github.com/liangdabiao/ai-make-face-meme/blob/main/ScreenShot_2025-12-03_162958_679.png"
+                                 alt="AI Stop Motion Generator Interface"
+                                 style="width: 100%; max-width: 500px; height: auto; border-radius: var(--radius); box-shadow: var(--shadow-lg); margin-bottom: 1rem;">
+                            <div style="font-size: 1.125rem; color: var(--text-secondary); margin-top: 1rem;">简洁直观的用户界面，支持拖放上传和实时动画预览</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-features">
+                <h3>🌟 核心功能</h3>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <h4>🎬 单图生成动画</h4>
+                        <p>基于单张图片创建令人惊艳的定格动画，让静态照片变成生动有趣的动态效果</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>🤖 Gemini Nano 驱动</h4>
+                        <p>使用 Gemini Nano AI 生成分离的姿势序列，基于每个姿势生成高质量的动画帧</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>⚡ 实时进度反馈</h4>
+                        <p>流式响应技术实时返回生成进度，支持长时任务处理，提供详细的生成状态信息</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>🎮 动画播放控制</h4>
+                        <p>支持帧间导航、播放/暂停、帧率调节（1-30 FPS），让你完全控制动画效果</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>📥 GIF 导出功能</h4>
+                        <p>多种导出方案（gifencoder → ZIP → 单帧回退），支持生成高质量 GIF 动画</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4>🛠️ 帧管理系统</h4>
+                        <p>完整的帧管理功能，支持帧的添加、删除、移动和预览，精细控制每个动画细节</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tech-stack">
+                <h4>🛠️ 技术栈</h4>
+                <div class="tech-tags">
+                    <span class="tech-tag">Next.js</span>
+                    <span class="tech-tag">Gemini Nano</span>
+                    <span class="tech-tag">Framer Motion</span>
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">TypeScript</span>
+                    <span class="tech-tag">pnpm</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <div class="container">
+                <div class="demo-content">
+                    <h3>🚀 快速开始</h3>
+                    <p>轻松几步，即可开始你的 AI 定格动画创作之旅</p>
+
+                    <div style="background: var(--surface); padding: 2rem; border-radius: var(--radius); margin: 2rem 0; text-align: left;">
+                        <h4 style="margin-bottom: 1.5rem; color: var(--primary-color);">安装和使用说明：</h4>
+                        <div style="font-family: monospace; background: white; padding: 1rem; border-radius: 4px; margin-bottom: 1rem;">
+                            <div>npm install -g pnpm</div>
+                            <div>pnpm install</div>
+                            <div>pnpm dev          # Start development server</div>
+                            <div>pnpm build        # Build for production</div>
+                            <div>pnpm start        # Start production server</div>
+                        </div>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                            💡 记得重命名：- 副本.env 为 .env，修改为自己的 Gemini API key
+                        </p>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                            🧪 测试gif生成功能：访问 /test 路径
+                        </p>
+                    </div>
+
+                    <div style="margin: 3rem 0;">
+                        <h3 style="margin-bottom: 2rem; color: var(--primary-color);">✨ 动画效果展示</h3>
+                        <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+                            看看 AI 定格动画生成器创造出的惊人效果！这些 GIF 都是使用我们的工具从单张图片生成的：
+                        </p>
+
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+                            <div style="background: white; padding: 1.5rem; border-radius: var(--radius); box-shadow: var(--shadow-md); text-align: center;">
+                                <h4 style="margin-bottom: 1rem; color: var(--text-primary);">动画效果 1</h4>
+                                <img src="https://github.com/liangdabiao/ai-make-face-meme/raw/main/nanomotion-animation-1764830380765.gif"
+                                     alt="AI Stop Motion Animation 1"
+                                     style="width: 100%; max-width: 280px; height: auto; border-radius: var(--radius); margin-bottom: 1rem;">
+                                <p style="color: var(--text-secondary); font-size: 0.9rem;">基于单张图片生成的流畅动画</p>
+                            </div>
+
+                            <div style="background: white; padding: 1.5rem; border-radius: var(--radius); box-shadow: var(--shadow-md); text-align: center;">
+                                <h4 style="margin-bottom: 1rem; color: var(--text-primary);">动画效果 2</h4>
+                                <img src="https://github.com/liangdabiao/ai-make-face-meme/raw/main/nanomotion-animation-1764830817471.gif"
+                                     alt="AI Stop Motion Animation 2"
+                                     style="width: 100%; max-width: 280px; height: auto; border-radius: var(--radius); margin-bottom: 1rem;">
+                                <p style="color: var(--text-secondary); font-size: 0.9rem;">Gemini Nano 驱动的姿势变换</p>
+                            </div>
+
+                            <div style="background: white; padding: 1.5rem; border-radius: var(--radius); box-shadow: var(--shadow-md); text-align: center;">
+                                <h4 style="margin-bottom: 1rem; color: var(--text-primary);">动画效果 3</h4>
+                                <img src="https://github.com/liangdabiao/ai-make-face-meme/raw/main/nanomotion-animation-1764841382594.gif"
+                                     alt="AI Stop Motion Animation 3"
+                                     style="width: 100%; max-width: 280px; height: auto; border-radius: var(--radius); margin-bottom: 1rem;">
+                                <p style="color: var(--text-secondary); font-size: 0.9rem;">智能生成的动画序列</p>
+                            </div>
+
+                            <div style="background: white; padding: 1.5rem; border-radius: var(--radius); box-shadow: var(--shadow-md); text-align: center;">
+                                <h4 style="margin-bottom: 1rem; color: var(--text-primary);">动画效果 4</h4>
+                                <img src="https://github.com/liangdabiao/ai-make-face-meme/raw/main/ezgif.com-video-to-gif-converter.gif"
+                                     alt="AI Stop Motion Animation 4"
+                                     style="width: 100%; max-width: 280px; height: auto; border-radius: var(--radius); margin-bottom: 1rem;">
+                                <p style="color: var(--text-secondary); font-size: 0.9rem;">高质量 GIF 导出效果</p>
+                            </div>
+                        </div>
+
+                        <div style="background: var(--surface); padding: 1.5rem; border-radius: var(--radius); text-align: center; margin-top: 2rem;">
+                            <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                                🎯 所有这些动画都是使用我们的工具从单张静态图片生成的！
+                            </p>
+                            <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                                支持自定义帧率（1-30 FPS），可导出为高质量 GIF 格式
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="demo-image">
+                        <div style="text-align: center;">
+                            <div style="font-size: 3rem; margin-bottom: 1rem;">🎬</div>
+                            <div>上传图片 → 生成姿势序列 → 创建动画帧 → 导出 GIF</div>
+                        </div>
+                    </div>
+                    <div class="product-actions">
+                        <a href="https://github.com/liangdabiao/ai-make-face-meme" class="github-btn" target="_blank">
+                            <span>🚀</span>
+                            <span>立即开始使用</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" style="margin-top: 3rem;">
+            <div style="background: var(--surface); padding: 2rem; border-radius: var(--radius); text-align: center;">
+                <h3>🏗️ 核心架构</h3>
+                <div style="text-align: left; margin: 2rem 0;">
+                    <h4 style="margin-bottom: 1rem; color: var(--primary-color);">1. 前端页面 (/src/app/page.tsx)</h4>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem;">
+                        <li>文件上传与预览：支持拖放上传，显示上传图片预览</li>
+                        <li>动画生成控制：调用后端API生成动画帧，提供实时进度反馈</li>
+                        <li>动画播放器：支持帧间导航、播放/暂停、帧率调节(1-30 FPS)</li>
+                        <li>GIF导出功能：多种导出方案(gifencoder → ZIP → 单帧回退)</li>
+                        <li>帧管理：支持帧的添加、删除、移动和预览</li>
+                    </ul>
+
+                    <h4 style="margin: 1.5rem 0 1rem; color: var(--primary-color);">2. 后端API (/src/app/api/stop-motion/route.ts)</h4>
+                    <ul style="color: var(--text-secondary); margin-left: 1.5rem;">
+                        <li>图像分析：接收用户上传图片，调用AI生成12个姿势序列</li>
+                        <li>流式响应：实时返回生成进度，支持长时任务(800秒超时)</li>
+                        <li>逐帧生成：基于姿势描述，调用Gemini Nano生成图片帧</li>
+                        <li>错误处理：单帧错误不中断整体生成，提供详细错误信息</li>
+                        <li>数据返回：通过流式API向前端传输base64图片数据</li>
+                    </ul>
+                </div>
+
+                <div style="background: white; padding: 1rem; border-radius: var(--radius); margin: 1.5rem 0;">
+                    <h4 style="margin-bottom: 1rem;">🙏 致谢</h4>
+                    <p style="color: var(--text-secondary);">
+                        基础思路和代码继承：<a href="https://github.com/madhurjain/nanomotion" target="_blank" style="color: var(--primary-color);">https://github.com/madhurjain/nanomotion</a>，感谢原作者的精彩工作！
+                    </p>
+                </div>
+
+                <div style="margin: 1.5rem 0;">
+                    <a href="https://github.com/liangdabiao/ai-make-face-meme" class="btn btn-primary" target="_blank">
+                        在 GitHub 上查看源代码
+                    </a>
+                    <a href="https://github.com/liangdabiao/ai-make-face-meme/issues" class="btn btn-secondary" target="_blank">
+                        提交反馈和建议
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>我的工具箱</h3>
+                    <p>专注于创造实用高效的工具产品</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="/">首页</a></li>
+                        <li><a href="/#products">产品</a></li>
+                        <li><a href="/#about">关于我们</a></li>
+                        <li><a href="/#contact">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>开源项目</h4>
+                    <ul>
+                        <li><a href="/product.html">AI 定格动画生成器</a></li>
+                        <li><a href="https://github.com/liangdabiao" target="_blank">更多项目</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 我的工具箱. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./script.js"></script>
+</body>
+</html>

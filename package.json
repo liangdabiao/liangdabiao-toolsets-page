@@ -1,0 +1,27 @@
+{
+  "name": "my-toolbox-landing",
+  "version": "1.0.0",
+  "description": "一个展示工具产品的落地页，基于 Cloudflare Workers 部署",
+  "main": "worker.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "deploy:staging": "wrangler deploy --env staging",
+    "deploy:production": "wrangler deploy --env production"
+  },
+  "keywords": [
+    "cloudflare-workers",
+    "landing-page",
+    "tools",
+    "ai",
+    "memes"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "wrangler": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
