@@ -2,7 +2,7 @@
 要能在cloudflare中用Workers 搭建。
 
 请完成功能：
-联系人表单提交，利用Server酱方法：
+在index.html的联系我们模块，联系人表单提交，利用Server酱方法：
 推送消息，网址类似这样：https://sctapi.ftqq.com/SCT234551TNJnEupFOBpL4SSKv74ibkqeR.send?title=short_title&desp=long_content
 short_title： 您的姓名 + ： + 您的email
 long_content:  您的消息
