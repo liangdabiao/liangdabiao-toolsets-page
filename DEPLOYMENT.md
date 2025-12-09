@@ -163,6 +163,33 @@ cfpage/
 - **Cloudflare Workers**: https://workers.cloudflare.com/
 - **Wrangler CLI**: https://github.com/cloudflare/wrangler
 
+## 🔔 Server酱集成
+
+### 联系表单功能
+
+网站集成了Server酱推送服务，当用户填写联系表单时，会实时发送通知到您的微信。
+
+#### 配置方法：
+
+1. **获取Server酱 Key**
+   - 访问 [Server酱官网](https://sct.ftqq.com/)
+   - 注册账号并获取推送Key
+   - 将Key替换到 `script.js` 中的以下位置：
+
+2. **修改推送Key**
+   ```javascript
+   // 在 script.js 第602行附近，替换为您的实际Key
+   const serverChanUrl = `https://sctapi.ftqq.com/YOUR_ACTUAL_KEY.send`;
+   ```
+
+#### 推送格式：
+- **标题**: 用户姓名 + 邮箱
+- **内容**: 详细的联系信息（姓名、邮箱、消息内容）
+
+#### 测试Key：
+- 测试Key: `SCT234551TNJnEupFOBpL4SSKv74ibkqeR`
+- 用于开发和测试阶段
+
 ## 🆘 故障排除
 
 ### 常见问题
