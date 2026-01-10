@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>百炼AI聊天框 - 轻量级阿里云百炼聊天客服系统</title>
+    <meta name="description" content="基于阿里云百炼的轻量级聊天客服系统，只需2个文件实现完整功能，支持流式响应、Markdown渲染和多轮对话。">
+    <meta name="keywords" content="阿里云百炼,聊天机器人,Flask,通义千问,流式响应,客服系统,聊天框">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💬</text></svg>">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span>💬</span>
+                <span>百炼AI聊天框</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="./index.html" class="nav-link">主页</a></li>
+                <li><a href="#features" class="nav-link">核心功能</a></li>
+                <li><a href="#architecture" class="nav-link">项目架构</a></li>
+                <li><a href="#api" class="nav-link">API接口</a></li>
+                <li><a href="#installation" class="nav-link">部署指南</a></li>
+                <li><a href="https://github.com/liangdabiao/bailian_ai_chatbox" target="_blank" class="btn btn-primary">GitHub</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero 区域 -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">💬 阿里云百炼集成</div>
+                <h1>百炼AI聊天框</h1>
+                <h2>轻量级聊天客服系统</h2>
+                <p class="hero-description">
+                    基于阿里云百炼的轻量级聊天客服系统，只需2个文件实现完整功能！深度集成阿里云百炼 AI 服务，采用通义千问大模型，提供基于 Server-Sent Events (SSE) 的实时流式对话体验。支持 Markdown 渲染、多轮对话、智能回退机制，功能完整且易于部署。
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">文件实现</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">SSE</div>
+                        <div class="stat-label">流式响应</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">AI</div>
+                        <div class="stat-label">通义千问</div>
+                    </div>
+                </div>
+                <div class="hero-actions">
+                    <a href="https://github.com/liangdabiao/bailian_ai_chatbox" target="_blank" class="btn btn-primary btn-large">
+                        <span>📦</span>
+                        免费下载使用
+                    </a>
+                    <a href="#installation" class="btn btn-secondary btn-large">
+                        <span>🚀</span>
+                        立即部署
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-image-container">
+                    <div class="hero-overlay">
+                        <div class="overlay-icon">💬</div>
+                        <div class="overlay-text">只需2个文件的极简聊天AI系统</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心功能 -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>核心功能</h2>
+                <p>极简但功能完整的聊天客服系统</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📄</div>
+                    <h3>极简设计</h3>
+                    <p>只需 backend/app.py 和 frontend/index.html 两个文件即可实现完整功能</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>流式响应</h3>
+                    <p>基于 Server-Sent Events (SSE) 的实时对话体验，模拟真实打字效果</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>智能回退</h3>
+                    <p>流式失败时自动切换至非流式模式，确保服务始终可用</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>百炼集成</h3>
+                    <p>深度集成阿里云百炼 AI 服务，采用通义千问大模型</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💾</div>
+                    <h3>会话管理</h3>
+                    <p>支持云端和本地两种会话历史管理方式，支持多轮对话</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h3>Markdown 支持</h3>
+                    <p>前端自动渲染 AI 回复中的 Markdown 格式，支持代码高亮</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 技术亮点 -->
+    <section class="workflow">
+        <div class="container">
+            <div class="section-header">
+                <h2>技术亮点</h2>
+                <p>开发特性和用户体验的完美结合</p>
+            </div>
+            <div class="workflow-content">
+                <div class="highlights-grid">
+                    <div class="highlight-card dev">
+                        <div class="highlight-icon">🛠️</div>
+                        <h3>开发特性</h3>
+                        <ul>
+                            <li>RESTful API - 标准化接口设计，易于集成</li>
+                            <li>CORS 支持 - 完善的跨域请求处理</li>
+                            <li>错误处理 - 详细的错误日志和友好提示</li>
+                            <li>配置化 - 通过环境变量灵活配置</li>
+                            <li>健康检查 - 内置服务状态监控端点</li>
+                        </ul>
+                    </div>
+                    <div class="highlight-card ux">
+                        <div class="highlight-icon">💎</div>
+                        <h3>用户体验</h3>
+                        <ul>
+                            <li>实时打字动画 - 模拟真实对话体验</li>
+                            <li>消息复制 - 一键复制 AI 回复内容</li>
+                            <li>快捷按钮 - 预设常用问题快捷入口</li>
+                            <li>响应式设计 - 支持桌面和移动设备</li>
+                            <li>反馈系统 - 内置用户反馈收集功能</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 项目架构 -->
+    <section id="architecture" class="architecture">
+        <div class="container">
+            <div class="section-header">
+                <h2>项目架构</h2>
+                <p>清晰的文件结构，极简而完整</p>
+            </div>
+            <div class="architecture-content">
+                <div class="project-structure">
+                    <div class="structure-card">
+                        <h3>项目结构</h3>
+                        <div class="code-block">
+                            <pre><code>bailian_ai_chatbox/
+├── backend/                    # Python 后端
+│   ├── app.py                 # Flask 主应用
+│   ├── run.py                 # 应用启动入口
+│   ├── test_config.py         # 配置测试脚本
+│   ├── requirements.txt       # Python 依赖
+│   ├── .env.example          # 环境变量模板
+│   ├── .env                  # 环境变量配置（需创建）
+│   ├── start.bat             # Windows 启动脚本
+│   └── start.sh              # Unix/Linux 启动脚本
+├── frontend/                  # 前端界面
+│   ├── index.html            # 完整聊天界面（单文件）
+│   └── 阿里云百炼api文档.txt   # API 参考文档
+├── CLAUDE.md                  # Claude Code 助手指南
+└── README.md                  # 项目文档</code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="arch-overview">
+                    <div class="arch-stack">
+                        <div class="arch-layer frontend">
+                            <h3>前端层</h3>
+                            <div class="tech-items">
+                                <div class="tech-item">HTML5/CSS3</div>
+                                <div class="tech-item">JavaScript (Vanilla)</div>
+                                <div class="tech-item">SSE 流式接收</div>
+                                <div class="tech-item">Markdown 渲染</div>
+                                <div class="tech-item">响应式设计</div>
+                            </div>
+                        </div>
+                        <div class="arch-layer backend">
+                            <h3>后端层</h3>
+                            <div class="tech-items">
+                                <div class="tech-item">Python 3.7+</div>
+                                <div class="tech-item">Flask 2.3.3</div>
+                                <div class="tech-item">RESTful API</div>
+                                <div class="tech-item">CORS 支持</div>
+                                <div class="tech-item">环境变量配置</div>
+                            </div>
+                        </div>
+                        <div class="arch-layer ai">
+                            <h3>AI 服务层</h3>
+                            <div class="tech-items">
+                                <div class="tech-item">阿里云百炼</div>
+                                <div class="tech-item">通义千问大模型</div>
+                                <div class="tech-item">DashScope API</div>
+                                <div class="tech-item">多轮对话</div>
+                                <div class="tech-item">智能回退</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- API 接口 -->
+    <section id="api" class="api">
+        <div class="container">
+            <div class="section-header">
+                <h2>API 接口</h2>
+                <p>完整的 RESTful API，易于集成</p>
+            </div>
+            <div class="api-content">
+                <div class="api-endpoints">
+                    <div class="api-endpoint">
+                        <div class="method">GET</div>
+                        <div class="endpoint">/health</div>
+                        <div class="description">健康检查端点</div>
+                    </div>
+                    <div class="api-endpoint">
+                        <div class="method">GET</div>
+                        <div class="endpoint">/myapi/v1/chat-bot-config</div>
+                        <div class="description">获取聊天机器人配置</div>
+                    </div>
+                    <div class="api-endpoint">
+                        <div class="method">POST</div>
+                        <div class="endpoint">/myapi/v1/chat-bot/stream</div>
+                        <div class="description">流式聊天接口（SSE）</div>
+                    </div>
+                    <div class="api-endpoint">
+                        <div class="method">POST</div>
+                        <div class="endpoint">/myapi/v1/chat-bot</div>
+                        <div class="description">非流式聊天接口（备用）</div>
+                    </div>
+                </div>
+                <div class="api-example">
+                    <div class="example-card">
+                        <h3>流式响应示例</h3>
+                        <div class="code-block">
+                            <pre><code>// 请求体
+{
+    "last_prompt": "你好",
+    "conversation_history": [],
+    "session_id": "optional-session-id"
+}
+
+// SSE 响应
+data: {"success": true, "content": "你", "finished": false}
+data: {"success": true, "content": "好", "finished": false}
+data: {"success": true, "content": "！", "finished": true, "message": "Stream completed"}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 部署指南 -->
+    <section id="installation" class="installation">
+        <div class="container">
+            <div class="section-header">
+                <h2>部署指南</h2>
+                <p>简单快速部署，支持多种运行环境</p>
+            </div>
+            <div class="installation-content">
+                <div class="install-tabs">
+                    <div class="install-tab backend-tab active">
+                        <div class="tab-header">
+                            <h3>后端部署</h3>
+                        </div>
+                        <div class="tab-content">
+                            <div class="install-steps">
+                                <div class="step-item">
+                                    <div class="step-number">1</div>
+                                    <h4>克隆项目</h4>
+                                    <div class="code-block">
+                                        <pre><code>git clone https://github.com/liangdabiao/bailian_ai_chatbox.git
+cd bailian_ai_chatbox/backend</code></pre>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <div class="step-number">2</div>
+                                    <h4>创建虚拟环境</h4>
+                                    <div class="code-block">
+                                        <pre><code># Windows
+python -m venv venv
+venv\Scripts\activate
+
+# Linux/macOS
+python3 -m venv venv
+source venv/bin/activate</code></pre>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <div class="step-number">3</div>
+                                    <h4>安装依赖</h4>
+                                    <div class="code-block">
+                                        <pre><code>pip install -r requirements.txt</code></pre>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <div class="step-number">4</div>
+                                    <h4>配置环境变量</h4>
+                                    <div class="code-block">
+                                        <pre><code>cp .env.example .env
+# 编辑 .env 文件，填入阿里云凭证
+API_KEY=sk-your-dashscope-api-key
+APP_ID=your-bailian-app-id</code></pre>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <div class="step-number">5</div>
+                                    <h4>启动服务</h4>
+                                    <div class="code-block">
+                                        <pre><code># Windows
+start.bat
+
+# Linux/macOS
+chmod +x start.sh
+./start.sh</code></pre>
+                                    </div>
+                                    <p>后端服务将在 http://localhost:8000 启动</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="requirements">
+                    <div class="requirements-card">
+                        <h3>系统要求</h3>
+                        <div class="requirements-grid">
+                            <div class="requirement-item">
+                                <h4>Python</h4>
+                                <span class="version">3.7+</span>
+                            </div>
+                            <div class="requirement-item">
+                                <h4>Flask</h4>
+                                <span class="version">2.3.3</span>
+                            </div>
+                            <div class="requirement-item">
+                                <h4>阿里云百炼</h4>
+                                <span class="version">已开通</span>
+                            </div>
+                            <div class="requirement-item">
+                                <h4>API Key</h4>
+                                <span class="version">DashScope</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 应用场景 -->
+    <section class="use-cases">
+        <div class="container">
+            <div class="section-header">
+                <h2>应用场景</h2>
+                <p>适用于各种智能客服场景</p>
+            </div>
+            <div class="use-cases-grid">
+                <div class="use-case-card">
+                    <div class="use-case-icon">🛒</div>
+                    <h3>电商客服</h3>
+                    <p>为电商平台提供智能客服，解答产品咨询、订单查询等问题</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">📚</div>
+                    <h3>教育培训</h3>
+                    <p>作为在线教育平台的助教，回答学员问题，提供学习指导</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">🏥</div>
+                    <h3>医疗咨询</h3>
+                    <p>提供基础的医疗咨询服务，引导患者就医</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">🏢</div>
+                    <h3>企业内部</h3>
+                    <p>企业内部知识问答，帮助员工快速获取信息</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>💬 百炼AI聊天框</h4>
+                    <p>基于阿里云百炼的轻量级聊天客服系统</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="./index.html">返回主页</a></li>
+                        <li><a href="https://github.com/liangdabiao/bailian_ai_chatbox" target="_blank">GitHub仓库</a></li>
+                        <li><a href="#installation">部署指南</a></li>
+                        <li><a href="#api">API接口</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>技术栈</h4>
+                    <ul>
+                        <li>Python</li>
+                        <li>Flask</li>
+                        <li>阿里云百炼</li>
+                        <li>SSE</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>联系我们</h4>
+                    <ul>
+                        <li><a href="https://github.com/liangdabiao/bailian_ai_chatbox/issues" target="_blank">问题反馈</a></li>
+                        <li><a href="https://github.com/liangdabiao/bailian_ai_chatbox/pulls" target="_blank">贡献代码</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 百炼AI聊天框. 开源项目 - <a href="https://github.com/liangdabiao/bailian_ai_chatbox" target="_blank">GitHub</a></p>
+                <p class="attribution">基于阿里云百炼 AI 服务构建</p>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        .highlight-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .highlight-card.dev { border-left: 4px solid #3b82f6; }
+        .highlight-card.ux { border-left: 4px solid #22c55e; }
+        .highlight-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .highlight-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        .highlight-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        .highlight-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .highlight-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        .api-endpoints {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .api-endpoint {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .method {
+            background: #3b82f6;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            min-width: 60px;
+            text-align: center;
+        }
+        .endpoint {
+            flex: 1;
+            font-family: 'Courier New', monospace;
+            padding: 0 1rem;
+            font-weight: 500;
+        }
+        .description {
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+        }
+        .api-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        @media (max-width: 768px) {
+            .api-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        .example-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .example-card h3 {
+            margin-bottom: 1rem;
+        }
+        .arch-layer.backend { border-left-color: #22c55e; }
+        .arch-layer.ai { border-left-color: #f59e0b; }
+    </style>
+
+    <script src="./script.js"></script>
+    <script>
+        // 添加页面特定的交互功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 平滑滚动
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // 添加滚动动画
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // 观察所有卡片
+            document.querySelectorAll('.feature-card, .highlight-card, .arch-layer, .api-endpoint, .use-case-card').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+
+            // 数字统计动画
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                const finalNumber = stat.textContent;
+                const isText = isNaN(parseInt(finalNumber));
+
+                if (!isText && parseInt(finalNumber) < 100) {
+                    let currentNumber = 0;
+                    const increment = parseInt(finalNumber) / 30;
+
+                    const updateNumber = () => {
+                        currentNumber += increment;
+                        if (currentNumber < parseInt(finalNumber)) {
+                            stat.textContent = Math.floor(currentNumber);
+                            requestAnimationFrame(updateNumber);
+                        } else {
+                            stat.textContent = finalNumber;
+                        }
+                    };
+
+                    const statObserver = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                updateNumber();
+                                statObserver.unobserve(entry.target);
+                            }
+                        });
+                    });
+
+                    statObserver.observe(stat);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

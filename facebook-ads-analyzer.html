@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook 广告分析器 - 智能广告数据分析工具</title>
+    <meta name="description" content="智能 Facebook 广告数据分析工具，基于不同广告目标自动评估广告表现，识别优秀和差广告，提供数据驱动的优化建议和投放策略方案。">
+    <meta name="keywords" content="Facebook广告,数据分析,Claude Skill,广告优化,自动化,投放策略,广告效果分析">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span>📊</span>
+                <span>Facebook 广告分析器</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="./index.html" class="nav-link">主页</a></li>
+                <li><a href="#features" class="nav-link">核心功能</a></li>
+                <li><a href="#scoring" class="nav-link">评分系统</a></li>
+                <li><a href="#workflow" class="nav-link">使用流程</a></li>
+                <li><a href="#architecture" class="nav-link">技术架构</a></li>
+                <li><a href="https://github.com/liangdabiao/facebook-ads-analyzer" target="_blank" class="btn btn-primary">GitHub</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero 区域 -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">📊 广告分析工具</div>
+                <h1>Facebook 广告分析器</h1>
+                <h2>智能广告数据分析与优化平台</h2>
+                <p class="hero-description">
+                    Facebook Ads Analyzer 是一个专业的广告数据分析系统，基于 Claude Code Agent Skill，能够自动分析 Facebook Ads Manager 导出的 CSV 数据。根据不同广告目标（互动/转化/流量）智能评估广告表现，识别最佳和最差广告，生成详细的诊断报告和优化建议，提供数据驱动的投放策略方案。
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">广告目标支持</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">6+</div>
+                        <div class="stat-label">核心指标</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">AI</div>
+                        <div class="stat-label">智能分析</div>
+                    </div>
+                </div>
+                <div class="hero-actions">
+                    <a href="https://github.com/liangdabiao/facebook-ads-analyzer" target="_blank" class="btn btn-primary btn-large">
+                        <span>📦</span>
+                        免费下载使用
+                    </a>
+                    <a href="#workflow" class="btn btn-secondary btn-large">
+                        <span>🚀</span>
+                        开始分析
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-image-container">
+                    <div class="hero-overlay">
+                        <div class="overlay-icon">📊</div>
+                        <div class="overlay-text">基于 Claude Code Skill 的智能广告分析</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心功能 -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>核心功能</h2>
+                <p>全面的广告分析工具集</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>智能评分系统</h3>
+                    <p>根据广告目标（互动/转化/流量）应用加权算法，自动计算每个广告的综合得分</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>三大目标支持</h3>
+                    <p>支持互动目标（消息成本）、转化目标（CPA）、流量目标（CTR）三种广告目标</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏷️</div>
+                    <h3>自动评级机制</h3>
+                    <p>将广告分为优秀（前20%）、中等（60%）、差（后20%）三个等级，快速定位问题</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>智能诊断引擎</h3>
+                    <p>自动分析广告表现，识别问题并提供针对性的优化建议和改进方向</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>数据驱动标准</h3>
+                    <p>基于实际数据分布制定判断标准，使用分位数分析确保评估准确性</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h3>完整报告生成</h3>
+                    <p>生成详细分析结果、分析报告和投放策略方案三个文件，全方位支持决策</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 评分系统 -->
+    <section id="scoring" class="workflow">
+        <div class="container">
+            <div class="section-header">
+                <h2>智能评分系统</h2>
+                <p>根据不同广告目标动态调整指标权重</p>
+            </div>
+            <div class="workflow-content">
+                <div class="scoring-goals">
+                    <div class="goal-card interaction">
+                        <div class="goal-icon">💬</div>
+                        <h3>互动目标</h3>
+                        <p>适用于 WhatsApp 消息、Messenger 对话等</p>
+                        <div class="goal-formula">
+                            <code>综合得分 = 消息成本(40%) + 消息数量(30%) + CTR(15%) + CPC(10%) + 互动率(5%)</code>
+                        </div>
+                        <ul>
+                            <li>核心关注：单次消息成本</li>
+                            <li>消息对话数量</li>
+                            <li>互动效果评估</li>
+                        </ul>
+                    </div>
+                    <div class="goal-card conversion">
+                        <div class="goal-icon">🎯</div>
+                        <h3>转化目标</h3>
+                        <p>适用于表单提交、购买转化等</p>
+                        <div class="goal-formula">
+                            <code>综合得分 = 转化率(35%) + CPA(30%) + CTR(15%) + CPC(10%) + 互动率(10%)</code>
+                        </div>
+                        <ul>
+                            <li>核心关注：转化率</li>
+                            <li>单次转化成本（CPA）</li>
+                            <li>转化效果诊断</li>
+                        </ul>
+                    </div>
+                    <div class="goal-card traffic">
+                        <div class="goal-icon">🌐</div>
+                        <h3>流量目标</h3>
+                        <p>适用于网站访问、应用下载等</p>
+                        <div class="goal-formula">
+                            <code>综合得分 = CTR(40%) + CPC(30%) + CPM(15%) + 互动率(10%) + 覆盖人数(5%)</code>
+                        </div>
+                        <ul>
+                            <li>核心关注：点击率（CTR）</li>
+                            <li>单次点击成本（CPC）</li>
+                            <li>流量质量评估</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="rating-system">
+                    <div class="rating-card excellent">
+                        <div class="rating-badge">🟢 优秀</div>
+                        <h4>得分 > 47分</h4>
+                        <p>Top 20% 广告</p>
+                        <div class="rating-action">
+                            <strong>操作建议：</strong>增加预算 30-50%，拓展受众，进行 A/B 测试
+                        </div>
+                    </div>
+                    <div class="rating-card medium">
+                        <div class="rating-badge">🟡 中等</div>
+                        <h4>得分 26-47分</h4>
+                        <p>Middle 60% 广告</p>
+                        <div class="rating-action">
+                            <strong>操作建议：</strong>A/B 测试，优化定向，测试新素材
+                        </div>
+                    </div>
+                    <div class="rating-card poor">
+                        <div class="rating-badge">🔴 差</div>
+                        <h4>得分 < 26分</h4>
+                        <p>Bottom 20% 广告</p>
+                        <div class="rating-action">
+                            <strong>操作建议：</strong>暂停或重新设计，更换素材，重新定位
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 使用流程 -->
+    <section id="workflow" class="workflow">
+        <div class="container">
+            <div class="section-header">
+                <h2>使用流程</h2>
+                <p>简单三步完成广告分析</p>
+            </div>
+            <div class="workflow-content">
+                <div class="workflow-steps">
+                    <div class="workflow-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <div class="step-icon">📤</div>
+                            <h3>准备数据</h3>
+                            <p>从 Facebook Ads Manager 导出 CSV 文件</p>
+                            <div class="step-details">
+                                <ul>
+                                    <li>选择时间周期</li>
+                                    <li>导出完整数据</li>
+                                    <li>确保UTF-8编码</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="workflow-arrow">→</div>
+                    <div class="workflow-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <div class="step-icon">🤖</div>
+                            <h3>AI 智能分析</h3>
+                            <p>告诉 Claude 你的广告目标和数据文件</p>
+                            <div class="step-details">
+                                <ul>
+                                    <li>明确广告目标</li>
+                                    <li>提供数据文件</li>
+                                    <li>Claude 自动处理</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="workflow-arrow">→</div>
+                    <div class="workflow-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <div class="step-icon">📊</div>
+                            <h3>获取报告</h3>
+                            <p>获得详细的分析报告和优化建议</p>
+                            <div class="step-details">
+                                <ul>
+                                    <li>详细分析结果</li>
+                                    <li>优化建议方案</li>
+                                    <li>投放策略方案</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="workflow-benefits">
+                    <div class="benefit-card">
+                        <h4>🎯 Claude Code Skill</h4>
+                        <p>直接与 Claude 对话即可完成分析，无需复杂操作和编程知识</p>
+                    </div>
+                    <div class="benefit-card">
+                        <h4>⚡ 快速分析</h4>
+                        <p>几分钟内完成广告数据分析，快速获得优化建议</p>
+                    </div>
+                    <div class="benefit-card">
+                        <h4>🔍 深度洞察</h4>
+                        <p>揭示广告表现的关键问题，提供数据驱动的改进方案</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心指标 -->
+    <section class="architecture">
+        <div class="container">
+            <div class="section-header">
+                <h2>核心指标</h2>
+                <p>全面的广告指标计算和评估</p>
+            </div>
+            <div class="architecture-content">
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-icon">🖱️</div>
+                        <h3>CTR</h3>
+                        <p>点击率</p>
+                        <div class="metric-formula">
+                            <code>点击量 / 展示次数 × 100%</code>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">💰</div>
+                        <h3>CPC</h3>
+                        <p>单次点击费用</p>
+                        <div class="metric-formula">
+                            <code>花费 / 点击量</code>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">📺</div>
+                        <h3>CPM</h3>
+                        <p>千次展示费用</p>
+                        <div class="metric-formula">
+                            <code>花费 / 展示次数 × 1000</code>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">🎯</div>
+                        <h3>转化率</h3>
+                        <p>转化比例</p>
+                        <div class="metric-formula">
+                            <code>潜在客户 / 点击量 × 100%</code>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">💬</div>
+                        <h3>消息成本</h3>
+                        <p>单次消息费用</p>
+                        <div class="metric-formula">
+                            <code>花费 / 消息对话次数</code>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">👍</div>
+                        <h3>互动率</h3>
+                        <p>互动比例</p>
+                        <div class="metric-formula">
+                            <code>公共主页互动 / 展示次数 × 100%</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 技术架构 -->
+    <section id="architecture" class="architecture">
+        <div class="container">
+            <div class="section-header">
+                <h2>技术架构</h2>
+                <p>基于 Claude Code Agent Skill 的智能分析系统</p>
+            </div>
+            <div class="architecture-content">
+                <div class="architecture-overview">
+                    <div class="arch-stack">
+                        <div class="arch-layer ai">
+                            <h3>AI 分析层</h3>
+                            <div class="tech-items">
+                                <div class="tech-item">Claude Code Agent Skill</div>
+                                <div class="tech-item">智能评分算法</div>
+                                <div class="tech-item">诊断引擎</div>
+                                <div class="tech-item">报告生成器</div>
+                            </div>
+                        </div>
+                        <div class="arch-layer processing">
+                            <h3>数据处理层</h3>
+                            <div class="tech-items">
+                                <div class="tech-item">Python</div>
+                                <div class="tech-item">Pandas</div>
+                                <div class="tech-item">数据预处理</div>
+                                <div class="tech-item">指标计算</div>
+                            </div>
+                        </div>
+                        <div class="arch-layer data">
+                            <h3>数据输入层</h3>
+                            <div class="tech-items">
+                                <div class="tech-item">Facebook Ads CSV</div>
+                                <div class="tech-item">UTF-8 编码</div>
+                                <div class="tech-item">中文列名</div>
+                                <div class="tech-item">多格式支持</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-structure">
+                    <div class="structure-card">
+                        <h3>项目结构</h3>
+                        <div class="code-block">
+                            <pre><code>facebook-ads-analyzer/
+├── scripts/
+│   ├── analyzer.py          # 主分析器（核心）
+│   ├── preprocessor.py      # 数据预处理
+│   ├── metrics.py           # 指标计算
+│   ├── diagnostic.py        # 诊断和建议
+│   └── reporter.py          # 报告生成
+├── SKILL.md                 # Skill 定义
+├── QUICKSTART.md            # 快速开始指南
+├── EXAMPLES.md              # 使用示例
+└── REFERENCE.md             # API 参考</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 使用示例 -->
+    <section class="use-cases">
+        <div class="container">
+            <div class="section-header">
+                <h2>使用示例</h2>
+                <p>直接与 Claude 对话，轻松完成分析</p>
+            </div>
+            <div class="use-cases-grid">
+                <div class="use-case-card example-card">
+                    <div class="use-case-icon">💬</div>
+                    <h3>互动目标分析</h3>
+                    <div class="example-code">
+                        <pre><code>你：请分析这个 Facebook 广告数据：data23.csv
+    我的广告目标是增加消息对话（互动目标）
+
+CC：正在分析您的广告数据...
+✓ 数据加载完成
+✓ 应用互动目标权重配置
+✓ 计算综合得分和评级
+✓ 生成分析报告</code></pre>
+                    </div>
+                </div>
+                <div class="use-case-card example-card">
+                    <div class="use-case-icon">🎯</div>
+                    <h3>转化目标分析</h3>
+                    <div class="example-code">
+                        <pre><code>你：请分析 ads.csv，
+    我关注表单提交转化
+
+CC：正在使用转化目标分析...
+✓ 评估转化率和 CPA
+✓ 识别最佳转化广告
+✓ 生成优化建议方案</code></pre>
+                    </div>
+                </div>
+                <div class="use-case-card example-card">
+                    <div class="use-case-icon">🌐</div>
+                    <h3>流量目标分析</h3>
+                    <div class="example-code">
+                        <pre><code>你：分析 campaign.csv，
+    我要提升网站流量
+
+CC：正在使用流量目标分析...
+✓ 评估 CTR 和 CPC
+✓ 分析流量质量和成本
+✓ 提供流量优化建议</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 应用场景 -->
+    <section class="api">
+        <div class="container">
+            <div class="section-header">
+                <h2>应用场景</h2>
+                <p>适用于各种 Facebook 广告优化场景</p>
+            </div>
+            <div class="api-content">
+                <div class="use-cases-grid">
+                    <div class="use-case-card">
+                        <div class="use-case-icon">📱</div>
+                        <h3>WhatsApp 营销</h3>
+                        <p>分析 WhatsApp 消息广告效果，优化消息成本和转化率</p>
+                    </div>
+                    <div class="use-case-card">
+                        <div class="use-case-icon">🛒</div>
+                        <h3>电商转化</h3>
+                        <p>评估电商广告的转化效果，识别高价值受众和素材</p>
+                    </div>
+                    <div class="use-case-card">
+                        <div class="use-case-icon">🌐</div>
+                        <h3>网站引流</h3>
+                        <p>优化网站访问广告，提升 CTR 和降低 CPC</p>
+                    </div>
+                    <div class="use-case-card">
+                        <div class="use-case-icon">📢</div>
+                        <h3>品牌推广</h3>
+                        <p>评估品牌广告的覆盖效果和互动表现</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 最佳实践 -->
+    <section class="installation">
+        <div class="container">
+            <div class="section-header">
+                <h2>最佳实践</h2>
+                <p>获取最佳分析效果的实用建议</p>
+            </div>
+            <div class="installation-content">
+                <div class="install-tabs">
+                    <div class="install-tab best-practices">
+                        <div class="tab-content">
+                            <div class="practices-grid">
+                                <div class="practice-card">
+                                    <div class="practice-number">1</div>
+                                    <h4>定期分析</h4>
+                                    <p>建议每周进行一次分析，跟踪广告表现趋势，及时调整策略</p>
+                                </div>
+                                <div class="practice-card">
+                                    <div class="practice-number">2</div>
+                                    <h4>数据质量</h4>
+                                    <p>确保 CSV 文件来自同一时间周期，包含完整的广告数据</p>
+                                </div>
+                                <div class="practice-card">
+                                    <div class="practice-number">3</div>
+                                    <h4>目标明确</h4>
+                                    <p>始终明确你的广告目标，选择对应的分析模式（互动/转化/流量）</p>
+                                </div>
+                                <div class="practice-card">
+                                    <div class="practice-number">4</div>
+                                    <h4>行动导向</h4>
+                                    <p>将分析结果转化为具体行动，持续优化广告表现</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>📊 Facebook 广告分析器</h4>
+                    <p>智能广告数据分析工具，优化你的 Facebook 广告投放</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="./index.html">返回主页</a></li>
+                        <li><a href="https://github.com/liangdabiao/facebook-ads-analyzer" target="_blank">GitHub仓库</a></li>
+                        <li><a href="#features">核心功能</a></li>
+                        <li><a href="#workflow">使用流程</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>技术栈</h4>
+                    <ul>
+                        <li>Python</li>
+                        <li>Pandas</li>
+                        <li>Claude Code Skill</li>
+                        <li>数据分析</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>联系我们</h4>
+                    <ul>
+                        <li><a href="https://github.com/liangdabiao/facebook-ads-analyzer/issues" target="_blank">问题反馈</a></li>
+                        <li><a href="https://github.com/liangdabiao/facebook-ads-analyzer/pulls" target="_blank">贡献代码</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Facebook 广告分析器. 开源项目 - <a href="https://github.com/liangdabiao/facebook-ads-analyzer" target="_blank">GitHub</a></p>
+                <p class="attribution">基于 Claude Code Agent Skill 构建</p>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        .goal-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .goal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
+        .goal-card.interaction { border-left: 4px solid #3b82f6; }
+        .goal-card.conversion { border-left: 4px solid #22c55e; }
+        .goal-card.traffic { border-left: 4px solid #f59e0b; }
+        .goal-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+        .goal-formula {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+        .scoring-goals {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        .rating-system {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .rating-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .rating-card.excellent { border-top: 4px solid #22c55e; }
+        .rating-card.medium { border-top: 4px solid #f59e0b; }
+        .rating-card.poor { border-top: 4px solid #ef4444; }
+        .rating-badge {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .rating-action {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+            font-size: 0.9rem;
+        }
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        .metric-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .metric-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        .metric-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+        .metric-formula {
+            background: #f8fafc;
+            padding: 0.5rem;
+            border-radius: 6px;
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+        }
+        .example-card {
+            background: #1e293b;
+            color: white;
+        }
+        .example-code {
+            background: #0f172a;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        .example-code pre {
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .practices-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .practice-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .practice-number {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            width: 35px;
+            height: 35px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+    </style>
+
+    <script src="./script.js"></script>
+    <script>
+        // 添加页面特定的交互功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 平滑滚动
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // 添加滚动动画
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // 观察所有卡片
+            document.querySelectorAll('.feature-card, .workflow-step, .goal-card, .rating-card, .metric-card, .use-case-card, .practice-card').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+
+            // 工作流程动画
+            const workflowSteps = document.querySelectorAll('.workflow-step');
+            workflowSteps.forEach((step, index) => {
+                step.style.opacity = '0';
+                step.style.transform = 'translateX(-20px)';
+                step.style.transition = `opacity 0.4s ease ${index * 0.1}s, transform 0.4s ease ${index * 0.1}s`;
+
+                setTimeout(() => {
+                    step.style.opacity = '1';
+                    step.style.transform = 'translateX(0)';
+                }, 500 + index * 100);
+            });
+
+            // 数字统计动画
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                const finalNumber = stat.textContent;
+                const isText = isNaN(parseInt(finalNumber));
+
+                if (!isText) {
+                    let currentNumber = 0;
+                    const increment = parseInt(finalNumber) / 50;
+                    const isPlus = finalNumber.includes('+');
+
+                    const updateNumber = () => {
+                        currentNumber += increment;
+                        if (currentNumber < parseInt(finalNumber)) {
+                            stat.textContent = Math.floor(currentNumber) + (isPlus ? '+' : '');
+                            requestAnimationFrame(updateNumber);
+                        } else {
+                            stat.textContent = finalNumber;
+                        }
+                    };
+
+                    // 当元素进入视窗时开始动画
+                    const statObserver = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                updateNumber();
+                                statObserver.unobserve(entry.target);
+                            }
+                        });
+                    });
+
+                    statObserver.observe(stat);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

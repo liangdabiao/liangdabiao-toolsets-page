@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code Deep Research - 深度研究 Agent 系统</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .feature-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        .feature-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+        .feature-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: var(--primary-dark);
+        }
+        .architecture-diagram {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        .architecture-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .flow-step {
+            background: white;
+            border: 2px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 15px 25px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .flow-arrow {
+            font-size: 2em;
+            color: var(--secondary-color);
+        }
+        .research-stages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        .stage-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 10px;
+            padding: 25px;
+            position: relative;
+        }
+        .stage-number {
+            background: var(--primary-color);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .stage-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+        .quality-rating {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .rating-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .rating-item:last-child {
+            border-bottom: none;
+        }
+        .rating-grade {
+            font-size: 1.5em;
+            font-weight: bold;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+        }
+        .rating-a { background: #22c55e; color: white; }
+        .rating-b { background: #3b82f6; color: white; }
+        .rating-c { background: #f59e0b; color: white; }
+        .rating-d { background: #ef4444; color: white; }
+        .rating-e { background: #6b7280; color: white; }
+        .rating-description {
+            flex: 1;
+        }
+        .rating-description h4 {
+            margin: 0 0 5px 0;
+        }
+        .rating-description p {
+            margin: 0;
+            color: var(--secondary-color);
+            font-size: 0.9em;
+        }
+        .code-example {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 25px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+        .code-comment {
+            color: #6a9955;
+        }
+        .code-command {
+            color: #4ec9b0;
+        }
+        .code-string {
+            color: #ce9178;
+        }
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--primary-color);
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin: 20px 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .cta-button-primary {
+            background: white;
+            color: var(--primary-color);
+        }
+        .back-button {
+            display: inline-block;
+            margin: 20px;
+            padding: 12px 30px;
+            background: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+        .back-button:hover {
+            background: var(--primary-color);
+        }
+        .use-cases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        .use-case-card {
+            background: white;
+            border-left: 4px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .use-case-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .use-case-description {
+            color: var(--secondary-color);
+            line-height: 1.6;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero-stats {
+                gap: 30px;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            .architecture-flow {
+                flex-direction: column;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">AI工具集合</a>
+            <ul class="nav-menu">
+                <li><a href="index.html#features" class="nav-link">核心功能</a></li>
+                <li><a href="index.html#products" class="nav-link">产品展示</a></li>
+                <li><a href="index.html#contact" class="nav-link">联系我们</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div style="font-size: 4em; margin-bottom: 20px;">🔍</div>
+        <h1>Claude Code Deep Research</h1>
+        <p>基于 Claude Code 的深度研究 Agent 系统，实现类似 OpenAI 和 Google 的 Deep Research 功能，通过 Graph of Thoughts 框架和多智能体协作完成专业研究</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">7</span>
+                <span class="stat-label">研究阶段</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">5+</span>
+                <span class="stat-label">并行Agent</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">5</span>
+                <span class="stat-label">质量等级</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">50+</span>
+                <span class="stat-label">报告页数</span>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/Claude-Code-Deep-Research-main" target="_blank" class="cta-button cta-button-primary">查看源码</a>
+            <a href="#features" class="cta-button">了解更多</a>
+        </div>
+    </section>
+
+    <!-- 核心功能 -->
+    <section id="features" class="section">
+        <h2 class="section-title">核心功能特性</h2>
+        <p class="section-subtitle">基于 Graph of Thoughts 框架的专业级深度研究系统</p>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h3 class="feature-title">Graph of Thoughts 框架</h3>
+                <p class="feature-description">基于图结构的推理路径管理，支持平衡、深度优先、广度优先三种研究模式，智能优化研究路径。</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚙️</div>
+                <h3 class="feature-title">7阶段深度研究流程</h3>
+                <p class="feature-description">问题细化、研究规划、多智能体研究、信息收集、综合分析、引用验证、报告生成。</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3 class="feature-title">多智能体架构</h3>
+                <p class="feature-description">Web研究Agent（3-5个）、学术/技术Agent（1-2个）、交叉引用Agent（1个）并行协作。</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⭐</div>
+                <h3 class="feature-title">A-E质量评级系统</h3>
+                <p class="feature-description">A级同行评审、B级队列研究、C级专家意见、D级预印本、E级轶事推测。</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔗</div>
+                <h3 class="feature-title">引用验证机制</h3>
+                <p class="feature-description">每个事实声明必须包含作者/组织、发布日期、来源标题、URL/DOI、页码。</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3 class="feature-title">结构化输出</h3>
+                <p class="feature-description">生成1-2页执行摘要、20-50页完整报告、数据、图表、来源、研究笔记、附录。</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🚀</div>
+                <h3 class="feature-title">简单易用</h3>
+                <p class="feature-description">仅需一个命令 <code>/deep-research [主题]</code>，全程自动化完成深度研究。</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3 class="feature-title">灵活配置</h3>
+                <p class="feature-description">支持全球范围、时间范围、来源类型、报告格式等多种研究参数定制。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 研究流程 -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">7阶段研究流程</h2>
+        <p class="section-subtitle">系统化的深度研究方法论</p>
+
+        <div class="research-stages">
+            <div class="stage-card">
+                <div class="stage-number">1</div>
+                <div class="stage-title">问题细化</div>
+                <p>分析研究主题，识别关键问题，制定研究范围和目标</p>
+            </div>
+
+            <div class="stage-card">
+                <div class="stage-number">2</div>
+                <div class="stage-title">研究规划</div>
+                <p>制定详细的研究计划，确定信息来源和研究策略</p>
+            </div>
+
+            <div class="stage-card">
+                <div class="stage-number">3</div>
+                <div class="stage-title">多智能体研究</div>
+                <p>启动多个专业Agent并行研究不同方面</p>
+            </div>
+
+            <div class="stage-card">
+                <div class="stage-number">4</div>
+                <div class="stage-title">信息收集</div>
+                <p>从多个来源收集相关数据和文献</p>
+            </div>
+
+            <div class="stage-card">
+                <div class="stage-number">5</div>
+                <div class="stage-title">综合分析</div>
+                <p>整合收集的信息，进行深度分析和交叉验证</p>
+            </div>
+
+            <div class="stage-card">
+                <div class="stage-number">6</div>
+                <div class="stage-title">引用验证</div>
+                <p>验证所有引用的准确性和可靠性</p>
+            </div>
+
+            <div class="stage-card">
+                <div class="stage-number">7</div>
+                <div class="stage-title">报告生成</div>
+                <p>生成结构化的研究报告和可视化结果</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 质量评级系统 -->
+    <section class="section">
+        <h2 class="section-title">A-E 质量评级系统</h2>
+        <p class="section-subtitle">确保信息来源的可靠性和权威性</p>
+
+        <div class="quality-rating">
+            <div class="rating-item">
+                <div class="rating-grade rating-a">A</div>
+                <div class="rating-description">
+                    <h4>同行评审期刊/预印本</h4>
+                    <p>顶级学术资源，经过严格同行评审</p>
+                </div>
+            </div>
+
+            <div class="rating-item">
+                <div class="rating-grade rating-b">B</div>
+                <div class="rating-description">
+                    <h4>信誉良好的队列研究</h4>
+                    <p>长期、大规模的权威研究</p>
+                </div>
+            </div>
+
+            <div class="rating-item">
+                <div class="rating-grade rating-c">C</div>
+                <div class="rating-description">
+                    <h4>专家意见和综述</h4>
+                    <p>领域专家的专业观点和总结</p>
+                </div>
+            </div>
+
+            <div class="rating-item">
+                <div class="rating-grade rating-d">D</div>
+                <div class="rating-description">
+                    <h4>预印本和初步研究</h4>
+                    <p>尚未完全验证的研究成果</p>
+                </div>
+            </div>
+
+            <div class="rating-item">
+                <div class="rating-grade rating-e">E</div>
+                <div class="rating-description">
+                    <h4>轶事证据和推测</h4>
+                    <p>个人经验和非正式观察</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 技术架构 -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">技术架构</h2>
+        <p class="section-subtitle">基于 Claude Code 和 MCP 协议的现代化架构</p>
+
+        <div class="architecture-diagram">
+            <h3>系统架构流程</h3>
+            <div class="architecture-flow">
+                <div class="flow-step">用户命令</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">Claude Code</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">GoT框架</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">多Agent</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">研究报告</div>
+            </div>
+        </div>
+
+        <div class="tech-stack">
+            <span class="tech-item">Claude Code</span>
+            <span class="tech-item">Graph of Thoughts</span>
+            <span class="tech-item">MCP Protocol</span>
+            <span class="tech-item">WebSearch</span>
+            <span class="tech-item">WebFetch</span>
+            <span class="tech-item">Playwright</span>
+            <span class="tech-item">多智能体协作</span>
+        </div>
+    </section>
+
+    <!-- 使用方法 -->
+    <section class="section">
+        <h2 class="section-title">使用方法</h2>
+        <p class="section-subtitle">简单命令，自动化研究</p>
+
+        <div class="code-example">
+            <span class="code-comment"># 启动深度研究</span><br>
+            <span class="code-command">/deep-research</span> <span class="code-string">人工智能在医疗领域的应用现状和未来趋势</span><br><br>
+            <span class="code-comment"># 指定研究参数</span><br>
+            <span class="code-command">/deep-research</span> <span class="code-string">量子计算最新进展</span> <span class="code-command">--time-range</span>=<span class="code-string">1year</span> <span class="code-command">--region</span>=<span class="code-string">global</span><br><br>
+            <span class="code-comment"># 指定报告格式</span><br>
+            <span class="code-command">/deep-research</span> <span class="code-string">区块链技术分析</span> <span class="code-command">--format</span>=<span class="code-string">detailed</span> <span class="code-command">--include-charts</span>
+        </div>
+
+        <div style="margin-top: 40px;">
+            <h3>安装步骤</h3>
+            <div style="text-align: left; max-width: 800px; margin: 20px auto;">
+                <p><strong>1. 克隆项目</strong></p>
+                <div class="code-example">
+                    git clone https://github.com/liangdabiao/Claude-Code-Deep-Research-main.git<br>
+                    cd Claude-Code-Deep-Research-main
+                </div>
+
+                <p><strong>2. 安装依赖</strong></p>
+                <div class="code-example">
+                    npm install
+                </div>
+
+                <p><strong>3. 配置环境</strong></p>
+                <div class="code-example">
+                    <span class="code-comment"># 复制配置文件</span><br>
+                    cp .env.example .env<br><br>
+                    <span class="code-comment"># 配置 API 密钥</span><br>
+                    <span class="code-comment"># ANTHROPIC_API_KEY=your_key_here</span>
+                </div>
+
+                <p><strong>4. 启动使用</strong></p>
+                <div class="code-example">
+                    <span class="code-command">/deep-research</span> <span class="code-string">您的研究主题</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 应用场景 -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">应用场景</h2>
+        <p class="section-subtitle">适用于各种深度研究需求</p>
+
+        <div class="use-cases">
+            <div class="use-case-card">
+                <div class="use-case-title">🎓 学术研究</div>
+                <p class="use-case-description">快速收集和分析相关文献，生成文献综述，识别研究趋势和空白</p>
+            </div>
+
+            <div class="use-case-card">
+                <div class="use-case-title">💼 商业分析</div>
+                <p class="use-case-description">市场调研、竞品分析、行业趋势预测，支持商业决策</p>
+            </div>
+
+            <div class="use-case-card">
+                <div class="use-case-title">🔬 技术调研</div>
+                <p class="use-case-description">新技术评估、技术方案比较、技术路径规划</p>
+            </div>
+
+            <div class="use-case-card">
+                <div class="use-case-title">📊 政策研究</div>
+                <p class="use-case-description">政策影响分析、法规解读、合规性研究</p>
+            </div>
+
+            <div class="use-case-card">
+                <div class="use-case-title">🏥 医疗健康</div>
+                <p class="use-case-description">疾病研究、治疗方案分析、药物研发趋势</p>
+            </div>
+
+            <div class="use-case-card">
+                <div class="use-case-title">🌍 环境科学</div>
+                <p class="use-case-description">气候变化研究、环境影响评估、可持续发展分析</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 输出格式 -->
+    <section class="section">
+        <h2 class="section-title">研究报告输出</h2>
+        <p class="section-subtitle">结构化的专业级研究报告</p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 40px;">
+            <div style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;">
+                <div style="font-size: 2.5em; margin-bottom: 15px;">📄</div>
+                <h4>执行摘要</h4>
+                <p style="color: var(--secondary-color); margin-top: 10px;">1-2页核心发现</p>
+            </div>
+
+            <div style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;">
+                <div style="font-size: 2.5em; margin-bottom: 15px;">📚</div>
+                <h4>完整报告</h4>
+                <p style="color: var(--secondary-color); margin-top: 10px;">20-50页详细分析</p>
+            </div>
+
+            <div style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;">
+                <div style="font-size: 2.5em; margin-bottom: 15px;">📊</div>
+                <h4>数据图表</h4>
+                <p style="color: var(--secondary-color); margin-top: 10px;">可视化数据展示</p>
+            </div>
+
+            <div style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;">
+                <div style="font-size: 2.5em; margin-bottom: 15px;">📝</div>
+                <h4>来源列表</h4>
+                <p style="color: var(--secondary-color); margin-top: 10px;">完整引用信息</p>
+            </div>
+
+            <div style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;">
+                <div style="font-size: 2.5em; margin-bottom: 15px;">📖</div>
+                <h4>研究笔记</h4>
+                <p style="color: var(--secondary-color); margin-top: 10px;">过程记录和推理</p>
+            </div>
+
+            <div style="background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center;">
+                <div style="font-size: 2.5em; margin-bottom: 15px;">📎</div>
+                <h4>附录材料</h4>
+                <p style="color: var(--secondary-color); margin-top: 10px;">补充资料和说明</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 项目特色 -->
+    <section class="section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+        <h2 class="section-title" style="color: white;">为什么选择 Claude Code Deep Research</h2>
+        <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">专业级深度研究工具，节省时间，提高质量</p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px;">
+            <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 10px; backdrop-filter: blur(10px);">
+                <h3 style="margin-bottom: 15px;">⏱️ 节省时间</h3>
+                <p style="line-height: 1.8; opacity: 0.95;">自动化完成繁琐的信息收集和整理工作，让研究者专注于分析和洞察</p>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 10px; backdrop-filter: blur(10px);">
+                <h3 style="margin-bottom: 15px;">🎯 提高质量</h3>
+                <p style="line-height: 1.8; opacity: 0.95;">基于 Graph of Thoughts 的智能推理，确保研究路径的最优化</p>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 10px; backdrop-filter: blur(10px);">
+                <h3 style="margin-bottom: 15px;">🔍 全面覆盖</h3>
+                <p style="line-height: 1.8; opacity: 0.95;">多Agent并行研究，从多个角度和来源收集信息</p>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 10px; backdrop-filter: blur(10px);">
+                <h3 style="margin-bottom: 15px;">✅ 可靠验证</h3>
+                <p style="line-height: 1.8; opacity: 0.95;">A-E质量评级系统确保信息来源的权威性和可靠性</p>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 10px; backdrop-filter: blur(10px);">
+                <h3 style="margin-bottom: 15px;">📋 结构规范</h3>
+                <p style="line-height: 1.8; opacity: 0.95;">生成符合学术和商业标准的结构化研究报告</p>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 10px; backdrop-filter: blur(10px);">
+                <h3 style="margin-bottom: 15px;">🚀 即开即用</h3>
+                <p style="line-height: 1.8; opacity: 0.95;">简单的命令行界面，无需复杂配置即可开始研究</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="text-align: center;">
+        <h2 class="section-title">开始您的深度研究之旅</h2>
+        <p class="section-subtitle">立即体验专业级AI研究助手</p>
+
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/Claude-Code-Deep-Research-main" target="_blank" class="cta-button" style="background: var(--primary-color); color: white;">查看源代码</a>
+            <a href="https://github.com/liangdabiao/Claude-Code-Deep-Research-main/issues" target="_blank" class="cta-button" style="background: var(--secondary-color); color: white;">提出问题</a>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer style="background: #1e293b; color: white; padding: 60px 20px; text-align: center;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h3 style="margin-bottom: 20px;">AI工具集合</h3>
+            <p style="color: rgba(255,255,255,0.7); margin-bottom: 30px;">探索更多AI工具，提升工作效率</p>
+            <div style="margin-bottom: 30px;">
+                <a href="index.html" class="cta-button" style="background: rgba(255,255,255,0.1); color: white; margin: 5px;">返回首页</a>
+                <a href="https://github.com/liangdabiao" target="_blank" class="cta-button" style="background: rgba(255,255,255,0.1); color: white; margin: 5px;">GitHub</a>
+                <a href="https://linux.do/u/liangdabiao" target="_blank" class="cta-button" style="background: rgba(255,255,255,0.1); color: white; margin: 5px;">联系我</a>
+            </div>
+            <p style="color: rgba(255,255,255,0.5); font-size: 0.9em;">&copy; 2025 Claude Code Deep Research. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code 股票深度研究代理 - 专业投资尽调系统</title>
+    <meta name="description" content="基于 Claude Code 的专业股票投资尽调系统，采用8阶段研究框架和28个并行智能体，支持A股、港股、美股的全面基本面分析。">
+    <meta name="keywords" content="股票研究,Claude Code,投资尽调,多智能体,基本面分析,A股,港股,美股">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔬</text></svg>">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span>🔬</span>
+                <span>股票深度研究代理</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="./index.html" class="nav-link">主页</a></li>
+                <li><a href="#framework" class="nav-link">研究框架</a></li>
+                <li><a href="#workflow" class="nav-link">工作流程</a></li>
+                <li><a href="#output" class="nav-link">输出报告</a></li>
+                <li><a href="#usage" class="nav-link">使用指南</a></li>
+                <li><a href="https://github.com/liangdabiao/Claude-Code-Stock-Deep-Research-Agent" target="_blank" class="btn btn-primary">GitHub</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero 区域 -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">🔬 Claude Code Deep Research</div>
+                <h1>股票深度研究代理</h1>
+                <h2>专业投资尽调系统</h2>
+                <p class="hero-description">
+                    基于 Claude Code Deep Research 系统的专业股票投资尽调工具。采用8阶段研究框架和28个并行智能体，支持A股、港股、美股的全面基本面分析。提供多空平衡的投资观点，明确风险提示，基于数据验证的信号灯评级。
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">研究阶段</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">28</div>
+                        <div class="stat-label">并行智能体</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">市场覆盖</div>
+                    </div>
+                </div>
+                <div class="hero-actions">
+                    <a href="https://github.com/liangdabiao/Claude-Code-Stock-Deep-Research-Agent" target="_blank" class="btn btn-primary btn-large">
+                        <span>📦</span>
+                        免费下载使用
+                    </a>
+                    <a href="#usage" class="btn btn-secondary btn-large">
+                        <span>🚀</span>
+                        开始研究
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-image-container">
+                    <div class="hero-overlay">
+                        <div class="overlay-icon">🔬</div>
+                        <div class="overlay-text">8阶段框架 × 28智能体 = 专业尽调报告</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 免责声明 -->
+    <section class="features" style="background: #fffbeb; border-top: 2px solid #f59e0b; border-bottom: 2px solid #f59e0b;">
+        <div class="container">
+            <div style="text-align: center; padding: 1rem;">
+                <h3 style="color: #92400e; margin-bottom: 0.5rem;">⚖️ 免责声明</h3>
+                <p style="color: #78716c; max-width: 800px; margin: 0 auto;">
+                    本研究报告不构成投资建议或推荐。所有投资存在风险，包括本金损失。本报告仅供教育和信息用途，
+                    部分数据需要通过官方渠道验证。投资决策前请自行进行尽职调查，建议咨询合格的财务顾问。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 研究框架 -->
+    <section id="framework" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>8阶段研究框架</h2>
+                <p>专业投资尽调方法论</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card phase-card">
+                    <div class="phase-number">1</div>
+                    <h3>业务基础</h3>
+                    <p>公司事实底座：产品、收入构成、客户、价值链、战略定位</p>
+                </div>
+                <div class="feature-card phase-card">
+                    <div class="phase-number">2</div>
+                    <h3>行业分析</h3>
+                    <p>行业周期、供需关系、竞争格局、政策影响</p>
+                </div>
+                <div class="feature-card phase-card">
+                    <div class="phase-number">3</div>
+                    <h3>业务拆解</h3>
+                    <p>业务分部、盈利引擎、定价能力、经济特征</p>
+                </div>
+                <div class="feature-card phase-card">
+                    <div class="phase-number">4</div>
+                    <h3>财务质量</h3>
+                    <p>指标趋势、现金流vs利润、风险信号、同行对比</p>
+                </div>
+                <div class="feature-card phase-card">
+                    <div class="phase-number">5</div>
+                    <h3>股权治理</h3>
+                    <p>股权结构、管理层、资本配置、ROIC分析</p>
+                </div>
+                <div class="feature-card phase-card">
+                    <div class="phase-number">6</div>
+                    <h3>市场分歧</h3>
+                    <p>多头观点、空头观点、关键争议、验证节点</p>
+                </div>
+                <div class="feature-card phase-card">
+                    <div class="phase-number">7</div>
+                    <h3>估值护城河</h3>
+                    <p>护城河评级(0-5)、相对估值、绝对估值、风险分析</p>
+                </div>
+                <div class="feature-card phase-card">
+                    <div class="phase-number">8</div>
+                    <h3>综合报告</h3>
+                    <p>信号评级、投资论点、监控清单</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 投资风格适配 -->
+    <section class="workflow">
+        <div class="container">
+            <div class="section-header">
+                <h2>投资风格适配</h2>
+                <p>系统根据您的投资风格自动调整研究方法</p>
+            </div>
+            <div class="workflow-content">
+                <div class="investment-styles">
+                    <div class="style-card value">
+                        <div class="style-icon">💰</div>
+                        <h3>价值投资</h3>
+                        <p class="style-desc">关注内在价值与安全边际</p>
+                        <ul class="style-features">
+                            <li>强调资产负债表</li>
+                            <li>常态化盈利分析</li>
+                            <li>P/B, EV/EBITDA, DCF(保守)</li>
+                        </ul>
+                        <div class="style-metrics">P/B, FCF Yield, 正常化EPS</div>
+                    </div>
+                    <div class="style-card growth">
+                        <div class="style-icon">🚀</div>
+                        <h3>成长投资</h3>
+                        <p class="style-desc">关注市场规模与竞争定位</p>
+                        <ul class="style-features">
+                            <li>强调TAM分析</li>
+                            <li>竞争定位评估</li>
+                            <li>PEG, DCF(激进), 用户模型</li>
+                        </ul>
+                        <div class="style-metrics">收入增长, 护城河, TAM渗透率</div>
+                    </div>
+                    <div class="style-card turnaround">
+                        <div class="style-icon">🔄</div>
+                        <h3>困境反转</h3>
+                        <p class="style-desc">关注流动性、偿债能力与催化剂</p>
+                        <ul class="style-features">
+                            <li>强调流动性分析</li>
+                            <li>偿债能力评估</li>
+                            <li>清算价值, 期权价值</li>
+                        </ul>
+                        <div class="style-metrics">负债比率, 现金跑道, 催化剂时间线</div>
+                    </div>
+                    <div class="style-card dividend">
+                        <div class="style-icon">📊</div>
+                        <h3>红利投资</h3>
+                        <p class="style-desc">关注股息可持续性</p>
+                        <ul class="style-features">
+                            <li>强调股息支付能力</li>
+                            <li>FCF生成能力</li>
+                            <li>DDM, FCF Yield, 股息率对比</li>
+                        </ul>
+                        <div class="style-metrics">股息率, 派息比率, FCF覆盖倍数</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 信号灯评级 -->
+    <section class="architecture">
+        <div class="container">
+            <div class="section-header">
+                <h2>信号灯评级系统</h2>
+                <p>基于基本面分析的投资建议</p>
+            </div>
+            <div class="architecture-content">
+                <div class="rating-system-large">
+                    <div class="rating-card-large buy">
+                        <div class="rating-lights">🟢🟢🟢</div>
+                        <h3>Strong Buy</h3>
+                        <p>强烈买入</p>
+                        <div class="rating-criteria">
+                            <ul>
+                                <li>显著的安全边际</li>
+                                <li>强劲的护城河</li>
+                                <li>有吸引力的估值</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="rating-card-large hold">
+                        <div class="rating-lights">🟡🟡🟡</div>
+                        <h3>Hold</h3>
+                        <p>持有</p>
+                        <div class="rating-criteria">
+                            <ul>
+                                <li>估值合理</li>
+                                <li>安全边际有限</li>
+                                <li>可继续持有</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="rating-card-large avoid">
+                        <div class="rating-lights">🔴🔴</div>
+                        <h3>Avoid</h3>
+                        <p>避免</p>
+                        <div class="rating-criteria">
+                            <ul>
+                                <li>估值过高</li>
+                                <li>基本面恶化</li>
+                                <li>风险过大</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作流程 -->
+    <section id="workflow" class="workflow">
+        <div class="container">
+            <div class="section-header">
+                <h2>工作流程</h2>
+                <p>智能化的研究流程</p>
+            </div>
+            <div class="workflow-content">
+                <div class="process-flow">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>问题细化</h3>
+                            <p>stock-question-refiner skill 了解您的投资需求</p>
+                            <ul>
+                                <li>投资风格选择</li>
+                                <li>持有周期设定</li>
+                                <li>关注重点配置</li>
+                                <li>风险偏好评估</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="process-arrow">↓</div>
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>并行研究</h3>
+                            <p>stock-research-executor skill 部署28个智能体</p>
+                            <ul>
+                                <li>7个研究阶段</li>
+                                <li>每阶段4个并行智能体</li>
+                                <li>WebSearch + WebFetch</li>
+                                <li>2-4小时完成</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="process-arrow">↓</div>
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>引用验证</h3>
+                            <p>citation-validator skill 验证所有数据来源</p>
+                            <ul>
+                                <li>A-E级来源质量评级</li>
+                                <li>交叉验证利润vs现金流</li>
+                                <li>同行对比分析</li>
+                                <li>空头风险识别</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="process-arrow">↓</div>
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>综合报告</h3>
+                            <p>生成20文件标准化尽调报告</p>
+                            <ul>
+                                <li>执行摘要</li>
+                                <li>7个阶段详细报告</li>
+                                <li>财务数据表格</li>
+                                <li>估值分析与风险清单</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 输出报告 -->
+    <section id="output" class="architecture">
+        <div class="container">
+            <div class="section-header">
+                <h2>输出报告结构</h2>
+                <p>20文件标准化尽调报告</p>
+            </div>
+            <div class="architecture-content">
+                <div class="report-structure">
+                    <div class="report-folder">
+                        <div class="folder-icon">📁</div>
+                        <h3>RESEARCH/STOCK_[ticker]_[company]/</h3>
+                        <div class="folder-content">
+                            <div class="file-item">00_Executive_Summary.md - 信号评级与投资论点</div>
+                            <div class="file-item">01_Business_Foundation.md - 公司基础事实</div>
+                            <div class="file-item">02_Industry_Analysis.md - 行业周期分析</div>
+                            <div class="file-item">03_Business_Breakdown.md - 业务分部拆解</div>
+                            <div class="file-item">04_Financial_Quality.md - 财务质量分析</div>
+                            <div class="file-item">05_Governance_Analysis.md - 股权治理结构</div>
+                            <div class="file-item">06_Market_Sentiment.md - 市场多头空头观点</div>
+                            <div class="file-item">07_Valuation_Moat.md - 估值与护城河</div>
+                            <div class="folder-sub">Financial_Data/ - 财务指标与趋势</div>
+                            <div class="folder-sub">Valuation/ - DCF与情景分析</div>
+                            <div class="folder-sub">Risk_Monitoring/ - 空头风险与监控清单</div>
+                            <div class="folder-sub">sources/ - 引用来源与质量评级</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 使用指南 -->
+    <section id="usage" class="installation">
+        <div class="container">
+            <div class="section-header">
+                <h2>使用指南</h2>
+                <p>简单命令，专业研究</p>
+            </div>
+            <div class="installation-content">
+                <div class="usage-example">
+                    <div class="code-block-large">
+                        <pre><code># 启动 Claude Code
+claude
+
+# 设置模型（可选但推荐）
+/model opus
+
+# 执行股票研究
+/stock-research [股票代码或公司名称]
+
+# 示例：
+/stock-research 600519              # 贵州茅台 (A股)
+/stock-research AAPL                # 苹果公司 (美股)
+/stock-research 腾讯 00700.HK        # 腾讯控股 (港股)</code></pre>
+                    </div>
+                </div>
+                <div class="interactive-dialog">
+                    <div class="dialog-item user">
+                        <div class="dialog-label">用户</div>
+                        <div class="dialog-content">/stock-research 贵州茅台 600519</div>
+                    </div>
+                    <div class="dialog-item assistant">
+                        <div class="dialog-label">Claude</div>
+                        <div class="dialog-content">
+                            我可以帮您研究贵州茅台。让我先了解您的投资需求：
+                            <ol>
+                                <li>投资风格：价值投资/成长投资/困境反转/红利投资？</li>
+                                <li>持有周期：短期(<6月)/中期(6-18月)/长期(1-3年以上)?</li>
+                                <li>关注重点：生意质量/财务质量/估值/公司治理 (选2-3个)</li>
+                                <li>风险偏好：保守/平衡/激进？</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="dialog-item user">
+                        <div class="dialog-label">用户</div>
+                        <div class="dialog-content">价值投资，长期持有3年以上，关注：生意质量、公司治理、估值，风险保守</div>
+                    </div>
+                    <div class="dialog-item assistant">
+                        <div class="dialog-label">Claude</div>
+                        <div class="dialog-content">
+                            <strong>[正在生成研究计划...]</strong><br>
+                            <strong>[部署28个并行研究智能体...]</strong><br>
+                            <strong>[分析5-10年财务数据...]</strong><br>
+                            <strong>[与五粮液、洋河、汾酒对比...]</strong><br>
+                            <strong>[评估竞争护城河...]</strong><br>
+                            <strong>[DCF三情景估值...]</strong><br>
+                            <strong>[识别空头风险...]</strong><br>
+                            <br>
+                            <strong>输出：RESEARCH/STOCK_600519_Kweichow_Moutai/</strong><br>
+                            <br>
+                            <span style="font-size: 1.5rem;">🟡🟡🟡 Hold / Fairly Valued</span><br>
+                            <br>
+                            <strong>投资论点：</strong><br>
+                            茅台是中国领先的白酒品牌，拥有强大的品牌护城河和定价能力。
+                            然而当前估值（P/E 32x）安全边际有限。建议继续持有现有仓位，
+                            但新投资应等待10-15%回调至¥1,750-1,850区间。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 质量保证 -->
+    <section class="api">
+        <div class="container">
+            <div class="section-header">
+                <h2>质量保证</h2>
+                <p>多维度验证确保研究质量</p>
+            </div>
+            <div class="api-content">
+                <div class="quality-grid">
+                    <div class="quality-card">
+                        <div class="quality-icon">✅</div>
+                        <h3>利润vs现金流</h3>
+                        <p>OCF/NI比率分析，验证盈利质量</p>
+                    </div>
+                    <div class="quality-card">
+                        <div class="quality-icon">📊</div>
+                        <h3>同行对比</h3>
+                        <p>关键比率、利润率横向对比</p>
+                    </div>
+                    <div class="quality-card">
+                        <div class="quality-icon">⚠️</div>
+                        <h3>空头分析</h3>
+                        <p>识别3-5个关键风险点</p>
+                    </div>
+                    <div class="quality-card">
+                        <div class="quality-icon">📚</div>
+                        <h3>引用评级</h3>
+                        <p>A-E级来源质量评级系统</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 应用场景 -->
+    <section class="use-cases">
+        <div class="container">
+            <div class="section-header">
+                <h2>支持市场</h2>
+                <p>覆盖全球主要股票市场</p>
+            </div>
+            <div class="use-cases-grid">
+                <div class="use-case-card market-card">
+                    <div class="use-case-icon">🇨🇳</div>
+                    <h3>A股市场</h3>
+                    <p>中国大陆股票市场，支持股票代码如600519、000001等</p>
+                </div>
+                <div class="use-case-card market-card">
+                    <div class="use-case-icon">🇭🇰</div>
+                    <h3>港股市场</h3>
+                    <p>香港股票市场，支持股票代码如00700.HK、9988.HK等</p>
+                </div>
+                <div class="use-case-card market-card">
+                    <div class="use-case-icon">🇺🇸</div>
+                    <h3>美股市场</h3>
+                    <p>美国股票市场，支持股票代码如AAPL、TSLA、NVDA等</p>
+                </div>
+                <div class="use-case-card market-card">
+                    <div class="use-case-icon">🌍</div>
+                    <h3>全球市场</h3>
+                    <p>其他全球主要股票市场，灵活研究框架适配</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>🔬 股票深度研究代理</h4>
+                    <p>基于 Claude Code 的专业投资尽调系统</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="./index.html">返回主页</a></li>
+                        <li><a href="https://github.com/liangdabiao/Claude-Code-Stock-Deep-Research-Agent" target="_blank">GitHub仓库</a></li>
+                        <li><a href="#framework">研究框架</a></li>
+                        <li><a href="#usage">使用指南</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>技术栈</h4>
+                    <ul>
+                        <li>Claude Code</li>
+                        <li>Deep Research</li>
+                        <li>Graph of Thoughts</li>
+                        <li>Multi-Agent</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>联系我们</h4>
+                    <ul>
+                        <li><a href="https://github.com/liangdabiao/Claude-Code-Stock-Deep-Research-Agent/issues" target="_blank">问题反馈</a></li>
+                        <li><a href="https://github.com/liangdabiao/Claude-Code-Stock-Deep-Research-Agent/pulls" target="_blank">贡献代码</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 股票深度研究代理. 开源项目 - <a href="https://github.com/liangdabiao/Claude-Code-Stock-Deep-Research-Agent" target="_blank">GitHub</a></p>
+                <p class="attribution">基于 Claude Code Deep Research Framework 构建 | 提示词参考来源: https://mp.weixin.qq.com/s/EFT5S-cCeCnEIDZOD_DYbA</p>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        .phase-card {
+            position: relative;
+            padding-left: 3.5rem !important;
+        }
+        .phase-number {
+            position: absolute;
+            left: 1rem;
+            top: 1rem;
+            width: 2rem;
+            height: 2rem;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        .investment-styles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .style-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border-top: 4px solid;
+        }
+        .style-card.value { border-color: #3b82f6; }
+        .style-card.growth { border-color: #22c55e; }
+        .style-card.turnaround { border-color: #f59e0b; }
+        .style-card.dividend { border-color: #8b5cf6; }
+        .style-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .style-desc {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        .style-features {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+            text-align: left;
+        }
+        .style-features li {
+            padding: 0.25rem 0;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        .style-metrics {
+            background: #f8fafc;
+            padding: 0.75rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: #475569;
+            font-weight: 500;
+        }
+        .rating-system-large {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .rating-card-large {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .rating-card-large.buy { border-top: 6px solid #22c55e; }
+        .rating-card-large.hold { border-top: 6px solid #f59e0b; }
+        .rating-card-large.avoid { border-top: 6px solid #ef4444; }
+        .rating-lights {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            letter-spacing: 0.25rem;
+        }
+        .rating-criteria {
+            margin-top: 1rem;
+        }
+        .rating-criteria ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+        .rating-criteria li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .rating-criteria li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+        .process-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .process-step {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .process-step .step-number {
+            position: absolute;
+            right: 1.5rem;
+            top: 1.5rem;
+            width: 2.5rem;
+            height: 2.5rem;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .process-arrow {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+        .report-structure {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .report-folder {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .folder-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .folder-content {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+        .file-item {
+            padding: 0.25rem 0;
+            padding-left: 1.5rem;
+            color: #475569;
+        }
+        .folder-sub {
+            padding: 0.25rem 0;
+            padding-left: 1rem;
+            color: #64748b;
+            font-style: italic;
+        }
+        .code-block-large {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 1.5rem;
+            overflow-x: auto;
+        }
+        .code-block-large pre {
+            margin: 0;
+            color: #e2e8f0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .interactive-dialog {
+            max-width: 800px;
+            margin: 2rem auto 0;
+        }
+        .dialog-item {
+            margin-bottom: 1.5rem;
+        }
+        .dialog-item.user {
+            text-align: right;
+        }
+        .dialog-item.assistant {
+            text-align: left;
+        }
+        .dialog-label {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .dialog-item.user .dialog-label {
+            background: #3b82f6;
+            color: white;
+        }
+        .dialog-item.assistant .dialog-label {
+            background: #22c55e;
+            color: white;
+        }
+        .dialog-content {
+            display: inline-block;
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 80%;
+            text-align: left;
+        }
+        .dialog-item.user .dialog-content {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+        }
+        .dialog-item.assistant .dialog-content {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+        }
+        .quality-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .quality-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .quality-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .market-card {
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .dialog-content {
+                max-width: 95%;
+            }
+            .investment-styles,
+            .rating-system-large,
+            .quality-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <script src="./script.js"></script>
+    <script>
+        // 添加页面特定的交互功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 平滑滚动
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // 添加滚动动画
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // 观察所有卡片
+            document.querySelectorAll('.phase-card, .style-card, .rating-card-large, .process-step, .quality-card, .market-card').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+
+            // 数字统计动画
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                const finalNumber = stat.textContent;
+                const isText = isNaN(parseInt(finalNumber));
+
+                if (!isText && parseInt(finalNumber) < 100) {
+                    let currentNumber = 0;
+                    const increment = parseInt(finalNumber) / 30;
+
+                    const updateNumber = () => {
+                        currentNumber += increment;
+                        if (currentNumber < parseInt(finalNumber)) {
+                            stat.textContent = Math.floor(currentNumber);
+                            requestAnimationFrame(updateNumber);
+                        } else {
+                            stat.textContent = finalNumber;
+                        }
+                    };
+
+                    const statObserver = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                updateNumber();
+                                statObserver.unobserve(entry.target);
+                            }
+                        });
+                    });
+
+                    statObserver.observe(stat);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

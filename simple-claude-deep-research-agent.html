@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Claude Deep Research Agent - 简化版深度研究系统</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .feature-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        .feature-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+        .feature-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: var(--primary-dark);
+        }
+        .query-modes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        .mode-card {
+            background: white;
+            border-radius: 12px;
+            padding: 35px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        .mode-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+        }
+        .mode-simple::before { background: #22c55e; }
+        .mode-breadth::before { background: #3b82f6; }
+        .mode-depth::before { background: #8b5cf6; }
+        .mode-icon {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .mode-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+        .mode-agents {
+            display: inline-block;
+            background: #f0fdf4;
+            color: #16a34a;
+            padding: 6px 15px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+        .mode-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .agent-architecture {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+        .agent-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .agent-box {
+            background: white;
+            border: 2px solid var(--primary-color);
+            border-radius: 10px;
+            padding: 20px 30px;
+            text-align: center;
+            min-width: 180px;
+        }
+        .agent-box-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        .agent-box-title {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .agent-arrow {
+            font-size: 2em;
+            color: var(--secondary-color);
+        }
+        .code-example {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 25px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+        .code-comment {
+            color: #6a9955;
+        }
+        .code-command {
+            color: #4ec9b0;
+        }
+        .code-string {
+            color: #ce9178;
+        }
+        .code-output {
+            color: #9cdcfe;
+        }
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--primary-color);
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin: 20px 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .cta-button-primary {
+            background: white;
+            color: var(--primary-color);
+        }
+        .use-cases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        .use-case-card {
+            background: white;
+            border-left: 4px solid #10b981;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .use-case-icon {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+        .use-case-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .use-case-description {
+            color: var(--secondary-color);
+            line-height: 1.6;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        .comparison-table th {
+            background: var(--primary-color);
+            color: white;
+            font-weight: bold;
+        }
+        .comparison-table tr:hover {
+            background: #f8f9fa;
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 5px solid #10b981;
+        }
+        .highlight-box h3 {
+            color: #065f46;
+            margin-bottom: 15px;
+        }
+        .highlight-box p {
+            color: #047857;
+            line-height: 1.8;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero-stats {
+                gap: 30px;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            .agent-flow {
+                flex-direction: column;
+            }
+            .agent-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">AI工具集合</a>
+            <ul class="nav-menu">
+                <li><a href="index.html#features" class="nav-link">核心功能</a></li>
+                <li><a href="index.html#products" class="nav-link">产品展示</a></li>
+                <li><a href="index.html#contact" class="nav-link">联系我们</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-badge">🌟 完全小白友好 - 零编程门槛</div>
+        <div style="font-size: 4em; margin-bottom: 20px;">🎯</div>
+        <h1>Simple Claude Deep Research Agent</h1>
+        <p>简化版多智能体深度研究系统，一行命令即可启动专业级网络研究，无需任何编程基础</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">3</span>
+                <span class="stat-label">查询模式</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">1</span>
+                <span class="stat-label">行命令</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">5-10</span>
+                <span class="stat-label">分钟完成</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">小白友好</span>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/simple_claude_deep_research_agent" target="_blank" class="cta-button cta-button-primary">查看源码</a>
+            <a href="#features" class="cta-button">了解更多</a>
+        </div>
+    </section>
+
+    <!-- 核心功能 -->
+    <section id="features" class="section">
+        <h2 class="section-title">核心功能特性</h2>
+        <p class="section-subtitle">专为非技术人员设计的深度研究工具</p>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🔄</div>
+                <h3 class="feature-title">三种查询模式</h3>
+                <p class="feature-description">直接查询（1个子代理）、广度优先查询（3个子代理）、深度优先查询（4个子代理），根据问题复杂度自动选择。</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3 class="feature-title">多智能体协作</h3>
+                <p class="feature-description">研究主导代理统筹规划、研究子代理并行执行、引用代理自动添加引用，分工明确。</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3 class="feature-title">高效并行处理</h3>
+                <p class="feature-description">支持2-6个子代理同时工作，显著提升研究效率，复杂问题5-10分钟即可完成。</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🛠️</div>
+                <h3 class="feature-title">智能工具集成</h3>
+                <p class="feature-description">Web搜索、Web Fetch、Playwright MCP自动处理JavaScript动态页面，智能切换静态/动态内容处理方式。</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h3 class="feature-title">来源质量评估</h3>
+                <p class="feature-description">对信息来源进行批判性评估、交叉验证关键事实、识别偏见和推测，确保信息可靠性。</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📝</div>
+                <h3 class="feature-title">自动化引用生成</h3>
+                <p class="feature-description">研究完成后自动添加引用，支持多种引用格式，无需手动整理来源。</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎓</div>
+                <h3 class="feature-title">完全小白友好</h3>
+                <p class="feature-description">无需编程知识，一行命令 deep-research &lt;查询主题&gt; 即可启动，零门槛上手。</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚙️</div>
+                <h3 class="feature-title">高度可定制</h3>
+                <p class="feature-description">可编辑skills文件自定义研究策略和代理行为，满足个性化研究需求。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 查询模式详解 -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">三种查询模式</h2>
+        <p class="section-subtitle">根据问题复杂度选择最适合的研究模式</p>
+
+        <div class="query-modes">
+            <div class="mode-card mode-simple">
+                <div class="mode-icon">🎯</div>
+                <h3 class="mode-title">直接查询</h3>
+                <span class="mode-agents">1个子代理</span>
+                <p class="mode-description">适合简单事实查找，如"东京的人口是多少？"，快速返回准确答案，1-2分钟完成。</p>
+            </div>
+
+            <div class="mode-card mode-breadth">
+                <div class="mode-icon">🌐</div>
+                <h3 class="mode-title">广度优先查询</h3>
+                <span class="mode-agents">3个子代理</span>
+                <p class="mode-description">适合多部分问题的独立子主题，如比较分析AWS、Azure、Google Cloud，3-5分钟完成。</p>
+            </div>
+
+            <div class="mode-card mode-depth">
+                <div class="mode-icon">🔬</div>
+                <h3 class="mode-title">深度优先查询</h3>
+                <span class="mode-agents">4个子代理</span>
+                <p class="mode-description">适合需要多视角的复杂问题，如"治疗抑郁症最有效的方法"，5-10分钟深度分析。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 智能体架构 -->
+    <section class="section">
+        <h2 class="section-title">智能体协作架构</h2>
+        <p class="section-subtitle">多智能体分工协作，高效完成研究任务</p>
+
+        <div class="agent-architecture">
+            <h3 style="text-align: center; margin-bottom: 30px;">研究工作流程</h3>
+            <div class="agent-flow">
+                <div class="agent-box">
+                    <div class="agent-box-icon">👑</div>
+                    <div class="agent-box-title">研究主导代理</div>
+                    <div style="font-size: 0.9em; color: #666; margin-top: 10px;">统筹规划<br/>综合发现</div>
+                </div>
+                <div class="agent-arrow">→</div>
+                <div class="agent-box">
+                    <div class="agent-box-icon">🤖</div>
+                    <div class="agent-box-title">研究子代理</div>
+                    <div style="font-size: 0.9em; color: #666; margin-top: 10px;">并行执行<br/>专注研究</div>
+                </div>
+                <div class="agent-arrow">→</div>
+                <div class="agent-box">
+                    <div class="agent-box-icon">📚</div>
+                    <div class="agent-box-title">引用代理</div>
+                    <div style="font-size: 0.9em; color: #666; margin-top: 10px;">自动添加<br/>引用标注</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tech-stack">
+            <span class="tech-item">Claude Code</span>
+            <span class="tech-item">Claude Code Skills</span>
+            <span class="tech-item">MCP Protocol</span>
+            <span class="tech-item">Playwright</span>
+            <span class="tech-item">WebSearch</span>
+            <span class="tech-item">WebFetch</span>
+            <span class="tech-item">Task工具</span>
+        </div>
+    </section>
+
+    <!-- 使用方法 -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">使用方法</h2>
+        <p class="section-subtitle">简单的三步启动流程</p>
+
+        <div class="highlight-box">
+            <h3>⭐ 为什么选择 Simple 版本？</h3>
+            <p>这是完全小白友好的深度研究工具，无需任何编程基础。只需准备3个Markdown文档，让Claude Code自动创建整个Agent系统，然后一行命令即可开始深度研究。</p>
+        </div>
+
+        <div style="margin-top: 40px;">
+            <h3>第一步：准备文件夹</h3>
+            <div class="code-example">
+                <span class="code-comment"># 创建新文件夹</span><br>
+                mkdir my-research-agent<br>
+                cd my-research-agent
+            </div>
+
+            <h3>第二步：放入需求文档</h3>
+            <p style="color: var(--secondary-color); margin: 20px 0;">将以下3个markdown文档放入文件夹：</p>
+            <ul style="color: var(--secondary-color); line-height: 2; margin: 20px 0;">
+                <li><strong>research_lead_agent.md</strong> - 研究主导代理配置</li>
+                <li><strong>research_subagent.md</strong> - 研究子代理配置</li>
+                <li><strong>citations_agent.md</strong> - 引用代理配置</li>
+            </ul>
+
+            <h3>第三步：初始化并创建</h3>
+            <div class="code-example">
+                <span class="code-comment"># 在Claude Code中执行</span><br>
+                <span class="code-command">/claude</span><br>
+                <span class="code-command">/init</span><br><br>
+                <span class="code-comment"># 让AI创建agent</span><br>
+                "请基于这些markdown文档内容，利用claude code agent技术，<br>
+                包含subagents、commands、skills等，创建一个deep research claude code agent"<br><br>
+                <span class="code-comment"># AI会建立.claude文件夹，包含整个agent</span>
+            </div>
+
+            <h3>第四步：开始研究</h3>
+            <div class="code-example">
+                <span class="code-comment"># 一行命令启动深度研究</span><br>
+                <span class="code-command">deep-research</span> <span class="code-string">当今NBA最强球员top10</span><br><br>
+                <span class="code-comment"># 研究完成后添加引用</span><br>
+                <span class="code-command">citations</span>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <h3 style="text-align: center; margin-bottom: 30px;">实际使用示例</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>查询类型</th>
+                        <th>示例问题</th>
+                        <th>子代理数</th>
+                        <th>预计时间</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>简单查询</strong></td>
+                        <td>"东京的人口是多少？"</td>
+                        <td>1个</td>
+                        <td>1-2分钟</td>
+                    </tr>
+                    <tr>
+                        <td><strong>比较分析</strong></td>
+                        <td>"比较AWS、Azure和Google Cloud的市场份额"</td>
+                        <td>3个</td>
+                        <td>3-5分钟</td>
+                    </tr>
+                    <tr>
+                        <td><strong>深度研究</strong></td>
+                        <td>"治疗抑郁症最有效的方法是什么？"</td>
+                        <td>4个</td>
+                        <td>5-10分钟</td>
+                    </tr>
+                    <tr>
+                        <td><strong>历史分析</strong></td>
+                        <td>"2008年金融危机的原因是什么？"</td>
+                        <td>4个</td>
+                        <td>5-10分钟</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 应用场景 -->
+    <section class="section">
+        <h2 class="section-title">应用场景</h2>
+        <p class="section-subtitle">适用于各种研究和知识获取需求</p>
+
+        <div class="use-cases">
+            <div class="use-case-card">
+                <div class="use-case-icon">🎓</div>
+                <div class="use-case-title">学术研究</div>
+                <p class="use-case-description">文献综述、多角度问题分析、事实查证，为学术写作提供坚实基础</p>
+            </div>
+
+            <div class="use-case-card">
+                <div class="use-case-icon">💼</div>
+                <div class="use-case-title">市场调研</div>
+                <p class="use-case-description">竞品分析、行业趋势研究、技术方案对比，支持商业决策</p>
+            </div>
+
+            <div class="use-case-card">
+                <div class="use-case-icon">🚀</div>
+                <div class="use-case-title">快速知识获取</div>
+                <p class="use-case-description">当前事件分析、技术问题解答、历史事件研究，快速掌握新知识</p>
+            </div>
+
+            <div class="use-case-card">
+                <div class="use-case-icon">💡</div>
+                <div class="use-case-title">商业决策支持</div>
+                <p class="use-case-description">云服务商价格比较、技术栈选型分析、市场机会评估</p>
+            </div>
+
+            <div class="use-case-card">
+                <div class="use-case-icon">✍️</div>
+                <div class="use-case-title">内容创作辅助</div>
+                <p class="use-case-description">深度文章素材收集、多来源信息整合、引用和来源标注</p>
+            </div>
+
+            <div class="use-case-card">
+                <div class="use-case-icon">🔧</div>
+                <div class="use-case-title">技术调研</div>
+                <p class="use-case-description">新技术评估、框架对比、最佳实践研究</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 使用技巧 -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">使用技巧</h2>
+        <p class="section-subtitle">获得最佳研究效果的建议</p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px;">
+            <div style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                <h3 style="color: #10b981; margin-bottom: 15px;">✅ 提问要具体明确</h3>
+                <p style="color: var(--secondary-color); line-height: 1.8;">
+                    <strong>好：</strong>"React和Vue的优缺点是什么？"<br>
+                    <strong>差：</strong>"告诉我关于前端框架"
+                </p>
+            </div>
+
+            <div style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                <h3 style="color: #10b981; margin-bottom: 15px;">✅ 添加时间上下文</h3>
+                <p style="color: var(--secondary-color); line-height: 1.8;">
+                    "截至2025年，Rust的应用现状"<br>
+                    "2024年AI行业的最新发展"
+                </p>
+            </div>
+
+            <div style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                <h3 style="color: #10b981; margin-bottom: 15px;">✅ 使用@语法</h3>
+                <p style="color: var(--secondary-color); line-height: 1.8;">
+                    <code>@deep-research 比较三家云服务商的价格</code><br>
+                    可以在任何地方调用研究功能
+                </p>
+            </div>
+
+            <div style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                <h3 style="color: #10b981; margin-bottom: 15px;">✅ 研究后添加引用</h3>
+                <p style="color: var(--secondary-color); line-height: 1.8;">
+                    研究完成后执行 <code>citations</code> 命令<br>
+                    自动为报告添加完整的引用信息
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 项目特色 -->
+    <section class="section">
+        <h2 class="section-title">项目特色</h2>
+        <p class="section-subtitle">为什么选择 Simple Claude Deep Research Agent</p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 40px;">
+            <div style="background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); padding: 30px; border-radius: 12px;">
+                <h3 style="margin-bottom: 15px; color: #065f46;">🎓 零编程门槛</h3>
+                <p style="line-height: 1.8; color: #047857;">完全小白友好，无需编写任何代码，通过配置即可使用</p>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); padding: 30px; border-radius: 12px;">
+                <h3 style="margin-bottom: 15px; color: #1e40af;">🔧 高度可定制</h3>
+                <p style="line-height: 1.8; color: #1e3a8a;">可编辑skills文件自定义研究策略和代理行为</p>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%); padding: 30px; border-radius: 12px;">
+                <h3 style="margin-bottom: 15px; color: #6b21a8;">🔄 智能适配</h3>
+                <p style="line-height: 1.8; color: #581c87;">自动检测JavaScript页面并切换处理方式</p>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%); padding: 30px; border-radius: 12px;">
+                <h3 style="margin-bottom: 15px; color: #92400e;">⚡ 高效并行</h3>
+                <p style="line-height: 1.8; color: #78350f;">多子代理同时工作，大幅提升研究效率</p>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%); padding: 30px; border-radius: 12px;">
+                <h3 style="margin-bottom: 15px; color: #991b1b;">✅ 质量保证</h3>
+                <p style="line-height: 1.8; color: #7f1d1d;">来源评估和交叉验证机制确保信息可靠性</p>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%); padding: 30px; border-radius: 12px;">
+                <h3 style="margin-bottom: 15px; color: #115e59;">🚀 即开即用</h3>
+                <p style="line-height: 1.8; color: #0f766e;">简单的命令行界面，无需复杂配置即可开始研究</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 适用人群 -->
+    <section class="section" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white;">
+        <h2 class="section-title" style="color: white;">适用人群</h2>
+        <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">这些用户将从 Simple Claude Deep Research Agent 中受益</p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; margin-top: 40px;">
+            <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 10px; backdrop-filter: blur(10px);">
+                <h3 style="margin-bottom: 10px;">🎓 学者和学生</h3>
+                <p style="line-height: 1.8; opacity: 0.95;">需要进行深度研究的学术工作者</p>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 10px; backdrop-filter: blur(10px);">
+                <h3 style="margin-bottom: 10px;">📊 市场分析师</h3>
+                <p style="line-height: 1.8; opacity: 0.95;">需要快速收集和分析市场信息</p>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 10px; backdrop-filter: blur(10px);">
+                <h3 style="margin-bottom: 10px;">✍️ 内容创作者</h3>
+                <p style="line-height: 1.8; opacity: 0.95;">需要深度素材的作家和记者</p>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 10px; backdrop-filter: blur(10px);">
+                <h3 style="margin-bottom: 10px;">🔧 工程师</h3>
+                <p style="line-height: 1.8; opacity: 0.95;">进行技术选型和方案评估</p>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 10px; backdrop-filter: blur(10px);">
+                <h3 style="margin-bottom: 10px;">💼 商业顾问</h3>
+                <p style="line-height: 1.8; opacity: 0.95;">支持商业决策的专业人士</p>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 10px; backdrop-filter: blur(10px);">
+                <h3 style="margin-bottom: 10px;">🌟 所有知识工作者</h3>
+                <p style="line-height: 1.8; opacity: 0.95;">任何需要快速获取高质量信息的用户</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="text-align: center;">
+        <h2 class="section-title">开始您的深度研究之旅</h2>
+        <p class="section-subtitle">零门槛，一行命令，专业级研究结果</p>
+
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/simple_claude_deep_research_agent" target="_blank" class="cta-button" style="background: #10b981; color: white;">查看源代码</a>
+            <a href="https://github.com/liangdabiao/simple_claude_deep_research_agent/issues" target="_blank" class="cta-button" style="background: var(--secondary-color); color: white;">提出问题</a>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer style="background: #1e293b; color: white; padding: 60px 20px; text-align: center;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h3 style="margin-bottom: 20px;">AI工具集合</h3>
+            <p style="color: rgba(255,255,255,0.7); margin-bottom: 30px;">探索更多AI工具，提升工作效率</p>
+            <div style="margin-bottom: 30px;">
+                <a href="index.html" class="cta-button" style="background: rgba(255,255,255,0.1); color: white; margin: 5px;">返回首页</a>
+                <a href="https://github.com/liangdabiao" target="_blank" class="cta-button" style="background: rgba(255,255,255,0.1); color: white; margin: 5px;">GitHub</a>
+                <a href="https://linux.do/u/liangdabiao" target="_blank" class="cta-button" style="background: rgba(255,255,255,0.1); color: white; margin: 5px;">联系我</a>
+            </div>
+            <p style="color: rgba(255,255,255,0.5); font-size: 0.9em;">&copy; 2025 Simple Claude Deep Research Agent. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

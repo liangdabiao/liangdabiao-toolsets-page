@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小红书商业创意验证器 - 智能市场验证系统</title>
+    <meta name="description" content="基于小红书数据的智能市场验证系统，通过数据抓取和 AI 分析来解析市场需求、用户痛点及竞争格局，生成专业市场验证报告。">
+    <meta name="keywords" content="小红书,市场验证,MCP架构,数据分析,商业调研,AI分析">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📱</text></svg>">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span>📱</span>
+                <span>小红书商业创意验证器</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="./index.html" class="nav-link">主页</a></li>
+                <li><a href="#features" class="nav-link">核心功能</a></li>
+                <li><a href="#architecture" class="nav-link">系统架构</a></li>
+                <li><a href="#workflow" class="nav-link">工作流程</a></li>
+                <li><a href="#usage" class="nav-link">使用指南</a></li>
+                <li><a href="https://github.com/liangdabiao/XHS_Business_Idea_Validator" target="_blank" class="btn btn-primary">GitHub</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero 区域 -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">📱 小红书数据分析</div>
+                <h1>小红书商业创意验证器</h1>
+                <h2>智能市场验证系统</h2>
+                <p class="hero-description">
+                    基于小红书数据的智能市场验证系统，通过自动抓取和分析小红书数据来解析市场需求、用户痛点及竞争格局。
+                    采用 MCP (Model Context Protocol) 服务器架构，三智能体协作，AI 内容分析，自动化生成专业市场验证报告。
+                    "遇事不决小红书"成为年轻人常用的决策路径，对商家而言，小红书是深入了解消费者需求的必经之路。
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">智能体协作</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">MCP</div>
+                        <div class="stat-label">服务器架构</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">AI</div>
+                        <div class="stat-label">智能分析</div>
+                    </div>
+                </div>
+                <div class="hero-actions">
+                    <a href="https://github.com/liangdabiao/XHS_Business_Idea_Validator" target="_blank" class="btn btn-primary btn-large">
+                        <span>📦</span>
+                        免费下载使用
+                    </a>
+                    <a href="#usage" class="btn btn-secondary btn-large">
+                        <span>🚀</span>
+                        开始验证
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-image-container">
+                    <div class="hero-overlay">
+                        <div class="overlay-icon">📱</div>
+                        <div class="overlay-text">从小红书数据中发现商业机会</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心功能 -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>核心功能</h2>
+                <p>全方位的市场验证能力</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>小红书数据抓取</h3>
+                    <p>自动抓取相关笔记和评论数据，使用用户输入作为搜索关键词</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI 内容分析</h3>
+                    <p>使用 LLM 分析用户痛点和市场需求，识别商业机会</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📄</div>
+                    <h3>自动化报告生成</h3>
+                    <p>生成专业的 HTML 格式市场验证报告</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏗️</div>
+                    <h3>MCP 服务器架构</h3>
+                    <p>基于 Model Context Protocol 的模块化设计</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h3>三智能体协作</h3>
+                    <p>Scraper、Analyzer、Reporter 三智能体无缝协作</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💾</div>
+                    <h3>Checkpoint 机制</h3>
+                    <p>保存每个阶段的执行状态，支持断点续传</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 互动评分系统 -->
+    <section class="workflow">
+        <div class="container">
+            <div class="section-header">
+                <h2>互动评分系统</h2>
+                <p>科学的加权策略评估内容热度</p>
+            </div>
+            <div class="workflow-content">
+                <div class="scoring-system">
+                    <div class="score-card like">
+                        <div class="score-weight">×1</div>
+                        <div class="score-icon">👍</div>
+                        <h3>点赞</h3>
+                        <p>基础互动指标</p>
+                    </div>
+                    <div class="score-card collect">
+                        <div class="score-weight">×2</div>
+                        <div class="score-icon">⭐</div>
+                        <h3>收藏</h3>
+                        <p>用户认可度高</p>
+                    </div>
+                    <div class="score-card share">
+                        <div class="score-weight">×3</div>
+                        <div class="score-icon">🔗</div>
+                        <h3>分享</h3>
+                        <p>传播价值最高</p>
+                    </div>
+                    <div class="score-card comment">
+                        <div class="score-weight">×3</div>
+                        <div class="score-icon">💬</div>
+                        <h3>评论</h3>
+                        <p>参与度高</p>
+                    </div>
+                </div>
+                <div class="formula-display">
+                    <h3>互动评分公式</h3>
+                    <div class="formula">
+                        <code>total_engagement = 点赞 + 收藏×2 + 分享×3 + 评论×3</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 系统架构 -->
+    <section id="architecture" class="architecture">
+        <div class="container">
+            <div class="section-header">
+                <h2>系统架构</h2>
+                <p>基于 MCP 的模块化设计</p>
+            </div>
+            <div class="architecture-content">
+                <div class="mcp-architecture">
+                    <div class="arch-layer orchestrator">
+                        <h3>🎯 Orchestrator Agent</h3>
+                        <p>主编排 Agent，协调整个验证流程</p>
+                    </div>
+                    <div class="arch-agents">
+                        <div class="agent-card scraper">
+                            <div class="agent-icon">📥</div>
+                            <h4>Scraper Agent</h4>
+                            <p>数据抓取 Agent，通过 XHS MCP Server 抓取小红书笔记和评论</p>
+                            <ul>
+                                <li>使用业务创意作为搜索关键词</li>
+                                <li>保存 checkpoint: scraping_complete.json</li>
+                            </ul>
+                        </div>
+                        <div class="agent-card analyzer">
+                            <div class="agent-icon">🔍</div>
+                            <h4>Analyzer Agent</h4>
+                            <p>数据分析 Agent，使用 LLM 分析内容</p>
+                            <ul>
+                                <li>analyze_posts: 分析笔记内容</li>
+                                <li>analyze_comments: 分析评论情感</li>
+                                <li>comments_tag_analysis: 评论标签分析</li>
+                                <li>combined_analysis: 综合分析生成评分</li>
+                            </ul>
+                        </div>
+                        <div class="agent-card reporter">
+                            <div class="agent-icon">📝</div>
+                            <h4>Reporter Agent</h4>
+                            <p>报告生成 Agent，生成 HTML 格式报告</p>
+                            <ul>
+                                <li>generate_html_report: 生成 HTML 报告</li>
+                                <li>save_report: 保存到 reports/ 目录</li>
+                                <li>保存 checkpoint: report_saved.json</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="arch-servers">
+                        <div class="server-card">
+                            <div class="server-icon">🌐</div>
+                            <h4>XHS MCP Server</h4>
+                            <p>小红书 MCP 服务</p>
+                        </div>
+                        <div class="server-card">
+                            <div class="server-icon">🧠</div>
+                            <h4>LLM MCP Server</h4>
+                            <p>LLM MCP 服务</p>
+                        </div>
+                        <div class="server-card">
+                            <div class="server-icon">💾</div>
+                            <h4>Storage Server</h4>
+                            <p>存储服务</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作流程 -->
+    <section id="workflow" class="workflow">
+        <div class="container">
+            <div class="section-header">
+                <h2>工作流程</h2>
+                <p>四阶段自动化市场验证</p>
+            </div>
+            <div class="workflow-content">
+                <div class="workflow-steps">
+                    <div class="workflow-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <div class="step-icon">📥</div>
+                            <h3>数据抓取阶段</h3>
+                            <p>Scraper Agent 使用业务创意作为搜索关键词，通过 XHS MCP Server 抓取小红书笔记和评论</p>
+                        </div>
+                    </div>
+                    <div class="workflow-arrow">→</div>
+                    <div class="workflow-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <div class="step-icon">🔍</div>
+                            <h3>数据分析阶段</h3>
+                            <p>Analyzer Agent 分析笔记内容提取用户痛点和需求，分析评论情感和用户反馈，综合分析生成市场验证评分</p>
+                        </div>
+                    </div>
+                    <div class="workflow-arrow">→</div>
+                    <div class="workflow-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <div class="step-icon">📝</div>
+                            <h3>报告生成阶段</h3>
+                            <p>Reporter Agent 生成 HTML 格式报告，保存报告到 reports/ 目录</p>
+                        </div>
+                    </div>
+                    <div class="workflow-arrow">→</div>
+                    <div class="workflow-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <div class="step-icon">✅</div>
+                            <h3>结果输出</h3>
+                            <p>返回 TaskResult 包含执行结果，相关资料保存到 agent_context/checkpoints/ 目录</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 使用指南 -->
+    <section id="usage" class="installation">
+        <div class="container">
+            <div class="section-header">
+                <h2>使用指南</h2>
+                <p>简单快速的市场验证</p>
+            </div>
+            <div class="installation-content">
+                <div class="install-tabs">
+                    <div class="install-tab backend-tab active">
+                        <div class="tab-header">
+                            <h3>快速开始</h3>
+                        </div>
+                        <div class="tab-content">
+                            <div class="install-steps">
+                                <div class="step-item">
+                                    <div class="step-number">1</div>
+                                    <h4>克隆项目</h4>
+                                    <div class="code-block">
+                                        <pre><code>git clone https://github.com/liangdabiao/XHS_Business_Idea_Validator.git
+cd XHS_Business_Idea_Validator</code></pre>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <div class="step-number">2</div>
+                                    <h4>安装依赖</h4>
+                                    <div class="code-block">
+                                        <pre><code>pip install -r requirements.txt</code></pre>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <div class="step-number">3</div>
+                                    <h4>配置 API 密钥</h4>
+                                    <div class="code-block">
+                                        <pre><code># 编辑 agent_system/.env 文件
+OPENAI_API_KEY=your_key
+TIKHUB_TOKEN=your_token</code></pre>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <div class="step-number">4</div>
+                                    <h4>运行验证</h4>
+                                    <div class="code-block">
+                                        <pre><code>python run_agent.py 在深圳卖陈皮</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="requirements">
+                    <div class="requirements-card">
+                        <h3>输出文件</h3>
+                        <div class="code-block">
+                            <pre><code>reports/{business_idea}_{timestamp}.html
+agent_context/checkpoints/{run_id}/
+├── scraping_complete.json
+├── analysis_complete.json
+├── comments_tag_analysis_complete.json
+├── combined_analysis_complete.json
+└── report_saved.json</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 项目结构 -->
+    <section class="api">
+        <div class="container">
+            <div class="section-header">
+                <h2>项目结构</h2>
+                <p>清晰的模块化代码结构</p>
+            </div>
+            <div class="api-content">
+                <div class="code-block-large">
+                    <pre><code>agent_system/
+├── models/                      # 数据模型
+│   ├── agent_models.py          # TaskResult, ProgressUpdate
+│   ├── context_models.py        # RunContext, ContextQuery
+│   └── business_models.py       # KeywordModel, XhsNoteModel
+│
+├── agents/                      # Agent 核心
+│   ├── base_agent.py            # Agent 基类
+│   ├── context_store.py         # 上下文存储
+│   ├── config.py                # 配置管理
+│   ├── orchestrator.py          # 主编排 Agent
+│   ├── subagents/               # 子 Agents
+│   │   ├── scraper_agent.py     # 数据抓取
+│   │   ├── analyzer_agent.py    # 数据分析
+│   │   └── reporter_agent.py    # 报告生成
+│   └── skills/                  # Skills
+│       ├── scraper_skills.py
+│       ├── analyzer_skills.py
+│       └── reporter_skills.py
+│
+├── mcp_servers/                 # MCP 服务器
+│   ├── xhs_server.py           # 小红书 MCP 服务
+│   ├── llm_server.py           # LLM MCP 服务
+│   └── storage_server.py       # 存储服务
+│
+└── tests/                       # 测试
+    ├── test_integration.py      # 集成测试
+    └── test_e2e.py             # 端到端测试</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 应用场景 -->
+    <section class="use-cases">
+        <div class="container">
+            <div class="section-header">
+                <h2>应用场景</h2>
+                <p>发现市场机会的利器</p>
+            </div>
+            <div class="use-cases-grid">
+                <div class="use-case-card">
+                    <div class="use-case-icon">💡</div>
+                    <h3>创业机会挖掘</h3>
+                    <p>通过分析小红书用户讨论，发现未满足的市场需求和创业机会</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">🎯</div>
+                    <h3>产品验证</h3>
+                    <p>在推出新产品前，验证市场需求和用户痛点，降低创业风险</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">📊</div>
+                    <h3>竞争分析</h3>
+                    <p>了解竞争对手的表现和用户反馈，制定差异化策略</p>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-icon">👥</div>
+                    <h3>用户洞察</h3>
+                    <p>深入理解目标用户的需求、痛点和消费偏好</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>📱 小红书商业创意验证器</h4>
+                    <p>基于小红书数据的智能市场验证系统</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="./index.html">返回主页</a></li>
+                        <li><a href="https://github.com/liangdabiao/XHS_Business_Idea_Validator" target="_blank">GitHub仓库</a></li>
+                        <li><a href="#features">核心功能</a></li>
+                        <li><a href="#usage">使用指南</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>技术栈</h4>
+                    <ul>
+                        <li>Python</li>
+                        <li>MCP Protocol</li>
+                        <li>OpenAI</li>
+                        <li>TikHub</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>联系我们</h4>
+                    <ul>
+                        <li><a href="https://github.com/liangdabiao/XHS_Business_Idea_Validator/issues" target="_blank">问题反馈</a></li>
+                        <li><a href="https://github.com/liangdabiao/XHS_Business_Idea_Validator/pulls" target="_blank">贡献代码</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 小红书商业创意验证器. 开源项目 - <a href="https://github.com/liangdabiao/XHS_Business_Idea_Validator" target="_blank">GitHub</a></p>
+                <p class="attribution">遇事不决小红书 - 商家深入了解消费者需求的必经之路</p>
+            </div>
+        </div>
+    </footer>
+
+    <style>
+        .scoring-system {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        .score-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .score-card:hover {
+            transform: translateY(-5px);
+        }
+        .score-card.like { border-top: 4px solid #3b82f6; }
+        .score-card.collect { border-top: 4px solid #f59e0b; }
+        .score-card.share { border-top: 4px solid #22c55e; }
+        .score-card.comment { border-top: 4px solid #ef4444; }
+        .score-weight {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        .score-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .formula-display {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .formula-display h3 {
+            margin-bottom: 1rem;
+        }
+        .formula code {
+            background: #f8fafc;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            display: block;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        .mcp-architecture {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .arch-layer.orchestrator {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .arch-agents {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .agent-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .agent-card.scraper { border-left: 4px solid #3b82f6; }
+        .agent-card.analyzer { border-left: 4px solid #f59e0b; }
+        .agent-card.reporter { border-left: 4px solid #22c55e; }
+        .agent-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .agent-card h4 {
+            margin-bottom: 0.5rem;
+        }
+        .agent-card ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 1rem;
+        }
+        .agent-card li {
+            padding: 0.25rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+        .agent-card li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+        .arch-servers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .server-card {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+        .server-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .code-block-large {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 1.5rem;
+            overflow-x: auto;
+        }
+        .code-block-large pre {
+            margin: 0;
+            color: #e2e8f0;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+        @media (max-width: 768px) {
+            .scoring-system,
+            .arch-agents,
+            .arch-servers {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <script src="./script.js"></script>
+    <script>
+        // 添加页面特定的交互功能
+        document.addEventListener('DOMContentLoaded', function() {
+            // 平滑滚动
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // 添加滚动动画
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // 观察所有卡片
+            document.querySelectorAll('.feature-card, .score-card, .agent-card, .workflow-step, .use-case-card').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+
+            // 数字统计动画
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                const finalNumber = stat.textContent;
+                const isText = isNaN(parseInt(finalNumber));
+
+                if (!isText && parseInt(finalNumber) < 100) {
+                    let currentNumber = 0;
+                    const increment = parseInt(finalNumber) / 30;
+
+                    const updateNumber = () => {
+                        currentNumber += increment;
+                        if (currentNumber < parseInt(finalNumber)) {
+                            stat.textContent = Math.floor(currentNumber);
+                            requestAnimationFrame(updateNumber);
+                        } else {
+                            stat.textContent = finalNumber;
+                        }
+                    };
+
+                    const statObserver = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                updateNumber();
+                                statObserver.unobserve(entry.target);
+                            }
+                        });
+                    });
+
+                    statObserver.observe(stat);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

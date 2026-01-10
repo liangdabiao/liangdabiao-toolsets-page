@@ -199,6 +199,218 @@ const products = [
         category: '求职工具',
         difficulty: '中等'
     },
+    {
+        id: 'facebook-ads-analyzer',
+        name: 'Facebook 广告分析器',
+        description: '智能 Facebook 广告数据分析工具，基于不同广告目标自动评估广告表现，识别优秀和差广告，提供数据驱动的优化建议和投放策略方案。',
+        icon: '📊',
+        tags: ['Facebook广告', '数据分析', 'Claude Skill', '广告优化', '自动化', '投放策略'],
+        githubUrl: 'https://github.com/liangdabiao/facebook-ads-analyzer',
+        features: [
+            '智能评分系统：根据广告目标（互动/转化/流量）应用加权算法评估广告表现',
+            '三大目标支持：互动目标关注消息成本、转化目标关注CPA、流量目标关注CTR',
+            '自动评级机制：将广告分为优秀(前20%)、中等(60%)、差(后20%)三个等级',
+            '智能诊断引擎：自动分析广告表现，识别问题并提供针对性优化建议',
+            '数据驱动标准：基于实际数据分布制定判断标准（分位数分析）',
+            '完整报告生成：生成详细分析结果、分析报告和投放策略方案三个文件',
+            '核心指标计算：CTR、CPC、CPM、转化率、消息成本、互动率等关键指标',
+            'Claude Code Skill：直接与Claude对话即可完成分析，无需复杂操作'
+        ],
+        techStack: ['Python', 'Pandas', 'Claude Code Agent Skill', '数据科学', 'CSV处理', '自动化分析'],
+        category: '数据分析',
+        difficulty: '中等'
+    },
+    {
+        id: 'bailian-ai-chatbox',
+        name: '百炼AI聊天框',
+        description: '基于阿里云百炼的轻量级聊天客服系统，只需2个文件实现完整功能，支持流式响应、Markdown渲染和多轮对话。',
+        icon: '💬',
+        tags: ['阿里云百炼', '聊天机器人', 'Flask', '通义千问', '流式响应', '客服系统'],
+        githubUrl: 'https://github.com/liangdabiao/bailian_ai_chatbox',
+        features: [
+            '极简设计：只需 backend/app.py 和 frontend/index.html 两个文件',
+            '流式响应：基于 Server-Sent Events (SSE) 的实时对话体验',
+            '智能回退：流式失败时自动切换至非流式模式确保服务可用',
+            '阿里云百炼集成：采用通义千问大模型，支持多轮对话',
+            '会话管理：支持云端和本地两种会话历史管理方式',
+            'Markdown 支持：前端自动渲染 AI 回复中的 Markdown 格式',
+            'RESTful API：标准化接口设计，支持 CORS 跨域请求',
+            '响应式设计：支持桌面和移动设备，实时打字动画效果'
+        ],
+        techStack: ['Python 3.7+', 'Flask 2.3.3', '阿里云百炼', '通义千问', 'SSE流式响应', 'JavaScript'],
+        category: 'AI工具',
+        difficulty: '初级'
+    },
+    {
+        id: 'claude-code-stock-deep-research-agent',
+        name: 'Claude Code 股票深度研究代理',
+        description: '基于 Claude Code 的专业股票投资尽调系统，采用8阶段研究框架和28个并行智能体，支持A股、港股、美股的全面基本面分析。',
+        icon: '🔬',
+        tags: ['股票研究', 'Claude Code', '投资尽调', '多智能体', '基本面分析', 'A股', '港股', '美股'],
+        githubUrl: 'https://github.com/liangdabiao/Claude-Code-Stock-Deep-Research-Agent',
+        features: [
+            '8阶段尽调框架：业务基础、行业分析、业务拆解、财务质量、股权治理、市场分歧、估值护城河、综合报告',
+            '28个并行智能体：同时执行多维度研究，2-4小时完成完整尽调',
+            '投资风格适配：支持价值投资、成长投资、困境反转、红利投资四种风格',
+            '多市场覆盖：支持A股、港股、美股及其他全球市场',
+            '信号灯评级：🟢🟢🟢 Strong Buy / 🟡🟡🟡 Hold / 🔴🔴 Avoid',
+            '质量保证：利润vs现金流交叉验证、同行对比、空头风险分析',
+            '估值模型：DCF、反向DCF、相对估值、情景分析',
+            '标准化输出：20文件结构化尽调报告，包含财务数据、估值分析、风险监控清单'
+        ],
+        techStack: ['Claude Code', 'Deep Research Framework', 'Graph of Thoughts', 'WebSearch', 'WebFetch', '多智能体协作'],
+        category: '金融科技',
+        difficulty: '高级'
+    },
+    {
+        id: 'xhs-business-idea-validator',
+        name: '小红书商业创意验证器',
+        description: '基于小红书数据的智能市场验证系统，通过数据抓取和 AI 分析来解析市场需求、用户痛点及竞争格局，生成专业市场验证报告。',
+        icon: '📱',
+        tags: ['小红书', '市场验证', 'MCP架构', '数据分析', '商业调研', 'AI分析'],
+        githubUrl: 'https://github.com/liangdabiao/XHS_Business_Idea_Validator',
+        features: [
+            '小红书数据抓取：自动抓取相关笔记和评论数据，使用用户输入作为搜索关键词',
+            'AI 内容分析：使用 LLM 分析用户痛点和市场需求',
+            '自动化报告生成：生成专业的 HTML 格式市场验证报告',
+            'MCP 服务器架构：基于 Model Context Protocol 的模块化设计',
+            '三智能体协作：Scraper Agent（数据抓取）、Analyzer Agent（数据分析）、Reporter Agent（报告生成）',
+            '互动评分系统：点赞×1、收藏×2、分享×3、评论×3的加权策略',
+            '热点分析：识别热门话题、痛点和需求趋势',
+            'Checkpoint 机制：保存每个阶段的执行状态，支持断点续传'
+        ],
+        techStack: ['Python', 'MCP Protocol', 'OpenAI', 'TikHub', '小红书API', 'Agent架构', '数据抓取'],
+        category: '商业工具',
+        difficulty: '进阶'
+    },
+    {
+        id: 'claude-data-analysis-ultra',
+        name: 'Claude 数据分析终极版',
+        description: '基于 Claude Code Skills 的互联网数据分析全自动化智能体，专注拉新、留存、促活、推荐、转化、A/B测试等互联网场景，一键完成多技能分析。',
+        icon: '🚀',
+        tags: ['数据分析', 'Claude Code Skills', '互联网分析', '电商分析', '自动化', '全栈'],
+        githubUrl: 'https://github.com/liangdabiao/claude-data-analysis-ultra-main',
+        features: [
+            '两个核心命令：/do-all 常规数据分析（带人工反馈）、/do-more 互联网全自动化分析',
+            '12个专业技能：RFM客户细分、LTV预测、留存分析、漏斗分析、增长模型、A/B测试分析等',
+            '6个智能子代理：数据探索、可视化专家、代码生成、报告撰写、质量保证、假设生成',
+            '互联网场景覆盖：拉新、留存、促活、推荐、转化、A/B测试、用户分析',
+            '全自动多技能分析：智能匹配技能、按最优顺序执行、生成综合HTML报告',
+            '交互式工作流：3个人工反馈检查点，确保分析质量和方向正确',
+            '多种代码生成：Python、R、SQL、JavaScript，支持数据清洗、统计分析、机器学习',
+            '丰富输出格式：HTML、PDF、Markdown、DOCX，包含20+种图表类型'
+        ],
+        techStack: ['Claude Code', 'Skills', 'Sub-agents', 'Python', 'R', 'SQL', 'Pandas', 'NumPy', 'Scikit-learn', 'Matplotlib'],
+        category: '数据分析',
+        difficulty: '进阶'
+    },
+    {
+        id: 'claude-code-deep-research',
+        name: 'Claude Code Deep Research',
+        description: '基于 Claude Code 的深度研究 Agent 系统，实现类似 OpenAI 和 Google 的 Deep Research 功能，通过 Graph of Thoughts 框架和多智能体协作完成专业研究。',
+        icon: '🔍',
+        tags: ['深度研究', 'Claude Code', 'Graph of Thoughts', '多智能体', '自动化研究', 'GoT框架'],
+        githubUrl: 'https://github.com/liangdabiao/Claude-Code-Deep-Research-main',
+        features: [
+            'Graph of Thoughts 框架：基于图结构的推理路径管理，支持平衡、深度优先、广度优先三种研究模式',
+            '7阶段深度研究流程：问题细化、研究规划、多智能体研究、信息收集、综合分析、引用验证、报告生成',
+            '多智能体架构：Web研究Agent（3-5个）、学术/技术Agent（1-2个）、交叉引用Agent（1个）并行协作',
+            'A-E质量评级系统：A级同行评审、B级队列研究、C级专家意见、D级预印本、E级轶事推测',
+            '引用验证机制：每个事实声明必须包含作者/组织、发布日期、来源标题、URL/DOI、页码',
+            '结构化输出：生成1-2页执行摘要、20-50页完整报告、数据、图表、来源、研究笔记、附录',
+            '简单易用：仅需一个命令 /deep-research [主题]，全程自动化完成深度研究',
+            '灵活配置：支持全球范围、时间范围、来源类型、报告格式等多种研究参数定制'
+        ],
+        techStack: ['Claude Code', 'Graph of Thoughts', 'MCP Protocol', 'WebSearch', 'WebFetch', 'Playwright', '多智能体协作'],
+        category: 'AI工具',
+        difficulty: '高级'
+    },
+    {
+        id: 'simple-claude-deep-research-agent',
+        name: 'Simple Claude Deep Research Agent',
+        description: '简化版多智能体深度研究系统，完全小白友好，通过 Claude Code Skills 技术实现并行子代理执行综合性网络研究，支持直接查询、广度优先和深度优先三种模式。',
+        icon: '🎯',
+        tags: ['深度研究', 'Claude Code', 'Skills', '多智能体', '小白友好', '并行处理'],
+        githubUrl: 'https://github.com/liangdabiao/simple_claude_deep_research_agent',
+        features: [
+            '三种查询模式：直接查询（1个子代理）、广度优先查询（3个子代理）、深度优先查询（4个子代理）',
+            '多智能体协作架构：研究主导代理统筹规划、研究子代理并行执行、引用代理自动添加引用',
+            '并行处理能力：支持2-6个子代理同时工作，显著提升研究效率（复杂问题5-10分钟完成）',
+            '智能工具集成：Web搜索、Web Fetch、Playwright MCP自动处理JavaScript动态页面',
+            '来源质量评估：对信息来源进行批判性评估、交叉验证关键事实、识别偏见和推测',
+            '自动化引用生成：研究完成后自动添加引用，支持多种引用格式',
+            '完全小白友好：无需编程，一行命令启动 deep-research <查询主题>',
+            '高度可定制：可编辑skills文件自定义研究策略和代理行为'
+        ],
+        techStack: ['Claude Code', 'Claude Code Skills', 'MCP Protocol', 'Playwright', 'WebSearch', 'WebFetch', 'Task工具'],
+        category: 'AI工具',
+        difficulty: '初级'
+    },
+    {
+        id: 'reddit-business-idea-validator',
+        name: 'Reddit Business Idea Validator',
+        description: '基于AI的商业创意验证工具，通过收集和分析Reddit平台数据来解析市场需求、用户痛点及竞争格局，帮助出海创业者深入了解消费者需求，发现商业机会。',
+        icon: '🎯',
+        tags: ['市场调研', 'Reddit API', '商业验证', 'AI分析', '出海创业', '数据分析'],
+        githubUrl: 'https://github.com/liangdabiao/Reddit_Business_Idea_Validator',
+        features: [
+            'Reddit数据智能抓取：自动抓取相关帖子和评论，支持自定义搜索关键词、排序方式、时间范围和抓取数量',
+            'AI内容深度分析：使用LLM分析用户痛点和市场需求，包括帖子内容分析、评论情感分析、评论标签分析',
+            '自动化报告生成：生成专业的市场验证报告（HTML格式），包含互动评分、活跃度分析、TOP3热门帖子展示',
+            '多智能体协作架构：Orchestrator Agent任务编排、Scraper Agent数据抓取、Analyzer Agent数据分析、Reporter Agent报告生成',
+            'Checkpoint机制：完整执行过程保存，支持中断恢复，数据可追溯性',
+            '数据指标体系：评分系统、互动评分、点赞率分析、时间活跃度分析等多维度指标',
+            '灵活配置系统：环境变量配置（.env），支持自定义参数调整，多种搜索参数组合',
+            '完整测试体系：Reddit API连接测试、端到端测试、集成测试'
+        ],
+        techStack: ['Python', 'PRAW', 'OpenAI API', 'Pydantic', 'MCP Protocol', 'httpx', 'pytest'],
+        category: '商业工具',
+        difficulty: '中级'
+    },
+    {
+        id: 'tikhub-api-skill',
+        name: 'TikHub API Helper',
+        description: 'Claude Code Agent Skill，帮助用户搜索、发现和调用 TikHub API，实现对抖音、TikTok、小红书等12+主流社交平台数据的自动化调研，通过对话即可轻松调用API。',
+        icon: '🔌',
+        tags: ['TikHub API', '社交媒体', '数据分析', 'Claude Code', '多平台', 'API集成'],
+        githubUrl: 'https://github.com/liangdabiao/tikhub_api_skill',
+        features: [
+            '智能API搜索：通过关键词、标签或操作ID快速搜索TikHub API，支持中英文关键词',
+            '一键API调用：直接通过命令行调用TikHub API，无需手动编写请求代码',
+            '多平台全覆盖：支持12+主流社交媒体平台，包括抖音、TikTok、小红书、Instagram、YouTube等',
+            '自动鉴权机制：内置开发环境API Token，开箱即用',
+            '趋势话题追踪：实时获取各平台热门话题和趋势内容',
+            '用户资料分析：深度获取用户信息和社交数据分析',
+            '跨平台内容搜索：一键搜索多个平台的相关内容',
+            '评论互动分析：获取帖子评论列表，进行用户互动分析'
+        ],
+        techStack: ['Claude Code', 'Agent Skill', 'TikHub API', 'OpenAPI 3.0', 'Python', 'RESTful API'],
+        category: 'API工具',
+        difficulty: '初级'
+    },
+    {
+        id: 'prompt-chat',
+        name: 'AI Prompt Chat',
+        description: 'AI提示词的人工智能助手，支持10大应用场景，包括AI生视频、AI生图、AI编程、结构化提示词、数据分析、去AI味、创意写作、深度调研、实时对话和自主智能体。',
+        icon: '💬',
+        tags: ['提示词工程', 'AI助手', '多场景', '对话优化', 'Prompt Engineering'],
+        githubUrl: '',
+        features: [
+            'AI生视频：专业的视频生成提示词优化，提升视频质量',
+            'AI生图：图像生成提示词优化，支持各种艺术风格',
+            'AI编程：代码生成和技术问题解决的提示词优化',
+            '结构化提示词：JSON格式的结构化输出提示词设计',
+            '数据分析：数据分析和可视化的提示词优化',
+            '去AI味：让AI生成的内容更自然、更人性化',
+            '创意写作与角色扮演：创意写作和角色扮演场景的提示词',
+            '深度调研与搜索：深度研究和搜索的提示词优化',
+            '实时语音/对话：实时语音对话的提示词设计',
+            '长期运行与自主智能体：自主智能体的提示词工程'
+        ],
+        techStack: ['AI', 'Prompt Engineering', 'Natural Language Processing', 'Conversation AI'],
+        category: 'AI工具',
+        difficulty: '初级'
+    },
     ];
 
 // DOM元素
@@ -465,6 +677,66 @@ function useProduct(productId) {
     // 如果是简历匹配器，跳转到专门的页面
     if (productId === 'resume-matcher-agent-cn') {
         window.location.href = '/resume-matcher-agent-cn.html';
+        return;
+    }
+
+    // 如果是Facebook广告分析器，跳转到专门的页面
+    if (productId === 'facebook-ads-analyzer') {
+        window.location.href = '/facebook-ads-analyzer.html';
+        return;
+    }
+
+    // 如果是百炼AI聊天框，跳转到专门的页面
+    if (productId === 'bailian-ai-chatbox') {
+        window.location.href = '/bailian-ai-chatbox.html';
+        return;
+    }
+
+    // 如果是Claude Code股票深度研究代理，跳转到专门的页面
+    if (productId === 'claude-code-stock-deep-research-agent') {
+        window.location.href = '/claude-code-stock-deep-research-agent.html';
+        return;
+    }
+
+    // 如果是小红书商业创意验证器，跳转到专门的页面
+    if (productId === 'xhs-business-idea-validator') {
+        window.location.href = '/xhs-business-idea-validator.html';
+        return;
+    }
+
+    // 如果是Claude数据分析终极版，跳转到专门的页面
+    if (productId === 'claude-data-analysis-ultra') {
+        window.location.href = '/claude-data-analysis-ultra.html';
+        return;
+    }
+
+    // 如果是Claude Code Deep Research，跳转到专门的页面
+    if (productId === 'claude-code-deep-research') {
+        window.location.href = '/claude-code-deep-research.html';
+        return;
+    }
+
+    // 如果是Simple Claude Deep Research Agent，跳转到专门的页面
+    if (productId === 'simple-claude-deep-research-agent') {
+        window.location.href = '/simple-claude-deep-research-agent.html';
+        return;
+    }
+
+    // 如果是Reddit Business Idea Validator，跳转到专门的页面
+    if (productId === 'reddit-business-idea-validator') {
+        window.location.href = '/reddit-business-idea-validator.html';
+        return;
+    }
+
+    // 如果是TikHub API Helper，跳转到专门的页面
+    if (productId === 'tikhub-api-skill') {
+        window.location.href = '/tikhub-api-skill.html';
+        return;
+    }
+
+    // 如果是AI Prompt Chat，跳转到专门的页面
+    if (productId === 'prompt-chat') {
+        window.location.href = '/prompt-chat.html';
         return;
     }
 

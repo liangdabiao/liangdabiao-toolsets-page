@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikHub API Helper - 社交媒体API助手</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .feature-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+        .feature-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+        .feature-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: #8b5cf6;
+        }
+        .platforms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        .platform-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .platform-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        .platform-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .platform-name {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: var(--text-color);
+        }
+        .platform-endpoints {
+            font-size: 0.9em;
+            color: var(--secondary-color);
+        }
+        .code-example {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 25px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+        .code-comment {
+            color: #6a9955;
+        }
+        .code-command {
+            color: #4ec9b0;
+        }
+        .code-string {
+            color: #ce9178;
+        }
+        .code-output {
+            color: #9cdcfe;
+        }
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #6366f1;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin: 20px 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .cta-button-primary {
+            background: white;
+            color: #6366f1;
+        }
+        .use-cases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        .use-case-card {
+            background: white;
+            border-left: 4px solid #6366f1;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .use-case-icon {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+        .use-case-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .use-case-description {
+            color: var(--secondary-color);
+            line-height: 1.6;
+        }
+        .api-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .api-table th,
+        .api-table td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        .api-table th {
+            background: #6366f1;
+            color: white;
+            font-weight: bold;
+        }
+        .api-table tr:hover {
+            background: #f8f9fa;
+        }
+        .workflow-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        .workflow-step {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            background: #6366f1;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        .step-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            margin-top: 10px;
+            color: var(--text-color);
+        }
+        .step-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .highlight-box {
+            background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 5px solid #6366f1;
+        }
+        .highlight-box h3 {
+            color: #4338ca;
+            margin-bottom: 15px;
+        }
+        .highlight-box p {
+            color: #4f46e5;
+            line-height: 1.8;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero-stats {
+                gap: 30px;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            .platforms-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">AI工具集合</a>
+            <ul class="nav-menu">
+                <li><a href="index.html#features" class="nav-link">核心功能</a></li>
+                <li><a href="index.html#products" class="nav-link">产品展示</a></li>
+                <li><a href="index.html#contact" class="nav-link">联系我们</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-badge">🔌 Claude Code Agent Skill</div>
+        <div style="font-size: 4em; margin-bottom: 20px;">🔌</div>
+        <h1>TikHub API Helper</h1>
+        <p>通过对话轻松调用12+主流社交媒体平台API，实现全网数据的自动化调研，零门槛掌握450+ API端点</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">12+</span>
+                <span class="stat-label">社交平台</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">450+</span>
+                <span class="stat-label">API端点</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">0</span>
+                <span class="stat-label">编程门槛</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">开源免费</span>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/tikhub_api_skill" target="_blank" class="cta-button cta-button-primary">查看源码</a>
+            <a href="#features" class="cta-button">了解更多</a>
+        </div>
+    </section>
+
+    <!-- 核心功能 -->
+    <section id="features" class="section">
+        <h2 class="section-title">核心功能特性</h2>
+        <p class="section-subtitle">强大的API集成能力，简单的使用方式</p>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h3 class="feature-title">智能API搜索</h3>
+                <p class="feature-description">通过关键词、标签或操作ID快速搜索TikHub API，支持中英文关键词，瞬间找到所需API。</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3 class="feature-title">一键API调用</h3>
+                <p class="feature-description">直接通过对话调用TikHub API，无需手动编写请求代码，自然语言即可完成复杂操作。</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🌐</div>
+                <h3 class="feature-title">多平台全覆盖</h3>
+                <p class="feature-description">支持12+主流社交媒体平台，包括抖音、TikTok、小红书、Instagram、YouTube等。</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔑</div>
+                <h3 class="feature-title">自动鉴权机制</h3>
+                <p class="feature-description">内置开发环境API Token，开箱即用，无需繁琐的API密钥配置流程。</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3 class="feature-title">趋势话题追踪</h3>
+                <p class="feature-description">实时获取各平台热门话题和趋势内容，把握市场脉搏和用户关注点。</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">👤</div>
+                <h3 class="feature-title">用户资料分析</h3>
+                <p class="feature-description">深度获取用户信息和社交数据分析，支持用户画像构建和行为分析。</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔎</div>
+                <h3 class="feature-title">跨平台内容搜索</h3>
+                <p class="feature-description">一键搜索多个平台的相关内容，实现全网范围的舆情监控和竞品分析。</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💬</div>
+                <h3 class="feature-title">评论互动分析</h3>
+                <p class="feature-description">获取帖子评论列表，进行用户互动分析，了解用户反馈和情感倾向。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 支持的平台 -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">支持的平台</h2>
+        <p class="section-subtitle">450+ API端点，覆盖主流社交媒体</p>
+
+        <div class="platforms-grid">
+            <div class="platform-card">
+                <div class="platform-icon">🎵</div>
+                <div class="platform-name">抖音 Web</div>
+                <div class="platform-endpoints">76 API端点</div>
+            </div>
+
+            <div class="platform-card">
+                <div class="platform-icon">🎬</div>
+                <div class="platform-name">TikTok App</div>
+                <div class="platform-endpoints">76 API端点</div>
+            </div>
+
+            <div class="platform-card">
+                <div class="platform-icon">🎭</div>
+                <div class="platform-name">TikTok Web</div>
+                <div class="platform-endpoints">58 API端点</div>
+            </div>
+
+            <div class="platform-card">
+                <div class="platform-icon">📱</div>
+                <div class="platform-name">抖音 App</div>
+                <div class="platform-endpoints">45 API端点</div>
+            </div>
+
+            <div class="platform-card">
+                <div class="platform-icon">📝</div>
+                <div class="platform-name">微博</div>
+                <div class="platform-endpoints">33 API端点</div>
+            </div>
+
+            <div class="platform-card">
+                <div class="platform-icon">❓</div>
+                <div class="platform-name">知乎</div>
+                <div class="platform-endpoints">32 API端点</div>
+            </div>
+
+            <div class="platform-card">
+                <div class="platform-icon">📕</div>
+                <div class="platform-name">小红书</div>
+                <div class="platform-endpoints">26 API端点</div>
+            </div>
+
+            <div class="platform-card">
+                <div class="platform-icon">📷</div>
+                <div class="platform-name">Instagram</div>
+                <div class="platform-endpoints">26 API端点</div>
+            </div>
+
+            <div class="platform-card">
+                <div class="platform-icon">🔴</div>
+                <div class="platform-name">Reddit</div>
+                <div class="platform-endpoints">23 API端点</div>
+            </div>
+
+            <div class="platform-card">
+                <div class="platform-icon">📺</div>
+                <div class="platform-name">Bilibili</div>
+                <div class="platform-endpoints">24 API端点</div>
+            </div>
+
+            <div class="platform-card">
+                <div class="platform-icon">▶️</div>
+                <div class="platform-name">YouTube</div>
+                <div class="platform-endpoints">16 API端点</div>
+            </div>
+
+            <div class="platform-card">
+                <div class="platform-icon">🐦</div>
+                <div class="platform-name">Twitter</div>
+                <div class="platform-endpoints">13 API端点</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 使用方法 -->
+    <section class="section">
+        <h2 class="section-title">使用方法</h2>
+        <p class="section-subtitle">三种方式，灵活选择</p>
+
+        <div class="highlight-box">
+            <h3>💡 零门槛使用</h3>
+            <p>作为 Claude Code Agent Skill，您可以直接通过对话调用API，无需编写任何代码。只需描述您的需求，AI会自动搜索合适的API并执行调用。</p>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <h3>方式一：Claude Code 对话（推荐）</h3>
+            <div class="code-example">
+                <span class="code-comment"># 直接通过对话调用</span><br>
+                你: "调研各外国平台讨论 deepseek 的帖子"<br><br>
+                <span class="code-comment"># Claude 自动执行以下操作：</span><br>
+                <span class="code-comment"># 1. 搜索相关的 TikHub API</span><br>
+                <span class="code-comment"># 2. 选择合适的 API 端点</span><br>
+                <span class="code-comment"># 3. 调用 API 获取数据</span><br>
+                <span class="code-comment"># 4. 整理并返回结果</span><br><br>
+                <span class="code-output">Claude: [返回各平台关于 deepseek 的讨论数据]</span>
+            </div>
+        </div>
+
+        <div style="margin-top: 40px;">
+            <h3>方式二：命令行API搜索</h3>
+            <div class="code-example">
+                <span class="code-comment"># 搜索关键词</span><br>
+                python .claude/skills/tikhub-api-helper/api_searcher.py "tiktok 用户资料"<br><br>
+                <span class="code-comment"># 按标签搜索</span><br>
+                python .claude/skills/tikhub-api-helper/api_searcher.py tag:TikTok-Web-API<br><br>
+                <span class="code-comment"># 按操作ID搜索</span><br>
+                python .claude/skills/tikhub-api-helper/api_searcher.py op:fetch_user_profile
+            </div>
+        </div>
+
+        <div style="margin-top: 40px;">
+            <h3>方式三：直接调用API</h3>
+            <div class="code-example">
+                <span class="code-comment"># 获取用户资料</span><br>
+                python .claude/skills/tikhub-api-helper/api_client.py GET /api/v1/tiktok/web/fetch_user_profile "sec_user_id=USER_ID"<br><br>
+                <span class="code-comment"># 搜索视频</span><br>
+                python .claude/skills/tikhub-api-helper/api_client.py GET /api/v1/tiktok/web/fetch_search_video "keyword=游戏"<br><br>
+                <span class="code-comment"># 获取热门话题</span><br>
+                python .claude/skills/tikhub-api-helper/api_client.py GET /api/v1/tiktok/web/get_trending_topics
+            </div>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <h3 style="text-align: center; margin-bottom: 30px;">API基本信息</h3>
+            <table class="api-table">
+                <thead>
+                    <tr>
+                        <th>项目</th>
+                        <th>信息</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>中国用户请求地址</strong></td>
+                        <td><code>https://api.tikhub.dev</code> (绕过GFW)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>国际用户请求地址</strong></td>
+                        <td><code>https://api.tikhub.io</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>鉴权方式</strong></td>
+                        <td>Bearer Token</td>
+                    </tr>
+                    <tr>
+                        <td><strong>请求限制</strong></td>
+                        <td>每个端点每秒10次请求</td>
+                    </tr>
+                    <tr>
+                        <td><strong>端点格式</strong></td>
+                        <td><code>/api/v1/{platform}/{method}/{action}</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 应用场景 -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">应用场景</h2>
+        <p class="section-subtitle">适用于各种数据分析和调研需求</p>
+
+        <div class="use-cases">
+            <div class="use-case-card">
+                <div class="use-case-icon">📊</div>
+                <div class="use-case-title">社交媒体调研</div>
+                <p class="use-case-description">跨平台研究特定话题在各社交平台的讨论情况，了解用户声音和观点分布</p>
+            </div>
+
+            <div class="use-case-card">
+                <div class="use-case-icon">🎯</div>
+                <div class="use-case-title">竞品分析</div>
+                <p class="use-case-description">监控竞争对手在各平台的表现和用户反馈，发现竞争优劣势</p>
+            </div>
+
+            <div class="use-case-card">
+                <div class="use-case-icon">🔥</div>
+                <div class="use-case-title">趋势发现</div>
+                <p class="use-case-description">发现热门话题和趋势，把握市场脉搏，提前布局内容策略</p>
+            </div>
+
+            <div class="use-case-card">
+                <div class="use-case-icon">👥</div>
+                <div class="use-case-title">用户画像分析</div>
+                <p class="use-case-description">通过评论和互动数据构建用户画像，深入了解目标用户群体</p>
+            </div>
+
+            <div class="use-case-card">
+                <div class="use-case-icon">✍️</div>
+                <div class="use-case-title">内容策略优化</div>
+                <p class="use-case-description">分析热门内容特征，优化内容创作策略，提高内容传播效果</p>
+            </div>
+
+            <div class="use-case-card">
+                <div class="use-case-icon">🏢</div>
+                <div class="use-case-title">品牌监控</div>
+                <p class="use-case-description">实时监控品牌在各平台的提及和讨论，及时发现品牌舆情</p>
+            </div>
+
+            <div class="use-case-card">
+                <div class="use-case-icon">🔬</div>
+                <div class="use-case-title">市场研究</div>
+                <p class="use-case-description">收集用户需求和反馈，辅助产品决策和市场定位</p>
+            </div>
+
+            <div class="use-case-card">
+                <div class="use-case-icon">📢</div>
+                <div class="use-case-title">舆情分析</div>
+                <p class="use-case-description">追踪特定事件在各平台的传播和讨论，了解舆论走向</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 技术架构 -->
+    <section class="section">
+        <h2 class="section-title">技术架构</h2>
+        <p class="section-subtitle">基于 Claude Code Agent Skill 的现代化架构</p>
+
+        <div class="workflow-steps">
+            <div class="workflow-step">
+                <div class="step-number">1</div>
+                <div class="step-title">用户对话</div>
+                <div class="step-description">
+                    通过自然语言描述需求，无需了解API细节
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <div class="step-number">2</div>
+                <div class="step-title">API搜索</div>
+                <div class="step-description">
+                    AI自动搜索OpenAPI规范，找到合适的API端点
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <div class="step-number">3</div>
+                <div class="step-title">参数构建</div>
+                <div class="step-description">
+                    根据用户需求自动构建请求参数
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <div class="step-number">4</div>
+                <div class="step-title">API调用</div>
+                <div class="step-description">
+                    发送HTTP请求到TikHub API，获取数据
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <div class="step-number">5</div>
+                <div class="step-title">结果返回</div>
+                <div class="step-description">
+                    整理数据并以用户友好的方式返回结果
+                </div>
+            </div>
+        </div>
+
+        <div class="tech-stack">
+            <span class="tech-item">Claude Code</span>
+            <span class="tech-item">Agent Skill</span>
+            <span class="tech-item">TikHub API</span>
+            <span class="tech-item">OpenAPI 3.0</span>
+            <span class="tech-item">Python</span>
+            <span class="tech-item">RESTful API</span>
+        </div>
+    </section>
+
+    <!-- 项目特色 -->
+    <section class="section" style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); color: white;">
+        <h2 class="section-title" style="color: white;">项目特色</h2>
+        <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">为什么选择 TikHub API Helper</p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px;">
+            <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 10px; backdrop-filter: blur(10px);">
+                <h3 style="margin-bottom: 15px;">🚀 零门槛使用</h3>
+                <p style="line-height: 1.8; opacity: 0.95;">无需深入了解API文档，自然语言即可调用，人人可用</p>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 10px; backdrop-filter: blur(10px);">
+                <h3 style="margin-bottom: 15px;">🌐 全平台覆盖</h3>
+                <p style="line-height: 1.8; opacity: 0.95;">一次集成，掌握12+社交平台数据，450+ API端点</p>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 10px; backdrop-filter: blur(10px);">
+                <h3 style="margin-bottom: 15px;">💰 开源免费</h3>
+                <p style="line-height: 1.8; opacity: 0.95;">完全开源，可供学习和二次开发，无商业限制</p>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 10px; backdrop-filter: blur(10px);">
+                <h3 style="margin-bottom: 15px;">🇨🇳 中文友好</h3>
+                <p style="line-height: 1.8; opacity: 0.95;">支持中文关键词搜索和文档，国内用户无障碍使用</p>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 10px; backdrop-filter: blur(10px);">
+                <h3 style="margin-bottom: 15px;">🤖 Claude Code 原生集成</h3>
+                <p style="line-height: 1.8; opacity: 0.95;">作为Agent Skill无缝集成到开发工作流，提升效率</p>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 10px; backdrop-filter: blur(10px);">
+                <h3 style="margin-bottom: 15px;">⚡ 高性能稳定</h3>
+                <p style="line-height: 1.8; opacity: 0.95;">基于成熟的TikHub API，稳定可靠，响应迅速</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="text-align: center;">
+        <h2 class="section-title">开始使用 TikHub API Helper</h2>
+        <p class="section-subtitle">零门槛调用450+社交媒体API端点</p>
+
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/tikhub_api_skill" target="_blank" class="cta-button" style="background: #6366f1; color: white;">查看源代码</a>
+            <a href="https://www.tikhub.io" target="_blank" class="cta-button" style="background: var(--secondary-color); color: white;">访问 TikHub 官网</a>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer style="background: #1e293b; color: white; padding: 60px 20px; text-align: center;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h3 style="margin-bottom: 20px;">AI工具集合</h3>
+            <p style="color: rgba(255,255,255,0.7); margin-bottom: 30px;">探索更多AI工具，提升工作效率</p>
+            <div style="margin-bottom: 30px;">
+                <a href="index.html" class="cta-button" style="background: rgba(255,255,255,0.1); color: white; margin: 5px;">返回首页</a>
+                <a href="https://github.com/liangdabiao" target="_blank" class="cta-button" style="background: rgba(255,255,255,0.1); color: white; margin: 5px;">GitHub</a>
+                <a href="https://linux.do/u/liangdabiao" target="_blank" class="cta-button" style="background: rgba(255,255,255,0.1); color: white; margin: 5px;">联系我</a>
+            </div>
+            <p style="color: rgba(255,255,255,0.5); font-size: 0.9em;">&copy; 2025 TikHub API Helper. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
