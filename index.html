@@ -38,7 +38,7 @@
             <div class="container">
                 <div class="hero-content">
                     <h1 class="hero-title">梁的智能工具集合</h1>
-                    <p class="hero-subtitle">探索10款精心打造的开源AI工具，涵盖动画生成、数据分析、智能客服等多个领域，让技术赋能创意与效率</p>
+                    <p class="hero-subtitle">探索10款精心打造的开源AI工具，涵盖AI动画生成、智能数据分析、自动化客服、简历智能匹配、图像处理、文本分析、语音识别、代码生成、推荐系统和自然语言处理等多个前沿领域，基于最新的深度学习与机器学习技术框架，让AI技术真正赋能您的创意表达与工作效率提升，助力个人开发者与企业实现智能化转型</p>
                     <div class="hero-actions">
                         <a href="/#products" class="btn btn-primary">探索产品</a>
                         <a href="#contact" class="btn btn-secondary">联系我们</a>
@@ -372,6 +372,7 @@
     right: var(--chatbot-position-right);
     overflow: hidden;
     z-index: 9998;
+    pointer-events: none;
 }
 
 .lwh-open-cbot .custom-chatbot .chat__messages__ai a {
@@ -388,6 +389,7 @@
     opacity: 0;
     transform: translateY(100%);
     transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out, display 0s linear 0.5s;
+    pointer-events: auto;
 }
 
 .lwh-open-cbot .chat.show {
@@ -402,6 +404,7 @@
     bottom: var(--chatbot-image-position-bottom);
     z-index: 9999;
     cursor: pointer;
+    pointer-events: auto;
 }
 
 .lwh-open-cbot .custom-chatbot button {

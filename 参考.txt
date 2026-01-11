@@ -1,13 +1,14 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI提示词助手 - Prompt Chat</title>
+    <title>AI 设计助手</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --chatbot-width: 1300px;
+            --chatbot-width: 700px;
             --chatbot-font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
             --chatbot-primary-color: #6c5ce7;
             --chatbot-secondary-color: #a29bfe;
@@ -16,8 +17,8 @@
             --chatbot-border-color: #e0e0e0;
             --chatbot-text-color: #2d3436;
             --chatbot-placeholder-color: #b2bec3;
-            --gradient-start: #667eea;
-            --gradient-end: #764ba2;
+            --gradient-start: #f093fb;
+            --gradient-end: #f5576c;
         }
         .copy-text {
             cursor: pointer;
@@ -67,33 +68,35 @@
             font-weight: 600;
         }
 
-        .header p {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-        }
-
-        .scenario-tags {
+        .nav-tabs {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
+            gap: 20px;
+            margin-bottom: 10px;
         }
 
-        .scenario-tag {
-            background: rgba(255, 255, 255, 0.2);
+        .nav-tab {
+            background: transparent;
+            border: none;
             color: white;
-            padding: 6px 14px;
-            border-radius: 15px;
-            font-size: 0.85rem;
+            font-size: 1rem;
+            padding: 8px 16px;
+            border-radius: 20px;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .scenario-tag:hover {
+        .nav-tab:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-tab.active {
             background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
+            font-weight: 500;
+        }
+
+        .nav-tab i {
+            margin-right: 5px;
         }
 
         .chatbot-container {
@@ -108,7 +111,7 @@
         .chat {
             display: flex;
             flex-direction: column;
-            height: 650px;
+            height: 600px;
         }
 
         .chat__messages {
@@ -236,7 +239,6 @@
 
         .feature-buttons {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
             gap: 10px;
             padding: 15px 20px;
@@ -245,11 +247,11 @@
         }
 
         .feature-btn {
-            background: white;
-            border: 2px solid var(--chatbot-border-color);
+            background: transparent;
+            border: none;
             color: var(--chatbot-primary-color);
-            font-size: 0.85rem;
-            padding: 8px 16px;
+            font-size: 0.9rem;
+            padding: 8px 12px;
             border-radius: 20px;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -259,11 +261,7 @@
         }
 
         .feature-btn:hover {
-            background: var(--chatbot-primary-color);
-            color: white;
-            border-color: var(--chatbot-primary-color);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(108, 92, 231, 0.2);
+            background: rgba(108, 92, 231, 0.1);
         }
 
         .feature-btn i {
@@ -273,9 +271,9 @@
         .startup-btns {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
             position: absolute;
-            bottom: 130px;
+            bottom: 70px;
             padding: 15px 20px;
             width: 100%;
             background: linear-gradient(to top, rgba(255, 255, 255, 0.95), transparent);
@@ -285,20 +283,21 @@
             padding: 10px 16px;
             border: 2px solid var(--chatbot-border-color);
             border-radius: 20px;
+            width: -moz-fit-content;
             width: fit-content;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--chatbot-text-color);
             background: white;
             transition: all 0.3s ease;
         }
 
         .startup-btns p:hover {
-            background-color: var(--chatbot-primary-color);
+            background-color: var(--chatbot-hover-color);
             color: white;
-            border-color: var(--chatbot-primary-color);
+            border-color: var(--chatbot-hover-color);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(108, 92, 231, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .loading {
@@ -349,14 +348,12 @@
             }
         }
 
+        /* 打字机效果样式 */
         .streaming-content {
             font-family: var(--chatbot-font-family);
             white-space: pre-wrap;
             word-wrap: break-word;
             position: relative;
-            backface-visibility: hidden;
-            transform: translateZ(0);
-            will-change: contents;
         }
 
         .streaming-content::after {
@@ -393,6 +390,20 @@
             }
         }
 
+        /* 流式消息动画 - 移除可能导致闪烁的动画 */
+        .chat__messages__ai.streaming-message .streaming-content {
+            /* 移除动画以避免闪烁问题 */
+        }
+
+        @keyframes streaming-pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+
         .dot {
             animation: 1s blink infinite;
             fill: var(--chatbot-placeholder-color);
@@ -410,6 +421,23 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+        }
+
+        .streaming-message {
+            animation: fadeIn 0.3s ease;
+        }
+
+        .streaming-content {
+            transition: all 0.1s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
 
         .feedback-form {
@@ -488,24 +516,15 @@
             }
 
             .chat {
-                height: 550px;
+                height: 500px;
             }
 
-            .scenario-tags {
-                gap: 8px;
+            .nav-tabs {
+                gap: 10px;
             }
 
-            .scenario-tag {
-                font-size: 0.8rem;
-                padding: 5px 12px;
-            }
-
-            .feature-buttons {
-                gap: 8px;
-            }
-
-            .feature-btn {
-                font-size: 0.8rem;
+            .nav-tab {
+                font-size: 0.9rem;
                 padding: 6px 12px;
             }
         }
@@ -513,19 +532,11 @@
 </head>
 <body>
     <div class="header">
-        <h1>超级AI提示词助手</h1>
-        <p>专业的提示词优化助手，支持10大应用场景</p>
-        <div class="scenario-tags">
-            <span class="scenario-tag">🎬 AI生视频</span>
-            <span class="scenario-tag">🎨 AI生图</span>
-            <span class="scenario-tag">💻 AI编程</span>
-            <span class="scenario-tag">📋 结构化提示词</span>
-            <span class="scenario-tag">📊 数据分析</span>
-            <span class="scenario-tag">✨ 去AI味</span>
-            <span class="scenario-tag">📝 创意写作</span>
-            <span class="scenario-tag">🔍 深度调研</span>
-            <span class="scenario-tag">🎙️ 实时对话</span>
-            <span class="scenario-tag">🤖 自主智能体</span>
+        <h1>今天你想设计什么积木?</h1>
+        <div class="nav-tabs">
+            <button class="nav-tab active"><i class="fas fa-palette"></i> 我的设计</button>
+            <button class="nav-tab"><i class="fas fa-th-large"></i> 模板</button>
+            <button class="nav-tab"><i class="fas fa-robot"></i> AI 助手</button>
         </div>
     </div>
 
@@ -537,127 +548,108 @@
 
             <div class="chat__input-area">
                 <form id="messageForm" onsubmit="onFormSubmit(event)">
-                    <input type="text" id="message" name="message" placeholder="描述你的提示词优化需求..." autocomplete="off" required>
+                    <input type="text" id="message" name="message" placeholder="描述你的想法，我来帮你变为现实" autocomplete="off" required>
                     <button type="submit"><i class="fas fa-paper-plane"></i></button>
                 </form>
             </div>
 
             <div class="feature-buttons">
-                <button class="feature-btn"><i class="fas fa-video"></i> 视频生成</button>
-                <button class="feature-btn"><i class="fas fa-image"></i> 图像生成</button>
-                <button class="feature-btn"><i class="fas fa-code"></i> 代码优化</button>
-                <button class="feature-btn"><i class="fas fa-file-code"></i> JSON结构</button>
-                <button class="feature-btn"><i class="fas fa-chart-bar"></i> 数据分析</button>
-                <button class="feature-btn"><i class="fas fa-magic"></i> 去AI味</button>
-                <button class="feature-btn"><i class="fas fa-pen-fancy"></i> 创意写作</button>
-                <button class="feature-btn"><i class="fas fa-search"></i> 深度调研</button>
-                <button class="feature-btn"><i class="fas fa-comments"></i> 对话优化</button>
-                <button class="feature-btn"><i class="fas fa-robot"></i> 智能体</button>
+                <button class="feature-btn"><i class="fas fa-palette"></i> 设计</button>
+                <button class="feature-btn" onclick="triggerImageUpload()"><i class="fas fa-image"></i> 零件识别</button>
+                <input type="file" id="imageUpload" accept="image/*" style="display: none;" onchange="handleImageUpload(event)">
             </div>
         </div>
 
         <div class="feedback-form" style="display: none;">
             <div class="feedback-header">
-                <h3>反馈</h3>
+                <h3>Feedback</h3>
                 <button class="feedback__modal-close" onclick="removeFeedbackModal()"><i class="fas fa-times"></i></button>
             </div>
             <form onsubmit="sendFeedback(event)">
                 <textarea name="feedback" id="feedback" rows="4" required></textarea>
-                <button type="submit">发送反馈</button>
+                <button type="submit">Send Feedback</button>
             </form>
         </div>
 
         <div class="loading" style="display: none;">
             <i class="fas fa-circle-notch fa-spin"></i>
-            <p>请稍候...</p>
+            <p>Wait a moment</p>
         </div>
 
         <div class="popup" style="display: none;">
-            <p>抱歉，出错了！</p>
+            <p>Oops! Something went wrong!</p>
         </div>
     </div>
 
     <!-- 简单的Markdown转HTML函数 -->
     <script>
+    // 轻量级Markdown转HTML转换器
     function markdownToHtml(markdown) {
         if (!markdown) return '';
-
+        
         let html = markdown;
-
-        // 先保护代码块，避免被后续处理影响
-        const codeBlocks = [];
-        html = html.replace(/```(\w*)\n([\s\S]*?)```/g, (match, lang, code) => {
-            const placeholder = `__CODE_BLOCK_${codeBlocks.length}__`;
-            codeBlocks.push({ lang, code });
-            return placeholder;
-        });
-
-        // 保护行内代码
-        const inlineCodes = [];
-        html = html.replace(/`([^`\n]+)`/g, (match, code) => {
-            const placeholder = `__INLINE_CODE_${inlineCodes.length}__`;
-            inlineCodes.push(code);
-            return placeholder;
-        });
-
+        
         // 转义HTML特殊字符
         html = html.replace(/&/g, '&amp;')
                    .replace(/</g, '&lt;')
                    .replace(/>/g, '&gt;')
                    .replace(/"/g, '&quot;')
                    .replace(/'/g, '&#39;');
-
+        
         // 标题 (# ## ###)
         html = html.replace(/^### (.*$)/gim, '<h3>$1</h3>')
                    .replace(/^## (.*$)/gim, '<h2>$1</h2>')
                    .replace(/^# (.*$)/gim, '<h1>$1</h1>');
-
+        
         // 粗体和斜体
         html = html.replace(/\*\*\*(.*?)\*\*\*/g, '<strong><em>$1</em></strong>');
         html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
         html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
-
-        // 恢复代码块
-        codeBlocks.forEach((block, index) => {
-            const placeholder = `__CODE_BLOCK_${index}__`;
-            const escapedCode = block.code.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-            html = html.replace(placeholder, `<pre><code class="language-${block.lang}">${escapedCode}</code></pre>`);
-        });
-
-        // 恢复行内代码
-        inlineCodes.forEach((code, index) => {
-            const placeholder = `__INLINE_CODE_${index}__`;
-            const escapedCode = code.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-            html = html.replace(placeholder, `<code>${escapedCode}</code>`);
-        });
-
-        // 图片
+        
+        // 代码块
+        html = html.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
+        html = html.replace(/`([^`]+)`/g, '<code>$1</code>');
+        
+        // 图片 - 显示缩略图，控制大小以避免破坏布局
+        // 注意：这行必须在普通链接处理之前
         html = html.replace(/!\[([^\]]*)\]\(([^\)]+)\)/g, (match, alt, url) => {
-            return `<img src="${url}" alt="${alt}" style="max-width: 100%; height: auto;">`;
+            // 简化CSS，确保正确显示
+            return `<img src="${url}" alt="${alt || '查看图片'}" style="max-width:360px; max-height:280px; border-radius:4px; cursor:pointer; display:block; margin:8px 0; object-fit:contain;" onclick="window.open('${url}', '_blank')" title="点击查看大图">`;
         });
 
-        // 链接
+        // 链接 - 解码URL以避免双重编码问题
         html = html.replace(/\[([^\]]+)\]\(([^\)]+)\)/g, (match, text, url) => {
             const decodedUrl = decodeURIComponent(url);
-            return `<a href="${decodedUrl}" target="_blank">${text}</a>`;
+            return `<a href="${decodedUrl}" target="_blank" style="color: var(--chatbot-primary-color); text-decoration: underline;">🔗 ${text}</a>`;
         });
 
-        // 换行
-        html = html.replace(/\n/g, '<br>');
-
-        // 段落
-        html = html.replace(/<br><br>/g, '</p><p>');
-        html = '<p>' + html + '</p>';
+        // 段落和换行处理
+        // 1. 按空行分割成段落
+        const paragraphs = html.split(/\n\s*\n/);
+        
+        // 2. 对每个段落处理内部换行
+        const processedParagraphs = paragraphs.map(paragraph => {
+            if (!paragraph.trim()) return '';
+            // 将段落内的换行替换为<br>
+            const withBreaks = paragraph.replace(/\n/g, '<br>');
+            // 包裹成段落
+            return `<p>${withBreaks}</p>`;
+        });
+        
+        // 3. 合并所有段落
+        html = processedParagraphs.join('');
+        // 清理空段落
         html = html.replace(/<p><\/p>/g, '');
-
+        
         return html;
     }
     </script>
 
     <script>
-    const apiUrl = 'https://chat2.liangdabiao.com/myapi/v1/chat-bot/stream';
-    const botConfigurationUrl = 'https://chat2.liangdabiao.com/myapi/v1/chat-bot-config';
-    const nonStreamApiUrl = 'https://chat2.liangdabiao.com/myapi/v1/chat-bot';
+    const apiUrl = 'https://chat.liangdabiao.com/myapi/v1/chat-bot/stream';
+    const botConfigurationUrl = 'https://chat.liangdabiao.com/myapi/v1/chat-bot-config';
+    const nonStreamApiUrl = 'https://chat.liangdabiao.com/myapi/v1/chat-bot';
+    const imageIdentificationUrl = 'https://chat.liangdabiao.com/myapi/v1/identify-brick';
     const button = document.querySelector('#messageForm button[type="submit"]');
     let messageInput = document.querySelector('#message');
     let content = [];
@@ -677,10 +669,12 @@
             .then(response => response.json())
             .then(data => {
                 botConfigData = data;
+                // 创建启动提示语按钮
                 createStartupButtons();
             })
             .catch(error => {
                 console.error('Error fetching bot configuration:', error);
+                // 即使配置获取失败，也显示默认启动按钮
                 createDefaultStartupButtons();
             });
     }
@@ -688,16 +682,19 @@
     // 创建启动提示语按钮
     function createStartupButtons() {
         const chatMessagesContainer = document.querySelector('.chat__messages');
-
+        
+        // 移除可能已存在的启动按钮容器
         let existingStartupBtns = document.querySelector('.startup-btns');
         if (existingStartupBtns) {
             existingStartupBtns.remove();
         }
-
+        
+        // 创建启动按钮容器
         let startupBtnsDiv = document.createElement('div');
         startupBtnsDiv.classList.add('startup-btns');
         chatMessagesContainer.appendChild(startupBtnsDiv);
-
+        
+        // 如果配置中有公共按钮，则使用配置的按钮
         if (botConfigData.commonButtons && Array.isArray(botConfigData.commonButtons)) {
             let startupBtns = '';
             botConfigData.commonButtons.forEach(btn => {
@@ -705,33 +702,28 @@
             });
             startupBtnsDiv.innerHTML = startupBtns;
         } else {
+            // 否则使用默认按钮
             createDefaultStartupButtons();
         }
     }
 
-    // 创建默认的启动提示语按钮 - 10大场景
+    // 创建默认的启动提示语按钮
     function createDefaultStartupButtons() {
         const chatMessagesContainer = document.querySelector('.chat__messages');
         let startupBtnsDiv = document.querySelector('.startup-btns') || document.createElement('div');
-
+        
         if (!startupBtnsDiv.classList.contains('startup-btns')) {
             startupBtnsDiv.classList.add('startup-btns');
             chatMessagesContainer.appendChild(startupBtnsDiv);
         }
-
+        
+        // 默认按钮列表
         const defaultButtons = [
-            { text: '🎬 优化AI视频生成提示词', prompt: '帮我优化一个生成 cinematic 风格短片的提示词' },
-            { text: '🎨 改进图像生成提示词', prompt: '帮我优化 Midjourney 提示词，生成一张超写实的城市夜景' },
-            { text: '💻 编程助手提示词', prompt: '帮我写一个 Python 脚本的提示词，用于数据清洗' },
-            { text: '📋 JSON结构化输出', prompt: '帮我设计一个让AI输出JSON格式用户画像的提示词' },
-            { text: '📊 数据分析提示词', prompt: '帮我优化一个用于分析销售数据趋势的提示词' },
-            { text: '✨ 让AI内容更自然', prompt: '帮我优化这段文字，让它听起来更人性化，减少AI感' },
-            { text: '📝 创意写作提示词', prompt: '帮我设计一个科幻小说创作辅助的提示词' },
-            { text: '🔍 深度调研提示词', prompt: '帮我优化一个用于研究量子计算最新进展的提示词' },
-            { text: '🎙️ 实时对话提示词', prompt: '帮我设计一个智能客服对话的提示词' },
-            { text: '🤖 自主智能体提示词', prompt: '帮我设计一个能够自主完成网页浏览任务的智能体提示词' }
+            { text: '查找红色和白色的跑车!', prompt: '查找红色和白色的跑车!' },
+            { text: '生成设计图：大理古城', prompt: '生成设计图：大理古城' },
+            { text: '查找零件：90295', prompt: '查找零件：90295' }
         ];
-
+        
         let startupBtns = '';
         defaultButtons.forEach(btn => {
             startupBtns += `<p onclick="onFormSubmit(event, '${btn.prompt}'); handleStartupBtnClick(event);">${btn.text}</p>`;
@@ -742,40 +734,41 @@
     // 处理启动按钮点击事件
     function handleStartupBtnClick(event) {
         const startupBtnContainer = event.target.parentNode;
+        // 隐藏启动按钮
         startupBtnContainer.style.display = 'none';
     }
 
     function onFormSubmit(event, userMessage) {
         event.preventDefault();
         if (button.disabled) return;
-
+        
         let message;
         if (userMessage === undefined) {
             message = messageInput.value.trim();
         } else {
             message = userMessage;
         }
-
+        
         if (message === '') return;
-
+        
         // 隐藏启动按钮
         const startupBtnContainer = document.querySelector('.startup-btns');
         if (startupBtnContainer) {
             startupBtnContainer.style.display = 'none';
         }
-
+        
         content.push({
             role: 'user',
             message: message,
         });
-
+        
         let timestamp = new Date().toLocaleString();
         conversationTranscript.push({
             sender: 'user',
             time: timestamp,
             message: message,
         });
-
+        
         addMessage('user', message);
         messageInput.value = '';
         addTypingAnimation('ai');
@@ -786,13 +779,14 @@
         let chatMessagesContainer = document.querySelector('.chat__messages');
         let messageContainer = document.createElement('div');
         messageContainer.classList.add('chat__messages__' + sender);
-
+        
         let messageHTML = markdownToHtml(message);
-
+        
         let messageDiv = document.createElement('div');
         messageDiv.style.display = 'flex';
         messageDiv.style.gap = '0.5rem';
-
+        
+        // 根据发送者添加不同的头像
         if (sender === 'ai') {
             const botAvatar = document.createElement('img');
             botAvatar.width = 30;
@@ -808,9 +802,9 @@
             userAvatar.alt = 'user-avatar';
             messageDiv.appendChild(userAvatar);
         }
-
+        
         messageDiv.innerHTML += messageHTML;
-
+        
         messageContainer.appendChild(messageDiv);
         chatMessagesContainer.appendChild(messageContainer);
         chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
@@ -821,10 +815,10 @@
         let typingContainer = document.createElement('div');
         typingContainer.classList.add('chat__messages__' + sender);
         typingContainer.id = 'typing-animation';
-
+        
         let typingAnimationDiv = document.createElement('div');
         typingAnimationDiv.classList.add('typing-animation');
-
+        
         let typingHTML = `
             <div style="display: flex; flex-direction: row; gap: 0.5rem;">
                 <img width="30px"  height="30px" class="bot-image" src="${botConfigData.botImageURL}" alt="bot-image">
@@ -834,11 +828,11 @@
                         <circle class="dot" cx="20" cy="8" r="3" style="fill: var(--chatbot-primary-color);" />
                         <circle class="dot" cx="30" cy="8" r="3" style="fill: var(--chatbot-primary-color);" />
                     </svg>
-                    <span style="color: var(--chatbot-placeholder-color);">正在思考...</span>
+                    <span style="color: var(--chatbot-placeholder-color);">Typing...</span>
                 </div>
             </div>
         `;
-
+        
         typingAnimationDiv.innerHTML = typingHTML;
         typingContainer.appendChild(typingAnimationDiv);
         chatMessagesContainer.appendChild(typingContainer);
@@ -860,7 +854,6 @@
         button.disabled = true;
         let aiMessageElement = null;
         let accumulatedResponse = '';
-        let isStreaming = true;
 
         try {
             const requestData = {
@@ -871,6 +864,7 @@
                 }))
             };
 
+            console.log('开始发送流式请求...');
             const response = await fetch(apiUrl, {
                 method: 'POST',
                 headers: {
@@ -879,8 +873,6 @@
                 body: JSON.stringify(requestData)
             });
 
-            console.log('开始发送流式请求...');
-
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -888,7 +880,10 @@
             const reader = response.body.getReader();
             const decoder = new TextDecoder();
 
+            // 移除打字动画，准备显示流式内容
             removeTypingAnimation();
+
+            // 创建新的AI消息容器
             aiMessageElement = createStreamingMessage('ai');
             console.log('已创建流式消息容器');
 
@@ -918,10 +913,12 @@
 
                             if (data.content) {
                                 chunkCount++;
+                                // 累积流式内容
                                 accumulatedResponse += data.content;
                                 console.log(`接收到第${chunkCount}个数据块，当前总长度:`, accumulatedResponse.length);
-
-                                if (aiMessageElement && isStreaming) {
+                                
+                                if (aiMessageElement) {
+                                    // 流式显示时只转义特殊字符，不进行markdown转换，确保流畅性
                                     const safeText = accumulatedResponse
                                         .replace(/&/g, '&amp;')
                                         .replace(/</g, '&lt;')
@@ -929,7 +926,6 @@
                                         .replace(/"/g, '&quot;')
                                         .replace(/'/g, '&#39;')
                                         .replace(/\n/g, '<br>');
-
                                     updateStreamingMessage(aiMessageElement, safeText);
                                     console.log('已更新消息显示');
                                 }
@@ -937,39 +933,40 @@
 
                             if (data.finished) {
                                 console.log('流式响应结束标志');
-                                isStreaming = false;
-
-                                content.push({
-                                    role: 'assistant',
-                                    message: accumulatedResponse,
-                                });
-
-                                let timestamp = new Date().toLocaleString();
-                                conversationTranscript.push({
-                                    sender: 'bot',
-                                    time: timestamp,
-                                    message: accumulatedResponse,
-                                });
-
+                                // 保存完整响应到对话历史
+                                    content.push({
+                                        role: 'assistant',
+                                        message: accumulatedResponse,
+                                    });
+                                    
+                                    let timestamp = new Date().toLocaleString();
+                                    conversationTranscript.push({
+                                        sender: 'bot',
+                                        time: timestamp,
+                                        message: accumulatedResponse,
+                                    });
+                                
+                                // 为最终消息应用完整markdown格式化
                                 if (aiMessageElement) {
+                                    const finalHtml = markdownToHtml(accumulatedResponse);
+                                    aiMessageElement.innerHTML = finalHtml;
                                     finalizeStreamingMessage(aiMessageElement, accumulatedResponse);
                                 }
                                 return;
                             }
                         } catch (parseError) {
-                            console.error('解析流式数据错误:', parseError, line);
+                            console.error('解析流式数据错误:', parseError);
                         }
                     }
                 }
             }
 
-            throw new Error('Stream ended without finished signal');
-
         } catch (error) {
             console.error('流式响应错误:', error);
             removeTypingAnimation();
-            showPopup('抱歉，出错了！');
+            showPopup('Oops! Something went wrong with streaming!');
 
+            // 如果流式请求失败，回退到非流式请求
             console.log('回退到非流式请求...');
             await fetchDataNonStream();
         } finally {
@@ -1003,20 +1000,25 @@
             const data = await response.json();
             console.log(data, "Data from non-stream API");
 
-            if (data && data.response) {
+            if (data && (data.response || data.result)) {
+                // 使用 response 或 result 字段
+                const responseText = data.response || data.result;
+
+                // 保存响应到对话历史
                 content.push({
                     role: 'ai',
-                    message: data.response,
+                    message: responseText,
                 });
 
                 let timestamp = new Date().toLocaleString();
                 conversationTranscript.push({
                     sender: 'ai',
                     time: timestamp,
-                    message: data.response,
+                    message: responseText,
                 });
 
-                const htmlContent = markdownToHtml(data.response);
+                // 使用前端Markdown转HTML渲染非流式响应
+                const htmlContent = markdownToHtml(responseText);
                 replaceTypingAnimationWithMessage('ai', htmlContent);
             } else {
                 throw new Error('Invalid response data');
@@ -1025,7 +1027,7 @@
         } catch (error) {
             console.error('非流式响应错误:', error);
             removeTypingAnimation();
-            showPopup('抱歉，出错了！');
+            showPopup('Oops! Something went wrong!');
         }
     }
 
@@ -1035,12 +1037,13 @@
         const messageContainer = document.createElement('div');
         messageContainer.classList.add('chat__messages__' + sender);
         messageContainer.classList.add('streaming-message');
-
+        
         const messageDiv = document.createElement('div');
         messageDiv.style.display = 'flex';
         messageDiv.style.gap = '0.5rem';
         messageDiv.style.alignItems = 'flex-start';
-
+        
+        // 根据发送者添加不同的头像
         if (sender === 'ai') {
             const botAvatar = document.createElement('img');
             botAvatar.width = 30;
@@ -1056,7 +1059,7 @@
             userAvatar.alt = 'user-avatar';
             messageDiv.appendChild(userAvatar);
         }
-
+        
         const messageContent = document.createElement('p');
         messageContent.classList.add('streaming-content');
         messageContent.style.background = sender === 'user' ? 'var(--chatbot-primary-color)' : '#f8f9fa';
@@ -1067,15 +1070,38 @@
         messageContent.style.lineHeight = '1.5';
         messageContent.style.margin = '0';
         messageContent.style.flex = '1';
-        messageContent.style.minHeight = '40px';
-
+        messageContent.style.minHeight = '20px'; // 确保有最小高度显示光标
+        messageContent.style.wordBreak = 'break-word'; // 确保长单词能正确换行
+        
         messageDiv.appendChild(messageContent);
         messageContainer.appendChild(messageDiv);
-
+        
         chatMessagesContainer.appendChild(messageContainer);
         chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
-
+        
         return messageContent;
+    }
+
+    // 打字机效果函数 - 实现真正的逐字符显示效果
+    function typeWriterEffect(element, text, speed = 20) {
+        // 清空元素内容
+        element.innerHTML = '';
+        
+        let i = 0;
+        const timer = setInterval(() => {
+            if (i < text.length) {
+                element.innerHTML = text.substring(0, i + 1);
+                i++;
+                
+                // 滚动到底部
+                const chatMessagesContainer = document.querySelector('.chat__messages');
+                if (chatMessagesContainer) {
+                    chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+                }
+            } else {
+                clearInterval(timer);
+            }
+        }, speed);
     }
 
     // 更新流式消息内容 - 直接更新内容并确保滚动到底部
@@ -1098,6 +1124,7 @@
     function copyText(event) {
         const messageContainer = event.target.closest('.chat__messages__ai, .chat__messages__user');
         const clone = messageContainer.cloneNode(true);
+        // 移除复制按钮和提示文本
         clone.querySelectorAll('.copy-text').forEach(elem => {
             elem.parentNode.removeChild(elem);
         });
@@ -1123,17 +1150,20 @@
     // 最终化流式消息
     function finalizeStreamingMessage(messageElement, fullResponse) {
         if (messageElement) {
+            // 移除打字机光标
             messageElement.classList.remove('streaming-content');
-
+            
+            // 添加复制按钮
             const copyButton = document.createElement('span');
-            copyButton.title = '复制';
+            copyButton.title = 'copy';
             copyButton.classList.add('copy-text');
             copyButton.onclick = copyText;
             copyButton.innerHTML = `
                 <i class="fa-regular fa-copy"></i>
-                <span style="display:none">已复制</span>
+                <span style="display:none">copied</span>
             `;
-
+            
+            // 将复制按钮添加到消息末尾
             messageElement.parentNode.style.position = 'relative';
             messageElement.parentNode.appendChild(copyButton);
         }
@@ -1142,15 +1172,122 @@
     // 用消息替换打字动画
     function replaceTypingAnimationWithMessage(sender, htmlContent) {
         removeTypingAnimation();
-
+        
         const chatMessagesContainer = document.querySelector('.chat__messages');
         const messageContainer = document.createElement('div');
         messageContainer.classList.add('chat__messages__' + sender);
-
+        
         const messageDiv = document.createElement('div');
         messageDiv.style.display = 'flex';
         messageDiv.style.gap = '0.5rem';
+        
+        // 根据发送者添加不同的头像
+        if (sender === 'ai') {
+            const botAvatar = document.createElement('img');
+            botAvatar.width = 30;
+            botAvatar.classList.add('bot-image');
+            botAvatar.src = botConfigData.botImageURL;
+            botAvatar.alt = 'bot-image';
+            messageDiv.appendChild(botAvatar);
+        } else {
+            const userAvatar = document.createElement('img');
+            userAvatar.width = 30;
+            userAvatar.classList.add('avatar-image');
+            userAvatar.src = botConfigData.userAvatarURL;
+            userAvatar.alt = 'user-avatar';
+            messageDiv.appendChild(userAvatar);
+        }
+        
+        messageDiv.innerHTML += htmlContent;
+        messageContainer.appendChild(messageDiv);
+        
+        chatMessagesContainer.appendChild(messageContainer);
+        chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+    }
 
+    function showPopup(message) {
+        let popup = document.querySelector('.popup');
+        popup.querySelector('p').textContent = message;
+        popup.style.display = 'block';
+        
+        setTimeout(() => {
+            popup.style.display = 'none';
+        }, 3000);
+    }
+
+    function sendFeedback(event) {
+        event.preventDefault();
+        
+        const feedback = document.querySelector('#feedback').value.trim();
+        if (feedback === '') return;
+        
+        // 这里可以添加发送反馈的逻辑
+        console.log('Feedback:', feedback);
+        
+        removeFeedbackModal();
+        showPopup('Thank you for your feedback!');
+    }
+
+    function removeFeedbackModal() {
+        let feedbackForm = document.querySelector('.feedback-form');
+        feedbackForm.style.display = 'none';
+    }
+
+    // 导航标签切换功能
+    document.querySelectorAll('.nav-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+        });
+    });
+
+    // 图片识别相关功能
+    function triggerImageUpload() {
+        document.getElementById('imageUpload').click();
+    }
+
+    function handleImageUpload(event) {
+        const file = event.target.files[0];
+        if (file && file.type.startsWith('image/')) {
+            // 检查文件大小 (限制为10MB)
+            const maxSize = 10 * 1024 * 1024;
+            if (file.size > maxSize) {
+                showPopup('图片文件过大，请选择小于10MB的图片');
+                return;
+            }
+
+            // 隐藏启动按钮
+            const startupBtnContainer = document.querySelector('.startup-btns');
+            if (startupBtnContainer) {
+                startupBtnContainer.style.display = 'none';
+            }
+
+            // 添加用户消息显示图片
+            addImageMessage('user', file);
+
+            // 显示AI正在识别的提示
+            addTypingAnimation('ai');
+
+            // 发送图片进行识别
+            identifyImage(file);
+
+            // 清空文件输入，允许重复上传同一文件
+            event.target.value = '';
+        } else {
+            showPopup('请选择有效的图片文件');
+        }
+    }
+
+    function addImageMessage(sender, file) {
+        let chatMessagesContainer = document.querySelector('.chat__messages');
+        let messageContainer = document.createElement('div');
+        messageContainer.classList.add('chat__messages__' + sender);
+
+        let messageDiv = document.createElement('div');
+        messageDiv.style.display = 'flex';
+        messageDiv.style.gap = '0.5rem';
+
+        // 根据发送者添加不同的头像
         if (sender === 'ai') {
             const botAvatar = document.createElement('img');
             botAvatar.width = 30;
@@ -1167,75 +1304,122 @@
             messageDiv.appendChild(userAvatar);
         }
 
-        messageDiv.innerHTML += htmlContent;
-        messageContainer.appendChild(messageDiv);
+        // 创建图片预览
+        const imageContainer = document.createElement('div');
+        imageContainer.style.background = sender === 'user' ? 'var(--chatbot-primary-color)' : '#f8f9fa';
+        imageContainer.style.color = sender === 'user' ? 'white' : 'var(--chatbot-text-color)';
+        imageContainer.style.padding = '12px 16px';
+        imageContainer.style.borderRadius = sender === 'user' ? '18px 18px 4px 18px' : '4px 18px 18px 18px';
+        imageContainer.style.fontSize = '1rem';
+        imageContainer.style.lineHeight = '1.5';
+        imageContainer.style.maxWidth = '80%';
+        imageContainer.style.wordBreak = 'break-word';
 
+        // 添加图片说明
+        const imageText = document.createElement('div');
+        imageText.textContent = '📷 识别这张图片';
+        imageText.style.marginBottom = '8px';
+        imageContainer.appendChild(imageText);
+
+        // 添加图片预览
+        const imageElement = document.createElement('img');
+        imageElement.src = URL.createObjectURL(file);
+        imageElement.style.maxWidth = '100%';
+        imageElement.style.maxHeight = '200px';
+        imageElement.style.borderRadius = '8px';
+        imageElement.style.marginTop = '8px';
+        imageElement.onload = function() {
+            URL.revokeObjectURL(this.src); // 释放内存
+        };
+
+        imageContainer.appendChild(imageElement);
+        messageDiv.appendChild(imageContainer);
+        messageContainer.appendChild(messageDiv);
         chatMessagesContainer.appendChild(messageContainer);
         chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
-    }
 
-    function showPopup(message) {
-        let popup = document.querySelector('.popup');
-        popup.querySelector('p').textContent = message;
-        popup.style.display = 'block';
-
-        setTimeout(() => {
-            popup.style.display = 'none';
-        }, 3000);
-    }
-
-    function sendFeedback(event) {
-        event.preventDefault();
-
-        const feedback = document.querySelector('#feedback').value.trim();
-        if (feedback === '') return;
-
-        console.log('Feedback:', feedback);
-
-        removeFeedbackModal();
-        showPopup('感谢您的反馈！');
-    }
-
-    function removeFeedbackModal() {
-        let feedbackForm = document.querySelector('.feedback-form');
-        feedbackForm.style.display = 'none';
-    }
-
-    // 场景标签点击事件
-    document.querySelectorAll('.scenario-tag').forEach(tag => {
-        tag.addEventListener('click', () => {
-            const scenarioText = tag.textContent.trim();
-            const message = `我想使用${scenarioText}场景的提示词优化功能`;
-            onFormSubmit(event, message);
+        // 添加到对话历史
+        content.push({
+            role: 'user',
+            message: '📷 识别这张图片',
         });
-    });
 
-    // 功能按钮点击事件
-    document.querySelectorAll('.feature-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const btnText = btn.textContent.trim();
-            const scenarios = {
-                '视频生成': '帮我优化一个生成高质量视频的提示词',
-                '图像生成': '帮我优化 Midjourney 或 Stable Diffusion 的提示词',
-                '代码优化': '帮我优化编程相关的提示词',
-                'JSON结构': '帮我设计一个输出JSON结构化数据的提示词',
-                '数据分析': '帮我优化数据分析的提示词',
-                '去AI味': '帮我优化这段文字，让它更自然人性化',
-                '创意写作': '帮我优化创意写作的提示词',
-                '深度调研': '帮我优化深度研究的提示词',
-                '对话优化': '帮我优化实时对话的提示词',
-                '智能体': '帮我设计自主智能体的提示词'
-            };
+        let timestamp = new Date().toLocaleString();
+        conversationTranscript.push({
+            sender: 'user',
+            time: timestamp,
+            message: '📷 识别这张图片',
+        });
+    }
 
-            for (const [key, prompt] of Object.entries(scenarios)) {
-                if (btnText.includes(key)) {
-                    onFormSubmit(event, prompt);
-                    break;
-                }
+    async function identifyImage(file) {
+        const formData = new FormData();
+        formData.append('image', file);
+        formData.append('brick_type', 'all'); // 默认识别所有类型
+
+        try {
+            const response = await fetch(imageIdentificationUrl, {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
-        });
-    });
-    </script>
-</body>
 
+            const data = await response.json();
+
+            if (data.success) {
+                // 移除打字动画
+                removeTypingAnimation();
+
+                // 检查是否是图片识别结果
+                let htmlContent;
+                if (data.type === 'brick_recognition') {
+                    // 图片识别结果，先提取div内的markdown内容，转换后再放回div中
+                    const divMatch = data.result.match(/<div class="brick-recognition-result">([\s\S]*?)<\/div>/);
+                    if (divMatch) {
+                        const markdownContent = divMatch[1];
+                        const convertedHtml = markdownToHtml(markdownContent);
+                        htmlContent = `<div class="brick-recognition-result">${convertedHtml}</div>`;
+                    } else {
+                        htmlContent = markdownToHtml(data.result);
+                    }
+                } else {
+                    // 普通聊天结果，使用markdown转换
+                    htmlContent = markdownToHtml(data.result);
+                }
+
+                replaceTypingAnimationWithMessage('ai', htmlContent);
+
+                // 保存AI响应到对话历史
+                content.push({
+                    role: 'assistant',
+                    message: data.result,
+                });
+
+                let timestamp = new Date().toLocaleString();
+                conversationTranscript.push({
+                    sender: 'bot',
+                    time: timestamp,
+                    message: data.result,
+                });
+
+            } else {
+                throw new Error(data.message || '图片识别失败');
+            }
+
+        } catch (error) {
+            console.error('图片识别错误:', error);
+            removeTypingAnimation();
+            showPopup('图片识别失败: ' + error.message);
+
+            // 添加错误消息
+            const errorMessage = '❌ 图片识别失败，请重试。错误信息: ' + error.message;
+            addMessage('ai', errorMessage);
+        }
+    }
+    </script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"74044dc87b054c73b5d7038e36432d47","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
 </html>
