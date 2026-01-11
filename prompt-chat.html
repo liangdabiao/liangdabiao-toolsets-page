@@ -1125,6 +1125,10 @@
         if (messageElement) {
             messageElement.classList.remove('streaming-content');
 
+            // 将原始 markdown 转换为 HTML
+            const htmlContent = markdownToHtml(fullResponse);
+            messageElement.innerHTML = htmlContent;
+
             const copyButton = document.createElement('span');
             copyButton.title = '复制';
             copyButton.classList.add('copy-text');
