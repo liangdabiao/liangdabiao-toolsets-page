@@ -411,6 +411,27 @@ const products = [
         category: 'AI工具',
         difficulty: '初级'
     },
+    {
+        id: 'skill-ten-prompt-generator',
+        name: 'Skill Ten - Prompt Generator',
+        description: '基于 Claude Code Agent Skills 的 AI 提示词工程系统 - 10个场景化专家，自动路由，精准生成优秀提示词。通过自然语言请求，系统会自动路由到对应的专业 Skill，帮助用户写出高质量的 AI 提示词。',
+        icon: '🎨',
+        tags: ['Claude Code', 'Agent Skills', '提示词工程', 'AI', '自动化路由', '多场景'],
+        githubUrl: 'https://github.com/liangdabiao/skill-ten-prompt-generator',
+        features: [
+            '自动场景识别：根据用户输入的关键词，自动匹配最合适的专家 Skill',
+            '10大场景覆盖：视频生成、图像生成、AI编程、结构化提示词、数据分析、去AI味、创意写作、深度调研、实时语音、长期运行',
+            '结构化框架：每个场景都有经过验证的最佳实践框架和模板',
+            '双语支持：完整支持中英文输入和输出',
+            'Claude Code集成：基于Agent Skills技术，直接与Claude对话即可使用',
+            '智能路由系统：关键词自动识别和场景匹配',
+            '专业提示词生成：7层视频结构、S-E-L-C图像框架、TDD编程流程等专业模板',
+            '模块化架构：10个独立Skill，易于扩展和定制'
+        ],
+        techStack: ['Claude Code', 'Agent Skills', 'Markdown', 'YAML', 'Prompt Engineering', 'AI'],
+        category: 'AI工具',
+        difficulty: '中级'
+    },
     ];
 
 // DOM元素
@@ -737,6 +758,12 @@ function useProduct(productId) {
     // 如果是AI Prompt Chat，跳转到专门的页面
     if (productId === 'prompt-chat') {
         window.location.href = '/prompt-chat.html';
+        return;
+    }
+
+    // 如果是Skill Ten - Prompt Generator，跳转到专门的页面
+    if (productId === 'skill-ten-prompt-generator') {
+        window.location.href = '/skill-ten-prompt-generator.html';
         return;
     }
 

@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Ten - Prompt Generator | AI提示词工程系统</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid var(--primary-color);
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .skill-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .skill-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .skill-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        .skill-keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        .keyword-tag {
+            background: #f3f4f6;
+            color: var(--text-color);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: #764ba2;
+        }
+        .routing-diagram {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .routing-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .flow-step {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .flow-arrow {
+            font-size: 2em;
+            color: var(--primary-color);
+        }
+        .installation-guide {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+        }
+        .use-case-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .use-case-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        .use-case-content {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero-stats {
+                gap: 30px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🎨 AI工具集合</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#skills">10大场景</a></li>
+                <li><a href="#tech">技术栈</a></li>
+                <li><a href="#install">安装使用</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主视觉区 -->
+    <section class="hero">
+        <div class="hero-badge">Claude Code Agent Skills</div>
+        <h1>Skill Ten - Prompt Generator</h1>
+        <p>基于 Claude Code Agent Skills 的 AI 提示词工程系统 - 10个场景化专家，自动路由，精准生成优秀提示词</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">10</span>
+                <span class="stat-label">专业场景</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">自动</span>
+                <span class="stat-label">智能路由</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">双语</span>
+                <span class="stat-label">中英支持</span>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/skill-ten-prompt-generator" class="btn btn-primary" style="background: white; color: var(--primary-color);">查看 GitHub</a>
+            <a href="#install" class="btn btn-secondary" style="border: 2px solid white; color: white;">开始使用</a>
+        </div>
+    </section>
+
+    <!-- 核心特性 -->
+    <section id="features" class="section">
+        <h2 class="section-title">核心特性</h2>
+        <p class="section-subtitle">智能提示词生成系统，让AI为你工作</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">🎯</div>
+                <h3 class="skill-title">自动场景识别</h3>
+                <p class="skill-description">根据用户输入的关键词，自动匹配最合适的专家 Skill，无需手动选择</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎨</div>
+                <h3 class="skill-title">10大场景覆盖</h3>
+                <p class="skill-description">涵盖视频生成、图像生成、AI编程、数据分析等主流AI应用场景</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📐</div>
+                <h3 class="skill-title">结构化框架</h3>
+                <p class="skill-description">每个场景都有经过验证的最佳实践框架和模板，确保高质量输出</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🌐</div>
+                <h3 class="skill-title">双语支持</h3>
+                <p class="skill-description">完整支持中英文输入和输出，满足不同语言需求</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">⚡</div>
+                <h3 class="skill-title">智能路由系统</h3>
+                <p class="skill-description">关键词自动识别和场景匹配，一键调用对应专业 Skill</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔧</div>
+                <h3 class="skill-title">模块化架构</h3>
+                <p class="skill-description">10个独立Skill，易于扩展和定制，满足个性化需求</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10大场景 -->
+    <section id="skills" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">10个专业场景</h2>
+        <p class="section-subtitle">覆盖主流AI应用场景，专业提示词模板</p>
+        <div class="skills-grid">
+            <div class="skill-card" style="border-left-color: #667eea;">
+                <div class="skill-icon">🎬</div>
+                <h3 class="skill-title">视频生成专家</h3>
+                <p class="skill-description">7层结构化视频生成提示词，包含运镜术语、物理描述、JSON Prompt等</p>
+                <div class="skill-keywords">
+                    <span class="keyword-tag">Sora</span>
+                    <span class="keyword-tag">Veo</span>
+                    <span class="keyword-tag">视频生成</span>
+                    <span class="keyword-tag">运镜</span>
+                </div>
+            </div>
+            <div class="skill-card" style="border-left-color: #f59e0b;">
+                <div class="skill-icon">🖼️</div>
+                <h3 class="skill-title">图像生成专家</h3>
+                <p class="skill-description">工单式协议、S-E-L-C框架，支持风格克隆和多种图像生成模型</p>
+                <div class="skill-keywords">
+                    <span class="keyword-tag">Flux</span>
+                    <span class="keyword-tag">Midjourney</span>
+                    <span class="keyword-tag">生图</span>
+                    <span class="keyword-tag">证件照</span>
+                </div>
+            </div>
+            <div class="skill-card" style="border-left-color: #10b981;">
+                <div class="skill-icon">💻</div>
+                <h3 class="skill-title">AI编程专家</h3>
+                <p class="skill-description">.cursorrules配置、TDD流程、P-R-E模式，提升编程效率</p>
+                <div class="skill-keywords">
+                    <span class="keyword-tag">Cursor</span>
+                    <span class="keyword-tag">.cursorrules</span>
+                    <span class="keyword-tag">TDD</span>
+                    <span class="keyword-tag">重构</span>
+                </div>
+            </div>
+            <div class="skill-card" style="border-left-color: #ef4444;">
+                <div class="skill-icon">📋</div>
+                <h3 class="skill-title">结构化提示词专家</h3>
+                <p class="skill-description">JSON Schema设计、模块化模板、负向约束，适合API对接和批量生成</p>
+                <div class="skill-keywords">
+                    <span class="keyword-tag">JSON</span>
+                    <span class="keyword-tag">Schema</span>
+                    <span class="keyword-tag">API对接</span>
+                    <span class="keyword-tag">批量生成</span>
+                </div>
+            </div>
+            <div class="skill-card" style="border-left-color: #8b5cf6;">
+                <div class="skill-icon">📊</div>
+                <h3 class="skill-title">数据分析专家</h3>
+                <p class="skill-description">代码执行、元数据注入、EDA优先，支持Pandas、CSV数据可视化</p>
+                <div class="skill-keywords">
+                    <span class="keyword-tag">Python</span>
+                    <span class="keyword-tag">Pandas</span>
+                    <span class="keyword-tag">CSV</span>
+                    <span class="keyword-tag">数据可视化</span>
+                </div>
+            </div>
+            <div class="skill-card" style="border-left-color: #ec4899;">
+                <div class="skill-icon">✨</div>
+                <h3 class="skill-title">去AI味专家</h3>
+                <p class="skill-description">负向词表清洗、风格克隆、困惑度注入，让AI内容更自然</p>
+                <div class="skill-keywords">
+                    <span class="keyword-tag">去AI味</span>
+                    <span class="keyword-tag">人性化</span>
+                    <span class="keyword-tag">自然化</span>
+                </div>
+            </div>
+            <div class="skill-card" style="border-left-color: #06b6d4;">
+                <div class="skill-icon">✍️</div>
+                <h3 class="skill-title">创意写作教练</h3>
+                <p class="skill-description">语料注射、认知建模、内心独白，适合角色扮演和小说创作</p>
+                <div class="skill-keywords">
+                    <span class="keyword-tag">角色扮演</span>
+                    <span class="keyword-tag">模仿风格</span>
+                    <span class="keyword-tag">小说</span>
+                    <span class="keyword-tag">剧本</span>
+                </div>
+            </div>
+            <div class="skill-card" style="border-left-color: #84cc16;">
+                <div class="skill-icon">🔍</div>
+                <h3 class="skill-title">深度调研专家</h3>
+                <p class="skill-description">递归规划、信源分级、批判性红队，适合竞品分析和市场研究</p>
+                <div class="skill-keywords">
+                    <span class="keyword-tag">调研</span>
+                    <span class="keyword-tag">竞品分析</span>
+                    <span class="keyword-tag">市场研究</span>
+                </div>
+            </div>
+            <div class="skill-card" style="border-left-color: #f97316;">
+                <div class="skill-icon">🎤</div>
+                <h3 class="skill-title">实时语音教练</h3>
+                <p class="skill-description">极简口语、实时纠错、压力面试，适合雅思口语和面试模拟</p>
+                <div class="skill-keywords">
+                    <span class="keyword-tag">语音对话</span>
+                    <span class="keyword-tag">雅思口语</span>
+                    <span class="keyword-tag">面试模拟</span>
+                </div>
+            </div>
+            <div class="skill-card" style="border-left-color: #14b8a6;">
+                <div class="skill-icon">🤖</div>
+                <h3 class="skill-title">长期运行专家</h3>
+                <p class="skill-description">初始化-执行分离、状态序列化，适合Agent和LangGraph应用</p>
+                <div class="skill-keywords">
+                    <span class="keyword-tag">Agent</span>
+                    <span class="keyword-tag">长期运行</span>
+                    <span class="keyword-tag">自动化</span>
+                    <span class="keyword-tag">LangGraph</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 智能路由系统 -->
+    <section class="section">
+        <h2 class="section-title">智能路由系统</h2>
+        <p class="section-subtitle">自动识别用户意图，精准匹配专业Skill</p>
+        <div class="routing-diagram">
+            <div class="routing-flow">
+                <div class="flow-step">用户输入</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">关键词提取</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">场景匹配</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">对应 Skill</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">优秀提示词</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 使用示例 -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">使用示例</h2>
+        <p class="section-subtitle">简单自然语言交互，自动生成专业提示词</p>
+
+        <div class="use-case-card">
+            <h3 class="use-case-title">示例1：生成视频提示词</h3>
+            <div class="use-case-content">
+                <p><strong>用户：</strong>帮我写一个 Sora 2 的视频提示词，赛博朋克风格的雨夜城市</p>
+                <p><strong>系统：</strong>自动调用 video-prompt-generator Skill</p>
+                <p><strong>输出：</strong>7层结构化的视频生成提示词，包含场景描述、运镜方式、光影效果等</p>
+            </div>
+        </div>
+
+        <div class="use-case-card">
+            <h3 class="use-case-title">示例2：创建编程规范</h3>
+            <div class="use-case-content">
+                <p><strong>用户：</strong>帮我写一个 Next.js 项目的 .cursorrules</p>
+                <p><strong>系统：</strong>自动调用 coding-prompt-assistant Skill</p>
+                <p><strong>输出：</strong>完整的 .cursorrules 配置文件，包含代码风格、最佳实践、测试要求等</p>
+            </div>
+        </div>
+
+        <div class="use-case-card">
+            <h3 class="use-case-title">示例3：去除AI痕迹</h3>
+            <div class="use-case-content">
+                <p><strong>用户：</strong>这段文字太AI了，帮我改得更自然一点</p>
+                <p><strong>系统：</strong>自动调用 humanizing-expert Skill</p>
+                <p><strong>输出：</strong>经过负向词表清洗和风格优化的自然文本</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 技术栈 -->
+    <section id="tech" class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">基于最新的 Claude Code Agent Skills 技术</p>
+        <div class="tech-stack">
+            <div class="tech-item">Claude Code</div>
+            <div class="tech-item">Agent Skills</div>
+            <div class="tech-item">Markdown</div>
+            <div class="tech-item">YAML</div>
+            <div class="tech-item">Prompt Engineering</div>
+            <div class="tech-item">AI</div>
+        </div>
+    </section>
+
+    <!-- 安装使用 -->
+    <section id="install" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">安装使用</h2>
+        <p class="section-subtitle">简单3步，开始使用AI提示词工程系统</p>
+
+        <div class="installation-guide">
+            <h3>前置要求</h3>
+            <ul style="line-height: 2; margin-bottom: 30px;">
+                <li>安装 Claude Code</li>
+                <li>确保版本支持 Agent Skills (1.0+)</li>
+                <li>将项目克隆到本地</li>
+            </ul>
+
+            <h3>安装步骤</h3>
+            <div class="code-block">
+# 克隆项目
+git clone https://github.com/liangdabiao/skill-ten-prompt-generator.git
+cd skill-ten-prompt-generator
+
+# Skills 会自动被 Claude Code 发现
+# 确认安装：在 Claude Code 中询问 "What Skills are available?"
+            </div>
+
+            <h3>使用方法</h3>
+            <p style="line-height: 1.8;">直接在 Claude Code 中用自然语言描述你的需求，系统会自动识别场景并调用对应的 Skill。例如：</p>
+            <ul style="line-height: 2;">
+                <li>"帮我生成一个 Flux 模型的图像提示词"</li>
+                <li>"写一个 Python 数据分析的 .cursorrules"</li>
+                <li>"把这段AI生成的文字改得更自然"</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>基于 Claude Code Agent Skills 的智能提示词生成系统，让AI为你工作。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/skill-ten-prompt-generator">GitHub 仓库</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Skill Ten - Prompt Generator. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 移动端菜单
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>
