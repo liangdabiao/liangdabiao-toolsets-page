@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>社媒调研智能体 | AI舆情分析与深度调研系统</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid var(--primary-color);
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .skill-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .skill-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .skill-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        .skill-keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        .keyword-tag {
+            background: #f3f4f6;
+            color: var(--text-color);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: #764ba2;
+        }
+        .routing-diagram {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .routing-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .flow-step {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .flow-arrow {
+            font-size: 2em;
+            color: var(--primary-color);
+        }
+        .installation-guide {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+        }
+        .use-case-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .use-case-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        .use-case-content {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .platform-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        .platform-card:hover {
+            transform: translateY(-5px);
+        }
+        .platform-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .platform-name {
+            font-weight: bold;
+            color: var(--text-color);
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero-stats {
+                gap: 30px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🔍 AI工具集合</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#platforms">支持平台</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#tech">技术栈</a></li>
+                <li><a href="#install">安装使用</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主视觉区 -->
+    <section class="hero">
+        <div class="hero-badge">Claude Code Agent Skills</div>
+        <h1>社媒调研智能体</h1>
+        <p>基于 Claude Code Skills 的社媒舆情深度调研系统，将社媒分析和深度研究两个技能合二为一</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">12+</span>
+                <span class="stat-label">社交平台</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">2</span>
+                <span class="stat-label">核心技能</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">全自动</span>
+                <span class="stat-label">智能调研</span>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/social_research_agent" class="btn btn-primary" style="background: white; color: var(--primary-color);">查看 GitHub</a>
+            <a href="#install" class="btn btn-secondary" style="border: 2px solid white; color: white;">开始使用</a>
+        </div>
+    </section>
+
+    <!-- 核心特性 -->
+    <section id="features" class="section">
+        <h2 class="section-title">核心特性</h2>
+        <p class="section-subtitle">双技能合体，实现全自动化社媒舆情调研</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">🔗</div>
+                <h3 class="skill-title">双技能合体</h3>
+                <p class="skill-description">社媒调研+深度研究两个Claude Code Skills完美结合，实现从数据收集到报告生成的全流程自动化</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🌐</div>
+                <h3 class="skill-title">12+平台覆盖</h3>
+                <p class="skill-description">支持抖音、TikTok、小红书、微博、B站、知乎、Instagram、YouTube等主流社交平台数据抓取</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🤖</div>
+                <h3 class="skill-title">智能任务编排</h3>
+                <p class="skill-description">AI自动启动Web Search和TikHub API进行多维度深度调研，智能协调不同数据源</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📊</div>
+                <h3 class="skill-title">舆情分析报告</h3>
+                <p class="skill-description">生成包含情感分析、话题趋势、用户画像、竞品对比的专业舆情分析报告</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📈</div>
+                <h3 class="skill-title">数据可视化</h3>
+                <p class="skill-description">生成详细的数据分析图表，直观展示调研结果，支持多种可视化格式</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔄</div>
+                <h3 class="skill-title">多智能体协作</h3>
+                <p class="skill-description">社媒Agent抓取数据、研究Agent深度分析、报告Agent生成结论，高效协作</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 支持平台 -->
+    <section id="platforms" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">支持平台</h2>
+        <p class="section-subtitle">覆盖12+主流社交媒体平台</p>
+        <div class="platform-grid">
+            <div class="platform-card">
+                <div class="platform-icon">🎵</div>
+                <div class="platform-name">抖音</div>
+            </div>
+            <div class="platform-card">
+                <div class="platform-icon">🎶</div>
+                <div class="platform-name">TikTok</div>
+            </div>
+            <div class="platform-card">
+                <div class="platform-icon">📕</div>
+                <div class="platform-name">小红书</div>
+            </div>
+            <div class="platform-card">
+                <div class="platform-icon">🦊</div>
+                <div class="platform-name">微博</div>
+            </div>
+            <div class="platform-card">
+                <div class="platform-icon">📺</div>
+                <div class="platform-name">B站</div>
+            </div>
+            <div class="platform-card">
+                <div class="platform-icon">💡</div>
+                <div class="platform-name">知乎</div>
+            </div>
+            <div class="platform-card">
+                <div class="platform-icon">📸</div>
+                <div class="platform-name">Instagram</div>
+            </div>
+            <div class="platform-card">
+                <div class="platform-icon">▶️</div>
+                <div class="platform-name">YouTube</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作流程 -->
+    <section id="workflow" class="section">
+        <h2 class="section-title">工作流程</h2>
+        <p class="section-subtitle">全自动化调研流程，从输入到报告一键完成</p>
+        <div class="routing-diagram">
+            <div class="routing-flow">
+                <div class="flow-step">用户输入调研主题</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">社媒数据抓取</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">深度研究分析</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">生成专业报告</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 使用示例 -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">使用示例</h2>
+        <p class="section-subtitle">实际案例展示，了解系统能力</p>
+
+        <div class="use-case-card">
+            <h3 class="use-case-title">案例：小鹏汽车 IRON 机器人舆情分析</h3>
+            <div class="use-case-content">
+                <p><strong>调研目标：</strong>深度调研小鹏汽车（XPENG）智能机器人 "IRON" 的舆情情况</p>
+                <p><strong>数据来源：</strong>微博、抖音、小红书、B站、知乎等主流平台</p>
+                <p><strong>分析维度：</strong></p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>整体舆情情感分析（正面39.2%，负面2.0%）</li>
+                    <li>平台讨论分布（抖音占76.5%）</li>
+                    <li>技术展示关注度分析</li>
+                    <li>产品联动话题热度</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>输出文件：</strong></p>
+                <ul style="margin-left: 20px;">
+                    <li>xpeng_iron_robot_research.py - 调研脚本</li>
+                    <li>xpeng_iron_robot_research_raw_data.json - 原始数据</li>
+                    <li>xpeng_iron_robot_sentiment_report.md - 简化报告</li>
+                    <li>xpeng_iron_robot_sentiment_report_detailed.md - 详细报告（8个章节完整分析）</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="use-case-card">
+            <h3 class="use-case-title">使用方法</h3>
+            <div class="use-case-content">
+                <p><strong>步骤1：</strong>在 Claude Code 中输入调研需求</p>
+                <div class="code-block" style="margin: 10px 0;">深度调研：小鹏汽车（XPENG）智能机器人 "IRON" 舆情报告，包括媒体新闻，社交媒体帖子，评论等等，写一个完整全面的报告</div>
+                <p><strong>步骤2：</strong>AI自动调用两个Skills进行调研</p>
+                <ul style="margin-left: 20px;">
+                    <li>社媒调研Skill：通过TikHub API抓取多平台数据</li>
+                    <li>深度研究Skill：通过Web Search进行背景调研</li>
+                </ul>
+                <p style="margin-top: 10px;"><strong>步骤3：</strong>生成专业的舆情分析报告</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 技术栈 -->
+    <section id="tech" class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">基于最新的 Claude Code Agent Skills 技术</p>
+        <div class="tech-stack">
+            <div class="tech-item">Claude Code</div>
+            <div class="tech-item">Agent Skills</div>
+            <div class="tech-item">TikHub API</div>
+            <div class="tech-item">WebSearch</div>
+            <div class="tech-item">WebFetch</div>
+            <div class="tech-item">数据分析</div>
+            <div class="tech-item">舆情监控</div>
+        </div>
+    </section>
+
+    <!-- 安装使用 -->
+    <section id="install" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">安装使用</h2>
+        <p class="section-subtitle">简单3步，开始使用社媒调研智能体</p>
+
+        <div class="installation-guide">
+            <h3>前置要求</h3>
+            <ul style="line-height: 2; margin-bottom: 30px;">
+                <li>安装 Claude Code</li>
+                <li>确保版本支持 Agent Skills (1.0+)</li>
+                <li>获取 TikHub API Key（可选，用于社媒数据抓取）</li>
+            </ul>
+
+            <h3>安装步骤</h3>
+            <div class="code-block">
+# 克隆项目
+git clone https://github.com/liangdabiao/social_research_agent.git
+cd social_research_agent
+
+# 克隆依赖的Skills
+git clone https://github.com/liangdabiao/simple_claude_deep_research_agent.git
+git clone https://github.com/liangdabiao/tikhub_api_skill.git
+
+# Skills 会自动被 Claude Code 发现
+# 确认安装：在 Claude Code 中询问 "What Skills are available?"
+            </div>
+
+            <h3>使用方法</h3>
+            <p style="line-height: 1.8;">直接在 Claude Code 中用自然语言描述你的调研需求，系统会自动调用两个Skills进行协同工作。例如：</p>
+            <ul style="line-height: 2;">
+                <li>"深度调研：某品牌新产品的市场反应和用户反馈"</li>
+                <li>"分析某个话题在各社交平台的讨论情况"</li>
+                <li>"研究某公司的品牌形象和用户口碑"</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>基于 Claude Code Agent Skills 的社媒舆情深度调研系统，让AI为你做市场调研。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/social_research_agent">GitHub 仓库</a></li>
+                    <li><a href="https://github.com/liangdabiao/simple_claude_deep_research_agent">深度研究Skill</a></li>
+                    <li><a href="https://github.com/liangdabiao/tikhub_api_skill">TikHub API Skill</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 社媒调研智能体. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 移动端菜单
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

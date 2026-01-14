@@ -432,6 +432,27 @@ const products = [
         category: 'AI工具',
         difficulty: '中级'
     },
+    {
+        id: 'social-research-agent',
+        name: '社媒调研智能体',
+        description: '基于 Claude Code Skills 的社媒舆情深度调研系统，将社媒分析和深度研究两个技能合二为一，实现对抖音、小红书、微博等12+主流社交平台的自动化舆情分析和市场调研。',
+        icon: '🔍',
+        tags: ['社媒调研', '舆情分析', 'Claude Code', 'Skills', 'TikHub API', '多平台', '自动化调研'],
+        githubUrl: 'https://github.com/liangdabiao/social_research_agent',
+        features: [
+            '双技能合体：社媒调研+深度研究两个Claude Code Skills完美结合，实现全自动化调研',
+            '12+平台覆盖：支持抖音、TikTok、小红书、微博、B站、知乎、Instagram、YouTube等主流社交平台',
+            '智能任务编排：AI自动启动Web Search和TikHub API进行多维度深度调研',
+            '舆情分析报告：生成包含情感分析、话题趋势、用户画像、竞品对比的专业报告',
+            '数据可视化：生成详细的数据分析图表，直观展示调研结果',
+            '多智能体协作：社媒Agent抓取数据、研究Agent深度分析、报告Agent生成结论',
+            '一键式操作：只需输入调研主题，系统自动完成从数据收集到报告生成的全流程',
+            '可定制化：支持自定义调研参数、时间范围、数据源和报告格式'
+        ],
+        techStack: ['Claude Code', 'Agent Skills', 'TikHub API', 'WebSearch', 'WebFetch', '数据分析', '舆情监控'],
+        category: '商业工具',
+        difficulty: '进阶'
+    },
     ];
 
 // DOM元素
@@ -764,6 +785,12 @@ function useProduct(productId) {
     // 如果是Skill Ten - Prompt Generator，跳转到专门的页面
     if (productId === 'skill-ten-prompt-generator') {
         window.location.href = '/skill-ten-prompt-generator.html';
+        return;
+    }
+
+    // 如果是社媒调研智能体，跳转到专门的页面
+    if (productId === 'social-research-agent') {
+        window.location.href = '/social-research-agent.html';
         return;
     }
 
