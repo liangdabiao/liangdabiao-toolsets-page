@@ -453,6 +453,27 @@ const products = [
         category: '商业工具',
         difficulty: '进阶'
     },
+    {
+        id: 'bright-data-mcp-research',
+        name: 'Bright Data 深度调研工具',
+        description: '基于 Bright Data MCP 和 Claude Code Skills 的电商平台深度调研系统，利用专业网络爬虫技术实现 Amazon 等电商平台的市场分析、竞争研究和产品调研。',
+        icon: '🌐',
+        tags: ['Bright Data', 'MCP', 'Claude Code', '电商调研', '网络爬虫', '深度研究', '数据分析'],
+        githubUrl: 'https://github.com/liangdabiao/Bright-Data-MCP-Claude-Skill-deep-research',
+        features: [
+            'Bright Data MCP集成：专业级网络爬虫和数据提取能力，支持反机器人保护',
+            'Claude Code Skills：一键式深度调研命令，全自动化研究流程',
+            '多平台电商研究：支持Amazon、eBay、AliExpress等主流电商平台数据抓取',
+            '结构化数据分析：生成JSON和Markdown格式的专业研究报告',
+            '市场分析维度：市场规模、品牌竞争、技术趋势、定价策略、利润分析',
+            'Demo案例库：3D打印机市场分析、便携式电源站市场数据等实战案例',
+            'DuckDuckGo搜索：辅助网络搜索工具，补充市场调研数据',
+            '浏览器自动化：处理JavaScript渲染的页面，确保数据收集完整性'
+        ],
+        techStack: ['Bright Data MCP', 'Claude Code', 'Agent Skills', 'Python', 'DuckDuckGo', '浏览器自动化', '数据抓取'],
+        category: '商业工具',
+        difficulty: '进阶'
+    },
     ];
 
 // DOM元素
@@ -791,6 +812,12 @@ function useProduct(productId) {
     // 如果是社媒调研智能体，跳转到专门的页面
     if (productId === 'social-research-agent') {
         window.location.href = '/social-research-agent.html';
+        return;
+    }
+
+    // 如果是Bright Data深度调研工具，跳转到专门的页面
+    if (productId === 'bright-data-mcp-research') {
+        window.location.href = '/bright-data-mcp-research.html';
         return;
     }
 
