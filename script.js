@@ -474,6 +474,27 @@ const products = [
         category: '商业工具',
         difficulty: '进阶'
     },
+    {
+        id: 'market-insight-claude-skill',
+        name: '市场洞察 Claude 技能',
+        description: '基于 Claude Code Agent Skills 的智能市场洞察系统，采用三段式分析框架（事实调研 → 结构化洞察 → 行动机会清单），将海量信息转化为可落地的商业洞察。',
+        icon: '🎯',
+        tags: ['市场洞察', 'Claude Code', 'Agent Skills', '商业分析', '竞品研究', '机会识别'],
+        githubUrl: 'https://github.com/liangdabiao/market-insight-claude-skill',
+        features: [
+            '三段式洞察框架：Stage 1 事实调研、Stage 2 结构化洞察、Stage 3 行动机会清单',
+            '多智能体协作：调研 Agent（网络调研 + 专家网络）、洞察 Agent（策略分析）、机会 Agent（商业转化）',
+            '深度事实调研：市场规模、增长率、用户画像、竞争格局、技术趋势、监管环境',
+            '结构化洞察：用户核心需求、最大痛点、解决方案差距、未来趋势、胜负手',
+            '行动机会清单：机会优先级排序（P0/P1/P2）、执行策略、ROI估算、风险提示',
+            '三种输出格式：执行摘要版（核心洞察+P0机会）、完整报告版（全流程分析）、演示文稿版（团队分享）',
+            '小白友好：一行命令 /market-insight [产品/市场]，全程自动化完成深度洞察',
+            '商业化落地：每个洞察都指向具体行动，每个机会都包含执行路径'
+        ],
+        techStack: ['Claude Code', 'Agent Skills', 'WebSearch', 'WebFetch', '多智能体协作', '数据分析'],
+        category: '商业工具',
+        difficulty: '初级'
+    }
     ];
 
 // DOM元素
@@ -818,6 +839,12 @@ function useProduct(productId) {
     // 如果是Bright Data深度调研工具，跳转到专门的页面
     if (productId === 'bright-data-mcp-research') {
         window.location.href = '/bright-data-mcp-research.html';
+        return;
+    }
+
+    // 如果是市场洞察Claude技能，跳转到专门的页面
+    if (productId === 'market-insight-claude-skill') {
+        window.location.href = '/market-insight-claude-skill.html';
         return;
     }
 

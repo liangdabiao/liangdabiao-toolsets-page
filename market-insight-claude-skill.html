@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>市场洞察 Claude 技能 | 智能市场分析系统</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #764ba2;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .skill-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .skill-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .skill-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: #764ba2;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: #667eea;
+        }
+        .workflow-diagram {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .workflow-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .flow-step {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .flow-arrow {
+            font-size: 2em;
+            color: #764ba2;
+        }
+        .stage-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .stage-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #764ba2;
+        }
+        .stage-content {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .stage-content ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .stage-content li {
+            margin-bottom: 8px;
+        }
+        .format-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 4px solid #667eea;
+        }
+        .format-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #764ba2;
+        }
+        .format-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .opportunity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .opportunity-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid #667eea;
+        }
+        .opportunity-level {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .opportunity-level.p0 {
+            background: #ef4444;
+        }
+        .opportunity-level.p1 {
+            background: #f59e0b;
+        }
+        .opportunity-level.p2 {
+            background: #22c55e;
+        }
+        .opportunity-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .opportunity-description {
+            color: var(--secondary-color);
+            line-height: 1.7;
+            font-size: 0.95em;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero-stats {
+                gap: 30px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🌐 AI工具集合</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#stages">三段式框架</a></li>
+                <li><a href="#tech">技术栈</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主视觉区 -->
+    <section class="hero">
+        <div class="hero-badge">Claude Code Agent Skills</div>
+        <h1>市场洞察 Claude 技能</h1>
+        <p>基于三段式分析框架的智能市场洞察系统，将海量信息转化为可落地的商业洞察</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">3段式</span>
+                <span class="stat-label">分析框架</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">多智能体</span>
+                <span class="stat-label">协作架构</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">可落地</span>
+                <span class="stat-label">商业洞察</span>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/market-insight-claude-skill" class="btn btn-primary" style="background: white; color: #764ba2;">查看 GitHub</a>
+            <a href="#workflow" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解流程</a>
+        </div>
+    </section>
+
+    <!-- 核心特性 -->
+    <section id="features" class="section">
+        <h2 class="section-title">核心特性</h2>
+        <p class="section-subtitle">从信息收集到行动机会的全流程自动化市场洞察</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">🔍</div>
+                <h3 class="skill-title">三段式洞察框架</h3>
+                <p class="skill-description">Stage 1 事实调研、Stage 2 结构化洞察、Stage 3 行动机会清单，确保分析深度和可操作性</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🤖</div>
+                <h3 class="skill-title">多智能体协作</h3>
+                <p class="skill-description">调研 Agent（网络调研+专家网络）、洞察 Agent（策略分析）、机会 Agent（商业转化）智能协作</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📊</div>
+                <h3 class="skill-title">深度事实调研</h3>
+                <p class="skill-description">市场规模、增长率、用户画像、竞争格局、技术趋势、监管环境六大维度全面覆盖</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">💡</div>
+                <h3 class="skill-title">结构化洞察</h3>
+                <p class="skill-description">用户核心需求、最大痛点、解决方案差距、未来趋势、胜负手五个层面深度分析</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎯</div>
+                <h3 class="skill-title">行动机会清单</h3>
+                <p class="skill-description">机会优先级排序（P0/P1/P2）、执行策略、ROI估算、风险提示，直接指导行动</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📝</div>
+                <h3 class="skill-title">多种输出格式</h3>
+                <p class="skill-description">执行摘要版、完整报告版、演示文稿版，满足不同场景需求</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作流程 -->
+    <section id="workflow" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">工作流程</h2>
+        <p class="section-subtitle">从问题到行动机会的自动化流程</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">输入市场/产品</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">Stage 1 事实调研</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">Stage 2 结构化洞察</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">Stage 3 行动机会</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">生成报告</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 三段式框架详解 -->
+    <section id="stages" class="section">
+        <h2 class="section-title">三段式框架详解</h2>
+        <p class="section-subtitle">深度分析，确保洞察质量和可操作性</p>
+
+        <div class="stage-card">
+            <h3 class="stage-title">Stage 1：事实调研</h3>
+            <div class="stage-content">
+                <p><strong>目标：</strong>通过多智能体协作，收集市场的基础数据和事实</p>
+                <p><strong>执行方式：</strong></p>
+                <ul>
+                    <li><strong>调研 Agent：</strong>利用 WebSearch 和 WebFetch 工具，进行网络调研和专家网络咨询</li>
+                    <li><strong>多源数据：</strong>整合行业报告、竞品分析、用户反馈等多维度数据</li>
+                    <li><strong>数据验证：</strong>交叉验证关键数据，确保信息准确性和时效性</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>输出：</strong></p>
+                <ul>
+                    <li>市场规模和增长率</li>
+                    <li>目标用户画像</li>
+                    <li>竞争格局分析</li>
+                    <li>技术发展趋势</li>
+                    <li>监管环境评估</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="stage-card">
+            <h3 class="stage-title">Stage 2：结构化洞察</h3>
+            <div class="stage-content">
+                <p><strong>目标：</strong>基于调研数据，生成深度商业洞察</p>
+                <p><strong>执行方式：</strong></p>
+                <ul>
+                    <li><strong>洞察 Agent：</strong>对收集的数据进行深度分析和模式识别</li>
+                    <li><strong>结构化框架：</strong>使用专业分析框架，确保洞察的系统性和全面性</li>
+                    <li><strong>假设验证：</strong>对关键洞察进行假设验证和风险评估</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>输出：</strong></p>
+                <ul>
+                    <li>用户核心需求和期望</li>
+                    <li>当前解决方案的最大痛点</li>
+                    <li>解决方案差距分析</li>
+                    <li>未来发展趋势预测</li>
+                    <li>市场竞争胜负手</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="stage-card">
+            <h3 class="stage-title">Stage 3：行动机会清单</h3>
+            <div class="stage-content">
+                <p><strong>目标：</strong>将洞察转化为可执行的商业机会</p>
+                <p><strong>执行方式：</strong></p>
+                <ul>
+                    <li><strong>机会 Agent：</strong>基于洞察结果，识别和评估商业机会</li>
+                    <li><strong>优先级排序：</strong>按照 P0/P1/P2 三个级别对机会进行优先级排序</li>
+                    <li><strong>可行性分析：</strong>评估每个机会的执行难度、资源需求和ROI</li>
+                </ul>
+                <p style="margin-top: 15px;"><strong>输出：</strong></p>
+                <ul>
+                    <li>P0 级机会（必须抓住）</li>
+                    <li>P1 级机会（重要但不紧急）</li>
+                    <li>P2 级机会（长期观察）</li>
+                    <li>每个机会的执行策略</li>
+                    <li>ROI估算和风险提示</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 输出格式 -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">输出格式</h2>
+        <p class="section-subtitle">根据不同需求提供三种格式</p>
+
+        <div class="format-card">
+            <h3 class="format-title">执行摘要版</h3>
+            <div class="format-description">
+                <p><strong>适用场景：</strong>快速决策、高管汇报</p>
+                <p><strong>内容：</strong></p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>核心洞察摘要</li>
+                    <li>Top 3 P0级机会</li>
+                    <li>关键数据亮点</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="format-card">
+            <h3 class="format-title">完整报告版</h3>
+            <div class="format-description">
+                <p><strong>适用场景：</strong>深度分析、团队研讨</p>
+                <p><strong>内容：</strong></p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>全流程分析详情</li>
+                    <li>完整的机会清单（P0/P1/P2）</li>
+                    <li>数据支撑和推理过程</li>
+                    <li>详细的风险评估</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="format-card">
+            <h3 class="format-title">演示文稿版</h3>
+            <div class="format-description">
+                <p><strong>适用场景：</strong>团队分享、客户演示</p>
+                <p><strong>内容：</strong></p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>结构化大纲</li>
+                    <li>关键视觉图表</li>
+                    <li>核心要点提炼</li>
+                    <li>行动建议汇总</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 机会等级示例 -->
+    <section class="section">
+        <h2 class="section-title">机会优先级体系</h2>
+        <p class="section-subtitle">P0/P1/P2 三级机会分类，明确行动优先级</p>
+
+        <div class="opportunity-grid">
+            <div class="opportunity-card">
+                <div class="opportunity-level p0">P0 - 必须抓住</div>
+                <div class="opportunity-title">高优先级机会</div>
+                <div class="opportunity-description">
+                    市场空白点、用户迫切需求、技术可行性强、竞争较少的机会。需要立即行动，快速占领市场。
+                </div>
+            </div>
+
+            <div class="opportunity-card">
+                <div class="opportunity-level p1">P1 - 重要机会</div>
+                <div class="opportunity-title">中优先级机会</div>
+                <div class="opportunity-description">
+                    市场存在但竞争较多、需求明确但需要更多资源的机会。需要规划，中期布局。
+                </div>
+            </div>
+
+            <div class="opportunity-card">
+                <div class="opportunity-level p2">P2 - 长期观察</div>
+                <div class="opportunity-title">低优先级机会</div>
+                <div class="opportunity-description">
+                    市场尚未成熟、技术或政策限制较大的机会。需要持续观察，等待时机。
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 技术栈 -->
+    <section id="tech" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">基于 Claude Code Agent Skills</p>
+        <div class="tech-stack">
+            <div class="tech-item">Claude Code</div>
+            <div class="tech-item">Agent Skills</div>
+            <div class="tech-item">WebSearch</div>
+            <div class="tech-item">WebFetch</div>
+            <div class="tech-item">多智能体协作</div>
+            <div class="tech-item">数据分析</div>
+        </div>
+    </section>
+
+    <!-- 使用方法 -->
+    <section class="section">
+        <h2 class="section-title">使用方法</h2>
+        <p class="section-subtitle">简单几步，获得专业市场洞察</p>
+
+        <div class="stage-card">
+            <h3 class="stage-title">开始使用</h3>
+            <div class="stage-content">
+                <p><strong>前置要求：</strong></p>
+                <ul style="margin-left: 20px; margin-bottom: 20px;">
+                    <li>安装 Claude Code</li>
+                    <li>确保版本支持 Agent Skills (1.0+)</li>
+                    <li>克隆本项目到本地</li>
+                </ul>
+
+                <p><strong>使用命令：</strong></p>
+                <div style="background: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 8px; margin: 20px 0; font-family: 'Courier New', monospace; line-height: 1.6;">
+                    /market-insight [产品/市场名称]
+                </div>
+
+                <p><strong>示例：</strong></p>
+                <ul style="margin-left: 20px;">
+                    <li>/market-insight AI写作工具</li>
+                    <li>/market-insight SaaS CRM系统</li>
+                    <li>/market-insight 电动汽车充电桩</li>
+                </ul>
+
+                <p style="margin-top: 20px;"><strong>输出选择：</strong></p>
+                <ul style="margin-left: 20px;">
+                    <li>选择输出格式：执行摘要版 / 完整报告版 / 演示文稿版</li>
+                    <li>系统自动生成对应格式的市场洞察报告</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>基于 Claude Code Agent Skills 的智能市场洞察系统，将海量信息转化为可落地的商业洞察。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/market-insight-claude-skill">GitHub 仓库</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 市场洞察 Claude 技能. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 移动端菜单
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>
