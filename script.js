@@ -494,6 +494,27 @@ const products = [
         techStack: ['Claude Code', 'Agent Skills', 'WebSearch', 'WebFetch', '多智能体协作', '数据分析'],
         category: '商业工具',
         difficulty: '初级'
+    },
+    {
+        id: 'exa-research-mcp-skill',
+        name: 'Exa企业与市场研究工具',
+        description: '基于 Claude Code 和 Exa 搜索引擎的 AI 驱动企业与市场研究工具，通过技能系统和代理架构进行公司情报、竞争对手分析和市场研究。',
+        icon: '🏢',
+        tags: ['Exa搜索', '公司研究', '竞争对手分析', 'Claude Code', '市场研究', 'MCP集成'],
+        githubUrl: 'https://github.com/liangdabiao/exa-research-mcp-skill',
+        features: [
+            '智能公司研究：自动收集公司信息、新闻、社交媒体动态、财务数据和 LinkedIn 资料',
+            '竞争对手分析：快速构建竞争对手列表，分析市场定位和竞争格局',
+            '市场研究：跟踪行业趋势、并购活动、技术发展，生成专业报告',
+            '上下文隔离：所有搜索在独立代理中运行，保持主对话整洁',
+            '动态调优：根据用户需求自动调整搜索深度（快速10-20个结果，全面50-100个结果）',
+            '四种搜索类别：company公司主页、news新闻报道、tweet社交媒体、people人员资料',
+            'MCP集成：使用Exa的模型上下文协议服务器进行高级网络搜索',
+            '多智能体架构：研究技能 + 任务代理 + Exa搜索 + 精炼输出的完整流程'
+        ],
+        techStack: ['Claude Code', 'Exa AI', 'MCP Protocol', 'Agent Skills', '多智能体协作', '公司研究'],
+        category: '商业工具',
+        difficulty: '中级'
     }
     ];
 
@@ -845,6 +866,12 @@ function useProduct(productId) {
     // 如果是市场洞察Claude技能，跳转到专门的页面
     if (productId === 'market-insight-claude-skill') {
         window.location.href = '/market-insight-claude-skill.html';
+        return;
+    }
+
+    // 如果是Exa企业与市场研究工具，跳转到专门的页面
+    if (productId === 'exa-research-mcp-skill') {
+        window.location.href = '/exa-research-mcp-skill.html';
         return;
     }
 

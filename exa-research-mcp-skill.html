@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exa企业与市场研究工具 | AI驱动的专业研究系统</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #2563eb;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .skill-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .skill-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .skill-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: #2563eb;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: #0ea5e9;
+        }
+        .workflow-diagram {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .workflow-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .flow-step {
+            background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .flow-arrow {
+            font-size: 2em;
+            color: #2563eb;
+        }
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid #0ea5e9;
+        }
+        .category-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #2563eb;
+        }
+        .category-content {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .category-content ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .category-content li {
+            margin-bottom: 8px;
+        }
+        .search-table {
+            width: 100%;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin: 30px 0;
+        }
+        .search-table th {
+            background: #2563eb;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+        }
+        .search-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .search-table tr:hover {
+            background: #f8f9fa;
+        }
+        .install-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 4px solid #0ea5e9;
+        }
+        .install-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2563eb;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        .example-list {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        .example-item {
+            padding: 15px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 3px solid #0ea5e9;
+        }
+        .example-text {
+            color: var(--text-color);
+            font-size: 1.05em;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero-stats {
+                gap: 30px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🌐 AI工具集合</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#search">搜索类别</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主视觉区 -->
+    <section class="hero">
+        <div class="hero-badge">Claude Code + Exa AI</div>
+        <h1>Exa企业与市场研究工具</h1>
+        <p>基于 Claude Code 和 Exa 搜索引擎的 AI 驱动研究工具，专业进行公司情报、竞争对手分析和市场研究</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">4种</span>
+                <span class="stat-label">搜索类别</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">100+</span>
+                <span class="stat-label">搜索结果</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">专业</span>
+                <span class="stat-label">研究报告</span>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/exa-research-mcp-skill" class="btn btn-primary" style="background: white; color: #2563eb;">查看 GitHub</a>
+            <a href="#install" class="btn btn-secondary" style="border: 2px solid white; color: white;">开始使用</a>
+        </div>
+    </section>
+
+    <!-- 核心特性 -->
+    <section id="features" class="section">
+        <h2 class="section-title">核心特性</h2>
+        <p class="section-subtitle">AI驱动的企业与市场研究全流程自动化</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">🏢</div>
+                <h3 class="skill-title">智能公司研究</h3>
+                <p class="skill-description">自动收集公司信息、新闻、社交媒体动态、财务数据和LinkedIn资料，全方位了解目标公司</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎯</div>
+                <h3 class="skill-title">竞争对手分析</h3>
+                <p class="skill-description">快速构建竞争对手列表，分析市场定位、产品策略、优势劣势，制定竞争策略</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📊</div>
+                <h3 class="skill-title">市场研究</h3>
+                <p class="skill-description">跟踪行业趋势、并购活动、技术发展，生成包含市场规模、增长率、竞争格局的专业报告</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔄</div>
+                <h3 class="skill-title">上下文隔离</h3>
+                <p class="skill-description">所有搜索在独立代理中运行，保持主对话整洁，避免token污染</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">⚡</div>
+                <h3 class="skill-title">动态调优</h3>
+                <p class="skill-description">根据用户需求自动调整搜索深度：快速了解返回10-20个结果，全面研究返回50-100个结果</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔌</div>
+                <h3 class="skill-title">MCP集成</h3>
+                <p class="skill-description">使用Exa的模型上下文协议服务器进行高级网络搜索，支持多种数据源</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作流程 -->
+    <section id="workflow" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">工作流程</h2>
+        <p class="section-subtitle">从请求到专业报告的自动化流程</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">用户请求</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">公司研究技能</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">任务代理</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">Exa搜索</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">精炼输出</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #2563eb;">关键组件</h3>
+            <div class="skills-grid">
+                <div class="category-card">
+                    <div class="category-title">技能系统 (.claude/skills/)</div>
+                    <div class="category-content">
+                        定义专门的研究能力，包含工具使用和执行模式的严格规则
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">MCP集成</div>
+                    <div class="category-content">
+                        使用Exa的模型上下文协议服务器进行高级网络搜索
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">任务代理</div>
+                    <div class="category-content">
+                        所有搜索操作在隔离的任务上下文中运行，防止token污染
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 搜索类别 -->
+    <section id="search" class="section">
+        <h2 class="section-title">搜索类别</h2>
+        <p class="section-subtitle">四种专业搜索类别，满足不同研究需求</p>
+
+        <table class="search-table">
+            <thead>
+                <tr>
+                    <th>类别</th>
+                    <th>用途</th>
+                    <th>返回内容</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>company</strong></td>
+                    <td>公司主页</td>
+                    <td>员工数、地点、融资、收入等元数据</td>
+                </tr>
+                <tr>
+                    <td><strong>news</strong></td>
+                    <td>新闻报道</td>
+                    <td>媒体覆盖、公关新闻</td>
+                </tr>
+                <tr>
+                    <td><strong>tweet</strong></td>
+                    <td>社交媒体</td>
+                    <td>Twitter/X上的动态</td>
+                </tr>
+                <tr>
+                    <td><strong>people</strong></td>
+                    <td>人员资料</td>
+                    <td>公开LinkedIn资料</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div style="margin-top: 50px;">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #2563eb;">搜索参数</h3>
+            <div class="category-card">
+                <div class="category-title">动态调整策略</div>
+                <div class="category-content">
+                    <p>技能会根据您的需求动态调整搜索深度：</p>
+                    <ul style="margin-top: 15px;">
+                        <li><strong>快速了解：</strong>返回10-20个结果，适合初步调研</li>
+                        <li><strong>全面研究：</strong>返回50-100个结果，适合深度分析</li>
+                        <li><strong>指定数量：</strong>精确匹配您的要求</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 使用示例 -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">使用示例</h2>
+        <p class="section-subtitle">通过以下关键词触发研究技能</p>
+
+        <div class="example-list">
+            <div class="example-item">
+                <div class="example-text">"研究一下特斯拉的竞争对手"</div>
+            </div>
+            <div class="example-item">
+                <div class="example-text">"分析CNC切割设备行业"</div>
+            </div>
+            <div class="example-item">
+                <div class="example-text">"找到中国前20家激光切割设备制造商"</div>
+            </div>
+            <div class="example-item">
+                <div class="example-text">"收集某公司的最新新闻报道"</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 安装配置 -->
+    <section id="install" class="section">
+        <h2 class="section-title">安装与配置</h2>
+        <p class="section-subtitle">简单几步，开始使用Exa研究工具</p>
+
+        <div class="install-card">
+            <div class="install-title">1. 安装MCP</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">在项目根目录执行以下命令：</p>
+            <div class="code-block">claude mcp add --transport http exa "https://mcp.exa.ai/mcp?tools=web_search_advanced_exa"</div>
+            <p style="margin-top: 15px; color: var(--secondary-color);">然后打开Claude Code即可使用。</p>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">2. 配置权限</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">编辑 <code>.claude/settings.local.json</code> 文件：</p>
+            <div class="code-block">{
+  "permissions": {
+    "allow": ["mcp__exa__web_search_advanced_exa"]
+  }
+}</div>
+            <p style="margin-top: 15px; color: var(--secondary-color);">添加新的MCP工具时，将其加入allow列表。这是一种限制API表面积的安全方法。</p>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">3. 模型选择</div>
+            <div class="category-content" style="margin-top: 10px;">
+                <ul style="margin-top: 10px;">
+                    <li><strong>haiku：</strong>快速提取任务（列表、发现）</li>
+                    <li><strong>opus：</strong>综合分析、浏览器自动化</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 研究输出 -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">研究输出</h2>
+        <p class="section-subtitle">结构化的专业研究报告</p>
+
+        <div class="category-card">
+            <div class="category-title">输出格式</div>
+            <div class="category-content">
+                <p>研究结果通常保存为项目根目录下的 <code>.md</code> 文件，例如：</p>
+                <ul style="margin-top: 15px;">
+                    <li><code>cnc切割行业industry.md</code> - CNC切割行业市场分析</li>
+                </ul>
+                <p style="margin-top: 15px;">报告包含：</p>
+                <ul style="margin-top: 10px;">
+                    <li>市场规模和增长预测</li>
+                    <li>主要制造商分析</li>
+                    <li>中国公司重点关注（KASU、Acme Laser、OMNI CNC、FORSUN）</li>
+                    <li>竞争定位和SWOT分析</li>
+                    <li>近期并购活动</li>
+                    <li>技术趋势</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 技术栈 -->
+    <section class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">基于 Claude Code 和 Exa AI</p>
+        <div class="tech-stack">
+            <div class="tech-item">Claude Code</div>
+            <div class="tech-item">Exa AI</div>
+            <div class="tech-item">MCP Protocol</div>
+            <div class="tech-item">Agent Skills</div>
+            <div class="tech-item">多智能体协作</div>
+            <div class="tech-item">公司研究</div>
+        </div>
+    </section>
+
+    <!-- 关键约束 -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">技能开发约束</h2>
+        <p class="section-subtitle">确保研究质量和系统稳定性</p>
+
+        <div class="category-card">
+            <div class="category-title">关键约束</div>
+            <div class="category-content">
+                <ul style="margin-top: 15px;">
+                    <li><strong>工具限制：</strong>仅使用web_search_advanced，不使用其他Exa工具</li>
+                    <li><strong>Token隔离：</strong>始终在任务代理中运行搜索</li>
+                    <li><strong>查询变化：</strong>生成2-3个查询变体并行运行以获得更好的覆盖</li>
+                    <li><strong>浏览器回退：</strong>需要认证或动态内容时自动使用Claude in Chrome</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>基于 Claude Code 和 Exa 搜索引擎的 AI 驱动企业与市场研究工具，通过技能系统和代理架构进行专业研究。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/exa-research-mcp-skill">GitHub 仓库</a></li>
+                    <li><a href="https://exa.ai/docs/reference/company-research-claude-skill">Exa 官方文档</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Exa企业与市场研究工具. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 移动端菜单
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>
