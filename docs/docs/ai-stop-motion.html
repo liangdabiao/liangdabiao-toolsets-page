@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 定格动画生成器 - 使用指南</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>📚 AI工具文档中心</h2>
+            </div>
+            <nav class="main-nav">
+                <h3>全部AI工具</h3>
+                <ul id="project-list">
+                    <!-- 项目列表将通过JavaScript动态生成 -->
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="nav-buttons">
+                    <a href="../index.html" class="back-button">← 文档首页</a>
+                    <a href="../../" class="back-button" style="margin-left: 10px;">🏠 主站</a>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="搜索文档...">
+                    <button id="search-button">🔍</button>
+                </div>
+            </header>
+
+            <article class="doc-content">
+                <h1>AI 定格动画生成器</h1>
+                
+                <div class="product-info">
+                    <p>一个令人惊艳的定格动画生成器，基于单张图片创建流畅的动画效果！使用 Gemini Nano AI 技术生成姿势序列和动画帧，让你的照片动起来。</p>
+                    
+                    <div class="product-tags">
+                        <span class="product-tag">AI工具</span>
+                        <span class="product-tag">定格动画</span>
+                        <span class="product-tag">Gemini Nano</span>
+                        <span class="product-tag">Next.js</span>
+                        <span class="product-tag">开源项目</span>
+                    </div>
+                    
+                    <div class="difficulty-level">
+                        <strong>难度等级：</strong>中等
+                    </div>
+                    
+                    <div class="github-link">
+                        <a href="https://github.com/liangdabiao/ai-make-face-meme" target="_blank">📁 访问GitHub项目页面</a>
+                    </div>
+                </div>
+                
+                <h2>目录</h2>
+                <ul>
+                    <li><a href="#introduction">1. 项目介绍</a></li>
+                    <li><a href="#installation">2. 安装配置</a></li>
+                    <li><a href="#usage">3. 使用方法</a></li>
+                    <li><a href="#features">4. 功能详解</a></li>
+                    <li><a href="#examples">5. 使用示例</a></li>
+                    <li><a href="#troubleshooting">6. 常见问题</a></li>
+                    <li><a href="#resources">7. 相关资源</a></li>
+                </ul>
+                
+                <h2 id="introduction">1. 项目介绍</h2>
+                <p>AI 定格动画生成器是一款先进的AI工具，旨在基于单张图片创建令人惊艳的定格动画。该项目利用Next.js、Gemini Nano、Framer Motion、React、TypeScript等技术，为用户提供从静态图片生成流畅动画的解决方案。</p>
+                
+                <h3>核心特性</h3>
+                <ul>
+                    <li>🎬 单图生成动画：基于单张图片创建流畅的定格动画，让静态照片变成生动有趣的动态效果</li>
+                    <li>🤖 Gemini Nano 驱动：使用 Gemini Nano AI 生成分离的姿势序列，基于每个姿势生成高质量的动画帧</li>
+                    <li>⚡ 实时进度反馈：流式响应技术实时返回生成进度，支持长时任务处理，提供详细的生成状态信息</li>
+                    <li>🎮 动画播放控制：支持帧间导航、播放/暂停、帧率调节（1-30 FPS），让你完全控制动画效果</li>
+                    <li>📥 GIF 导出功能：多种导出方案（gifencoder → ZIP → 单帧回退），支持生成高质量 GIF 动画</li>
+                    <li>🛠️ 帧管理系统：完整的帧管理功能，支持帧的添加、删除、移动和预览，精细控制每个动画细节</li>
+                </ul>
+                
+                <h2 id="installation">2. 安装配置</h2>
+                <p>在开始使用 AI 定格动画生成器 之前，您需要完成以下准备工作：</p>
+                
+                <h3>系统要求</h3>
+                <ul>
+                    <li>操作系统：Windows, macOS 或 Linux</li>
+                    <li>内存：至少 4GB RAM（推荐 8GB 或以上）</li>
+                    <li>存储空间：至少 500MB 可用空间</li>
+                    <li>其他：Node.js v16 或更高版本，pnpm 包管理器</li>
+                </ul>
+                
+                <h3>安装步骤</h3>
+                <ol>
+                    <li>克隆项目仓库：
+                        <pre><code>git clone https://github.com/liangdabiao/ai-make-face-meme</code></pre>
+                    </li>
+                    <li>进入项目目录：
+                        <pre><code>cd ai-make-face-meme</code></pre>
+                    </li>
+                    <li>安装依赖：
+                        <pre><code>npm install -g pnpm
+pnpm install</code></pre>
+                    </li>
+                    <li>配置环境变量（如需要）：
+                        <pre><code># 重命名 .env.example 为 .env
+# 在 .env 文件中添加你的 Gemini API key
+GEMINI_API_KEY=your_gemini_api_key_here</code></pre>
+                    </li>
+                </ol>
+                
+                <h2 id="usage">3. 使用方法</h2>
+                <p>AI 定格动画生成器 提供了多种使用方式，您可以根据需求选择最适合的方法：</p>
+                
+                <h3>基本使用</h3>
+                <pre><code># 启动开发服务器
+pnpm dev
+
+# 构建生产版本
+pnpm build
+
+# 启动生产服务器
+pnpm start</code></pre>
+                
+                <h3>高级功能</h3>
+                <p>对于更复杂的使用场景，您可以：</p>
+                <ul>
+                    <li>调整动画参数，如帧率（1-30 FPS）</li>
+                    <li>自定义生成的动画长度和效果</li>
+                    <li>使用不同的AI模型生成不同风格的动画</li>
+                    <li>批量处理多张图片生成动画</li>
+                </ul>
+                
+                <h2 id="features">4. 功能详解</h2>
+                <p>AI 定格动画生成器 包含以下核心功能模块：</p>
+                
+                <h3>前端页面 (/src/app/page.tsx)</h3>
+                <ul>
+                    <li>文件上传与预览：支持拖放上传，显示上传图片预览</li>
+                    <li>动画生成控制：调用后端API生成动画帧，提供实时进度反馈</li>
+                    <li>动画播放器：支持帧间导航、播放/暂停、帧率调节(1-30 FPS)</li>
+                    <li>GIF导出功能：多种导出方案(gifencoder → ZIP → 单帧回退)</li>
+                    <li>帧管理：支持帧的添加、删除、移动和预览</li>
+                </ul>
+                
+                <h3>后端API (/src/app/api/stop-motion/route.ts)</h3>
+                <ul>
+                    <li>图像分析：接收用户上传图片，调用AI生成12个姿势序列</li>
+                    <li>流式响应：实时返回生成进度，支持长时任务(800秒超时)</li>
+                    <li>逐帧生成：基于姿势描述，调用Gemini Nano生成图片帧</li>
+                    <li>错误处理：单帧错误不中断整体生成，提供详细错误信息</li>
+                    <li>数据返回：通过流式API向前端传输base64图片数据</li>
+                </ul>
+                
+                <h2 id="examples">5. 使用示例</h2>
+                <p>以下是一些典型的使用场景和示例：</p>
+                
+                <h3>示例 1：基础动画生成</h3>
+                <p>上传一张静态图片，生成流畅的定格动画效果</p>
+                <pre><code>1. 访问应用界面
+2. 拖放或选择一张图片上传
+3. 点击"生成动画"按钮
+4. 等待AI处理完成
+5. 预览并导出GIF动画</code></pre>
+                
+                <h3>示例 2：自定义帧率设置</h3>
+                <p>根据需要调整动画播放速度</p>
+                <pre><code>1. 生成动画后，在播放器中找到帧率控制
+2. 调整帧率滑块（1-30 FPS）
+3. 预览不同帧率下的动画效果
+4. 选择满意的帧率并导出</code></pre>
+                
+                <h2 id="troubleshooting">6. 常见问题</h2>
+                <h3>Q: 为什么生成动画需要很长时间？</h3>
+                <p>A: 动画生成涉及AI处理，每帧都需要单独生成。整个过程可能需要几分钟，请耐心等待。流式响应会显示实时进度。</p>
+                
+                <h3>Q: 如何获得更好的动画效果？</h3>
+                <p>A: 选择清晰、正面的人像图片通常能获得更好的效果。避免过于复杂或模糊的背景。</p>
+                
+                <h3>Q: 生成的GIF质量如何？</h3>
+                <p>A: 应用支持高质量GIF导出，但文件大小可能会较大。可以根据需要调整帧率来平衡质量和文件大小。</p>
+                
+                <h2 id="resources">7. 相关资源</h2>
+                <ul>
+                    <li><a href="https://github.com/liangdabiao/ai-make-face-meme" target="_blank">GitHub 项目页面</a></li>
+                    <li><a href="https://github.com/liangdabiao/ai-make-face-meme/issues" target="_blank">问题反馈</a></li>
+                    <li><a href="https://github.com/madhurjain/nanomotion" target="_blank">基础思路和代码继承项目</a></li>
+                    <li><a href="https://gemini.google.com/" target="_blank">Google Gemini 官方网站</a></li>
+                    <li><a href="https://nextjs.org/docs" target="_blank">Next.js 官方文档</a></li>
+                </ul>
+            </article>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>AI工具文档中心</h3>
+                    <p>提供详细的AI工具使用指南，帮助您快速上手并充分利用这些强大的AI产品。</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="../../">主站点</a></li>
+                        <li><a href="../">文档首页</a></li>
+                        <li><a href="../../#products">产品中心</a></li>
+                        <li><a href="../../#contact">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>相关文档</h4>
+                    <ul>
+                        <li><a href="../">所有文档</a></li>
+                        <li><a href="./">当前文档</a></li>
+                        <li><a href="../../product.html">产品详情</a></li>
+                        <li><a href="https://github.com/liangdabiao/ai-make-face-meme">GitHub仓库</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 AI工具文档中心. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

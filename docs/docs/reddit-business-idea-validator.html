@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reddit Business Idea Validator - 使用指南</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>📚 AI工具文档中心</h2>
+            </div>
+            <nav class="main-nav">
+                <h3>全部AI工具</h3>
+                <ul id="project-list">
+                    <!-- 项目列表将通过JavaScript动态生成 -->
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="nav-buttons">
+                    <a href="../index.html" class="back-button">← 文档首页</a>
+                    <a href="../../" class="back-button" style="margin-left: 10px;">🏠 主站</a>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="搜索文档...">
+                    <button id="search-button">🔍</button>
+                </div>
+            </header>
+
+            <article class="doc-content">
+                <h1>Reddit Business Idea Validator</h1>
+
+                <div class="product-info">
+                    <p>基于AI的商业创意验证工具，通过收集和分析Reddit平台数据来解析市场需求、用户痛点及竞争格局，帮助出海创业者深入了解消费者需求，发现商业机会。</p>
+
+                    <div class="product-tags">
+                        <span class="product-tag">市场调研</span>
+                        <span class="product-tag">Reddit API</span>
+                        <span class="product-tag">商业验证</span>
+                        <span class="product-tag">AI分析</span>
+                        <span class="product-tag">出海创业</span>
+                        <span class="product-tag">数据分析</span>
+                    </div>
+
+                    <div class="difficulty-level">
+                        <strong>难度等级：</strong>中级
+                    </div>
+
+                    <div class="github-link">
+                        <a href="https://github.com/liangdabiao/Reddit_Business_Idea_Validator" target="_blank">📁 访问GitHub项目页面</a>
+                    </div>
+                </div>
+
+                <h2>目录</h2>
+                <ul>
+                    <li><a href="#introduction">1. 项目介绍</a></li>
+                    <li><a href="#installation">2. 安装配置</a></li>
+                    <li><a href="#usage">3. 使用方法</a></li>
+                    <li><a href="#features">4. 功能详解</a></li>
+                    <li><a href="#examples">5. 使用示例</a></li>
+                    <li><a href="#troubleshooting">6. 常见问题</a></li>
+                    <li><a href="#resources">7. 相关资源</a></li>
+                </ul>
+
+                <h2 id="introduction">1. 项目介绍</h2>
+                <p>Reddit Business Idea Validator 是一款先进的AI工具，旨在帮助出海创业者验证商业创意。该项目利用 Python、PRAW、OpenAI API、Pydantic、MCP Protocol、httpx、pytest 等技术，为用户提供基于Reddit数据的商业验证解决方案。</p>
+
+                <h3>核心特性</h3>
+                <ul>
+                    <li>🔍 Reddit数据智能抓取：自动抓取相关帖子和评论，支持自定义搜索关键词、排序方式、时间范围和抓取数量</li>
+                    <li>🧠 AI内容深度分析：使用LLM分析用户痛点和市场需求，包括帖子内容分析、评论情感分析、评论标签分析</li>
+                    <li>📊 自动化报告生成：生成专业的市场验证报告（HTML格式），包含互动评分、活跃度分析、TOP3热门帖子展示</li>
+                    <li>🤝 多智能体协作架构：Orchestrator Agent任务编排、Scraper Agent数据抓取、Analyzer Agent数据分析、Reporter Agent报告生成</li>
+                    <li>💾 Checkpoint机制：完整执行过程保存，支持中断恢复，数据可追溯性</li>
+                    <li>📈 数据指标体系：评分系统、互动评分、点赞率分析、时间活跃度分析等多维度指标</li>
+                    <li>⚙️ 灵活配置系统：环境变量配置（.env），支持自定义参数调整，多种搜索参数组合</li>
+                    <li>🧪 完整测试体系：Reddit API连接测试、端到端测试、集成测试</li>
+                </ul>
+
+                <h2 id="installation">2. 安装配置</h2>
+                <p>在开始使用 Reddit Business Idea Validator 之前，您需要完成以下准备工作：</p>
+
+                <h3>系统要求</h3>
+                <ul>
+                    <li>操作系统：Windows, macOS 或 Linux</li>
+                    <li>内存：至少 4GB RAM（推荐 8GB 或以上）</li>
+                    <li>存储空间：至少 200MB 可用空间</li>
+                    <li>其他：Python 3.7+，Reddit API访问权限，OpenAI API密钥</li>
+                </ul>
+
+                <h3>安装步骤</h3>
+                <ol>
+                    <li>克隆项目仓库：
+                        <pre><code>git clone https://github.com/liangdabiao/Reddit_Business_Idea_Validator</code></pre>
+                    </li>
+                    <li>进入项目目录：
+                        <pre><code>cd Reddit_Business_Idea_Validator</code></pre>
+                    </li>
+                    <li>安装依赖：
+                        <pre><code>pip install -r requirements.txt</code></pre>
+                    </li>
+                    <li>配置环境变量：
+                        <pre><code># 创建 .env 文件
+# 配置Reddit API凭据和OpenAI API密钥
+REDDIT_CLIENT_ID=your_client_id
+REDDIT_CLIENT_SECRET=your_client_secret
+REDDIT_USER_AGENT=your_user_agent
+OPENAI_API_KEY=your_openai_api_key</code></pre>
+                    </li>
+                </ol>
+
+                <h2 id="usage">3. 使用方法</h2>
+                <p>Reddit Business Idea Validator 提供了多种使用方式，您可以根据需求选择最适合的方法：</p>
+
+                <h3>基本使用</h3>
+                <pre><code># 运行商业创意验证
+python main.py --idea "在线教育平台" --subreddits "education,technology" --limit 100</code></pre>
+
+                <h3>高级功能</h3>
+                <p>对于更复杂的使用场景，您可以：</p>
+                <ul>
+                    <li>自定义搜索参数（关键词、排序方式、时间范围）</li>
+                    <li>调整抓取数量和数据处理深度</li>
+                    <li>配置AI分析参数和报告格式</li>
+                    <li>使用不同的数据源和分析模型</li>
+                </ul>
+
+                <h2 id="features">4. 功能详解</h2>
+                <p>Reddit Business Idea Validator 包含以下核心功能模块：</p>
+
+                <h3>Reddit数据智能抓取</h3>
+                <ul>
+                    <li>支持自定义搜索关键词和子论坛</li>
+                    <li>可配置排序方式和时间范围</li>
+                    <li>灵活的抓取数量设置</li>
+                </ul>
+
+                <h3>AI内容深度分析</h3>
+                <ul>
+                    <li>帖子内容分析</li>
+                    <li>评论情感分析</li>
+                    <li>评论标签分析</li>
+                </ul>
+
+                <h3>自动化报告生成</h3>
+                <ul>
+                    <li>HTML格式的专业报告</li>
+                    <li>互动评分和活跃度分析</li>
+                    <li>热门帖子展示</li>
+                </ul>
+
+                <h2 id="examples">5. 使用示例</h2>
+                <p>以下是一些典型的使用场景和示例：</p>
+
+                <h3>示例 1：基础商业创意验证</h3>
+                <p>验证一个简单的商业创意</p>
+                <pre><code>1. 准备商业创意："在线健身课程平台"
+2. 选择相关子论坛："fitness,health,nutrition"
+3. 运行验证命令：
+   python main.py --idea "在线健身课程平台" --subreddits "fitness,health,nutrition" --limit 50
+4. 分析生成的报告</code></pre>
+
+                <h3>示例 2：深度市场调研</h3>
+                <p>对特定市场进行深入分析</p>
+                <pre><code>1. 定义研究主题："可持续包装解决方案"
+2. 选择广泛的子论坛："environment,sustainability,business,entrepreneur"
+3. 设置大量数据抓取：
+   python main.py --idea "可持续包装解决方案" --subreddits "environment,sustainability,business,entrepreneur" --limit 200 --time_filter year
+4. 查看详细的市场验证报告</code></pre>
+
+                <h2 id="troubleshooting">6. 常见问题</h2>
+                <h3>Q: 如何获取Reddit API访问权限？</h3>
+                <p>A: 需要在Reddit开发者门户注册应用程序，获取客户端ID、客户端密钥和用户代理信息。</p>
+
+                <h3>Q: 数据抓取速度慢怎么办？</h3>
+                <p>A: Reddit API有限制，请遵守API使用条款，适当调整请求频率，或使用Reddit Premium账户提高限制。</p>
+
+                <h3>Q: 如何提高AI分析的准确性？</h3>
+                <p>A: 提供更具体和相关的搜索关键词，增加数据样本量，调整AI模型参数或使用更高级的模型。</p>
+
+                <h2 id="resources">7. 相关资源</h2>
+                <ul>
+                    <li><a href="https://github.com/liangdabiao/Reddit_Business_Idea_Validator" target="_blank">GitHub 项目页面</a></li>
+                    <li><a href="https://github.com/liangdabiao/Reddit_Business_Idea_Validator/issues" target="_blank">问题反馈</a></li>
+                    <li><a href="https://www.reddit.com/dev/api" target="_blank">Reddit API 官方文档</a></li>
+                    <li><a href="https://platform.openai.com/docs" target="_blank">OpenAI API 文档</a></li>
+                    <li><a href="https://github.com/liangdabiao" target="_blank">开发者其他项目</a></li>
+                </ul>
+            </article>
+        </main>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

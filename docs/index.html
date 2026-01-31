@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI工具产品使用指南 - 文档中心</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>📚 AI工具文档中心</h2>
+            </div>
+            <nav class="main-nav">
+                <h3>快速导航</h3>
+                <ul>
+                    <li><a href="../">🏠 返回主站</a></li>
+                </ul>
+                <h3>全部AI工具</h3>
+                <ul id="project-list">
+                    <!-- 项目列表将通过JavaScript动态生成 -->
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="搜索文档...">
+                    <button id="search-button">🔍</button>
+                </div>
+            </header>
+
+            <section class="welcome-section">
+                <h1>欢迎来到AI工具产品使用指南</h1>
+                <p>这里汇集了25个精选AI工具的详细使用指南，帮助您快速上手并充分利用这些强大的AI产品。</p>
+                
+                <div class="quick-links">
+                    <h3>快速导航</h3>
+                    <div class="categories">
+                        <div class="category">
+                            <h4>📊 数据分析类</h4>
+                            <ul>
+                                <li><a href="#" data-project="claude-data-analysis">Claude数据分析助手</a></li>
+                                <li><a href="#" data-project="claude-data-analysis-ultra">Claude数据分析终极版</a></li>
+                                <li><a href="#" data-project="facebook-ads-analyzer">Facebook广告分析器</a></li>
+                            </ul>
+                        </div>
+                        <div class="category">
+                            <h4>💼 商业工具类</h4>
+                            <ul>
+                                <li><a href="#" data-project="business-idea-validator">商业创意验证器</a></li>
+                                <li><a href="#" data-project="easy-amazon-voc">Amazon商品评论分析系统</a></li>
+                                <li><a href="#" data-project="xhs-business-idea-validator">小红书商业创意验证器</a></li>
+                            </ul>
+                        </div>
+                        <div class="category">
+                            <h4>🤖 AI助手类</h4>
+                            <ul>
+                                <li><a href="#" data-project="ai-stop-motion">AI定格动画生成器</a></li>
+                                <li><a href="#" data-project="ai-generated-english-podcast-videos">AI生成英语播客视频</a></li>
+                                <li><a href="#" data-project="langgraph-multi-agent-rag-customer-support">LangGraph多智能体RAG客服系统</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="featured-products">
+                <h2>精选AI工具</h2>
+                <div class="products-grid" id="featured-products">
+                    <!-- 特色产品将通过JavaScript动态生成 -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>AI工具文档中心</h3>
+                    <p>提供详细的AI工具使用指南，帮助您快速上手并充分利用这些强大的AI产品。</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="../">主站点</a></li>
+                        <li><a href="./">文档首页</a></li>
+                        <li><a href="../#products">产品中心</a></li>
+                        <li><a href="../#contact">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>文档分类</h4>
+                    <ul>
+                        <li><a href="#">数据分析类</a></li>
+                        <li><a href="#">商业工具类</a></li>
+                        <li><a href="#">AI助手类</a></li>
+                        <li><a href="#">其他工具类</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 AI工具文档中心. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

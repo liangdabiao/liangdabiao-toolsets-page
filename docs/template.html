@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{PROJECT_NAME}} - 使用指南</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>📚 AI工具文档中心</h2>
+            </div>
+            <nav class="main-nav">
+                <h3>全部AI工具</h3>
+                <ul id="project-list">
+                    <!-- 项目列表将通过JavaScript动态生成 -->
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <header class="top-bar">
+                <a href="../index.html" class="back-button">← 返回首页</a>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="搜索文档...">
+                    <button id="search-button">🔍</button>
+                </div>
+            </header>
+
+            <article class="doc-content">
+                <h1>{{PROJECT_NAME}}</h1>
+                
+                <div class="product-info">
+                    <p>{{DESCRIPTION}}</p>
+                    
+                    <div class="product-tags">
+                        {{TAGS}}
+                    </div>
+                    
+                    <div class="difficulty-level">
+                        <strong>难度等级：</strong>{{DIFFICULTY}}
+                    </div>
+                    
+                    <div class="github-link">
+                        <a href="{{GITHUB_URL}}" target="_blank">📁 访问GitHub项目页面</a>
+                    </div>
+                </div>
+                
+                <h2>目录</h2>
+                <ul>
+                    <li><a href="#introduction">1. 项目介绍</a></li>
+                    <li><a href="#installation">2. 安装配置</a></li>
+                    <li><a href="#usage">3. 使用方法</a></li>
+                    <li><a href="#features">4. 功能详解</a></li>
+                    <li><a href="#examples">5. 使用示例</a></li>
+                    <li><a href="#troubleshooting">6. 常见问题</a></li>
+                    <li><a href="#resources">7. 相关资源</a></li>
+                </ul>
+                
+                <h2 id="introduction">1. 项目介绍</h2>
+                <p>{{PROJECT_NAME}} 是一款先进的AI工具，旨在{{SHORT_DESCRIPTION}}。该项目利用{{TECHNOLOGY_STACK}}等技术，为用户提供{{KEY_BENEFITS}}的解决方案。</p>
+                
+                <h3>核心特性</h3>
+                <ul>
+                    {{FEATURES_LIST}}
+                </ul>
+                
+                <h2 id="installation">2. 安装配置</h2>
+                <p>在开始使用 {{PROJECT_NAME}} 之前，您需要完成以下准备工作：</p>
+                
+                <h3>系统要求</h3>
+                <ul>
+                    <li>操作系统：{{OS_REQUIREMENTS}}</li>
+                    <li>内存：{{MEMORY_REQUIREMENTS}}</li>
+                    <li>存储空间：{{STORAGE_REQUIREMENTS}}</li>
+                    <li>其他：{{OTHER_REQUIREMENTS}}</li>
+                </ul>
+                
+                <h3>安装步骤</h3>
+                <ol>
+                    <li>克隆项目仓库：
+                        <pre><code>git clone {{GITHUB_URL}}</code></pre>
+                    </li>
+                    <li>进入项目目录：
+                        <pre><code>cd {{PROJECT_DIR}}</code></pre>
+                    </li>
+                    <li>安装依赖：
+                        <pre><code>{{INSTALL_COMMAND}}</code></pre>
+                    </li>
+                    <li>配置环境变量（如需要）：
+                        <pre><code>{{CONFIGURATION_STEPS}}</code></pre>
+                    </li>
+                </ol>
+                
+                <h2 id="usage">3. 使用方法</h2>
+                <p>{{PROJECT_NAME}} 提供了多种使用方式，您可以根据需求选择最适合的方法：</p>
+                
+                <h3>基本使用</h3>
+                <pre><code>{{BASIC_USAGE_EXAMPLE}}</code></pre>
+                
+                <h3>高级功能</h3>
+                <p>对于更复杂的使用场景，您可以：</p>
+                <ul>
+                    {{ADVANCED_FEATURES}}
+                </ul>
+                
+                <h2 id="features">4. 功能详解</h2>
+                <p>{{PROJECT_NAME}} 包含以下核心功能模块：</p>
+                
+                {{DETAILED_FEATURES}}
+                
+                <h2 id="examples">5. 使用示例</h2>
+                <p>以下是一些典型的使用场景和示例：</p>
+                
+                <h3>示例 1：{{EXAMPLE_1_TITLE}}</h3>
+                <p>{{EXAMPLE_1_DESCRIPTION}}</p>
+                <pre><code>{{EXAMPLE_1_CODE}}</code></pre>
+                
+                <h3>示例 2：{{EXAMPLE_2_TITLE}}</h3>
+                <p>{{EXAMPLE_2_DESCRIPTION}}</p>
+                <pre><code>{{EXAMPLE_2_CODE}}</code></pre>
+                
+                <h2 id="troubleshooting">6. 常见问题</h2>
+                <h3>Q: {{FAQ_Q1}}</h3>
+                <p>A: {{FAQ_A1}}</p>
+                
+                <h3>Q: {{FAQ_Q2}}</h3>
+                <p>A: {{FAQ_A2}}</p>
+                
+                <h3>Q: {{FAQ_Q3}}</h3>
+                <p>A: {{FAQ_A3}}</p>
+                
+                <h2 id="resources">7. 相关资源</h2>
+                <ul>
+                    <li><a href="{{GITHUB_URL}}" target="_blank">GitHub 项目页面</a></li>
+                    <li><a href="{{GITHUB_URL}}/issues" target="_blank">问题反馈</a></li>
+                    <li><a href="{{GITHUB_URL}}/wiki" target="_blank">项目 Wiki</a></li>
+                    <li><a href="{{RELATED_RESOURCE_1}}" target="_blank">{{RELATED_RESOURCE_1_TITLE}}</a></li>
+                    <li><a href="{{RELATED_RESOURCE_2}}" target="_blank">{{RELATED_RESOURCE_2_TITLE}}</a></li>
+                </ul>
+            </article>
+        </main>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

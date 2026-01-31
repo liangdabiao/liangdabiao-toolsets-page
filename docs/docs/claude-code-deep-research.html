@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code Deep Research - 使用指南</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>📚 AI工具文档中心</h2>
+            </div>
+            <nav class="main-nav">
+                <h3>全部AI工具</h3>
+                <ul id="project-list">
+                    <!-- 项目列表将通过JavaScript动态生成 -->
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="nav-buttons">
+                    <a href="../index.html" class="back-button">← 文档首页</a>
+                    <a href="../../" class="back-button" style="margin-left: 10px;">🏠 主站</a>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="搜索文档...">
+                    <button id="search-button">🔍</button>
+                </div>
+            </header>
+
+            <article class="doc-content">
+                <h1>Claude Code Deep Research</h1>
+
+                <div class="product-info">
+                    <p>基于 Claude Code 的深度研究 Agent 系统，实现类似 OpenAI 和 Google 的 Deep Research 功能，通过 Graph of Thoughts 框架和多智能体协作完成专业研究。</p>
+
+                    <div class="product-tags">
+                        <span class="product-tag">深度研究</span>
+                        <span class="product-tag">Claude Code</span>
+                        <span class="product-tag">Graph of Thoughts</span>
+                        <span class="product-tag">多智能体</span>
+                        <span class="product-tag">自动化研究</span>
+                        <span class="product-tag">GoT框架</span>
+                    </div>
+
+                    <div class="difficulty-level">
+                        <strong>难度等级：</strong>高级
+                    </div>
+
+                    <div class="github-link">
+                        <a href="https://github.com/liangdabiao/Claude-Code-Deep-Research-main" target="_blank">📁 访问GitHub项目页面</a>
+                    </div>
+                </div>
+
+                <h2>目录</h2>
+                <ul>
+                    <li><a href="#introduction">1. 项目介绍</a></li>
+                    <li><a href="#installation">2. 安装配置</a></li>
+                    <li><a href="#usage">3. 使用方法</a></li>
+                    <li><a href="#features">4. 功能详解</a></li>
+                    <li><a href="#examples">5. 使用示例</a></li>
+                    <li><a href="#troubleshooting">6. 常见问题</a></li>
+                    <li><a href="#resources">7. 相关资源</a></li>
+                </ul>
+
+                <h2 id="introduction">1. 项目介绍</h2>
+                <p>Claude Code Deep Research 是一款先进的AI工具，旨在实现专业级别的深度研究。该项目利用 Claude Code、Graph of Thoughts、MCP Protocol、WebSearch、WebFetch、Playwright、多智能体协作 等技术，为用户提供类似OpenAI和Google的Deep Research功能解决方案。</p>
+
+                <h3>核心特性</h3>
+                <ul>
+                    <li>🧠 Graph of Thoughts 框架：基于图结构的推理路径管理，支持平衡、深度优先、广度优先三种研究模式</li>
+                    <li>🔬 7阶段深度研究流程：问题细化、研究规划、多智能体研究、信息收集、综合分析、引用验证、报告生成</li>
+                    <li>🤖 多智能体架构：Web研究Agent（3-5个）、学术/技术Agent（1-2个）、交叉引用Agent（1个）并行协作</li>
+                    <li>📊 A-E质量评级系统：A级同行评审、B级队列研究、C级专家意见、D级预印本、E级轶事推测</li>
+                    <li>🔍 引用验证机制：每个事实声明必须包含作者/组织、发布日期、来源标题、URL/DOI、页码</li>
+                    <li>📋 结构化输出：生成1-2页执行摘要、20-50页完整报告、数据、图表、来源、研究笔记、附录</li>
+                    <li>⚡ 简单易用：仅需一个命令 /deep-research [主题]，全程自动化完成深度研究</li>
+                    <li>⚙️ 灵活配置：支持全球范围、时间范围、来源类型、报告格式等多种研究参数定制</li>
+                </ul>
+
+                <h2 id="installation">2. 安装配置</h2>
+                <p>在开始使用 Claude Code Deep Research 之前，您需要完成以下准备工作：</p>
+
+                <h3>系统要求</h3>
+                <ul>
+                    <li>操作系统：任何支持现代浏览器的操作系统</li>
+                    <li>网络连接：稳定的互联网连接</li>
+                    <li>其他：Claude Code 账户，MCP协议支持</li>
+                </ul>
+
+                <h3>安装步骤</h3>
+                <ol>
+                    <li>配置Claude Code Agent Skills：
+                        <pre><code># 按照项目文档配置Deep Research Agent Skills
+# 将Skills文件导入到Claude Code环境中</code></pre>
+                    </li>
+                    <li>设置MCP协议：
+                        <pre><code># 配置MCP协议服务器
+# 确保WebSearch、WebFetch、Playwright等工具可用</code></pre>
+                    </li>
+                    <li>验证配置：
+                        <pre><code># 测试基本研究功能
+# 确保所有组件正常工作</code></pre>
+                    </li>
+                </ol>
+
+                <h2 id="usage">3. 使用方法</h2>
+                <p>Claude Code Deep Research 提供了多种使用方式，您可以根据需求选择最适合的方法：</p>
+
+                <h3>基本使用</h3>
+                <pre><code># 在Claude中使用深度研究功能
+# 使用/deep-research命令启动研究
+/deep-research 人工智能在医疗诊断中的应用前景</code></pre>
+
+                <h3>高级功能</h3>
+                <p>对于更复杂的使用场景，您可以：</p>
+                <ul>
+                    <li>自定义研究参数和范围</li>
+                    <li>选择不同的研究模式（平衡、深度优先、广度优先）</li>
+                    <li>指定特定的来源类型和时间范围</li>
+                    <li>调整报告格式和详细程度</li>
+                </ul>
+
+                <h2 id="features">4. 功能详解</h2>
+                <p>Claude Code Deep Research 包含以下核心功能模块：</p>
+
+                <h3>Graph of Thoughts 框架</h3>
+                <ul>
+                    <li>基于图结构的推理路径管理</li>
+                    <li>支持多种研究模式</li>
+                    <li>动态调整研究方向</li>
+                </ul>
+
+                <h3>7阶段深度研究流程</h3>
+                <ul>
+                    <li>问题细化：明确研究主题和目标</li>
+                    <li>研究规划：制定研究计划和策略</li>
+                    <li>多智能体研究：并行执行研究任务</li>
+                    <li>信息收集：收集相关数据和信息</li>
+                    <li>综合分析：整合和分析收集的信息</li>
+                    <li>引用验证：验证信息来源和准确性</li>
+                    <li>报告生成：生成专业研究报告</li>
+                </ul>
+
+                <h3>多智能体架构</h3>
+                <ul>
+                    <li>Web研究Agent：负责网络信息收集</li>
+                    <li>学术/技术Agent：负责学术和技术资料分析</li>
+                    <li>交叉引用Agent：负责信息验证和交叉引用</li>
+                </ul>
+
+                <h2 id="examples">5. 使用示例</h2>
+                <p>以下是一些典型的使用场景和示例：</p>
+
+                <h3>示例 1：科技趋势研究</h3>
+                <p>研究特定技术领域的发展趋势</p>
+                <pre><code>1. 输入研究主题：/deep-research 量子计算技术的最新进展和未来发展方向
+2. 系统启动7阶段研究流程
+3. 多智能体并行收集相关信息
+4. 生成详细的技术趋势分析报告</code></pre>
+
+                <h3>示例 2：市场分析研究</h3>
+                <p>进行深入的市场分析研究</p>
+                <pre><code>1. 定义研究范围：/deep-research 新能源汽车行业的发展现状和投资机会
+2. 系统执行深度研究流程
+3. 收集市场数据、竞争格局、技术趋势等信息
+4. 生成专业的市场分析报告和投资建议</code></pre>
+
+                <h2 id="troubleshooting">6. 常见问题</h2>
+                <h3>Q: 研究过程需要多长时间？</h3>
+                <p>A: 研究时间取决于主题复杂度和所需深度，一般研究需要30分钟到数小时不等。</p>
+
+                <h3>Q: 如何确保研究结果的准确性？</h3>
+                <p>A: 系统采用A-E质量评级系统和引用验证机制，确保信息来源可靠和准确性。</p>
+
+                <h3>Q: 可以自定义研究参数吗？</h3>
+                <p>A: 可以，支持自定义时间范围、来源类型、地理范围等多种研究参数。</p>
+
+                <h2 id="resources">7. 相关资源</h2>
+                <ul>
+                    <li><a href="https://github.com/liangdabiao/Claude-Code-Deep-Research-main" target="_blank">GitHub 项目页面</a></li>
+                    <li><a href="https://github.com/liangdabiao/Claude-Code-Deep-Research-main/issues" target="_blank">问题反馈</a></li>
+                    <li><a href="https://www.anthropic.com/claude" target="_blank">Claude Code 官方网站</a></li>
+                    <li><a href="https://arxiv.org/" target="_blank">学术研究资源</a></li>
+                    <li><a href="https://github.com/liangdabiao" target="_blank">开发者其他项目</a></li>
+                </ul>
+            </article>
+        </main>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

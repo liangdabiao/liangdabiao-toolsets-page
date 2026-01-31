@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商业创意验证器 - 使用指南</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>📚 AI工具文档中心</h2>
+            </div>
+            <nav class="main-nav">
+                <h3>全部AI工具</h3>
+                <ul id="project-list">
+                    <!-- 项目列表将通过JavaScript动态生成 -->
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="nav-buttons">
+                    <a href="../index.html" class="back-button">← 文档首页</a>
+                    <a href="../../" class="back-button" style="margin-left: 10px;">🏠 主站</a>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="搜索文档...">
+                    <button id="search-button">🔍</button>
+                </div>
+            </header>
+
+            <article class="doc-content">
+                <h1>商业创意验证器</h1>
+                
+                <div class="product-info">
+                    <p>AI驱动的市场调研应用，通过分析小红书、Reddit等平台的用户评论来解析市场需求、用户痛点及竞争格局，帮助创业者深入了解消费者需求，发现商业机会。该工具利用Streamlit、Python、OpenAI、ScraperAPI、Pydantic、TikHub API等技术，为用户提供从创意输入到验证报告生成的完整解决方案。</p>
+                    
+                    <div class="product-tags">
+                        <span class="product-tag">商业调研</span>
+                        <span class="product-tag">AI分析</span>
+                        <span class="product-tag">数据抓取</span>
+                        <span class="product-tag">市场验证</span>
+                        <span class="product-tag">创业工具</span>
+                        <span class="product-tag">小红书</span>
+                        <span class="product-tag">Reddit</span>
+                    </div>
+                    
+                    <div class="difficulty-level">
+                        <strong>难度等级：</strong>进阶
+                    </div>
+                    
+                    <div class="github-link">
+                        <a href="https://github.com/liangdabiao/Business_Idea_Validator" target="_blank">📁 访问GitHub项目页面</a>
+                    </div>
+                </div>
+                
+                <h2>目录</h2>
+                <ul>
+                    <li><a href="#introduction">1. 项目介绍</a></li>
+                    <li><a href="#installation">2. 安装配置</a></li>
+                    <li><a href="#usage">3. 使用方法</a></li>
+                    <li><a href="#features">4. 功能详解</a></li>
+                    <li><a href="#examples">5. 使用示例</a></li>
+                    <li><a href="#troubleshooting">6. 常见问题</a></li>
+                    <li><a href="#resources">7. 相关资源</a></li>
+                </ul>
+                
+                <h2 id="introduction">1. 项目介绍</h2>
+                <p>商业创意验证器是一款AI驱动的市场调研应用，旨在通过分析社交媒体平台上的用户评论来验证商业创意的可行性。该项目利用Streamlit、Python、OpenAI、ScraperAPI、Pydantic、TikHub API、数据抓取等技术，为用户提供从创意输入到验证报告生成的完整解决方案。</p>
+                
+                <h3>核心特性</h3>
+                <ul>
+                    <li>💡 商业创意验证：输入任意商业创意，系统自动生成相关关键词并分析市场接受度、竞争激烈程度和可行性</li>
+                    <li>📊 智能数据分析：使用AI模型深度分析用户评论，提取痛点、兴奋信号、竞争对手信息和潜在风险</li>
+                    <li>🌐 多平台数据源：支持小红书、Reddit、Hacker News、公众号等多个平台，集成第三方数据方案如ScraperAPI</li>
+                    <li>📈 可视化报告：交互式图表展示验证评分，生成专业的执行摘要和详细的商业分析报告</li>
+                    <li>🎯 精准市场洞察：基于真实用户反馈分析市场需求，识别趋势机会，为商业决策提供数据支持</li>
+                    <li>⚡ 快速验证流程：从创意输入到验证报告生成，一键完成整个市场调研流程，大幅节省时间和成本</li>
+                </ul>
+                
+                <h2 id="installation">2. 安装配置</h2>
+                <p>在开始使用 商业创意验证器 之前，您需要完成以下准备工作：</p>
+                
+                <h3>系统要求</h3>
+                <ul>
+                    <li>操作系统：Windows, macOS 或 Linux</li>
+                    <li>内存：至少 4GB RAM（推荐 8GB 或以上）</li>
+                    <li>存储空间：至少 500MB 可用空间</li>
+                    <li>其他：Python 3.8+, pip 包管理器, OpenAI API Key</li>
+                </ul>
+                
+                <h3>安装步骤</h3>
+                <ol>
+                    <li>克隆项目仓库：
+                        <pre><code>git clone https://github.com/liangdabiao/Business_Idea_Validator
+cd Business_Idea_Validator</code></pre>
+                    </li>
+                    <li>安装依赖：
+                        <pre><code>pip install -r requirements.txt</code></pre>
+                    </li>
+                    <li>配置API密钥：
+                        <pre><code># 编辑 business_validator/config.py 配置数据接口
+# 编辑 openai_llm.py 配置OpenAI API密钥
+OPENAI_API_KEY=your_openai_api_key</code></pre>
+                    </li>
+                </ol>
+                
+                <h2 id="usage">3. 使用方法</h2>
+                <p>商业创意验证器 提供了多种使用方式，您可以根据需求选择最适合的方法：</p>
+                
+                <h3>基本使用</h3>
+                <p>启动应用并开始使用：</p>
+                <pre><code># 小红书商业调研
+streamlit run business_validator_ui_cn.py
+
+# Reddit 商业调研
+streamlit run business_validator_ui.py
+
+# 小红书评论分析
+python app.py
+
+# Reddit 评论分析
+python app_reddit.py</code></pre>
+                <p>应用将在 http://localhost:8501 启动</p>
+                
+                <h3>高级功能</h3>
+                <p>对于更复杂的使用场景，您可以：</p>
+                <ul>
+                    <li>自定义分析参数和权重</li>
+                    <li>选择不同的数据源平台</li>
+                    <li>调整AI模型参数以优化分析结果</li>
+                    <li>扩展支持更多的社交媒体平台</li>
+                </ul>
+                
+                <h2 id="features">4. 功能详解</h2>
+                <p>商业创意验证器 包含以下核心功能模块：</p>
+                
+                <h3>多平台数据支持</h3>
+                <ul>
+                    <li><strong>小红书</strong>：中国主流生活方式分享平台，获取用户真实使用体验</li>
+                    <li><strong>Reddit</strong>：全球热门讨论社区，获取海外用户观点和反馈</li>
+                    <li><strong>Hacker News</strong>：技术创业者聚集地，获取专业市场分析</li>
+                    <li><strong>微信公众号</strong>：专业内容平台，获取深度行业分析和用户评论</li>
+                </ul>
+                
+                <h3>第三方数据方案集成</h3>
+                <ul>
+                    <li><strong>ScraperAPI</strong>：专业的网页抓取API服务</li>
+                    <li><strong>TikHub API</strong>：社交媒体数据获取方案</li>
+                    <li><strong>自定义扩展</strong>：支持更多数据源接入</li>
+                </ul>
+                
+                <h3>智能分析框架</h3>
+                <ul>
+                    <li><strong>痛点分析 (Pain Points)</strong>：识别用户在相关产品或服务中遇到的问题和困扰</li>
+                    <li><strong>兴奋信号 (Excitement Signals)</strong>：发现用户对相关领域的积极情绪和期待</li>
+                    <li><strong>风险信号 (Risk Signals)</strong>：识别潜在的商业模式风险和市场障碍</li>
+                    <li><strong>竞争对手分析 (Competitor Analysis)</strong>：分析现有市场竞争格局和主要玩家</li>
+                    <li><strong>市场需求评估 (Market Demand)</strong>：评估目标市场规模和用户需求强度</li>
+                    <li><strong>改进建议 (Improvement Suggestions)</strong>：基于分析结果提供商业优化建议</li>
+                </ul>
+                
+                <h2 id="examples">5. 使用示例</h2>
+                <p>以下是一些典型的使用场景和示例：</p>
+                
+                <h3>示例 1：小红书商业调研</h3>
+                <p>分析小红书平台上关于某个商业创意的用户反馈</p>
+                <pre><code># 启动小红书商业调研应用
+streamlit run business_validator_ui_cn.py
+
+# 在界面中输入商业创意，如"在苏州卖陈皮"
+# 系统将自动生成相关关键词并分析小红书用户反馈</code></pre>
+                
+                <h3>示例 2：Reddit 商业调研</h3>
+                <p>获取海外用户对商业创意的看法</p>
+                <pre><code># 启动Reddit商业调研应用
+streamlit run business_validator_ui.py
+
+# 输入商业创意，获取海外用户观点和市场反馈</code></pre>
+                
+                <h3>示例 3：评论深度分析</h3>
+                <p>对特定产品或服务的用户评论进行深度分析</p>
+                <pre><code># 小红书评论分析
+python app.py
+
+# Reddit评论分析
+python app_reddit.py</code></pre>
+                
+                <h2 id="troubleshooting">6. 常见问题</h2>
+                <h3>Q: 如何开始使用 商业创意验证器？</h3>
+                <p>A: 首先确保已安装Python 3.8+和必要的依赖包，然后克隆项目并配置API密钥，最后启动相应的应用即可开始使用。</p>
+                
+                <h3>Q: 支持哪些数据源？</h3>
+                <p>A: 支持小红书、Reddit、Hacker News、微信公众号等多个平台，同时集成了ScraperAPI、TikHub API等第三方数据方案。</p>
+                
+                <h3>Q: 如何提高分析准确性？</h3>
+                <p>A: 可以通过优化商业创意描述、选择合适的数据源平台、调整AI模型参数等方式来提高分析准确性。</p>
+                
+                <h2 id="resources">7. 相关资源</h2>
+                <ul>
+                    <li><a href="https://github.com/liangdabiao/Business_Idea_Validator" target="_blank">GitHub 项目页面</a></li>
+                    <li><a href="https://github.com/liangdabiao/Business_Idea_Validator/issues" target="_blank">问题反馈</a></li>
+                    <li><a href="https://github.com/liangdabiao/Business_Idea_Validator/pulls" target="_blank">贡献代码</a></li>
+                    <li><a href="https://streamlit.io/" target="_blank">Streamlit 官方文档</a></li>
+                    <li><a href="https://platform.openai.com/docs/" target="_blank">OpenAI API 官方文档</a></li>
+                </ul>
+            </article>
+        </main>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

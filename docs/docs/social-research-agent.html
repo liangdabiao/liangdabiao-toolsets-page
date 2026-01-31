@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>社媒调研智能体 - 使用指南</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>📚 AI工具文档中心</h2>
+            </div>
+            <nav class="main-nav">
+                <h3>全部AI工具</h3>
+                <ul id="project-list">
+                    <!-- 项目列表将通过JavaScript动态生成 -->
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="nav-buttons">
+                    <a href="../index.html" class="back-button">← 文档首页</a>
+                    <a href="../../" class="back-button" style="margin-left: 10px;">🏠 主站</a>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="搜索文档...">
+                    <button id="search-button">🔍</button>
+                </div>
+            </header>
+
+            <article class="doc-content">
+                <h1>社媒调研智能体</h1>
+
+                <div class="product-info">
+                    <p>基于 Claude Code Skills 的社媒舆情深度调研系统，将社媒分析和深度研究两个技能合二为一，实现对抖音、小红书、微博等12+主流社交平台的自动化舆情分析和市场调研。</p>
+
+                    <div class="product-tags">
+                        <span class="product-tag">社媒调研</span>
+                        <span class="product-tag">舆情分析</span>
+                        <span class="product-tag">Claude Code</span>
+                        <span class="product-tag">Skills</span>
+                        <span class="product-tag">TikHub API</span>
+                        <span class="product-tag">多平台</span>
+                        <span class="product-tag">自动化调研</span>
+                    </div>
+
+                    <div class="difficulty-level">
+                        <strong>难度等级：</strong>进阶
+                    </div>
+
+                    <div class="github-link">
+                        <a href="https://github.com/liangdabiao/social_research_agent" target="_blank">📁 访问GitHub项目页面</a>
+                    </div>
+                </div>
+
+                <h2>目录</h2>
+                <ul>
+                    <li><a href="#introduction">1. 项目介绍</a></li>
+                    <li><a href="#installation">2. 安装配置</a></li>
+                    <li><a href="#usage">3. 使用方法</a></li>
+                    <li><a href="#features">4. 功能详解</a></li>
+                    <li><a href="#examples">5. 使用示例</a></li>
+                    <li><a href="#troubleshooting">6. 常见问题</a></li>
+                    <li><a href="#resources">7. 相关资源</a></li>
+                </ul>
+
+                <h2 id="introduction">1. 项目介绍</h2>
+                <p>社媒调研智能体 是一款先进的AI工具，旨在实现社交媒体舆情深度调研。该项目利用 Claude Code、Agent Skills、TikHub API、WebSearch、WebFetch、数据分析、舆情监控 等技术，为用户提供12+主流社交平台的自动化舆情分析和市场调研解决方案。</p>
+
+                <h3>核心特性</h3>
+                <ul>
+                    <li>🔗 双技能合体：社媒调研+深度研究两个Claude Code Skills完美结合，实现全自动化调研</li>
+                    <li>🌐 12+平台覆盖：支持抖音、TikTok、小红书、微博、B站、知乎、Instagram、YouTube等主流社交平台</li>
+                    <li>🤖 智能任务编排：AI自动启动Web Search和TikHub API进行多维度深度调研</li>
+                    <li>📊 舆情分析报告：生成包含情感分析、话题趋势、用户画像、竞品对比的专业报告</li>
+                    <li>📈 数据可视化：生成详细的数据分析图表，直观展示调研结果</li>
+                    <li>🤝 多智能体协作：社媒Agent抓取数据、研究Agent深度分析、报告Agent生成结论</li>
+                    <li>⚡ 一键式操作：只需输入调研主题，系统自动完成从数据收集到报告生成的全流程</li>
+                    <li>⚙️ 可定制化：支持自定义调研参数、时间范围、数据源和报告格式</li>
+                </ul>
+
+                <h2 id="installation">2. 安装配置</h2>
+                <p>在开始使用 社媒调研智能体 之前，您需要完成以下准备工作：</p>
+
+                <h3>系统要求</h3>
+                <ul>
+                    <li>操作系统：任何支持现代浏览器的操作系统</li>
+                    <li>网络连接：稳定的互联网连接</li>
+                    <li>其他：Claude Code 账户，TikHub API访问权限</li>
+                </ul>
+
+                <h3>安装步骤</h3>
+                <ol>
+                    <li>克隆项目仓库：
+                        <pre><code>git clone https://github.com/liangdabiao/social_research_agent</code></pre>
+                    </li>
+                    <li>进入项目目录：
+                        <pre><code>cd social_research_agent</code></pre>
+                    </li>
+                    <li>配置Claude Code Skills：
+                        <pre><code># 按照项目文档配置Agent Skills
+# 配置TikHub API和其他必要的API密钥</code></pre>
+                    </li>
+                </ol>
+
+                <h2 id="usage">3. 使用方法</h2>
+                <p>社媒调研智能体 提供了多种使用方式，您可以根据需求选择最适合的方法：</p>
+
+                <h3>基本使用</h3>
+                <pre><code># 在Claude中使用社媒调研智能体
+# 直接输入调研主题
+"请对'新能源汽车'这个话题在主流社交平台进行舆情调研"</code></pre>
+
+                <h3>高级功能</h3>
+                <p>对于更复杂的使用场景，您可以：</p>
+                <ul>
+                    <li>指定特定的社交平台进行调研</li>
+                    <li>设定特定的时间范围</li>
+                    <li>自定义调研深度和报告格式</li>
+                    <li>比较多个话题或品牌的舆情</li>
+                </ul>
+
+                <h2 id="features">4. 功能详解</h2>
+                <p>社媒调研智能体 包含以下核心功能模块：</p>
+
+                <h3>双技能合体系统</h3>
+                <ul>
+                    <li>社媒调研技能：负责社交媒体数据收集</li>
+                    <li>深度研究技能：负责数据分析和报告生成</li>
+                    <li>自动化流程：两技能协同工作，实现端到端调研</li>
+                </ul>
+
+                <h3>12+平台覆盖</h3>
+                <ul>
+                    <li>中文平台：抖音、小红书、微博、B站、知乎</li>
+                    <li>国际平台：Instagram、YouTube、Twitter、Facebook</li>
+                    <li>其他平台：TikTok、LinkedIn等</li>
+                </ul>
+
+                <h3>智能任务编排</h3>
+                <ul>
+                    <li>自动启动Web Search获取背景信息</li>
+                    <li>调用TikHub API获取社交平台数据</li>
+                    <li>多维度数据整合分析</li>
+                </ul>
+
+                <h2 id="examples">5. 使用示例</h2>
+                <p>以下是一些典型的使用场景和示例：</p>
+
+                <h3>示例 1：品牌舆情监控</h3>
+                <p>监控特定品牌的社交媒体声誉</p>
+                <pre><code>1. 输入调研主题："监控某知名手机品牌在过去一个月的社交媒体舆情"
+2. 系统自动在多个平台收集相关数据
+3. 分析用户情感倾向和主要讨论话题
+4. 生成详细的舆情分析报告</code></pre>
+
+                <h3>示例 2：产品上市前调研</h3>
+                <p>在产品发布前进行市场调研</p>
+                <pre><code>1. 定义调研目标："了解消费者对新型智能手表的需求和期望"
+2. 系统在相关社交平台搜索讨论和反馈
+3. 分析用户画像和需求特征
+4. 生成市场机会和风险分析报告</code></pre>
+
+                <h2 id="troubleshooting">6. 常见问题</h2>
+                <h3>Q: 如何提高数据收集的准确性？</h3>
+                <p>A: 使用更具体和相关的关键词，结合平台特定的话题标签，可以提高数据收集的准确性。</p>
+
+                <h3>Q: 调研报告的时效性如何？</h3>
+                <p>A: 系统可以指定时间范围进行调研，默认情况下会使用最新的数据，确保报告的时效性。</p>
+
+                <h3>Q: 是否可以比较多个品牌或话题？</h3>
+                <p>A: 可以，系统支持同时调研多个品牌或话题，并生成对比分析报告。</p>
+
+                <h2 id="resources">7. 相关资源</h2>
+                <ul>
+                    <li><a href="https://github.com/liangdabiao/social_research_agent" target="_blank">GitHub 项目页面</a></li>
+                    <li><a href="https://github.com/liangdabiao/social_research_agent/issues" target="_blank">问题反馈</a></li>
+                    <li><a href="https://www.anthropic.com/claude" target="_blank">Claude Code 官方网站</a></li>
+                    <li><a href="https://www.tikhub.net/" target="_blank">TikHub API 官方网站</a></li>
+                    <li><a href="https://github.com/liangdabiao" target="_blank">开发者其他项目</a></li>
+                </ul>
+            </article>
+        </main>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

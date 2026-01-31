@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>百炼AI聊天框 - 使用指南</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>📚 AI工具文档中心</h2>
+            </div>
+            <nav class="main-nav">
+                <h3>全部AI工具</h3>
+                <ul id="project-list">
+                    <!-- 项目列表将通过JavaScript动态生成 -->
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="nav-buttons">
+                    <a href="../index.html" class="back-button">← 文档首页</a>
+                    <a href="../../" class="back-button" style="margin-left: 10px;">🏠 主站</a>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="搜索文档...">
+                    <button id="search-button">🔍</button>
+                </div>
+            </header>
+
+            <article class="doc-content">
+                <h1>百炼AI聊天框</h1>
+                
+                <div class="product-info">
+                    <p>基于阿里云百炼的轻量级聊天客服系统，只需2个文件实现完整功能！深度集成阿里云百炼AI服务，采用通义千问大模型，提供基于Server-Sent Events(SSE)的实时流式对话体验。支持Markdown渲染、多轮对话、智能回退机制，功能完整且易于部署。</p>
+                    
+                    <div class="product-tags">
+                        <span class="product-tag">阿里云百炼</span>
+                        <span class="product-tag">聊天机器人</span>
+                        <span class="product-tag">Flask</span>
+                        <span class="product-tag">通义千问</span>
+                        <span class="product-tag">流式响应</span>
+                        <span class="product-tag">客服系统</span>
+                        <span class="product-tag">聊天框</span>
+                    </div>
+                    
+                    <div class="difficulty-level">
+                        <strong>难度等级：</strong>初级
+                    </div>
+                    
+                    <div class="github-link">
+                        <a href="https://github.com/liangdabiao/bailian_ai_chatbox" target="_blank">📁 访问GitHub项目页面</a>
+                    </div>
+                </div>
+                
+                <h2>目录</h2>
+                <ul>
+                    <li><a href="#introduction">1. 项目介绍</a></li>
+                    <li><a href="#installation">2. 安装配置</a></li>
+                    <li><a href="#usage">3. 使用方法</a></li>
+                    <li><a href="#features">4. 功能详解</a></li>
+                    <li><a href="#examples">5. 使用示例</a></li>
+                    <li><a href="#troubleshooting">6. 常见问题</a></li>
+                    <li><a href="#resources">7. 相关资源</a></li>
+                </ul>
+                
+                <h2 id="introduction">1. 项目介绍</h2>
+                <p>百炼AI聊天框是一款基于阿里云百炼的轻量级聊天客服系统，旨在通过极简的设计实现完整的聊天功能。该项目利用Python 3.7+、Flask 2.3.3、阿里云百炼、通义千问、DashScope API、SSE流式响应、JavaScript、HTML5、CSS3等技术，为用户提供从后端服务到前端界面的完整解决方案。</p>
+                
+                <h3>核心特性</h3>
+                <ul>
+                    <li>📄 极简设计：只需 backend/app.py 和 frontend/index.html 两个文件即可实现完整功能</li>
+                    <li>⚡ 流式响应：基于 Server-Sent Events (SSE) 的实时对话体验，模拟真实打字效果</li>
+                    <li>🔄 智能回退：流式失败时自动切换至非流式模式，确保服务始终可用</li>
+                    <li>🤖 百炼集成：深度集成阿里云百炼 AI 服务，采用通义千问大模型</li>
+                    <li>💾 会话管理：支持云端和本地两种会话历史管理方式，支持多轮对话</li>
+                    <li>📝 Markdown 支持：前端自动渲染 AI 回复中的 Markdown 格式，支持代码高亮</li>
+                </ul>
+                
+                <h2 id="installation">2. 安装配置</h2>
+                <p>在开始使用 百炼AI聊天框 之前，您需要完成以下准备工作：</p>
+                
+                <h3>系统要求</h3>
+                <ul>
+                    <li>操作系统：Windows, macOS 或 Linux</li>
+                    <li>内存：至少 2GB RAM（推荐 4GB 或以上）</li>
+                    <li>存储空间：至少 500MB 可用空间</li>
+                    <li>其他：Python 3.7+, Conda, FFmpeg, ImageMagick, 阿里云百炼服务</li>
+                </ul>
+                
+                <h3>安装步骤</h3>
+                <ol>
+                    <li>克隆项目仓库：
+                        <pre><code>git clone https://github.com/liangdabiao/bailian_ai_chatbox.git
+cd bailian_ai_chatbox/backend</code></pre>
+                    </li>
+                    <li>创建虚拟环境：
+                        <pre><code># Windows
+python -m venv venv
+venv\Scripts\activate
+
+# Linux/macOS
+python3 -m venv venv
+source venv/bin/activate</code></pre>
+                    </li>
+                    <li>安装依赖：
+                        <pre><code>pip install -r requirements.txt</code></pre>
+                    </li>
+                    <li>配置环境变量：
+                        <pre><code>cp .env.example .env
+# 编辑 .env 文件，填入阿里云凭证
+API_KEY=sk-your-dashscope-api-key
+APP_ID=your-bailian-app-id</code></pre>
+                    </li>
+                </ol>
+                
+                <h2 id="usage">3. 使用方法</h2>
+                <p>百炼AI聊天框 提供了多种使用方式，您可以根据需求选择最适合的方法：</p>
+                
+                <h3>基本使用</h3>
+                <p>启动服务并开始使用：</p>
+                <pre><code># Windows
+start.bat
+
+# Linux/macOS
+chmod +x start.sh
+./start.sh</code></pre>
+                <p>后端服务将在 http://localhost:8000 启动</p>
+                
+                <h3>高级功能</h3>
+                <p>对于更复杂的使用场景，您可以：</p>
+                <ul>
+                    <li>自定义聊天机器人配置</li>
+                    <li>调整AI模型参数以优化回复质量</li>
+                    <li>扩展支持更多的对话功能</li>
+                    <li>集成到现有的客服系统中</li>
+                </ul>
+                
+                <h2 id="features">4. 功能详解</h2>
+                <p>百炼AI聊天框 包含以下核心功能模块：</p>
+                
+                <h3>项目架构</h3>
+                <ul>
+                    <li><strong>前端层</strong>：HTML5/CSS3, JavaScript (Vanilla), SSE 流式接收, Markdown 渲染, 响应式设计</li>
+                    <li><strong>后端层</strong>：Python 3.7+, Flask 2.3.3, RESTful API, CORS 支持, 环境变量配置</li>
+                    <li><strong>AI 服务层</strong>：阿里云百炼, 通义千问大模型, DashScope API, 多轮对话, 智能回退</li>
+                </ul>
+                
+                <h3>API 接口</h3>
+                <ul>
+                    <li><strong>GET /health</strong>：健康检查端点</li>
+                    <li><strong>GET /myapi/v1/chat-bot-config</strong>：获取聊天机器人配置</li>
+                    <li><strong>POST /myapi/v1/chat-bot/stream</strong>：流式聊天接口（SSE）</li>
+                    <li><strong>POST /myapi/v1/chat-bot</strong>：非流式聊天接口（备用）</li>
+                </ul>
+                
+                <h3>技术亮点</h3>
+                <ul>
+                    <li><strong>开发特性</strong>：
+                        <ul>
+                            <li>RESTful API - 标准化接口设计，易于集成</li>
+                            <li>CORS 支持 - 完善的跨域请求处理</li>
+                            <li>错误处理 - 详细的错误日志和友好提示</li>
+                            <li>配置化 - 通过环境变量灵活配置</li>
+                            <li>健康检查 - 内置服务状态监控端点</li>
+                        </ul>
+                    </li>
+                    <li><strong>用户体验</strong>：
+                        <ul>
+                            <li>实时打字动画 - 模拟真实对话体验</li>
+                            <li>消息复制 - 一键复制 AI 回复内容</li>
+                            <li>快捷按钮 - 预设常用问题快捷入口</li>
+                            <li>响应式设计 - 支持桌面和移动设备</li>
+                            <li>反馈系统 - 内置用户反馈收集功能</li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <h2 id="examples">5. 使用示例</h2>
+                <p>以下是一些典型的使用场景和示例：</p>
+                
+                <h3>示例 1：流式响应示例</h3>
+                <p>通过API进行流式对话</p>
+                <pre><code>// 请求体
+{
+    "last_prompt": "你好",
+    "conversation_history": [],
+    "session_id": "optional-session-id"
+}
+
+// SSE 响应
+data: {"success": true, "content": "你", "finished": false}
+data: {"success": true, "content": "好", "finished": false}
+data: {"success": true, "content": "！", "finished": true, "message": "Stream completed"}</code></pre>
+                
+                <h3>示例 2：电商客服场景</h3>
+                <p>为电商平台提供智能客服，解答产品咨询、订单查询等问题</p>
+                <pre><code>用户：请问这款手机的价格是多少？
+AI：这款手机的售价是2999元，目前有优惠活动，可以享受200元折扣...</code></pre>
+                
+                <h3>示例 3：教育培训场景</h3>
+                <p>作为在线教育平台的助教，回答学员问题，提供学习指导</p>
+                <pre><code>用户：如何学习Python编程？
+AI：学习Python编程的建议步骤：
+1. 掌握基础语法
+2. 学习数据结构
+3. 实践项目开发
+...</code></pre>
+                
+                <h2 id="troubleshooting">6. 常见问题</h2>
+                <h3>Q: 如何开始使用 百炼AI聊天框？</h3>
+                <p>A: 首先确保已开通阿里云百炼服务并获取API Key，然后克隆项目并配置环境变量，安装依赖后启动服务即可开始使用。</p>
+                
+                <h3>Q: 支持哪些AI模型？</h3>
+                <p>A: 系统深度集成阿里云百炼服务，采用通义千问大模型，支持多轮对话和智能回退机制。</p>
+                
+                <h3>Q: 如何处理流式响应失败？</h3>
+                <p>A: 系统具有智能回退机制，当流式响应失败时会自动切换至非流式模式，确保服务始终可用。</p>
+                
+                <h2 id="resources">7. 相关资源</h2>
+                <ul>
+                    <li><a href="https://github.com/liangdabiao/bailian_ai_chatbox" target="_blank">GitHub 项目页面</a></li>
+                    <li><a href="https://github.com/liangdabiao/bailian_ai_chatbox/issues" target="_blank">问题反馈</a></li>
+                    <li><a href="https://github.com/liangdabiao/bailian_ai_chatbox/pulls" target="_blank">贡献代码</a></li>
+                    <li><a href="https://help.aliyun.com/product/182239.htm" target="_blank">阿里云百炼官方文档</a></li>
+                    <li><a href="https://flask.palletsprojects.com/" target="_blank">Flask 官方文档</a></li>
+                </ul>
+            </article>
+        </main>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

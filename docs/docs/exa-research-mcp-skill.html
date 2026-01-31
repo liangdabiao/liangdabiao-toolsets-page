@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exa企业与市场研究工具 - 使用指南</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>📚 AI工具文档中心</h2>
+            </div>
+            <nav class="main-nav">
+                <h3>全部AI工具</h3>
+                <ul id="project-list">
+                    <!-- 项目列表将通过JavaScript动态生成 -->
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="nav-buttons">
+                    <a href="../index.html" class="back-button">← 文档首页</a>
+                    <a href="../../" class="back-button" style="margin-left: 10px;">🏠 主站</a>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="搜索文档...">
+                    <button id="search-button">🔍</button>
+                </div>
+            </header>
+
+            <article class="doc-content">
+                <h1>Exa企业与市场研究工具</h1>
+
+                <div class="product-info">
+                    <p>基于 Claude Code 和 Exa 搜索引擎的 AI 驱动企业与市场研究工具，通过技能系统和代理架构进行公司情报、竞争对手分析和市场研究。</p>
+
+                    <div class="product-tags">
+                        <span class="product-tag">Exa搜索</span>
+                        <span class="product-tag">公司研究</span>
+                        <span class="product-tag">竞争对手分析</span>
+                        <span class="product-tag">Claude Code</span>
+                        <span class="product-tag">市场研究</span>
+                        <span class="product-tag">MCP集成</span>
+                    </div>
+
+                    <div class="difficulty-level">
+                        <strong>难度等级：</strong>中级
+                    </div>
+
+                    <div class="github-link">
+                        <a href="https://github.com/liangdabiao/exa-research-mcp-skill" target="_blank">📁 访问GitHub项目页面</a>
+                    </div>
+                </div>
+
+                <h2>目录</h2>
+                <ul>
+                    <li><a href="#introduction">1. 项目介绍</a></li>
+                    <li><a href="#installation">2. 安装配置</a></li>
+                    <li><a href="#usage">3. 使用方法</a></li>
+                    <li><a href="#features">4. 功能详解</a></li>
+                    <li><a href="#examples">5. 使用示例</a></li>
+                    <li><a href="#troubleshooting">6. 常见问题</a></li>
+                    <li><a href="#resources">7. 相关资源</a></li>
+                </ul>
+
+                <h2 id="introduction">1. 项目介绍</h2>
+                <p>Exa企业与市场研究工具 是一款先进的AI工具，旨在帮助企业进行深度的公司情报和市场研究。该项目利用 Claude Code、Exa AI、MCP Protocol、Agent Skills、多智能体协作、公司研究 等技术，为用户提供专业的企业与市场研究解决方案。</p>
+
+                <h3>核心特性</h3>
+                <ul>
+                    <li>🔍 智能公司研究：自动收集公司信息、新闻、社交媒体动态、财务数据和 LinkedIn 资料</li>
+                    <li>⚔️ 竞争对手分析：快速构建竞争对手列表，分析市场定位和竞争格局</li>
+                    <li>📈 市场研究：跟踪行业趋势、并购活动、技术发展，生成专业报告</li>
+                    <li>🔒 上下文隔离：所有搜索在独立代理中运行，保持主对话整洁</li>
+                    <li>⚙️ 动态调优：根据用户需求自动调整搜索深度（快速10-20个结果，全面50-100个结果）</li>
+                    <li>📊 四种搜索类别：company公司主页、news新闻报道、tweet社交媒体、people人员资料</li>
+                    <li>🔗 MCP集成：使用Exa的模型上下文协议服务器进行高级网络搜索</li>
+                    <li>🤖 多智能体架构：研究技能 + 任务代理 + Exa搜索 + 精炼输出的完整流程</li>
+                </ul>
+
+                <h2 id="installation">2. 安装配置</h2>
+                <p>在开始使用 Exa企业与市场研究工具 之前，您需要完成以下准备工作：</p>
+
+                <h3>系统要求</h3>
+                <ul>
+                    <li>操作系统：任何支持现代浏览器的操作系统</li>
+                    <li>网络连接：稳定的互联网连接</li>
+                    <li>其他：Claude Code 账户，Exa API访问权限</li>
+                </ul>
+
+                <h3>安装步骤</h3>
+                <ol>
+                    <li>配置Claude Code Agent Skills：
+                        <pre><code># 按照项目文档配置Exa研究Agent Skills
+# 将Skills文件导入到Claude Code环境中</code></pre>
+                    </li>
+                    <li>设置Exa API密钥：
+                        <pre><code># 在Claude环境中配置Exa API密钥
+# 确保MCP协议服务器正确连接</code></pre>
+                    </li>
+                    <li>验证配置：
+                        <pre><code># 测试基本搜索功能
+# 确认所有组件正常工作</code></pre>
+                    </li>
+                </ol>
+
+                <h2 id="usage">3. 使用方法</h2>
+                <p>Exa企业与市场研究工具 提供了多种使用方式，您可以根据需求选择最适合的方法：</p>
+
+                <h3>基本使用</h3>
+                <pre><code># 在Claude中使用Exa研究工具
+# 直接输入研究请求
+"请对某知名AI公司进行全面的公司研究"</code></pre>
+
+                <h3>高级功能</h3>
+                <p>对于更复杂的使用场景，您可以：</p>
+                <ul>
+                    <li>指定特定的搜索类别（company, news, tweet, people）</li>
+                    <li>自定义搜索深度和范围</li>
+                    <li>设置特定的研究参数</li>
+                    <li>组合多种搜索类型进行综合分析</li>
+                </ul>
+
+                <h2 id="features">4. 功能详解</h2>
+                <p>Exa企业与市场研究工具 包含以下核心功能模块：</p>
+
+                <h3>智能公司研究</h3>
+                <ul>
+                    <li>自动收集公司基本信息</li>
+                    <li>获取最新新闻和公告</li>
+                    <li>分析社交媒体动态</li>
+                    <li>收集财务数据和报告</li>
+                    <li>整理LinkedIn员工信息</li>
+                </ul>
+
+                <h3>竞争对手分析</h3>
+                <ul>
+                    <li>快速构建竞争对手列表</li>
+                    <li>分析市场定位和策略</li>
+                    <li>比较产品和服务</li>
+                    <li>跟踪竞争动态</li>
+                </ul>
+
+                <h3>市场研究</h3>
+                <ul>
+                    <li>跟踪行业趋势</li>
+                    <li>监测并购活动</li>
+                    <li>分析技术发展</li>
+                    <li>生成专业报告</li>
+                </ul>
+
+                <h2 id="examples">5. 使用示例</h2>
+                <p>以下是一些典型的使用场景和示例：</p>
+
+                <h3>示例 1：公司情报收集</h3>
+                <p>对目标公司进行全面的情报收集</p>
+                <pre><code>1. 输入研究请求："收集某AI初创公司的全面信息"
+2. 系统自动执行多类别搜索
+3. company: 获取公司官网和基本信息
+4. news: 收集相关新闻报道
+5. people: 整理核心团队成员信息
+6. 生成综合公司档案</code></pre>
+
+                <h3>示例 2：竞争对手分析</h3>
+                <p>分析特定市场的竞争格局</p>
+                <pre><code>1. 定义分析范围："分析AI聊天机器人市场的竞争格局"
+2. 系统识别主要竞争对手
+3. 收集各竞争对手的市场策略
+4. 比较产品功能和定价
+5. 生成竞争分析报告</code></pre>
+
+                <h2 id="troubleshooting">6. 常见问题</h2>
+                <h3>Q: 搜索结果的准确性如何？</h3>
+                <p>A: Exa搜索引擎提供高精度的搜索结果，系统会对结果进行验证和筛选，确保信息的可靠性。</p>
+
+                <h3>Q: 如何控制搜索深度？</h3>
+                <p>A: 可以在请求中指定搜索深度，系统会根据需求自动调整搜索范围和结果数量。</p>
+
+                <h3>Q: 可以同时搜索多个公司吗？</h3>
+                <p>A: 可以，系统支持并行搜索多个公司，并生成对比分析报告。</p>
+
+                <h2 id="resources">7. 相关资源</h2>
+                <ul>
+                    <li><a href="https://github.com/liangdabiao/exa-research-mcp-skill" target="_blank">GitHub 项目页面</a></li>
+                    <li><a href="https://github.com/liangdabiao/exa-research-mcp-skill/issues" target="_blank">问题反馈</a></li>
+                    <li><a href="https://www.exa.ai/" target="_blank">Exa AI 官方网站</a></li>
+                    <li><a href="https://www.anthropic.com/claude" target="_blank">Claude Code 官方网站</a></li>
+                    <li><a href="https://github.com/liangdabiao" target="_blank">开发者其他项目</a></li>
+                </ul>
+            </article>
+        </main>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

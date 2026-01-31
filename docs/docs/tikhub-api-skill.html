@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikHub API Helper - 使用指南</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>📚 AI工具文档中心</h2>
+            </div>
+            <nav class="main-nav">
+                <h3>全部AI工具</h3>
+                <ul id="project-list">
+                    <!-- 项目列表将通过JavaScript动态生成 -->
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="nav-buttons">
+                    <a href="../index.html" class="back-button">← 文档首页</a>
+                    <a href="../../" class="back-button" style="margin-left: 10px;">🏠 主站</a>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="搜索文档...">
+                    <button id="search-button">🔍</button>
+                </div>
+            </header>
+
+            <article class="doc-content">
+                <h1>TikHub API Helper</h1>
+
+                <div class="product-info">
+                    <p>Claude Code Agent Skill，帮助用户搜索、发现和调用 TikHub API，实现对抖音、TikTok、小红书等12+主流社交平台数据的自动化调研，通过对话即可轻松调用API。</p>
+
+                    <div class="product-tags">
+                        <span class="product-tag">TikHub API</span>
+                        <span class="product-tag">社交媒体</span>
+                        <span class="product-tag">数据分析</span>
+                        <span class="product-tag">Claude Code</span>
+                        <span class="product-tag">多平台</span>
+                        <span class="product-tag">API集成</span>
+                    </div>
+
+                    <div class="difficulty-level">
+                        <strong>难度等级：</strong>初级
+                    </div>
+
+                    <div class="github-link">
+                        <a href="https://github.com/liangdabiao/tikhub_api_skill" target="_blank">📁 访问GitHub项目页面</a>
+                    </div>
+                </div>
+
+                <h2>目录</h2>
+                <ul>
+                    <li><a href="#introduction">1. 项目介绍</a></li>
+                    <li><a href="#installation">2. 安装配置</a></li>
+                    <li><a href="#usage">3. 使用方法</a></li>
+                    <li><a href="#features">4. 功能详解</a></li>
+                    <li><a href="#examples">5. 使用示例</a></li>
+                    <li><a href="#troubleshooting">6. 常见问题</a></li>
+                    <li><a href="#resources">7. 相关资源</a></li>
+                </ul>
+
+                <h2 id="introduction">1. 项目介绍</h2>
+                <p>TikHub API Helper 是一款先进的AI工具，旨在帮助用户轻松搜索、发现和调用TikHub API。该项目利用 Claude Code、Agent Skill、TikHub API、OpenAPI 3.0、Python、RESTful API 等技术，为用户提供对12+主流社交平台数据的自动化调研解决方案。</p>
+
+                <h3>核心特性</h3>
+                <ul>
+                    <li>🔍 智能API搜索：通过关键词、标签或操作ID快速搜索TikHub API，支持中英文关键词</li>
+                    <li>⚡ 一键API调用：直接通过命令行调用TikHub API，无需手动编写请求代码</li>
+                    <li>🌐 多平台全覆盖：支持12+主流社交媒体平台，包括抖音、TikTok、小红书、Instagram、YouTube等</li>
+                    <li>🔒 自动鉴权机制：内置开发环境API Token，开箱即用</li>
+                    <li>📈 趋势话题追踪：实时获取各平台热门话题和趋势内容</li>
+                    <li>👤 用户资料分析：深度获取用户信息和社交数据分析</li>
+                    <li>🔄 跨平台内容搜索：一键搜索多个平台的相关内容</li>
+                    <li>💬 评论互动分析：获取帖子评论列表，进行用户互动分析</li>
+                </ul>
+
+                <h2 id="installation">2. 安装配置</h2>
+                <p>在开始使用 TikHub API Helper 之前，您需要完成以下准备工作：</p>
+
+                <h3>系统要求</h3>
+                <ul>
+                    <li>操作系统：Windows, macOS 或 Linux</li>
+                    <li>内存：至少 2GB RAM</li>
+                    <li>存储空间：至少 50MB 可用空间</li>
+                    <li>其他：Claude Code 账户，TikHub API访问权限</li>
+                </ul>
+
+                <h3>安装步骤</h3>
+                <ol>
+                    <li>克隆项目仓库：
+                        <pre><code>git clone https://github.com/liangdabiao/tikhub_api_skill</code></pre>
+                    </li>
+                    <li>进入项目目录：
+                        <pre><code>cd tikhub_api_skill</code></pre>
+                    </li>
+                    <li>配置环境变量（如需要）：
+                        <pre><code># 配置TikHub API密钥
+# 在项目中设置必要的API Token</code></pre>
+                    </li>
+                </ol>
+
+                <h2 id="usage">3. 使用方法</h2>
+                <p>TikHub API Helper 提供了多种使用方式，您可以根据需求选择最适合的方法：</p>
+
+                <h3>基本使用</h3>
+                <pre><code># 在Claude Code中使用TikHub API Helper
+# 直接通过对话调用API
+"帮我搜索抖音上关于美食的热门视频"</code></pre>
+
+                <h3>高级功能</h3>
+                <p>对于更复杂的使用场景，您可以：</p>
+                <ul>
+                    <li>使用特定关键词搜索API功能</li>
+                    <li>跨平台比较数据和趋势</li>
+                    <li>分析特定用户或内容的表现</li>
+                    <li>获取详细的评论和互动数据</li>
+                </ul>
+
+                <h2 id="features">4. 功能详解</h2>
+                <p>TikHub API Helper 包含以下核心功能模块：</p>
+
+                <h3>智能API搜索</h3>
+                <ul>
+                    <li>支持中英文关键词搜索</li>
+                    <li>按标签或操作ID查找API</li>
+                    <li>快速定位所需功能</li>
+                </ul>
+
+                <h3>一键API调用</h3>
+                <ul>
+                    <li>无需编写请求代码</li>
+                    <li>自动处理认证和授权</li>
+                    <li>简化API调用流程</li>
+                </ul>
+
+                <h3>多平台数据获取</h3>
+                <ul>
+                    <li>支持12+主流社交平台</li>
+                    <li>统一的数据格式输出</li>
+                    <li>跨平台数据比较</li>
+                </ul>
+
+                <h2 id="examples">5. 使用示例</h2>
+                <p>以下是一些典型的使用场景和示例：</p>
+
+                <h3>示例 1：搜索热门内容</h3>
+                <p>在多个平台上搜索热门内容</p>
+                <pre><code>1. 在Claude中激活TikHub API Helper
+2. 输入："搜索小红书和抖音上最近的护肤热门内容"
+3. 查看返回的热门帖子和趋势分析
+4. 比较不同平台的内容差异</code></pre>
+
+                <h3>示例 2：用户资料分析</h3>
+                <p>分析特定用户的社交媒体表现</p>
+                <pre><code>1. 指定要分析的用户账号
+2. 输入："分析这个小红书用户的粉丝增长趋势和内容表现"
+3. 获取详细的用户资料和数据分析
+4. 生成用户画像和内容策略建议</code></pre>
+
+                <h2 id="troubleshooting">6. 常见问题</h2>
+                <h3>Q: 如何获取TikHub API访问权限？</h3>
+                <p>A: 需要注册TikHub账户并申请API访问权限，按照官方文档配置API密钥。</p>
+
+                <h3>Q: 不同社交平台的API限制是否相同？</h3>
+                <p>A: 不同平台有不同的API限制和使用条款，请遵守各平台的规定，合理使用API。</p>
+
+                <h3>Q: 如何提高搜索结果的准确性？</h3>
+                <p>A: 使用更具体和相关的关键词，结合平台特定的标签和话题，可以获得更精确的结果。</p>
+
+                <h2 id="resources">7. 相关资源</h2>
+                <ul>
+                    <li><a href="https://github.com/liangdabiao/tikhub_api_skill" target="_blank">GitHub 项目页面</a></li>
+                    <li><a href="https://github.com/liangdabiao/tikhub_api_skill/issues" target="_blank">问题反馈</a></li>
+                    <li><a href="https://www.tikhub.net/" target="_blank">TikHub API 官方网站</a></li>
+                    <li><a href="https://www.anthropic.com/claude" target="_blank">Claude Code 官方网站</a></li>
+                    <li><a href="https://github.com/liangdabiao" target="_blank">开发者其他项目</a></li>
+                </ul>
+            </article>
+        </main>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

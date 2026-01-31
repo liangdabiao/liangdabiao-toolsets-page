@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LangGraph多智能体RAG客服系统 - 使用指南</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>📚 AI工具文档中心</h2>
+            </div>
+            <nav class="main-nav">
+                <h3>全部AI工具</h3>
+                <ul id="project-list">
+                    <!-- 项目列表将通过JavaScript动态生成 -->
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="nav-buttons">
+                    <a href="../index.html" class="back-button">← 文档首页</a>
+                    <a href="../../" class="back-button" style="margin-left: 10px;">🏠 主站</a>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="搜索文档...">
+                    <button id="search-button">🔍</button>
+                </div>
+            </header>
+
+            <article class="doc-content">
+                <h1>LangGraph多智能体RAG客服系统</h1>
+                
+                <div class="product-info">
+                    <p>基于多智能体和RAG技术的企业级客服系统，支持航班预订、酒店预订、租车、行程推荐、WooCommerce电商集成等功能，具备安全护栏和人工审核机制。采用LangGraph状态图实现，7个专业智能体各司其职，主助手统筹协调处理复杂跨领域问题。</p>
+                    
+                    <div class="product-tags">
+                        <span class="product-tag">多智能体</span>
+                        <span class="product-tag">RAG</span>
+                        <span class="product-tag">LangGraph</span>
+                        <span class="product-tag">客服系统</span>
+                        <span class="product-tag">LangChain</span>
+                        <span class="product-tag">企业AI</span>
+                        <span class="product-tag">智能客服</span>
+                        <span class="product-tag">安全护栏</span>
+                    </div>
+                    
+                    <div class="difficulty-level">
+                        <strong>难度等级：</strong>高级
+                    </div>
+                    
+                    <div class="github-link">
+                        <a href="https://github.com/liangdabiao/langgraph_multi-agent-rag-customer-support" target="_blank">📁 访问GitHub项目页面</a>
+                    </div>
+                </div>
+                
+                <h2>目录</h2>
+                <ul>
+                    <li><a href="#introduction">1. 项目介绍</a></li>
+                    <li><a href="#installation">2. 安装配置</a></li>
+                    <li><a href="#usage">3. 使用方法</a></li>
+                    <li><a href="#features">4. 功能详解</a></li>
+                    <li><a href="#examples">5. 使用示例</a></li>
+                    <li><a href="#troubleshooting">6. 常见问题</a></li>
+                    <li><a href="#resources">7. 相关资源</a></li>
+                </ul>
+                
+                <h2 id="introduction">1. 项目介绍</h2>
+                <p>LangGraph多智能体RAG客服系统是一款企业级智能客服解决方案，旨在通过多智能体架构和RAG技术提供专业化的客户服务。该项目利用LangGraph、LangChain、OpenAI、Qdrant、FastAPI、Docker、GoHumanLoop、WooCommerce API、Python 3.12等技术，为用户提供从旅行服务到电商集成的完整客服解决方案。</p>
+                
+                <h3>核心特性</h3>
+                <ul>
+                    <li>🎯 多智能体架构：基于LangGraph的状态图实现，7个专业智能体各司其职，主助手统筹协调，处理复杂跨领域问题</li>
+                    <li>🔍 RAG技术：检索增强生成技术，基于向量数据库的知识检索，确保回答基于真实数据，提供准确可靠的信息</li>
+                    <li>✈️ 旅行服务：完整的旅行相关服务：航班预订、酒店预订、租车、行程推荐，支持复杂的多步骤旅行规划</li>
+                    <li>🛒 电商集成：完整的WooCommerce电商集成，支持商品查询、订单管理、博客搜索、表单提交等电商核心功能</li>
+                    <li>🛡️ 安全护栏：越狱防护和相关性检查机制，智能过滤恶意输入和不相关请求，确保系统安全和高效运行</li>
+                    <li>✅ 人工审核：基于GoHumanLoop的人工审核流程，敏感操作需要管理员最终批准，形成双重安全保障机制</li>
+                    <li>📊 可观测性：集成LangSmith追踪系统，完整监控请求生命周期，包括工具使用、代理响应和错误处理</li>
+                    <li>💾 状态管理：完整的对话状态管理和内存检查点，支持复杂的多轮对话，维护上下文连续性</li>
+                </ul>
+                
+                <h2 id="installation">2. 安装配置</h2>
+                <p>在开始使用 LangGraph多智能体RAG客服系统 之前，您需要完成以下准备工作：</p>
+                
+                <h3>系统要求</h3>
+                <ul>
+                    <li>操作系统：Windows, macOS 或 Linux</li>
+                    <li>内存：至少 8GB RAM（推荐 16GB 或以上）</li>
+                    <li>存储空间：至少 2GB 可用空间</li>
+                    <li>其他：Python 3.12+, Poetry包管理器, Docker和Docker Compose, OpenAI API Key</li>
+                </ul>
+                
+                <h3>安装步骤</h3>
+                <ol>
+                    <li>克隆项目仓库：
+                        <pre><code>git clone https://github.com/liangdabiao/langgraph_multi-agent-rag-customer-support.git
+cd langgraph_multi-agent-rag-customer-support</code></pre>
+                    </li>
+                    <li>配置环境：
+                        <pre><code>cp .dev.env .env
+
+# 编辑 .env 文件，填入必要的API密钥
+OPENAI_API_KEY="your_openai_api_key"
+LANGCHAIN_API_KEY="your_langsmith_api_key"
+GOHUMANLOOP_API_KEY="your_gohumanloop_api_key"
+QDRANT_URL="your_qdrant_url"
+WOOCOMMERCE_API_URL="your_woocommerce_api_url"
+WOOCOMMERCE_API_KEY="your_woocommerce_api_key"
+WOOCOMMERCE_API_SECRET="your_woocommerce_api_secret"</code></pre>
+                    </li>
+                    <li>安装依赖：
+                        <pre><code>poetry install</code></pre>
+                    </li>
+                    <li>启动向量数据库：
+                        <pre><code>docker compose up qdrant -d
+
+# 访问 Qdrant UI: http://localhost:6333/dashboard</code></pre>
+                    </li>
+                    <li>生成向量嵌入：
+                        <pre><code>poetry run python vectorizer/app/main.py</code></pre>
+                    </li>
+                </ol>
+                
+                <h2 id="usage">3. 使用方法</h2>
+                <p>LangGraph多智能体RAG客服系统 提供了多种使用方式，您可以根据需求选择最适合的方法：</p>
+                
+                <h3>基本使用</h3>
+                <p>启动系统并开始使用：</p>
+                <pre><code># 命令行版本
+poetry run python ./customer_support_chat/app/main.py
+
+# Web界面版本
+poetry run uvicorn web_app.app.main:app --reload --host 0.0.0.0 --port 8000
+
+# 访问 Web UI: http://localhost:8000</code></pre>
+                
+                <h3>高级功能</h3>
+                <p>对于更复杂的使用场景，您可以：</p>
+                <ul>
+                    <li>配置不同的智能体以处理特定业务领域</li>
+                    <li>调整RAG参数以优化知识检索效果</li>
+                    <li>自定义安全护栏规则</li>
+                    <li>扩展支持更多的电商或服务功能</li>
+                </ul>
+                
+                <h2 id="features">4. 功能详解</h2>
+                <p>LangGraph多智能体RAG客服系统 包含以下核心功能模块：</p>
+                
+                <h3>系统架构</h3>
+                <ul>
+                    <li><strong>主助手 (Primary Assistant)</strong>：用户查询的入口点，负责理解用户意图并将对话路由到相应的专业助手
+                        <ul>
+                            <li>意图识别和分类</li>
+                            <li>任务分解和分配</li>
+                            <li>多轮对话协调</li>
+                            <li>结果整合和呈现</li>
+                        </ul>
+                    </li>
+                    <li><strong>航班预订助手</strong>：处理航班查询、预订、修改等所有相关服务</li>
+                    <li><strong>酒店预订助手</strong>：管理酒店搜索、预订、订单修改等住宿服务</li>
+                    <li><strong>租车助手</strong>：处理租车查询、预订、车辆管理等交通服务</li>
+                    <li><strong>行程推荐助手</strong>：提供个性化的旅行规划和景点推荐服务</li>
+                    <li><strong>WooCommerce助手</strong>：处理商品查询、订单管理、库存查询等电商功能</li>
+                    <li><strong>表单提交助手</strong>：管理用户表单提交、数据收集和处理</li>
+                    <li><strong>博客搜索助手</strong>：处理博客文章搜索和内容检索服务</li>
+                </ul>
+                
+                <h3>安全机制</h3>
+                <ul>
+                    <li><strong>安全护栏 (Security Guardrails)</strong>：
+                        <ul>
+                            <li>越狱防护 (Jailbreak Guardrail)：专门的安全检查员AI，实时分析用户输入，识别并拦截恶意越狱尝试，防止系统被恶意操控</li>
+                            <li>相关性检查 (Relevance Guardrail)：智能判断用户问题是否在客服系统业务范围内，过滤不相关请求，提高系统效率</li>
+                        </ul>
+                    </li>
+                    <li><strong>人工审核 (GoHumanLoop)</strong>：
+                        <ul>
+                            <li>双重确认机制：敏感操作需要用户确认 + 管理员审核的双重保障，确保操作安全可靠</li>
+                            <li>飞书通知集成：通过GoHumanLoop框架自动发送审核通知给管理员，支持快速批准或拒绝操作</li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <h3>技术栈</h3>
+                <ul>
+                    <li><strong>AI框架</strong>：LangGraph, LangChain, OpenAI GPT, RAG技术</li>
+                    <li><strong>数据存储</strong>：Qdrant向量数据库, SQLite数据库, JSON文件存储, Docker容器</li>
+                    <li><strong>Web服务</strong>：FastAPI, Uvicorn, REST API, Web界面</li>
+                    <li><strong>安全机制</strong>：GoHumanLoop, 飞书通知, 输入验证, 权限控制</li>
+                    <li><strong>监控观测</strong>：LangSmith, 日志追踪, 性能监控, 错误处理</li>
+                    <li><strong>电商集成</strong>：WooCommerce API, 商品管理, 订单处理, 支付集成</li>
+                </ul>
+                
+                <h2 id="examples">5. 使用示例</h2>
+                <p>以下是一些典型的使用场景和示例：</p>
+                
+                <h3>示例 1：旅行服务</h3>
+                <p>通过客服系统预订旅行服务</p>
+                <pre><code># 用户询问：我想预订下个月去北京的机票和酒店
+# 系统将请求路由到航班预订助手和酒店预订助手
+# 最终提供完整的旅行方案</code></pre>
+                
+                <h3>示例 2：电商查询</h3>
+                <p>查询商品信息和下单</p>
+                <pre><code># 用户询问：你们有什么型号的笔记本电脑？
+# WooCommerce助手查询商品数据库并返回结果
+# 用户选择商品并完成下单流程</code></pre>
+                
+                <h3>示例 3：安全处理流程</h3>
+                <p>系统如何处理敏感操作</p>
+                <pre><code>1. 用户输入：接收用户查询请求
+2. 安全检查：越狱防护和相关性检查
+3. 智能体处理：多智能体协作处理请求
+4. 敏感操作判断：识别需要额外审核的操作
+5. 用户确认：用户确认敏感操作
+6. 管理员审核：人工审核最终批准
+7. 执行操作：安全执行最终操作</code></pre>
+                
+                <h2 id="troubleshooting">6. 常见问题</h2>
+                <h3>Q: 如何开始使用 LangGraph多智能体RAG客服系统？</h3>
+                <p>A: 首先确保已安装Python 3.12+、Poetry、Docker等必要组件，然后克隆项目并配置环境变量，安装依赖后启动向量数据库并生成向量嵌入，最后启动系统即可开始使用。</p>
+                
+                <h3>Q: 支持哪些业务类型？</h3>
+                <p>A: 系统支持旅行服务（航班、酒店、租车）、电商功能（商品查询、订单管理）、内容搜索（博客文章）等多种业务类型，可通过扩展智能体来支持更多业务。</p>
+                
+                <h3>Q: 如何确保系统安全性？</h3>
+                <p>A: 系统提供了双重安全保障：安全护栏机制（越狱防护和相关性检查）和人工审核流程（GoHumanLoop），确保敏感操作的安全性。</p>
+                
+                <h2 id="resources">7. 相关资源</h2>
+                <ul>
+                    <li><a href="https://github.com/liangdabiao/langgraph_multi-agent-rag-customer-support" target="_blank">GitHub 项目页面</a></li>
+                    <li><a href="https://github.com/liangdabiao/langgraph_multi-agent-rag-customer-support/issues" target="_blank">问题反馈</a></li>
+                    <li><a href="https://github.com/liangdabiao/langgraph_multi-agent-rag-customer-support/pulls" target="_blank">贡献代码</a></li>
+                    <li><a href="https://langchain-ai.github.io/langgraph/" target="_blank">LangGraph 官方文档</a></li>
+                    <li><a href="https://python.langchain.com/" target="_blank">LangChain 官方文档</a></li>
+                </ul>
+            </article>
+        </main>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

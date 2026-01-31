@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简历匹配器 - 使用指南</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>📚 AI工具文档中心</h2>
+            </div>
+            <nav class="main-nav">
+                <h3>全部AI工具</h3>
+                <ul id="project-list">
+                    <!-- 项目列表将通过JavaScript动态生成 -->
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="nav-buttons">
+                    <a href="../index.html" class="back-button">← 文档首页</a>
+                    <a href="../../" class="back-button" style="margin-left: 10px;">🏠 主站</a>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="搜索文档...">
+                    <button id="search-button">🔍</button>
+                </div>
+            </header>
+
+            <article class="doc-content">
+                <h1>简历匹配器</h1>
+                
+                <div class="product-info">
+                    <p>AI驱动的简历优化平台，通过逆向工程招聘算法，帮助求职者精准定制简历，提供关键词匹配、格式优化和ATS筛选建议，提高简历通过率。模拟HR筛选简历的过程，提前展示筛选结论，帮助您优化简历，提高通过ATS系统的可能性。</p>
+                    
+                    <div class="product-tags">
+                        <span class="product-tag">简历优化</span>
+                        <span class="product-tag">ATS筛选</span>
+                        <span class="product-tag">求职工具</span>
+                        <span class="product-tag">AI简历分析</span>
+                        <span class="product-tag">关键词匹配</span>
+                        <span class="product-tag">求职助手</span>
+                        <span class="product-tag">简历匹配</span>
+                    </div>
+                    
+                    <div class="difficulty-level">
+                        <strong>难度等级：</strong>中等
+                    </div>
+                    
+                    <div class="github-link">
+                        <a href="https://github.com/liangdabiao/resume-matcher-agent-cn" target="_blank">📁 访问GitHub项目页面</a>
+                    </div>
+                </div>
+                
+                <h2>目录</h2>
+                <ul>
+                    <li><a href="#introduction">1. 项目介绍</a></li>
+                    <li><a href="#installation">2. 安装配置</a></li>
+                    <li><a href="#usage">3. 使用方法</a></li>
+                    <li><a href="#features">4. 功能详解</a></li>
+                    <li><a href="#examples">5. 使用示例</a></li>
+                    <li><a href="#troubleshooting">6. 常见问题</a></li>
+                    <li><a href="#resources">7. 相关资源</a></li>
+                </ul>
+                
+                <h2 id="introduction">1. 项目介绍</h2>
+                <p>简历匹配器是一个AI驱动的平台，旨在逆向工程招聘算法，向您展示如何精准定制简历。该项目利用Next.js 15+、React 19、FastAPI、Python 3.12+、TypeScript、Tailwind CSS 4.x、Ollama 0.6.7、SQLite 3.x、OpenAI API、LlamaIndex、SQLAlchemy、Pydantic等技术，为用户提供从简历上传到优化建议的完整解决方案。</p>
+                
+                <h3>核心特性</h3>
+                <ul>
+                    <li>📄 简历分析：支持上传PDF或DOCX格式的简历进行智能分析，提取关键信息并进行结构化处理</li>
+                    <li>📋 职位描述解析：深度解析职位描述，提取关键要求、技能需求和企业文化特征</li>
+                    <li>🤖 AI驱动洞察：基于职位要求提供个性化简历改进建议，帮助求职者精准优化简历内容</li>
+                    <li>🔑 关键词匹配：识别对ATS（申请人跟踪系统）重要的缺失关键词，提高自动筛选通过率</li>
+                    <li>📊 结构化数据提取：将非结构化的简历和职位数据转换为结构化JSON格式，便于分析和处理</li>
+                    <li>🔒 本地AI处理：支持Ollama本地AI模型，确保数据隐私安全，也可选择OpenAI云端处理</li>
+                </ul>
+                
+                <h2 id="installation">2. 安装配置</h2>
+                <p>在开始使用 简历匹配器 之前，您需要完成以下准备工作：</p>
+                
+                <h3>系统要求</h3>
+                <ul>
+                    <li>操作系统：Windows, macOS 或 Linux</li>
+                    <li>内存：至少 4GB RAM（推荐 8GB 或以上）</li>
+                    <li>存储空间：至少 1GB 可用空间</li>
+                    <li>其他：Python 3.12+, Node.js 18+, SQLite 3.x, Ollama 0.6.7+</li>
+                </ul>
+                
+                <h3>安装步骤</h3>
+                <ol>
+                    <li>克隆项目仓库：
+                        <pre><code>git clone https://github.com/liangdabiao/resume-matcher-agent-cn.git
+cd resume-matcher-agent-cn</code></pre>
+                    </li>
+                    <li>后端设置：
+                        <pre><code>cd backend
+pip install -r requirements.txt</code></pre>
+                    </li>
+                    <li>环境配置：
+                        <pre><code>cp .env.example .env
+# 编辑 .env 文件配置AI提供商
+LLM_PROVIDER="ollama"
+LL_MODEL="gemma3:4b"
+EMBEDDING_PROVIDER="ollama"
+EMBEDDING_MODEL="dengcao/Qwen3-Embedding-0.6B:Q8_0"</code></pre>
+                    </li>
+                    <li>启动后端：
+                        <pre><code>uvicorn app.main:app --reload</code></pre>
+                        <p>后端服务将在 http://localhost:8000 启动</p>
+                    </li>
+                    <li>前端设置：
+                        <pre><code>cd frontend
+npm install
+# 或使用 yarn
+yarn install</code></pre>
+                    </li>
+                    <li>启动前端：
+                        <pre><code>npm run dev
+# 或使用 yarn
+yarn dev</code></pre>
+                        <p>前端应用将在 http://localhost:3000 启动</p>
+                    </li>
+                </ol>
+                
+                <h2 id="usage">3. 使用方法</h2>
+                <p>简历匹配器 提供了多种使用方式，您可以根据需求选择最适合的方法：</p>
+                
+                <h3>基本使用</h3>
+                <p>按照三步工作流程使用系统：</p>
+                <ol>
+                    <li><strong>上传简历和职位</strong>：上传您的简历（PDF/DOCX格式）和目标职位描述
+                        <ul>
+                            <li>支持多种文档格式</li>
+                            <li>智能文本提取</li>
+                            <li>快速上传处理</li>
+                        </ul>
+                    </li>
+                    <li><strong>AI智能分析</strong>：系统自动分析简历与职位的匹配度，识别关键差异
+                        <ul>
+                            <li>关键词匹配分析</li>
+                            <li>技能差距评估</li>
+                            <li>格式优化建议</li>
+                        </ul>
+                    </li>
+                    <li><strong>获取优化建议</strong>：获得详细的简历优化建议，提高ATS筛选通过率
+                        <ul>
+                            <li>个性化改进建议</li>
+                            <li>关键词补充方案</li>
+                            <li>格式调整指导</li>
+                        </ul>
+                    </li>
+                </ol>
+                
+                <h3>高级功能</h3>
+                <p>对于更复杂的使用场景，您可以：</p>
+                <ul>
+                    <li>自定义AI模型参数以获得更精准的分析结果</li>
+                    <li>使用API接口进行批量处理</li>
+                    <li>调整匹配算法的权重和阈值</li>
+                    <li>集成到现有的求职工具链中</li>
+                </ul>
+                
+                <h2 id="features">4. 功能详解</h2>
+                <p>简历匹配器 包含以下核心功能模块：</p>
+                
+                <h3>技术架构</h3>
+                <ul>
+                    <li><strong>前端层</strong>：Next.js 15+, React 19, TypeScript, Tailwind CSS 4.x, Radix UI</li>
+                    <li><strong>后端层</strong>：FastAPI 0.115.12, Python 3.12+, SQLAlchemy, Pydantic, Uvicorn</li>
+                    <li><strong>AI层</strong>：OpenAI API, Ollama 0.6.7, LlamaIndex, MarkItDown, 自定义提示模板</li>
+                    <li><strong>数据层</strong>：SQLite 3.x, 本地存储, 异步数据库, 数据迁移, 日志系统</li>
+                </ul>
+                
+                <h3>数据库结构</h3>
+                <ul>
+                    <li><strong>resumes</strong>：存储原始简历内容
+                        <ul>
+                            <li>文件名和路径</li>
+                            <li>上传时间</li>
+                            <li>原始文本内容</li>
+                            <li>文件类型</li>
+                        </ul>
+                    </li>
+                    <li><strong>processed_resumes</strong>：存储结构化简历数据
+                        <ul>
+                            <li>个人信息</li>
+                            <li>工作经历</li>
+                            <li>教育背景</li>
+                            <li>技能列表</li>
+                        </ul>
+                    </li>
+                    <li><strong>jobs</strong>：存储原始职位描述
+                        <ul>
+                            <li>职位标题</li>
+                            <li>公司信息</li>
+                            <li>原始描述</li>
+                            <li>发布时间</li>
+                        </ul>
+                    </li>
+                    <li><strong>processed_jobs</strong>：存储结构化职位数据
+                        <ul>
+                            <li>技能要求</li>
+                            <li>经验要求</li>
+                            <li>关键词列表</li>
+                            <li>匹配规则</li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <h3>API接口</h3>
+                <ul>
+                    <li><strong>职位管理</strong>：
+                        <ul>
+                            <li>POST /api/v1/job/upload - 上传并处理职位描述</li>
+                            <li>GET /api/v1/job/ - 根据职位ID检索职位数据</li>
+                        </ul>
+                    </li>
+                    <li><strong>简历管理</strong>：
+                        <ul>
+                            <li>POST /api/v1/resume/upload - 上传并处理简历（PDF/DOCX）</li>
+                            <li>POST /api/v1/resume/improve - 获取简历改进建议</li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <h2 id="examples">5. 使用示例</h2>
+                <p>以下是一些典型的使用场景和示例：</p>
+                
+                <h3>示例 1：上传简历</h3>
+                <p>通过API上传PDF格式的简历</p>
+                <pre><code>curl -X POST "http://localhost:8000/api/v1/resume/upload" \
+  -H "Content-Type: multipart/form-data" \
+  -F "file=@resume.pdf"</code></pre>
+                
+                <h3>示例 2：上传职位描述</h3>
+                <p>上传目标职位的描述信息</p>
+                <pre><code>curl -X POST "http://localhost:8000/api/v1/job/upload" \
+  -H "Content-Type: multipart/form-data" \
+  -F "job_description=@job_desc.txt"</code></pre>
+                
+                <h3>示例 3：获取简历改进建议</h3>
+                <p>获取针对特定职位的简历优化建议</p>
+                <pre><code>curl -X POST "http://localhost:8000/api/v1/resume/improve" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "resume_id": "resume123",
+    "job_id": "job456"
+  }'</code></pre>
+                
+                <h2 id="troubleshooting">6. 常见问题</h2>
+                <h3>Q: 如何开始使用 简历匹配器？</h3>
+                <p>A: 首先确保已安装Python 3.12+、Node.js 18+和必要的依赖包，然后克隆项目并配置环境变量，分别启动后端和前端服务即可开始使用。</p>
+                
+                <h3>Q: 支持哪些简历格式？</h3>
+                <p>A: 系统支持PDF和DOCX格式的简历文件，能够智能提取其中的关键信息并进行结构化处理。</p>
+                
+                <h3>Q: 如何确保数据隐私？</h3>
+                <p>A: 系统支持Ollama本地AI模型处理，所有数据都在本地处理，确保数据隐私安全。也可以选择云端AI服务进行处理。</p>
+                
+                <h2 id="resources">7. 相关资源</h2>
+                <ul>
+                    <li><a href="https://github.com/liangdabiao/resume-matcher-agent-cn" target="_blank">GitHub 项目页面</a></li>
+                    <li><a href="https://github.com/liangdabiao/resume-matcher-agent-cn/issues" target="_blank">问题反馈</a></li>
+                    <li><a href="https://github.com/liangdabiao/resume-matcher-agent-cn/pulls" target="_blank">贡献代码</a></li>
+                    <li><a href="https://nextjs.org/docs" target="_blank">Next.js 官方文档</a></li>
+                    <li><a href="https://fastapi.tiangolo.com/" target="_blank">FastAPI 官方文档</a></li>
+                </ul>
+            </article>
+        </main>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

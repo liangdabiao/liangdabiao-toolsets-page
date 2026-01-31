@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A股智能分析系统 - 使用指南</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>📚 AI工具文档中心</h2>
+            </div>
+            <nav class="main-nav">
+                <h3>全部AI工具</h3>
+                <ul id="project-list">
+                    <!-- 项目列表将通过JavaScript动态生成 -->
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="nav-buttons">
+                    <a href="../index.html" class="back-button">← 文档首页</a>
+                    <a href="../../" class="back-button" style="margin-left: 10px;">🏠 主站</a>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="搜索文档...">
+                    <button id="search-button">🔍</button>
+                </div>
+            </header>
+
+            <article class="doc-content">
+                <h1>A股智能分析系统</h1>
+                
+                <div class="product-info">
+                    <p>基于AKShare和CrewAI的专业A股投资分析平台，通过多Agent协作提供智能化的投资决策支持。专为A股市场打造，集成实时行情、财务分析、资金流向等全方位数据。</p>
+                    
+                    <div class="product-tags">
+                        <span class="product-tag">A股分析</span>
+                        <span class="product-tag">CrewAI</span>
+                        <span class="product-tag">AKShare</span>
+                        <span class="product-tag">多Agent协作</span>
+                        <span class="product-tag">金融科技</span>
+                    </div>
+                    
+                    <div class="difficulty-level">
+                        <strong>难度等级：</strong>高级
+                    </div>
+                    
+                    <div class="github-link">
+                        <a href="https://github.com/liangdabiao/easy_investment_Agent_crewai" target="_blank">📁 访问GitHub项目页面</a>
+                    </div>
+                </div>
+                
+                <h2>目录</h2>
+                <ul>
+                    <li><a href="#introduction">1. 项目介绍</a></li>
+                    <li><a href="#installation">2. 安装配置</a></li>
+                    <li><a href="#usage">3. 使用方法</a></li>
+                    <li><a href="#features">4. 功能详解</a></li>
+                    <li><a href="#examples">5. 使用示例</a></li>
+                    <li><a href="#troubleshooting">6. 常见问题</a></li>
+                    <li><a href="#resources">7. 相关资源</a></li>
+                </ul>
+                
+                <h2 id="introduction">1. 项目介绍</h2>
+                <p>A股智能分析系统是一款专业的A股投资分析平台，旨在通过AI技术革新投资分析工作流程。该项目利用CrewAI、AKShare、Python、LangChain、Ollama、Poetry、Pandas等技术，为用户提供从实时行情到财务分析的全方位投资决策支持。</p>
+                
+                <h3>核心特性</h3>
+                <ul>
+                    <li>📊 全面A股数据：实时行情、历史K线、财务报表、资金流向、行业板块、市场情绪等多维度数据获取</li>
+                    <li>🤖 多Agent协作：4个专业化AI角色协同工作：市场分析师、财务专家、情绪研究员、投资顾问</li>
+                    <li>🇨🇳 A股特色优化：针对中国股市特点：涨跌停分析、政策影响、散户情绪、资金轮动规律</li>
+                    <li>📈 技术面分析：K线形态、均线系统、技术指标、趋势分析、支撑阻力位等专业技术分析</li>
+                    <li>💰 财务面分析：财务比率、趋势分析、同业对比、盈利能力、偿债能力、成长性深度分析</li>
+                    <li>🎯 智能投资建议：综合多维度分析，提供投资评级、目标价位、策略建议、风险控制方案</li>
+                </ul>
+                
+                <h2 id="installation">2. 安装配置</h2>
+                <p>在开始使用 A股智能分析系统 之前，您需要完成以下准备工作：</p>
+                
+                <h3>系统要求</h3>
+                <ul>
+                    <li>操作系统：Windows, macOS 或 Linux</li>
+                    <li>内存：至少 8GB RAM（推荐 16GB 或以上）</li>
+                    <li>存储空间：至少 1GB 可用空间</li>
+                    <li>其他：Python 3.12+, Poetry (推荐) 或 UV 包管理器, Ollama (本地) 或 OpenAI GPT</li>
+                </ul>
+                
+                <h3>安装步骤</h3>
+                <ol>
+                    <li>克隆项目仓库：
+                        <pre><code>git clone https://github.com/liangdabiao/easy_investment_Agent_crewai
+cd easy_investment_Agent_crewai</code></pre>
+                    </li>
+                    <li>安装依赖（推荐使用 Poetry）：
+                        <pre><code>poetry install --no-root</code></pre>
+                    </li>
+                    <li>配置环境变量：
+                        <pre><code>cp .env.example .env
+# 编辑 .env 文件配置必要参数</code></pre>
+                    </li>
+                    <li>运行分析（默认分析腾讯控股）：
+                        <pre><code>poetry run python src/a_stock_analysis/main.py
+
+# 或使用安装的脚本
+poetry run a_stock_analysis</code></pre>
+                    </li>
+                </ol>
+                
+                <h2 id="usage">3. 使用方法</h2>
+                <p>A股智能分析系统 提供了多种使用方式，您可以根据需求选择最适合的方法：</p>
+                
+                <h3>基本使用</h3>
+                <p>使用默认配置分析股票：</p>
+                <pre><code># 运行默认分析（腾讯控股）
+poetry run a_stock_analysis</code></pre>
+                
+                <h3>高级功能</h3>
+                <p>对于更复杂的使用场景，您可以：</p>
+                <ul>
+                    <li>自定义分析目标股票</li>
+                    <li>切换AI模型（Ollama本地模型或OpenAI GPT）</li>
+                    <li>调整分析参数和权重</li>
+                    <li>自定义分析维度和指标</li>
+                </ul>
+                
+                <h2 id="features">4. 功能详解</h2>
+                <p>A股智能分析系统 包含以下核心功能模块：</p>
+                
+                <h3>四大专业Agent团队</h3>
+                <ul>
+                    <li><strong>A股市场分析师</strong>：专业技术面分析
+                        <ul>
+                            <li>K线形态分析</li>
+                            <li>均线系统研判</li>
+                            <li>政策影响评估</li>
+                            <li>资金面分析</li>
+                            <li>技术指标解读</li>
+                        </ul>
+                    </li>
+                    <li><strong>财务报表专家</strong>：深度财务数据和比率分析
+                        <ul>
+                            <li>财务比率计算</li>
+                            <li>趋势分析</li>
+                            <li>同业对比</li>
+                            <li>盈利能力评估</li>
+                            <li>偿债能力分析</li>
+                        </ul>
+                    </li>
+                    <li><strong>市场情绪研究员</strong>：资金流向和市场情绪分析
+                        <ul>
+                            <li>主力资金追踪</li>
+                            <li>北向资金监控</li>
+                            <li>散户情绪判断</li>
+                            <li>新闻情绪分析</li>
+                            <li>热点板块追踪</li>
+                        </ul>
+                    </li>
+                    <li><strong>A股投资顾问</strong>：综合分析和投资策略制定
+                        <ul>
+                            <li>综合评估分析</li>
+                            <li>投资评级建议</li>
+                            <li>风险控制策略</li>
+                            <li>目标价位预测</li>
+                            <li>投资时机判断</li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <h3>数据获取能力</h3>
+                <ul>
+                    <li>实时行情数据</li>
+                    <li>历史K线数据</li>
+                    <li>财务报表数据</li>
+                    <li>资金流向数据</li>
+                    <li>行业板块数据</li>
+                    <li>市场情绪指标</li>
+                </ul>
+                
+                <h2 id="examples">5. 使用示例</h2>
+                <p>以下是一些典型的使用场景和示例：</p>
+                
+                <h3>示例 1：分析贵州茅台</h3>
+                <p>自定义分析目标股票</p>
+                <pre><code># 在配置文件中设置
+inputs = {
+    'company_name': '贵州茅台',
+    'stock_code': '600519.SH',
+    'market': 'SH'
+}</code></pre>
+                
+                <h3>示例 2：切换AI模型</h3>
+                <p>使用不同的AI模型进行分析</p>
+                <pre><code># 使用Ollama本地模型 (在 crew.py 中)
+from langchain.llms import Ollama
+llm = Ollama(model="llama3.1")
+
+# 或使用 OpenAI GPT
+from langchain.chat_models import ChatOpenAI
+llm = ChatOpenAI(model='gpt-4')</code></pre>
+                
+                <h3>示例 3：支持的股票代码格式</h3>
+                <p>不同市场的股票代码格式</p>
+                <table class="code-table">
+                    <thead>
+                        <tr>
+                            <th>市场类型</th>
+                            <th>代码格式</th>
+                            <th>示例</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>上交所A股</td>
+                            <td><code>股票代码.SH</code></td>
+                            <td><code>600519.SH</code></td>
+                            <td>贵州茅台</td>
+                        </tr>
+                        <tr>
+                            <td>深交所A股</td>
+                            <td><code>股票代码.SZ</code></td>
+                            <td><code>000001.SZ</code></td>
+                            <td>平安银行</td>
+                        </tr>
+                        <tr>
+                            <td>港股</td>
+                            <td><code>股票代码.HK</code></td>
+                            <td><code>00700.HK</code></td>
+                            <td>腾讯控股</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h2 id="troubleshooting">6. 常见问题</h2>
+                <h3>Q: 如何开始使用 A股智能分析系统？</h3>
+                <p>A: 首先确保已安装Python 3.12+和Poetry，然后克隆项目并安装依赖，配置好环境变量后即可运行分析。</p>
+                
+                <h3>Q: 支持哪些股票市场？</h3>
+                <p>A: 支持A股（上海、深圳交易所）、港股等市场，使用相应的代码格式（如600519.SH、000001.SZ、00700.HK）。</p>
+                
+                <h3>Q: 如何自定义分析参数？</h3>
+                <p>A: 可以通过修改配置文件或在代码中自定义inputs参数来指定分析目标和参数。</p>
+                
+                <h2 id="resources">7. 相关资源</h2>
+                <ul>
+                    <li><a href="https://github.com/liangdabiao/easy_investment_Agent_crewai" target="_blank">GitHub 项目页面</a></li>
+                    <li><a href="https://github.com/liangdabiao/easy_investment_Agent_crewai/issues" target="_blank">问题反馈</a></li>
+                    <li><a href="https://github.com/liangdabiao/easy_investment_Agent_crewai/wiki" target="_blank">项目 Wiki</a></li>
+                    <li><a href="https://akshare.readthedocs.io/" target="_blank">AKShare 官方文档</a></li>
+                    <li><a href="https://docs.crewai.com/" target="_blank">CrewAI 官方文档</a></li>
+                </ul>
+                
+                <div class="risk-warning">
+                    <h4>⚠️ 风险提示</h4>
+                    <p>本系统仅供学习研究使用，不构成投资建议。A股市场风险较高，投资需谨慎。建议结合多种分析方法做出投资决策，过往业绩不代表未来表现。</p>
+                </div>
+            </article>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>AI工具文档中心</h3>
+                    <p>提供详细的AI工具使用指南，帮助您快速上手并充分利用这些强大的AI产品。</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="../../">主站点</a></li>
+                        <li><a href="../">文档首页</a></li>
+                        <li><a href="../../#products">产品中心</a></li>
+                        <li><a href="../../#contact">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>相关文档</h4>
+                    <ul>
+                        <li><a href="../">所有文档</a></li>
+                        <li><a href="./">当前文档</a></li>
+                        <li><a href="../../product.html">产品详情</a></li>
+                        <li><a href="https://github.com/liangdabiao/easy_investment_Agent_crewai">GitHub仓库</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 AI工具文档中心. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

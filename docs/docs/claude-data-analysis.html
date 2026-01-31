@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude 数据分析助手 - 使用指南</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>📚 AI工具文档中心</h2>
+            </div>
+            <nav class="main-nav">
+                <h3>全部AI工具</h3>
+                <ul id="project-list">
+                    <!-- 项目列表将通过JavaScript动态生成 -->
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="nav-buttons">
+                    <a href="../index.html" class="back-button">← 文档首页</a>
+                    <a href="../../" class="back-button" style="margin-left: 10px;">🏠 主站</a>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="搜索文档...">
+                    <button id="search-button">🔍</button>
+                </div>
+            </header>
+
+            <article class="doc-content">
+                <h1>Claude 数据分析助手</h1>
+                
+                <div class="product-info">
+                    <p>基于 Claude Code 构建的智能数据分析平台，使用 AI 子代理、斜杠命令和自动化钩子，革新你的数据分析工作流程。让 AI 助你从数据中发现洞察！</p>
+                    
+                    <div class="product-tags">
+                        <span class="product-tag">数据分析</span>
+                        <span class="product-tag">Claude Code</span>
+                        <span class="product-tag">AI子代理</span>
+                        <span class="product-tag">自动化</span>
+                        <span class="product-tag">开源项目</span>
+                    </div>
+                    
+                    <div class="difficulty-level">
+                        <strong>难度等级：</strong>进阶
+                    </div>
+                    
+                    <div class="github-link">
+                        <a href="https://github.com/liangdabiao/claude-data-analysis" target="_blank">📁 访问GitHub项目页面</a>
+                    </div>
+                </div>
+                
+                <h2>目录</h2>
+                <ul>
+                    <li><a href="#introduction">1. 项目介绍</a></li>
+                    <li><a href="#installation">2. 安装配置</a></li>
+                    <li><a href="#usage">3. 使用方法</a></li>
+                    <li><a href="#features">4. 功能详解</a></li>
+                    <li><a href="#examples">5. 使用示例</a></li>
+                    <li><a href="#troubleshooting">6. 常见问题</a></li>
+                    <li><a href="#resources">7. 相关资源</a></li>
+                </ul>
+                
+                <h2 id="introduction">1. 项目介绍</h2>
+                <p>Claude 数据分析助手是一款先进的智能数据分析平台，旨在利用 Claude Code 的强大功能革新数据分析工作流程。该项目利用 Claude Code、Python、R、SQL、JavaScript、Pandas、NumPy、Scikit-learn 等技术，为用户提供从数据探索到可视化分析的完整解决方案。</p>
+                
+                <h3>核心特性</h3>
+                <ul>
+                    <li>🤖 智能AI子代理：6个专业化AI子代理：数据探索、可视化专家、代码生成器、报告编写器、质量保证、假设生成器</li>
+                    <li>⚡ 直观斜杠命令：简洁的斜杠命令界面：/analyze、/visualize、/generate、/report、/quality、/hypothesis</li>
+                    <li>🔄 自动化工作流：数据验证、智能上下文、可重现分析，完整的自动化工作流程，提升分析效率</li>
+                    <li>📈 多种分析类型：探索性分析、统计分析、预测分析、完整分析，满足不同的数据分析需求</li>
+                    <li>🎨 丰富的可视化：趋势图、分布图、相关性图、对比图，全面的数据可视化解决方案</li>
+                    <li>💻 多语言代码生成：支持Python、R、SQL、JavaScript，生成生产级分析代码</li>
+                </ul>
+                
+                <h2 id="installation">2. 安装配置</h2>
+                <p>在开始使用 Claude 数据分析助手 之前，您需要完成以下准备工作：</p>
+                
+                <h3>系统要求</h3>
+                <ul>
+                    <li>操作系统：Windows, macOS 或 Linux</li>
+                    <li>内存：至少 4GB RAM（推荐 8GB 或以上）</li>
+                    <li>存储空间：至少 500MB 可用空间</li>
+                    <li>其他：Claude Code 访问权限，Python 3.7+，以及必要的数据分析库</li>
+                </ul>
+                
+                <h3>安装步骤</h3>
+                <ol>
+                    <li>克隆项目仓库：
+                        <pre><code>git clone https://github.com/liangdabiao/claude-data-analysis</code></pre>
+                    </li>
+                    <li>进入项目目录：
+                        <pre><code>cd claude-data-analysis</code></pre>
+                    </li>
+                    <li>配置 Claude Code 环境：
+                        <pre><code># 在 .claude/settings.json 中配置 Claude Code 设置
+# 确保 Claude Code 已正确安装并配置</code></pre>
+                    </li>
+                    <li>准备数据存储目录：
+                        <pre><code># 将 CSV、JSON 或 Excel 文件放入 data_storage 目录
+mkdir -p data_storage</code></pre>
+                    </li>
+                </ol>
+                
+                <h2 id="usage">3. 使用方法</h2>
+                <p>Claude 数据分析助手 提供了多种使用方式，您可以根据需求选择最适合的方法：</p>
+                
+                <h3>基本使用</h3>
+                <p>使用斜杠命令进行数据分析：</p>
+                <pre><code># 进入 Claude Code 环境
+# 将数据文件放入 data_storage 目录
+# 使用斜杠命令进行分析</code></pre>
+                
+                <h3>高级功能</h3>
+                <p>对于更复杂的使用场景，您可以：</p>
+                <ul>
+                    <li>组合多个斜杠命令创建完整分析工作流</li>
+                    <li>自定义子代理行为以适应特定分析需求</li>
+                    <li>使用不同的编程语言生成分析代码</li>
+                    <li>创建自定义可视化图表</li>
+                </ul>
+                
+                <h2 id="features">4. 功能详解</h2>
+                <p>Claude 数据分析助手 包含以下核心功能模块：</p>
+                
+                <h3>AI 子代理系统</h3>
+                <ul>
+                    <li><strong>数据探索专家</strong>：专业的统计分析与模式发现</li>
+                    <li><strong>可视化专家</strong>：创建美观、有洞察力的图表</li>
+                    <li><strong>代码生成器</strong>：生产级分析代码生成</li>
+                    <li><strong>报告编写器</strong>：综合分析报告生成</li>
+                    <li><strong>质量保证</strong>：数据验证与质量控制</li>
+                    <li><strong>假设生成器</strong>：研究假设与洞察生成</li>
+                </ul>
+                
+                <h3>斜杠命令系统</h3>
+                <ul>
+                    <li><strong>/analyze</strong>：对数据集进行探索性分析，发现基本模式</li>
+                    <li><strong>/visualize</strong>：生成全面的数据可视化图表</li>
+                    <li><strong>/generate</strong>：生成数据清洗的Python代码</li>
+                    <li><strong>/report</strong>：生成完整的Markdown格式分析报告</li>
+                    <li><strong>/quality</strong>：检查并清理数据质量问题</li>
+                    <li><strong>/hypothesis</strong>：基于数据生成研究假设</li>
+                </ul>
+                
+                <h2 id="examples">5. 使用示例</h2>
+                <p>以下是一些典型的使用场景和示例：</p>
+                
+                <h3>示例 1：基础探索分析</h3>
+                <p>对用户行为数据进行探索性分析</p>
+                <pre><code>/analyze user_behavior.csv exploratory</code></pre>
+                
+                <h3>示例 2：创建可视化图表</h3>
+                <p>生成数据的全面可视化图表</p>
+                <pre><code>/visualize user_behavior.csv all</code></pre>
+                
+                <h3>示例 3：完整分析工作流</h3>
+                <p>执行完整的数据分析流程</p>
+                <pre><code># 完整分析工作流
+/analyze user_behavior.csv exploratory
+/visualize user_behavior.csv trends
+/quality user_behavior.csv clean
+/report user_behavior.csv complete html
+/generate python user-segmentation</code></pre>
+                
+                <h2 id="troubleshooting">6. 常见问题</h2>
+                <h3>Q: 如何开始使用 Claude 数据分析助手？</h3>
+                <p>A: 首先确保 Claude Code 已正确安装和配置，然后将数据文件放入 data_storage 目录，最后使用斜杠命令开始分析。</p>
+                
+                <h3>Q: 支持哪些数据格式？</h3>
+                <p>A: 支持 CSV、JSON、Excel 等常见数据格式，将文件放入 data_storage 目录即可进行分析。</p>
+                
+                <h3>Q: 如何自定义分析流程？</h3>
+                <p>A: 可以通过组合不同的斜杠命令创建自定义分析流程，也可以修改子代理配置以适应特定需求。</p>
+                
+                <h2 id="resources">7. 相关资源</h2>
+                <ul>
+                    <li><a href="https://github.com/liangdabiao/claude-data-analysis" target="_blank">GitHub 项目页面</a></li>
+                    <li><a href="https://github.com/liangdabiao/claude-data-analysis/issues" target="_blank">问题反馈</a></li>
+                    <li><a href="https://github.com/liangdabiao/claude-data-analysis/wiki" target="_blank">项目 Wiki</a></li>
+                    <li><a href="https://claude.ai/" target="_blank">Claude Code 官方网站</a></li>
+                    <li><a href="https://pandas.pydata.org/docs/" target="_blank">Pandas 官方文档</a></li>
+                </ul>
+            </article>
+        </main>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

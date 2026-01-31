@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Claude Deep Research Agent - 使用指南</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>📚 AI工具文档中心</h2>
+            </div>
+            <nav class="main-nav">
+                <h3>全部AI工具</h3>
+                <ul id="project-list">
+                    <!-- 项目列表将通过JavaScript动态生成 -->
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="nav-buttons">
+                    <a href="../index.html" class="back-button">← 文档首页</a>
+                    <a href="../../" class="back-button" style="margin-left: 10px;">🏠 主站</a>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="搜索文档...">
+                    <button id="search-button">🔍</button>
+                </div>
+            </header>
+
+            <article class="doc-content">
+                <h1>Simple Claude Deep Research Agent</h1>
+
+                <div class="product-info">
+                    <p>简化版多智能体深度研究系统，完全小白友好，通过 Claude Code Skills 技术实现并行子代理执行综合性网络研究，支持直接查询、广度优先和深度优先三种模式。</p>
+
+                    <div class="product-tags">
+                        <span class="product-tag">深度研究</span>
+                        <span class="product-tag">Claude Code</span>
+                        <span class="product-tag">Skills</span>
+                        <span class="product-tag">多智能体</span>
+                        <span class="product-tag">小白友好</span>
+                        <span class="product-tag">并行处理</span>
+                    </div>
+
+                    <div class="difficulty-level">
+                        <strong>难度等级：</strong>初级
+                    </div>
+
+                    <div class="github-link">
+                        <a href="https://github.com/liangdabiao/simple_claude_deep_research_agent" target="_blank">📁 访问GitHub项目页面</a>
+                    </div>
+                </div>
+
+                <h2>目录</h2>
+                <ul>
+                    <li><a href="#introduction">1. 项目介绍</a></li>
+                    <li><a href="#installation">2. 安装配置</a></li>
+                    <li><a href="#usage">3. 使用方法</a></li>
+                    <li><a href="#features">4. 功能详解</a></li>
+                    <li><a href="#examples">5. 使用示例</a></li>
+                    <li><a href="#troubleshooting">6. 常见问题</a></li>
+                    <li><a href="#resources">7. 相关资源</a></li>
+                </ul>
+
+                <h2 id="introduction">1. 项目介绍</h2>
+                <p>Simple Claude Deep Research Agent 是一款先进的AI工具，旨在简化多智能体深度研究流程。该项目利用 Claude Code Skills、MCP Protocol、Playwright、WebSearch、WebFetch 等技术，为用户提供小白友好的深度研究解决方案。</p>
+
+                <h3>核心特性</h3>
+                <ul>
+                    <li>🎯 三种查询模式：直接查询（1个子代理）、广度优先查询（3个子代理）、深度优先查询（4个子代理）</li>
+                    <li>🤝 多智能体协作架构：研究主导代理统筹规划、研究子代理并行执行、引用代理自动添加引用</li>
+                    <li>⚡ 并行处理能力：支持2-6个子代理同时工作，显著提升研究效率（复杂问题5-10分钟完成）</li>
+                    <li>🔧 智能工具集成：Web搜索、Web Fetch、Playwright MCP自动处理JavaScript动态页面</li>
+                    <li>🔍 来源质量评估：对信息来源进行批判性评估、交叉验证关键事实、识别偏见和推测</li>
+                    <li>📝 自动化引用生成：研究完成后自动添加引用，支持多种引用格式</li>
+                    <li>👶 完全小白友好：无需编程，一行命令启动 deep-research <查询主题></li>
+                    <li>⚙️ 高度可定制：可编辑skills文件自定义研究策略和代理行为</li>
+                </ul>
+
+                <h2 id="installation">2. 安装配置</h2>
+                <p>在开始使用 Simple Claude Deep Research Agent 之前，您需要完成以下准备工作：</p>
+
+                <h3>系统要求</h3>
+                <ul>
+                    <li>操作系统：Windows, macOS 或 Linux</li>
+                    <li>内存：至少 4GB RAM（推荐 8GB 或以上）</li>
+                    <li>存储空间：至少 100MB 可用空间</li>
+                    <li>其他：Claude Code 账户，网络连接</li>
+                </ul>
+
+                <h3>安装步骤</h3>
+                <ol>
+                    <li>克隆项目仓库：
+                        <pre><code>git clone https://github.com/liangdabiao/simple_claude_deep_research_agent</code></pre>
+                    </li>
+                    <li>进入项目目录：
+                        <pre><code>cd simple_claude_deep_research_agent</code></pre>
+                    </li>
+                    <li>配置环境变量（如需要）：
+                        <pre><code># 配置Claude Code账户相关信息
+# 根据项目文档设置必要的API密钥</code></pre>
+                    </li>
+                </ol>
+
+                <h2 id="usage">3. 使用方法</h2>
+                <p>Simple Claude Deep Research Agent 提供了多种使用方式，您可以根据需求选择最适合的方法：</p>
+
+                <h3>基本使用</h3>
+                <pre><code># 启动深度研究
+deep-research [查询主题]
+
+# 例如：
+deep-research "人工智能在医疗行业的应用前景"</code></pre>
+
+                <h3>高级功能</h3>
+                <p>对于更复杂的使用场景，您可以：</p>
+                <ul>
+                    <li>选择不同的查询模式（直接查询、广度优先、深度优先）</li>
+                    <li>自定义研究参数和范围</li>
+                    <li>编辑skills文件以调整研究策略</li>
+                    <li>配置引用格式和输出选项</li>
+                </ul>
+
+                <h2 id="features">4. 功能详解</h2>
+                <p>Simple Claude Deep Research Agent 包含以下核心功能模块：</p>
+
+                <h3>多智能体协作架构</h3>
+                <ul>
+                    <li>研究主导代理：负责统筹规划整个研究流程</li>
+                    <li>研究子代理：并行执行具体的研究任务</li>
+                    <li>引用代理：自动为研究成果添加引用信息</li>
+                </ul>
+
+                <h3>三种查询模式</h3>
+                <ul>
+                    <li>直接查询：使用1个子代理进行快速研究</li>
+                    <li>广度优先查询：使用3个子代理从多个角度展开研究</li>
+                    <li>深度优先查询：使用4个子代理进行深入细致的研究</li>
+                </ul>
+
+                <h3>智能工具集成</h3>
+                <ul>
+                    <li>Web搜索：获取广泛的信息来源</li>
+                    <li>Web Fetch：抓取特定网页内容</li>
+                    <li>Playwright MCP：处理JavaScript动态页面</li>
+                </ul>
+
+                <h2 id="examples">5. 使用示例</h2>
+                <p>以下是一些典型的使用场景和示例：</p>
+
+                <h3>示例 1：基础研究查询</h3>
+                <p>进行一个简单的主题研究</p>
+                <pre><code>1. 打开Claude Code
+2. 输入命令：/deep-research 量子计算的基本原理
+3. 等待研究完成
+4. 查看生成的详细报告</code></pre>
+
+                <h3>示例 2：广度优先研究</h3>
+                <p>从多个角度研究一个复杂主题</p>
+                <pre><code>1. 选择广度优先模式
+2. 输入研究主题：区块链技术在供应链管理中的应用
+3. 系统将使用3个子代理从不同角度进行研究
+4. 获取全面的分析报告</code></pre>
+
+                <h2 id="troubleshooting">6. 常见问题</h2>
+                <h3>Q: 如何选择合适的研究模式？</h3>
+                <p>A: 简单主题使用直接查询，复杂主题使用广度优先或深度优先模式。</p>
+
+                <h3>Q: 研究过程中出现错误怎么办？</h3>
+                <p>A: 检查网络连接和Claude Code账户权限，确保所有必要组件正常运行。</p>
+
+                <h3>Q: 如何提高研究质量？</h3>
+                <p>A: 提供明确具体的研究主题，适当调整研究参数，利用交叉验证功能。</p>
+
+                <h2 id="resources">7. 相关资源</h2>
+                <ul>
+                    <li><a href="https://github.com/liangdabiao/simple_claude_deep_research_agent" target="_blank">GitHub 项目页面</a></li>
+                    <li><a href="https://github.com/liangdabiao/simple_claude_deep_research_agent/issues" target="_blank">问题反馈</a></li>
+                    <li><a href="https://www.anthropic.com/claude" target="_blank">Claude Code 官方网站</a></li>
+                    <li><a href="https://github.com/liangdabiao" target="_blank">开发者其他项目</a></li>
+                </ul>
+            </article>
+        </main>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

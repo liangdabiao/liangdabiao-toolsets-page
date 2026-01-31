@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI生成英语播客视频 - 使用指南</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>📚 AI工具文档中心</h2>
+            </div>
+            <nav class="main-nav">
+                <h3>全部AI工具</h3>
+                <ul id="project-list">
+                    <!-- 项目列表将通过JavaScript动态生成 -->
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="nav-buttons">
+                    <a href="../index.html" class="back-button">← 文档首页</a>
+                    <a href="../../" class="back-button" style="margin-left: 10px;">🏠 主站</a>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="搜索文档...">
+                    <button id="search-button">🔍</button>
+                </div>
+            </header>
+
+            <article class="doc-content">
+                <h1>AI生成英语播客视频</h1>
+                
+                <div class="product-info">
+                    <p>只需提供一篇文章，全自动生成播客视频对话文案、视频素材、字幕和背景音乐，合成高清播客短视频。支持Web界面和API，多种AI模型接入，让英语学习和内容创作变得简单高效。</p>
+                    
+                    <div class="product-tags">
+                        <span class="product-tag">AI播客视频</span>
+                        <span class="product-tag">英语学习</span>
+                        <span class="product-tag">视频生成</span>
+                        <span class="product-tag">Streamlit</span>
+                        <span class="product-tag">语音合成</span>
+                        <span class="product-tag">自动化制作</span>
+                    </div>
+                    
+                    <div class="difficulty-level">
+                        <strong>难度等级：</strong>中等
+                    </div>
+                    
+                    <div class="github-link">
+                        <a href="https://github.com/liangdabiao/AI-generated-English-podcast-videos" target="_blank">📁 访问GitHub项目页面</a>
+                    </div>
+                </div>
+                
+                <h2>目录</h2>
+                <ul>
+                    <li><a href="#introduction">1. 项目介绍</a></li>
+                    <li><a href="#installation">2. 安装配置</a></li>
+                    <li><a href="#usage">3. 使用方法</a></li>
+                    <li><a href="#features">4. 功能详解</a></li>
+                    <li><a href="#examples">5. 使用示例</a></li>
+                    <li><a href="#troubleshooting">6. 常见问题</a></li>
+                    <li><a href="#resources">7. 相关资源</a></li>
+                </ul>
+                
+                <h2 id="introduction">1. 项目介绍</h2>
+                <p>AI生成英语播客视频是一款自动化视频生成工具，旨在通过AI技术将文章内容转换为高质量的英语播客视频。该项目利用Streamlit、FastAPI、FFmpeg、ImageMagick、Azure TTS、OpenAI TTS、Whisper、Pexels API、Python 3.11等技术，为用户提供从文章输入到视频输出的完整解决方案。</p>
+                
+                <h3>核心特性</h3>
+                <ul>
+                    <li>🤖 AI智能生成：支持视频播客文案AI自动生成，也可以自定义文案，智能转换文章为对话内容</li>
+                    <li>🎬 多尺寸视频：支持竖屏9:16 (1080x1920) 和横屏16:9 (1920x1080) 两种高清视频尺寸</li>
+                    <li>⚡ 批量生成：支持批量视频生成，可以一次生成多个视频，然后选择最满意的结果</li>
+                    <li>🎵 语音合成：支持多种语音合成，可实时试听效果，支持中英文两种语言</li>
+                    <li>📜 智能字幕：支持字幕生成，可调整字体、位置、颜色、大小，同时支持字幕描边设置</li>
+                    <li>🎼 背景音乐：支持背景音乐，随机或指定音乐文件，可调节背景音乐音量</li>
+                    <li>🎨 高清素材：视频素材来源高清且无版权，也可以使用自己的本地素材</li>
+                    <li>🔧 多模型接入：支持OpenAI、Moonshot、Azure、DeepSeek、通义千问、Gemini等多种模型</li>
+                </ul>
+                
+                <h2 id="installation">2. 安装配置</h2>
+                <p>在开始使用 AI生成英语播客视频 之前，您需要完成以下准备工作：</p>
+                
+                <h3>系统要求</h3>
+                <ul>
+                    <li>操作系统：Windows, macOS 或 Linux</li>
+                    <li>内存：至少 4GB RAM（推荐 8GB 或以上）</li>
+                    <li>存储空间：至少 2GB 可用空间</li>
+                    <li>其他：Python 3.11, Conda, FFmpeg, ImageMagick</li>
+                </ul>
+                
+                <h3>安装步骤</h3>
+                <ol>
+                    <li>克隆项目仓库：
+                        <pre><code>git clone https://github.com/liangdabiao/AI-generated-English-podcast-videos.git
+cd AI-generated-English-podcast-videos</code></pre>
+                    </li>
+                    <li>创建虚拟环境：
+                        <pre><code>conda create -n AI-podcast-videos python=3.11
+conda activate AI-podcast-videos
+pip install -r requirements.txt</code></pre>
+                    </li>
+                    <li>安装ImageMagick：
+                        <pre><code># Windows: 下载静态库版本，修改config.toml中的路径
+# MacOS: brew install imagemagick
+# Ubuntu: sudo apt-get install imagemagick</code></pre>
+                    </li>
+                    <li>启动服务：
+                        <pre><code># 启动Web界面
+# Windows
+webui.bat
+
+# MacOS/Linux
+sh webui.sh
+
+# 访问 http://0.0.0.0:8501
+
+# 启动API服务
+python main.py
+
+# API文档 http://0.0.0.0:8080/docs</code></pre>
+                    </li>
+                </ol>
+                
+                <h2 id="usage">3. 使用方法</h2>
+                <p>AI生成英语播客视频 提供了多种使用方式，您可以根据需求选择最适合的方法：</p>
+                
+                <h3>基本使用</h3>
+                <p>启动服务并开始使用：</p>
+                <pre><code># 启动Web界面
+sh webui.sh
+
+# 访问 http://0.0.0.0:8501
+
+# 在界面上：
+# 1. 输入文章内容
+# 2. 选择视频尺寸（竖屏或横屏）
+# 3. 配置语音合成参数
+# 4. 设置字幕样式
+# 5. 选择背景音乐
+# 6. 点击生成按钮</code></pre>
+                
+                <h3>高级功能</h3>
+                <p>对于更复杂的使用场景，您可以：</p>
+                <ul>
+                    <li>自定义视频参数（尺寸、时长、字幕样式等）</li>
+                    <li>选择不同的AI模型进行文案生成</li>
+                    <li>上传本地视频素材和背景音乐</li>
+                    <li>批量生成多个视频并选择最佳结果</li>
+                </ul>
+                
+                <h2 id="features">4. 功能详解</h2>
+                <p>AI生成英语播客视频 包含以下核心功能模块：</p>
+                
+                <h3>AI模型接入</h3>
+                <ul>
+                    <li>OpenAI GPT</li>
+                    <li>Moonshot</li>
+                    <li>Azure OpenAI</li>
+                    <li>DeepSeek</li>
+                    <li>通义千问</li>
+                    <li>Google Gemini</li>
+                    <li>Ollama</li>
+                    <li>文心一言</li>
+                    <li>Pollinations</li>
+                </ul>
+                
+                <h3>视频处理技术</h3>
+                <ul>
+                    <li>FFmpeg：视频编码和处理</li>
+                    <li>ImageMagick：图像处理和字幕生成</li>
+                    <li>OpenCV：视频分析和处理</li>
+                    <li>PIL/Pillow：图像处理</li>
+                </ul>
+                
+                <h3>语音合成技术</h3>
+                <ul>
+                    <li>Azure TTS</li>
+                    <li>Edge TTS</li>
+                    <li>OpenAI TTS</li>
+                    <li>多种语音库</li>
+                </ul>
+                
+                <h3>字幕生成技术</h3>
+                <ul>
+                    <li>Whisper：语音识别和转录</li>
+                    <li>Edge TTS：文本转语音</li>
+                    <li>自定义字体：个性化字幕样式</li>
+                    <li>字幕样式：位置、颜色、大小、描边等</li>
+                </ul>
+                
+                <h2 id="examples">5. 使用示例</h2>
+                <p>以下是一些典型的使用场景和示例：</p>
+                
+                <h3>示例 1：Web界面使用</h3>
+                <p>通过Streamlit Web界面进行视频生成</p>
+                <pre><code># 启动Web界面
+sh webui.sh
+
+# 访问 http://0.0.0.0:8501
+
+# 在界面上：
+# 1. 输入文章内容
+# 2. 选择视频尺寸（竖屏或横屏）
+# 3. 配置语音合成参数
+# 4. 设置字幕样式
+# 5. 选择背景音乐
+# 6. 点击生成按钮</code></pre>
+                
+                <h3>示例 2：API调用</h3>
+                <p>通过API接口进行程序化调用</p>
+                <pre><code># 启动API服务
+python main.py
+
+# API文档 http://0.0.0.0:8080/docs
+
+# 通过HTTP请求调用API生成视频</code></pre>
+                
+                <h3>示例 3：批量生成</h3>
+                <p>一次性生成多个视频并选择最佳结果</p>
+                <pre><code># 在Web界面中启用批量生成模式
+# 设置生成视频的数量
+# 系统会生成多个版本的视频
+# 用户可以选择最满意的结果</code></pre>
+                
+                <h2 id="troubleshooting">6. 常见问题</h2>
+                <h3>Q: 如何开始使用 AI生成英语播客视频？</h3>
+                <p>A: 首先确保已安装Python 3.11、Conda、FFmpeg和ImageMagick，然后克隆项目并创建虚拟环境，安装依赖后启动Web界面或API服务即可开始使用。</p>
+                
+                <h3>Q: 支持哪些AI模型？</h3>
+                <p>A: 支持OpenAI GPT、Moonshot、Azure OpenAI、DeepSeek、通义千问、Google Gemini等多种模型，国内用户推荐使用DeepSeek或Moonshot。</p>
+                
+                <h3>Q: 如何提高视频质量？</h3>
+                <p>A: 可以选择更高质量的AI模型，调整视频参数（分辨率、帧率等），使用更好的背景音乐和视频素材，以及优化字幕样式。</p>
+                
+                <h2 id="resources">7. 相关资源</h2>
+                <ul>
+                    <li><a href="https://github.com/liangdabiao/AI-generated-English-podcast-videos" target="_blank">GitHub 项目页面</a></li>
+                    <li><a href="https://github.com/liangdabiao/AI-generated-English-podcast-videos/issues" target="_blank">问题反馈</a></li>
+                    <li><a href="https://github.com/liangdabiao/AI-generated-English-podcast-videos/pulls" target="_blank">贡献代码</a></li>
+                    <li><a href="https://streamlit.io/" target="_blank">Streamlit 官方文档</a></li>
+                    <li><a href="https://fastapi.tiangolo.com/" target="_blank">FastAPI 官方文档</a></li>
+                </ul>
+            </article>
+        </main>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

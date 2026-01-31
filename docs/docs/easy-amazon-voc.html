@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon商品评论分析系统 - 使用指南</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>📚 AI工具文档中心</h2>
+            </div>
+            <nav class="main-nav">
+                <h3>全部AI工具</h3>
+                <ul id="project-list">
+                    <!-- 项目列表将通过JavaScript动态生成 -->
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="nav-buttons">
+                    <a href="../index.html" class="back-button">← 文档首页</a>
+                    <a href="../../" class="back-button" style="margin-left: 10px;">🏠 主站</a>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="搜索文档...">
+                    <button id="search-button">🔍</button>
+                </div>
+            </header>
+
+            <article class="doc-content">
+                <h1>Amazon商品评论分析系统</h1>
+                
+                <div class="product-info">
+                    <p>AI驱动的客户之声分析工具，针对Amazon商品评论进行多维度智能分析。用户只需上传CSV文件，系统自动分析用户画像、产品反馈、服务评价等维度，生成结构化的分析报告。</p>
+                    
+                    <div class="product-tags">
+                        <span class="product-tag">VOC分析</span>
+                        <span class="product-tag">Amazon评论</span>
+                        <span class="product-tag">AI分析</span>
+                        <span class="product-tag">用户画像</span>
+                        <span class="product-tag">市场调研</span>
+                        <span class="product-tag">数据分析</span>
+                    </div>
+                    
+                    <div class="difficulty-level">
+                        <strong>难度等级：</strong>进阶
+                    </div>
+                    
+                    <div class="github-link">
+                        <a href="https://github.com/liangdabiao/easy-amazon-voc" target="_blank">📁 访问GitHub项目页面</a>
+                    </div>
+                </div>
+                
+                <h2>目录</h2>
+                <ul>
+                    <li><a href="#introduction">1. 项目介绍</a></li>
+                    <li><a href="#installation">2. 安装配置</a></li>
+                    <li><a href="#usage">3. 使用方法</a></li>
+                    <li><a href="#features">4. 功能详解</a></li>
+                    <li><a href="#examples">5. 使用示例</a></li>
+                    <li><a href="#troubleshooting">6. 常见问题</a></li>
+                    <li><a href="#resources">7. 相关资源</a></li>
+                </ul>
+                
+                <h2 id="introduction">1. 项目介绍</h2>
+                <p>Amazon商品评论分析系统是一款AI驱动的客户之声分析工具，旨在通过对Amazon商品评论进行多维度智能分析，帮助商家和研究人员深入了解用户反馈。该项目利用Flask、Python、OpenAI、Easy Scraper、ECharts、字节豆包等技术，为用户提供从评论爬取到分析结果的完整解决方案。</p>
+                
+                <h3>核心特性</h3>
+                <ul>
+                    <li>📦 多维度评论分析：从人群场景、功能价值、保障价值、体验价值等4大维度进行深度分析，提取用户真实反馈</li>
+                    <li>🤖 AI智能标签提取：使用大模型自动识别评论中的关键信息，生成结构化的标签体系和分析报告</li>
+                    <li>📊 用户画像构建：分析使用场景、购买动机、价格感知等，构建完整的用户画像和行为模式</li>
+                    <li>💰 产品反馈分析：深入分析产品优缺点、设计与外观、用户期望建议，为产品改进提供数据支持</li>
+                    <li>🚀 一键式操作：从Easy Scraper爬取评论到上传分析，简单几步即可完成完整的VOC分析流程</li>
+                    <li>📈 数据可视化：生成可视化分析报告，支持Excel筛选和多维度数据展示，便于深入分析</li>
+                </ul>
+                
+                <h2 id="installation">2. 安装配置</h2>
+                <p>在开始使用 Amazon商品评论分析系统 之前，您需要完成以下准备工作：</p>
+                
+                <h3>系统要求</h3>
+                <ul>
+                    <li>操作系统：Windows, macOS 或 Linux</li>
+                    <li>内存：至少 4GB RAM（推荐 8GB 或以上）</li>
+                    <li>存储空间：至少 500MB 可用空间</li>
+                    <li>其他：Python 3.10+, pip 包管理器, OpenAI API Key 或其他兼容OpenAI接口的大模型</li>
+                </ul>
+                
+                <h3>安装步骤</h3>
+                <ol>
+                    <li>克隆项目仓库：
+                        <pre><code>git clone https://github.com/liangdabiao/easy-amazon-voc
+cd easy-amazon-voc</code></pre>
+                    </li>
+                    <li>安装依赖：
+                        <pre><code>pip install -r requirements.txt</code></pre>
+                    </li>
+                    <li>配置大模型API：
+                        <pre><code># 在 function.py 中配置API密钥
+import openai
+openai.api_key = "your api key"
+
+# 支持兼容OpenAI接口的大模型
+# 目前使用字节豆包，也可配置其他模型
+model="doubao-1.5-pro-32k-250115"</code></pre>
+                    </li>
+                    <li>启动系统：
+                        <pre><code># 启动Flask应用
+python app.py
+
+# 访问 http://localhost:5000 开始使用</code></pre>
+                    </li>
+                </ol>
+                
+                <h2 id="usage">3. 使用方法</h2>
+                <p>Amazon商品评论分析系统 提供了多种使用方式，您可以根据需求选择最适合的方法：</p>
+                
+                <h3>基本使用</h3>
+                <p>通过与系统交互完成评论分析：</p>
+                <pre><code># 1. 使用Easy Scraper插件爬取Amazon商品评论
+# 2. 导出CSV格式文件
+# 3. 上传CSV文件到系统进行分析
+# 4. 下载带有分析结果的更新文件</code></pre>
+                
+                <h3>高级功能</h3>
+                <p>对于更复杂的使用场景，您可以：</p>
+                <ul>
+                    <li>自定义分析维度和标签体系</li>
+                    <li>调整AI模型参数以优化分析结果</li>
+                    <li>批量处理多个CSV文件</li>
+                    <li>扩展支持更多的数据源格式</li>
+                </ul>
+                
+                <h2 id="features">4. 功能详解</h2>
+                <p>Amazon商品评论分析系统 包含以下核心功能模块：</p>
+                
+                <h3>四维分析框架</h3>
+                <ul>
+                    <li><strong>人群场景 (People Scenarios)</strong>：
+                        <ul>
+                            <li>使用场景：儿童玩乐、成人收藏、节日礼物、汽车爱好者等</li>
+                            <li>购买动机：价格优势、设计喜欢、替代乐高、性价比考虑等</li>
+                            <li>用户需求：功能需求、情感需求、社交需求等</li>
+                        </ul>
+                    </li>
+                    <li><strong>功能价值 (Functional Value)</strong>：
+                        <ul>
+                            <li>产品优点：零件齐全、组装容易、设计精美、功能多样等</li>
+                            <li>产品缺点：零件缺失、零件松动、组装困难、指示不明等</li>
+                            <li>用户建议：优化指示、提升质量、改进包装等</li>
+                            <li>设计外观：整体造型、内部细节、颜色搭配等</li>
+                        </ul>
+                    </li>
+                    <li><strong>保障价值 (Assurance Value)</strong>：
+                        <ul>
+                            <li>物流配送：配送速度、包装完整性</li>
+                            <li>售后服务：补发零件、退款处理、客服响应</li>
+                            <li>售前服务：信息咨询、产品介绍、购买指导</li>
+                            <li>品质保证：质量承诺、售后支持</li>
+                        </ul>
+                    </li>
+                    <li><strong>体验价值 (Experience Value)</strong>：
+                        <ul>
+                            <li>推荐意愿：是否愿意推荐、推荐原因分析</li>
+                            <li>品牌印象：质量认知、价格感知、品牌信任度</li>
+                            <li>感官感受：外观美感、零件质感、使用体验</li>
+                            <li>价格感知：价格合理性、性价比评估</li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <h3>技术架构</h3>
+                <ul>
+                    <li><strong>前端技术</strong>：HTML5, CSS3, JavaScript, ECharts图表库</li>
+                    <li><strong>后端技术</strong>：Flask, Python 3.10+, OpenAI API, 字节豆包模型</li>
+                    <li><strong>数据处理</strong>：CSV文件处理, AI标签提取, 结构化数据分析</li>
+                    <li><strong>数据源</strong>：Easy Scraper浏览器插件, Amazon商品评论数据</li>
+                </ul>
+                
+                <h2 id="examples">5. 使用示例</h2>
+                <p>以下是一些典型的使用场景和示例：</p>
+                
+                <h3>示例 1：文件上传界面</h3>
+                <p>支持CSV文件拖拽上传，开始AI分析处理</p>
+                <pre><code>拖拽CSV文件到此处或点击上传
+支持Amazon评论格式</code></pre>
+                
+                <h3>示例 2：分析处理中</h3>
+                <p>实时显示AI处理进度和状态</p>
+                <pre><code>正在进行AI多维度分析...
+已处理 15/50 条评论</code></pre>
+                
+                <h3>示例 3：分析结果下载</h3>
+                <p>完成后提供更新文件的下载链接</p>
+                <pre><code>✅ 分析完成！
+下载带分析的CSV文件</code></pre>
+                
+                <h2 id="troubleshooting">6. 常见问题</h2>
+                <h3>Q: 如何开始使用 Amazon商品评论分析系统？</h3>
+                <p>A: 可以使用Easy Scraper Chrome浏览器插件爬取Amazon商品评论，然后导出为CSV格式文件上传到系统进行分析。</p>
+                
+                <h3>Q: 支持哪些数据格式？</h3>
+                <p>A: 支持CSV格式文件，特别是通过Easy Scraper插件从Amazon爬取的评论数据格式。</p>
+                
+                <h3>Q: 如何提高分析准确性？</h3>
+                <p>A: 可以通过选择更高级的AI模型、优化提示词、调整分析参数等方式来提高分析准确性。</p>
+                
+                <h2 id="resources">7. 相关资源</h2>
+                <ul>
+                    <li><a href="https://github.com/liangdabiao/easy-amazon-voc" target="_blank">GitHub 项目页面</a></li>
+                    <li><a href="https://github.com/liangdabiao/easy-amazon-voc/issues" target="_blank">问题反馈</a></li>
+                    <li><a href="https://github.com/liangdabiao/easy-amazon-voc/pulls" target="_blank">贡献代码</a></li>
+                    <li><a href="https://flask.palletsprojects.com/" target="_blank">Flask 官方文档</a></li>
+                    <li><a href="https://platform.openai.com/docs/" target="_blank">OpenAI API 官方文档</a></li>
+                </ul>
+            </article>
+        </main>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

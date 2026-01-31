@@ -2237,32 +2237,43 @@ section {
 
 .footer-content {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr; /* 修改为3列，更适合内容布局 */
     gap: 2rem;
     margin-bottom: 2rem;
+}
+
+.footer-section {
+    flex: 1;
 }
 
 .footer-section h3,
 .footer-section h4 {
     margin-bottom: 1rem;
+    color: white;
 }
 
 .footer-section ul {
     list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .footer-section ul li {
     margin-bottom: 0.5rem;
+    line-height: 1.5;
 }
 
 .footer-section a {
     color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
     transition: var(--transition);
+    display: inline-block;
+    padding: 0.125rem 0;
 }
 
 .footer-section a:hover {
     color: white;
+    transform: translateX(3px);
 }
 
 .footer-bottom {
@@ -2270,6 +2281,23 @@ section {
     padding-top: 1rem;
     text-align: center;
     color: rgba(255, 255, 255, 0.7);
+}
+
+/* 修正移动端footer布局 */
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr; /* 移动端单列布局 */
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    .footer-section {
+        margin-bottom: 1rem;
+    }
+
+    .footer-section:last-child {
+        margin-bottom: 0;
+    }
 }
 
 /* Responsive Design */

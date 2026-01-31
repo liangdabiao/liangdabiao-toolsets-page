@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bright Data 深度调研工具 - 使用指南</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>📚 AI工具文档中心</h2>
+            </div>
+            <nav class="main-nav">
+                <h3>全部AI工具</h3>
+                <ul id="project-list">
+                    <!-- 项目列表将通过JavaScript动态生成 -->
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="nav-buttons">
+                    <a href="../index.html" class="back-button">← 文档首页</a>
+                    <a href="../../" class="back-button" style="margin-left: 10px;">🏠 主站</a>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="搜索文档...">
+                    <button id="search-button">🔍</button>
+                </div>
+            </header>
+
+            <article class="doc-content">
+                <h1>Bright Data 深度调研工具</h1>
+
+                <div class="product-info">
+                    <p>基于 Bright Data MCP 和 Claude Code Skills 的电商平台深度调研系统，利用专业网络爬虫技术实现 Amazon 等电商平台的市场分析、竞争研究和产品调研。</p>
+
+                    <div class="product-tags">
+                        <span class="product-tag">Bright Data</span>
+                        <span class="product-tag">MCP</span>
+                        <span class="product-tag">Claude Code</span>
+                        <span class="product-tag">电商调研</span>
+                        <span class="product-tag">网络爬虫</span>
+                        <span class="product-tag">深度研究</span>
+                        <span class="product-tag">数据分析</span>
+                    </div>
+
+                    <div class="difficulty-level">
+                        <strong>难度等级：</strong>进阶
+                    </div>
+
+                    <div class="github-link">
+                        <a href="https://github.com/liangdabiao/Bright-Data-MCP-Claude-Skill-deep-research" target="_blank">📁 访问GitHub项目页面</a>
+                    </div>
+                </div>
+
+                <h2>目录</h2>
+                <ul>
+                    <li><a href="#introduction">1. 项目介绍</a></li>
+                    <li><a href="#installation">2. 安装配置</a></li>
+                    <li><a href="#usage">3. 使用方法</a></li>
+                    <li><a href="#features">4. 功能详解</a></li>
+                    <li><a href="#examples">5. 使用示例</a></li>
+                    <li><a href="#troubleshooting">6. 常见问题</a></li>
+                    <li><a href="#resources">7. 相关资源</a></li>
+                </ul>
+
+                <h2 id="introduction">1. 项目介绍</h2>
+                <p>Bright Data 深度调研工具 是一款先进的AI工具，旨在实现电商平台的深度调研。该项目利用 Bright Data MCP、Claude Code、Agent Skills、Python、DuckDuckGo、浏览器自动化、数据抓取 等技术，为用户提供专业的电商平台市场分析、竞争研究和产品调研解决方案。</p>
+
+                <h3>核心特性</h3>
+                <ul>
+                    <li>🔗 Bright Data MCP集成：专业级网络爬虫和数据提取能力，支持反机器人保护</li>
+                    <li>🤖 Claude Code Skills：一键式深度调研命令，全自动化研究流程</li>
+                    <li>🛒 多平台电商研究：支持Amazon、eBay、AliExpress等主流电商平台数据抓取</li>
+                    <li>📊 结构化数据分析：生成JSON和Markdown格式的专业研究报告</li>
+                    <li>📈 市场分析维度：市场规模、品牌竞争、技术趋势、定价策略、利润分析</li>
+                    <li>📚 Demo案例库：3D打印机市场分析、便携式电源站市场数据等实战案例</li>
+                    <li>🔍 DuckDuckGo搜索：辅助网络搜索工具，补充市场调研数据</li>
+                    <li>🌐 浏览器自动化：处理JavaScript渲染的页面，确保数据收集完整性</li>
+                </ul>
+
+                <h2 id="installation">2. 安装配置</h2>
+                <p>在开始使用 Bright Data 深度调研工具 之前，您需要完成以下准备工作：</p>
+
+                <h3>系统要求</h3>
+                <ul>
+                    <li>操作系统：Windows, macOS 或 Linux</li>
+                    <li>内存：至少 8GB RAM（推荐 16GB 或以上）</li>
+                    <li>存储空间：至少 500MB 可用空间</li>
+                    <li>其他：Bright Data 账户，Claude Code 账户，稳定网络连接</li>
+                </ul>
+
+                <h3>安装步骤</h3>
+                <ol>
+                    <li>克隆项目仓库：
+                        <pre><code>git clone https://github.com/liangdabiao/Bright-Data-MCP-Claude-Skill-deep-research</code></pre>
+                    </li>
+                    <li>进入项目目录：
+                        <pre><code>cd Bright-Data-MCP-Claude-Skill-deep-research</code></pre>
+                    </li>
+                    <li>安装依赖：
+                        <pre><code>pip install -r requirements.txt</code></pre>
+                    </li>
+                    <li>配置API密钥：
+                        <pre><code># 配置Bright Data MCP和Claude Code的API密钥
+# 在项目根目录创建.env文件并添加必要配置</code></pre>
+                    </li>
+                </ol>
+
+                <h2 id="usage">3. 使用方法</h2>
+                <p>Bright Data 深度调研工具 提供了多种使用方式，您可以根据需求选择最适合的方法：</p>
+
+                <h3>基本使用</h3>
+                <pre><code># 在Claude中使用Bright Data调研工具
+# 直接输入调研请求
+"请对Amazon上的蓝牙耳机市场进行深度调研"</code></pre>
+
+                <h3>高级功能</h3>
+                <p>对于更复杂的使用场景，您可以：</p>
+                <ul>
+                    <li>指定特定电商平台进行调研</li>
+                    <li>自定义调研深度和范围</li>
+                    <li>设置特定的竞争分析参数</li>
+                    <li>生成特定格式的分析报告</li>
+                </ul>
+
+                <h2 id="features">4. 功能详解</h2>
+                <p>Bright Data 深度调研工具 包含以下核心功能模块：</p>
+
+                <h3>Bright Data MCP集成</h3>
+                <ul>
+                    <li>专业级网络爬虫技术</li>
+                    <li>反机器人保护绕过</li>
+                    <li>高稳定性数据提取</li>
+                </ul>
+
+                <h3>Claude Code Skills</h3>
+                <ul>
+                    <li>一键式深度调研命令</li>
+                    <li>全自动化研究流程</li>
+                    <li>智能报告生成</li>
+                </ul>
+
+                <h3>多平台电商研究</h3>
+                <ul>
+                    <li>Amazon数据抓取</li>
+                    <li>eBay数据分析</li>
+                    <li>AliExpress市场研究</li>
+                </ul>
+
+                <h2 id="examples">5. 使用示例</h2>
+                <p>以下是一些典型的使用场景和示例：</p>
+
+                <h3>示例 1：产品市场分析</h3>
+                <p>分析特定产品在电商平台的市场表现</p>
+                <pre><code>1. 输入分析请求："分析Amazon上某品牌无线充电器的市场表现"
+2. 系统使用Bright Data MCP抓取产品数据
+3. 分析销售排名、评价、价格趋势
+4. 生成详细的产品市场分析报告</code></pre>
+
+                <h3>示例 2：竞争格局研究</h3>
+                <p>研究特定品类的竞争格局</p>
+                <pre><code>1. 定义研究范围："研究Amazon上智能手表品类的竞争格局"
+2. 系统抓取头部品牌和产品数据
+3. 分析市场份额、定价策略、产品特点
+4. 生成竞争分析报告和市场机会建议</code></pre>
+
+                <h2 id="troubleshooting">6. 常见问题</h2>
+                <h3>Q: 如何处理反爬虫机制？</h3>
+                <p>A: Bright Data MCP具有专业的反机器人保护绕过能力，可以处理大多数反爬虫机制。</p>
+
+                <h3>Q: 数据抓取的速度如何？</h3>
+                <p>A: 抓取速度取决于目标网站的响应速度和复杂度，Bright Data提供了高性能的数据提取能力。</p>
+
+                <h3>Q: 如何确保数据的准确性？</h3>
+                <p>A: 系统会通过多重验证和交叉比对来确保数据的准确性，并提供数据来源的透明度。</p>
+
+                <h2 id="resources">7. 相关资源</h2>
+                <ul>
+                    <li><a href="https://github.com/liangdabiao/Bright-Data-MCP-Claude-Skill-deep-research" target="_blank">GitHub 项目页面</a></li>
+                    <li><a href="https://github.com/liangdabiao/Bright-Data-MCP-Claude-Skill-deep-research/issues" target="_blank">问题反馈</a></li>
+                    <li><a href="https://brightdata.com/" target="_blank">Bright Data 官方网站</a></li>
+                    <li><a href="https://www.anthropic.com/claude" target="_blank">Claude Code 官方网站</a></li>
+                    <li><a href="https://github.com/liangdabiao" target="_blank">开发者其他项目</a></li>
+                </ul>
+            </article>
+        </main>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

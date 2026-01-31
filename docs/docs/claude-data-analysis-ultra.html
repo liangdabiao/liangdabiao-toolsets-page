@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude 数据分析终极版 - 使用指南</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>📚 AI工具文档中心</h2>
+            </div>
+            <nav class="main-nav">
+                <h3>全部AI工具</h3>
+                <ul id="project-list">
+                    <!-- 项目列表将通过JavaScript动态生成 -->
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="nav-buttons">
+                    <a href="../index.html" class="back-button">← 文档首页</a>
+                    <a href="../../" class="back-button" style="margin-left: 10px;">🏠 主站</a>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="搜索文档...">
+                    <button id="search-button">🔍</button>
+                </div>
+            </header>
+
+            <article class="doc-content">
+                <h1>Claude 数据分析终极版</h1>
+
+                <div class="product-info">
+                    <p>基于 Claude Code Skills 的互联网数据分析全自动化智能体，专注拉新、留存、促活、推荐、转化、A/B测试等互联网场景，一键完成多技能分析。</p>
+
+                    <div class="product-tags">
+                        <span class="product-tag">数据分析</span>
+                        <span class="product-tag">Claude Code Skills</span>
+                        <span class="product-tag">互联网分析</span>
+                        <span class="product-tag">电商分析</span>
+                        <span class="product-tag">自动化</span>
+                        <span class="product-tag">全栈</span>
+                    </div>
+
+                    <div class="difficulty-level">
+                        <strong>难度等级：</strong>进阶
+                    </div>
+
+                    <div class="github-link">
+                        <a href="https://github.com/liangdabiao/claude-data-analysis-ultra-main" target="_blank">📁 访问GitHub项目页面</a>
+                    </div>
+                </div>
+
+                <h2>目录</h2>
+                <ul>
+                    <li><a href="#introduction">1. 项目介绍</a></li>
+                    <li><a href="#installation">2. 安装配置</a></li>
+                    <li><a href="#usage">3. 使用方法</a></li>
+                    <li><a href="#features">4. 功能详解</a></li>
+                    <li><a href="#examples">5. 使用示例</a></li>
+                    <li><a href="#troubleshooting">6. 常见问题</a></li>
+                    <li><a href="#resources">7. 相关资源</a></li>
+                </ul>
+
+                <h2 id="introduction">1. 项目介绍</h2>
+                <p>Claude 数据分析终极版 是一款先进的AI工具，旨在提供全自动化数据分析服务。该项目利用 Claude Code、Skills、Sub-agents、Python、R、SQL、Pandas、NumPy、Scikit-learn、Matplotlib 等技术，为用户提供互联网数据分析的终极解决方案。</p>
+
+                <h3>核心特性</h3>
+                <ul>
+                    <li>⚡ 两个核心命令：/do-all 常规数据分析（带人工反馈）、/do-more 互联网全自动化分析</li>
+                    <li>📊 12个专业技能：RFM客户细分、LTV预测、留存分析、漏斗分析、增长模型、A/B测试分析等</li>
+                    <li>🤖 6个智能子代理：数据探索、可视化专家、代码生成、报告撰写、质量保证、假设生成</li>
+                    <li>🌐 互联网场景覆盖：拉新、留存、促活、推荐、转化、A/B测试、用户分析</li>
+                    <li>🔄 全自动多技能分析：智能匹配技能、按最优顺序执行、生成综合HTML报告</li>
+                    <li>💬 交互式工作流：3个人工反馈检查点，确保分析质量和方向正确</li>
+                    <li>🔧 多种代码生成：Python、R、SQL、JavaScript，支持数据清洗、统计分析、机器学习</li>
+                    <li>📈 丰富输出格式：HTML、PDF、Markdown、DOCX，包含20+种图表类型</li>
+                </ul>
+
+                <h2 id="installation">2. 安装配置</h2>
+                <p>在开始使用 Claude 数据分析终极版 之前，您需要完成以下准备工作：</p>
+
+                <h3>系统要求</h3>
+                <ul>
+                    <li>操作系统：Windows, macOS 或 Linux</li>
+                    <li>内存：至少 8GB RAM（推荐 16GB 或以上）</li>
+                    <li>存储空间：至少 1GB 可用空间</li>
+                    <li>其他：Claude Code 账户，Python环境，数据分析工具</li>
+                </ul>
+
+                <h3>安装步骤</h3>
+                <ol>
+                    <li>配置Claude Code Skills：
+                        <pre><code># 按照项目文档配置Claude数据分析Skills
+# 将Skills文件导入到Claude Code环境中</code></pre>
+                    </li>
+                    <li>准备数据文件：
+                        <pre><code># 准备需要分析的数据文件（CSV、Excel等格式）
+# 确保数据格式符合分析要求</code></pre>
+                    </li>
+                    <li>验证配置：
+                        <pre><code># 测试基本分析功能
+# 确保所有Skills正常工作</code></pre>
+                    </li>
+                </ol>
+
+                <h2 id="usage">3. 使用方法</h2>
+                <p>Claude 数据分析终极版 提供了多种使用方式，您可以根据需求选择最适合的方法：</p>
+
+                <h3>基本使用</h3>
+                <pre><code># 在Claude中使用数据分析终极版
+# 使用/do-all命令进行常规分析
+/do-all 请分析这份用户行为数据，重点关注留存和转化率</code></pre>
+
+                <h3>高级功能</h3>
+                <p>对于更复杂的使用场景，您可以：</p>
+                <ul>
+                    <li>使用/do-more命令进行全自动化分析</li>
+                    <li>指定特定的分析技能</li>
+                    <li>自定义分析维度和指标</li>
+                    <li>设置报告格式和输出选项</li>
+                </ul>
+
+                <h2 id="features">4. 功能详解</h2>
+                <p>Claude 数据分析终极版 包含以下核心功能模块：</p>
+
+                <h3>12个专业技能</h3>
+                <ul>
+                    <li>RFM客户细分：基于最近购买时间、购买频率、购买金额进行客户分层</li>
+                    <li>LTV预测：预测客户生命周期价值</li>
+                    <li>留存分析：分析用户留存率和流失原因</li>
+                    <li>漏斗分析：分析用户转化漏斗</li>
+                    <li>增长模型：分析用户增长模式</li>
+                    <li>A/B测试分析：分析实验结果</li>
+                    <li>用户画像：构建用户特征模型</li>
+                    <li>行为分析：分析用户行为模式</li>
+                    <li>渠道分析：分析获客渠道效果</li>
+                    <li>收入分析：分析收入来源和趋势</li>
+                    <li>产品分析：分析产品使用情况</li>
+                    <li>运营分析：分析运营活动效果</li>
+                </ul>
+
+                <h3>6个智能子代理</h3>
+                <ul>
+                    <li>数据探索代理：自动探索数据结构和特征</li>
+                    <li>可视化专家：生成专业图表和可视化</li>
+                    <li>代码生成：生成分析所需的代码</li>
+                    <li>报告撰写：撰写分析报告</li>
+                    <li>质量保证：验证分析结果的准确性</li>
+                    <li>假设生成：提出数据驱动的假设</li>
+                </ul>
+
+                <h2 id="examples">5. 使用示例</h2>
+                <p>以下是一些典型的使用场景和示例：</p>
+
+                <h3>示例 1：电商用户留存分析</h3>
+                <p>分析电商平台的用户留存情况</p>
+                <pre><code>1. 准备用户行为数据
+2. 在Claude中输入：/do-all 请分析这份电商用户行为数据，重点关注用户留存率和流失原因
+3. 系统自动执行留存分析技能
+4. 生成留存曲线和流失因素分析报告</code></pre>
+
+                <h3>示例 2：A/B测试结果分析</h3>
+                <p>分析A/B测试实验结果</p>
+                <pre><code>1. 准备A/B测试数据
+2. 在Claude中输入：/do-all 请分析这份A/B测试数据，确定哪个版本转化率更高
+3. 系统自动执行A/B测试分析技能
+4. 生成统计显著性检验和结果解释报告</code></pre>
+
+                <h2 id="troubleshooting">6. 常见问题</h2>
+                <h3>Q: 数据格式有什么要求？</h3>
+                <p>A: 支持常见的数据格式如CSV、Excel、JSON等，数据应包含适当的列名和数据类型。</p>
+
+                <h3>Q: 分析过程需要多长时间？</h3>
+                <p>A: 分析时间取决于数据量大小和分析复杂度，简单分析可能几秒钟，复杂分析可能需要几分钟。</p>
+
+                <h3>Q: 如何确保分析结果的准确性？</h3>
+                <p>A: 系统包含质量保证代理，会验证分析结果的合理性，同时提供人工反馈检查点。</p>
+
+                <h2 id="resources">7. 相关资源</h2>
+                <ul>
+                    <li><a href="https://github.com/liangdabiao/claude-data-analysis-ultra-main" target="_blank">GitHub 项目页面</a></li>
+                    <li><a href="https://github.com/liangdabiao/claude-data-analysis-ultra-main/issues" target="_blank">问题反馈</a></li>
+                    <li><a href="https://www.anthropic.com/claude" target="_blank">Claude Code 官方网站</a></li>
+                    <li><a href="https://pandas.pydata.org/" target="_blank">Pandas 官方文档</a></li>
+                    <li><a href="https://github.com/liangdabiao" target="_blank">开发者其他项目</a></li>
+                </ul>
+            </article>
+        </main>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

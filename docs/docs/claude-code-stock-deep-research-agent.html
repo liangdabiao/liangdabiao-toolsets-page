@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code股票深度研究代理 - 使用指南</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>📚 AI工具文档中心</h2>
+            </div>
+            <nav class="main-nav">
+                <h3>全部AI工具</h3>
+                <ul id="project-list">
+                    <!-- 项目列表将通过JavaScript动态生成 -->
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="nav-buttons">
+                    <a href="../index.html" class="back-button">← 文档首页</a>
+                    <a href="../../" class="back-button" style="margin-left: 10px;">🏠 主站</a>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="搜索文档...">
+                    <button id="search-button">🔍</button>
+                </div>
+            </header>
+
+            <article class="doc-content">
+                <h1>Claude Code股票深度研究代理</h1>
+                
+                <div class="product-info">
+                    <p>基于 Claude Code 的专业股票投资尽调系统，采用8阶段研究框架和28个并行智能体，支持A股、港股、美股的全面基本面分析。系统根据投资风格自动调整研究方法，提供多空平衡的投资观点和基于数据验证的信号灯评级。</p>
+                    
+                    <div class="product-tags">
+                        <span class="product-tag">股票研究</span>
+                        <span class="product-tag">Claude Code</span>
+                        <span class="product-tag">投资尽调</span>
+                        <span class="product-tag">多智能体</span>
+                        <span class="product-tag">基本面分析</span>
+                        <span class="product-tag">A股</span>
+                        <span class="product-tag">港股</span>
+                        <span class="product-tag">美股</span>
+                    </div>
+                    
+                    <div class="difficulty-level">
+                        <strong>难度等级：</strong>高级
+                    </div>
+                    
+                    <div class="github-link">
+                        <a href="https://github.com/liangdabiao/Claude-Code-Stock-Deep-Research-Agent" target="_blank">📁 访问GitHub项目页面</a>
+                    </div>
+                </div>
+                
+                <h2>目录</h2>
+                <ul>
+                    <li><a href="#introduction">1. 项目介绍</a></li>
+                    <li><a href="#installation">2. 安装配置</a></li>
+                    <li><a href="#usage">3. 使用方法</a></li>
+                    <li><a href="#features">4. 功能详解</a></li>
+                    <li><a href="#examples">5. 使用示例</a></li>
+                    <li><a href="#troubleshooting">6. 常见问题</a></li>
+                    <li><a href="#resources">7. 相关资源</a></li>
+                </ul>
+                
+                <h2 id="introduction">1. 项目介绍</h2>
+                <p>Claude Code股票深度研究代理是一款专业的股票投资尽调系统，基于 Claude Code Deep Research Framework 构建。该项目利用Graph of Thoughts框架、多智能体协作、WebSearch、WebFetch、Playwright等技术，为用户提供从股票研究到投资建议的完整解决方案。</p>
+                
+                <h3>核心特性</h3>
+                <ul>
+                    <li>🔬 8阶段研究框架：业务基础、行业分析、业务拆解、财务质量、股权治理、市场分歧、估值护城河、综合报告的完整研究流程</li>
+                    <li>🤖 28个并行智能体：7个研究阶段，每阶段4个并行智能体，2-4小时完成完整尽调</li>
+                    <li>🎯 投资风格适配：支持价值投资、成长投资、困境反转、红利投资四种风格，自动调整研究重点</li>
+                    <li>🚦 信号灯评级：基于基本面分析的信号灯评级系统，Strong Buy (🟢🟢🟢) / Hold (🟡🟡🟡) / Avoid (🔴🔴)</li>
+                    <li>🌍 多市场支持：支持A股、港股、美股及其他全球市场，灵活研究框架适配</li>
+                    <li>✅ 质量保证：利润vs现金流交叉验证、同行对比、空头风险识别、引用质量评级系统</li>
+                </ul>
+                
+                <h2 id="installation">2. 安装配置</h2>
+                <p>在开始使用 Claude Code股票深度研究代理 之前，您需要完成以下准备工作：</p>
+                
+                <h3>系统要求</h3>
+                <ul>
+                    <li>操作系统：Windows, macOS 或 Linux</li>
+                    <li>内存：至少 8GB RAM（推荐 16GB 或以上）</li>
+                    <li>存储空间：至少 2GB 可用空间</li>
+                    <li>其他：Claude Code 访问权限，稳定的网络连接</li>
+                </ul>
+                
+                <h3>安装步骤</h3>
+                <ol>
+                    <li>确保已开通 Claude Code 服务并具有 Deep Research 功能权限</li>
+                    <li>准备股票代码或公司名称（支持A股、港股、美股格式）</li>
+                    <li>配置 Claude Code 环境（推荐使用 Opus 或 Sonnet 模型）</li>
+                </ol>
+                
+                <h2 id="usage">3. 使用方法</h2>
+                <p>Claude Code股票深度研究代理 提供了简单易用的命令行界面，您可以根据需求进行股票研究：</p>
+                
+                <h3>基本使用</h3>
+                <p>在 Claude Code 中执行股票研究命令：</p>
+                <pre><code># 启动 Claude Code
+claude
+
+# 设置模型（可选但推荐）
+/model opus
+
+# 执行股票研究
+/stock-research [股票代码或公司名称]
+
+# 示例：
+/stock-research 600519              # 贵州茅台 (A股)
+/stock-research AAPL                # 苹果公司 (美股)
+/stock-research 腾讯 00700.HK        # 腾讯控股 (港股)</code></pre>
+                
+                <h3>高级功能</h3>
+                <p>对于更复杂的使用场景，您可以：</p>
+                <ul>
+                    <li>自定义投资风格和研究重点</li>
+                    <li>指定持有周期和风险偏好</li>
+                    <li>调整研究深度和分析维度</li>
+                    <li>比较多家公司或行业分析</li>
+                </ul>
+                
+                <h2 id="features">4. 功能详解</h2>
+                <p>Claude Code股票深度研究代理 包含以下核心功能模块：</p>
+                
+                <h3>8阶段研究框架</h3>
+                <ul>
+                    <li><strong>阶段1 - 业务基础</strong>：公司事实底座，包括产品、收入构成、客户、价值链、战略定位</li>
+                    <li><strong>阶段2 - 行业分析</strong>：行业周期、供需关系、竞争格局、政策影响</li>
+                    <li><strong>阶段3 - 业务拆解</strong>：业务分部、盈利引擎、定价能力、经济特征</li>
+                    <li><strong>阶段4 - 财务质量</strong>：指标趋势、现金流vs利润、风险信号、同行对比</li>
+                    <li><strong>阶段5 - 股权治理</strong>：股权结构、管理层、资本配置、ROIC分析</li>
+                    <li><strong>阶段6 - 市场分歧</strong>：多头观点、空头观点、关键争议、验证节点</li>
+                    <li><strong>阶段7 - 估值护城河</strong>：护城河评级(0-5)、相对估值、绝对估值、风险分析</li>
+                    <li><strong>阶段8 - 综合报告</strong>：信号评级、投资论点、监控清单</li>
+                </ul>
+                
+                <h3>投资风格适配</h3>
+                <ul>
+                    <li><strong>价值投资</strong>：
+                        <ul>
+                            <li>关注内在价值与安全边际</li>
+                            <li>强调资产负债表分析</li>
+                            <li>常态化盈利分析</li>
+                            <li>指标：P/B, FCF Yield, 正常化EPS</li>
+                        </ul>
+                    </li>
+                    <li><strong>成长投资</strong>：
+                        <ul>
+                            <li>关注市场规模与竞争定位</li>
+                            <li>强调TAM分析</li>
+                            <li>竞争定位评估</li>
+                            <li>指标：收入增长, 护城河, TAM渗透率</li>
+                        </ul>
+                    </li>
+                    <li><strong>困境反转</strong>：
+                        <ul>
+                            <li>关注流动性、偿债能力与催化剂</li>
+                            <li>强调流动性分析</li>
+                            <li>偿债能力评估</li>
+                            <li>指标：负债比率, 现金跑道, 催化剂时间线</li>
+                        </ul>
+                    </li>
+                    <li><strong>红利投资</strong>：
+                        <ul>
+                            <li>关注股息可持续性</li>
+                            <li>强调股息支付能力</li>
+                            <li>FCF生成能力分析</li>
+                            <li>指标：股息率, 派息比率, FCF覆盖倍数</li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <h3>信号灯评级系统</h3>
+                <ul>
+                    <li><strong>🟢🟢🟢 Strong Buy (强烈买入)</strong>：
+                        <ul>
+                            <li>显著的安全边际</li>
+                            <li>强劲的护城河</li>
+                            <li>有吸引力的估值</li>
+                        </ul>
+                    </li>
+                    <li><strong>🟡🟡🟡 Hold (持有)</strong>：
+                        <ul>
+                            <li>估值合理</li>
+                            <li>安全边际有限</li>
+                            <li>可继续持有</li>
+                        </ul>
+                    </li>
+                    <li><strong>🔴🔴 Avoid (避免)</strong>：
+                        <ul>
+                            <li>估值过高</li>
+                            <li>基本面恶化</li>
+                            <li>风险过大</li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <h2 id="examples">5. 使用示例</h2>
+                <p>以下是一些典型的使用场景和示例：</p>
+                
+                <h3>示例 1：A股研究</h3>
+                <p>研究贵州茅台股票</p>
+                <pre><code>用户：/stock-research 贵州茅台 600519
+Claude：我可以帮您研究贵州茅台。让我先了解您的投资需求：
+1. 投资风格：价值投资/成长投资/困境反转/红利投资？
+2. 持有周期：短期(<6月)/中期(6-18月)/长期(1-3年以上)?
+3. 关注重点：生意质量/财务质量/估值/公司治理 (选2-3个)
+4. 风险偏好：保守/平衡/激进？
+
+用户：价值投资，长期持有3年以上，关注：生意质量、公司治理、估值，风险保守
+Claude：[正在生成研究计划...]
+[部署28个并行研究智能体...]
+[分析5-10年财务数据...]
+[与五粮液、洋河、汾酒对比...]
+[评估竞争护城河...]
+[DCF三情景估值...]
+[识别空头风险...]
+
+输出：RESEARCH/STOCK_600519_Kweichow_Moutai/
+🟡🟡🟡 Hold / Fairly Valued
+
+投资论点：
+茅台是中国领先的白酒品牌，拥有强大的品牌护城河和定价能力。
+然而当前估值（P/E 32x）安全边际有限。建议继续持有现有仓位，
+但新投资应等待10-15%回调至¥1,750-1,850区间。</code></pre>
+                
+                <h3>示例 2：美股研究</h3>
+                <p>研究苹果公司股票</p>
+                <pre><code>用户：/stock-research AAPL
+Claude：正在分析苹果公司...
+[根据用户投资风格调整分析重点]
+[执行8阶段研究框架]
+[生成详细分析报告]</code></pre>
+                
+                <h3>示例 3：港股研究</h3>
+                <p>研究腾讯控股股票</p>
+                <pre><code>用户：/stock-research 腾讯 00700.HK
+Claude：正在分析腾讯控股...
+[考虑港股市场特点]
+[执行多维度分析]
+[生成港股专用报告]</code></pre>
+                
+                <h2 id="troubleshooting">6. 常见问题</h2>
+                <h3>Q: 如何开始使用 Claude Code股票深度研究代理？</h3>
+                <p>A: 首先确保已开通 Claude Code 服务并具有 Deep Research 功能权限，然后在 Claude Code 中使用 /stock-research 命令加上股票代码或公司名称即可开始研究。</p>
+                
+                <h3>Q: 支持哪些股票市场？</h3>
+                <p>A: 支持A股（如600519.SH、000001.SZ）、港股（如00700.HK）、美股（如AAPL、TSLA）等全球主要股票市场。</p>
+                
+                <h3>Q: 研究需要多长时间？</h3>
+                <p>A: 完整的8阶段研究通常需要2-4小时，因为系统会部署28个并行智能体进行深度分析，确保研究的全面性和准确性。</p>
+                
+                <h2 id="resources">7. 相关资源</h2>
+                <ul>
+                    <li><a href="https://github.com/liangdabiao/Claude-Code-Stock-Deep-Research-Agent" target="_blank">GitHub 项目页面</a></li>
+                    <li><a href="https://github.com/liangdabiao/Claude-Code-Stock-Deep-Research-Agent/issues" target="_blank">问题反馈</a></li>
+                    <li><a href="https://github.com/liangdabiao/Claude-Code-Stock-Deep-Research-Agent/pulls" target="_blank">贡献代码</a></li>
+                    <li><a href="https://www.anthropic.com/claude" target="_blank">Claude Code 官方网站</a></li>
+                    <li><a href="https://mp.weixin.qq.com/s/EFT5S-cCeCnEIDZOD_DYbA" target="_blank">提示词参考来源</a></li>
+                </ul>
+                
+                <div class="disclaimer">
+                    <h4>⚖️ 免责声明</h4>
+                    <p>本研究报告不构成投资建议或推荐。所有投资存在风险，包括本金损失。本报告仅供教育和信息用途，部分数据需要通过官方渠道验证。投资决策前请自行进行尽职调查，建议咨询合格的财务顾问。</p>
+                </div>
+            </article>
+        </main>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

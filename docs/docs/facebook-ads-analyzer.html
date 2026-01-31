@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook广告分析器 - 使用指南</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>📚 AI工具文档中心</h2>
+            </div>
+            <nav class="main-nav">
+                <h3>全部AI工具</h3>
+                <ul id="project-list">
+                    <!-- 项目列表将通过JavaScript动态生成 -->
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="nav-buttons">
+                    <a href="../index.html" class="back-button">← 文档首页</a>
+                    <a href="../../" class="back-button" style="margin-left: 10px;">🏠 主站</a>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="搜索文档...">
+                    <button id="search-button">🔍</button>
+                </div>
+            </header>
+
+            <article class="doc-content">
+                <h1>Facebook广告分析器</h1>
+                
+                <div class="product-info">
+                    <p>智能 Facebook 广告数据分析工具，基于不同广告目标自动评估广告表现，识别优秀和差广告，提供数据驱动的优化建议和投放策略方案。基于 Claude Code Agent Skill，能够自动分析 Facebook Ads Manager 导出的 CSV 数据。</p>
+                    
+                    <div class="product-tags">
+                        <span class="product-tag">Facebook广告</span>
+                        <span class="product-tag">数据分析</span>
+                        <span class="product-tag">Claude Skill</span>
+                        <span class="product-tag">广告优化</span>
+                        <span class="product-tag">自动化</span>
+                        <span class="product-tag">投放策略</span>
+                    </div>
+                    
+                    <div class="difficulty-level">
+                        <strong>难度等级：</strong>中等
+                    </div>
+                    
+                    <div class="github-link">
+                        <a href="https://github.com/liangdabiao/facebook-ads-analyzer" target="_blank">📁 访问GitHub项目页面</a>
+                    </div>
+                </div>
+                
+                <h2>目录</h2>
+                <ul>
+                    <li><a href="#introduction">1. 项目介绍</a></li>
+                    <li><a href="#installation">2. 安装配置</a></li>
+                    <li><a href="#usage">3. 使用方法</a></li>
+                    <li><a href="#features">4. 功能详解</a></li>
+                    <li><a href="#examples">5. 使用示例</a></li>
+                    <li><a href="#troubleshooting">6. 常见问题</a></li>
+                    <li><a href="#resources">7. 相关资源</a></li>
+                </ul>
+                
+                <h2 id="introduction">1. 项目介绍</h2>
+                <p>Facebook广告分析器是一个专业的广告数据分析系统，基于 Claude Code Agent Skill，能够自动分析 Facebook Ads Manager 导出的 CSV 数据。该项目利用Python、Pandas、Claude Code Skill、数据分析等技术，为用户提供从广告数据导入到优化建议生成的完整解决方案。</p>
+                
+                <h3>核心特性</h3>
+                <ul>
+                    <li>🎯 智能评分系统：根据广告目标（互动/转化/流量）应用加权算法，自动计算每个广告的综合得分</li>
+                    <li>📈 三大目标支持：支持互动目标（消息成本）、转化目标（CPA）、流量目标（CTR）三种广告目标</li>
+                    <li>🏷️ 自动评级机制：将广告分为优秀（前20%）、中等（60%）、差（后20%）三个等级，快速定位问题</li>
+                    <li>🔍 智能诊断引擎：自动分析广告表现，识别问题并提供针对性的优化建议和改进方向</li>
+                    <li>📊 数据驱动标准：基于实际数据分布制定判断标准，使用分位数分析确保评估准确性</li>
+                    <li>📝 完整报告生成：生成详细分析结果、分析报告和投放策略方案三个文件，全方位支持决策</li>
+                </ul>
+                
+                <h2 id="installation">2. 安装配置</h2>
+                <p>在开始使用 Facebook广告分析器 之前，您需要完成以下准备工作：</p>
+                
+                <h3>系统要求</h3>
+                <ul>
+                    <li>操作系统：Windows, macOS 或 Linux</li>
+                    <li>内存：至少 4GB RAM（推荐 8GB 或以上）</li>
+                    <li>存储空间：至少 500MB 可用空间</li>
+                    <li>其他：Python 3.7+, Pandas, Claude Code 访问权限</li>
+                </ul>
+                
+                <h3>安装步骤</h3>
+                <ol>
+                    <li>克隆项目仓库：
+                        <pre><code>git clone https://github.com/liangdabiao/facebook-ads-analyzer.git
+cd facebook-ads-analyzer</code></pre>
+                    </li>
+                    <li>安装依赖：
+                        <pre><code>pip install pandas</code></pre>
+                    </li>
+                    <li>准备数据：
+                        <pre><code># 从 Facebook Ads Manager 导出 CSV 文件
+# 确保文件为 UTF-8 编码
+# 包含必要的广告指标数据</code></pre>
+                    </li>
+                </ol>
+                
+                <h2 id="usage">3. 使用方法</h2>
+                <p>Facebook广告分析器 提供了多种使用方式，您可以根据需求选择最适合的方法：</p>
+                
+                <h3>基本使用</h3>
+                <p>通过与 Claude 对话完成广告分析：</p>
+                <pre><code># 与 Claude 对话示例
+你：请分析这个 Facebook 广告数据：data23.csv
+   我的广告目标是增加消息对话（互动目标）
+
+Claude：正在分析您的广告数据...
+✓ 数据加载完成
+✓ 应用互动目标权重配置
+✓ 计算综合得分和评级
+✓ 生成分析报告</code></pre>
+                
+                <h3>高级功能</h3>
+                <p>对于更复杂的使用场景，您可以：</p>
+                <ul>
+                    <li>自定义分析参数和权重</li>
+                    <li>选择不同的广告目标模式（互动/转化/流量）</li>
+                    <li>调整评级阈值和评分标准</li>
+                    <li>批量处理多个CSV文件</li>
+                </ul>
+                
+                <h2 id="features">4. 功能详解</h2>
+                <p>Facebook广告分析器 包含以下核心功能模块：</p>
+                
+                <h3>智能评分系统</h3>
+                <ul>
+                    <li><strong>互动目标</strong>：
+                        <ul>
+                            <li>公式：综合得分 = 消息成本(40%) + 消息数量(30%) + CTR(15%) + CPC(10%) + 互动率(5%)</li>
+                            <li>核心关注：单次消息成本</li>
+                            <li>消息对话数量</li>
+                            <li>互动效果评估</li>
+                        </ul>
+                    </li>
+                    <li><strong>转化目标</strong>：
+                        <ul>
+                            <li>公式：综合得分 = 转化率(35%) + CPA(30%) + CTR(15%) + CPC(10%) + 互动率(10%)</li>
+                            <li>核心关注：转化率</li>
+                            <li>单次转化成本（CPA）</li>
+                            <li>转化效果诊断</li>
+                        </ul>
+                    </li>
+                    <li><strong>流量目标</strong>：
+                        <ul>
+                            <li>公式：综合得分 = CTR(40%) + CPC(30%) + CPM(15%) + 互动率(10%) + 覆盖人数(5%)</li>
+                            <li>核心关注：点击率（CTR）</li>
+                            <li>单次点击成本（CPC）</li>
+                            <li>流量质量评估</li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <h3>评级系统</h3>
+                <ul>
+                    <li><strong>优秀 (🟢)</strong>：得分 > 47分，Top 20% 广告
+                        <ul>
+                            <li>操作建议：增加预算 30-50%，拓展受众，进行 A/B 测试</li>
+                        </ul>
+                    </li>
+                    <li><strong>中等 (🟡)</strong>：得分 26-47分，Middle 60% 广告
+                        <ul>
+                            <li>操作建议：A/B 测试，优化定向，测试新素材</li>
+                        </ul>
+                    </li>
+                    <li><strong>差 (🔴)</strong>：得分 < 26分，Bottom 20% 广告
+                        <ul>
+                            <li>操作建议：暂停或重新设计，更换素材，重新定位</li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <h3>核心指标</h3>
+                <ul>
+                    <li><strong>CTR (🖱️)</strong>：点击率 = 点击量 / 展示次数 × 100%</li>
+                    <li><strong>CPC (💰)</strong>：单次点击费用 = 花费 / 点击量</li>
+                    <li><strong>CPM (📺)</strong>：千次展示费用 = 花费 / 展示次数 × 1000</li>
+                    <li><strong>转化率 (🎯)</strong>：转化比例 = 潜在客户 / 点击量 × 100%</li>
+                    <li><strong>消息成本 (💬)</strong>：单次消息费用 = 花费 / 消息对话次数</li>
+                    <li><strong>互动率 (👍)</strong>：互动比例 = 公共主页互动 / 展示次数 × 100%</li>
+                </ul>
+                
+                <h2 id="examples">5. 使用示例</h2>
+                <p>以下是一些典型的使用场景和示例：</p>
+                
+                <h3>示例 1：互动目标分析</h3>
+                <p>分析 WhatsApp 消息广告效果</p>
+                <pre><code>你：请分析这个 Facebook 广告数据：data23.csv
+   我的广告目标是增加消息对话（互动目标）
+
+Claude：正在分析您的广告数据...
+✓ 数据加载完成
+✓ 应用互动目标权重配置
+✓ 计算综合得分和评级
+✓ 生成分析报告</code></pre>
+                
+                <h3>示例 2：转化目标分析</h3>
+                <p>评估电商广告的转化效果</p>
+                <pre><code>你：请分析 ads.csv，
+   我关注表单提交转化
+
+Claude：正在使用转化目标分析...
+✓ 评估转化率和 CPA
+✓ 识别最佳转化广告
+✓ 生成优化建议方案</code></pre>
+                
+                <h3>示例 3：流量目标分析</h3>
+                <p>优化网站访问广告</p>
+                <pre><code>你：分析 campaign.csv，
+   我要提升网站流量
+
+Claude：正在使用流量目标分析...
+✓ 评估 CTR 和 CPC
+✓ 分析流量质量和成本
+✓ 提供流量优化建议</code></pre>
+                
+                <h2 id="troubleshooting">6. 常见问题</h2>
+                <h3>Q: 如何开始使用 Facebook广告分析器？</h3>
+                <p>A: 首先从 Facebook Ads Manager 导出 CSV 数据文件，然后通过 Claude Code Agent Skill 与 Claude 对话，提供数据文件和广告目标即可开始分析。</p>
+                
+                <h3>Q: 支持哪些广告目标？</h3>
+                <p>A: 系统支持三种主要广告目标：互动目标（消息成本）、转化目标（CPA）、流量目标（CTR），每种目标都有相应的评分算法。</p>
+                
+                <h3>Q: 如何理解分析结果？</h3>
+                <p>A: 分析结果将广告分为三个等级：优秀（得分>47分）、中等（26-47分）、差（<26分），每个等级都有相应的操作建议。</p>
+                
+                <h2 id="resources">7. 相关资源</h2>
+                <ul>
+                    <li><a href="https://github.com/liangdabiao/facebook-ads-analyzer" target="_blank">GitHub 项目页面</a></li>
+                    <li><a href="https://github.com/liangdabiao/facebook-ads-analyzer/issues" target="_blank">问题反馈</a></li>
+                    <li><a href="https://github.com/liangdabiao/facebook-ads-analyzer/pulls" target="_blank">贡献代码</a></li>
+                    <li><a href="https://developers.facebook.com/docs/marketing-api/" target="_blank">Facebook Marketing API 文档</a></li>
+                    <li><a href="https://pandas.pydata.org/docs/" target="_blank">Pandas 官方文档</a></li>
+                </ul>
+            </article>
+        </main>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>
