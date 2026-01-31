@@ -285,13 +285,13 @@ function renderProjectList() {
             items.forEach(product => {
                 html += `
                 <li>
-                    <a href="docs/${product.id}.html" data-project="${product.id}">
+                    <a href="${product.id}.html" data-project="${product.id}">
                         ${product.icon} ${product.name}
                     </a>
                 </li>`;
             });
         }
-        
+
         projectList.innerHTML = html;
     }
 }
@@ -301,7 +301,7 @@ function renderFeaturedProducts() {
     if (featuredProducts) {
         // 选取前9个产品作为特色展示
         const featured = products.slice(0, 9);
-        
+
         featuredProducts.innerHTML = featured.map(product => `
             <div class="product-card">
                 <h3>${product.icon} ${product.name}</h3>
@@ -310,7 +310,7 @@ function renderFeaturedProducts() {
                     ${product.tags.slice(0, 3).map(tag => `<span class="product-tag">${tag}</span>`).join('')}
                 </div>
                 <div class="product-links">
-                    <a href="docs/${product.id}.html" class="doc-link">📖 查看文档</a>
+                    <a href="${product.id}.html" class="doc-link">📖 查看文档</a>
                     ${product.githubUrl ? `<a href="${product.githubUrl}" target="_blank" class="github-link">📂 GitHub</a>` : ''}
                 </div>
             </div>
@@ -324,7 +324,7 @@ function setupEventListeners() {
     if (searchButton) {
         searchButton.addEventListener('click', performSearch);
     }
-    
+
     if (searchInput) {
         searchInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
@@ -332,13 +332,13 @@ function setupEventListeners() {
             }
         });
     }
-    
+
     // 快速导航链接
     document.querySelectorAll('[data-project]').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             const projectId = this.getAttribute('data-project');
-            window.location.href = `docs/${projectId}.html`;
+            window.location.href = `${projectId}.html`;
         });
     });
 }
