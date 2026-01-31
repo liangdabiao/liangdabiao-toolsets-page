@@ -278,6 +278,10 @@ function renderProjectList() {
             categories[product.category].push(product);
         });
 
+        // 检测当前页面路径，决定链接前缀
+        const isDocsSubDir = window.location.pathname.includes('/docs/docs/');
+        const prefix = isDocsSubDir ? '../' : 'docs/';
+
         // 渲染分组列表
         let html = '';
         for (const [category, items] of Object.entries(categories)) {
@@ -285,7 +289,7 @@ function renderProjectList() {
             items.forEach(product => {
                 html += `
                 <li>
-                    <a href="docs/${product.id}.html" data-project="${product.id}">
+                    <a href="${prefix}${product.id}.html" data-project="${product.id}">
                         ${product.icon} ${product.name}
                     </a>
                 </li>`;
@@ -302,6 +306,10 @@ function renderFeaturedProducts() {
         // 选取前9个产品作为特色展示
         const featured = products.slice(0, 9);
 
+        // 检测当前页面路径，决定链接前缀
+        const isDocsSubDir = window.location.pathname.includes('/docs/docs/');
+        const prefix = isDocsSubDir ? '../' : 'docs/';
+
         featuredProducts.innerHTML = featured.map(product => `
             <div class="product-card">
                 <h3>${product.icon} ${product.name}</h3>
@@ -310,7 +318,7 @@ function renderFeaturedProducts() {
                     ${product.tags.slice(0, 3).map(tag => `<span class="product-tag">${tag}</span>`).join('')}
                 </div>
                 <div class="product-links">
-                    <a href="docs/${product.id}.html" class="doc-link">📖 查看文档</a>
+                    <a href="${prefix}${product.id}.html" class="doc-link">📖 查看文档</a>
                     ${product.githubUrl ? `<a href="${product.githubUrl}" target="_blank" class="github-link">📂 GitHub</a>` : ''}
                 </div>
             </div>
@@ -333,12 +341,16 @@ function setupEventListeners() {
         });
     }
 
+    // 检测当前页面路径，决定链接前缀
+    const isDocsSubDir = window.location.pathname.includes('/docs/docs/');
+    const prefix = isDocsSubDir ? '../' : 'docs/';
+
     // 快速导航链接
     document.querySelectorAll('[data-project]').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             const projectId = this.getAttribute('data-project');
-            window.location.href = `docs/${projectId}.html`;
+            window.location.href = `${prefix}${projectId}.html`;
         });
     });
 }
