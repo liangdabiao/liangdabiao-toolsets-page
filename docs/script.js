@@ -285,7 +285,7 @@ function renderProjectList() {
             items.forEach(product => {
                 html += `
                 <li>
-                    <a href="/docs/docs/${product.id}.html" data-project="${product.id}">
+                    <a href="https://liang.348349.xyz/docs/docs/${product.id}.html" data-project="${product.id}">
                         ${product.icon} ${product.name}
                     </a>
                 </li>`;
@@ -310,7 +310,7 @@ function renderFeaturedProducts() {
                     ${product.tags.slice(0, 3).map(tag => `<span class="product-tag">${tag}</span>`).join('')}
                 </div>
                 <div class="product-links">
-                    <a href="/docs/docs/${product.id}.html" class="doc-link">📖 查看文档</a>
+                    <a href="https://liang.348349.xyz/docs/docs/${product.id}.html" class="doc-link">📖 查看文档</a>
                     ${product.githubUrl ? `<a href="${product.githubUrl}" target="_blank" class="github-link">📂 GitHub</a>` : ''}
                 </div>
             </div>
@@ -338,7 +338,7 @@ function setupEventListeners() {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             const projectId = this.getAttribute('data-project');
-            window.location.href = `../docs/${projectId}.html`;
+            window.location.href = `https://liang.348349.xyz/docs/docs/${projectId}.html`;
         });
     });
 }
