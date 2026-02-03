@@ -896,6 +896,12 @@ function useProduct(productId) {
         return;
     }
 
+    // 如果是Monica CRM Claude技能，跳转到专门的页面
+    if (productId === 'monica-crm-claude-skill') {
+        window.location.href = '/monica-crm-claude-skill.html';
+        return;
+    }
+
     // 对于其他产品，显示开发中提示
     alert(`正在启动 ${product.name}...\\n\\n功能开发中，敬请期待！`);
 
