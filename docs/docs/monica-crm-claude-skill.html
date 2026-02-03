@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monica CRM Claude 技能 - 使用指南</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>📚 AI工具文档中心</h2>
+            </div>
+            <nav class="main-nav">
+                <h3>全部AI工具</h3>
+                <ul id="project-list">
+                    <!-- 项目列表将通过JavaScript动态生成 -->
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="nav-buttons">
+                    <a href="../index.html" class="back-button">← 文档首页</a>
+                    <a href="../../" class="back-button" style="margin-left: 10px;">🏠 主站</a>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="搜索文档...">
+                    <button id="search-button">🔍</button>
+                </div>
+            </header>
+
+            <article class="doc-content">
+                <h1>Monica CRM Claude 技能</h1>
+
+                <div class="product-info">
+                    <p>聊天就是 CRM - 基于 Monica 开源 CRM 的 Claude Code 技能，通过自然对话轻松管理客户关系、联系人信息、提醒事项和待办任务。</p>
+
+                    <div class="product-tags">
+                        <span class="product-tag">CRM</span>
+                        <span class="product-tag">Claude Code</span>
+                        <span class="product-tag">OpenClaw</span>
+                        <span class="product-tag">客户管理</span>
+                        <span class="product-tag">联系人</span>
+                        <span class="product-tag">开源</span>
+                    </div>
+
+                    <div class="difficulty-level">
+                        <strong>难度等级：</strong>初级
+                    </div>
+
+                    <div class="github-link">
+                        <a href="https://github.com/liangdabiao/monica-crm-claude-skill" target="_blank">📁 访问GitHub项目页面</a>
+                    </div>
+                </div>
+
+                <h2>目录</h2>
+                <ul>
+                    <li><a href="#introduction">1. 项目介绍</a></li>
+                    <li><a href="#installation">2. 安装配置</a></li>
+                    <li><a href="#usage">3. 使用方法</a></li>
+                    <li><a href="#features">4. 功能详解</a></li>
+                    <li><a href="#examples">5. 使用示例</a></li>
+                    <li><a href="#troubleshooting">6. 常见问题</a></li>
+                    <li><a href="#resources">7. 相关资源</a></li>
+                </ul>
+
+                <h2 id="introduction">1. 项目介绍</h2>
+                <p>Monica CRM Claude 技能是一款创新的客户关系管理工具，将传统的 CRM 系统与 AI 对话完美结合。该项目基于 Monica 开源 CRM，通过 Claude Code 和 OpenClaw 技术，让用户可以通过自然语言对话轻松管理客户信息、提醒事项和待办任务。</p>
+
+                <h3>核心特性</h3>
+                <ul>
+                    <li>💬 对话式CRM管理：通过自然语言对话添加和管理客户信息，无需复杂操作</li>
+                    <li>👤 客户信息记录：轻松记录姓名、电话、地区等基本信息</li>
+                    <li>🔔 智能提醒系统：为客户设置提醒事项，如会议、跟进、生日等重要时间节点</li>
+                    <li>🏷️ 标签管理：为客户添加自定义标签，便于分类和快速识别</li>
+                    <li>✅ 待办事项管理：为客户关联待办任务，确保不遗漏任何重要事项</li>
+                    <li>🎂 生日提醒：记录客户生日并自动设置提醒，贴心服务提升客户体验</li>
+                    <li>🤖 Claude Code集成：完美集成Claude Code和OpenClaw，利用AI记忆功能</li>
+                    <li>🔓 开源免费：基于Monica开源CRM，可自主搭建和定制</li>
+                </ul>
+
+                <h3>灵感来源</h3>
+                <p>受 OpenClaw 作者 Peter 分享的使用场景启发："我在外面的时候，随手发一条语音备忘问它任何事——无论事情很简单还是很复杂，它都能帮我处理。"</p>
+                <p>Monica CRM Claude 技能正是基于这一理念打造：你在外面随时给你的 clawbot 发零碎信息，AI 自动24小时为你记录和整理，达到一个良好的 CRM 体验。</p>
+
+                <h2 id="installation">2. 安装配置</h2>
+                <p>在开始使用 Monica CRM Claude 技能之前，您需要完成以下准备工作：</p>
+
+                <h3>系统要求</h3>
+                <ul>
+                    <li>操作系统：支持 Docker 的任何操作系统</li>
+                    <li>网络连接：稳定的互联网连接</li>
+                    <li>其他：Claude Code 或 OpenClaw 账户</li>
+                </ul>
+
+                <h3>安装步骤</h3>
+                <ol>
+                    <li>安装 Monica CRM：
+                        <pre><code># 使用 Docker 快速部署 Monica
+git clone https://github.com/monicahq/monica.git
+cd monica
+cp .env.example .env
+# 编辑 .env 文件配置数据库等信息
+docker-compose up -d</code></pre>
+                    </li>
+                    <li>配置 Claude Code Skill：
+                        <pre><code># 将 CRM 技能文件导入到 Claude Code 环境
+# 按照 Skill 格式配置对话模板</code></pre>
+                    </li>
+                    <li>验证配置：
+                        <pre><code># 测试基本的客户添加功能
+# 确认 API 连接正常</code></pre>
+                    </li>
+                </ol>
+
+                <h2 id="usage">3. 使用方法</h2>
+                <p>Monica CRM Claude 技能提供了简洁直观的使用方式：</p>
+
+                <h3>基本使用</h3>
+                <pre><code># 添加新客户
+"新客户，请加入crm，张三，13800138000，北京人"
+
+# 添加提醒
+"请给张三的提醒：明天过来吃饭"
+
+# 添加标签
+"请再给张三增加标签'VIP客户'"
+
+# 添加待办事项
+"继续为张三添加一个todo：后天带他去参观公司"</code></pre>
+
+                <h3>高级功能</h3>
+                <p>支持更复杂的客户管理操作：</p>
+                <ul>
+                    <li>批量添加客户信息</li>
+                    <li>设置生日提醒和自动化通知</li>
+                    <li>按标签筛选和管理客户</li>
+                    <li>生成客户关系图谱</li>
+                </ul>
+
+                <h2 id="features">4. 功能详解</h2>
+                <p>Monica CRM Claude 技能包含以下核心功能模块：</p>
+
+                <h3>客户管理</h3>
+                <ul>
+                    <li>添加、编辑、删除客户信息</li>
+                    <li>记录客户基本资料（姓名、电话、地址等）</li>
+                    <li>管理客户标签和分类</li>
+                    <li>查看客户历史记录</li>
+                </ul>
+
+                <h3>提醒系统</h3>
+                <ul>
+                    <li>设置一次性或周期性提醒</li>
+                    <li>生日自动提醒</li>
+                    <li>跟进任务提醒</li>
+                    <li>会议和约会提醒</li>
+                </ul>
+
+                <h3>待办管理</h3>
+                <ul>
+                    <li>为客户关联待办任务</li>
+                    <li>设置任务优先级和截止日期</li>
+                    <li>跟踪任务完成状态</li>
+                </ul>
+
+                <h2 id="examples">5. 使用示例</h2>
+                <p>以下是一些典型的使用场景：</p>
+
+                <h3>示例 1：添加新客户</h3>
+                <pre><code>用户：新客户，请加入crm，李华，13534834912，广东人
+AI：已为您添加客户李华到CRM系统
+    - 姓名：李华
+    - 电话：13534834912
+    - 地区：广东
+    - 添加时间：2024-01-15</code></pre>
+
+                <h3>示例 2：设置提醒</h3>
+                <pre><code>用户：请给李华的提醒：明天过来吃饭
+AI：已为李华设置提醒
+    - 提醒内容：明天过来吃饭
+    - 提醒时间：明天 09:00
+    - 状态：待提醒</code></pre>
+
+                <h3>示例 3：添加标签和待办</h3>
+                <pre><code>用户：请再给李华增加标签"重要客户"
+AI：已为李华添加标签"重要客户"
+
+用户：继续为李华添加一个todo：后天带他去迪士尼乐园
+AI：已为李华添加待办事项
+    - 任务：带他去迪士尼乐园
+    - 截止：后天
+    - 状态：待完成</code></pre>
+
+                <h3>示例 4：生日提醒</h3>
+                <pre><code>用户：继续为李华添加生日信息：8月2日是生日，同时设置一个提醒
+AI：已为李华添加生日信息并设置年度提醒
+    - 生日：8月2日
+    - 提醒：每年8月1日提醒
+    - 提醒内容：李华的生日是明天，记得送上祝福！</code></pre>
+
+                <h2 id="troubleshooting">6. 常见问题</h2>
+
+                <h3>Q: 这个 CRM 技能支持哪些平台？</h3>
+                <p>A: 目前支持 Claude Code 和 OpenClaw 两个平台，可以利用它们的记忆功能实现持久化客户管理。</p>
+
+                <h3>Q: Monica CRM 需要自己搭建吗？</h3>
+                <p>A: 是的，Monica 是开源项目，您可以自己部署。也可以使用 Monica 官方提供的托管服务。</p>
+
+                <h3>Q: 数据存储在哪里？</h3>
+                <p>A: 客户数据存储在您自己部署的 Monica CRM 系统中，完全掌控自己的数据。</p>
+
+                <h3>Q: 支持批量导入客户吗？</h3>
+                <p>A: Monica CRM 本身支持 CSV 导入，通过对话也可以逐个或批量添加客户信息。</p>
+
+                <h3>Q: 可以设置不同级别的提醒吗？</h3>
+                <p>A: 可以，支持设置普通、重要、紧急等不同优先级的提醒。</p>
+
+                <h2 id="resources">7. 相关资源</h2>
+                <ul>
+                    <li><a href="https://github.com/liangdabiao/monica-crm-claude-skill" target="_blank">GitHub 项目页面</a></li>
+                    <li><a href="https://github.com/liangdabiao/monica-crm-claude-skill/issues" target="_blank">问题反馈</a></li>
+                    <li><a href="https://www.huginn.org/" target="_blank">Monica CRM 官方网站</a></li>
+                    <li><a href="https://github.com/monicahq/monica" target="_blank">Monica 开源项目</a></li>
+                    <li><a href="https://linux.do/t/topic/1561194/" target="_blank">项目介绍帖</a></li>
+                    <li><a href="https://github.com/liangdabiao" target="_blank">开发者其他项目</a></li>
+                </ul>
+            </article>
+        </main>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monica CRM Claude 技能 | 聊天就是CRM</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #22c55e;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .skill-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .skill-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .skill-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: #22c55e;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: #16a34a;
+        }
+        .workflow-diagram {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .workflow-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .flow-step {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .flow-arrow {
+            font-size: 2em;
+            color: #22c55e;
+        }
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid #22c55e;
+        }
+        .category-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #22c55e;
+        }
+        .category-content {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .category-content ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .category-content li {
+            margin-bottom: 8px;
+        }
+        .example-list {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        .example-item {
+            padding: 15px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 3px solid #22c55e;
+        }
+        .example-text {
+            color: var(--text-color);
+            font-size: 1.05em;
+        }
+        .example-response {
+            margin-top: 10px;
+            padding: 12px;
+            background: #f0fdf4;
+            border-radius: 6px;
+            color: #166534;
+            font-size: 0.95em;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        .install-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 4px solid #22c55e;
+        }
+        .install-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #22c55e;
+        }
+        .inspiration-box {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #22c55e;
+        }
+        .inspiration-quote {
+            font-style: italic;
+            font-size: 1.1em;
+            color: #166534;
+            line-height: 1.8;
+        }
+        .inspiration-author {
+            margin-top: 15px;
+            color: #22c55e;
+            font-weight: bold;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero-stats {
+                gap: 30px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🌐 AI工具集合</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#examples">使用示例</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主视觉区 -->
+    <section class="hero">
+        <div class="hero-badge">Claude Code + OpenClaw + Monica CRM</div>
+        <h1>Monica CRM Claude 技能</h1>
+        <p>聊天就是 CRM - 通过自然对话轻松管理客户关系、联系人信息、提醒事项和待办任务</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">对话</span>
+                <span class="stat-label">自然交互</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">24/7</span>
+                <span class="stat-label">AI记录</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">开源</span>
+                <span class="stat-label">自主部署</span>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/monica-crm-claude-skill" class="btn btn-primary" style="background: white; color: #22c55e;">查看 GitHub</a>
+            <a href="#examples" class="btn btn-secondary" style="border: 2px solid white; color: white;">查看示例</a>
+        </div>
+    </section>
+
+    <!-- 灵感来源 -->
+    <section class="section">
+        <h2 class="section-title">灵感来源</h2>
+        <p class="section-subtitle">受 OpenClaw 作者启发，打造极致的对话式 CRM 体验</p>
+        <div class="inspiration-box">
+            <p class="inspiration-quote">
+                "我在外面的时候，随手发一条语音备忘问它任何事——无论事情很简单还是很复杂，它都能帮我处理。"
+            </p>
+            <p class="inspiration-author">— Peter, OpenClaw 作者</p>
+            <p style="margin-top: 20px; color: var(--secondary-color);">
+                Monica CRM Claude 技能正是基于这一理念打造：你在外面随时给你的 clawbot 发零碎信息，AI 自动24小时为你记录和整理，达到一个良好的 CRM 体验。
+            </p>
+        </div>
+    </section>
+
+    <!-- 核心特性 -->
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心特性</h2>
+        <p class="section-subtitle">对话式 CRM 管理，让客户关系管理变得简单自然</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">💬</div>
+                <h3 class="skill-title">对话式CRM管理</h3>
+                <p class="skill-description">通过自然语言对话添加和管理客户信息，无需复杂操作，就像和朋友聊天一样简单</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">👤</div>
+                <h3 class="skill-title">客户信息记录</h3>
+                <p class="skill-description">轻松记录姓名、电话、地区等基本信息，AI 自动整理归档</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔔</div>
+                <h3 class="skill-title">智能提醒系统</h3>
+                <p class="skill-description">为客户设置提醒事项，如会议、跟进、生日等重要时间节点，不错过任何重要时刻</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🏷️</div>
+                <h3 class="skill-title">标签管理</h3>
+                <p class="skill-description">为客户添加自定义标签，便于分类和快速识别，如"VIP客户"、"供应商"等</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">✅</div>
+                <h3 class="skill-title">待办事项管理</h3>
+                <p class="skill-description">为客户关联待办任务，确保不遗漏任何重要事项，跟踪任务完成状态</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎂</div>
+                <h3 class="skill-title">生日提醒</h3>
+                <p class="skill-description">记录客户生日并自动设置提醒，贴心服务提升客户体验</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作流程 -->
+    <section id="workflow" class="section">
+        <h2 class="section-title">工作流程</h2>
+        <p class="section-subtitle">从对话到CRM记录的自动化流程</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">用户对话</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">Claude Code</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">技能解析</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">Monica CRM</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #22c55e;">核心组件</h3>
+            <div class="skills-grid">
+                <div class="category-card">
+                    <div class="category-title">Claude Code / OpenClaw</div>
+                    <div class="category-content">
+                        提供 AI 记忆功能，理解自然语言指令，智能解析用户意图
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">CRM 技能</div>
+                    <div class="category-content">
+                        结构化客户数据，提取关键信息，格式化 CRM 操作指令
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">Monica CRM</div>
+                    <div class="category-content">
+                        开源个人 CRM 系统，存储客户信息、提醒、待办事项
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 使用示例 -->
+    <section id="examples" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">使用示例</h2>
+        <p class="section-subtitle">通过自然对话完成客户管理操作</p>
+
+        <div class="example-list">
+            <h3 style="margin-bottom: 20px; color: #22c55e;">示例 1：添加新客户</h3>
+            <div class="example-item">
+                <div class="example-text">用户：新客户，请加入crm，张三，13800138000，北京人</div>
+                <div class="example-response">
+                    AI：已为您添加客户张三到CRM系统<br>
+                    &nbsp;&nbsp;&nbsp;- 姓名：张三<br>
+                    &nbsp;&nbsp;&nbsp;- 电话：13800138000<br>
+                    &nbsp;&nbsp;&nbsp;- 地区：北京<br>
+                    &nbsp;&nbsp;&nbsp;- 添加时间：2024-01-15
+                </div>
+            </div>
+        </div>
+
+        <div class="example-list">
+            <h3 style="margin-bottom: 20px; color: #22c55e;">示例 2：设置提醒</h3>
+            <div class="example-item">
+                <div class="example-text">用户：请给张三的提醒：明天过来吃饭</div>
+                <div class="example-response">
+                    AI：已为张三设置提醒<br>
+                    &nbsp;&nbsp;&nbsp;- 提醒内容：明天过来吃饭<br>
+                    &nbsp;&nbsp;&nbsp;- 提醒时间：明天 09:00<br>
+                    &nbsp;&nbsp;&nbsp;- 状态：待提醒
+                </div>
+            </div>
+        </div>
+
+        <div class="example-list">
+            <h3 style="margin-bottom: 20px; color: #22c55e;">示例 3：添加标签</h3>
+            <div class="example-item">
+                <div class="example-text">用户：请再给张三增加标签"VIP客户"</div>
+                <div class="example-response">
+                    AI：已为张三添加标签"VIP客户"
+                </div>
+            </div>
+        </div>
+
+        <div class="example-list">
+            <h3 style="margin-bottom: 20px; color: #22c55e;">示例 4：添加待办事项</h3>
+            <div class="example-item">
+                <div class="example-text">用户：继续为张三添加一个todo：后天带他去参观公司</div>
+                <div class="example-response">
+                    AI：已为张三添加待办事项<br>
+                    &nbsp;&nbsp;&nbsp;- 任务：带他去参观公司<br>
+                    &nbsp;&nbsp;&nbsp;- 截止：后天<br>
+                    &nbsp;&nbsp;&nbsp;- 状态：待完成
+                </div>
+            </div>
+        </div>
+
+        <div class="example-list">
+            <h3 style="margin-bottom: 20px; color: #22c55e;">示例 5：生日提醒</h3>
+            <div class="example-item">
+                <div class="example-text">用户：继续为张三添加生日信息：8月2日是生日，同时设置一个提醒</div>
+                <div class="example-response">
+                    AI：已为张三添加生日信息并设置年度提醒<br>
+                    &nbsp;&nbsp;&nbsp;- 生日：8月2日<br>
+                    &nbsp;&nbsp;&nbsp;- 提醒：每年8月1日提醒<br>
+                    &nbsp;&nbsp;&nbsp;- 提醒内容：张三的生日是明天，记得送上祝福！
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 安装配置 -->
+    <section id="install" class="section">
+        <h2 class="section-title">安装与配置</h2>
+        <p class="section-subtitle">简单几步，开始使用对话式 CRM</p>
+
+        <div class="install-card">
+            <div class="install-title">1. 安装 Monica CRM</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">使用 Docker 快速部署：</p>
+            <div class="code-block"># 克隆 Monica 项目
+git clone https://github.com/monicahq/monica.git
+cd monica
+
+# 复制环境配置文件
+cp .env.example .env
+
+# 编辑 .env 文件，配置数据库等信息
+# vim .env
+
+# 启动服务
+docker-compose up -d</div>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">2. 配置 Claude Code Skill</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">将 CRM 技能文件导入到 Claude Code 环境的 .claude/skills/ 目录：</p>
+            <div class="code-block"># 在技能目录创建 CRM 技能文件
+# 按照项目文档配置对话模板和 API 端点</div>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">3. 验证配置</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">测试基本功能：</p>
+            <div class="code-block"># 测试客户添加功能
+# 确认 API 连接正常</div>
+        </div>
+    </section>
+
+    <!-- 技术栈 -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">基于成熟的开源项目构建</p>
+        <div class="tech-stack">
+            <div class="tech-item">Claude Code</div>
+            <div class="tech-item">OpenClaw</div>
+            <div class="tech-item">Monica CRM</div>
+            <div class="tech-item">PHP</div>
+            <div class="tech-item">Laravel</div>
+            <div class="tech-item">MySQL</div>
+            <div class="tech-item">Docker</div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="section">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于 Monica CRM Claude 技能的常见疑问</p>
+
+        <div class="category-card">
+            <div class="category-title">Q: 这个 CRM 技能支持哪些平台？</div>
+            <div class="category-content">
+                A: 目前支持 Claude Code 和 OpenClaw 两个平台，可以利用它们的记忆功能实现持久化客户管理。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: Monica CRM 需要自己搭建吗？</div>
+            <div class="category-content">
+                A: 是的，Monica 是开源项目，您可以自己部署。也可以使用 Monica 官方提供的托管服务。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 数据存储在哪里？</div>
+            <div class="category-content">
+                A: 客户数据存储在您自己部署的 Monica CRM 系统中，完全掌控自己的数据。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 支持批量导入客户吗？</div>
+            <div class="category-content">
+                A: Monica CRM 本身支持 CSV 导入，通过对话也可以逐个或批量添加客户信息。
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>聊天就是 CRM - 基于 Monica 开源 CRM 的 Claude Code 技能，通过自然对话轻松管理客户关系。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/monica-crm-claude-skill">GitHub 仓库</a></li>
+                    <li><a href="https://linux.do/t/topic/1561194/">项目介绍帖</a></li>
+                    <li><a href="https://github.com/monicahq/monica">Monica CRM</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Monica CRM Claude 技能. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 移动端菜单
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

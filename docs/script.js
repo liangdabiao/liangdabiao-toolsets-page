@@ -249,6 +249,16 @@ const products = [
         githubUrl: 'https://github.com/liangdabiao/exa-research-mcp-skill',
         category: '商业工具',
         difficulty: '中级'
+    },
+    {
+        id: 'monica-crm-claude-skill',
+        name: 'Monica CRM Claude 技能',
+        description: '聊天就是 CRM - 基于 Monica 开源 CRM 的 Claude Code 技能，通过自然对话轻松管理客户关系、联系人信息、提醒事项和待办任务。',
+        icon: '👥',
+        tags: ['CRM', 'Claude Code', 'OpenClaw', '客户管理', '联系人', '开源'],
+        githubUrl: 'https://github.com/liangdabiao/monica-crm-claude-skill',
+        category: '商业工具',
+        difficulty: '初级'
     }
 ];
 

@@ -515,6 +515,27 @@ const products = [
         techStack: ['Claude Code', 'Exa AI', 'MCP Protocol', 'Agent Skills', '多智能体协作', '公司研究'],
         category: '商业工具',
         difficulty: '中级'
+    },
+    {
+        id: 'monica-crm-claude-skill',
+        name: 'Monica CRM Claude 技能',
+        description: '聊天就是 CRM - 基于 Monica 开源 CRM 的 Claude Code 技能，通过自然对话轻松管理客户关系、联系人信息、提醒事项和待办任务。',
+        icon: '👥',
+        tags: ['CRM', 'Claude Code', 'OpenClaw', '客户管理', '联系人', '开源'],
+        githubUrl: 'https://github.com/liangdabiao/monica-crm-claude-skill',
+        features: [
+            '对话式CRM管理：通过自然语言对话添加和管理客户信息，无需复杂操作',
+            '客户信息记录：轻松记录姓名、电话、地区等基本信息',
+            '智能提醒系统：为客户设置提醒事项，如会议、跟进、生日等重要时间节点',
+            '标签管理：为客户添加自定义标签，便于分类和快速识别',
+            '待办事项管理：为客户关联待办任务，确保不遗漏任何重要事项',
+            '生日提醒：记录客户生日并自动设置提醒，贴心服务提升客户体验',
+            'Claude Code集成：完美集成Claude Code和OpenClaw，利用AI记忆功能',
+            '开源免费：基于Monica开源CRM，可自主搭建和定制'
+        ],
+        techStack: ['Claude Code', 'OpenClaw', 'Monica CRM', 'PHP', 'Laravel', 'MySQL', 'Docker'],
+        category: '商业工具',
+        difficulty: '初级'
     }
     ];
 
