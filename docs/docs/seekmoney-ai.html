@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeekMoney AI - 使用指南</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>📚 AI工具文档中心</h2>
+            </div>
+            <nav class="main-nav">
+                <h3>全部AI工具</h3>
+                <ul id="project-list">
+                    <!-- 项目列表将通过JavaScript动态生成 -->
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="nav-buttons">
+                    <a href="../index.html" class="back-button">← 文档首页</a>
+                    <a href="../../" class="back-button" style="margin-left: 10px;">🏠 主站</a>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="搜索文档...">
+                    <button id="search-button">🔍</button>
+                </div>
+            </header>
+
+            <article class="doc-content">
+                <h1>SeekMoney AI - 全网找商机</h1>
+
+                <div class="product-info">
+                    <p>帮助创业者从社交媒体找商机的智能系统！支持6大视频平台（抖音、小红书、TikTok、Bilibili、微信视频号、YouTube），基于AI语义聚类和GLM-4.7思考模型深度分析用户痛点，自动发现商业机会。</p>
+
+                    <div class="product-tags">
+                        <span class="product-tag">商机发现</span>
+                        <span class="product-tag">AI分析</span>
+                        <span class="product-tag">视频平台</span>
+                        <span class="product-tag">市场调研</span>
+                        <span class="product-tag">GLM-4.7</span>
+                        <span class="product-tag">Next.js</span>
+                    </div>
+
+                    <div class="difficulty-level">
+                        <strong>难度等级：</strong>进阶
+                    </div>
+
+                    <div class="github-link">
+                        <a href="https://github.com/liangdabiao/SeekMoney-ai" target="_blank">📁 访问GitHub项目页面</a>
+                    </div>
+                </div>
+
+                <h2>目录</h2>
+                <ul>
+                    <li><a href="#introduction">1. 项目介绍</a></li>
+                    <li><a href="#installation">2. 安装配置</a></li>
+                    <li><a href="#usage">3. 使用方法</a></li>
+                    <li><a href="#features">4. 功能详解</a></li>
+                    <li><a href="#examples">5. 使用示例</a></li>
+                    <li><a href="#troubleshooting">6. 常见问题</a></li>
+                    <li><a href="#resources">7. 相关资源</a></li>
+                </ul>
+
+                <h2 id="introduction">1. 项目介绍</h2>
+                <p>SeekMoney AI 是一款AI驱动的商机发现系统，旨在帮助创业者从视频社交媒体中自动发现用户核心痛点和商业机会。该项目利用 Next.js 15、React 19、GLM-4.7、Embedding-3、DBSCAN、TikHub API 等技术，提供6大主流视频平台的自动化市场调研和痛点分析解决方案。</p>
+
+                <h3>核心特性</h3>
+                <ul>
+                    <li>🌐 6大平台覆盖：抖音、小红书、TikTok、Bilibili、微信视频号、YouTube全平台数据采集</li>
+                    <li>🧠 AI语义聚类：基于GLM embedding + DBSCAN的智能聚类，自动发现主题和用户痛点</li>
+                    <li>🔬 GLM-4.7深度分析：思考模型深度分析痛点深度、市场格局、MVP计划和市场规模评分</li>
+                    <li>📊 智能优先级评分：需求强度 + 市场规模 + 竞争度三维评分，自动排序商业机会</li>
+                    <li>💡 AI产品建议：自动生成产品方案，包含核心功能、技术栈、开发路线图</li>
+                    <li>✅ 数据质量分级：exploratory、preliminary、reliable三级质量评估</li>
+                    <li>📈 结果展示导出：可视化表格展示、详情查看、一键导出CSV格式报告</li>
+                    <li>🌍 中英文双语：完整国际化支持，AI分析根据语言自动输出对应内容</li>
+                </ul>
+
+                <h2 id="installation">2. 安装配置</h2>
+                <p>在开始使用 SeekMoney AI 之前，您需要完成以下准备工作：</p>
+
+                <h3>系统要求</h3>
+                <ul>
+                    <li>Node.js >= 18</li>
+                    <li>npm 或 pnpm</li>
+                    <li>Python 3.x（用于聚类服务）</li>
+                    <li>稳定的互联网连接</li>
+                </ul>
+
+                <h3>安装步骤</h3>
+                <ol>
+                    <li>克隆项目仓库：
+                        <pre><code>git clone https://github.com/liangdabiao/SeekMoney-ai.git
+cd SeekMoney-ai</code></pre>
+                    </li>
+                    <li>安装 Node.js 依赖：
+                        <pre><code>npm install</code></pre>
+                    </li>
+                    <li>安装 Python 依赖：
+                        <pre><code>pip install -r requirements.txt</code></pre>
+                    </li>
+                    <li>配置环境变量：
+                        <pre><code># 复制环境变量模板
+cp .env.example .env.local
+
+# 编辑 .env.local 文件</code></pre>
+                    </li>
+                </ol>
+
+                <h3>API密钥配置</h3>
+                <h4>TikHub API（必需 - 数据采集）</h4>
+                <ul>
+                    <li>注册地址：<a href="https://api.tikhub.io/" target="_blank">https://api.tikhub.io/</a></li>
+                    <li>配置项：
+                        <pre><code>TIKHUB_API_TOKEN=your_tikhub_api_token_here
+TIKHUB_USE_CHINA_DOMAIN=false
+TIKHUB_ENABLE_CACHE=true</code></pre>
+                    </li>
+                </ul>
+
+                <h4>GLM API（必需 - AI分析）</h4>
+                <ul>
+                    <li>注册地址：<a href="https://open.bigmodel.cn/" target="_blank">https://open.bigmodel.cn/</a></li>
+                    <li>配置项：
+                        <pre><code>GLM_API_KEY=your_glm_api_key_here
+GLM_MODEL_NAME=glm-4.7
+GLM_EMBEDDING_MODEL=embedding-3</code></pre>
+                    </li>
+                </ul>
+
+                <h2 id="usage">3. 使用方法</h2>
+                <p>SeekMoney AI 提供了简单易用的Web界面，您可以通过以下步骤进行商机分析：</p>
+
+                <h3>启动项目</h3>
+                <pre><code># 开发模式
+npm run dev
+
+# 生产构建
+npm run build
+npm run start
+
+# 访问 http://localhost:3000</code></pre>
+
+                <h3>基本使用流程</h3>
+                <ol>
+                    <li><strong>选择数据源</strong>：选择要分析的平台（抖音、TikTok、Bilibili、微信视频号、YouTube、小红书）</li>
+                    <li><strong>输入关键词</strong>：输入搜索关键词，多个关键词用逗号分隔（如：露营, 新手, 装备）</li>
+                    <li><strong>选择深度</strong>：可选开启获取视频评论（更耗时但数据更丰富）</li>
+                    <li><strong>开始分析</strong>：点击"开始分析"按钮，等待AI处理完成</li>
+                    <li><strong>查看结果</strong>：查看分析结果，点击任意行查看详细原文</li>
+                    <li><strong>导出报告</strong>：导出CSV报告或原始数据</li>
+                </ol>
+
+                <h3>语言切换</h3>
+                <ul>
+                    <li>页面右上角点击语言切换器可切换中文/英文</li>
+                    <li>首次访问会自动检测浏览器语言偏好</li>
+                    <li>AI分析结果会根据当前语言自动输出对应语言</li>
+                    <li>也可通过URL直接访问：<code>/zh/</code> 或 <code>/en/</code></li>
+                </ul>
+
+                <h2 id="features">4. 功能详解</h2>
+                <p>SeekMoney AI 包含以下核心功能模块：</p>
+
+                <h3>多平台数据采集</h3>
+                <ul>
+                    <li>支持平台：抖音、TikTok、Bilibili、微信视频号、YouTube、小红书</li>
+                    <li>基于TikHub API：统一API接口，稳定可靠</li>
+                    <li>数据缓存：24小时缓存，重复访问免费</li>
+                    <li>成本优势：约¥0.01/次请求，一次典型分析约¥0.5</li>
+                </ul>
+
+                <h3>智能语义聚类</h3>
+                <ul>
+                    <li>视频/评论分别聚类：避免语义层次混淆</li>
+                    <li>GLM embedding向量化：高质量的语义表示</li>
+                    <li>DBSCAN密度聚类：自动发现主题，无需预设类别数</li>
+                    <li>多种embedding提供商：支持GLM、OpenAI</li>
+                </ul>
+
+                <h3>GLM-4.7深度AI分析</h3>
+                <ul>
+                    <li><strong>痛点深度分析</strong>：表面痛点 → 根本原因 → 用户场景 → 情感强度</li>
+                    <li><strong>市场格局分析</strong>：现有方案 → 未满足需求 → 机会分析</li>
+                    <li><strong>MVP计划建议</strong>：核心功能 → 验证假设 → 首批用户 → 成本估算</li>
+                    <li><strong>市场规模评分</strong>：0-5分市场潜力评估</li>
+                </ul>
+
+                <h3>优先级评分系统</h3>
+                <ul>
+                    <li><strong>需求强度</strong>：基于聚类规模和讨论热度</li>
+                    <li><strong>市场规模</strong>：AI评估的市场潜力</li>
+                    <li><strong>竞争度</strong>：现有解决方案分析</li>
+                    <li><strong>综合得分</strong>：自动排序，快速识别最有潜力的商机</li>
+                </ul>
+
+                <h3>数据质量分级</h3>
+                <ul>
+                    <li><strong>Exploratory（探索性）</strong>：<50条，样本量小，建议进一步验证</li>
+                    <li><strong>Preliminary（初步结论）</strong>：50-200条，中等置信度，适合初期研究</li>
+                    <li><strong>Reliable（高置信度）</strong>：≥200条，统计显著，可作为决策依据</li>
+                </ul>
+
+                <h2 id="examples">5. 使用示例</h2>
+                <p>以下是一些典型的使用场景和示例：</p>
+
+                <h3>示例 1：露营装备市场商机发现</h3>
+                <p>发现露营装备市场的用户痛点和商业机会</p>
+                <pre><code>1. 选择数据源：抖音、小红书、Bilibili
+2. 输入关键词：露营, 新手, 装备
+3. 开启视频评论获取
+4. 点击开始分析
+5. 等待AI处理（约3-5分钟）
+6. 查看分析结果：
+   - 自动识别"新手不知道买什么"、"装备太贵"等核心痛点
+   - 发现"轻量化"、"一键搭建"、"高性价比"等未满足需求
+   - 生成针对性的产品方案和MVP计划
+   - 按优先级排序，快速识别最有潜力的商机</code></pre>
+
+                <h3>示例 2：跨平台竞品分析</h3>
+                <p>了解某产品在不同平台的市场反馈</p>
+                <pre><code>1. 选择数据源：抖音、TikTok、小红书
+2. 输入关键词：产品名称 + 竞品名称
+3. 点击开始分析
+4. 查看对比结果：
+   - 对比不同平台的用户痛点和需求差异
+   - 识别平台特有的市场机会
+   - 发现竞品未覆盖的用户场景
+   - 为产品本地化和差异化提供参考</code></pre>
+
+                <h3>示例 3：新产品创意验证</h3>
+                <p>验证新产品创意的市场需求</p>
+                <pre><code>1. 输入关键词：产品核心功能 + 使用场景
+2. 分析用户讨论和痛点
+3. 评估市场规模和竞争度
+4. 生成MVP计划建议
+5. 导出分析报告用于决策</code></pre>
+
+                <h2 id="troubleshooting">6. 常见问题</h2>
+
+                <h3>Q: TikHub API 如何收费？</h3>
+                <p>A: TikHub API 按请求计费，约 ¥0.01/次。一次典型分析（3个关键词，20个视频，每个视频30条评论）大约花费 ¥0.5。支持24小时缓存，重复访问不收费。</p>
+
+                <h3>Q: 为什么推荐使用 TikHub API？</h3>
+                <p>A:
+                <br>- <strong>稳定性</strong>：API接口，无反爬风险
+                <br>- <strong>多平台</strong>：一个API支持6个主流平台
+                <br>- <strong>速度</strong>：快速响应，无需等待页面加载
+                <br>- <strong>成本</strong>：按需付费，约¥0.01/次请求
+                <br>- <strong>合规</strong>：官方API接口，避免法律风险
+                <br>- <strong>缓存</strong>：24小时缓存，重复请求免费</p>
+
+                <h3>Q: 聚类结果太少或太多怎么办？</h3>
+                <p>A:
+                <br>- <strong>结果太少</strong>：尝试更多关键词，或降低 <code>minClusterSize</code> 参数
+                <br>- <strong>结果太多</strong>：增加关键词精确度，或提高 <code>eps</code> 参数（聚类距离阈值）</p>
+
+                <h3>Q: 可以使用 OpenAI 替代智谱 GLM 吗？</h3>
+                <p>A: 部分可以。当前版本：
+                <br>- <strong>LLM分析（痛点深度分析）</strong>：仅支持智谱GLM，暂不支持替代
+                <br>- <strong>Embedding（语义聚类）</strong>：可选择使用OpenAI，通过设置 <code>EMBEDDING_PROVIDER=openai</code> 并配置 <code>OPENAI_API_KEY</code> 即可
+                <br>完整OpenAI LLM支持正在开发中。</p>
+
+                <h3>Q: 如何在服务器部署？</h3>
+                <p>A:
+                <br>1. 确保已配置TikHub API Token和GLM API Key
+                <br>2. 确保Node.js和Python环境已安装
+                <br>3. 运行 <code>npm run build && npm start</code></p>
+
+                <h3>Q: 数据质量分级是什么意思？</h3>
+                <p>A:
+                <br>- <strong>Exploratory（<50）</strong>：样本量小，建议进一步验证
+                <br>- <strong>Preliminary（50-200）</strong>：中等置信度，适合初期研究
+                <br>- <strong>Reliable（≥200）</strong>：高置信度，统计显著</p>
+
+                <h2 id="resources">7. 相关资源</h2>
+                <ul>
+                    <li><a href="https://github.com/liangdabiao/SeekMoney-ai" target="_blank">GitHub 项目页面</a></li>
+                    <li><a href="https://github.com/liangdabiao/SeekMoney-ai/issues" target="_blank">问题反馈</a></li>
+                    <li><a href="https://linux.do/t/topic/1574880" target="_blank">项目介绍 - Linux DO</a></li>
+                    <li><a href="https://api.tikhub.io/" target="_blank">TikHub API 官方网站</a></li>
+                    <li><a href="https://open.bigmodel.cn/" target="_blank">智谱AI 官方网站</a></li>
+                    <li><a href="https://github.com/liangdabiao" target="_blank">开发者其他项目</a></li>
+                    <li><a href="https://github.com/weiyf2/deeppoint-ai" target="_blank">原项目参考 - deeppoint-ai</a></li>
+                </ul>
+
+                <div style="margin-top: 40px; padding: 20px; background: #e7f3ff; border-radius: 8px; border-left: 4px solid #2196F3;">
+                    <p style="margin: 0; color: #0c5460;">
+                        <strong>💡 提示：</strong>
+                        SeekMoney AI 是基于 <a href="https://github.com/weiyf2/deeppoint-ai" target="_blank">deeppoint-ai</a> 项目进行改进和优化的版本。
+                        相比原项目，SeekMoney AI 在功能、性能和用户体验上都有显著提升，更适合中文用户和国内社交媒体平台。
+                    </p>
+                </div>
+            </article>
+        </main>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

@@ -259,6 +259,26 @@ const products = [
         githubUrl: 'https://github.com/liangdabiao/monica-crm-claude-skill',
         category: '商业工具',
         difficulty: '初级'
+    },
+    {
+        id: 'lego-ai-handbook',
+        name: 'AI乐高积木拼搭手册',
+        description: '基于"元素-组合-功能"三元框架的AI乐高积木手册，讨论元素、组合、功能在设计和现实世界中的应用，特别是乐高这个领域。乐高积木就像现实世界的编程语言！',
+        icon: '🧱',
+        tags: ['乐高积木', 'AI手册', 'MOC拼搭', '设计原理', '教育工具', '创意思维'],
+        githubUrl: '',
+        category: '教育工具',
+        difficulty: '初级'
+    },
+    {
+        id: 'seekmoney-ai',
+        name: 'SeekMoney AI - 全网找商机',
+        description: '帮助创业者从社交媒体找商机的智能系统！支持6大视频平台，基于AI语义聚类和GLM-4.7思考模型深度分析用户痛点，自动发现商业机会。',
+        icon: '💰',
+        tags: ['商机发现', 'AI分析', '视频平台', '市场调研', 'GLM-4.7', 'Next.js'],
+        githubUrl: 'https://github.com/liangdabiao/SeekMoney-ai',
+        category: '商业工具',
+        difficulty: '进阶'
     }
 ];
 

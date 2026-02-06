@@ -536,6 +536,49 @@ const products = [
         techStack: ['Claude Code', 'OpenClaw', 'Monica CRM', 'PHP', 'Laravel', 'MySQL', 'Docker'],
         category: '商业工具',
         difficulty: '初级'
+    },
+    {
+        id: 'lego-ai-handbook',
+        name: 'AI乐高积木拼搭手册',
+        description: '基于"元素-组合-功能"三元框架的AI乐高积木手册，讨论元素、组合、功能在设计和现实世界中的应用，特别是乐高这个领域。乐高积木就像现实世界的编程语言！',
+        icon: '🧱',
+        tags: ['乐高积木', 'AI手册', 'MOC拼搭', '设计原理', '教育工具', '创意思维'],
+        githubUrl: '',
+        features: [
+            '三元框架理论：元素（标准化模块）+ 组合（互锁结构）→ 功能（创造力培养）',
+            '精密元素设计：凸点管系统公差精度达0.002mm，确保任意积木兼容性',
+            '物理组合技术：互锁结构、机械联动、动态嵌套，增强结构稳定性',
+            '智能集成系统：Mindstorms EV3支持Python编程，实现机器人自动化',
+            'SNOT技术：Studs Not On Top，侧面凸粒技术，实现更精细的造型',
+            '齿轮传动系统：学习机械原理，搭建可动的机械模型',
+            'AI智能助手：基于AI的拼搭建议和创意生成，帮助MOC创作',
+            '教育价值：培养空间思维、STEM教育、文化传承和创造力'
+        ],
+        techStack: ['AI', '乐高积木', 'MOC设计', '教育技术', '创意编程'],
+        category: '教育工具',
+        difficulty: '初级',
+        externalUrl: 'https://chat.348349.xyz/centered-chat'
+    },
+    {
+        id: 'seekmoney-ai',
+        name: 'SeekMoney AI - 全网找商机',
+        description: '帮助创业者从社交媒体找商机的智能系统！支持6大视频平台，基于AI语义聚类和GLM-4.7思考模型深度分析用户痛点，自动发现商业机会。',
+        icon: '💰',
+        tags: ['商机发现', 'AI分析', '视频平台', '市场调研', 'GLM-4.7', 'Next.js'],
+        githubUrl: 'https://github.com/liangdabiao/SeekMoney-ai',
+        features: [
+            '6大平台覆盖：抖音、小红书、TikTok、Bilibili、微信视频号、YouTube全平台数据采集',
+            'AI语义聚类：基于GLM embedding + DBSCAN的智能聚类，自动发现主题和用户痛点',
+            'GLM-4.7深度分析：思考模型深度分析痛点深度、市场格局、MVP计划和市场规模评分',
+            '智能优先级评分：需求强度 + 市场规模 + 竞争度三维评分，自动排序商业机会',
+            'AI产品建议：自动生成产品方案，包含核心功能、技术栈、开发路线图',
+            '数据质量分级：exploratory、preliminary、reliable三级质量评估',
+            '结果展示导出：可视化表格、详情查看、一键导出CSV格式报告',
+            '中英文双语：完整国际化支持，AI分析根据语言自动输出对应内容'
+        ],
+        techStack: ['Next.js 15', 'React 19', 'Tailwind CSS 4', 'TypeScript', 'GLM-4.7', 'embedding-3', 'DBSCAN', 'TikHub API'],
+        category: '商业工具',
+        difficulty: '进阶'
     }
     ];
 
@@ -899,6 +942,18 @@ function useProduct(productId) {
     // 如果是Monica CRM Claude技能，跳转到专门的页面
     if (productId === 'monica-crm-claude-skill') {
         window.location.href = '/monica-crm-claude-skill.html';
+        return;
+    }
+
+    // 如果是SeekMoney AI，跳转到专门的页面
+    if (productId === 'seekmoney-ai') {
+        window.location.href = '/seekmoney-ai.html';
+        return;
+    }
+
+    // 如果是AI乐高积木拼搭手册，跳转到外部网站
+    if (productId === 'lego-ai-handbook') {
+        window.open(product.externalUrl || 'https://chat.348349.xyz/centered-chat', '_blank');
         return;
     }
 
