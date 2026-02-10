@@ -1179,11 +1179,19 @@
         const successfulFiles = uploadedFiles.filter(f => f.status === 'success');
 
         if (successfulFiles.length > 0) {
+            // 图片使用上传后的URL，视频和其他文件使用文件名
             const fileList = successfulFiles.map(f => {
                 const isImage = f.file.type.startsWith('image/');
                 const isVideo = f.file.type.startsWith('video/');
                 const typeIcon = isImage ? '🖼️' : (isVideo ? '🎬' : '📄');
-                return `${typeIcon} ${f.file.name}`;
+                
+                if (isImage && f.url) {
+                    // 图片使用可访问的URL
+                    return `${typeIcon} ${f.url}`;
+                } else {
+                    // 其他文件使用文件名
+                    return `${typeIcon} ${f.file.name}`;
+                }
             }).join('\n');
 
             if (message) {
@@ -1356,13 +1364,27 @@
         let isStreaming = true;
 
         try {
+            // 构建包含图片URL的请求数据
+            const lastMessage = content[content.length - 1];
             const requestData = {
-                "last_prompt": content[content.length - 1].message,
-                "conversation_history": content.map(item => ({
+                "last_prompt": lastMessage.message,
+                "conversation_history": content.slice(0, -1).map(item => ({
                     "role": item.role,
                     "content": item.message
                 }))
             };
+
+            // 如果有图片附件，添加图片URL
+            if (lastMessage.attachments && lastMessage.attachments.length > 0) {
+                const imageUrls = lastMessage.attachments
+                    .filter(att => att.url && (att.type.startsWith('image/')))
+                    .map(att => att.url);
+                
+                if (imageUrls.length > 0) {
+                    requestData.image_urls = imageUrls;
+                    console.log('添加图片URL到请求:', imageUrls);
+                }
+            }
 
             const response = await fetch(apiUrl, {
                 method: 'POST',
@@ -1473,13 +1495,27 @@
     // 非流式响应处理函数（作为回退）
     async function fetchDataNonStream() {
         try {
+            // 构建包含图片URL的请求数据
+            const lastMessage = content[content.length - 1];
             const requestData = {
-                "last_prompt": content[content.length - 1].message,
-                "conversation_history": content.map(item => ({
+                "last_prompt": lastMessage.message,
+                "conversation_history": content.slice(0, -1).map(item => ({
                     "role": item.role,
                     "content": item.message
                 }))
             };
+
+            // 如果有图片附件，添加图片URL
+            if (lastMessage.attachments && lastMessage.attachments.length > 0) {
+                const imageUrls = lastMessage.attachments
+                    .filter(att => att.url && (att.type.startsWith('image/')))
+                    .map(att => att.url);
+                
+                if (imageUrls.length > 0) {
+                    requestData.image_urls = imageUrls;
+                    console.log('添加图片URL到非流式请求:', imageUrls);
+                }
+            }
 
             const response = await fetch(nonStreamApiUrl, {
                 method: 'POST',
