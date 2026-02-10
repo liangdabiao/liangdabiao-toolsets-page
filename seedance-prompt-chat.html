@@ -1024,6 +1024,7 @@
                 uploadItem.status = 'success';
                 uploadItem.url = result.url;
                 console.log(`文件上传成功: ${uploadItem.file.name}`, result);
+                console.log(`保存的URL: ${uploadItem.url}, 类型: ${typeof uploadItem.url}`);
             } catch (error) {
                 uploadItem.status = 'error';
                 uploadItem.uploadError = error.message;
@@ -1185,9 +1186,11 @@
                 const isVideo = f.file.type.startsWith('video/');
                 const typeIcon = isImage ? '🖼️' : (isVideo ? '🎬' : '📄');
                 
-                if (isImage && f.url) {
-                    // 图片使用可访问的URL
-                    return `${typeIcon} ${f.url}`;
+                if (isImage && f.url && f.url.trim().length > 0) {
+                    // 图片使用上传后的URL，确保URL干净无空格
+                    const cleanUrl = f.url.trim();
+                    console.log(`使用图片URL: ${cleanUrl}`);
+                    return `${typeIcon} ${cleanUrl}`;
                 } else {
                     // 其他文件使用文件名
                     return `${typeIcon} ${f.file.name}`;
