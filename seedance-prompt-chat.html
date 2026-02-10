@@ -1034,23 +1034,10 @@
         }
     }
 
-    // 上传文件到阿里云百炼临时存储空间
+    // 上传文件到阿里云百炼临时存储空间（通过后端代理）
     async function uploadFileToAliyun(file) {
-        // 注意：实际项目中这里需要替换为真实的后端API地址
-        // 阿里云百炼的文件上传需要通过后端服务进行，这里提供前端直接上传的示例
-        // 如果使用前端直接上传，需要配置CORS
-        
-        // 获取API Key（实际项目中应该从后端获取，或通过环境变量配置）
-        const apiKey = 'sk-f43a05ca9359444d9c566f3a5a52d8f2';
-        
-        if (!apiKey) {
-            console.warn('未配置阿里云API Key，将使用本地预览模式');
-            // 备选方案：使用本地预览URL（仅用于演示）
-            const localUrl = URL.createObjectURL(file);
-            return { url: localUrl, local: true, warning: '使用本地预览模式，请配置API Key以启用云端上传' };
-        }
-
-        const uploadUrl = 'https://dashscope.aliyuncs.com/api/v1/files';
+        // 获取后端API地址（实际项目中应该从配置中获取）
+        const backendUrl = 'https://chat3.liangdabiao.com';  // 对应后端的地址
 
         const formData = new FormData();
         formData.append('file', file);
@@ -1058,14 +1045,10 @@
         console.log(`开始上传文件: ${file.name}`);
 
         try {
-            // 尝试直接上传到阿里云百炼
-            const response = await fetch(uploadUrl, {
+            // 通过后端上传到阿里云百炼
+            const response = await fetch(`${backendUrl}/api/v1/files`, {
                 method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${apiKey}`
-                },
-                body: formData,
-                mode: 'cors'
+                body: formData
             });
 
             if (!response.ok) {
@@ -1077,23 +1060,22 @@
             const data = await response.json();
             console.log('上传响应:', data);
 
-            if (data.data && data.data.url) {
+            if (data.success && data.data && data.data.url) {
                 return { url: data.data.url };
             } else {
                 throw new Error('上传成功但未返回URL，响应数据: ' + JSON.stringify(data));
             }
         } catch (error) {
-            console.warn('直接上传失败:', error.message);
-            
+            console.warn('上传失败:', error.message);
+
             // 备选方案：使用本地预览URL（仅用于演示）
-            // 在实际项目中，应该将文件上传到自己的服务器或阿里云OSS
             const localUrl = URL.createObjectURL(file);
-            
+
             // 返回本地URL作为备选，但添加警告信息
-            return { 
-                url: localUrl, 
+            return {
+                url: localUrl,
                 local: true,
-                warning: '云端上传失败，已使用本地预览模式。请检查API Key配置。'
+                warning: '云端上传失败，已使用本地预览模式。请确保后端服务正在运行。'
             };
         }
     }
