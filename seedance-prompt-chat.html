@@ -1175,38 +1175,37 @@
             startupBtnContainer.style.display = 'none';
         }
 
-        // 构建包含附件的消息
-        let fullMessage = message;
+        // 分离文本和图片URL
+        const pureTextMessage = message.trim();
         const successfulFiles = uploadedFiles.filter(f => f.status === 'success');
-
+        
+        // 构建用于UI显示的完整消息（包含图片URL）
+        let displayMessage = pureTextMessage;
         if (successfulFiles.length > 0) {
-            // 图片使用上传后的URL，视频和其他文件使用文件名
             const fileList = successfulFiles.map(f => {
                 const isImage = f.file.type.startsWith('image/');
                 const isVideo = f.file.type.startsWith('video/');
                 const typeIcon = isImage ? '🖼️' : (isVideo ? '🎬' : '📄');
                 
                 if (isImage && f.url && f.url.trim().length > 0) {
-                    // 图片使用上传后的URL，确保URL干净无空格
                     const cleanUrl = f.url.trim();
-                    console.log(`使用图片URL: ${cleanUrl}`);
                     return `${typeIcon} ${cleanUrl}`;
                 } else {
-                    // 其他文件使用文件名
                     return `${typeIcon} ${f.file.name}`;
                 }
             }).join('\n');
 
-            if (message) {
-                fullMessage = `${message}\n\n---\n**附件：**\n${fileList}`;
+            if (pureTextMessage) {
+                displayMessage = `${pureTextMessage}\n\n---\n**附件：**\n${fileList}`;
             } else {
-                fullMessage = `**附件：**\n${fileList}`;
+                displayMessage = `**附件：**\n${fileList}`;
             }
         }
 
+        // content中只保存纯文本，图片URL只在attachments中
         content.push({
             role: 'user',
-            message: fullMessage,
+            message: pureTextMessage,  // 只保存纯文本给后端
             attachments: successfulFiles.map(f => ({
                 name: f.file.name,
                 type: f.file.type,
@@ -1219,12 +1218,12 @@
         conversationTranscript.push({
             sender: 'user',
             time: timestamp,
-            message: fullMessage,
+            message: displayMessage,  // 对话记录显示完整消息
             attachments: successfulFiles.map(f => f.url)
         });
 
-        // 显示消息和附件
-        addMessage('user', message, successfulFiles);
+        // 显示消息和附件（使用完整消息用于UI）
+        addMessage('user', displayMessage, successfulFiles);
 
         // 清空输入框和文件列表
         messageInput.value = '';
