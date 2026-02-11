@@ -579,8 +579,30 @@ const products = [
         techStack: ['Next.js 15', 'React 19', 'Tailwind CSS 4', 'TypeScript', 'GLM-4.7', 'embedding-3', 'DBSCAN', 'TikHub API'],
         category: '商业工具',
         difficulty: '进阶'
+    },
+    {
+        id: 'seedance-prompt-chat',
+        name: 'Seedance 2.0 分镜提示词助手',
+        description: '专业的AI视频分镜提示词生成专家，帮助你将想法转化为专业提示词。支持图片参考、视频参考、视频延长等多种场景，配备精美的流式对话界面。',
+        icon: '🎬',
+        tags: ['视频分镜', '提示词生成', 'Seedance', 'AI视频', '流式对话', '阿里云百炼'],
+        githubUrl: '',
+        features: [
+            '专业分镜生成：支持叙事故事、产品展示、角色动作、风景旅拍等多种分镜场景',
+            '多模态输入：支持图片和视频作为参考素材，AI根据参考内容生成专业提示词',
+            '视频延长功能：基于已有视频内容生成续写分镜提示词',
+            '剧情编辑：支持对视频剧情进行颠覆性修改的分镜提示词生成',
+            '流式对话界面：精美的渐变设计，实时打字效果，支持Markdown渲染',
+            '文件上传支持：支持图片、视频、PDF、Word等多种格式文件上传',
+            '阿里云百炼集成：基于通义千问大模型，支持多轮对话和上下文理解',
+            '快捷提示按钮：预设常用分镜场景，一键快速生成专业提示词'
+        ],
+        techStack: ['HTML5', 'CSS3', 'JavaScript', '阿里云百炼', '通义千问', 'SSE流式响应', 'FastAPI', 'Python'],
+        category: 'AI工具',
+        difficulty: '初级',
+        externalUrl: 'https://liang.348349.xyz/seedance-prompt-chat'
     }
-    ];
+];
 
 // DOM元素
 const productsGrid = document.getElementById('productsGrid');
@@ -596,6 +618,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (productsGrid && footerProducts) {
         renderProducts();
         renderFooterProducts();
+        setupProductFilters();
     }
 
     setupNavigation();
@@ -605,29 +628,160 @@ document.addEventListener('DOMContentLoaded', function() {
     setupAnimations();
 });
 
-// 渲染产品卡片
-function renderProducts() {
+// 设置产品筛选功能
+function setupProductFilters() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // 更新按钮状态
+            filterButtons.forEach(btn => {
+                btn.classList.remove('active');
+                btn.style.background = 'white';
+                btn.style.color = 'var(--primary-color)';
+            });
+            this.classList.add('active');
+            this.style.background = 'var(--primary-color)';
+            this.style.color = 'white';
+
+            // 获取筛选类别
+            const filter = this.dataset.filter;
+
+            // 筛选产品
+            const filteredProducts = filter === 'all'
+                ? products
+                : products.filter(product => product.category === filter);
+
+            // 重新渲染产品
+            renderFilteredProducts(filteredProducts);
+        });
+    });
+}
+
+// 渲染筛选后的产品
+function renderFilteredProducts(filteredProducts) {
+    const productsGrid = document.getElementById('productsGrid');
     if (!productsGrid) return;
 
-    productsGrid.innerHTML = products.map(product => `
-        <div class="product-card" data-product-id="${product.id}">
+    if (filteredProducts.length === 0) {
+        productsGrid.innerHTML = `
+            <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px;">
+                <div style="font-size: 4rem; margin-bottom: 20px;">🔍</div>
+                <h3 style="font-size: 1.5rem; margin-bottom: 10px;">暂无相关产品</h3>
+                <p style="color: #666;">请尝试选择其他分类</p>
+            </div>
+        `;
+        return;
+    }
+
+    productsGrid.innerHTML = filteredProducts.map(product => `
+        <div class="product-card" data-product-id="${product.id}" data-category="${product.category}">
             <div class="product-icon">${product.icon}</div>
             <h3 class="product-title">${product.name}</h3>
             <p class="product-description">${product.description}</p>
             <div class="product-tags">
                 ${product.tags.map(tag => `<span class="product-tag">${tag}</span>`).join('')}
             </div>
-            <a href="/product/${product.id}" class="product-link" data-product-id="${product.id}">
-                了解详情 →
-            </a>
+            <div style="display: flex; gap: 10px; margin-top: 15px;">
+                <a href="${getProductPageUrl(product.id)}" class="product-link" data-product-id="${product.id}" style="flex: 1; text-align: center;">
+                    了解详情 →
+                </a>
+                <a href="${getDocPageUrl(product.id)}" class="product-link" style="flex: 1; text-align: center; background: #f0f0f0; color: #333;">
+                    📖 文档
+                </a>
+            </div>
         </div>
     `).join('');
 
     // 添加点击事件
-    document.querySelectorAll('.product-card, .product-link').forEach(element => {
+    document.querySelectorAll('.product-card').forEach(element => {
         element.addEventListener('click', function(e) {
             if (e.target.classList.contains('product-link')) {
-                e.preventDefault();
+                // 如果是链接，允许默认跳转行为
+                return;
+            }
+            const productId = this.dataset.productId;
+            showProductDetail(productId);
+        });
+    });
+}
+
+// 获取产品页面URL
+function getProductPageUrl(productId) {
+    // 首先检查产品是否有外部URL
+    const product = products.find(p => p.id === productId);
+    if (product && product.externalUrl) {
+        return product.externalUrl;
+    }
+
+    // 使用预定义的页面映射
+    const productPages = {
+        'ai-stop-motion': './ai-stop-motion.html',
+        'claude-data-analysis': './claude-data-analysis.html',
+        'a-stock-analysis': './a-stock-analysis.html',
+        'business-idea-validator': './business-idea-validator.html',
+        'easy-amazon-voc': './easy-amazon-voc.html',
+        'ai-data-hub': './ai-data-hub.html',
+        'ai-generated-english-podcast-videos': './ai-generated-english-podcast-videos.html',
+        'langgraph-multi-agent-rag-customer-support': './langgraph-multi-agent-rag-customer-support.html',
+        'llm-agent-resume': './llm-agent-resume.html',
+        'resume-matcher-agent-cn': './resume-matcher-agent-cn.html',
+        'facebook-ads-analyzer': './facebook-ads-analyzer.html',
+        'bailian-ai-chatbox': './bailian-ai-chatbox.html',
+        'claude-code-stock-deep-research-agent': './claude-code-stock-deep-research-agent.html',
+        'xhs-business-idea-validator': './xhs-business-idea-validator.html',
+        'claude-data-analysis-ultra': './claude-data-analysis-ultra.html',
+        'claude-code-deep-research': './claude-code-deep-research.html',
+        'simple-claude-deep-research-agent': './simple-claude-deep-research-agent.html',
+        'reddit-business-idea-validator': './reddit-business-idea-validator.html',
+        'tikhub-api-skill': './tikhub-api-skill.html',
+        'prompt-chat': './prompt-chat.html',
+        'skill-ten-prompt-generator': './skill-ten-prompt-generator.html',
+        'social-research-agent': './social-research-agent.html',
+        'seekmoney-ai': './seekmoney-ai.html',
+        'monica-crm-claude-skill': './monica-crm-claude-skill.html',
+        'bright-data-mcp-research': './bright-data-mcp-research.html',
+        'market-insight-claude-skill': './market-insight-claude-skill.html',
+        'exa-research-mcp-skill': './exa-research-mcp-skill.html',
+        'seedance-prompt-chat': 'https://liang.348349.xyz/seedance-prompt-chat'
+    };
+    return productPages[productId] || `./${productId}.html`;
+}
+
+// 获取文档页面URL
+function getDocPageUrl(productId) {
+    return `./docs/docs/${productId}.html`;
+}
+
+// 渲染产品卡片
+function renderProducts() {
+    if (!productsGrid) return;
+
+    productsGrid.innerHTML = products.map(product => `
+        <div class="product-card" data-product-id="${product.id}" data-category="${product.category}">
+            <div class="product-icon">${product.icon}</div>
+            <h3 class="product-title">${product.name}</h3>
+            <p class="product-description">${product.description}</p>
+            <div class="product-tags">
+                ${product.tags.map(tag => `<span class="product-tag">${tag}</span>`).join('')}
+            </div>
+            <div style="display: flex; gap: 10px; margin-top: 15px;">
+                <a href="${getProductPageUrl(product.id)}" class="product-link" data-product-id="${product.id}" style="flex: 1; text-align: center;">
+                    了解详情 →
+                </a>
+                <a href="${getDocPageUrl(product.id)}" class="product-link" style="flex: 1; text-align: center; background: #f0f0f0; color: #333;">
+                    📖 文档
+                </a>
+            </div>
+        </div>
+    `).join('');
+
+    // 添加点击事件
+    document.querySelectorAll('.product-card').forEach(element => {
+        element.addEventListener('click', function(e) {
+            if (e.target.classList.contains('product-link')) {
+                // 如果是链接，允许默认跳转行为
+                return;
             }
             const productId = this.dataset.productId;
             showProductDetail(productId);
@@ -948,6 +1102,12 @@ function useProduct(productId) {
     // 如果是SeekMoney AI，跳转到专门的页面
     if (productId === 'seekmoney-ai') {
         window.location.href = '/seekmoney-ai.html';
+        return;
+    }
+
+    // 如果是Seedance 2.0 分镜提示词助手，跳转到外部网站
+    if (productId === 'seedance-prompt-chat') {
+        window.open(product.externalUrl || 'https://liang.348349.xyz/seedance-prompt-chat', '_blank');
         return;
     }
 
