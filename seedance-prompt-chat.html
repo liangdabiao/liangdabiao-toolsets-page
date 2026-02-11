@@ -508,6 +508,114 @@
                 font-size: 0.8rem;
                 padding: 6px 12px;
             }
+
+            .file-preview {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .file-preview-item {
+                max-width: 100%;
+            }
+        }
+
+        .file-preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 10px 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .file-preview-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            max-width: 200px;
+            position: relative;
+        }
+
+        .file-preview-item img, .file-preview-item video {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .file-preview-item .file-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f0f0f0;
+            border-radius: 4px;
+            font-size: 1.2rem;
+            color: #6c5ce7;
+            flex-shrink: 0;
+        }
+
+        .file-preview-item .file-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .file-preview-item .file-name {
+            font-size: 0.8rem;
+            color: #2d3436;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .file-preview-item .file-size {
+            font-size: 0.7rem;
+            color: #b2bec3;
+        }
+
+        .file-preview-item .remove-file {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 18px;
+            height: 18px;
+            background: #ff7675;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.7rem;
+            line-height: 1;
+        }
+
+        .file-upload-status {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.8rem;
+            color: #6c5ce7;
+            padding: 5px 10px;
+            background: #f0efff;
+            border-radius: 15px;
+            margin-left: 10px;
+        }
+
+        .file-upload-status i {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -529,7 +637,13 @@
             </div>
 
             <div class="chat__input-area">
+                <div id="file-preview-container" style="display: none; padding: 10px 15px 0;">
+                </div>
                 <form id="messageForm" onsubmit="onFormSubmit(event)">
+                    <input type="file" id="fileInput" accept="image/*,video/*,.pdf,.doc,.docx,.txt" multiple style="display: none;" onchange="handleFileSelect(event)">
+                    <button type="button" onclick="document.getElementById('fileInput').click()" style="background: transparent; border: none; cursor: pointer; color: #6c5ce7; font-size: 1.2rem; margin-right: 5px;">
+                        <i class="fas fa-paperclip"></i>
+                    </button>
                     <input type="text" id="message" name="message" placeholder="描述你的视频创意，我来帮你生成分镜提示词..." autocomplete="off" required>
                     <button type="submit"><i class="fas fa-paper-plane"></i></button>
                 </form>
@@ -642,6 +756,88 @@
     </script>
 
     <script>
+    // 将附件对象列表转换为图片URL列表
+    function getImageUrls(attachments) {
+        if (!attachments || !Array.isArray(attachments)) {
+            return [];
+        }
+        
+        const imageUrls = [];
+        for (const att of attachments) {
+            if (att.url && att.type && att.type.startsWith('image/')) {
+                let url = att.url.trim();
+                // 如果是blob URL，跳过（blob URL无法在后端访问）
+                if (url.startsWith('blob:')) {
+                    console.warn('跳过blob URL:', url);
+                    continue;
+                }
+                imageUrls.push(url);
+            }
+        }
+        
+        return imageUrls;
+    }
+    
+    // 将文件转换为Base64 Data URL格式
+    function fileToBase64(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                resolve(reader.result);
+            };
+            reader.onerror = error => reject(error);
+        });
+    }
+    
+    // 从attachments中提取Base64图片数据
+    function getBase64Images(attachments) {
+        if (!attachments || !Array.isArray(attachments)) {
+            return [];
+        }
+        
+        const base64Images = [];
+        for (const att of attachments) {
+            if (att.type && att.type.startsWith('image/')) {
+                // 如果已经是Data URL（Base64），直接使用
+                if (att.url && att.url.startsWith('data:')) {
+                    // 检查图片大小，限制在 5MB 以内
+                    const base64Size = Math.round((att.url.length * 3) / 4);
+                    const sizeInMB = base64Size / (1024 * 1024);
+                    
+                    if (sizeInMB > 5) {
+                        console.warn(`图片 ${att.name} 太大 (${sizeInMB.toFixed(2)}MB)，超过5MB限制，将被跳过`);
+                        continue;
+                    }
+                    
+                    base64Images.push(att.url);
+                    console.log(`使用已存在的Base64图片: ${att.name}, 大小: ${sizeInMB.toFixed(2)}MB`);
+                } else {
+                    console.warn('图片不是Base64格式:', att.name, att.url ? att.url.substring(0, 50) : '无URL');
+                }
+            }
+        }
+        
+        return base64Images;
+    }
+
+    // 组合用户消息文本（包含图片说明）
+    function composeUserMessage(userText, attachments) {
+        if (!attachments || attachments.length === 0) {
+            return userText || '';
+        }
+        
+        let message = userText || '';
+        
+        // 添加图片说明
+        const images = attachments.filter(att => att.type && att.type.startsWith('image/'));
+        if (images.length > 0) {
+            const names = images.map(att => att.name || '图片').join(', ');
+            message += message ? `\n\n【附件图片】: ${names}` : `【附件图片】: ${names}`;
+        }
+        
+        return message;
+    }
     const apiUrl = 'https://chat3.liangdabiao.com/myapi/v1/chat-bot/stream';
     const botConfigurationUrl = 'https://chat3.liangdabiao.com/myapi/v1/chat-bot-config';
     const nonStreamApiUrl = 'https://chat3.liangdabiao.com/myapi/v1/chat-bot';
@@ -653,6 +849,7 @@
         userAvatarURL: 'https://via.placeholder.com/30'
     };
     let conversationTranscript = [];
+    let uploadedFiles = [];
 
     // 页面加载时获取机器人配置
     window.addEventListener('load', () => {
@@ -722,6 +919,323 @@
         startupBtnsDiv.innerHTML = startupBtns;
     }
 
+    // 处理文件选择
+    async function handleFileSelect(event) {
+        const files = event.target.files;
+        if (!files || files.length === 0) return;
+
+        // 支持的图片和视频格式
+        const allowedImageTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/bmp'];
+        const allowedVideoTypes = ['video/mp4', 'video/webm', 'video/quicktime', 'video/x-msvideo'];
+        const allowedDocTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'text/plain'];
+
+        const allowedTypes = [...allowedImageTypes, ...allowedVideoTypes, ...allowedDocTypes];
+
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+
+            // 检查文件类型
+            if (!allowedTypes.includes(file.type)) {
+                showPopup(`不支持的文件格式: ${file.name}`);
+                continue;
+            }
+
+            // 检查文件大小 (限制为100MB)
+            if (file.size > 100 * 1024 * 1024) {
+                showPopup(`文件过大: ${file.name}，最大支持100MB`);
+                continue;
+            }
+
+            // 添加到上传队列
+            uploadedFiles.push({
+                id: Date.now() + '_' + i,
+                file: file,
+                status: 'pending',
+                url: null,
+                uploadError: null
+            });
+        }
+
+        // 更新文件预览
+        displayFilePreview();
+
+        // 清空文件输入框，允许再次选择相同文件
+        event.target.value = '';
+
+        // 开始上传文件
+        uploadAllFiles();
+    }
+
+    // 格式化文件大小
+    function formatFileSize(bytes) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }
+
+    // 显示文件预览
+    function displayFilePreview() {
+        const container = document.getElementById('file-preview-container');
+
+        if (uploadedFiles.length === 0) {
+            container.style.display = 'none';
+            return;
+        }
+
+        container.style.display = 'block';
+        let html = '<div class="file-preview">';
+
+        uploadedFiles.forEach((uploadItem, index) => {
+            const file = uploadItem.file;
+            let previewHtml = '';
+
+            if (uploadItem.status === 'uploading') {
+                previewHtml = `
+                    <div class="file-preview-item" data-id="${uploadItem.id}">
+                        <div class="file-icon"><i class="fas fa-spinner fa-spin"></i></div>
+                        <div class="file-info">
+                            <div class="file-name">${file.name}</div>
+                            <div class="file-size">${formatFileSize(file.size)} - 上传中...</div>
+                        </div>
+                    </div>
+                `;
+            } else if (uploadItem.status === 'error') {
+                previewHtml = `
+                    <div class="file-preview-item" data-id="${uploadItem.id}">
+                        <div class="file-icon" style="color: #ff7675;"><i class="fas fa-exclamation-circle"></i></div>
+                        <div class="file-info">
+                            <div class="file-name">${file.name}</div>
+                            <div class="file-size" style="color: #ff7675;">上传失败: ${uploadItem.uploadError || '未知错误'}</div>
+                        </div>
+                        <span class="remove-file" onclick="removeFile('${uploadItem.id}')">×</span>
+                    </div>
+                `;
+            } else {
+                // 已上传成功
+                const isImage = file.type.startsWith('image/');
+                const isVideo = file.type.startsWith('video/');
+
+                if (isImage) {
+                    const localUrl = URL.createObjectURL(file);
+                    previewHtml = `
+                        <div class="file-preview-item" data-id="${uploadItem.id}">
+                            <img src="${localUrl}" alt="${file.name}" onclick="previewFile('${uploadItem.id}')">
+                            <div class="file-info">
+                                <div class="file-name">${file.name}</div>
+                                <div class="file-size">${formatFileSize(file.size)} - 已就绪</div>
+                            </div>
+                            <span class="remove-file" onclick="removeFile('${uploadItem.id}')">×</span>
+                        </div>
+                    `;
+                } else if (isVideo) {
+                    const localUrl = URL.createObjectURL(file);
+                    previewHtml = `
+                        <div class="file-preview-item" data-id="${uploadItem.id}">
+                            <video src="${localUrl}" muted></video>
+                            <div class="file-info">
+                                <div class="file-name">${file.name}</div>
+                                <div class="file-size">${formatFileSize(file.size)} - 已就绪</div>
+                            </div>
+                            <span class="remove-file" onclick="removeFile('${uploadItem.id}')">×</span>
+                        </div>
+                    `;
+                } else {
+                    previewHtml = `
+                        <div class="file-preview-item" data-id="${uploadItem.id}">
+                            <div class="file-icon"><i class="fas fa-file"></i></div>
+                            <div class="file-info">
+                                <div class="file-name">${file.name}</div>
+                                <div class="file-size">${formatFileSize(file.size)} - 已就绪</div>
+                            </div>
+                            <span class="remove-file" onclick="removeFile('${uploadItem.id}')">×</span>
+                        </div>
+                    `;
+                }
+            }
+
+            html += previewHtml;
+        });
+
+        html += '</div>';
+        container.innerHTML = html;
+    }
+
+    // 预览文件
+    function previewFile(fileId) {
+        const uploadItem = uploadedFiles.find(f => f.id === fileId);
+        if (!uploadItem || !uploadItem.url) return;
+
+        // 创建预览模态框
+        const modal = document.createElement('div');
+        modal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 10000; cursor: pointer;';
+
+        const isImage = uploadItem.file.type.startsWith('image/');
+        const isVideo = uploadItem.file.type.startsWith('video/');
+
+        if (isImage) {
+            modal.innerHTML = `<img src="${uploadItem.url}" style="max-width: 90%; max-height: 90%; object-fit: contain;" onclick="this.parentElement.remove()">`;
+        } else if (isVideo) {
+            modal.innerHTML = `<video src="${uploadItem.url}" controls style="max-width: 90%; max-height: 90%;" onclick="this.parentElement.remove()"></video>`;
+        }
+
+        document.body.appendChild(modal);
+
+        modal.addEventListener('click', function() {
+            modal.remove();
+        });
+    }
+
+    // 移除文件
+    function removeFile(fileId) {
+        uploadedFiles = uploadedFiles.filter(f => f.id !== fileId);
+        displayFilePreview();
+    }
+
+    // 上传所有待上传的文件
+    async function uploadAllFiles() {
+        const pendingFiles = uploadedFiles.filter(f => f.status === 'pending');
+
+        for (const uploadItem of pendingFiles) {
+            uploadItem.status = 'uploading';
+            displayFilePreview();
+
+            try {
+                const result = await uploadFileToAliyun(uploadItem.file);
+                uploadItem.status = 'success';
+                uploadItem.url = result.url;
+                console.log(`文件上传成功: ${uploadItem.file.name}`, result);
+                console.log(`保存的URL: ${uploadItem.url}, 类型: ${typeof uploadItem.url}`);
+            } catch (error) {
+                // 上传失败，对于图片类型，转换为Base64
+                if (uploadItem.file.type.startsWith('image/')) {
+                    console.log(`上传失败，将图片转换为Base64: ${uploadItem.file.name}`);
+                    try {
+                        const base64 = await fileToBase64(uploadItem.file);
+                        uploadItem.status = 'success';
+                        uploadItem.url = base64;  // 使用Base64作为URL
+                        console.log(`图片已转换为Base64: ${uploadItem.file.name}, 长度: ${base64.length}`);
+                    } catch (base64Error) {
+                        uploadItem.status = 'error';
+                        uploadItem.uploadError = `上传失败且Base64转换失败: ${base64Error.message}`;
+                        console.error(`Base64转换失败: ${uploadItem.file.name}`, base64Error);
+                    }
+                } else {
+                    uploadItem.status = 'error';
+                    uploadItem.uploadError = error.message;
+                    console.error(`文件上传失败: ${uploadItem.file.name}`, error);
+                }
+            }
+
+            displayFilePreview();
+        }
+    }
+
+    // 上传文件到阿里云百炼临时存储空间（通过后端代理）
+    async function uploadFileToAliyun(file) {
+        // 获取后端API地址（实际项目中应该从配置中获取）
+        const backendUrl = 'https://chat3.liangdabiao.com';  // 对应后端的地址
+
+        const formData = new FormData();
+        formData.append('file', file);
+
+        console.log(`开始上传文件: ${file.name}`);
+
+        try {
+            // 通过后端上传到阿里云百炼
+            const response = await fetch(`${backendUrl}/api/v1/files`, {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error('上传失败响应:', errorText);
+                throw new Error(`HTTP error! status: ${response.status}, ${errorText}`);
+            }
+
+            const data = await response.json();
+            console.log('上传响应:', data);
+
+            if (data.success && data.data && data.data.url) {
+                return { url: data.data.url };
+            } else {
+                throw new Error('上传成功但未返回URL，响应数据: ' + JSON.stringify(data));
+            }
+        } catch (error) {
+            console.error('上传失败:', error.message);
+            // 抛出错误，让上层处理（对于图片会转换为Base64）
+            throw error;
+        }
+    }
+
+    // 获取阿里云API Key
+    function getAliyunApiKey() {
+        // 方式1：优先从全局配置获取
+        if (window.ALIYUN_API_KEY) {
+            return window.ALIYUN_API_KEY;
+        }
+        
+        // 方式2：从URL参数获取（仅用于演示，实际项目中不推荐）
+        const urlParams = new URLSearchParams(window.location.search);
+        const apiKey = urlParams.get('api_key');
+        if (apiKey) {
+            return apiKey;
+        }
+        
+        // 方式3：检查是否有设置过
+        return localStorage.getItem('aliyun_dashscope_api_key') || null;
+    }
+
+    // 设置阿里云API Key（供用户配置）
+    function setAliyunApiKey(apiKey) {
+        if (!apiKey || apiKey.trim() === '') {
+            showPopup('请输入有效的API Key');
+            return;
+        }
+        
+        // 保存到本地存储
+        localStorage.setItem('aliyun_dashscope_api_key', apiKey.trim());
+        window.ALIYUN_API_KEY = apiKey.trim();
+        
+        showPopup('API Key已保存，现在可以上传文件到云端了！');
+        console.log('API Key已配置，格式正确');
+    }
+
+    // 清除API Key
+    function clearAliyunApiKey() {
+        localStorage.removeItem('aliyun_dashscope_api_key');
+        delete window.ALIYUN_API_KEY;
+        showPopup('API Key已清除');
+    }
+
+    // 显示API Key配置提示
+    function showApiKeyConfigTip() {
+        const tip = `请配置阿里云百炼API Key以启用文件云端上传功能：
+
+1. 登录阿里云控制台 (https://dashscope.console.aliyun.com)
+2. 进入"API-KEY"管理页面
+3. 创建或复制您的API Key
+4. 在URL后添加 ?api_key=您的API_KEY 或调用 setAliyunApiKey('您的API_KEY') 设置
+
+注意：文件将上传到阿里云百炼临时存储空间，URL有效期为48小时。`;
+
+        alert(tip);
+    }
+
+    // 获取已上传成功的文件URL列表
+    function getUploadedFileUrls() {
+        return uploadedFiles
+            .filter(f => f.status === 'success' && f.url)
+            .map(f => ({
+                name: f.file.name,
+                type: f.file.type,
+                size: f.file.size,
+                url: f.url
+            }));
+    }
+
     // 处理启动按钮点击事件
     function handleStartupBtnClick(event) {
         const startupBtnContainer = event.target.parentNode;
@@ -739,7 +1253,10 @@
             message = userMessage;
         }
 
-        if (message === '') return;
+        if (message === '' && uploadedFiles.filter(f => f.status === 'success').length === 0) {
+            showPopup('请输入消息或上传附件');
+            return;
+        }
 
         // 隐藏启动按钮
         const startupBtnContainer = document.querySelector('.startup-btns');
@@ -747,25 +1264,67 @@
             startupBtnContainer.style.display = 'none';
         }
 
+        // 分离文本和图片URL
+        const pureTextMessage = message.trim();
+        const successfulFiles = uploadedFiles.filter(f => f.status === 'success');
+        
+        // 构建用于UI显示的完整消息（包含图片URL）
+        let displayMessage = pureTextMessage;
+        if (successfulFiles.length > 0) {
+            const fileList = successfulFiles.map(f => {
+                const isImage = f.file.type.startsWith('image/');
+                const isVideo = f.file.type.startsWith('video/');
+                const typeIcon = isImage ? '🖼️' : (isVideo ? '🎬' : '📄');
+                
+                if (isImage && f.url && f.url.trim().length > 0) {
+                    const cleanUrl = f.url.trim();
+                    return `${typeIcon} ${cleanUrl}`;
+                } else {
+                    return `${typeIcon} ${f.file.name}`;
+                }
+            }).join('\n');
+
+            if (pureTextMessage) {
+                displayMessage = `${pureTextMessage}\n\n---\n**附件：**\n${fileList}`;
+            } else {
+                displayMessage = `**附件：**\n${fileList}`;
+            }
+        }
+
+        // content中保存纯文本和图片附件（包含file对象用于Base64转换）
         content.push({
             role: 'user',
-            message: message,
+            message: pureTextMessage,  // 只保存纯文本给后端
+            attachments: successfulFiles.map(f => ({
+                name: f.file.name,
+                type: f.file.type,
+                size: f.file.size,
+                url: f.url,
+                file: f.file  // 保存file对象，用于Base64转换
+            }))
         });
 
         let timestamp = new Date().toLocaleString();
         conversationTranscript.push({
             sender: 'user',
             time: timestamp,
-            message: message,
+            message: displayMessage,  // 对话记录显示完整消息
+            attachments: successfulFiles.map(f => f.url)
         });
 
-        addMessage('user', message);
+        // 显示消息和附件（使用完整消息用于UI）
+        addMessage('user', displayMessage, successfulFiles);
+
+        // 清空输入框和文件列表
         messageInput.value = '';
+        uploadedFiles = [];
+        displayFilePreview();
+
         addTypingAnimation('ai');
         fetchData();
     }
 
-    function addMessage(sender, message) {
+    function addMessage(sender, message, attachments = []) {
         let chatMessagesContainer = document.querySelector('.chat__messages');
         let messageContainer = document.createElement('div');
         messageContainer.classList.add('chat__messages__' + sender);
@@ -775,6 +1334,7 @@
         let messageDiv = document.createElement('div');
         messageDiv.style.display = 'flex';
         messageDiv.style.gap = '0.5rem';
+        messageDiv.style.width = '100%';
 
         if (sender === 'ai') {
             const botAvatar = document.createElement('img');
@@ -792,8 +1352,58 @@
             messageDiv.appendChild(userAvatar);
         }
 
-        messageDiv.innerHTML += messageHTML;
+        let contentDiv = document.createElement('div');
+        contentDiv.style.flex = '1';
+        contentDiv.style.minWidth = '0';
 
+        // 添加文本消息
+        if (message) {
+            const textP = document.createElement('p');
+            textP.innerHTML = messageHTML;
+            textP.style.margin = '0 0 10px 0';
+            textP.style.lineHeight = '1.5';
+            contentDiv.appendChild(textP);
+        }
+
+        // 添加附件预览
+        if (attachments.length > 0 && sender === 'user') {
+            const attachmentsDiv = document.createElement('div');
+            attachmentsDiv.style.display = 'flex';
+            attachmentsDiv.style.flexWrap = 'wrap';
+            attachmentsDiv.style.gap = '8px';
+            attachmentsDiv.style.marginTop = '8px';
+
+            attachments.forEach(f => {
+                const isImage = f.file.type.startsWith('image/');
+                const isVideo = f.file.type.startsWith('video/');
+
+                const previewDiv = document.createElement('div');
+                previewDiv.style.cssText = 'position: relative; width: 80px; height: 80px; border-radius: 8px; overflow: hidden; cursor: pointer;';
+
+                if (isImage) {
+                    previewDiv.innerHTML = `<img src="${f.url}" style="width: 100%; height: 100%; object-fit: cover;">`;
+                } else if (isVideo) {
+                    previewDiv.innerHTML = `<video src="${f.url}" style="width: 100%; height: 100%; object-fit: cover;"></video>`;
+                } else {
+                    previewDiv.innerHTML = `<div style="width: 100%; height: 100%; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 2rem;">📄</div>`;
+                }
+
+                // 点击预览
+                previewDiv.onclick = () => previewFile(f.id);
+
+                // 添加文件类型标签
+                const typeLabel = document.createElement('div');
+                typeLabel.style.cssText = 'position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.6); color: white; font-size: 10px; text-align: center; padding: 2px;';
+                typeLabel.textContent = isVideo ? '🎬 视频' : (isImage ? '🖼️ 图片' : '📄 文件');
+                previewDiv.appendChild(typeLabel);
+
+                attachmentsDiv.appendChild(previewDiv);
+            });
+
+            contentDiv.appendChild(attachmentsDiv);
+        }
+
+        messageDiv.appendChild(contentDiv);
         messageContainer.appendChild(messageDiv);
         chatMessagesContainer.appendChild(messageContainer);
         chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
@@ -846,23 +1456,48 @@
         let isStreaming = true;
 
         try {
+            // 构建包含图片URL的请求数据
+            const lastMessage = content[content.length - 1];
+            
+            // 构建对话历史（纯文本）
+            const conversationHistory = content.slice(0, -1).map(item => ({
+                "role": item.role,
+                "content": item.message
+            }));
+            
             const requestData = {
-                "last_prompt": content[content.length - 1].message,
-                "conversation_history": content.map(item => ({
-                    "role": item.role,
-                    "content": item.message
-                }))
+                "last_prompt": lastMessage.message,
+                "conversation_history": conversationHistory
             };
 
-            const response = await fetch(apiUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(requestData)
-            });
+            // 如果有图片附件，提取Base64图片数据
+            if (lastMessage.attachments && lastMessage.attachments.length > 0) {
+                console.log('开始处理图片附件...');
+                const base64Images = getBase64Images(lastMessage.attachments);
+                
+                if (base64Images.length > 0) {
+                    requestData.image_urls = base64Images;
+                    console.log(`添加${base64Images.length}个Base64图片到请求`);
+                    console.log('图片数据长度:', base64Images.map(img => img.length));
+                } else {
+                console.warn('没有找到有效的Base64图片');
+            }
+        }
 
-            console.log('开始发送流式请求...');
+        console.log('开始发送流式请求...');
+        console.log('请求URL:', apiUrl);
+        console.log('请求数据:', JSON.stringify(requestData, null, 2));
+
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestData)
+        });
+
+        console.log('流式请求已发送，等待响应...');
+        console.log('响应状态:', response.status);
 
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -963,13 +1598,25 @@
     // 非流式响应处理函数（作为回退）
     async function fetchDataNonStream() {
         try {
+            // 构建包含图片URL的请求数据
+            const lastMessage = content[content.length - 1];
             const requestData = {
-                "last_prompt": content[content.length - 1].message,
-                "conversation_history": content.map(item => ({
+                "last_prompt": lastMessage.message,
+                "conversation_history": content.slice(0, -1).map(item => ({
                     "role": item.role,
                     "content": item.message
                 }))
             };
+
+            // 如果有图片附件，提取Base64图片数据
+            if (lastMessage.attachments && lastMessage.attachments.length > 0) {
+                const base64Images = getBase64Images(lastMessage.attachments);
+                
+                if (base64Images.length > 0) {
+                    requestData.image_urls = base64Images;
+                    console.log(`添加${base64Images.length}个Base64图片到非流式请求`);
+                }
+            }
 
             const response = await fetch(nonStreamApiUrl, {
                 method: 'POST',
@@ -1192,26 +1839,20 @@
     document.querySelectorAll('.scenario-tag').forEach(tag => {
         tag.addEventListener('click', () => {
             const scenarioText = tag.textContent.trim();
-            const message = `我想使用${scenarioText}场景的提示词优化功能`;
+            const message = `我想使用${scenarioText}功能来生成分镜提示词`;
             onFormSubmit(event, message);
         });
     });
 
-    // 功能按钮点击事件
+    // 功能按钮点击事件 - Seedance 2.0 分镜提示词场景
     document.querySelectorAll('.feature-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             const btnText = btn.textContent.trim();
             const scenarios = {
-                '视频生成': '帮我优化一个生成高质量视频的提示词',
-                '图像生成': '帮我优化 Midjourney 或 Stable Diffusion 的提示词',
-                '代码优化': '帮我优化编程相关的提示词',
-                'JSON结构': '帮我设计一个输出JSON结构化数据的提示词',
-                '数据分析': '帮我优化数据分析的提示词',
-                '去AI味': '帮我优化这段文字，让它更自然人性化',
-                '创意写作': '帮我优化创意写作的提示词',
-                '深度调研': '帮我优化深度研究的提示词',
-                '对话优化': '帮我优化实时对话的提示词',
-                '智能体': '帮我设计自主智能体的提示词'
+                '叙事故事': '我想生成分镜提示词，请帮我设计一个叙事故事类的视频分镜，包含起承转合的完整结构',
+                '产品展示': '我想生成分镜提示词，请帮我设计一个产品展示类的视频分镜，突出产品特点和商业价值',
+                '角色动作': '我想生成分镜提示词，请帮我设计一个角色动作类的视频分镜，展示舞蹈/打斗/特技等动作场景',
+                '风景旅拍': '我想生成分镜提示词，请帮我设计一个风景旅拍类的视频分镜，展现自然风光和旅行氛围'
             };
 
             for (const [key, prompt] of Object.entries(scenarios)) {
