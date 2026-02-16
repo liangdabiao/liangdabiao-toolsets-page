@@ -601,6 +601,27 @@ const products = [
         category: 'AI工具',
         difficulty: '初级',
         externalUrl: 'https://liang.348349.xyz/seedance-prompt-chat'
+    },
+    {
+        id: 'seedance2-storyboard-generator',
+        name: 'Seedance 2.0 故事转视频工作流',
+        description: '基于 Claude Code + Skill + Seedance 2.0 的完整 AI 视频制作工作流，将小说、故事一键转化为多集视频系列。从剧本创作到素材规划，再到分镜脚本生成，实现全流程自动化。',
+        icon: '🎥',
+        tags: ['AI视频制作', 'Seedance 2.0', 'Claude Code', '剧本创作', '分镜脚本', '视频工作流'],
+        githubUrl: 'https://github.com/liangdabiao/Seedance2-Storyboard-Generator',
+        features: [
+            '三件套工具：Claude Code剧本创作 + Nana Banana Pro生图 + Seedance 2.0视频生成',
+            '完整工作流：构思主题 → 写剧本 → 生成素材描述 → 生图 → 写分镜脚本 → 逐集生成视频',
+            '四幕剧本结构：起承转合的专业剧本框架，自动生成完整故事',
+            '素材编号系统：角色(C01-C99)、场景(S01-S99)、道具(P01-P99)的统一管理',
+            'Seedance格式：自动生成时间轴格式提示词，支持0-15秒分段描述',
+            '视频延长功能：使用视频延长实现各集无缝衔接，创建连续视频系列',
+            '风格一致性：统一风格前缀确保所有素材视觉一致性',
+            '示例项目：林冲水浒传、聂风风云、莫泊桑项链等实战案例'
+        ],
+        techStack: ['Claude Code', 'Agent Skills', 'Seedance 2.0', 'Nana Banana Pro', 'Markdown', 'Python'],
+        category: 'AI工具',
+        difficulty: '进阶'
     }
 ];
 
@@ -743,7 +764,8 @@ function getProductPageUrl(productId) {
         'bright-data-mcp-research': './bright-data-mcp-research.html',
         'market-insight-claude-skill': './market-insight-claude-skill.html',
         'exa-research-mcp-skill': './exa-research-mcp-skill.html',
-        'seedance-prompt-chat': 'https://liang.348349.xyz/seedance-prompt-chat'
+        'seedance-prompt-chat': 'https://liang.348349.xyz/seedance-prompt-chat',
+        'seedance2-storyboard-generator': './seedance2-storyboard-generator.html'
     };
     return productPages[productId] || `./${productId}.html`;
 }
@@ -1108,6 +1130,12 @@ function useProduct(productId) {
     // 如果是Seedance 2.0 分镜提示词助手，跳转到外部网站
     if (productId === 'seedance-prompt-chat') {
         window.open(product.externalUrl || 'https://liang.348349.xyz/seedance-prompt-chat', '_blank');
+        return;
+    }
+
+    // 如果是Seedance2 Storyboard Generator，跳转到专门的页面
+    if (productId === 'seedance2-storyboard-generator') {
+        window.location.href = '/seedance2-storyboard-generator.html';
         return;
     }
 

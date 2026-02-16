@@ -279,6 +279,16 @@ const products = [
         githubUrl: 'https://github.com/liangdabiao/SeekMoney-ai',
         category: '商业工具',
         difficulty: '进阶'
+    },
+    {
+        id: 'seedance2-storyboard-generator',
+        name: 'Seedance 2.0 故事转视频工作流',
+        description: '基于 Claude Code + Skill + Seedance 2.0 的完整 AI 视频制作工作流，将小说、故事一键转化为多集视频系列。从剧本创作到素材规划，再到分镜脚本生成，实现全流程自动化。',
+        icon: '🎥',
+        tags: ['AI视频制作', 'Seedance 2.0', 'Claude Code', '剧本创作', '分镜脚本', '视频工作流'],
+        githubUrl: 'https://github.com/liangdabiao/Seedance2-Storyboard-Generator',
+        category: 'AI工具',
+        difficulty: '进阶'
     }
 ];
 

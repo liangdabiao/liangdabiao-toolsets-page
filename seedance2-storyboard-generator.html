@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seedance 2.0 故事转视频工作流 | AI视频制作全流程自动化</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #8b5cf6;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .skill-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .skill-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .skill-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: #8b5cf6;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: #7c3aed;
+        }
+        .workflow-diagram {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .workflow-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .flow-step {
+            background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .flow-arrow {
+            font-size: 2em;
+            color: #8b5cf6;
+        }
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid #8b5cf6;
+        }
+        .category-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #8b5cf6;
+        }
+        .category-content {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .category-content ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .category-content li {
+            margin-bottom: 8px;
+        }
+        .example-list {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        .example-item {
+            padding: 15px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 3px solid #8b5cf6;
+        }
+        .example-text {
+            color: var(--text-color);
+            font-size: 1.05em;
+        }
+        .example-response {
+            margin-top: 10px;
+            padding: 12px;
+            background: #f5f3ff;
+            border-radius: 6px;
+            color: #5b21b6;
+            font-size: 0.95em;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        .install-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 4px solid #8b5cf6;
+        }
+        .install-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #8b5cf6;
+        }
+        .feature-highlight {
+            background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #8b5cf6;
+        }
+        .feature-highlight h3 {
+            color: #5b21b6;
+            margin-bottom: 15px;
+        }
+        .feature-highlight p {
+            color: #6d28d9;
+            line-height: 1.8;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero-stats {
+                gap: 30px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🌐 AI工具集合</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#examples">使用示例</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主视觉区 -->
+    <section class="hero">
+        <div class="hero-badge">Claude Code + Skill + Seedance 2.0</div>
+        <h1>Seedance 2.0 故事转视频工作流</h1>
+        <p>完整AI视频制作流程，将小说、故事一键转化为多集视频系列。从剧本创作到素材规划，再到分镜脚本生成，实现全流程自动化。</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">一键</span>
+                <span class="stat-label">故事转视频</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">全流程</span>
+                <span class="stat-label">自动化</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">多集</span>
+                <span class="stat-label">连续生成</span>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/Seedance2-Storyboard-Generator" class="btn btn-primary" style="background: white; color: #8b5cf6;">查看 GitHub</a>
+            <a href="#examples" class="btn btn-secondary" style="border: 2px solid white; color: white;">查看示例</a>
+        </div>
+    </section>
+
+    <!-- 项目背景 -->
+    <section class="section">
+        <h2 class="section-title">为什么做这个？</h2>
+        <p class="section-subtitle">Seedance 2.0 已经改变了一切，需要新的剧本剧情制作工具</p>
+        <div class="feature-highlight">
+            <h3>🎬 AI视频制作的新时代</h3>
+            <p>
+                Seedance 2.0 的发布彻底改变了AI视频制作的方式。为了更好地利用新AI的能力，
+                我们开发了这套完整的工作流工具，帮助创作者从故事到成片的自动化生产。
+            </p>
+        </div>
+    </section>
+
+    <!-- 核心特性 -->
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心特性</h2>
+        <p class="section-subtitle">三件套工具实现从故事到成片的自动化生产</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">🎯</div>
+                <h3 class="skill-title">三件套工具</h3>
+                <p class="skill-description">Claude Code剧本创作 + Nana Banana Pro生图 + Seedance 2.0视频生成，完整的AI视频制作工具链</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📝</div>
+                <h3 class="skill-title">四幕剧本结构</h3>
+                <p class="skill-description">起承转合的专业剧本框架，AI自动生成完整故事，确保情节紧凑、节奏合理</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎨</div>
+                <h3 class="skill-title">素材编号系统</h3>
+                <p class="skill-description">角色(C01-C99)、场景(S01-S99)、道具(P01-P99)的统一管理，确保视觉一致性</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">⏱️</div>
+                <h3 class="skill-title">Seedance格式</h3>
+                <p class="skill-description">自动生成时间轴格式提示词，支持0-15秒分段描述，精确控制每一帧画面</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔗</div>
+                <h3 class="skill-title">视频延长功能</h3>
+                <p class="skill-description">使用视频延长实现各集无缝衔接，创建连续的多集视频系列</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎭</div>
+                <h3 class="skill-title">风格一致性</h3>
+                <p class="skill-description">统一风格前缀确保所有素材视觉一致性，角色辨识度通过颜色和视觉标记区分</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作流程 -->
+    <section id="workflow" class="section">
+        <h2 class="section-title">工作流程</h2>
+        <p class="section-subtitle">从故事到成片的完整自动化流程</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">构思主题</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">写剧本</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">生成素材描述</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">生图</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">写分镜脚本</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">生成视频</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #8b5cf6;">详细步骤</h3>
+            <div class="skills-grid">
+                <div class="category-card">
+                    <div class="category-title">1. 剧本创作</div>
+                    <div class="category-content">
+                        将源材料改编为四幕结构剧本（起承转合），确立故事框架和情感弧线
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">2. 素材规划</div>
+                    <div class="category-content">
+                        创建编号的角色(C)、场景(S)、道具(P)生成提示词，统一风格前缀
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">3. 图像生成</div>
+                    <div class="category-content">
+                        使用 Nana Banana Pro 生成统一风格的视觉素材，多角度多状态
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">4. 分镜脚本</div>
+                    <div class="category-content">
+                        生成 Seedance 2.0 时间轴格式提示词，包含素材清单和时间轴描述
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">5. 视频生成</div>
+                    <div class="category-content">
+                        使用视频延长功能实现各集无缝衔接，创建连续的多集视频系列
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 使用示例 -->
+    <section id="examples" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">使用示例</h2>
+        <p class="section-subtitle">真实项目案例展示</p>
+
+        <div class="example-list">
+            <h3 style="margin-bottom: 20px; color: #8b5cf6;">示例项目：林冲水浒传</h3>
+            <div class="example-item">
+                <div class="example-text">
+                    基于《水浒传》林冲风雪山神庙章节改编的5集水墨武侠风格视频
+                </div>
+                <div class="example-response">
+                    <strong>风格：</strong>中国水墨武侠风格<br>
+                    <strong>集数：</strong>5集，每集15秒<br>
+                    <strong>情感弧线：</strong>孤寂压抑 → 惊疑不定 → 暴风雨前宁静 → 震惊愤怒 → 爆发壮烈
+                </div>
+            </div>
+        </div>
+
+        <div class="example-list">
+            <h3 style="margin-bottom: 20px; color: #8b5cf6;">示例项目：聂风风云</h3>
+            <div class="example-item">
+                <div class="example-text">
+                    基于《风云》聂风篇改编的视频系列
+                </div>
+                <div class="example-response">
+                    <strong>风格：</strong>港漫风格武侠<br>
+                    <strong>特色：</strong>复杂武打场面，人物造型精细
+                </div>
+            </div>
+        </div>
+
+        <div class="example-list">
+            <h3 style="margin-bottom: 20px; color: #8b5cf6;">示例项目：莫泊桑项链</h3>
+            <div class="example-item">
+                <div class="example-text">
+                    基于莫泊桑《项链》改编的短片
+                </div>
+                <div class="example-response">
+                    <strong>风格：</strong>欧洲古典写实<br>
+                    <strong>特色：</strong>细腻情感表达，时代氛围还原
+                </div>
+            </div>
+        </div>
+
+        <div class="feature-highlight" style="margin-top: 40px;">
+            <h3>🎨 运镜关键词</h3>
+            <p style="margin-top: 15px;">
+                <strong>推近：</strong>推镜头/缓慢推近/急速推进<br>
+                <strong>拉远：</strong>拉镜头/逐渐拉远<br>
+                <strong>左右：</strong>左摇/右摇/横移<br>
+                <strong>跟随：</strong>跟随镜头/跟拍<br>
+                <strong>环绕：</strong>环绕镜头/360度旋转<br>
+                <strong>升降：</strong>升镜头/降镜头/俯冲<br>
+                <strong>特效：</strong>希区柯克变焦/一镜到底<br>
+                <strong>手持：</strong>手持晃动
+            </p>
+        </div>
+    </section>
+
+    <!-- 安装配置 -->
+    <section id="install" class="section">
+        <h2 class="section-title">安装与配置</h2>
+        <p class="section-subtitle">简单几步，开始AI视频创作之旅</p>
+
+        <div class="install-card">
+            <div class="install-title">1. 克隆项目</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">获取项目代码：</p>
+            <div class="code-block">git clone https://github.com/liangdabiao/Seedance2-Storyboard-Generator.git
+cd Seedance2-Storyboard-Generator</div>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">2. 配置 Claude Code Skill</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">将技能文件导入到 Claude Code 环境：</p>
+            <div class="code-block">cp -r .claude/skills/seedance-storyboard-generator ~/.claude/skills/</div>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">3. 准备AI工具</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">
+                <strong>Claude Code：</strong>安装并配置 Claude Code<br>
+                <strong>Nana Banana Pro：</strong>注册账号获取API密钥<br>
+                <strong>Seedance 2.0：</strong>访问即梦平台使用Seedance 2.0
+            </p>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">4. 开始创作</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">在 Claude Code 中调用技能：</p>
+            <div class="code-block">请帮我为"林冲风雪山神庙"创作视频剧本</div>
+        </div>
+    </section>
+
+    <!-- 重要限制 -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">重要限制</h2>
+        <p class="section-subtitle">使用前请了解这些限制条件</p>
+
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">🖼️</div>
+                <h3 class="skill-title">最多9张图片</h3>
+                <p class="skill-description">每次Seedance 2.0生成最多支持9张参考图片</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎬</div>
+                <h3 class="skill-title">最多3个视频</h3>
+                <p class="skill-description">每次最多3个视频作为参考，总时长15秒</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">⚠️</div>
+                <h3 class="skill-title">敏感词限制</h3>
+                <p class="skill-description">某些词汇可能导致生成失败，如"江湖人士"等</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎞️</div>
+                <h3 class="skill-title">视频编辑能力有限</h3>
+                <p class="skill-description">大多数修改需要重新生成，不能直接编辑</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📝</div>
+                <h3 class="skill-title">指令遵循</h3>
+                <p class="skill-description">复杂提示词（300+字）可能不一致</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 技术栈 -->
+    <section class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">基于先进的AI技术构建</p>
+        <div class="tech-stack">
+            <div class="tech-item">Claude Code</div>
+            <div class="tech-item">Agent Skills</div>
+            <div class="tech-item">Seedance 2.0</div>
+            <div class="tech-item">Nana Banana Pro</div>
+            <div class="tech-item">Markdown</div>
+            <div class="tech-item">Python</div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于 Seedance 2.0 故事转视频工作流的常见疑问</p>
+
+        <div class="category-card">
+            <div class="category-title">Q: 如何处理敏感词问题？</div>
+            <div class="category-content">
+                A: Seedance平台不会明确告知哪个词触发屏蔽。建议使用二分法排查：将提示词分段测试，逐步缩小范围。积累常见敏感词库，在生成时直接规避。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 如何保证角色一致性？</div>
+            <div class="category-content">
+                A: 为每个角色生成多张不同角度和状态的参考图，在分镜脚本中明确指定使用哪张图片作为参考。使用统一的风格前缀。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 视频延长后过渡不自然怎么办？</div>
+            <div class="category-content">
+                A: 在提示词中显式添加转场指令，如"画面渐暗过渡，天色从夜晚转为清晨"。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 支持哪些风格？</div>
+            <div class="category-content">
+                A: 支持任何可以文字描述的风格，如水墨武侠、港漫风格、欧洲古典写实等。关键是使用统一的风格前缀。
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>基于 Claude Code + Skill + Seedance 2.0 的完整 AI 视频制作工作流，专注于将小说、故事转化为多集视频系列。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/Seedance2-Storyboard-Generator">GitHub 仓库</a></li>
+                    <li><a href="https://linux.do/t/topic/1614570">项目介绍帖</a></li>
+                    <li><a href="https://www.jimeng.jianying.com/tech-tool/seedance">Seedance 2.0 官网</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Seedance 2.0 故事转视频工作流. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 移动端菜单
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

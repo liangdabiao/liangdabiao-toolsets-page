@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seedance 2.0 故事转视频工作流 - 使用指南</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>📚 AI工具文档中心</h2>
+            </div>
+            <nav class="main-nav">
+                <h3>全部AI工具</h3>
+                <ul id="project-list">
+                    <!-- 项目列表将通过JavaScript动态生成 -->
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 主内容区域 -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="nav-buttons">
+                    <a href="../index.html" class="back-button">← 文档首页</a>
+                    <a href="../../" class="back-button" style="margin-left: 10px;">🏠 主站</a>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="搜索文档...">
+                    <button id="search-button">🔍</button>
+                </div>
+            </header>
+
+            <article class="doc-content">
+                <h1>Seedance 2.0 故事转视频工作流</h1>
+
+                <div class="product-info">
+                    <p>基于 Claude Code + Skill + Seedance 2.0 的完整 AI 视频制作工作流，专注于将小说、故事转化为多集视频系列。通过三件套工具实现从故事到成片的自动化生产。</p>
+
+                    <div class="product-tags">
+                        <span class="product-tag">AI视频制作</span>
+                        <span class="product-tag">Seedance 2.0</span>
+                        <span class="product-tag">Claude Code</span>
+                        <span class="product-tag">剧本创作</span>
+                        <span class="product-tag">分镜脚本</span>
+                        <span class="product-tag">视频工作流</span>
+                    </div>
+
+                    <div class="difficulty-level">
+                        <strong>难度等级：</strong>进阶
+                    </div>
+
+                    <div class="github-link">
+                        <a href="https://github.com/liangdabiao/Seedance2-Storyboard-Generator" target="_blank">📁 访问GitHub项目页面</a>
+                    </div>
+                </div>
+
+                <h2>目录</h2>
+                <ul>
+                    <li><a href="#introduction">1. 项目介绍</a></li>
+                    <li><a href="#installation">2. 安装配置</a></li>
+                    <li><a href="#usage">3. 使用方法</a></li>
+                    <li><a href="#workflow">4. 工作流程详解</a></li>
+                    <li><a href="#examples">5. 使用示例</a></li>
+                    <li><a href="#tips">6. 使用技巧</a></li>
+                    <li><a href="#troubleshooting">7. 常见问题</a></li>
+                    <li><a href="#resources">8. 相关资源</a></li>
+                </ul>
+
+                <h2 id="introduction">1. 项目介绍</h2>
+                <p>Seedance 2.0 故事转视频工作流是一款专业的AI视频制作工具，旨在实现从小说/故事到多集视频的全流程自动化。该项目利用 Claude Code、Agent Skills、Seedance 2.0、Nana Banana Pro、Markdown、Python 等技术，为用户提供完整的AI视频制作解决方案。</p>
+
+                <h3>为什么做这个？</h3>
+                <p>因为 Seedance 2.0 已经改变了一切，需要新的剧本剧情制作工具，更好的利用新AI的能力和更方便的制作短剧。</p>
+
+                <h3>核心特性</h3>
+                <ul>
+                    <li>🎯 三件套工具：Claude Code剧本创作 + Nana Banana Pro生图 + Seedance 2.0视频生成</li>
+                    <li>📝 四幕剧本结构：起承转合的专业剧本框架，AI自动生成完整故事</li>
+                    <li>🎨 素材编号系统：角色(C01-C99)、场景(S01-S99)、道具(P01-P99)的统一管理</li>
+                    <li>⏱️ Seedance格式：自动生成时间轴格式提示词，支持0-15秒分段描述</li>
+                    <li>🔗 视频延长功能：使用视频延长实现各集无缝衔接，创建连续视频系列</li>
+                    <li>🎭 风格一致性：统一风格前缀确保所有素材视觉一致性</li>
+                    <li>📚 示例项目：林冲水浒传、聂风风云、莫泊桑项链等实战案例</li>
+                    <li>🎬 完整工作流：构思主题 → 写剧本 → 生成素材描述 → 生图 → 写分镜脚本 → 逐集生成视频</li>
+                </ul>
+
+                <h3>技术栈</h3>
+                <ul>
+                    <li><strong>Claude Code：</strong>剧本创作与分镜脚本生成</li>
+                    <li><strong>Agent Skills：</strong>Claude Code技能系统，自动化工作流</li>
+                    <li><strong>Seedance 2.0：</strong>即梦AI视频生成平台</li>
+                    <li><strong>Nana Banana Pro：</strong>AI图像生成工具（可选其他生图AI）</li>
+                    <li><strong>Markdown：</strong>剧本和分镜脚本格式</li>
+                    <li><strong>Python：</strong>数据处理和自动化脚本</li>
+                </ul>
+
+                <h2 id="installation">2. 安装配置</h2>
+                <p>在开始使用 Seedance 2.0 故事转视频工作流 之前，您需要完成以下准备工作：</p>
+
+                <h3>系统要求</h3>
+                <ul>
+                    <li>操作系统：Windows、macOS 或 Linux</li>
+                    <li>网络连接：稳定的互联网连接</li>
+                    <li>Claude Code：已安装并配置 Claude Code</li>
+                    <li>AI工具账户：Seedance 2.0、Nana Banana Pro（或类似生图工具）</li>
+                </ul>
+
+                <h3>安装步骤</h3>
+                <ol>
+                    <li>克隆项目仓库：
+                        <pre><code>git clone https://github.com/liangdabiao/Seedance2-Storyboard-Generator.git
+cd Seedance2-Storyboard-Generator</code></pre>
+                    </li>
+                    <li>配置 Claude Code Skill：
+                        <pre><code>cp -r .claude/skills/seedance-storyboard-generator ~/.claude/skills/</code></pre>
+                    </li>
+                    <li>准备AI工具账户：
+                        <ul>
+                            <li><strong>Seedance 2.0：</strong>访问 <a href="https://www.jimeng.jianying.com/tech-tool/seedance" target="_blank">即梦官网</a> 注册账户</li>
+                            <li><strong>Nana Banana Pro：</strong>或选择其他AI生图工具（如Midjourney、Stable Diffusion等）</li>
+                        </ul>
+                    </li>
+                    <li>验证安装：在 Claude Code 中测试技能是否正常工作</li>
+                </ol>
+
+                <h2 id="usage">3. 使用方法</h2>
+
+                <h3>基本使用流程</h3>
+                <ol>
+                    <li><strong>准备故事素材：</strong>选择要改编的小说、故事或创作原创内容</li>
+                    <li><strong>启动Claude Code：</strong>打开终端或编辑器，启动 Claude Code</li>
+                    <li><strong>调用技能：</strong>使用自然语言描述你的需求，例如：
+                        <pre><code>请帮我为"林冲风雪山神庙"创作视频剧本</code></pre>
+                    </li>
+                    <li><strong>生成剧本：</strong>AI会自动生成四幕结构的剧本</li>
+                    <li><strong>生成素材清单：</strong>AI会创建编号的角色、场景、道具清单</li>
+                    <li><strong>生图：</strong>使用AI生图工具生成素材图片</li>
+                    <li><strong>生成分镜脚本：</strong>AI会生成Seedance 2.0格式的时间轴提示词</li>
+                    <li><strong>生成视频：</strong>在Seedance 2.0平台使用提示词生成视频</li>
+                </ol>
+
+                <h3>技能调用示例</h3>
+                <pre><code># 基本剧本创作
+请为"小红帽"创作5集视频剧本
+
+# 指定风格
+请为"三国演义赤壁之战"创作视频剧本，风格要求：中国古典水墨风格
+
+# 指定集数和时长
+请为"灰姑娘"创作10集视频，每集30秒
+
+# 续写剧本
+请为第5集生成分镜脚本，需要与第4集无缝衔接</code></pre>
+
+                <h2 id="workflow">4. 工作流程详解</h2>
+
+                <h3>4.1 剧本创作</h3>
+                <p>将源材料改编为四幕结构剧本（起承转合）：</p>
+                <ul>
+                    <li><strong>第一幕（起）：</strong>介绍背景和人物，建立故事世界</li>
+                    <li><strong>第二幕（承）：</strong>发展冲突，人物面临挑战</li>
+                    <li><strong>第三幕（转）：</strong>情节转折，高潮冲突</li>
+                    <li><strong>第四幕（合）：</strong>解决冲突，故事收尾</li>
+                </ul>
+
+                <h3>4.2 素材规划</h3>
+                <p>创建编号的角色(C)、场景(S)、道具(P)生成提示词：</p>
+                <ul>
+                    <li><strong>C01-C99：</strong>角色（多角度、多状态）</li>
+                    <li><strong>S01-S99：</strong>场景/地点</li>
+                    <li><strong>P01-P99：</strong>道具/物品</li>
+                </ul>
+
+                <h4>素材编号示例</h4>
+                <pre><code>C01 林冲·正面全身
+C02 林冲·侧面部特写
+C03 林冲·持枪姿势
+S01 沧州草料场·雪景·全景
+S02 山神庙·内景
+P01 花枪·长枪
+P02 酒葫芦</code></pre>
+
+                <h3>4.3 图像生成</h3>
+                <p>使用 Nana Banana Pro 或其他AI生图工具生成统一风格的视觉素材：</p>
+                <ul>
+                    <li>所有素材生成提示词必须以统一的风格前缀开头</li>
+                    <li>为每个角色生成多张不同角度和状态的参考图</li>
+                    <li>角色辨识度通过不同的颜色方案和视觉标记来区分</li>
+                </ul>
+
+                <h4>风格前缀示例</h4>
+                <pre><code>Chinese ink wash painting style mixed with anime cel-shading</code></pre>
+
+                <h3>4.4 分镜脚本</h3>
+                <p>生成 Seedance 2.0 时间轴格式提示词，每个分镜脚本包含三部分：</p>
+
+                <h4>(1) 素材清单</h4>
+                <pre><code>| 素材槽 | 文件 | 说明 |
+|--------|------|------|
+| 图片1 | C01 | 角色参考 |
+| 图片2 | S01 | 场景参考 |</code></pre>
+
+                <h4>(2) Seedance Prompt（时间轴格式）</h4>
+                <pre><code>水墨武侠风格，9:16竖屏，灰白墨黑色调
+
+0-3秒画面：高空俯拍，场景建立
+3-6秒画面：镜头推进，主体引入
+6-9秒画面：情节发展，冲突展现
+9-12秒画面：高潮时刻，情感爆发
+12-15秒画面：结尾落版，氛围延续
+
+【声音】配乐风格 + 音效 + 对白
+【参考】@图片1 角色，@图片2 场景...</code></pre>
+
+                <h4>(3) 尾帧描述</h4>
+                <p>记录本集最后一帧画面，用于下一集衔接。</p>
+
+                <h3>4.5 视频生成</h3>
+                <p>从第2集开始，使用视频延长功能保持连续性：</p>
+                <ol>
+                    <li>上传上一集视频作为 @视频1</li>
+                    <li>在提示词开头添加：`将@视频1延长15s`</li>
+                    <li>这样可以创建各集间的无缝过渡</li>
+                </ol>
+
+                <h4>视频延长流程</h4>
+                <pre><code>片头(新生成) → E1(新生成) → E2(延长E1) → E3(延长E2) → ...</code></pre>
+
+                <h2 id="examples">5. 使用示例</h2>
+
+                <h3>示例项目：林冲水浒传</h3>
+                <p>基于《水浒传》林冲风雪山神庙章节改编的5集水墨武侠风格视频：</p>
+                <ul>
+                    <li><strong>风格：</strong>中国水墨武侠风格</li>
+                    <li><strong>集数：</strong>5集，每集15秒</li>
+                    <li><strong>情感弧线：</strong>孤寂压抑 → 惊疑不定 → 暴风雨前宁静 → 震惊愤怒 → 爆发壮烈</li>
+                </ul>
+
+                <h3>示例项目：聂风风云</h3>
+                <p>基于《风云》聂风篇改编的视频系列：</p>
+                <ul>
+                    <li><strong>风格：</strong>港漫风格武侠</li>
+                    <li><strong>特色：</strong>复杂武打场面，人物造型精细</li>
+                </ul>
+
+                <h3>示例项目：莫泊桑项链</h3>
+                <p>基于莫泊桑《项链》改编的短片：</p>
+                <ul>
+                    <li><strong>风格：</strong>欧洲古典写实</li>
+                    <li><strong>特色：</strong>细腻情感表达，时代氛围还原</li>
+                </ul>
+
+                <h2 id="tips">6. 使用技巧</h2>
+
+                <h3>运镜关键词</h3>
+                <table>
+                    <tr>
+                        <th>效果</th>
+                        <th>关键词</th>
+                    </tr>
+                    <tr>
+                        <td>推近</td>
+                        <td>推镜头/缓慢推近/急速推进</td>
+                    </tr>
+                    <tr>
+                        <td>拉远</td>
+                        <td>拉镜头/逐渐拉远</td>
+                    </tr>
+                    <tr>
+                        <td>左右</td>
+                        <td>左摇/右摇/横移</td>
+                    </tr>
+                    <tr>
+                        <td>跟随</td>
+                        <td>跟随镜头/跟拍</td>
+                    </tr>
+                    <tr>
+                        <td>环绕</td>
+                        <td>环绕镜头/360度旋转</td>
+                    </tr>
+                    <tr>
+                        <td>升降</td>
+                        <td>升镜头/降镜头/俯冲</td>
+                    </tr>
+                    <tr>
+                        <td>特效</td>
+                        <td>希区柯克变焦/一镜到底</td>
+                    </tr>
+                    <tr>
+                        <td>手持</td>
+                        <td>手持晃动</td>
+                    </tr>
+                </table>
+
+                <h3>重要限制</h3>
+                <ul>
+                    <li><strong>最多9张图片：</strong>每次Seedance 2.0生成最多支持9张参考图片</li>
+                    <li><strong>最多3个视频：</strong>每次最多3个视频作为参考，总时长15秒</li>
+                    <li><strong>敏感词限制：</strong>某些词汇可能导致生成失败，如"江湖人士"等</li>
+                    <li><strong>视频编辑能力有限：</strong>大多数修改需要重新生成，不能直接编辑</li>
+                    <li><strong>指令遵循：</strong>复杂提示词（300+字）可能不一致</li>
+                </ul>
+
+                <h3>文件命名规范</h3>
+                <table>
+                    <tr>
+                        <th>文件类型</th>
+                        <th>命名格式</th>
+                        <th>说明</th>
+                    </tr>
+                    <tr>
+                        <td>剧本</td>
+                        <td>[标题]_剧本.md</td>
+                        <td>完整四幕结构剧本</td>
+                    </tr>
+                    <tr>
+                        <td>素材清单</td>
+                        <td>[标题]_素材清单.md</td>
+                        <td>编号的素材生成提示词</td>
+                    </tr>
+                    <tr>
+                        <td>分镜脚本</td>
+                        <td>[标题]_E[集数]_分镜.md</td>
+                        <td>单集分镜脚本</td>
+                    </tr>
+                </table>
+
+                <h2 id="troubleshooting">7. 常见问题</h2>
+
+                <h3>Q: 如何处理敏感词问题？</h3>
+                <p>A: Seedance平台不会明确告知哪个词触发屏蔽。建议使用二分法排查：将提示词分段测试，逐步缩小范围。积累常见敏感词库，在生成时直接规避。</p>
+
+                <h3>Q: 如何保证角色一致性？</h3>
+                <p>A: 为每个角色生成多张不同角度和状态的参考图，在分镜脚本中明确指定使用哪张图片作为参考。使用统一的风格前缀。</p>
+
+                <h3>Q: 视频延长后过渡不自然怎么办？</h3>
+                <p>A: 在提示词中显式添加转场指令，如"画面渐暗过渡，天色从夜晚转为清晨"。</p>
+
+                <h3>Q: 支持哪些风格？</h3>
+                <p>A: 支持任何可以文字描述的风格，如水墨武侠、港漫风格、欧洲古典写实等。关键是使用统一的风格前缀。</p>
+
+                <h3>Q: 可以生成多长的视频？</h3>
+                <p>A: Seedance 2.0 单次生成最长15秒。多集视频可以通过延长功能串联，理论上可以无限延长。</p>
+
+                <h2 id="resources">8. 相关资源</h2>
+
+                <h3>项目结构</h3>
+                <pre><code>写剧本和分镜/
+├── .claude/skills/seedance-storyboard-generator/  # 视频脚本生成技能
+├── docs/                           # 文档和参考资料
+│   ├── 剧本和分镜.md                 # 主要工作流文档
+│   ├── 流程.md                      # 流程概述
+│   ├── structured-prompt.md        # Seedance 2.0 提示词手册
+│   └── 即梦 Seedance 2.0 使用手册.docx  # 官方平台手册
+├── 林冲项目/                        # 示例项目：林冲
+│   ├── 林教头风雪山神庙_剧本.md     # 完整剧本
+│   ├── 林教头风雪山神庙_素材清单.md # 素材生成提示词
+│   ├── 林教头风雪山神庙_E0X_分镜.md # 各集分镜脚本
+│   └── 使用指南.md                  # 项目使用指南
+├── 聂风项目/                        # 示例项目：聂风
+├── 项链项目/                        # 示例项目：项链
+└── 素材/                            # 生成的图片素材</code></pre>
+
+                <h3>参考文档</h3>
+                <ul>
+                    <li><a href="https://www.jimeng.jianying.com/tech-tool/seedance" target="_blank">Seedance 2.0 官方文档</a></li>
+                    <li><code>.claude/skills/seedance-storyboard-generator/SKILL.md</code> - 技能定义和工作流</li>
+                    <li><code>.claude/skills/seedance-storyboard-generator/references/seedance-manual.md</code> - 完整的 Seedance 2.0 手册</li>
+                    <li><code>.claude/skills/seedance-storyboard-generator/references/故事转视频脚本-转换工具.md</code> - 故事改编模板</li>
+                </ul>
+
+                <h3>社区和支持</h3>
+                <ul>
+                    <li><strong>GitHub：</strong><a href="https://github.com/liangdabiao/Seedance2-Storyboard-Generator" target="_blank">项目仓库</a></li>
+                    <li><strong>讨论帖：</strong><a href="https://linux.do/t/topic/1614570" target="_blank">linux.do 项目介绍</a></li>
+                    <li><strong>邮箱：</strong>497070928@qq.com</li>
+                </ul>
+
+                <div class="help-notice">
+                    <p>💡 <strong>提示：</strong>如有任何问题或建议，欢迎通过以上方式联系我们。欢迎提交问题反馈和改进建议！</p>
+                </div>
+            </article>
+        </main>
+    </div>
+
+    <script src="../script.js"></script>
+    <script>
+        // 搜索功能
+        const searchInput = document.getElementById('search-input');
+        const searchButton = document.getElementById('search-button');
+
+        searchButton.addEventListener('click', performSearch);
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        function performSearch() {
+            const query = searchInput.value.toLowerCase();
+            if (query.length < 2) return;
+
+            const content = document.querySelector('.doc-content');
+            const highlightedContent = content.innerHTML;
+
+            // 简单的高亮显示
+            const regex = new RegExp(`(${query})`, 'gi');
+            content.innerHTML = content.innerHTML.replace(regex, '<mark>$1</mark>');
+        }
+    </script>
+</body>
+</html>
