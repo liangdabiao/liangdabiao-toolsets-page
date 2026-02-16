@@ -1,1 +1,32 @@
+# 环境变量
 /backend/.env
+.env
+*.env.local
+
+# Cloudflare Workers 配置（已改用 Pages）
+worker.js
+worker.js.backup
+wrangler.toml
+
+# 依赖和构建文件
+node_modules/
+.npm/
+dist/
+.cache/
+
+# IDE 和编辑器
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 操作系统
+.DS_Store
+Thumbs.db
+
+# 日志和临时文件
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
