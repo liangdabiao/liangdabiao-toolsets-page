@@ -133,11 +133,10 @@ def chat_bot_stream():
         session_id = data.get('session_id', None)
         image_urls = data.get('image_urls', [])
 
-        # 修改验证逻辑：允许纯图片输入（当有图片时last_prompt可以为空）
-        if not last_prompt and not image_urls:
+        if not last_prompt:
             return jsonify({
                 'success': False,
-                'message': 'last_prompt or image_urls is required'
+                'message': 'last_prompt is required'
             }), 400
 
         logger.info(f"收到流式聊天请求: {last_prompt[:50]}...")
@@ -172,25 +171,31 @@ def chat_bot_stream():
 
         # 构建API调用参数
         if image_urls:
-            # 使用 Application.call 的多模态参数格式
-            # 当只有图片没有文字时，使用默认提示词
-            prompt_text = last_prompt if last_prompt else "请根据上传的图片内容进行分析或描述"
+            # 使用input参数方式（支持图片）
             api_params = {
+                'api_key': Config.API_KEY,
                 'app_id': Config.APP_ID,
-                'prompt': prompt_text,
-                'image_list': image_urls,
+                'model': Config.MODEL,
+                'input': {
+                    'prompt': last_prompt,
+                    'image_list': image_urls
+                },
                 'session_id': session_id,
                 'stream': True,
-                'incremental_output': True
+                'incremental_output': True,
+                'temperature': Config.TEMPERATURE
             }
         else:
             # 使用messages参数方式（传统方式）
             api_params = {
+                'api_key': Config.API_KEY,
                 'app_id': Config.APP_ID,
+                'model': Config.MODEL,
                 'messages': messages,
                 'session_id': session_id,
                 'stream': True,
-                'incremental_output': True
+                'incremental_output': True,
+                'temperature': Config.TEMPERATURE
             }
 
         # 返回流式响应
@@ -283,11 +288,10 @@ def chat_bot_non_stream():
         session_id = data.get('session_id', None)
         image_urls = data.get('image_urls', [])
         
-        # 修改验证逻辑：允许纯图片输入（当有图片时last_prompt可以为空）
-        if not last_prompt and not image_urls:
+        if not last_prompt:
             return jsonify({
                 'success': False,
-                'message': 'last_prompt or image_urls is required'
+                'message': 'last_prompt is required'
             }), 400
 
         logger.info(f"收到非流式聊天请求: {last_prompt[:50]}...")
@@ -320,21 +324,27 @@ def chat_bot_non_stream():
 
         # 构建API调用参数
         if image_urls:
-            # 使用 Application.call 的多模态参数格式
-            # 当只有图片没有文字时，使用默认提示词
-            prompt_text = last_prompt if last_prompt else "请根据上传的图片内容进行分析或描述"
+            # 使用input参数方式（支持图片）
             api_params = {
+                'api_key': Config.API_KEY,
                 'app_id': Config.APP_ID,
-                'prompt': prompt_text,
-                'image_list': image_urls,
-                'session_id': session_id
+                'model': Config.MODEL,
+                'input': {
+                    'prompt': last_prompt,
+                    'image_list': image_urls
+                },
+                'session_id': session_id,
+                'temperature': Config.TEMPERATURE
             }
         else:
             # 使用messages参数方式（传统方式）
             api_params = {
+                'api_key': Config.API_KEY,
                 'app_id': Config.APP_ID,
+                'model': Config.MODEL,
                 'messages': messages,
-                'session_id': session_id
+                'session_id': session_id,
+                'temperature': Config.TEMPERATURE
             }
 
         # 调用阿里云百炼API（非流式）
