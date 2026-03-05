@@ -807,7 +807,9 @@ function getProductPageUrl(productId) {
         'market-insight-claude-skill': './market-insight-claude-skill.html',
         'exa-research-mcp-skill': './exa-research-mcp-skill.html',
         'seedance-prompt-chat': 'https://liang.348349.xyz/seedance-prompt-chat',
-        'seedance2-storyboard-generator': './seedance2-storyboard-generator.html'
+        'seedance2-storyboard-generator': './seedance2-storyboard-generator.html',
+        'perler-beads-ai': './perler-beads-ai.html',
+        'amazon-sorftime-research': './amazon-sorftime-research.html'
     };
     return productPages[productId] || `./${productId}.html`;
 }
