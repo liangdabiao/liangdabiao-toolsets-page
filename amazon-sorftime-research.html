@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>亚马逊选品全维度分析工具 | 基于Claude Skills和Sorftime MCP</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #2563eb;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .skill-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .skill-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .skill-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: #2563eb;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: #1d4ed8;
+        }
+        .workflow-diagram {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .workflow-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .flow-step {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .flow-arrow {
+            font-size: 2em;
+            color: #2563eb;
+        }
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid #2563eb;
+        }
+        .category-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #2563eb;
+        }
+        .category-content {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .category-content ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .category-content li {
+            margin-bottom: 8px;
+        }
+        .feature-highlight {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #2563eb;
+        }
+        .feature-highlight h3 {
+            color: #1e40af;
+            margin-bottom: 15px;
+        }
+        .feature-highlight p {
+            color: #1e3a8a;
+            line-height: 1.8;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        .install-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 4px solid #2563eb;
+        }
+        .install-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2563eb;
+        }
+        .score-table {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .score-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .score-table th,
+        .score-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .score-table th {
+            background: #dbeafe;
+            color: #1e40af;
+            font-weight: bold;
+        }
+        .score-table tr:hover {
+            background: #eff6ff;
+        }
+        .site-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .site-item {
+            background: #2563eb;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .site-item:hover {
+            background: #1d4ed8;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero-stats {
+                gap: 30px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🌐 AI工具集合</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#scoring">评分模型</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主视觉区 -->
+    <section class="hero">
+        <div class="hero-badge">Claude Skills + Sorftime MCP</div>
+        <h1>亚马逊选品全维度分析工具</h1>
+        <p>基于 Sorftime MCP 服务和 Claude Skills 的亚马逊竞品分析工具集。包含 Listing 全维度穿透分析和全品类选品分析两大核心功能，支持五维评分模型和多站点分析。</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">2大</span>
+                <span class="stat-label">核心技能</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">20+</span>
+                <span class="stat-label">站点支持</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">5维</span>
+                <span class="stat-label">评分模型</span>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/amazon-sorftime-research-MCP-skill" class="btn btn-primary" style="background: white; color: #2563eb;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <!-- 项目背景 -->
+    <section class="section">
+        <h2 class="section-title">为什么做这个？</h2>
+        <p class="section-subtitle">Skill 是现代编程，最好的 Agent 框架</p>
+        <div class="feature-highlight">
+            <h3>🚀 为什么选择 Skill？</h3>
+            <p>
+                Skill 是现代编程，现代应用。无界面更是无限界面，按需自己定制界面。
+                无功能更是无限功能，我们搞定了分析的根基，你可以连续地问问题，得到所有你要的功能。
+                Skill 可以方便地应用在各种 AI 工具中：Claude Code、Coze、OpenClaw、各种 Claw、各种 Chatbot、编辑器。
+                我认为 Skill 就是最好的 Agent 框架，基本上不需要传统那些 Agent 框架了，如 CrewAI、LangGraph、AutoGen 等。
+            </p>
+        </div>
+    </section>
+
+    <!-- 核心特性 -->
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">两大核心技能</h2>
+        <p class="section-subtitle">Listing 级别分析 + 品类级别分析，全方位覆盖选品需求</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">📊</div>
+                <h3 class="skill-title">Listing 级别分析</h3>
+                <p class="skill-description">
+                    <strong>命令：</strong>/amazon-analyse {ASIN} {SITE}<br>
+                    自动获取产品详情、评论、关键词、趋势数据，进行全维度穿透分析
+                </p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎯</div>
+                <h3 class="skill-title">品类级别分析</h3>
+                <p class="skill-description">
+                    <strong>命令：</strong>/category-selection "{品类}" {SITE}<br>
+                    Top100产品数据 + 市场大盘统计分析，五维评分模型评估
+                </p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔍</div>
+                <h3 class="skill-title">关键词分析</h3>
+                <p class="skill-description">流量来源、竞品布局、长尾词挖掘，全面掌握关键词策略</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">💬</div>
+                <h3 class="skill-title">评论情感分析</h3>
+                <p class="skill-description">优势聚类、痛点识别、改进建议，洞察用户真实反馈</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🌍</div>
+                <h3 class="skill-title">跨平台分析</h3>
+                <p class="skill-description">TikTok带货视频、达人分析、1688采购成本，多维度对比</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📈</div>
+                <h3 class="skill-title">多格式报告</h3>
+                <p class="skill-description">Markdown + Excel + HTML Dashboard 三种输出格式，满足不同需求</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 支持的站点 -->
+    <section class="section">
+        <h2 class="section-title">支持的站点</h2>
+        <p class="section-subtitle">覆盖全球主要电商市场</p>
+
+        <div style="margin-top: 40px;">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #2563eb;">亚马逊站点（14个）</h3>
+            <div class="site-grid">
+                <div class="site-item">美国 (US)</div>
+                <div class="site-item">日本 (JP)</div>
+                <div class="site-item">英国 (GB)</div>
+                <div class="site-item">德国 (DE)</div>
+                <div class="site-item">法国 (FR)</div>
+                <div class="site-item">西班牙 (ES)</div>
+                <div class="site-item">意大利 (IT)</div>
+                <div class="site-item">加拿大 (CA)</div>
+                <div class="site-item">印度 (IN)</div>
+                <div class="site-item">墨西哥 (MX)</div>
+                <div class="site-item">澳大利亚 (AU)</div>
+                <div class="site-item">阿联酋 (AE)</div>
+                <div class="site-item">巴西 (BR)</div>
+                <div class="site-item">沙特 (SA)</div>
+            </div>
+
+            <h3 style="text-align: center; margin: 50px 0 30px; color: #2563eb;">TikTok 站点（6个）</h3>
+            <div class="site-grid" style="justify-items: center;">
+                <div class="site-item">美国 (US)</div>
+                <div class="site-item">英国 (GB)</div>
+                <div class="site-item">马来西亚 (MY)</div>
+                <div class="site-item">菲律宾 (PH)</div>
+                <div class="site-item">越南 (VN)</div>
+                <div class="site-item">印尼 (ID)</div>
+            </div>
+
+            <h3 style="text-align: center; margin: 50px 0 30px; color: #2563eb;">1688 供应链</h3>
+            <p style="text-align: center; color: var(--secondary-color);">中国批发平台采购成本分析</p>
+        </div>
+    </section>
+
+    <!-- 五维评分模型 -->
+    <section id="scoring" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">五维评分模型</h2>
+        <p class="section-subtitle">品类选品评分体系（100分制）</p>
+
+        <div class="score-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>维度</th>
+                        <th>分值</th>
+                        <th>评分标准</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>市场规模</strong></td>
+                        <td>20分</td>
+                        <td>
+                            $10M+/20分, $5M+/17分, $1M+/14分, $500K+/11分<br>
+                            基于类目月销额评估
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>增长潜力</strong></td>
+                        <td>25分</td>
+                        <td>
+                            基于Amazon自营占比（越低越好，新品机会）<br>
+                            低自营占比=高增长潜力
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>竞争烈度</strong></td>
+                        <td>20分</td>
+                        <td>
+                            Top3品牌占比 <30%/18分, <40%/15分, 其他/11分<br>
+                            市场集中度评估
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>进入壁垒</strong></td>
+                        <td>20分</td>
+                        <td>
+                            Amazon压力 + 高评分门槛（各占10分）<br>
+                            评估新卖家进入难度
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>利润空间</strong></td>
+                        <td>15分</td>
+                        <td>
+                            $100+/15分, $50+/13分, $20+/11分, $10+/8分<br>
+                            基于平均价格评估
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="feature-highlight" style="margin-top: 40px;">
+            <h3>📊 综合评级标准</h3>
+            <p style="margin-top: 15px;">
+                <strong>80-100分：</strong>优秀 - 强烈推荐进入<br>
+                <strong>70-79分：</strong>良好 - 可以考虑进入<br>
+                <strong>50-69分：</strong>一般 - 谨慎进入<br>
+                <strong>0-49分：</strong>较差 - 不建议进入
+            </p>
+        </div>
+    </section>
+
+    <!-- 工作流程 -->
+    <section class="section">
+        <h2 class="section-title">使用示例</h2>
+        <p class="section-subtitle">快速上手，开始智能选品</p>
+
+        <div class="workflow-diagram">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #2563eb;">Listing 竞品分析示例</h3>
+            <div class="code-block"># 分析美国站竞品
+/amazon-analyse B07PWTJ4H1 US
+
+# 分析欧洲站竞品
+/amazon-analyse B08N5WRWNW DE</div>
+        </div>
+
+        <div class="workflow-diagram">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #2563eb;">品类选品分析示例</h3>
+            <div class="code-block"># 分析美国站沙发品类
+/category-selection "Sofas & Couches" US
+
+# 分析美国站无线耳机品类
+/category-selection "Wireless Earbuds" US
+
+# 指定Top20产品分析
+/category-selection "Kids' Drawing Kits" US --limit 20</div>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #2563eb;">报告输出位置</h3>
+            <div class="skills-grid">
+                <div class="category-card">
+                    <div class="category-title">Listing 分析报告</div>
+                    <div class="category-content">
+                        保存位置：<code>reports/analysis_{ASIN}_{站点}_{日期}.md</code><br>
+                        包含：产品详情、关键词分析、评论情感、跨平台数据
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">品类选品报告</div>
+                    <div class="category-content">
+                        保存位置：<code>category-reports/{品类}_{站点}_{日期}/</code><br>
+                        包含：index.html（导航）、dashboard.html（可视化）、report.md、data.json、*.xlsx
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 安装配置 -->
+    <section id="install" class="section">
+        <h2 class="section-title">安装与配置</h2>
+        <p class="section-subtitle">简单几步，开始智能选品之旅</p>
+
+        <div class="install-card">
+            <div class="install-title">1. 获取 Sorftime API Key</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">
+                访问 Sorftime MCP 获取 API Key：<a href="https://sorftime.com/zh-cn/mcp" target="_blank" style="color: #2563eb;">https://sorftime.com/zh-cn/mcp</a>
+            </p>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">2. 配置 MCP 服务器</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">更新 <code>.mcp.json</code> 配置文件：</p>
+            <div class="code-block">{
+  "mcpServers": {
+    "sorftime": {
+      "type": "streamableHttp",
+      "url": "https://mcp.sorftime.com?key=YOUR_API_KEY",
+      "name": "Sorftime MCP"
+    }
+  }
+}</div>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">3. 克隆项目</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">获取项目代码：</p>
+            <div class="code-block">git clone https://github.com/liangdabiao/amazon-sorftime-research-MCP-skill.git
+cd amazon-sorftime-research-MCP-skill</div>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">4. 安装 Claude Code Skills</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">
+                将技能文件导入到 Claude Code 环境：<br>
+                <code>.claude/skills/amazon-analyse/</code><br>
+                <code>.claude/skills/category-selectionion/</code>
+            </p>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">5. 开始使用</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">在 Claude Code 中调用技能：</p>
+            <div class="code-block">/amazon-analyse B07PWTJ4H1 US
+/category-selection "Wireless Earbuds" US</div>
+        </div>
+    </section>
+
+    <!-- 技术栈 -->
+    <section class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">基于先进的 AI 技术构建</p>
+        <div class="tech-stack">
+            <div class="tech-item">Claude Code CLI</div>
+            <div class="tech-item">MCP Protocol</div>
+            <div class="tech-item">Sorftime API</div>
+            <div class="tech-item">Python</div>
+            <div class="tech-item">YAML</div>
+            <div class="tech-item">Bash</div>
+            <div class="tech-item">Excel/HTML 生成</div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于亚马逊选品全维度分析工具的常见疑问</p>
+
+        <div class="category-card">
+            <div class="category-title">Q: ASIN 查询不到产品怎么办？</div>
+            <div class="category-content">
+                A: Sorftime 数据库覆盖有限，先使用 <code>product_detail</code> 验证 ASIN。如果返回"未查询到对应产品"，
+                尝试：1) 使用 <code>product_search</code> 搜索相关关键词；2) 确认是正确的亚马逊站点；
+                3) 确认 ASIN 格式正确（10位字母数字）。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 报告中出现乱码怎么办？</div>
+            <div class="category-content">
+                A: Sorftime 返回的中文是 Unicode 转义格式（\u4ea7\u54c1），技能会自动解码。
+                如果仍有问题，检查 Python 环境是否支持 UTF-8 编码。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: Excel 报告无法打开？</div>
+            <div class="category-content">
+                A: 确保安装了 <code>xlsxwriter</code> 库：<code>pip install xlsxwriter</code>
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 如何创建自定义技能？</div>
+            <div class="category-content">
+                A: 项目包含 skill-creator 工具，可以初始化新技能模板或打包现有技能为 .skill 文件。
+                详见项目文档。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 支持哪些 Sorftime MCP 接口？</div>
+            <div class="category-content">
+                A: 支持产品相关（详情、趋势、评论、关键词）、类目相关（搜索、报告、树结构、趋势、关键词）、
+                TikTok/1688 等多种接口。详见项目文档。
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>基于 Sorftime MCP 服务和 Claude Skills 的亚马逊竞品分析工具集。
+                包含 Listing 全维度穿透分析和全品类选品分析两大核心功能。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/amazon-sorftime-research-MCP-skill">GitHub 仓库</a></li>
+                    <li><a href="https://linux.do/t/topic/1680271">项目介绍帖 1</a></li>
+                    <li><a href="https://linux.do/t/topic/1693062">项目介绍帖 2</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 亚马逊选品全维度分析工具. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 移动端菜单
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>
