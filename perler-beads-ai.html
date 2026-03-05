@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI拼豆底稿生成器 | 一键生成拼豆图纸</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #f59e0b;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .skill-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .skill-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .skill-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: #f59e0b;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: #d97706;
+        }
+        .workflow-diagram {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .workflow-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .flow-step {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .flow-arrow {
+            font-size: 2em;
+            color: #f59e0b;
+        }
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid #f59e0b;
+        }
+        .category-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #f59e0b;
+        }
+        .category-content {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .category-content ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .category-content li {
+            margin-bottom: 8px;
+        }
+        .feature-highlight {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #f59e0b;
+        }
+        .feature-highlight h3 {
+            color: #92400e;
+            margin-bottom: 15px;
+        }
+        .feature-highlight p {
+            color: #78350f;
+            line-height: 1.8;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        .install-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 4px solid #f59e0b;
+        }
+        .install-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #f59e0b;
+        }
+        .comparison-table {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .comparison-table th {
+            background: #fef3c7;
+            color: #92400e;
+            font-weight: bold;
+        }
+        .comparison-table tr:hover {
+            background: #fffbeb;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero-stats {
+                gap: 30px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🌐 AI工具集合</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#comparison">功能对比</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主视觉区 -->
+    <section class="hero">
+        <div class="hero-badge">Next.js + React + 火山引擎即梦AI</div>
+        <h1>AI拼豆底稿生成器</h1>
+        <p>基于开源项目，增加AI优化功能，专门生成拼豆图纸的网站。解决传统拼豆软件颜色识别不准确、杂色多、手动着色困难等问题，真正实现一键生成拼豆图纸！</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">17+</span>
+                <span class="stat-label">核心功能</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">5种</span>
+                <span class="stat-label">色板系统</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">AI</span>
+                <span class="stat-label">智能优化</span>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/perler-beads-ai" class="btn btn-primary" style="background: white; color: #f59e0b;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <!-- 项目背景 -->
+    <section class="section">
+        <h2 class="section-title">为什么做这个？</h2>
+        <p class="section-subtitle">市面上的拼豆软件差强人意，需要AI来改变</p>
+        <div class="feature-highlight">
+            <h3>🧵 传统拼豆软件的痛点</h3>
+            <p>
+                在拼豆创作过程中，传统软件存在诸多问题：颜色识别不准确、灰色毛状边界线、
+                无法自适应合并同色系颜色、手动着色困难、无法精准选择颜色、无法给出采购清单、
+                限制图片导出和打印。这些问题严重影响了拼豆创作的效率和体验。
+            </p>
+        </div>
+    </section>
+
+    <!-- 核心特性 -->
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">17项核心功能，从底稿生成到专心拼豆的全流程支持</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">🤖</div>
+                <h3 class="skill-title">AI优化功能</h3>
+                <p class="skill-description">基于火山引擎即梦AI 4.0模型，智能转换图片为适合拼豆的像素艺术风格，支持Chibi画风、白底背景、16位复古游戏美学</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎨</div>
+                <h3 class="skill-title">智能颜色合并</h3>
+                <p class="skill-description">自动合并邻近相似颜色，使用BFS算法形成区域，将整个区域统一为出现次数最多的色号，减少颜色数量和颗粒</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📊</div>
+                <h3 class="skill-title">多种解析风格</h3>
+                <p class="skill-description">支持不同池化逻辑（局部max pooling），适应各类图片风格，避免灰色毛边问题</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🌈</div>
+                <h3 class="skill-title">多色板支持</h3>
+                <p class="skill-description">MARD、COCO、漫漫、盼盼、咪小窝等多种色号系统，支持自定义调色板编辑器</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">✂️</div>
+                <h3 class="skill-title">背景自动移除</h3>
+                <p class="skill-description">洪水填充算法自动识别并移除背景，统计和下载时忽略外部背景单元格</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🖌️</div>
+                <h3 class="skill-title">手动编辑工具</h3>
+                <p class="skill-description">着色模式、橡皮擦功能、颜色替换、放大镜工具，精确控制每个像素</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📁</div>
+                <h3 class="skill-title">导出功能</h3>
+                <p class="skill-description">带Key图纸（PNG格式）、颜色统计图、采购清单（CSV格式），多种导出选项</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔍</div>
+                <h3 class="skill-title">实时预览</h3>
+                <p class="skill-description">悬停/长停查看色号信息，放大镜工具查看细节，即时显示处理后的像素画预览</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作流程 -->
+    <section id="workflow" class="section">
+        <h2 class="section-title">AI优化流程</h2>
+        <p class="section-subtitle">即梦AI模型实现图片智能优化</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">上传图片</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">图像预处理</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">AI模型调用</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">结果处理</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">应用结果</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #f59e0b;">核心算法原理</h3>
+            <div class="skills-grid">
+                <div class="category-card">
+                    <div class="category-title">1. 初始颜色映射</div>
+                    <div class="category-content">
+                        使用局部max pooling，找到像素频率最高的RGB值，用欧氏距离查找最近的颜色
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">2. 区域颜色合并</div>
+                    <div class="category-content">
+                        BFS查找欧氏距离小于阈值的邻近单元格，形成区域，统一设置为出现次数最多的色号
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">3. 背景移除</div>
+                    <div class="category-content">
+                        从边界开始洪水填充，标记所有连通的背景色单元格为"外部"
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">4. 颜色排除与重映射</div>
+                    <div class="category-content">
+                        排除颜色后，在已存在且未被排除的颜色中智能重映射到邻近色
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 功能对比 -->
+    <section id="comparison" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">功能对比</h2>
+        <p class="section-subtitle">与传统拼豆软件的对比</p>
+
+        <div class="comparison-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>功能</th>
+                        <th>传统软件</th>
+                        <th>AI拼豆生成器</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>颜色识别</td>
+                        <td>不准确，灰色毛边</td>
+                        <td>✅ 准确，max pooling</td>
+                    </tr>
+                    <tr>
+                        <td>颜色合并</td>
+                        <td>手动操作</td>
+                        <td>✅ 自动合并相似色</td>
+                    </tr>
+                    <tr>
+                        <td>背景移除</td>
+                        <td>不支持</td>
+                        <td>✅ 洪水填充自动移除</td>
+                    </tr>
+                    <tr>
+                        <td>手动编辑</td>
+                        <td>困难，无法精准选择</td>
+                        <td>✅ 多种编辑工具</td>
+                    </tr>
+                    <tr>
+                        <td>采购清单</td>
+                        <td>不支持</td>
+                        <td>✅ CSV格式导出</td>
+                    </tr>
+                    <tr>
+                        <td>AI优化</td>
+                        <td>不支持</td>
+                        <td>✅ 即梦AI智能转换</td>
+                    </tr>
+                    <tr>
+                        <td>多色板支持</td>
+                        <td>有限</td>
+                        <td>✅ 5种色号系统</td>
+                    </tr>
+                    <tr>
+                        <td>导出限制</td>
+                        <td>限制导出和打印</td>
+                        <td>✅ 无限制导出</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 安装配置 -->
+    <section id="install" class="section">
+        <h2 class="section-title">安装与配置</h2>
+        <p class="section-subtitle">简单几步，开始拼豆创作之旅</p>
+
+        <div class="install-card">
+            <div class="install-title">1. 克隆项目</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">获取项目代码：</p>
+            <div class="code-block">git clone https://github.com/liangdabiao/perler-beads-ai.git
+cd perler-beads-ai</div>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">2. 安装依赖</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">使用npm、yarn或pnpm安装：</p>
+            <div class="code-block">npm install
+# 或
+yarn install
+# 或
+pnpm install</div>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">3. 启动开发服务器</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">启动本地开发环境：</p>
+            <div class="code-block">npm run dev
+# 或
+yarn dev
+# 或
+pnpm dev</div>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">4. 访问应用</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">在浏览器中打开：</p>
+            <div class="code-block">http://localhost:3000</div>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">5. 配置AI功能（可选）</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">
+                配置火山引擎即梦AI API密钥，使用AI优化功能。详见项目文档。
+            </p>
+        </div>
+    </section>
+
+    <!-- 技术栈 -->
+    <section class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">基于现代Web技术和AI构建</p>
+        <div class="tech-stack">
+            <div class="tech-item">Next.js</div>
+            <div class="tech-item">React</div>
+            <div class="tech-item">TypeScript</div>
+            <div class="tech-item">Tailwind CSS</div>
+            <div class="tech-item">火山引擎即梦AI</div>
+            <div class="tech-item">Canvas API</div>
+            <div class="tech-item">BFS算法</div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于AI拼豆底稿生成器的常见疑问</p>
+
+        <div class="category-card">
+            <div class="category-title">Q: AI优化功能需要付费吗？</div>
+            <div class="category-content">
+                A: AI优化基于火山引擎即梦AI API，需要申请API密钥。具体费用请参考火山引擎官方定价。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 支持哪些图片格式？</div>
+            <div class="category-content">
+                A: 支持常见的JPG、PNG等图片格式，可直接拖放或点击选择上传。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 如何自定义调色板？</div>
+            <div class="category-content">
+                A: 网站提供自定义调色板编辑器，可以创建和编辑自己的调色板，支持添加、删除、修改颜色。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 导出的图纸可以用于商业用途吗？</div>
+            <div class="category-content">
+                A: 可以，生成的图纸完全属于你，可以自由使用和分享。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 如何处理杂色问题？</div>
+            <div class="category-content">
+                A: 系统提供颜色合并功能，可以自动合并相似颜色。同时支持手动排除特定颜色，系统会智能重映射到邻近色。
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>基于开源项目Zippland/perler-beads，增加AI优化功能，专门生成拼豆图纸的网站。解决传统拼豆软件的诸多痛点。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/perler-beads-ai">GitHub 仓库</a></li>
+                    <li><a href="https://linux.do/t/topic/1660924">项目介绍帖</a></li>
+                    <li><a href="https://github.com/Zippland/perler-beads">原始开源项目</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 AI拼豆底稿生成器. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 移动端菜单
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

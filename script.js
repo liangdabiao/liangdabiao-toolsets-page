@@ -622,6 +622,48 @@ const products = [
         techStack: ['Claude Code', 'Agent Skills', 'Seedance 2.0', 'Nana Banana Pro', 'Markdown', 'Python'],
         category: 'AI工具',
         difficulty: '进阶'
+    },
+    {
+        id: 'perler-beads-ai',
+        name: 'AI拼豆底稿生成器',
+        description: '基于开源项目 Zippland/perler-beads，增加AI优化功能，专门生成拼豆图纸的网站。解决传统拼豆软件颜色识别不准确、杂色多、手动着色困难等问题，真正实现一键生成拼豆图纸！',
+        icon: '🧵',
+        tags: ['AI工具', '拼豆', '即梦AI', 'Next.js', '图像处理', 'Canvas'],
+        githubUrl: 'https://github.com/liangdabiao/perler-beads-ai',
+        features: [
+            'AI优化功能：基于火山引擎即梦AI 4.0模型，智能转换图片为适合拼豆的像素风格',
+            '智能颜色合并：自动合并邻近相似颜色，减少颜色数量和颗粒',
+            '多种解析风格：支持不同池化逻辑，适应各类图片风格',
+            '多色板支持：MARD、COCO、漫漫、盼盼、咪小窝等多种色号系统',
+            '背景自动移除：洪水填充算法自动识别并移除背景',
+            '手动编辑工具：着色、橡皮擦、颜色替换、放大镜工具',
+            '导出功能：带Key图纸、颜色统计图、采购清单(CSV)',
+            '17项核心功能：从底稿生成到专心拼豆模式的全流程支持'
+        ],
+        techStack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', '火山引擎即梦AI', 'Canvas API', 'BFS算法'],
+        category: 'AI工具',
+        difficulty: '中等'
+    },
+    {
+        id: 'amazon-sorftime-research',
+        name: '亚马逊选品全维度分析工具',
+        description: '基于 Sorftime MCP 服务和 Claude Skills 的亚马逊竞品分析工具集。包含 Listing 全维度穿透分析和全品类选品分析两大核心功能，支持五维评分模型和多站点分析。',
+        icon: '🛒',
+        tags: ['跨境电商', '亚马逊选品', 'Claude Skills', 'MCP', '数据分析', 'Sorftime'],
+        githubUrl: 'https://github.com/liangdabiao/amazon-sorftime-research-MCP-skill',
+        features: [
+            'Listing级别分析：竞品详情、关键词、评论、趋势数据全维度穿透',
+            '品类级别分析：Top100产品数据 + 市场大盘统计分析',
+            '五维评分模型：市场规模、增长潜力、竞争烈度、进入壁垒、利润空间',
+            '多站点支持：14个亚马逊站点（美、日、英、德、法等）+ TikTok 6站点',
+            '关键词分析：流量来源、竞品布局、长尾词挖掘',
+            '评论情感分析：优势聚类、痛点识别、改进建议',
+            '跨平台分析：TikTok带货视频、达人分析、1688采购成本',
+            '多格式报告：Markdown + Excel + HTML Dashboard 三种输出格式'
+        ],
+        techStack: ['Claude Code CLI', 'MCP Protocol', 'Sorftime API', 'Python', 'YAML', 'Bash', 'Excel/HTML生成'],
+        category: '数据分析',
+        difficulty: '进阶'
     }
 ];
 
