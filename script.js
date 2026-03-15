@@ -1189,6 +1189,18 @@ function useProduct(productId) {
         return;
     }
 
+    // 如果是AI拼豆底稿生成器，跳转到专门的页面
+    if (productId === 'perler-beads-ai') {
+        window.location.href = '/perler-beads-ai.html';
+        return;
+    }
+
+    // 如果是亚马逊选品全维度分析工具，跳转到专门的页面
+    if (productId === 'amazon-sorftime-research') {
+        window.location.href = '/amazon-sorftime-research.html';
+        return;
+    }
+
     // 对于其他产品，显示开发中提示
     alert(`正在启动 ${product.name}...\\n\\n功能开发中，敬请期待！`);
 
