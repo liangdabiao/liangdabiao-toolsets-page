@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM Wiki | AI驱动的个人知识库系统</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 50%, #4338ca 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #6366f1;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .skill-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .skill-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .skill-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: #6366f1;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: #4f46e5;
+        }
+        .workflow-diagram {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .workflow-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .flow-step {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .flow-arrow {
+            font-size: 2em;
+            color: #6366f1;
+        }
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid #6366f1;
+        }
+        .category-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #6366f1;
+        }
+        .category-content {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .category-content ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .category-content li {
+            margin-bottom: 8px;
+        }
+        .feature-highlight {
+            background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #6366f1;
+        }
+        .feature-highlight h3 {
+            color: #3730a3;
+            margin-bottom: 15px;
+        }
+        .feature-highlight p {
+            color: #4338ca;
+            line-height: 1.8;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        .install-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 4px solid #6366f1;
+        }
+        .install-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #6366f1;
+        }
+        .three-columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .core-card {
+            background: white;
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid #6366f1;
+            text-align: center;
+        }
+        .core-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .core-card-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .core-card-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #4f46e5;
+        }
+        .core-card-desc {
+            color: var(--secondary-color);
+            line-height: 1.8;
+            text-align: left;
+        }
+        .source-table {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .source-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .source-table th,
+        .source-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .source-table th {
+            background: #eef2ff;
+            color: #3730a3;
+            font-weight: bold;
+        }
+        .source-table tr:hover {
+            background: #f5f3ff;
+        }
+        .workflow-table {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .workflow-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .workflow-table th,
+        .workflow-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .workflow-table th {
+            background: #eef2ff;
+            color: #3730a3;
+            font-weight: bold;
+        }
+        .workflow-table tr:hover {
+            background: #f5f3ff;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero-stats {
+                gap: 30px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .three-columns {
+                grid-template-columns: 1fr;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🌐 AI工具集合</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#sources">素材来源</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主视觉区 -->
+    <section class="hero">
+        <div class="hero-badge">Claude Agent SDK + Quartz + LLM Wiki</div>
+        <h1>LLM Wiki</h1>
+        <p>基于Karpathy llm-wiki方法论，利用AI持续构建和维护个人知识库。支持从多种素材源自动整理为结构化wiki，并通过Quartz发布为静态知识库网站。通过Claude Agent SDK提供API接口对外访问服务。</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">8+</span>
+                <span class="stat-label">素材源支持</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">7种</span>
+                <span class="stat-label">工作流操作</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">3大</span>
+                <span class="stat-label">核心能力</span>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/llm-wiki" class="btn btn-primary" style="background: white; color: #6366f1;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <!-- 项目理念 -->
+    <section class="section">
+        <h2 class="section-title">为什么是 LLM Wiki？</h2>
+        <p class="section-subtitle">告别传统RAG，用AI构建真正的个人知识库</p>
+        <div class="feature-highlight">
+            <h3>从 RAG 到知识编译器</h3>
+            <p>
+                传统RAG系统的完整链路：ingest → chunk → index → retrieve → rerank → prompt-pack → generate → cite。每次提问都要重新翻遍所有资料，效率低下。Karpathy指出，正确的做法是让AI当一个"知识编译器"——先把所有资料整理成一本结构清晰、彼此关联的百科全书，以后再提问直接翻这本百科书就行了。LLM Wiki就是实现这一理念的工具，它不仅解决了RAG的全部问题，还能一键生成wiki网站，成为真正的知识库。
+            </p>
+        </div>
+    </section>
+
+    <!-- 三大核心能力 -->
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">三大核心能力</h2>
+        <p class="section-subtitle">知识库构建 + 静态网站部署 + API对外服务</p>
+        <div class="three-columns">
+            <div class="core-card">
+                <div class="core-card-icon">📚</div>
+                <h3 class="core-card-title">LLM Wiki Skill</h3>
+                <div class="core-card-desc">
+                    利用Claude Code的Skill机制，让AI自动完成知识库的采集、整理、质量控制和维护。支持初始化知识库、消化素材、批量处理、查询、深度分析、健康检查和知识图谱生成等7种工作流。
+                </div>
+            </div>
+            <div class="core-card">
+                <div class="core-card-icon">🌐</div>
+                <h3 class="core-card-title">Quartz Wiki Skill</h3>
+                <div class="core-card-desc">
+                    将生成的知识库通过Quartz v4发布为美观的静态网站。支持双向链接和关系图谱、全文搜索、响应式设计、亮色/暗色主题切换，可部署到Cloudflare Pages、Vercel或GitHub Pages。
+                </div>
+            </div>
+            <div class="core-card">
+                <div class="core-card-icon">🤖</div>
+                <h3 class="core-card-title">Claude Agent SDK</h3>
+                <div class="core-card-desc">
+                    通过Claude Agent SDK将知识库能力封装为可编程调用的AI Agent。支持CLI交互模式和基于FastAPI的HTTP服务，提供SSE流式响应和同步JSON响应两种API模式。
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 功能特性 -->
+    <section class="section">
+        <h2 class="section-title">功能特性</h2>
+        <p class="section-subtitle">8大核心功能，覆盖知识管理全流程</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">📥</div>
+                <h3 class="skill-title">多源素材采集</h3>
+                <p class="skill-description">支持网页、推特、公众号、小红书、知乎、YouTube、PDF、本地文件等8种素材源，自动提取和整理内容</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🧠</div>
+                <h3 class="skill-title">智能知识整理</h3>
+                <p class="skill-description">AI自动完成知识库的采集、整理和结构化，提取实体和主题，生成相互关联的wiki页面</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📊</div>
+                <h3 class="skill-title">批量素材处理</h3>
+                <p class="skill-description">支持批量导入多文件（.md / .txt / .pdf / .html），一键处理大量素材资源</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔍</div>
+                <h3 class="skill-title">智能查询检索</h3>
+                <p class="skill-description">查询知识库，返回带来源引用的综合回答，无需传统RAG的复杂检索链路</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📝</div>
+                <h3 class="skill-title">深度综合分析</h3>
+                <p class="skill-description">跨素材分析特定主题，生成深度综合报告和对比分析，挖掘知识间的深层关联</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔗</div>
+                <h3 class="skill-title">知识图谱可视化</h3>
+                <p class="skill-description">生成Mermaid知识图谱，可视化实体关系，直观展示知识网络结构</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🏥</div>
+                <h3 class="skill-title">健康检查维护</h3>
+                <p class="skill-description">自动检测孤立页面、断链和内容质量问题，保持知识库的健康运行状态</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🚀</div>
+                <h3 class="skill-title">API服务接口</h3>
+                <p class="skill-description">基于FastAPI提供HTTP服务，支持SSE流式响应和同步JSON响应，方便集成到其他系统</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作流程 -->
+    <section id="workflow" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">工作流程</h2>
+        <p class="section-subtitle">支持7种工作流操作</p>
+
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">init 初始化</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">ingest 消化素材</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">整理结构化</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">lint 健康检查</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">Quartz 发布</div>
+            </div>
+        </div>
+
+        <div class="workflow-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>工作流</th>
+                        <th>说明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>init</strong></td>
+                        <td>初始化新知识库，创建目录结构和配置</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ingest</strong></td>
+                        <td>消化单篇素材（URL / 文件 / 粘贴文本），自动提取实体和主题</td>
+                    </tr>
+                    <tr>
+                        <td><strong>batch-ingest</strong></td>
+                        <td>批量处理多文件（.md / .txt / .pdf / .html）</td>
+                    </tr>
+                    <tr>
+                        <td><strong>query</strong></td>
+                        <td>查询知识库，返回带来源引用的综合回答</td>
+                    </tr>
+                    <tr>
+                        <td><strong>digest</strong></td>
+                        <td>深度综合报告，跨素材分析特定主题</td>
+                    </tr>
+                    <tr>
+                        <td><strong>lint</strong></td>
+                        <td>健康检查：孤立页面、断链、内容质量</td>
+                    </tr>
+                    <tr>
+                        <td><strong>status</strong></td>
+                        <td>查看知识库状态：来源分布、页面统计、近期活动</td>
+                    </tr>
+                    <tr>
+                        <td><strong>graph</strong></td>
+                        <td>生成Mermaid知识图谱，可视化实体关系</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 素材来源 -->
+    <section id="sources" class="section">
+        <h2 class="section-title">支持的素材来源</h2>
+        <p class="section-subtitle">从全网多平台采集知识素材</p>
+
+        <div class="source-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>类型</th>
+                        <th>提取方式</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>网页文章</td>
+                        <td>baoyu-url-to-markdown</td>
+                    </tr>
+                    <tr>
+                        <td>X / Twitter</td>
+                        <td>baoyu-url-to-markdown</td>
+                    </tr>
+                    <tr>
+                        <td>微信公众号</td>
+                        <td>wechat-article-to-markdown</td>
+                    </tr>
+                    <tr>
+                        <td>YouTube</td>
+                        <td>youtube-transcript</td>
+                    </tr>
+                    <tr>
+                        <td>知乎</td>
+                        <td>baoyu-url-to-markdown</td>
+                    </tr>
+                    <tr>
+                        <td>PDF</td>
+                        <td>直接读取</td>
+                    </tr>
+                    <tr>
+                        <td>本地文件 (.md / .txt)</td>
+                        <td>直接读取</td>
+                    </tr>
+                    <tr>
+                        <td>小红书</td>
+                        <td>内容采集提取</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 知识库目录结构 -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">知识库目录结构</h2>
+        <p class="section-subtitle">清晰的结构化组织，便于管理和检索</p>
+        <div class="install-card">
+            <div class="install-title">目录结构</div>
+            <pre class="code-block">ai-wiki/
+├── .wiki-schema.md      # 知识库配置和质量标准
+├── index.md             # 内容索引
+├── log.md               # 操作日志
+├── overview.md          # 快速导航
+├── raw/                 # 原始素材
+│   ├── articles/        # 网页文章
+│   ├── tweets/          # 推特内容
+│   ├── wechat/          # 公众号文章
+│   ├── xiaohongshu/     # 小红书内容
+│   ├── zhihu/           # 知乎内容
+│   ├── pdfs/            # PDF 文件
+│   └── notes/           # 笔记和文本
+└── wiki/                # 结构化 wiki 内容
+    ├── entities/        # 实体页（工具、概念、人物）
+    ├── topics/          # 主题页（研究领域）
+    ├── sources/         # 来源摘要
+    ├── comparisons/     # 对比分析
+    └── synthesis/       # 综合分析</pre>
+        </div>
+    </section>
+
+    <!-- 安装配置 -->
+    <section id="install" class="section">
+        <h2 class="section-title">安装与配置</h2>
+        <p class="section-subtitle">快速上手，构建你的个人知识库</p>
+
+        <div class="install-card">
+            <div class="install-title">1. 克隆项目</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">获取项目代码：</p>
+            <pre class="code-block">git clone https://github.com/liangdabiao/llm-wiki.git
+cd llm-wiki</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">2. 安装依赖</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">创建虚拟环境并安装依赖：</p>
+            <pre class="code-block">python -m venv .venv
+# Windows
+.\.venv\Scripts\activate
+# macOS/Linux
+source .venv/bin/activate
+
+pip install -r requirements.txt</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">3. 使用 LLM Wiki Skill（Claude Code）</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">在Claude Code中通过Skill机制操作知识库：</p>
+            <pre class="code-block"># 初始化知识库
+> 利用 llm-wiki skill 对这些资料进行分析整理成wiki
+
+# 生成Quartz静态网站
+> 利用 quartz-wiki skill 把 ai-wiki 制作成 quartz网站</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">4. CLI模式运行Agent</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">通过Python脚本运行Claude Agent：</p>
+            <pre class="code-block"># 单次请求
+python -B 7_wiki_writer.py -r "帮我写一篇关于 AI Agent 的综合文章"
+
+# 交互式模式（连续对话）
+python -B 7_wiki_writer.py -i</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">5. 启动API服务</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">基于FastAPI的HTTP服务：</p>
+            <pre class="code-block"># 直接启动
+python -B wiki_writer_api.py
+
+# 使用 uvicorn（支持热重载）
+uvicorn wiki_writer_api:app --host 0.0.0.0 --port 8000 --reload</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">6. Quartz本地预览</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">本地预览wiki静态网站：</p>
+            <pre class="code-block">cd quartz
+npx quartz build --serve
+
+# 构建生产版本
+npx quartz build
+
+# 部署到 Cloudflare Pages
+npx wrangler pages deploy public</pre>
+        </div>
+    </section>
+
+    <!-- API接口 -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">API 接口</h2>
+        <p class="section-subtitle">基于FastAPI的RESTful API服务</p>
+
+        <div class="source-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>方法</th>
+                        <th>路径</th>
+                        <th>说明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>GET</strong></td>
+                        <td>/health</td>
+                        <td>健康检查</td>
+                    </tr>
+                    <tr>
+                        <td><strong>POST</strong></td>
+                        <td>/api/v1/wiki/generate</td>
+                        <td>流式生成 (SSE)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>POST</strong></td>
+                        <td>/api/v1/wiki/generate/sync</td>
+                        <td>同步生成 (JSON)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">请求示例</div>
+            <pre class="code-block"># 同步模式
+curl -X POST http://localhost:8000/api/v1/wiki/generate/sync \
+  -H "Content-Type: application/json" \
+  -d '{"request": "分析知识库中关于 Agent 的内容"}'
+
+# 流式模式 (SSE)
+curl -X POST http://localhost:8000/api/v1/wiki/generate \
+  -H "Content-Type: application/json" \
+  -d '{"request": "帮我消化这篇 https://example.com/article"}'</pre>
+        </div>
+    </section>
+
+    <!-- 技术栈 -->
+    <section class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">基于现代AI技术和工具链构建</p>
+        <div class="tech-stack">
+            <div class="tech-item">Claude Agent SDK</div>
+            <div class="tech-item">FastAPI</div>
+            <div class="tech-item">Quartz v4</div>
+            <div class="tech-item">Python</div>
+            <div class="tech-item">SSE</div>
+            <div class="tech-item">Mermaid</div>
+            <div class="tech-item">Cloudflare Pages</div>
+            <div class="tech-item">Markdown</div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于LLM Wiki的常见疑问</p>
+
+        <div class="category-card">
+            <div class="category-title">Q: LLM Wiki和传统RAG有什么区别？</div>
+            <div class="category-content">
+                A: 传统RAG每次提问都要重新检索所有资料，而LLM Wiki先把资料整理成结构化的百科全书，提问时直接翻阅即可。这大幅提升了效率和准确性，是更本质的知识管理方式。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 需要什么前置条件？</div>
+            <div class="category-content">
+                A: 需要安装Claude Code并配置Claude API密钥，Python 3.8+环境，以及Node.js（用于Quartz网站生成）。具体配置详见项目文档。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 支持哪些素材源？</div>
+            <div class="category-content">
+                A: 支持网页文章、Twitter/X、微信公众号、YouTube视频、知乎、小红书、PDF文件和本地文件（.md/.txt）共8种素材源。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 如何部署知识库网站？</div>
+            <div class="category-content">
+                A: 通过Quartz v4生成静态网站，支持部署到Cloudflare Pages、Vercel或GitHub Pages。也可本地预览和构建。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: API服务支持哪些模式？</div>
+            <div class="category-content">
+                A: 支持SSE流式响应（适合实时交互）和同步JSON响应（适合批量处理）两种模式。基于FastAPI构建，可轻松集成到其他系统中。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 知识库如何保持质量？</div>
+            <div class="category-content">
+                A: 内置lint工作流，可自动检测孤立页面、断链和内容质量问题。同时通过.wiki-schema.md维护知识库的质量标准和配置。
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer" id="contact">
+        <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>基于Karpathy llm-wiki方法论，利用AI持续构建和维护个人知识库。支持多种素材源自动整理为结构化wiki，通过Quartz发布为静态网站，通过Claude Agent SDK提供API服务。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/llm-wiki">GitHub 仓库</a></li>
+                    <li><a href="http://wikilego.liangdabiao.com/">Wiki 演示站</a></li>
+                    <li><a href="https://linux.do/u/liangdabiao">Linux.do 主页</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 LLM Wiki. All rights reserved.</p>
+        </div>
+            </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 移动端菜单
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

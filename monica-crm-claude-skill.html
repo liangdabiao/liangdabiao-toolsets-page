@@ -469,7 +469,7 @@
         <div class="install-card">
             <div class="install-title">1. 安装 Monica CRM</div>
             <p style="margin-top: 10px; color: var(--secondary-color);">使用 Docker 快速部署：</p>
-            <div class="code-block"># 克隆 Monica 项目
+            <pre class="code-block"># 克隆 Monica 项目
 git clone https://github.com/monicahq/monica.git
 cd monica
 
@@ -480,21 +480,21 @@ cp .env.example .env
 # vim .env
 
 # 启动服务
-docker-compose up -d</div>
+docker-compose up -d</pre>
         </div>
 
         <div class="install-card">
             <div class="install-title">2. 配置 Claude Code Skill</div>
             <p style="margin-top: 10px; color: var(--secondary-color);">将 CRM 技能文件导入到 Claude Code 环境的 .claude/skills/ 目录：</p>
-            <div class="code-block"># 在技能目录创建 CRM 技能文件
-# 按照项目文档配置对话模板和 API 端点</div>
+            <pre class="code-block"># 在技能目录创建 CRM 技能文件
+# 按照项目文档配置对话模板和 API 端点</pre>
         </div>
 
         <div class="install-card">
             <div class="install-title">3. 验证配置</div>
             <p style="margin-top: 10px; color: var(--secondary-color);">测试基本功能：</p>
-            <div class="code-block"># 测试客户添加功能
-# 确认 API 连接正常</div>
+            <pre class="code-block"># 测试客户添加功能
+# 确认 API 连接正常</pre>
         </div>
     </section>
 
@@ -548,7 +548,8 @@ docker-compose up -d</div>
     </section>
 
     <!-- 页脚 -->
-    <footer id="contact">
+    <footer class="footer" id="contact">
+        <div class="container">
         <div class="footer-content">
             <div class="footer-section">
                 <h3>关于项目</h3>
@@ -572,6 +573,7 @@ docker-compose up -d</div>
         <div class="footer-bottom">
             <p>&copy; 2025 Monica CRM Claude 技能. All rights reserved.</p>
         </div>
+            </div>
     </footer>
 
     <script src="script.js"></script>

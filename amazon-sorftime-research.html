@@ -488,23 +488,23 @@
 
         <div class="workflow-diagram">
             <h3 style="text-align: center; margin-bottom: 30px; color: #2563eb;">Listing 竞品分析示例</h3>
-            <div class="code-block"># 分析美国站竞品
+            <pre class="code-block"># 分析美国站竞品
 /amazon-analyse B07PWTJ4H1 US
 
 # 分析欧洲站竞品
-/amazon-analyse B08N5WRWNW DE</div>
+/amazon-analyse B08N5WRWNW DE</pre>
         </div>
 
         <div class="workflow-diagram">
             <h3 style="text-align: center; margin-bottom: 30px; color: #2563eb;">品类选品分析示例</h3>
-            <div class="code-block"># 分析美国站沙发品类
+            <pre class="code-block"># 分析美国站沙发品类
 /category-selection "Sofas & Couches" US
 
 # 分析美国站无线耳机品类
 /category-selection "Wireless Earbuds" US
 
 # 指定Top20产品分析
-/category-selection "Kids' Drawing Kits" US --limit 20</div>
+/category-selection "Kids' Drawing Kits" US --limit 20</pre>
         </div>
 
         <div style="margin-top: 50px;">
@@ -543,7 +543,7 @@
         <div class="install-card">
             <div class="install-title">2. 配置 MCP 服务器</div>
             <p style="margin-top: 10px; color: var(--secondary-color);">更新 <code>.mcp.json</code> 配置文件：</p>
-            <div class="code-block">{
+            <pre class="code-block">{
   "mcpServers": {
     "sorftime": {
       "type": "streamableHttp",
@@ -551,14 +551,14 @@
       "name": "Sorftime MCP"
     }
   }
-}</div>
+}</pre>
         </div>
 
         <div class="install-card">
             <div class="install-title">3. 克隆项目</div>
             <p style="margin-top: 10px; color: var(--secondary-color);">获取项目代码：</p>
-            <div class="code-block">git clone https://github.com/liangdabiao/amazon-sorftime-research-MCP-skill.git
-cd amazon-sorftime-research-MCP-skill</div>
+            <pre class="code-block">git clone https://github.com/liangdabiao/amazon-sorftime-research-MCP-skill.git
+cd amazon-sorftime-research-MCP-skill</pre>
         </div>
 
         <div class="install-card">
@@ -573,8 +573,8 @@ cd amazon-sorftime-research-MCP-skill</div>
         <div class="install-card">
             <div class="install-title">5. 开始使用</div>
             <p style="margin-top: 10px; color: var(--secondary-color);">在 Claude Code 中调用技能：</p>
-            <div class="code-block">/amazon-analyse B07PWTJ4H1 US
-/category-selection "Wireless Earbuds" US</div>
+            <pre class="code-block">/amazon-analyse B07PWTJ4H1 US
+/category-selection "Wireless Earbuds" US</pre>
         </div>
     </section>
 
@@ -640,7 +640,8 @@ cd amazon-sorftime-research-MCP-skill</div>
     </section>
 
     <!-- 页脚 -->
-    <footer id="contact">
+    <footer class="footer" id="contact">
+        <div class="container">
         <div class="footer-content">
             <div class="footer-section">
                 <h3>关于项目</h3>
@@ -665,6 +666,7 @@ cd amazon-sorftime-research-MCP-skill</div>
         <div class="footer-bottom">
             <p>&copy; 2025 亚马逊选品全维度分析工具. All rights reserved.</p>
         </div>
+            </div>
     </footer>
 
     <script src="script.js"></script>

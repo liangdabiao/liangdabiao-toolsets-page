@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Godogen - AI游戏开发助手 | Claude Code + Godot 4</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #818cf8 0%, #6366f1 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #818cf8;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .skill-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .skill-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .skill-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: #818cf8;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: #6366f1;
+        }
+        .workflow-diagram {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .workflow-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .flow-step {
+            background: linear-gradient(135deg, #818cf8 0%, #6366f1 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .flow-arrow {
+            font-size: 2em;
+            color: #818cf8;
+        }
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid #818cf8;
+        }
+        .category-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #818cf8;
+        }
+        .category-content {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .category-content ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .category-content li {
+            margin-bottom: 8px;
+        }
+        .feature-highlight {
+            background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #818cf8;
+        }
+        .feature-highlight h3 {
+            color: #312e81;
+            margin-bottom: 15px;
+        }
+        .feature-highlight p {
+            color: #3730a3;
+            line-height: 1.8;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        .install-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 4px solid #818cf8;
+        }
+        .install-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #818cf8;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero-stats {
+                gap: 30px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🌐 AI工具集合</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#faq">常见问题</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主视觉区 -->
+    <section class="hero">
+        <div class="hero-badge">Claude Code + Godot 4 + GDScript + Agent Skills</div>
+        <h1>🎯 Godogen - AI游戏开发助手</h1>
+        <p>使用Claude Code构建完整Godot 4项目的技能集。AI pipeline设计架构、生成美术资源、编写代码、截取截图并修复问题。输出真正的Godot 4项目。继承二开自htdt/godogen。</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">8+</span>
+                <span class="stat-label">核心能力</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">AI</span>
+                <span class="stat-label">全自动开发</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">🎮</span>
+                <span class="stat-label">Godot 4项目</span>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/Godogen" class="btn btn-primary" style="background: white; color: #6366f1;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <!-- 项目背景 -->
+    <section class="section">
+        <h2 class="section-title">AI驱动的游戏开发</h2>
+        <p class="section-subtitle">用AI自动化构建完整的Godot 4游戏项目</p>
+        <div class="feature-highlight">
+            <h3>🎮 游戏开发的AI革命</h3>
+            <p>
+                Godogen是一套面向Claude Code的技能集，能够自动化完成Godot 4游戏项目的开发流程。
+                从架构设计、美术资源生成、代码编写到Bug修复，AI pipeline全程参与，
+                最终输出可以直接运行的Godot 4项目。继承自htdt/godogen项目并进行了深度优化和增强。
+            </p>
+        </div>
+    </section>
+
+    <!-- 核心特性 -->
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">8大核心能力，AI自动化游戏开发全流程</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">🎮</div>
+                <h3 class="skill-title">AI生成Godot 4项目</h3>
+                <p class="skill-description">从零开始自动生成完整的Godot 4项目结构，包含场景、脚本、资源配置等所有必要文件</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🏗️</div>
+                <h3 class="skill-title">自动架构设计</h3>
+                <p class="skill-description">AI根据游戏需求自动设计项目架构，规划场景层级、节点组织和模块划分</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎨</div>
+                <h3 class="skill-title">美术资源生成</h3>
+                <p class="skill-description">自动生成游戏所需的2D/3D美术资源，包括精灵图、贴图、粒子效果等视觉素材</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">💻</div>
+                <h3 class="skill-title">代码自动编写</h3>
+                <p class="skill-description">使用GDScript自动编写游戏逻辑代码，包括角色控制、物理系统、UI交互等核心功能</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📸</div>
+                <h3 class="skill-title">截图测试反馈</h3>
+                <p class="skill-description">自动截取游戏运行截图，通过视觉反馈检测渲染问题和UI布局错误</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🐛</div>
+                <h3 class="skill-title">Bug自动修复</h3>
+                <p class="skill-description">分析运行错误和截图反馈，自动定位并修复代码Bug，持续迭代优化项目质量</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🌍</div>
+                <h3 class="skill-title">完整游戏场景</h3>
+                <p class="skill-description">生成包含完整游戏场景的项目，包括主菜单、游戏关卡、UI界面、音效系统等</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🤖</div>
+                <h3 class="skill-title">Claude Code Skills</h3>
+                <p class="skill-description">以Claude Code Skills形式提供，无缝集成到开发工作流中，支持自然语言交互控制</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作流程 -->
+    <section id="workflow" class="section">
+        <h2 class="section-title">工作流程</h2>
+        <p class="section-subtitle">AI自动化游戏开发的完整Pipeline</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">需求描述</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">架构设计</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">资源生成</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">代码编写</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">测试修复</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #818cf8;">Pipeline详解</h3>
+            <div class="skills-grid">
+                <div class="category-card">
+                    <div class="category-title">1. 需求分析与架构设计</div>
+                    <div class="category-content">
+                        AI理解游戏需求描述，自动设计项目架构，规划场景结构和模块划分方案
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">2. 美术资源与场景构建</div>
+                    <div class="category-content">
+                        自动生成所需的美术资源，构建Godot场景文件，配置节点和资源引用
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">3. 代码编写与逻辑实现</div>
+                    <div class="category-content">
+                        使用GDScript编写游戏逻辑代码，实现角色控制、碰撞检测、UI交互等功能
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">4. 测试截图与迭代修复</div>
+                    <div class="category-content">
+                        自动运行项目截图检测问题，根据反馈修复Bug，持续迭代直到项目可正常运行
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 安装配置 -->
+    <section id="install" class="section">
+        <h2 class="section-title">安装与配置</h2>
+        <p class="section-subtitle">快速开始AI游戏开发</p>
+
+        <div class="install-card">
+            <div class="install-title">1. 克隆项目</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">获取Skill代码：</p>
+            <pre class="code-block">git clone https://github.com/liangdabiao/Godogen.git
+cd Godogen</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">2. 安装到Claude Code</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">将Skills安装到Claude Code：</p>
+            <pre class="code-block"># 复制Skills到Claude Code目录
+cp -r skills/ ~/.claude/skills/</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">3. 确保Godot 4已安装</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">安装Godot 4引擎：</p>
+            <pre class="code-block"># 下载并安装Godot 4
+# https://godotengine.org/download
+# 确保godot命令在PATH中可用</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">4. 开始使用</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">在Claude Code中创建游戏项目：</p>
+            <pre class="code-block"># 在Claude Code中描述你的游戏需求
+claude "创建一个2D平台跳跃游戏，包含3个关卡"</pre>
+        </div>
+    </section>
+
+    <!-- 技术栈 -->
+    <section class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">AI + 游戏引擎的完美结合</p>
+        <div class="tech-stack">
+            <div class="tech-item">Claude Code</div>
+            <div class="tech-item">Godot 4</div>
+            <div class="tech-item">GDScript</div>
+            <div class="tech-item">Agent Skills</div>
+            <div class="tech-item">Python</div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section id="faq" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于Godogen的常见疑问</p>
+
+        <div class="category-card">
+            <div class="category-title">Q: 需要有游戏开发经验吗？</div>
+            <div class="category-content">
+                A: 不需要。Godogen设计为让没有游戏开发经验的用户也能通过自然语言描述来创建游戏。当然，了解基本的游戏开发概念会更有帮助。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 支持哪些类型的游戏？</div>
+            <div class="category-content">
+                A: 目前主要支持2D游戏开发，包括平台跳跃、俯视角RPG、弹幕射击等常见类型。3D游戏的支持正在逐步完善中。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 生成的项目可以直接发布吗？</div>
+            <div class="category-content">
+                A: 生成的项目是完整的Godot 4项目，可以在Godot引擎中打开和运行。发布前建议进行进一步的测试和优化。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 需要Claude Code付费版吗？</div>
+            <div class="category-content">
+                A: 需要Claude Code环境。建议使用Claude Pro订阅以获得更好的AI生成质量和更长的上下文支持。
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer" id="contact">
+        <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>使用Claude Code构建完整Godot 4项目的AI技能集，自动化完成游戏开发全流程。继承二开自htdt/godogen。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/Godogen">GitHub 仓库</a></li>
+                    <li><a href="https://github.com/htdt/godogen">原版项目</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Godogen - AI游戏开发助手. All rights reserved.</p>
+        </div>
+            </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 移动端菜单
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

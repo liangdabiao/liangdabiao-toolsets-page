@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI拼豆底稿生成器 | 一键生成拼豆图纸</title>
+    <title>HyperFrames-fix | 一键生成可上传有流量视频</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         .hero {
-            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            background: linear-gradient(135deg, #ec4899 0%, #a855f7 50%, #db2777 100%);
             color: white;
             padding: 100px 20px;
             text-align: center;
@@ -78,7 +78,7 @@
             padding: 30px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             transition: transform 0.3s, box-shadow 0.3s;
-            border-left: 4px solid #f59e0b;
+            border-left: 4px solid #ec4899;
         }
         .skill-card:hover {
             transform: translateY(-5px);
@@ -106,7 +106,7 @@
             margin-top: 30px;
         }
         .tech-item {
-            background: #f59e0b;
+            background: #ec4899;
             color: white;
             padding: 12px 24px;
             border-radius: 25px;
@@ -114,7 +114,7 @@
             transition: background 0.3s;
         }
         .tech-item:hover {
-            background: #d97706;
+            background: #db2777;
         }
         .workflow-diagram {
             background: white;
@@ -132,7 +132,7 @@
             margin: 30px 0;
         }
         .flow-step {
-            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            background: linear-gradient(135deg, #ec4899 0%, #a855f7 100%);
             color: white;
             padding: 20px 30px;
             border-radius: 10px;
@@ -141,7 +141,7 @@
         }
         .flow-arrow {
             font-size: 2em;
-            color: #f59e0b;
+            color: #ec4899;
         }
         .category-card {
             background: white;
@@ -149,13 +149,13 @@
             padding: 30px;
             margin: 20px 0;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border-top: 4px solid #f59e0b;
+            border-top: 4px solid #ec4899;
         }
         .category-title {
             font-size: 1.4em;
             font-weight: bold;
             margin-bottom: 15px;
-            color: #f59e0b;
+            color: #ec4899;
         }
         .category-content {
             color: var(--secondary-color);
@@ -169,18 +169,18 @@
             margin-bottom: 8px;
         }
         .feature-highlight {
-            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
             border-radius: 12px;
             padding: 30px;
             margin: 30px 0;
-            border-left: 4px solid #f59e0b;
+            border-left: 4px solid #ec4899;
         }
         .feature-highlight h3 {
-            color: #92400e;
+            color: #9d174d;
             margin-bottom: 15px;
         }
         .feature-highlight p {
-            color: #78350f;
+            color: #831843;
             line-height: 1.8;
         }
         .code-block {
@@ -198,13 +198,13 @@
             border-radius: 12px;
             padding: 25px;
             margin: 15px 0;
-            border-left: 4px solid #f59e0b;
+            border-left: 4px solid #ec4899;
         }
         .install-title {
             font-size: 1.2em;
             font-weight: bold;
             margin-bottom: 10px;
-            color: #f59e0b;
+            color: #ec4899;
         }
         .comparison-table {
             background: white;
@@ -224,12 +224,29 @@
             border-bottom: 1px solid #e5e7eb;
         }
         .comparison-table th {
-            background: #fef3c7;
-            color: #92400e;
+            background: #fce7f3;
+            color: #9d174d;
             font-weight: bold;
         }
         .comparison-table tr:hover {
-            background: #fffbeb;
+            background: #fdf2f8;
+        }
+        .market-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-left: 4px solid #a855f7;
+        }
+        .market-stat {
+            font-size: 2em;
+            font-weight: bold;
+            color: #ec4899;
+        }
+        .market-label {
+            color: var(--secondary-color);
+            margin-top: 5px;
         }
         @media (max-width: 768px) {
             .hero h1 {
@@ -258,7 +275,7 @@
                 <li><a href="index.html">首页</a></li>
                 <li><a href="#features">核心功能</a></li>
                 <li><a href="#workflow">工作流程</a></li>
-                <li><a href="#comparison">功能对比</a></li>
+                <li><a href="#market">市场数据</a></li>
                 <li><a href="#install">安装配置</a></li>
                 <li><a href="#contact">联系我们</a></li>
             </ul>
@@ -272,25 +289,25 @@
 
     <!-- 主视觉区 -->
     <section class="hero">
-        <div class="hero-badge">Next.js + React + 火山引擎即梦AI</div>
-        <h1>AI拼豆底稿生成器</h1>
-        <p>基于开源项目，增加AI优化功能，专门生成拼豆图纸的网站。解决传统拼豆软件颜色识别不准确、杂色多、手动着色困难等问题，真正实现一键生成拼豆图纸！</p>
+        <div class="hero-badge">HyperFrames + MiniMax TTS + 中文短视频</div>
+        <h1>HyperFrames-fix</h1>
+        <p>一键生成可上传有流量视频。让HyperFrames适应国内需求：流畅的中文语音、中文短视频样式新增(News Flash信息流快消风格)、优化整个生成视频流程。一键完成横版竖版快节奏短视频。</p>
         <div class="hero-stats">
             <div class="stat-item">
-                <span class="stat-number">17+</span>
-                <span class="stat-label">核心功能</span>
+                <span class="stat-number">1键</span>
+                <span class="stat-label">生成视频</span>
             </div>
             <div class="stat-item">
-                <span class="stat-number">5种</span>
-                <span class="stat-label">色板系统</span>
+                <span class="stat-number">100+</span>
+                <span class="stat-label">已发布视频</span>
             </div>
             <div class="stat-item">
-                <span class="stat-number">AI</span>
-                <span class="stat-label">智能优化</span>
+                <span class="stat-number">Vibe</span>
+                <span class="stat-label">Video 创作</span>
             </div>
         </div>
         <div style="margin-top: 40px;">
-            <a href="https://github.com/liangdabiao/perler-beads-ai" class="btn btn-primary" style="background: white; color: #f59e0b;">查看 GitHub</a>
+            <a href="https://github.com/liangdabiao/hyperframes-fix" class="btn btn-primary" style="background: white; color: #ec4899;">查看 GitHub</a>
             <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
         </div>
     </section>
@@ -298,13 +315,13 @@
     <!-- 项目背景 -->
     <section class="section">
         <h2 class="section-title">为什么做这个？</h2>
-        <p class="section-subtitle">市面上的拼豆软件差强人意，需要AI来改变</p>
+        <p class="section-subtitle">让所有人都可以 Vibe Video，一个人一天可以生产100个不错的视频</p>
         <div class="feature-highlight">
-            <h3>🧵 传统拼豆软件的痛点</h3>
+            <h3>视频创作的痛点</h3>
             <p>
-                在拼豆创作过程中，传统软件存在诸多问题：颜色识别不准确、灰色毛状边界线、
-                无法自适应合并同色系颜色、手动着色困难、无法精准选择颜色、无法给出采购清单、
-                限制图片导出和打印。这些问题严重影响了拼豆创作的效率和体验。
+                传统视频制作流程繁琐：需要撰写脚本、录制配音、设计排版、剪辑合成，耗时耗力。
+                HyperFrames-fix 将这一切自动化，随便丢给一个文章、一个doc，就能制作视频。
+                基于MiniMax的流畅中文语音，充值10块就够用，配合信息流快消风格，让AI帮你批量生产有流量有转化的短视频。
             </p>
         </div>
     </section>
@@ -312,258 +329,213 @@
     <!-- 核心特性 -->
     <section id="features" class="section" style="background: #f8f9fa;">
         <h2 class="section-title">核心功能</h2>
-        <p class="section-subtitle">17项核心功能，从底稿生成到专心拼豆的全流程支持</p>
+        <p class="section-subtitle">8大核心功能，从内容输入到视频发布的全流程支持</p>
         <div class="skills-grid">
             <div class="skill-card">
-                <div class="skill-icon">🤖</div>
-                <h3 class="skill-title">AI优化功能</h3>
-                <p class="skill-description">基于火山引擎即梦AI 4.0模型，智能转换图片为适合拼豆的像素艺术风格，支持Chibi画风、白底背景、16位复古游戏美学</p>
+                <div class="skill-icon">🎙️</div>
+                <h3 class="skill-title">流畅中文语音</h3>
+                <p class="skill-description">基于MiniMax TTS引擎，生成自然流畅的中文语音旁白。充值10元即可大量使用，性价比极高，告别生硬的机器发音。</p>
             </div>
             <div class="skill-card">
-                <div class="skill-icon">🎨</div>
-                <h3 class="skill-title">智能颜色合并</h3>
-                <p class="skill-description">自动合并邻近相似颜色，使用BFS算法形成区域，将整个区域统一为出现次数最多的色号，减少颜色数量和颗粒</p>
+                <div class="skill-icon">📱</div>
+                <h3 class="skill-title">中文短视频样式</h3>
+                <p class="skill-description">新增News Flash信息流快消风格，专为中文短视频平台优化。支持横版、竖版多种比例，适配抖音、快手、小红书等平台。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">⚡</div>
+                <h3 class="skill-title">一键生成流程</h3>
+                <p class="skill-description">优化整个视频生成流程，从内容解析到视频输出一步到位。随便丢一个文章或doc，AI自动帮你下载、排版、设计、生成。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📰</div>
+                <h3 class="skill-title">公众号文章自动解析</h3>
+                <p class="skill-description">直接发送微信公众号文章链接给AI，自动下载文章内容、图片，设计排版和对话文案，全程自动化完成。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎬</div>
+                <h3 class="skill-title">横版竖版支持</h3>
+                <p class="skill-description">一键切换横版(16:9)和竖版(9:16)视频，适配不同平台的发布需求。快节奏短视频风格，抓住观众注意力。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🤖</div>
+                <h3 class="skill-title">Vibe Video 模式</h3>
+                <p class="skill-description">真正的AI视频创作，你只需描述想要的效果，AI就能生成对应的视频内容。不满意的直接告诉AI修改，像聊天一样做视频。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🖼️</div>
+                <h3 class="skill-title">Pexels素材集成</h3>
+                <p class="skill-description">集成Pexels图库API，自动为视频匹配合适的高质量图片素材，丰富视频视觉表现力，无需手动搜索素材。</p>
             </div>
             <div class="skill-card">
                 <div class="skill-icon">📊</div>
-                <h3 class="skill-title">多种解析风格</h3>
-                <p class="skill-description">支持不同池化逻辑（局部max pooling），适应各类图片风格，避免灰色毛边问题</p>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">🌈</div>
-                <h3 class="skill-title">多色板支持</h3>
-                <p class="skill-description">MARD、COCO、漫漫、盼盼、咪小窝等多种色号系统，支持自定义调色板编辑器</p>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">✂️</div>
-                <h3 class="skill-title">背景自动移除</h3>
-                <p class="skill-description">洪水填充算法自动识别并移除背景，统计和下载时忽略外部背景单元格</p>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">🖌️</div>
-                <h3 class="skill-title">手动编辑工具</h3>
-                <p class="skill-description">着色模式、橡皮擦功能、颜色替换、放大镜工具，精确控制每个像素</p>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">📁</div>
-                <h3 class="skill-title">导出功能</h3>
-                <p class="skill-description">带Key图纸（PNG格式）、颜色统计图、采购清单（CSV格式），多种导出选项</p>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">🔍</div>
-                <h3 class="skill-title">实时预览</h3>
-                <p class="skill-description">悬停/长停查看色号信息，放大镜工具查看细节，即时显示处理后的像素画预览</p>
+                <h3 class="skill-title">批量生产与流量优化</h3>
+                <p class="skill-description">支持批量生成视频，一个人一天可以生产100个不错的视频。内容经过优化，有流量有转化，适合内容创作者和营销团队。</p>
             </div>
         </div>
     </section>
 
     <!-- 工作流程 -->
     <section id="workflow" class="section">
-        <h2 class="section-title">AI优化流程</h2>
-        <p class="section-subtitle">即梦AI模型实现图片智能优化</p>
+        <h2 class="section-title">工作流程</h2>
+        <p class="section-subtitle">从输入到成品的自动化视频生成流程</p>
         <div class="workflow-diagram">
             <div class="workflow-flow">
-                <div class="flow-step">上传图片</div>
+                <div class="flow-step">输入内容</div>
                 <div class="flow-arrow">→</div>
-                <div class="flow-step">图像预处理</div>
+                <div class="flow-step">AI解析处理</div>
                 <div class="flow-arrow">→</div>
-                <div class="flow-step">AI模型调用</div>
+                <div class="flow-step">排版设计</div>
                 <div class="flow-arrow">→</div>
-                <div class="flow-step">结果处理</div>
+                <div class="flow-step">语音生成</div>
                 <div class="flow-arrow">→</div>
-                <div class="flow-step">应用结果</div>
+                <div class="flow-step">视频输出</div>
             </div>
         </div>
 
         <div style="margin-top: 50px;">
-            <h3 style="text-align: center; margin-bottom: 30px; color: #f59e0b;">核心算法原理</h3>
+            <h3 style="text-align: center; margin-bottom: 30px; color: #ec4899;">核心流程详解</h3>
             <div class="skills-grid">
                 <div class="category-card">
-                    <div class="category-title">1. 初始颜色映射</div>
+                    <div class="category-title">1. 内容输入</div>
                     <div class="category-content">
-                        使用局部max pooling，找到像素频率最高的RGB值，用欧氏距离查找最近的颜色
+                        支持多种输入方式：直接输入文本、发送微信公众号文章链接、上传doc文档。AI自动识别内容类型并进行解析。
                     </div>
                 </div>
                 <div class="category-card">
-                    <div class="category-title">2. 区域颜色合并</div>
+                    <div class="category-title">2. AI智能处理</div>
                     <div class="category-content">
-                        BFS查找欧氏距离小于阈值的邻近单元格，形成区域，统一设置为出现次数最多的色号
+                        AI自动下载文章内容、图片素材，分析核心观点，设计对话文案，规划视频页面排版和信息展示节奏。
                     </div>
                 </div>
                 <div class="category-card">
-                    <div class="category-title">3. 背景移除</div>
+                    <div class="category-title">3. 语音合成</div>
                     <div class="category-content">
-                        从边界开始洪水填充，标记所有连通的背景色单元格为"外部"
+                        基于MiniMax TTS生成流畅的中文语音旁白，语音自然度接近真人水平，成本极低(10元即可大量使用)。
                     </div>
                 </div>
                 <div class="category-card">
-                    <div class="category-title">4. 颜色排除与重映射</div>
+                    <div class="category-title">4. 视频渲染输出</div>
                     <div class="category-content">
-                        排除颜色后，在已存在且未被排除的颜色中智能重映射到邻近色
+                        使用HyperFrames引擎渲染最终视频，支持信息流快消风格，输出横版或竖版视频，可直接上传至各短视频平台。
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 功能对比 -->
-    <section id="comparison" class="section" style="background: #f8f9fa;">
-        <h2 class="section-title">功能对比</h2>
-        <p class="section-subtitle">与传统拼豆软件的对比</p>
+    <!-- 市场数据 -->
+    <section id="market" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">市场数据</h2>
+        <p class="section-subtitle">AI内容创作正在爆发式增长</p>
 
-        <div class="comparison-table">
-            <table>
-                <thead>
-                    <tr>
-                        <th>功能</th>
-                        <th>传统软件</th>
-                        <th>AI拼豆生成器</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>颜色识别</td>
-                        <td>不准确，灰色毛边</td>
-                        <td>✅ 准确，max pooling</td>
-                    </tr>
-                    <tr>
-                        <td>颜色合并</td>
-                        <td>手动操作</td>
-                        <td>✅ 自动合并相似色</td>
-                    </tr>
-                    <tr>
-                        <td>背景移除</td>
-                        <td>不支持</td>
-                        <td>✅ 洪水填充自动移除</td>
-                    </tr>
-                    <tr>
-                        <td>手动编辑</td>
-                        <td>困难，无法精准选择</td>
-                        <td>✅ 多种编辑工具</td>
-                    </tr>
-                    <tr>
-                        <td>采购清单</td>
-                        <td>不支持</td>
-                        <td>✅ CSV格式导出</td>
-                    </tr>
-                    <tr>
-                        <td>AI优化</td>
-                        <td>不支持</td>
-                        <td>✅ 即梦AI智能转换</td>
-                    </tr>
-                    <tr>
-                        <td>多色板支持</td>
-                        <td>有限</td>
-                        <td>✅ 5种色号系统</td>
-                    </tr>
-                    <tr>
-                        <td>导出限制</td>
-                        <td>限制导出和打印</td>
-                        <td>✅ 无限制导出</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="skills-grid">
+            <div class="market-card">
+                <div class="market-stat">78%</div>
+                <div class="market-label">Content Marketing Institute 2026报告：78%的营销团队面临"内容产能不足"问题，平均每个品牌每月需要产出120+条多平台内容</div>
+            </div>
+            <div class="market-card">
+                <div class="market-stat">67%</div>
+                <div class="market-label">小红书官方数据：2026年Q1，品牌方对AI生成内容的接受度从2024年的31%提升至67%</div>
+            </div>
+            <div class="market-card">
+                <div class="market-stat">400%</div>
+                <div class="market-label">Canva《2026设计趋势报告》：使用AI设计工具的营销团队内容产出效率提升400%</div>
+            </div>
         </div>
     </section>
 
     <!-- 安装配置 -->
     <section id="install" class="section">
         <h2 class="section-title">安装与配置</h2>
-        <p class="section-subtitle">简单几步，开始拼豆创作之旅</p>
+        <p class="section-subtitle">简单几步，开始AI视频创作之旅</p>
 
         <div class="install-card">
-            <div class="install-title">1. 克隆项目</div>
-            <p style="margin-top: 10px; color: var(--secondary-color);">获取项目代码：</p>
-            <pre class="code-block">git clone https://github.com/liangdabiao/perler-beads-ai.git
-cd perler-beads-ai</pre>
+            <div class="install-title">1. 安装 HyperFrames</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">首先安装 HyperFrames 基础环境：</p>
+            <p style="margin-top: 10px; color: var(--secondary-color);">参考安装指南：<a href="https://mp.weixin.qq.com/s/lZmiPoqHbxAWJq7PWUpKIg" style="color: #ec4899;">HyperFrames 安装教程</a></p>
         </div>
 
         <div class="install-card">
-            <div class="install-title">2. 安装依赖</div>
-            <p style="margin-top: 10px; color: var(--secondary-color);">使用npm、yarn或pnpm安装：</p>
-            <pre class="code-block">npm install
-# 或
-yarn install
-# 或
-pnpm install</pre>
+            <div class="install-title">2. 克隆项目并添加 references</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">获取 HyperFrames-fix 项目代码：</p>
+            <pre class="code-block">git clone https://github.com/liangdabiao/hyperframes-fix.git</pre>
+            <p style="margin-top: 10px; color: var(--secondary-color);">将项目中的 references 文件添加到你安装的 HyperFrames skill 目录中，然后告知AI情况，让AI补充进 HyperFrames skill。</p>
         </div>
 
         <div class="install-card">
-            <div class="install-title">3. 启动开发服务器</div>
-            <p style="margin-top: 10px; color: var(--secondary-color);">启动本地开发环境：</p>
-            <pre class="code-block">npm run dev
-# 或
-yarn dev
-# 或
-pnpm dev</pre>
+            <div class="install-title">3. 配置环境变量</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">编辑 .env 文件，配置必要的 API Key：</p>
+            <pre class="code-block"># .env 配置
+MINIMAX_KEY=你的MiniMax_API_Key
+PEXELS_API_KEYS=你的Pexels_API_Key</pre>
         </div>
 
         <div class="install-card">
-            <div class="install-title">4. 访问应用</div>
-            <p style="margin-top: 10px; color: var(--secondary-color);">在浏览器中打开：</p>
-            <pre class="code-block">http://localhost:3000</pre>
-        </div>
-
-        <div class="install-card">
-            <div class="install-title">5. 配置AI功能（可选）</div>
-            <p style="margin-top: 10px; color: var(--secondary-color);">
-                配置火山引擎即梦AI API密钥，使用AI优化功能。详见项目文档。
-            </p>
+            <div class="install-title">4. 开始制作视频</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">配置完成后，直接发送视频制作需求：</p>
+            <pre class="code-block">视频制作需求：
+请阅读根目录的 #播客脚本.md，目的是基于内容总结核心观点，
+生成信息图，利用 hyperframes skill 生成流畅的视频。
+要求：
+1. 带语音的视频
+2. 页面大概20个左右，内容充实
+3. 手机尺寸版本
+4. 信息流快消风格</pre>
         </div>
     </section>
 
     <!-- 技术栈 -->
     <section class="section">
         <h2 class="section-title">技术栈</h2>
-        <p class="section-subtitle">基于现代Web技术和AI构建</p>
+        <p class="section-subtitle">基于 HyperFrames 和 AI 技术构建</p>
         <div class="tech-stack">
-            <div class="tech-item">Next.js</div>
-            <div class="tech-item">React</div>
-            <div class="tech-item">TypeScript</div>
-            <div class="tech-item">Tailwind CSS</div>
-            <div class="tech-item">火山引擎即梦AI</div>
-            <div class="tech-item">Canvas API</div>
-            <div class="tech-item">BFS算法</div>
+            <div class="tech-item">HyperFrames</div>
+            <div class="tech-item">MiniMax TTS</div>
+            <div class="tech-item">Pexels API</div>
+            <div class="tech-item">AI Agent</div>
+            <div class="tech-item">Python</div>
+            <div class="tech-item">视频渲染引擎</div>
+            <div class="tech-item">Markdown 解析</div>
         </div>
     </section>
 
     <!-- 常见问题 -->
     <section class="section" style="background: #f8f9fa;">
         <h2 class="section-title">常见问题</h2>
-        <p class="section-subtitle">关于AI拼豆底稿生成器的常见疑问</p>
+        <p class="section-subtitle">关于 HyperFrames-fix 的常见疑问</p>
 
         <div class="category-card">
-            <div class="category-title">Q: AI优化功能需要付费吗？</div>
+            <div class="category-title">Q: MiniMax语音需要付费吗？</div>
             <div class="category-content">
-                A: AI优化基于火山引擎即梦AI API，需要申请API密钥。具体费用请参考火山引擎官方定价。
+                A: 需要，但成本极低。充值10元即可大量使用，生成的中文语音质量高、流畅自然，性价比非常出色。
             </div>
         </div>
 
         <div class="category-card">
-            <div class="category-title">Q: 支持哪些图片格式？</div>
+            <div class="category-title">Q: 如何安装 HyperFrames-fix？</div>
             <div class="category-content">
-                A: 支持常见的JPG、PNG等图片格式，可直接拖放或点击选择上传。
+                A: 首先安装好 HyperFrames 基础环境，然后将本项目的 references 文件添加到 HyperFrames skill 目录中，告知AI让其自动补充配置即可。
             </div>
         </div>
 
         <div class="category-card">
-            <div class="category-title">Q: 如何自定义调色板？</div>
+            <div class="category-title">Q: 支持哪些内容输入格式？</div>
             <div class="category-content">
-                A: 网站提供自定义调色板编辑器，可以创建和编辑自己的调色板，支持添加、删除、修改颜色。
+                A: 支持直接输入文本、发送微信公众号文章链接、上传doc文档等多种格式。AI会自动识别并处理内容，无需手动转换。
             </div>
         </div>
 
         <div class="category-card">
-            <div class="category-title">Q: 导出的图纸可以用于商业用途吗？</div>
+            <div class="category-title">Q: 生成的视频可以上传到哪些平台？</div>
             <div class="category-content">
-                A: 可以，生成的图纸完全属于你，可以自由使用和分享。
+                A: 支持横版和竖版视频输出，可直接上传到抖音、快手、小红书、B站、微信视频号等主流短视频平台。
             </div>
         </div>
 
         <div class="category-card">
-            <div class="category-title">Q: 如何处理杂色问题？</div>
+            <div class="category-title">Q: 一天真的能生产100个视频吗？</div>
             <div class="category-content">
-                A: 系统提供颜色合并功能，可以自动合并相似颜色。同时支持手动排除特定颜色，系统会智能重映射到邻近色。
+                A: 是的，HyperFrames-fix 的自动化程度很高，大部分流程由AI完成。只需提供内容源，AI就能批量处理并生成视频，大幅提升产能。
             </div>
         </div>
     </section>
@@ -574,15 +546,15 @@ pnpm dev</pre>
         <div class="footer-content">
             <div class="footer-section">
                 <h3>关于项目</h3>
-                <p>基于开源项目Zippland/perler-beads，增加AI优化功能，专门生成拼豆图纸的网站。解决传统拼豆软件的诸多痛点。</p>
+                <p>HyperFrames-fix 让 HyperFrames 适应国内需求，实现一键生成可上传有流量视频。流畅中文语音、中文短视频样式、优化视频生成流程，让所有人都可以 Vibe Video。</p>
             </div>
             <div class="footer-section">
                 <h3>快速链接</h3>
                 <ul>
                     <li><a href="index.html">返回首页</a></li>
-                    <li><a href="https://github.com/liangdabiao/perler-beads-ai">GitHub 仓库</a></li>
-                    <li><a href="https://linux.do/t/topic/1660924">项目介绍帖</a></li>
-                    <li><a href="https://github.com/Zippland/perler-beads">原始开源项目</a></li>
+                    <li><a href="https://github.com/liangdabiao/hyperframes-fix">GitHub 仓库</a></li>
+                    <li><a href="https://linux.do/t/topic/2092060">项目介绍帖</a></li>
+                    <li><a href="https://www.bilibili.com/video/BV1fcRbB2Esa/">Demo 视频</a></li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -592,7 +564,7 @@ pnpm dev</pre>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 AI拼豆底稿生成器. All rights reserved.</p>
+            <p>&copy; 2025 HyperFrames-fix. All rights reserved.</p>
         </div>
             </div>
     </footer>

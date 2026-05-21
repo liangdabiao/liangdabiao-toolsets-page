@@ -236,11 +236,11 @@
                         <div class="api-body">
                             <h4>上传简历</h4>
                             <p>上传PDF简历文件进行处理和索引</p>
-                            <div class="code-block">
+                            <pre class="code-block">
                                 <pre><code>curl -X POST "http://localhost:8000/api/v1/resumes" \
   -H "Content-Type: multipart/form-data" \
   -F "file=@resume.pdf"</code></pre>
-                            </div>
+                            </pre>
                         </div>
                     </div>
                     <div class="api-card">
@@ -251,13 +251,13 @@
                         <div class="api-body">
                             <h4>提交筛选查询</h4>
                             <p>用自然语言描述招聘需求</p>
-                            <div class="code-block">
+                            <pre class="code-block">
                                 <pre><code>curl -X POST "http://localhost:8000/api/v1/queries" \
   -H "Content-Type: application/json" \
   -d '{
     "query_text": "寻找3年以上经验的Python工程师"
   }'</code></pre>
-                            </div>
+                            </pre>
                         </div>
                     </div>
                     <div class="api-card">
@@ -268,9 +268,9 @@
                         <div class="api-body">
                             <h4>获取筛选结果</h4>
                             <p>根据查询ID获取筛选结果和候选人列表</p>
-                            <div class="code-block">
+                            <pre class="code-block">
                                 <pre><code>curl -X GET "http://localhost:8000/api/v1/results/q1w2e3r4"</code></pre>
-                            </div>
+                            </pre>
                         </div>
                     </div>
                     <div class="api-card">
@@ -281,16 +281,16 @@
                         <div class="api-body">
                             <h4>获取简历详情</h4>
                             <p>根据简历ID获取详细信息和解析结果</p>
-                            <div class="code-block">
+                            <pre class="code-block">
                                 <pre><code>curl -X GET "http://localhost:8000/api/v1/resumes/a1b2c3d4"</code></pre>
-                            </div>
+                            </pre>
                         </div>
                     </div>
                 </div>
                 <div class="api-response">
                     <div class="response-card">
                         <h3>API响应示例</h3>
-                        <div class="code-block">
+                        <pre class="code-block">
                             <pre><code>{
   "query_id": "q1w2e3r4-t5y6-7890-u1i2-o3p4q5r6s7t8",
   "total_candidates": 3,
@@ -311,7 +311,7 @@
     }
   ]
 }</code></pre>
-                        </div>
+                        </pre>
                     </div>
                 </div>
             </div>
@@ -336,48 +336,48 @@
                             <div class="step-item">
                                 <div class="step-number">1</div>
                                 <h4>克隆项目</h4>
-                                <div class="code-block">
+                                <pre class="code-block">
                                     <pre><code>git clone https://github.com/liangdabiao/LLM-Agent-Resume.git
 cd LLM-Agent-Resume</code></pre>
-                                </div>
+                                </pre>
                             </div>
                             <div class="step-item">
                                 <div class="step-number">2</div>
                                 <h4>创建虚拟环境</h4>
-                                <div class="code-block">
+                                <pre class="code-block">
                                     <pre><code>python -m venv venv
 # Windows
 venv\Scripts\activate
 # macOS/Linux
 source venv/bin/activate</code></pre>
-                                </div>
+                                </pre>
                             </div>
                             <div class="step-item">
                                 <div class="step-number">3</div>
                                 <h4>安装依赖</h4>
-                                <div class="code-block">
+                                <pre class="code-block">
                                     <pre><code>pip install -r requirements.txt</code></pre>
-                                </div>
+                                </pre>
                             </div>
                             <div class="step-item">
                                 <div class="step-number">4</div>
                                 <h4>配置环境变量</h4>
-                                <div class="code-block">
+                                <pre class="code-block">
                                     <pre><code>cp .env.example .env
 # 编辑 .env 文件，添加 OpenAI API Key
 OPENAI_API_KEY=your_openai_api_key</code></pre>
-                                </div>
+                                </pre>
                             </div>
                             <div class="step-item">
                                 <div class="step-number">5</div>
                                 <h4>启动应用</h4>
-                                <div class="code-block">
+                                <pre class="code-block">
                                     <pre><code># 开发模式
 uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 
 # 生产模式
 uvicorn app.main:app --host 0.0.0.0 --port 8000</code></pre>
-                                </div>
+                                </pre>
                             </div>
                         </div>
                     </div>
@@ -390,14 +390,14 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000</code></pre>
                             <div class="step-item">
                                 <div class="step-number">1</div>
                                 <h4>构建镜像</h4>
-                                <div class="code-block">
+                                <pre class="code-block">
                                     <pre><code>docker build -t resume-screening .</code></pre>
-                                </div>
+                                </pre>
                             </div>
                             <div class="step-item">
                                 <div class="step-number">2</div>
                                 <h4>运行容器</h4>
-                                <div class="code-block">
+                                <pre class="code-block">
                                     <pre><code>docker run -d \
   --name resume-screening \
   -p 8000:8000 \
@@ -406,7 +406,7 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000</code></pre>
   -v $(pwd)/chroma_db:/app/chroma_db \
   --env-file .env \
   resume-screening</code></pre>
-                                </div>
+                                </pre>
                             </div>
                         </div>
                     </div>

@@ -2,36 +2,8 @@
 
 ## 项目概述
 
-这是一个展示多个AI工具产品的落地页网站，基于Cloudflare Workers部署。项目包含主页面和10个子页面，每个子页面详细介绍一个AI工具产品。
-
-## 常用开发命令
-
-### 本地开发
-```bash
-# 启动本地开发服务器
-wrangler dev
-
-# 指定端口启动
-wrangler dev --port 8080
-```
-
-### 部署
-```bash
-# 部署到Cloudflare Workers
-wrangler deploy
-
-# 部署到特定环境
-wrangler deploy --env production
-```
-
-### 项目管理
-```bash
-# 预览部署配置
-wrangler tail
-
-# 查看项目配置
-wrangler whoami
-```
+这是一个展示多个AI工具产品的落地页网站，基于Cloudflare page部署。项目包含主页面和10个子页面，每个子页面详细介绍一个AI工具产品。
+ 
 
 ## 代码架构
 
@@ -206,18 +178,6 @@ const staticFiles = {
    - 填写联系表单测试
    - 确认微信通知接收
 
-### 3. 部署流程
-
-1. **Cloudflare Workers部署** (DEPLOYMENT.md:55-75)
-   ```bash
-   wrangler login
-   wrangler deploy
-   ```
-
-2. **静态托管部署** (DEPLOYMENT.md:29-53)
-   - GitHub Pages
-   - Vercel
-   - Netlify
 
 ## 代码模式
 
@@ -262,11 +222,63 @@ if (productsGrid) {
 - **CrewAI**: 多智能体协作
 - **LangGraph**: RAG客服系统
 
-### 数据存储
-- **MongoDB**: 主要数据存储
-- **PostgreSQL**: 关系型数据
-- **Chroma**: 向量数据库
-- **Milvus**: 大规模向量搜索
+
+## 添加新产品工作流程
+
+### 步骤 1：获取项目信息
+1. 从 GitHub 仓库页面获取仓库名称和描述
+2. 使用 Kimi WebBridge 或 Web Reader 读取 README 内容
+3. 提取核心功能、技术栈、使用场景等信息
+
+### 步骤 2：创建产品 HTML 页面
+1. 复制 `perler-beads-ai.html` 作为模板
+2. 替换以下内容：
+   - `<title>` 标签
+   - Hero 区域（标题、描述、徽章、统计数据）
+   - 核心功能卡片
+   - 工作流程
+   - 安装步骤
+   - 技术栈标签
+   - 页脚链接
+3. **代码块必须使用 `<pre class="code-block">` 标签**（不是 `<div>`）
+4. **Footer 必须有 `class="footer"`** 并用 `<div class="container">` 包裹内容
+5. 修改主色调：CSS 中的渐变色、border-color 等
+
+### 步骤 3：更新 script.js（3 处修改）
+
+#### 3.1 添加产品数据到 products 数组
+```javascript
+{
+    id: 'product-id',
+    name: '产品名称',
+    description: '产品描述',
+    icon: '🎭',
+    tags: ['标签1', '标签2'],
+    githubUrl: 'https://github.com/liangdabiao/repo-name',
+    features: ['功能1', '功能2', '功能3'],
+    techStack: ['技术1', '技术2'],
+    category: 'AI工具',  // AI工具|商业工具|企业AI|基础设施|金融科技|教育工具|HR工具|求职工具|数据分析|API工具
+    difficulty: '中等'   // 初级|中等|进阶|高级
+}
+```
+
+#### 3.2 添加页面路由到 getProductPageUrl
+```javascript
+'product-id': './product-id.html'
+```
+
+#### 3.3 添加跳转逻辑到 useProduct
+```javascript
+if (productId === 'product-id') {
+    window.location.href = '/product-id.html';
+    return;
+}
+```
+
+### 注意事项
+- Footer 模板：`<footer class="footer" id="contact"><div class="container">...内容...</div></footer>`
+- 代码块模板：`<pre class="code-block">代码内容</pre>`
+- 每个产品的 CSS 主色调要不同，避免视觉重复
 
 ## 故障排除
 

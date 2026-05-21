@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon深度分析Skill | 中国卖家数据分析利器</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #ea580c;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .skill-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .skill-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .skill-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: #ea580c;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: #c2410c;
+        }
+        .workflow-diagram {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .workflow-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .flow-step {
+            background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .flow-arrow {
+            font-size: 2em;
+            color: #ea580c;
+        }
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid #ea580c;
+        }
+        .category-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #ea580c;
+        }
+        .category-content {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .category-content ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .category-content li {
+            margin-bottom: 8px;
+        }
+        .feature-highlight {
+            background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #ea580c;
+        }
+        .feature-highlight h3 {
+            color: #7c2d12;
+            margin-bottom: 15px;
+        }
+        .feature-highlight p {
+            color: #9a3412;
+            line-height: 1.8;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        .install-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 4px solid #ea580c;
+        }
+        .install-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #ea580c;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero-stats {
+                gap: 30px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🌐 AI工具集合</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#faq">常见问题</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主视觉区 -->
+    <section class="hero">
+        <div class="hero-badge">Claude Code + Agent Skill + Amazon API</div>
+        <h1>🛍️ Amazon深度分析Skill</h1>
+        <p>在nexscope-ai/Amazon-Skills基础上二次开发的Claude Code Skill，适合中国卖家更加深度、更加方便地进行数据分析。专为跨境电商中国卖家量身打造的分析工具。</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">8+</span>
+                <span class="stat-label">分析维度</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">CN</span>
+                <span class="stat-label">中国卖家优化</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">AI</span>
+                <span class="stat-label">智能分析</span>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/Amazon-Skills-Liang" class="btn btn-primary" style="background: white; color: #c2410c;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <!-- 项目背景 -->
+    <section class="section">
+        <h2 class="section-title">为什么需要这个工具？</h2>
+        <p class="section-subtitle">中国卖家专属的Amazon数据分析方案</p>
+        <div class="feature-highlight">
+            <h3>📊 跨境电商数据分析的痛点</h3>
+            <p>
+                中国Amazon卖家在进行数据分析时，常常面临工具不适配、分析不够深入、操作不够便捷等问题。
+                本工具基于开源项目nexscope-ai/Amazon-Skills进行二次开发，针对中国卖家的使用习惯和业务需求进行了深度优化，
+                集成到Claude Code中，让数据分析更加高效、更加智能。
+            </p>
+        </div>
+    </section>
+
+    <!-- 核心特性 -->
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">8大分析功能，全方位助力Amazon卖家决策</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">📊</div>
+                <h3 class="skill-title">深度数据分析</h3>
+                <p class="skill-description">对Amazon商品数据进行多维度深度分析，挖掘数据背后的商业价值和市场机会</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🇨🇳</div>
+                <h3 class="skill-title">中国卖家优化</h3>
+                <p class="skill-description">针对中国卖家的使用习惯和业务场景进行专项优化，界面友好，操作便捷</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔍</div>
+                <h3 class="skill-title">产品调研分析</h3>
+                <p class="skill-description">全面的产品调研能力，分析产品评分、销量趋势、市场容量、竞争程度等关键指标</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">⚔️</div>
+                <h3 class="skill-title">竞品对比</h3>
+                <p class="skill-description">多维度竞品对比分析，了解竞争对手的定价策略、产品特点、市场表现等信息</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📈</div>
+                <h3 class="skill-title">市场趋势追踪</h3>
+                <p class="skill-description">实时追踪市场趋势变化，识别热门品类和新兴需求，把握市场先机</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔑</div>
+                <h3 class="skill-title">关键词研究</h3>
+                <p class="skill-description">深度关键词分析和挖掘，优化产品Listing的关键词策略，提升搜索排名</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">💬</div>
+                <h3 class="skill-title">评论分析</h3>
+                <p class="skill-description">智能分析用户评论，提取关键信息和情感倾向，了解用户真实需求和产品改进方向</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">💰</div>
+                <h3 class="skill-title">利润计算</h3>
+                <p class="skill-description">精准的利润计算工具，综合考虑各项成本和费用，帮助卖家做出正确的定价决策</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作流程 -->
+    <section id="workflow" class="section">
+        <h2 class="section-title">工作流程</h2>
+        <p class="section-subtitle">从数据获取到决策支持的完整分析链路</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">安装Skill</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">配置参数</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">数据采集</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">AI分析</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">报告输出</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #ea580c;">分析流程详解</h3>
+            <div class="skills-grid">
+                <div class="category-card">
+                    <div class="category-title">1. 安装与配置</div>
+                    <div class="category-content">
+                        将Skill安装到Claude Code中，配置Amazon API密钥和相关参数，即可开始使用
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">2. 数据自动采集</div>
+                    <div class="category-content">
+                        通过Amazon API自动采集商品、评论、销量等数据，支持批量采集和定时更新
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">3. AI智能分析</div>
+                    <div class="category-content">
+                        Claude AI对采集的数据进行多维度分析，生成可执行的商业洞察和建议
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">4. 报告与决策</div>
+                    <div class="category-content">
+                        输出结构化的分析报告，包含数据图表、趋势预测和策略建议，辅助决策
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 安装配置 -->
+    <section id="install" class="section">
+        <h2 class="section-title">安装与配置</h2>
+        <p class="section-subtitle">快速集成到Claude Code，开始数据分析</p>
+
+        <div class="install-card">
+            <div class="install-title">1. 克隆项目</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">获取Skill代码：</p>
+            <pre class="code-block">git clone https://github.com/liangdabiao/Amazon-Skills-Liang.git
+cd Amazon-Skills-Liang</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">2. 安装到Claude Code</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">将Skill安装到Claude Code环境中：</p>
+            <pre class="code-block"># 复制Skill文件到Claude Code Skills目录
+cp -r skills/ ~/.claude/skills/</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">3. 配置API密钥</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">配置Amazon API相关参数：</p>
+            <pre class="code-block"># 编辑配置文件，填入你的API密钥
+cp config.example.json config.json
+# 编辑 config.json 填入相关配置</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">4. 开始使用</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">在Claude Code中使用Skill：</p>
+            <pre class="code-block"># 在Claude Code中直接调用分析命令
+claude "分析这个产品的市场竞争力: B0XXXXXXXXX"</pre>
+        </div>
+    </section>
+
+    <!-- 技术栈 -->
+    <section class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">基于AI Agent架构的电商分析工具</p>
+        <div class="tech-stack">
+            <div class="tech-item">Claude Code</div>
+            <div class="tech-item">Agent Skill</div>
+            <div class="tech-item">Amazon API</div>
+            <div class="tech-item">Python</div>
+            <div class="tech-item">数据分析</div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section id="faq" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于Amazon深度分析Skill的常见疑问</p>
+
+        <div class="category-card">
+            <div class="category-title">Q: 需要Amazon卖家账号才能使用吗？</div>
+            <div class="category-content">
+                A: 部分功能需要Amazon API密钥，建议使用Amazon Seller Central账号获取API权限。基础分析功能无需账号也可使用。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 与原版nexscope-ai/Amazon-Skills有什么区别？</div>
+            <div class="category-content">
+                A: 在原版基础上增加了中国卖家专属优化、更深入的数据分析维度、评论情感分析、利润计算等功能，更适合中国卖家的使用场景。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 支持哪些Amazon站点？</div>
+            <div class="category-content">
+                A: 目前主要支持Amazon美国站、欧洲站和日本站的分析，后续会逐步增加更多站点的支持。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 数据分析的准确度如何？</div>
+            <div class="category-content">
+                A: 数据来源于Amazon官方API和公开数据，结合AI分析能力，提供高准确度的分析结果和商业建议。
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer" id="contact">
+        <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>基于nexscope-ai/Amazon-Skills二次开发的Claude Code Skill，专为跨境电商中国卖家打造，提供更深度的数据分析能力。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/Amazon-Skills-Liang">GitHub 仓库</a></li>
+                    <li><a href="https://github.com/nexscope-ai/Amazon-Skills">原版项目</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Amazon深度分析Skill. All rights reserved.</p>
+        </div>
+            </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 移动端菜单
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Everything Skills工具箱 | Claude Code Skills合集</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #14b8a6;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .skill-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .skill-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .skill-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: #14b8a6;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: #0d9488;
+        }
+        .workflow-diagram {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .workflow-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .flow-step {
+            background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .flow-arrow {
+            font-size: 2em;
+            color: #14b8a6;
+        }
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid #14b8a6;
+        }
+        .category-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #14b8a6;
+        }
+        .category-content {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .category-content ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .category-content li {
+            margin-bottom: 8px;
+        }
+        .feature-highlight {
+            background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #14b8a6;
+        }
+        .feature-highlight h3 {
+            color: #134e4a;
+            margin-bottom: 15px;
+        }
+        .feature-highlight p {
+            color: #115e59;
+            line-height: 1.8;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        .install-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 4px solid #14b8a6;
+        }
+        .install-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #14b8a6;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero-stats {
+                gap: 30px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🌐 AI工具集合</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#faq">常见问题</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主视觉区 -->
+    <section class="hero">
+        <div class="hero-badge">Claude Code + Agent Skills + Python + Web Scraping</div>
+        <h1>🔧 Fetch Everything Skills工具箱</h1>
+        <p>一套面向Claude Code/openclaw的高质量Skills合集，涵盖网页抓取、文档提取、电商数据处理、云端部署等场景，特别强化了对中文平台的支持。</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">8+</span>
+                <span class="stat-label">Skills工具</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">CN</span>
+                <span class="stat-label">中文平台强化</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">🔧</span>
+                <span class="stat-label">多场景覆盖</span>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/fetch-everything" class="btn btn-primary" style="background: white; color: #0d9488;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <!-- 项目背景 -->
+    <section class="section">
+        <h2 class="section-title">为什么需要Fetch Everything？</h2>
+        <p class="section-subtitle">一站式数据获取与处理Skills工具箱</p>
+        <div class="feature-highlight">
+            <h3>🌐 数据获取的挑战</h3>
+            <p>
+                在日常开发和数据处理工作中，经常需要从各种平台和格式中获取数据。然而，不同平台的数据格式各异，
+                中文平台的反爬机制也各不相同。Fetch Everything提供了一套高质量的Claude Code Skills合集，
+                涵盖了网页抓取、文档提取、电商数据处理等常见场景，特别针对中文平台进行了优化。
+            </p>
+        </div>
+    </section>
+
+    <!-- 核心特性 -->
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">8大Skills，覆盖数据获取与处理全场景</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">🌐</div>
+                <h3 class="skill-title">网页抓取Skill</h3>
+                <p class="skill-description">智能网页抓取能力，支持静态页面和动态渲染页面，自动处理反爬机制和验证码</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📄</div>
+                <h3 class="skill-title">文档提取工具</h3>
+                <p class="skill-description">从PDF、Word、Excel等多种文档格式中提取文本和结构化数据，保留格式信息</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🛒</div>
+                <h3 class="skill-title">电商数据处理</h3>
+                <p class="skill-description">针对电商平台的数据采集和处理，支持商品信息、评论、价格等数据的结构化提取</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🇨🇳</div>
+                <h3 class="skill-title">中文平台强化</h3>
+                <p class="skill-description">特别优化了对中文平台的支持，包括淘宝、京东、拼多多、微博、知乎等主流中文网站</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">☁️</div>
+                <h3 class="skill-title">云端部署辅助</h3>
+                <p class="skill-description">提供云端部署相关的Skills，支持AWS、GCP、阿里云等主流云平台的自动化部署</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔌</div>
+                <h3 class="skill-title">API调用封装</h3>
+                <p class="skill-description">封装常用API调用，提供统一的接口规范，简化第三方服务的接入和数据获取流程</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🧹</div>
+                <h3 class="skill-title">数据清洗转换</h3>
+                <p class="skill-description">自动化的数据清洗和格式转换，去除噪声数据，统一数据格式，提高数据质量</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📦</div>
+                <h3 class="skill-title">批量处理支持</h3>
+                <p class="skill-description">支持批量数据获取和处理任务，并发执行提高效率，支持断点续传和错误重试</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作流程 -->
+    <section id="workflow" class="section">
+        <h2 class="section-title">工作流程</h2>
+        <p class="section-subtitle">从数据源到可用数据的处理流程</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">选择Skill</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">配置参数</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">数据获取</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">清洗转换</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">输出结果</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #14b8a6;">使用流程详解</h3>
+            <div class="skills-grid">
+                <div class="category-card">
+                    <div class="category-title">1. 选择合适的Skill</div>
+                    <div class="category-content">
+                        根据数据来源和需求，选择对应的Skill工具，如网页抓取、文档提取或API调用
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">2. 配置获取参数</div>
+                    <div class="category-content">
+                        在Claude Code中用自然语言描述数据获取需求，AI自动配置参数并执行
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">3. 数据获取与清洗</div>
+                    <div class="category-content">
+                        自动获取数据并进行清洗、去重、格式转换等处理，确保数据质量
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">4. 结构化输出</div>
+                    <div class="category-content">
+                        输出结构化的数据结果，支持JSON、CSV、数据库等多种格式和存储方式
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 安装配置 -->
+    <section id="install" class="section">
+        <h2 class="section-title">安装与配置</h2>
+        <p class="section-subtitle">快速集成到Claude Code开发环境</p>
+
+        <div class="install-card">
+            <div class="install-title">1. 克隆项目</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">获取Skills合集：</p>
+            <pre class="code-block">git clone https://github.com/liangdabiao/fetch-everything.git
+cd fetch-everything</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">2. 安装到Claude Code</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">将Skills安装到Claude Code环境：</p>
+            <pre class="code-block"># 复制所有Skills到Claude Code目录
+cp -r skills/ ~/.claude/skills/</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">3. 安装Python依赖</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">安装所需的Python库：</p>
+            <pre class="code-block">pip install -r requirements.txt</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">4. 开始使用</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">在Claude Code中使用Skills：</p>
+            <pre class="code-block"># 在Claude Code中调用Skill
+claude "抓取这个网页的内容: https://example.com"
+claude "提取这个PDF文档中的表格数据"</pre>
+        </div>
+    </section>
+
+    <!-- 技术栈 -->
+    <section class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">基于Agent Skills架构的多功能工具集</p>
+        <div class="tech-stack">
+            <div class="tech-item">Claude Code</div>
+            <div class="tech-item">Agent Skills</div>
+            <div class="tech-item">Python</div>
+            <div class="tech-item">Web Scraping</div>
+            <div class="tech-item">数据处理</div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section id="faq" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于Fetch Everything Skills工具箱的常见疑问</p>
+
+        <div class="category-card">
+            <div class="category-title">Q: 这些Skills是否合法使用？</div>
+            <div class="category-content">
+                A: 工具本身是合法的，但使用时需遵守目标网站的robots.txt和服务条款。建议仅用于合法的数据获取场景，如公开数据分析、自有平台管理等。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 支持哪些中文平台？</div>
+            <div class="category-content">
+                A: 经过特别优化的中文平台包括淘宝、京东、拼多多、微博、知乎、豆瓣、B站等主流中文网站。持续增加更多平台支持。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 可以单独使用某个Skill吗？</div>
+            <div class="category-content">
+                A: 可以。每个Skill都是独立的，可以单独安装和使用。根据你的需求选择需要的Skill即可。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 支持openclaw吗？</div>
+            <div class="category-content">
+                A: 是的，Skills同时兼容Claude Code和openclaw环境。安装方式基本相同。
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer" id="contact">
+        <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>面向Claude Code/openclaw的高质量Skills合集，涵盖网页抓取、文档提取、电商数据处理、云端部署等场景，特别强化中文平台支持。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/fetch-everything">GitHub 仓库</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Fetch Everything Skills工具箱. All rights reserved.</p>
+        </div>
+            </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 移动端菜单
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

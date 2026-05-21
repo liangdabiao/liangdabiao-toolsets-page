@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拼豆像素画小程序 | 微信小程序像素画创作</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #38bdf8;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .skill-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .skill-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .skill-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: #38bdf8;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: #0ea5e9;
+        }
+        .workflow-diagram {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .workflow-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .flow-step {
+            background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .flow-arrow {
+            font-size: 2em;
+            color: #38bdf8;
+        }
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid #38bdf8;
+        }
+        .category-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #38bdf8;
+        }
+        .category-content {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .category-content ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .category-content li {
+            margin-bottom: 8px;
+        }
+        .feature-highlight {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #38bdf8;
+        }
+        .feature-highlight h3 {
+            color: #0c4a6e;
+            margin-bottom: 15px;
+        }
+        .feature-highlight p {
+            color: #075985;
+            line-height: 1.8;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        .install-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 4px solid #38bdf8;
+        }
+        .install-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #38bdf8;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero-stats {
+                gap: 30px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🌐 AI工具集合</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#faq">常见问题</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主视觉区 -->
+    <section class="hero">
+        <div class="hero-badge">Taro + Vue3 + 微信小程序</div>
+        <h1>🎨 拼豆像素画小程序</h1>
+        <p>基于Taro+Vue3开发的拼豆像素画创作微信小程序，支持像素画编辑、作品管理、图片导入、图纸导出等功能。二开自noir017/perlerBeadsApplet。</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">8+</span>
+                <span class="stat-label">核心功能</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">Vue3</span>
+                <span class="stat-label">技术栈</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">📱</span>
+                <span class="stat-label">微信小程序</span>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/perlerBeadsApplet" class="btn btn-primary" style="background: white; color: #0ea5e9;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <!-- 项目背景 -->
+    <section class="section">
+        <h2 class="section-title">为什么做这个小程序？</h2>
+        <p class="section-subtitle">随时随地创作拼豆像素画</p>
+        <div class="feature-highlight">
+            <h3>🎨 移动端拼豆创作的需求</h3>
+            <p>
+                拼豆（Perler Beads）是一种深受欢迎的手工创作活动，但传统的创作方式需要使用电脑软件设计图纸。
+                本项目将拼豆像素画创作搬到微信小程序上，让你随时随地都能进行创作。基于Taro+Vue3跨平台框架开发，
+                二开自noir017/perlerBeadsApplet，增加了更多实用功能。
+            </p>
+        </div>
+    </section>
+
+    <!-- 核心特性 -->
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">8大核心功能，移动端拼豆创作全流程支持</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">🖌️</div>
+                <h3 class="skill-title">像素画编辑器</h3>
+                <p class="skill-description">专业级像素画编辑器，支持逐像素绘制、颜色选择、橡皮擦、填充等操作，流畅的触摸操作体验</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📁</div>
+                <h3 class="skill-title">作品管理</h3>
+                <p class="skill-description">完整的作品管理系统，保存、浏览、编辑、删除作品，支持作品缩略图预览和快速加载</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🖼️</div>
+                <h3 class="skill-title">图片导入生成</h3>
+                <p class="skill-description">支持从手机相册导入图片，自动转换为拼豆像素画，智能颜色匹配和尺寸适配</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📄</div>
+                <h3 class="skill-title">图纸导出</h3>
+                <p class="skill-description">一键导出高清拼豆图纸，包含色号标注和用量统计，方便实际拼搭参考</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📱</div>
+                <h3 class="skill-title">微信小程序</h3>
+                <p class="skill-description">原生微信小程序体验，无需安装独立App，打开微信即可使用，方便分享给好友</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎨</div>
+                <h3 class="skill-title">拼豆色号匹配</h3>
+                <p class="skill-description">内置完整拼豆色号库，精确匹配每个像素对应的拼豆颜色，支持多种拼豆品牌色号</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📐</div>
+                <h3 class="skill-title">多种尺寸支持</h3>
+                <p class="skill-description">支持多种拼豆底板尺寸，从小型挂件到大型壁画，满足不同规模的创作需求</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔗</div>
+                <h3 class="skill-title">作品分享</h3>
+                <p class="skill-description">一键分享作品到微信好友或朋友圈，展示你的拼豆创作成果，获取朋友点赞</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作流程 -->
+    <section id="workflow" class="section">
+        <h2 class="section-title">工作流程</h2>
+        <p class="section-subtitle">从灵感到成品的创作流程</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">打开小程序</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">选择/导入</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">编辑调整</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">色号匹配</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">导出分享</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #38bdf8;">创作流程详解</h3>
+            <div class="skills-grid">
+                <div class="category-card">
+                    <div class="category-title">1. 启动与选择</div>
+                    <div class="category-content">
+                        打开微信小程序，选择新建空白画布或从相册导入图片作为创作基础
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">2. 编辑创作</div>
+                    <div class="category-content">
+                        使用编辑器工具进行像素画绘制，支持颜色选择、填充、橡皮擦等多种操作
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">3. 色号匹配</div>
+                    <div class="category-content">
+                        自动将每个像素匹配到对应的拼豆色号，显示用量统计和颜色列表
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">4. 导出与分享</div>
+                    <div class="category-content">
+                        导出高清图纸用于拼搭，或直接分享作品到微信好友展示成果
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 安装配置 -->
+    <section id="install" class="section">
+        <h2 class="section-title">安装与配置</h2>
+        <p class="section-subtitle">开发者快速上手指南</p>
+
+        <div class="install-card">
+            <div class="install-title">1. 克隆项目</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">获取项目代码：</p>
+            <pre class="code-block">git clone https://github.com/liangdabiao/perlerBeadsApplet.git
+cd perlerBeadsApplet</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">2. 安装依赖</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">安装项目依赖：</p>
+            <pre class="code-block">npm install
+# 或使用 yarn
+yarn install</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">3. 编译项目</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">编译微信小程序版本：</p>
+            <pre class="code-block">npm run build:weapp
+# 或开发模式
+npm run dev:weapp</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">4. 微信开发者工具预览</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">使用微信开发者工具打开 dist 目录即可预览和调试。</p>
+        </div>
+    </section>
+
+    <!-- 技术栈 -->
+    <section class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">现代化跨平台小程序技术栈</p>
+        <div class="tech-stack">
+            <div class="tech-item">Taro</div>
+            <div class="tech-item">Vue3</div>
+            <div class="tech-item">微信小程序</div>
+            <div class="tech-item">Canvas API</div>
+            <div class="tech-item">JavaScript</div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section id="faq" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于拼豆像素画小程序的常见疑问</p>
+
+        <div class="category-card">
+            <div class="category-title">Q: 普通用户如何使用？</div>
+            <div class="category-content">
+                A: 在微信中搜索小程序名称即可直接使用，无需下载安装独立App，打开即用。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 支持哪些拼豆品牌？</div>
+            <div class="category-content">
+                A: 内置多种拼豆品牌色号库，包括常见品牌如MARD、COCO等，也支持自定义色号。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 导入图片的效果如何？</div>
+            <div class="category-content">
+                A: 图片导入后自动进行像素化和颜色匹配处理，支持手动微调，确保转换为可实际拼搭的图纸。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 与原版noir017项目有什么区别？</div>
+            <div class="category-content">
+                A: 在原版基础上增加了更多编辑工具、图片导入优化、图纸导出、作品分享等功能，提升了用户体验和实用性。
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer" id="contact">
+        <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>基于Taro+Vue3开发的拼豆像素画创作微信小程序，二开自noir017/perlerBeadsApplet，增加更多实用功能。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/perlerBeadsApplet">GitHub 仓库</a></li>
+                    <li><a href="https://github.com/noir017/perlerBeadsApplet">原版项目</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 拼豆像素画小程序. All rights reserved.</p>
+        </div>
+            </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 移动端菜单
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

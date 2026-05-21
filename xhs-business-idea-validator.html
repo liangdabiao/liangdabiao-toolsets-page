@@ -301,33 +301,33 @@
                                 <div class="step-item">
                                     <div class="step-number">1</div>
                                     <h4>克隆项目</h4>
-                                    <div class="code-block">
+                                    <pre class="code-block">
                                         <pre><code>git clone https://github.com/liangdabiao/XHS_Business_Idea_Validator.git
 cd XHS_Business_Idea_Validator</code></pre>
-                                    </div>
+                                    </pre>
                                 </div>
                                 <div class="step-item">
                                     <div class="step-number">2</div>
                                     <h4>安装依赖</h4>
-                                    <div class="code-block">
+                                    <pre class="code-block">
                                         <pre><code>pip install -r requirements.txt</code></pre>
-                                    </div>
+                                    </pre>
                                 </div>
                                 <div class="step-item">
                                     <div class="step-number">3</div>
                                     <h4>配置 API 密钥</h4>
-                                    <div class="code-block">
+                                    <pre class="code-block">
                                         <pre><code># 编辑 agent_system/.env 文件
 OPENAI_API_KEY=your_key
 TIKHUB_TOKEN=your_token</code></pre>
-                                    </div>
+                                    </pre>
                                 </div>
                                 <div class="step-item">
                                     <div class="step-number">4</div>
                                     <h4>运行验证</h4>
-                                    <div class="code-block">
+                                    <pre class="code-block">
                                         <pre><code>python run_agent.py 在深圳卖陈皮</code></pre>
-                                    </div>
+                                    </pre>
                                 </div>
                             </div>
                         </div>
@@ -336,7 +336,7 @@ TIKHUB_TOKEN=your_token</code></pre>
                 <div class="requirements">
                     <div class="requirements-card">
                         <h3>输出文件</h3>
-                        <div class="code-block">
+                        <pre class="code-block">
                             <pre><code>reports/{business_idea}_{timestamp}.html
 agent_context/checkpoints/{run_id}/
 ├── scraping_complete.json
@@ -344,7 +344,7 @@ agent_context/checkpoints/{run_id}/
 ├── comments_tag_analysis_complete.json
 ├── combined_analysis_complete.json
 └── report_saved.json</code></pre>
-                        </div>
+                        </pre>
                     </div>
                 </div>
             </div>

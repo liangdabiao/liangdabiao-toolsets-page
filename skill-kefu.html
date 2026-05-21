@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKILL智能客服系统 | 基于LangChain/LangGraph的完整智能客服解决方案</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #10b981;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .skill-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .skill-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .skill-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: #10b981;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: #059669;
+        }
+        .workflow-diagram {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .workflow-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .flow-step {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .flow-arrow {
+            font-size: 2em;
+            color: #10b981;
+        }
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid #10b981;
+        }
+        .category-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #10b981;
+        }
+        .category-content {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .category-content ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .category-content li {
+            margin-bottom: 8px;
+        }
+        .feature-highlight {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #10b981;
+        }
+        .feature-highlight h3 {
+            color: #065f46;
+            margin-bottom: 15px;
+        }
+        .feature-highlight p {
+            color: #064e3b;
+            line-height: 1.8;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        .install-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 4px solid #10b981;
+        }
+        .install-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #10b981;
+        }
+        .arch-box {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .arch-box pre {
+            text-align: left;
+            display: inline-block;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            line-height: 1.4;
+            color: #374151;
+            white-space: pre;
+        }
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .module-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+            border-bottom: 3px solid #10b981;
+            transition: transform 0.3s;
+        }
+        .module-card:hover {
+            transform: translateY(-3px);
+        }
+        .module-card .module-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        .module-card .module-name {
+            font-weight: bold;
+            color: #059669;
+            margin-bottom: 5px;
+        }
+        .module-card .module-desc {
+            font-size: 0.85em;
+            color: var(--secondary-color);
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero-stats {
+                gap: 30px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+            .module-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🌐 AI工具集合</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#architecture">系统架构</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#faq">常见问题</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主视觉区 -->
+    <section class="hero">
+        <div class="hero-badge">LangChain + LangGraph + FastAPI + Streamlit</div>
+        <h1>SKILL智能客服系统</h1>
+        <p>基于LangChain/LangGraph的完整智能客服解决方案。整合了11个章节的核心功能，包括对话记忆、RAG知识库、情绪识别、意图分类、工单系统、监控评价、计划执行、多Agent系统、MCP技能系统等，让SKILL变成公开服务。</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">11</span>
+                <span class="stat-label">核心模块</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">16</span>
+                <span class="stat-label">意图分类</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">7</span>
+                <span class="stat-label">情绪识别</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">3</span>
+                <span class="stat-label">交互方式</span>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/SKILL-kefu" class="btn btn-primary" style="background: white; color: #059669;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <!-- 项目背景 -->
+    <section class="section">
+        <h2 class="section-title">项目背景</h2>
+        <p class="section-subtitle">打造企业级智能客服，从教程到公开服务的完整实践</p>
+        <div class="feature-highlight">
+            <h3>为什么做这个项目？</h3>
+            <p>
+                智能客服是企业服务的核心场景，但现有方案往往功能碎片化、难以落地。本系统整合了LangChain/LangGraph教程11个章节的所有核心功能，
+                从对话记忆、RAG知识库，到情绪识别、意图分类，再到工单系统、多Agent协作，构建了一套完整的、可部署的智能客服解决方案。
+                系统参考了图解AI系列教程，目标是让SKILL从教程示例变成真正可用的公开服务。
+            </p>
+        </div>
+    </section>
+
+    <!-- 核心特性 -->
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">覆盖智能客服全场景的12项核心能力</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">🤖</div>
+                <h3 class="skill-title">智能对话引擎</h3>
+                <p class="skill-description">基于LLM的自然语言理解，支持多轮对话上下文管理，精准理解用户需求并生成高质量回复</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📚</div>
+                <h3 class="skill-title">RAG知识库检索</h3>
+                <p class="skill-description">向量知识库检索增强生成，结合上下文精准匹配企业知识，确保回答准确性和专业性</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">😊</div>
+                <h3 class="skill-title">情绪识别</h3>
+                <p class="skill-description">实时识别愤怒、焦虑、不满、开心等7种用户情绪，动态调整客服策略和回复语气</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎯</div>
+                <h3 class="skill-title">意图分类</h3>
+                <p class="skill-description">精准识别咨询、投诉、退款、退货等16种用户意图，自动路由到对应处理流程</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎫</div>
+                <h3 class="skill-title">工单系统</h3>
+                <p class="skill-description">自动创建、跟踪、管理工单，支持工单状态流转，确保每个用户问题都得到妥善处理</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">👤</div>
+                <h3 class="skill-title">智能转人工</h3>
+                <p class="skill-description">当检测到用户情绪激动或问题复杂时，自动转接人工客服，保障服务质量和用户满意度</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">💾</div>
+                <h3 class="skill-title">对话记忆</h3>
+                <p class="skill-description">多轮上下文记忆管理，支持滑动窗口策略，在长对话中保持语义连贯性</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔧</div>
+                <h3 class="skill-title">工具函数集成</h3>
+                <p class="skill-description">内置订单查询、物流查询、库存查询、退款政策等常用工具函数，无缝对接企业业务系统</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📊</div>
+                <h3 class="skill-title">监控评价</h3>
+                <p class="skill-description">对话复盘分析、质量评分、监控仪表盘，持续优化客服质量和系统表现</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📈</div>
+                <h3 class="skill-title">计划执行</h3>
+                <p class="skill-description">基于LangGraph状态机的任务规划与执行，将复杂任务分解为可管理的步骤并逐步完成</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">👥</div>
+                <h3 class="skill-title">多Agent协作</h3>
+                <p class="skill-description">接待员、售后专员、技术支持、主管等多角色Agent分工协作，模拟真实客服团队工作流程</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎯</div>
+                <h3 class="skill-title">MCP技能系统</h3>
+                <p class="skill-description">工具注册、技能管理、动态选择的MCP技能系统，支持灵活扩展客服能力边界</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作流程 -->
+    <section id="workflow" class="section">
+        <h2 class="section-title">工作流程</h2>
+        <p class="section-subtitle">从用户输入到问题解决的完整流程</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">用户输入</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">情绪识别</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">意图分类</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">智能路由</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">Agent处理</div>
+            </div>
+            <div class="workflow-flow" style="margin-top: 20px;">
+                <div class="flow-step">知识库检索</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">生成回复</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">质量评价</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">记忆更新</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">返回结果</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #10b981;">三种交互方式</h3>
+            <div class="skills-grid">
+                <div class="category-card">
+                    <div class="category-title">Web 界面 (Streamlit)</div>
+                    <div class="category-content">
+                        可视化聊天界面，支持实时对话、情绪状态展示、工单管理面板，适合日常运营使用。
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">REST API (FastAPI)</div>
+                    <div class="category-content">
+                        RESTful接口服务，支持标准HTTP请求，可轻松集成到现有业务系统或第三方应用中。
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">终端交互 (CLI)</div>
+                    <div class="category-content">
+                        命令行交互模式，适合开发调试和快速测试，无需启动Web服务即可体验完整功能。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 系统架构 -->
+    <section id="architecture" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">系统架构</h2>
+        <p class="section-subtitle">分层架构设计，模块化可扩展</p>
+
+        <div class="arch-box">
+            <pre>
+┌─────────────────────────────────────────────────────────────┐
+│                   SKILL 智能客服系统                         │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │
+│  │  Web 界面    │  │  API 服务    │  │  终端交互    │      │
+│  │ (Streamlit)  │  │  (FastAPI)   │  │   (CLI)      │      │
+│  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘      │
+│         └──────────────────┼──────────────────┘              │
+│                            ▼                                │
+│                 ┌─────────────────────┐                     │
+│                 │ CustomerServiceAgent│                     │
+│                 └──────────┬──────────┘                     │
+│                            │                                │
+│         ┌──────────────────┼──────────────────┐             │
+│         ▼                  ▼                  ▼             │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐        │
+│  │  智能路由   │  │  情绪识别   │  │  意图分类   │        │
+│  │  (Router)   │  │ (Emotion)   │  │  (Intent)   │        │
+│  └──────┬──────┘  └─────────────┘  └─────────────┘        │
+│         │                                                    │
+│         ▼                                                    │
+│  ┌──────────────────────────────────────────────────┐       │
+│  │                   功能模块                        │       │
+│  ├────────────┬────────────┬────────────┬───────────┤       │
+│  │  对话记忆   │ RAG 知识库 │  工单系统  │ 工具函数  │       │
+│  │ (Memory)   │   (RAG)    │ (Ticket)   │ (Tools)   │       │
+│  └────────────┴────────────┴────────────┴───────────┘       │
+│         ┌──────────────────┼──────────────────┐             │
+│         ▼                  ▼                  ▼             │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐        │
+│  │  监控评价   │  │  计划执行   │  │  多Agent    │        │
+│  │ (Monitor)   │  │ (Planner)   │  │(MultiAgent) │        │
+│  └─────────────┘  └─────────────┘  └─────────────┘        │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+            </pre>
+        </div>
+
+        <div class="module-grid">
+            <div class="module-card">
+                <div class="module-icon">🧠</div>
+                <div class="module-name">agent.py</div>
+                <div class="module-desc">智能对话核心</div>
+            </div>
+            <div class="module-card">
+                <div class="module-icon">📖</div>
+                <div class="module-name">rag.py</div>
+                <div class="module-desc">知识库检索</div>
+            </div>
+            <div class="module-card">
+                <div class="module-icon">🎭</div>
+                <div class="module-name">classifier.py</div>
+                <div class="module-desc">情绪与意图分类</div>
+            </div>
+            <div class="module-card">
+                <div class="module-icon">🎫</div>
+                <div class="module-name">ticket.py</div>
+                <div class="module-desc">工单与转人工</div>
+            </div>
+            <div class="module-card">
+                <div class="module-icon">💾</div>
+                <div class="module-name">memory.py</div>
+                <div class="module-desc">对话记忆管理</div>
+            </div>
+            <div class="module-card">
+                <div class="module-icon">🔧</div>
+                <div class="module-name">tools.py</div>
+                <div class="module-desc">业务工具函数</div>
+            </div>
+            <div class="module-card">
+                <div class="module-icon">📊</div>
+                <div class="module-name">monitor.py</div>
+                <div class="module-desc">监控与评价</div>
+            </div>
+            <div class="module-card">
+                <div class="module-icon">📈</div>
+                <div class="module-name">planner.py</div>
+                <div class="module-desc">计划与执行</div>
+            </div>
+            <div class="module-card">
+                <div class="module-icon">👥</div>
+                <div class="module-name">multi_agent.py</div>
+                <div class="module-desc">多Agent协作</div>
+            </div>
+            <div class="module-card">
+                <div class="module-icon">🎯</div>
+                <div class="module-name">mcp.py</div>
+                <div class="module-desc">MCP技能系统</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 安装配置 -->
+    <section id="install" class="section">
+        <h2 class="section-title">安装与配置</h2>
+        <p class="section-subtitle">简单几步，搭建完整的智能客服系统</p>
+
+        <div class="install-card">
+            <div class="install-title">1. 克隆项目</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">获取项目代码：</p>
+            <pre class="code-block">git clone https://github.com/liangdabiao/SKILL-kefu.git
+cd SKILL-kefu</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">2. 安装依赖</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">安装Python依赖包：</p>
+            <pre class="code-block">pip install -r requirements.txt</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">3. 配置环境变量</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">设置LLM API密钥和相关配置：</p>
+            <pre class="code-block">cp .env.example .env
+# 编辑 .env 文件，填入你的 API Key 和配置信息</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">4. 启动Web界面</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">使用Streamlit启动可视化界面：</p>
+            <pre class="code-block">streamlit run web.py</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">5. 启动API服务</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">使用FastAPI启动REST API：</p>
+            <pre class="code-block">uvicorn api:app --host 0.0.0.0 --port 8000 --reload</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">6. 终端交互模式</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">直接在命令行中使用：</p>
+            <pre class="code-block">python main.py</pre>
+        </div>
+    </section>
+
+    <!-- 技术栈 -->
+    <section class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">基于成熟的AI框架和现代Web技术构建</p>
+        <div class="tech-stack">
+            <div class="tech-item">LangChain</div>
+            <div class="tech-item">LangGraph</div>
+            <div class="tech-item">FastAPI</div>
+            <div class="tech-item">Streamlit</div>
+            <div class="tech-item">Python</div>
+            <div class="tech-item">ChromaDB</div>
+            <div class="tech-item">OpenAI API</div>
+            <div class="tech-item">Pydantic</div>
+            <div class="tech-item">Uvicorn</div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section id="faq" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于SKILL智能客服系统的常见疑问</p>
+
+        <div class="category-card">
+            <div class="category-title">Q: 系统支持哪些LLM模型？</div>
+            <div class="category-content">
+                A: 系统基于LangChain构建，支持OpenAI GPT系列、Claude、通义千问等多种LLM模型。只需在配置文件中修改模型参数即可切换。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 如何添加自定义知识库？</div>
+            <div class="category-content">
+                A: 将知识文档放入指定目录，系统会自动进行向量化处理。支持PDF、TXT、Markdown等多种文档格式，通过RAG模块实现精准检索。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 多Agent系统是如何分工的？</div>
+            <div class="category-content">
+                A: 系统包含接待员、售后专员、技术支持、主管等角色，通过意图分类自动路由到对应Agent处理，复杂问题可升级到主管协调。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 如何部署到生产环境？</div>
+            <div class="category-content">
+                A: FastAPI服务支持Docker容器化部署，配合Nginx反向代理和负载均衡即可实现生产环境部署。详细部署说明请参考项目文档。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 情绪识别的准确率如何？</div>
+            <div class="category-content">
+                A: 情绪识别基于LLM语义理解，可识别愤怒、焦虑、不满、开心等7种情绪类型，在实际业务场景中表现出色，并在监控评价模块中持续优化。
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer" id="contact">
+        <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>SKILL智能客服系统，基于LangChain/LangGraph的完整智能客服解决方案。整合11个核心模块，覆盖对话、知识库、情绪、意图、工单、监控、多Agent等全场景。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/SKILL-kefu">GitHub 仓库</a></li>
+                    <li><a href="https://mp.weixin.qq.com/s/YlfCokFQ7l6QNFYUIHcGqw">参考教程（图解AI系列）</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+                <p>社区：https://linux.do/u/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 SKILL智能客服系统. All rights reserved.</p>
+        </div>
+            </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 移动端菜单
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion AI - 电商AI生图爆款流水线</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #f472b6 0%, #ec4899 50%, #db2777 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #ec4899;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .skill-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .skill-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .skill-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: #ec4899;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: #db2777;
+        }
+        .workflow-diagram {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .workflow-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .flow-step {
+            background: linear-gradient(135deg, #f472b6 0%, #ec4899 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .flow-arrow {
+            font-size: 2em;
+            color: #ec4899;
+        }
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid #ec4899;
+        }
+        .category-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #ec4899;
+        }
+        .category-content {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .category-content ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .category-content li {
+            margin-bottom: 8px;
+        }
+        .feature-highlight {
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #ec4899;
+        }
+        .feature-highlight h3 {
+            color: #9d174d;
+            margin-bottom: 15px;
+        }
+        .feature-highlight p {
+            color: #831843;
+            line-height: 1.8;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        .install-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 4px solid #ec4899;
+        }
+        .install-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #ec4899;
+        }
+        .comparison-table {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .comparison-table th {
+            background: #fce7f3;
+            color: #9d174d;
+            font-weight: bold;
+        }
+        .comparison-table tr:hover {
+            background: #fdf2f8;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero-stats {
+                gap: 30px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🌐 AI工具集合</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#comparison">检索对比</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主视觉区 -->
+    <section class="hero">
+        <div class="hero-badge">Milvus + Qwen 3.5 + Gemini / GPT Image</div>
+        <h1>电商AI生图爆款流水线</h1>
+        <p>输入新品平铺图，自动检索相似爆款、分析风格，生成专业宣传图。跨境电商商家每出一款新品都需要制作宣传图，传统方式需要请模特、搭场景、拍摄修图，成本高周期长。本项目实现全自动AI生图流水线。</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">3步</span>
+                <span class="stat-label">全自动流水线</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">4+</span>
+                <span class="stat-label">生图模型可选</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">0</span>
+                <span class="stat-label">本地GPU需求</span>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/Fashion-AI" class="btn btn-primary" style="background: white; color: #ec4899;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <!-- 项目背景 -->
+    <section class="section">
+        <h2 class="section-title">为什么做这个？</h2>
+        <p class="section-subtitle">电商最核心的资产是大量经过市场验证的爆款图</p>
+        <div class="feature-highlight">
+            <h3>📸 传统宣传图制作的痛点</h3>
+            <p>
+                跨境电商场景中，商家每出一款新品都需要制作宣传图（模特穿着商品的照片）。传统方式需要请模特、搭场景、拍摄修图，成本高、周期长。
+                模特表现力、场景构图、光影质感，都是花钱试出来的。与其每次从零写 prompt，不如直接从历史爆款中检索最相似的视觉特征，让 AI 继承"爆款基因"。
+            </p>
+        </div>
+    </section>
+
+    <!-- 核心特性 -->
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">从爆款检索到AI生图的全链路自动化</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">🔍</div>
+                <h3 class="skill-title">以图搜爆款</h3>
+                <p class="skill-description">将新品平铺图与历史爆款库做混合检索（视觉相似 + 关键词匹配 + 销量过滤），找到风格最接近的爆款，继承"爆款基因"</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🧠</div>
+                <h3 class="skill-title">AI风格分析</h3>
+                <p class="skill-description">将爆款参考图发给大语言模型 Qwen 3.5，自动分析场景、灯光、姿势、氛围，生成风格描述 prompt</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎨</div>
+                <h3 class="skill-title">AI生成宣传图</h3>
+                <p class="skill-description">将新品图 + 爆款参考 + 风格描述一起发给图像生成模型（Gemini / GPT Image），输出专业宣传图</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔗</div>
+                <h3 class="skill-title">混合检索引擎</h3>
+                <p class="skill-description">Dense向量（图片Embedding视觉相似）+ Sparse向量（TF-IDF关键词匹配）+ 标量筛选（品类销量过滤），三路融合 + RRF重排序</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🗄️</div>
+                <h3 class="skill-title">Milvus向量数据库</h3>
+                <p class="skill-description">基于Milvus构建商品向量库，支持2048维Dense向量 + TF-IDF Sparse向量，混合检索精度远超单一方式</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">⚡</div>
+                <h3 class="skill-title">多模型灵活切换</h3>
+                <p class="skill-description">支持 Nano Banana 2 (Gemini)、GPT-5.4 Image 2、GPT-5 Image Pro、GPT-5 Image Mini，通过 --model 参数一键切换</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📐</div>
+                <h3 class="skill-title">多比例多分辨率</h3>
+                <p class="skill-description">支持 1:1、3:4、4:1、9:16 等多种宽高比，分辨率支持 512px 到 4K，适配不同平台素材需求</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">☁️</div>
+                <h3 class="skill-title">全云端API调用</h3>
+                <p class="skill-description">所有模型通过 OpenRouter API 调用，无需本地 GPU。Zilliz Cloud 免费tier即可使用，零硬件成本启动</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作流程 -->
+    <section id="workflow" class="section">
+        <h2 class="section-title">AI生图流水线</h2>
+        <p class="section-subtitle">三步完成从新品到专业宣传图的转换</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">新品平铺图</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">Embedding编码</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">混合检索爆款</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">AI风格分析</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">AI生成宣传图</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #ec4899;">技术架构详解</h3>
+            <div class="skills-grid">
+                <div class="category-card">
+                    <div class="category-title">1. 向量编码</div>
+                    <div class="category-content">
+                        使用 llama-nemotron-embed-vl-1b-v2 模型，将商品图片编码为 2048 维 Dense 向量，文本描述经 TF-IDF 生成 Sparse 向量
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">2. Milvus 混合检索</div>
+                    <div class="category-content">
+                        Dense（视觉相似）+ Sparse（关键词匹配）+ Scalar（品类 + 销量过滤），通过 RRF（Reciprocal Rank Fusion）重排序，检索精度远超单一方式
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">3. Qwen 3.5 风格分析</div>
+                    <div class="category-content">
+                        调用多模态大语言模型 Qwen 3.5，同时理解图片和文本，自动分析爆款参考图的场景、灯光、姿势、氛围，输出风格描述 prompt
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">4. AI 宣传图生成</div>
+                    <div class="category-content">
+                        将新品图 + 爆款参考图 + 风格描述 prompt 发送给 Gemini 或 GPT Image 模型，支持多参考图融合、多比例、高分辨率输出
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 检索对比 -->
+    <section id="comparison" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">为什么用混合检索？</h2>
+        <p class="section-subtitle">单一检索方式有盲区，三者结合精度远超单一方式</p>
+
+        <div class="comparison-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>检索方式</th>
+                        <th>擅长</th>
+                        <th>弱点</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Dense 向量（图片 Embedding）</td>
+                        <td>视觉相似度（颜色、款式、风格）</td>
+                        <td>不擅长精确关键词匹配</td>
+                    </tr>
+                    <tr>
+                        <td>Sparse 向量（TF-IDF）</td>
+                        <td>关键词语义（"floral"、"midi"、"chiffon"）</td>
+                        <td>不理解视觉特征</td>
+                    </tr>
+                    <tr>
+                        <td>标量筛选</td>
+                        <td>品类过滤、销量排序</td>
+                        <td>无法理解语义</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; color: #ec4899;">混合检索 + RRF</td>
+                        <td style="color: #ec4899;">✅ 三者优势互补</td>
+                        <td style="color: #ec4899;">✅ 无明显盲区</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div style="margin-top: 40px;">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #ec4899;">生图模型对比</h3>
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>特性</th>
+                            <th>Nano Banana 2 (Gemini)</th>
+                            <th>GPT Image 系列</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>超宽/超高比例</td>
+                            <td>支持 4:1, 1:4, 8:1, 1:8</td>
+                            <td>标准比例</td>
+                        </tr>
+                        <tr>
+                            <td>分辨率控制</td>
+                            <td>支持 0.5K ~ 4K</td>
+                            <td>自动</td>
+                        </tr>
+                        <tr>
+                            <td>文字渲染</td>
+                            <td>支持多语言、手写体</td>
+                            <td>支持</td>
+                        </tr>
+                        <tr>
+                            <td>参考图融合</td>
+                            <td>支持 14 张</td>
+                            <td>支持多张</td>
+                        </tr>
+                        <tr>
+                            <td>人像融合</td>
+                            <td>偶有服装贴合问题</td>
+                            <td>更自然</td>
+                        </tr>
+                        <tr>
+                            <td>网络要求</td>
+                            <td>无地区限制</td>
+                            <td>需海外网络环境</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- 安装配置 -->
+    <section id="install" class="section">
+        <h2 class="section-title">安装与配置</h2>
+        <p class="section-subtitle">简单几步，启动电商AI生图流水线</p>
+
+        <div class="install-card">
+            <div class="install-title">1. 环境准备</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">
+                Python 3.10+、Zilliz Cloud 账号（免费 tier 即可）、OpenRouter 账号和 API Key
+            </p>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">2. 克隆项目并安装依赖</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">获取项目代码并安装依赖：</p>
+            <pre class="code-block">git clone https://github.com/liangdabiao/Fashion-AI.git
+cd Fashion-AI
+pip install -r requirements.txt</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">3. 配置 .env</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">填写 API Key 配置：</p>
+            <pre class="code-block">OPENROUTER_API_KEY=sk-or-v1-xxxxx
+MILVUS_HOST=https://xxx.gcp.zillizcloud.com
+MILVUS_TOKEN=your-zilliz-api-key
+COLLECTION_NAME=fashion_products</pre>
+            <p style="margin-top: 10px; color: var(--secondary-color); font-size: 0.9em;">
+                OPENROUTER_API_KEY 在 openrouter.ai/keys 获取；MILVUS_HOST / MILVUS_TOKEN 在 Zilliz Cloud 控制台创建集群后获取
+            </p>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">4. 准备数据</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">
+                将商品图片放入 images/ 目录，新品平铺图放入 new_products/ 目录。编辑 products.csv 和 new_products.csv 填入真实商品信息。首次运行 setup 时程序会自动创建 CSV 模板和占位图。
+            </p>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">5. 运行流水线</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">三步完成：</p>
+            <pre class="code-block"># Step 1: 建库入库（首次运行或数据更新时执行）
+python main.py setup
+
+# Step 2: 测试检索（可选，验证混合检索是否正常）
+python main.py search --new-id NEW001
+
+# Step 3: 完整流水线（检索 → 风格分析 → 生图）
+python main.py generate --new-id NEW001
+
+# 使用 GPT-5.4 Image 2 生图
+python main.py generate --new-id NEW001 --model gpt-image</pre>
+        </div>
+    </section>
+
+    <!-- 技术栈 -->
+    <section class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">基于向量数据库 + 多模态大模型构建的全链路AI系统</p>
+        <div class="tech-stack">
+            <div class="tech-item">Python 3.10+</div>
+            <div class="tech-item">Milvus / Zilliz Cloud</div>
+            <div class="tech-item">OpenRouter API</div>
+            <div class="tech-item">Qwen 3.5</div>
+            <div class="tech-item">Gemini 3.1 Flash</div>
+            <div class="tech-item">GPT-5.4 Image 2</div>
+            <div class="tech-item">NVIDIA Embedding VL</div>
+            <div class="tech-item">TF-IDF + RRF</div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于电商AI生图爆款流水线的常见疑问</p>
+
+        <div class="category-card">
+            <div class="category-title">Q: 需要本地 GPU 吗？</div>
+            <div class="category-content">
+                A: 不需要。所有模型通过 OpenRouter API 调用，向量数据库使用 Zilliz Cloud 免费tier，完全零硬件成本。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 支持哪些生图模型？</div>
+            <div class="category-content">
+                A: 支持 Nano Banana 2 (Gemini 3.1 Flash)、GPT-5.4 Image 2、GPT-5 Image Pro、GPT-5 Image Mini，通过 --model 参数一键切换。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 什么是混合检索？</div>
+            <div class="category-content">
+                A: 混合检索结合了 Dense 向量（视觉相似度）、Sparse 向量（关键词匹配）和标量筛选（品类销量过滤），通过 RRF 融合排序，精度远超任何单一检索方式。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 如何添加自己的商品数据？</div>
+            <div class="category-content">
+                A: 将商品图片放入 images/ 目录，编辑 products.csv 填入商品信息（品类、颜色、风格、销量、描述等），运行 python main.py setup 重建向量库即可。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 生成的宣传图支持哪些比例和分辨率？</div>
+            <div class="category-content">
+                A: 支持 1:1、3:4、4:1、9:16 等多种宽高比，通过 --aspect-ratio 参数指定。分辨率支持 512px 到 4K，通过 --image-size 参数控制。Gemini 系列还支持 8:1/1:8 超宽超高比例。
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer" id="contact">
+        <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>电商AI生图爆款流水线 — 输入新品平铺图，自动检索相似爆款、分析风格，生成专业宣传图。灵感来源于 Nano Banana2 + Milvus + Qwen3.5 教程。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/Fashion-AI">GitHub 仓库</a></li>
+                    <li><a href="https://mp.weixin.qq.com/s/itMVbtZDW0IzIBhp6e9OHw">灵感来源文章</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Fashion AI - 电商AI生图爆款流水线. All rights reserved.</p>
+        </div>
+            </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 移动端菜单
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

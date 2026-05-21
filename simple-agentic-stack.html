@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Agentic Stack | MCP + Skill 驱动的 AI Agent 编排系统</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 50%, #0369a1 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #0ea5e9;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .skill-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .skill-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .skill-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: #0ea5e9;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: #0284c7;
+        }
+        .workflow-diagram {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .workflow-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .flow-step {
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .flow-arrow {
+            font-size: 2em;
+            color: #0ea5e9;
+        }
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid #0ea5e9;
+        }
+        .category-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #0ea5e9;
+        }
+        .category-content {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .category-content ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .category-content li {
+            margin-bottom: 8px;
+        }
+        .feature-highlight {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #0ea5e9;
+        }
+        .feature-highlight h3 {
+            color: #0c4a6e;
+            margin-bottom: 15px;
+        }
+        .feature-highlight p {
+            color: #075985;
+            line-height: 1.8;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        .install-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 4px solid #0ea5e9;
+        }
+        .install-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #0ea5e9;
+        }
+        .comparison-table {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .comparison-table th {
+            background: #e0f2fe;
+            color: #0c4a6e;
+            font-weight: bold;
+        }
+        .comparison-table tr:hover {
+            background: #f0f9ff;
+        }
+        .arch-diagram {
+            background: #f0f9ff;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.7;
+            color: #0c4a6e;
+            overflow-x: auto;
+        }
+        .arch-line {
+            white-space: pre;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero-stats {
+                gap: 30px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🌐 AI工具集合</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#architecture">系统架构</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主视觉区 -->
+    <section class="hero">
+        <div class="hero-badge">MCP + Skill + LLM 编排系统</div>
+        <h1>Simple Agentic Stack</h1>
+        <p>基于 MCP（Model Context Protocol）和 Skill 驱动的 AI Agent 编排系统。LLM 通过自然语言编写的 Skill 按步骤调用 MCP Server 提供的工具，完成复杂的多数据源联动任务。</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">MCP</span>
+                <span class="stat-label">标准化工具协议</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">Skill</span>
+                <span class="stat-label">自然语言程序</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">LLM</span>
+                <span class="stat-label">智能运行时</span>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/Simple-Agentic-Stack" class="btn btn-primary" style="background: white; color: #0284c7;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <!-- 核心理念 -->
+    <section class="section">
+        <h2 class="section-title">核心理念</h2>
+        <p class="section-subtitle">传统编程与 LLM Agent 系统的优雅映射</p>
+        <div class="feature-highlight">
+            <h3>💡 Skill 是程序，MCP 是库，LLM 是语言</h3>
+            <p>
+                Simple Agentic Stack 将传统编程范式映射到 AI Agent 世界：Skill（自然语言编写的执行步骤）就是程序，
+                MCP Server（标准化工具接口）就是库，LLM（大语言模型）就是运行时语言。编排器作为胶水层，
+                将三者串联起来，驱动工具调用循环直到模型给出最终回答。
+            </p>
+        </div>
+        <div class="comparison-table" style="margin-top: 30px;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>传统编程</th>
+                        <th>Simple Agentic Stack</th>
+                        <th>说明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>程序（Program）</td>
+                        <td>Skill（Markdown）</td>
+                        <td>自然语言编写的执行逻辑</td>
+                    </tr>
+                    <tr>
+                        <td>库（Library）</td>
+                        <td>MCP Server</td>
+                        <td>标准化工具接口，语义契约</td>
+                    </tr>
+                    <tr>
+                        <td>语言（Language）</td>
+                        <td>LLM（DeepSeek 等）</td>
+                        <td>理解指令、调用工具、生成回答</td>
+                    </tr>
+                    <tr>
+                        <td>运行时（Runtime）</td>
+                        <td>编排器（Orchestrator）</td>
+                        <td>串联各组件，驱动执行循环</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 核心特性 -->
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">8 项核心能力，构建完整的 AI Agent 编排体系</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">🔌</div>
+                <h3 class="skill-title">MCP 工具协议</h3>
+                <p class="skill-description">基于 Model Context Protocol 标准化工具接口，每个 MCP Server 通过 @mcp.tool() 装饰器暴露工具，模型通过语义契约（函数名、docstring、类型注解）调用</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📝</div>
+                <h3 class="skill-title">Skill 自然语言程序</h3>
+                <p class="skill-description">Skill 不是普通 prompt，而是用自然语言编写的带执行逻辑的程序，明确告诉模型按什么步骤组合哪些工具，包含目的、可用工具、执行步骤三部分</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🧠</div>
+                <h3 class="skill-title">LLM 智能运行时</h3>
+                <p class="skill-description">支持 DeepSeek API 的 Anthropic 兼容接口，也兼容 OpenRouter、自部署 vLLM 等任何兼容 Anthropic Messages API 的服务端点</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">⚙️</div>
+                <h3 class="skill-title">编排器引擎</h3>
+                <p class="skill-description">orchestrator.py 作为胶水层，读取配置拉起 MCP Server 子进程，收集工具定义转换 schema，注入 Skill 到 system prompt，运行工具调用循环</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔗</div>
+                <h3 class="skill-title">多数据源联动</h3>
+                <p class="skill-description">同时对接外部 API（如公共假日查询）和本地数据库（如 SQLite 运维数据），完成跨数据源的复杂关联任务</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎯</div>
+                <h3 class="skill-title">配置驱动</h3>
+                <p class="skill-description">通过 config.json 管理所有可变部分：换任务只需改 skill_path，换工具只需改 mcp_servers 条目，换模型只需改 .env，一行 Python 都不用动</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🛡️</div>
+                <h3 class="skill-title">安全约束机制</h3>
+                <p class="skill-description">max_steps 限制工具调用最大轮次，Skill 中定义硬约束和输出模板，确保 Agent 行为可控、结果可预期</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🧪</div>
+                <h3 class="skill-title">独立测试支持</h3>
+                <p class="skill-description">提供 server_test.py 独立验证 MCP Server 是否正常工作，可单独测试假日查询 Server 和运维数据库 Server</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作流程 -->
+    <section id="workflow" class="section">
+        <h2 class="section-title">工作流程</h2>
+        <p class="section-subtitle">从用户提问到最终回答的完整执行链路</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">用户提问</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">编排器启动</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">加载 Skill</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">LLM 推理</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">调用 MCP 工具</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">最终回答</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #0ea5e9;">演示场景：值班假日检查</h3>
+            <div class="feature-highlight">
+                <h3>📋 场景描述</h3>
+                <p>
+                    判断当前值班工程师所在国家今天是否有公共假日，若有则列出其名下的高优先级问题，以便安排备班人员。
+                    Agent 需要同时查询运维数据库（获取值班信息）和外部假日 API（获取公共假日），再进行关联分析。
+                </p>
+            </div>
+            <div class="category-card" style="margin-top: 20px;">
+                <div class="category-title">示例输出</div>
+                <div class="category-content">
+                    <pre class="code-block">=== 最终回答 ===
+
+值班正常：Sara Chen（美国），今天是正常工作日。其名下的 P1 问题如下：
+- #4 Auth token refresh fails for SSO users
+- #1 API gateway returns 502 under load</pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 系统架构 -->
+    <section id="architecture" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">系统架构</h2>
+        <p class="section-subtitle">简洁清晰的组件关系和数据流</p>
+
+        <div class="arch-diagram">
+            <div class="arch-line">orchestrator.py (编排器)</div>
+            <div class="arch-line">    │</div>
+            <div class="arch-line">    ├── DeepSeek API (LLM 运行时，Anthropic 兼容接口)</div>
+            <div class="arch-line">    │</div>
+            <div class="arch-line">    ├── skills/oncall_holiday_check.md (Skill - 自然语言"程序")</div>
+            <div class="arch-line">    │</div>
+            <div class="arch-line">    └── MCP Servers (工具库)</div>
+            <div class="arch-line">        ├── holidays_server.py → date.nager.at 公共假日 API</div>
+            <div class="arch-line">        └── ops_server.py      → 本地 SQLite 运维数据库</div>
+        </div>
+
+        <div class="skills-grid" style="margin-top: 40px;">
+            <div class="category-card">
+                <div class="category-title">📁 项目结构</div>
+                <div class="category-content">
+                    <pre class="code-block">skill-mcp/
+├── .env                    # API 密钥和模型配置
+├── config.json             # 全局配置
+├── requirements.txt        # Python 依赖
+├── orchestrator.py         # 编排器核心
+├── seed_db.py              # 生成测试数据
+├── server_test.py          # MCP Server 测试
+├── mcp_servers/
+│   ├── holidays_server.py  # 假日查询 MCP Server
+│   └── ops_server.py       # 运维数据库 MCP Server
+└── skills/
+    └── oncall_holiday_check.md  # 值班检查 Skill</pre>
+                </div>
+            </div>
+            <div class="category-card">
+                <div class="category-title">🔧 MCP Server 工具清单</div>
+                <div class="category-content">
+                    <strong>holidays_server.py</strong>
+                    <ul>
+                        <li>is_public_holiday - 查询指定日期是否为公共假日</li>
+                        <li>list_country_holidays - 列出指定国家的公共假日</li>
+                    </ul>
+                    <strong style="margin-top: 15px; display: block;">ops_server.py</strong>
+                    <ul>
+                        <li>get_current_oncall - 获取当前值班工程师</li>
+                        <li>list_open_issues - 列出所有开放问题</li>
+                        <li>get_engineer - 获取工程师详情</li>
+                        <li>list_engineers - 列出所有工程师</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 安装配置 -->
+    <section id="install" class="section">
+        <h2 class="section-title">安装与配置</h2>
+        <p class="section-subtitle">简单四步，搭建本地 AI Agent 系统</p>
+
+        <div class="install-card">
+            <div class="install-title">1. 环境准备</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">创建虚拟环境并安装依赖：</p>
+            <pre class="code-block">python -m venv venv
+source venv/bin/activate  # Windows: venv\Scripts\activate
+pip install -r requirements.txt</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">2. 配置 API 密钥</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">复制示例文件并填入 API 密钥：</p>
+            <pre class="code-block">cp .env.example .env</pre>
+            <p style="margin-top: 10px; color: var(--secondary-color);">.env 文件内容：</p>
+            <pre class="code-block">ANTHROPIC_AUTH_TOKEN=your-api-key-here
+ANTHROPIC_BASE_URL=https://api.deepseek.com/anthropic
+MODEL=deepseek-v4-flash</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">3. 初始化数据库</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">生成包含 5 名工程师、10 个轮班周期、12 条开放问题的测试数据库：</p>
+            <pre class="code-block">python seed_db.py</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">4. 运行系统</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">使用默认问题或指定自定义问题：</p>
+            <pre class="code-block"># 使用默认问题
+python orchestrator.py
+
+# 指定问题
+python orchestrator.py "本周谁在值班？他们有没有 P0 问题？"</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">5. 测试 MCP Server（可选）</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">独立验证 MCP Server 是否正常工作：</p>
+            <pre class="code-block"># 测试假日查询 Server
+python server_test.py
+
+# 测试运维数据库 Server（需先 seed_db.py）
+OPS_DB=./ops.db python server_test.py</pre>
+        </div>
+    </section>
+
+    <!-- 技术栈 -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">基于成熟的开源技术构建</p>
+        <div class="tech-stack">
+            <div class="tech-item">Python</div>
+            <div class="tech-item">MCP (FastMCP)</div>
+            <div class="tech-item">Anthropic SDK</div>
+            <div class="tech-item">DeepSeek API</div>
+            <div class="tech-item">SQLite</div>
+            <div class="tech-item">httpx</div>
+            <div class="tech-item">python-dotenv</div>
+        </div>
+
+        <div class="comparison-table" style="margin-top: 40px;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>层级</th>
+                        <th>技术</th>
+                        <th>作用</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>LLM 运行时</td>
+                        <td>DeepSeek API（Anthropic 兼容接口）</td>
+                        <td>理解指令、调用工具、生成回答</td>
+                    </tr>
+                    <tr>
+                        <td>工具库</td>
+                        <td>MCP Server（FastMCP）</td>
+                        <td>标准化工具接口，模型通过语义契约调用</td>
+                    </tr>
+                    <tr>
+                        <td>程序逻辑</td>
+                        <td>Markdown Skill</td>
+                        <td>自然语言编写的执行步骤和约束</td>
+                    </tr>
+                    <tr>
+                        <td>编排器</td>
+                        <td>Python + Anthropic SDK</td>
+                        <td>串联 LLM、MCP、Skill，驱动工具调用循环</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="section">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于 Simple Agentic Stack 的常见疑问</p>
+
+        <div class="category-card">
+            <div class="category-title">Q: 支持哪些 LLM 提供商？</div>
+            <div class="category-content">
+                A: 默认使用 DeepSeek API 的 Anthropic 兼容接口，同时支持任何兼容 Anthropic Messages API 的服务端点，包括 OpenRouter、自部署 vLLM 等。只需修改 .env 中的 MODEL 和 ANTHROPIC_BASE_URL 即可切换。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 如何添加新的 MCP Server？</div>
+            <div class="category-content">
+                A: 在 mcp_servers/ 目录下新建 Server 文件，使用 @mcp.tool() 装饰器暴露工具接口，然后在 config.json 的 mcp_servers 中添加一条配置即可。编排器会自动发现并加载新工具。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 如何切换到完全不同的任务？</div>
+            <div class="category-content">
+                A: 只需三步：1) 编写新的 Skill（Markdown 文件）；2) 修改 config.json 中的 skill_path 指向新 Skill；3) 如需要，更新 mcp_servers 配置。一行 Python 都不用改。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: Skill 和普通 prompt 有什么区别？</div>
+            <div class="category-content">
+                A: Skill 不是普通 prompt，而是用自然语言编写的带执行逻辑的程序，包含三部分：目的（这个 Skill 做什么）、可用工具（列出所有工具及是否需要）、执行步骤 + 约束（明确的执行顺序、输出模板和硬约束）。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 如何防止 Agent 无限调用工具？</div>
+            <div class="category-content">
+                A: config.json 中的 max_steps 参数限制了工具调用的最大轮次。同时在 Skill 中可以定义硬约束，确保 Agent 在有限步骤内给出最终回答。
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer" id="contact">
+        <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>基于 MCP（Model Context Protocol）和 Skill 驱动的 AI Agent 编排系统。将传统编程范式优雅映射到 AI Agent 世界：Skill 是程序，MCP 是库，LLM 是语言。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/Simple-Agentic-Stack">GitHub 仓库</a></li>
+                    <li><a href="https://mp.weixin.qq.com/s/1mZjxN5jb8FGYTS5gQlb8w">技术文章</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Simple Agentic Stack. All rights reserved.</p>
+        </div>
+            </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 移动端菜单
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

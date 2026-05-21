@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepAgents Framework Skill | LangChain智能代理框架技能库</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 { font-size: 3em; margin-bottom: 20px; }
+        .hero p { font-size: 1.3em; max-width: 800px; margin: 0 auto 30px; opacity: 0.95; }
+        .hero-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 10px 25px; border-radius: 25px; margin-bottom: 20px; font-size: 0.95em; }
+        .hero-stats { display: flex; justify-content: center; gap: 50px; margin-top: 50px; flex-wrap: wrap; }
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 2.5em; font-weight: bold; display: block; }
+        .stat-label { font-size: 0.9em; opacity: 0.9; }
+        .section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 2.5em; margin-bottom: 20px; color: var(--primary-color); }
+        .section-subtitle { text-align: center; color: var(--secondary-color); margin-bottom: 50px; font-size: 1.1em; }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-top: 40px; }
+        .skill-card { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s; border-left: 4px solid #667eea; }
+        .skill-card:hover { transform: translateY(-5px); box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+        .skill-icon { font-size: 2.5em; margin-bottom: 15px; }
+        .skill-title { font-size: 1.3em; font-weight: bold; margin-bottom: 10px; color: var(--text-color); }
+        .skill-description { color: var(--secondary-color); line-height: 1.8; }
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 30px; }
+        .tech-item { background: #667eea; color: white; padding: 12px 24px; border-radius: 25px; font-size: 0.95em; transition: background 0.3s; }
+        .tech-item:hover { background: #5a6fd6; }
+        .workflow-diagram { background: white; border-radius: 12px; padding: 40px; margin: 40px 0; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .workflow-flow { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 30px 0; }
+        .flow-step { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px 30px; border-radius: 10px; text-align: center; font-weight: bold; }
+        .flow-arrow { font-size: 2em; color: #667eea; }
+        .category-card { background: white; border-radius: 12px; padding: 30px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid #667eea; }
+        .category-title { font-size: 1.4em; font-weight: bold; margin-bottom: 15px; color: #667eea; }
+        .category-content { color: var(--secondary-color); line-height: 1.8; }
+        .feature-highlight { background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%); border-radius: 12px; padding: 30px; margin: 30px 0; border-left: 4px solid #667eea; }
+        .feature-highlight h3 { color: #3730a3; margin-bottom: 15px; }
+        .feature-highlight p { color: #312e81; line-height: 1.8; }
+        .code-block { background: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 8px; margin: 20px 0; font-family: 'Courier New', monospace; line-height: 1.6; overflow-x: auto; }
+        .install-card { background: #f8f9fa; border-radius: 12px; padding: 25px; margin: 15px 0; border-left: 4px solid #667eea; }
+        .install-title { font-size: 1.2em; font-weight: bold; margin-bottom: 10px; color: #667eea; }
+        .comparison-table { background: white; border-radius: 12px; padding: 30px; margin: 30px 0; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .comparison-table table { width: 100%; border-collapse: collapse; }
+        .comparison-table th, .comparison-table td { padding: 15px; text-align: left; border-bottom: 1px solid #e5e7eb; }
+        .comparison-table th { background: #e0e7ff; color: #3730a3; font-weight: bold; }
+        .comparison-table tr:hover { background: #eef2ff; }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2em; }
+            .hero-stats { gap: 30px; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .flow-arrow { transform: rotate(90deg); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo"><a href="index.html">🌐 AI工具集合</a></div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#comparison">能力对比</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-badge">LangChain + LangGraph + DeepAgents</div>
+        <h1>DeepAgents Framework Skill</h1>
+        <p>掌握 DeepAgents 框架的技能库，为 AI Agent 提供规划、文件系统、子代理、上下文压缩等核心能力的完整知识库和技能扩展机制。</p>
+        <div class="hero-stats">
+            <div class="stat-item"><span class="stat-number">5大</span><span class="stat-label">内置工具</span></div>
+            <div class="stat-item"><span class="stat-number">4种</span><span class="stat-label">存储后端</span></div>
+            <div class="stat-item"><span class="stat-number">Skills</span><span class="stat-label">技能扩展</span></div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/do-deepagents-skill" class="btn btn-primary" style="background: white; color: #667eea;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">为什么需要 DeepAgents？</h2>
+        <p class="section-subtitle">单一提示词撑不住复杂任务</p>
+        <div class="feature-highlight">
+            <h3>🤔 传统AI Agent的痛点</h3>
+            <p>真实业务往往是：多步推理、多工具组合、长会话、还要记用户偏好和历史决策。把一切都塞进一个 Chat 里，容易出现指令被淹没、行为漂移、失败不可定位。这就是为什么像 Claude Code、Deep Research、Manus 这样的应用能够脱颖而出。</p>
+        </div>
+    </section>
+
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心能力</h2>
+        <p class="section-subtitle">DeepAgents 框架提供的五大内置工具</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">📋</div>
+                <h3 class="skill-title">规划能力</h3>
+                <p class="skill-description">write_todos 工具，支持任务分解与进度追踪，自动管理复杂多步骤任务</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📁</div>
+                <h3 class="skill-title">文件系统</h3>
+                <p class="skill-description">read_file, write_file, edit_file, ls, glob, grep 全套文件操作，大结果自动 offload</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">💻</div>
+                <h3 class="skill-title">Shell 执行</h3>
+                <p class="skill-description">execute 工具在沙箱后端中运行命令，安全隔离执行环境</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔄</div>
+                <h3 class="skill-title">子代理系统</h3>
+                <p class="skill-description">task 工具实现上下文隔离的任务委派，支持多层嵌套代理协作</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📦</div>
+                <h3 class="skill-title">上下文压缩</h3>
+                <p class="skill-description">compact_conversation 工具，85% 窗口时自动摘要，有效管理长对话</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🛠️</div>
+                <h3 class="skill-title">Skills 扩展机制</h3>
+                <p class="skill-description">灵活的技能扩展系统，可自定义 Agent 能力，支持中间件系统架构</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="workflow" class="section">
+        <h2 class="section-title">工作流程</h2>
+        <p class="section-subtitle">使用 DeepAgents 构建智能代理的流程</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">安装 DeepAgents</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">定义工具函数</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">创建 Agent</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">调用 invoke</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">获取结果</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #667eea;">快速代码示例</h3>
+            <pre class="code-block">from deepagents import create_deep_agent
+
+def get_weather(city: str) -> str:
+    """Get weather for a given city."""
+    return f"It's always sunny in {city}!"
+
+agent = create_deep_agent(
+    model="anthropic:claude-sonnet-4-6",
+    tools=[get_weather],
+    system_prompt="You are a helpful assistant",
+)
+
+result = agent.invoke(
+    {"messages": [{"role": "user", "content": "What is the weather in SF?"}]}
+)
+print(result["messages"][-1].content)</pre>
+        </div>
+    </section>
+
+    <section id="comparison" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">能力对比</h2>
+        <p class="section-subtitle">DeepAgents vs 传统单一提示词方案</p>
+        <div class="comparison-table">
+            <table>
+                <thead>
+                    <tr><th>能力</th><th>传统方案</th><th>DeepAgents</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>任务规划</td><td>手动管理</td><td>✅ 自动任务分解与追踪</td></tr>
+                    <tr><td>文件操作</td><td>需要外部集成</td><td>✅ 内置全套文件工具</td></tr>
+                    <tr><td>子代理</td><td>不支持</td><td>✅ 上下文隔离的任务委派</td></tr>
+                    <tr><td>上下文管理</td><td>手动截断</td><td>✅ 85%窗口自动摘要</td></tr>
+                    <tr><td>执行环境</td><td>本地直接执行</td><td>✅ 沙箱隔离环境</td></tr>
+                    <tr><td>技能扩展</td><td>硬编码</td><td>✅ 灵活Skills机制</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="install" class="section">
+        <h2 class="section-title">安装与使用</h2>
+        <p class="section-subtitle">简单几步，开始构建智能代理</p>
+        <div class="install-card">
+            <div class="install-title">1. 安装 DeepAgents</div>
+            <pre class="code-block">pip install deepagents</pre>
+        </div>
+        <div class="install-card">
+            <div class="install-title">2. 克隆本技能库</div>
+            <pre class="code-block">git clone https://github.com/liangdabiao/do-deepagents-skill.git</pre>
+        </div>
+        <div class="install-card">
+            <div class="install-title">3. 将 SKILL.md 放入 Claude Code Skills 目录</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">将 SKILL.md 和 references 目录复制到你的 .claude/skills/ 目录下即可使用</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">基于 LangChain 生态构建</p>
+        <div class="tech-stack">
+            <div class="tech-item">DeepAgents</div>
+            <div class="tech-item">LangChain</div>
+            <div class="tech-item">LangGraph</div>
+            <div class="tech-item">Python</div>
+            <div class="tech-item">Claude Code Skills</div>
+        </div>
+    </section>
+
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于 DeepAgents Framework Skill 的常见疑问</p>
+        <div class="category-card">
+            <div class="category-title">Q: DeepAgents 和 LangGraph 有什么区别？</div>
+            <div class="category-content">A: DeepAgents 是构建在 LangChain + LangGraph 之上的独立库，提供了有主见的默认配置，让开发者无需从零搭建复杂的 Agent 架构。</div>
+        </div>
+        <div class="category-card">
+            <div class="category-title">Q: 这个 Skill 如何使用？</div>
+            <div class="category-content">A: 将 SKILL.md 和 references 目录放入 Claude Code 的 .claude/skills/ 目录，Claude Code 就能自动学习 DeepAgents 框架知识，辅助你开发。</div>
+        </div>
+        <div class="category-card">
+            <div class="category-title">Q: 支持哪些存储后端？</div>
+            <div class="category-content">A: 支持 StateBackend、FilesystemBackend、StoreBackend、Sandbox 等多种后端，可根据部署需求灵活选择。</div>
+        </div>
+    </section>
+
+    <footer class="footer" id="contact">
+        <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>掌握 DeepAgents 框架的技能库，为 AI Agent 开发者提供完整的知识参考和技能扩展。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/do-deepagents-skill">GitHub 仓库</a></li>
+                    <li><a href="https://github.com/langchain-ai/deepagents">DeepAgents 官方</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 DeepAgents Framework Skill. All rights reserved.</p>
+        </div>
+            </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+            });
+        });
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        if (hamburger) {
+            hamburger.addEventListener('click', () => { navMenu.classList.toggle('active'); hamburger.classList.toggle('active'); });
+        }
+    </script>
+</body>
+</html>

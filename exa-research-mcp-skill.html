@@ -457,18 +457,18 @@
         <div class="install-card">
             <div class="install-title">1. 安装MCP</div>
             <p style="margin-top: 10px; color: var(--secondary-color);">在项目根目录执行以下命令：</p>
-            <div class="code-block">claude mcp add --transport http exa "https://mcp.exa.ai/mcp?tools=web_search_advanced_exa"</div>
+            <pre class="code-block">claude mcp add --transport http exa "https://mcp.exa.ai/mcp?tools=web_search_advanced_exa"</pre>
             <p style="margin-top: 15px; color: var(--secondary-color);">然后打开Claude Code即可使用。</p>
         </div>
 
         <div class="install-card">
             <div class="install-title">2. 配置权限</div>
             <p style="margin-top: 10px; color: var(--secondary-color);">编辑 <code>.claude/settings.local.json</code> 文件：</p>
-            <div class="code-block">{
+            <pre class="code-block">{
   "permissions": {
     "allow": ["mcp__exa__web_search_advanced_exa"]
   }
-}</div>
+}</pre>
             <p style="margin-top: 15px; color: var(--secondary-color);">添加新的MCP工具时，将其加入allow列表。这是一种限制API表面积的安全方法。</p>
         </div>
 
@@ -541,7 +541,8 @@
     </section>
 
     <!-- 页脚 -->
-    <footer id="contact">
+    <footer class="footer" id="contact">
+        <div class="container">
         <div class="footer-content">
             <div class="footer-section">
                 <h3>关于项目</h3>
@@ -564,6 +565,7 @@
         <div class="footer-bottom">
             <p>&copy; 2025 Exa企业与市场研究工具. All rights reserved.</p>
         </div>
+            </div>
     </footer>
 
     <script src="script.js"></script>

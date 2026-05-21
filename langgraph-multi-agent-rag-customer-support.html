@@ -375,15 +375,15 @@
                     <div class="step-item">
                         <div class="step-number">1</div>
                         <h3>克隆项目</h3>
-                        <div class="code-block">
+                        <pre class="code-block">
                             <pre><code>git clone https://github.com/liangdabiao/langgraph_multi-agent-rag-customer-support.git
 cd langgraph_multi-agent-rag-customer-support</code></pre>
-                        </div>
+                        </pre>
                     </div>
                     <div class="step-item">
                         <div class="step-number">2</div>
                         <h3>配置环境</h3>
-                        <div class="code-block">
+                        <pre class="code-block">
                             <pre><code># 创建环境配置文件
 cp .dev.env .env
 
@@ -395,29 +395,29 @@ QDRANT_URL="your_qdrant_url"
 WOOCOMMERCE_API_URL="your_woocommerce_api_url"
 WOOCOMMERCE_API_KEY="your_woocommerce_api_key"
 WOOCOMMERCE_API_SECRET="your_woocommerce_api_secret"</code></pre>
-                        </div>
+                        </pre>
                     </div>
                     <div class="step-item">
                         <div class="step-number">3</div>
                         <h3>安装依赖</h3>
-                        <div class="code-block">
+                        <pre class="code-block">
                             <pre><code>poetry install</code></pre>
-                        </div>
+                        </pre>
                     </div>
                     <div class="step-item">
                         <div class="step-number">4</div>
                         <h3>启动向量数据库</h3>
-                        <div class="code-block">
+                        <pre class="code-block">
                             <pre><code>docker compose up qdrant -d</code></pre>
-                        </div>
+                        </pre>
                         <p>访问 Qdrant UI: http://localhost:6333/dashboard</p>
                     </div>
                     <div class="step-item">
                         <div class="step-number">5</div>
                         <h3>生成向量嵌入</h3>
-                        <div class="code-block">
+                        <pre class="code-block">
                             <pre><code>poetry run python vectorizer/app/main.py</code></pre>
-                        </div>
+                        </pre>
                     </div>
                     <div class="step-item">
                         <div class="step-number">6</div>
@@ -425,15 +425,15 @@ WOOCOMMERCE_API_SECRET="your_woocommerce_api_secret"</code></pre>
                         <div class="install-options">
                             <div class="install-option">
                                 <h4>命令行版本</h4>
-                                <div class="code-block">
+                                <pre class="code-block">
                                     <pre><code>poetry run python ./customer_support_chat/app/main.py</code></pre>
-                                </div>
+                                </pre>
                             </div>
                             <div class="install-option">
                                 <h4>Web界面版本</h4>
-                                <div class="code-block">
+                                <pre class="code-block">
                                     <pre><code>poetry run uvicorn web_app.app.main:app --reload --host 0.0.0.0 --port 8000</code></pre>
-                                </div>
+                                </pre>
                                 <p>访问 Web UI: http://localhost:8000</p>
                             </div>
                         </div>

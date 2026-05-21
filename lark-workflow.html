@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>飞书AI效率系统 | 22大工作流Skill</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 50%, #1e40af 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #3b82f6;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .skill-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .skill-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .skill-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: #3b82f6;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: #2563eb;
+        }
+        .workflow-diagram {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .workflow-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .flow-step {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .flow-arrow {
+            font-size: 2em;
+            color: #3b82f6;
+        }
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid #3b82f6;
+        }
+        .category-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #3b82f6;
+        }
+        .category-content {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .category-content ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .category-content li {
+            margin-bottom: 8px;
+        }
+        .feature-highlight {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #3b82f6;
+        }
+        .feature-highlight h3 {
+            color: #1e3a8a;
+            margin-bottom: 15px;
+        }
+        .feature-highlight p {
+            color: #1e40af;
+            line-height: 1.8;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        .install-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 4px solid #3b82f6;
+        }
+        .install-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #3b82f6;
+        }
+        .saas-mapping-table {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .saas-mapping-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .saas-mapping-table th,
+        .saas-mapping-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .saas-mapping-table th {
+            background: #dbeafe;
+            color: #1e3a8a;
+            font-weight: bold;
+        }
+        .saas-mapping-table tr:hover {
+            background: #eff6ff;
+        }
+        .workflow-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .workflow-item {
+            background: white;
+            border-radius: 10px;
+            padding: 18px 22px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border-left: 3px solid #3b82f6;
+        }
+        .workflow-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .workflow-num {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9em;
+            flex-shrink: 0;
+        }
+        .workflow-name {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        .workflow-desc {
+            font-size: 0.85em;
+            color: var(--secondary-color);
+            margin-top: 2px;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero-stats {
+                gap: 30px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+            .workflow-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🌐 AI工具集合</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflows">22大工作流</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#saas-mapping">SaaS映射</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#faq">常见问题</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主视觉区 -->
+    <section class="hero">
+        <div class="hero-badge">Claude Code Skill + 飞书 CLI (lark-cli)</div>
+        <h1>飞书AI效率系统</h1>
+        <p>基于 Claude Code Skill + 飞书 CLI 构建的个人 AI 效率基础设施。将 22 大实战用例完整迁移到飞书生态，用飞书各模块实现所有工作流功能，把原本分散在十几个 SaaS 工具中的个人效率工作流，全部收敛到飞书一个平台内运行。</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">22</span>
+                <span class="stat-label">工作流 Skill</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">17</span>
+                <span class="stat-label">原子 Skill</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">10+</span>
+                <span class="stat-label">飞书模块集成</span>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/lark-workflow-feishu-cli" class="btn btn-primary" style="background: white; color: #2563eb;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <!-- 项目背景 -->
+    <section class="section">
+        <h2 class="section-title">核心理念</h2>
+        <p class="section-subtitle">一个平台，统一管理所有工作流</p>
+        <div class="feature-highlight">
+            <h3>用飞书作为统一数据底座和交互界面</h3>
+            <p>
+                用飞书作为统一的数据底座和交互界面，用 Claude Code 作为智能调度中枢，把原本分散在 Gmail、Telegram、Todoist、Slack、Asana 等十几个 SaaS 工具中的个人效率工作流，全部收敛到飞书一个平台内运行。每个工作流被封装为一个 Claude Code Skill（SKILL.md），通过自然语言对话或指令触发，调用 lark-cli 操作飞书 API 完成数据读写、消息通知、文档生成等操作。
+            </p>
+        </div>
+    </section>
+
+    <!-- 核心特性 -->
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">个人 AI 效率基础设施的关键能力</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">🧠</div>
+                <h3 class="skill-title">Claude Code 智能调度</h3>
+                <p class="skill-description">意图识别、Skill 路由、任务编排一体化，通过自然语言对话即可触发各类工作流，零代码实现自动化</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📋</div>
+                <h3 class="skill-title">飞书全模块覆盖</h3>
+                <p class="skill-description">集成 IM、日历、任务、邮箱、文档、知识库、多维表格、电子表格、通讯录、妙记、云空间等飞书全生态</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔄</div>
+                <h3 class="skill-title">SaaS 完美替代</h3>
+                <p class="skill-description">替代 Gmail、Google Calendar、Telegram、Todoist、Slack、Asana、Notion、Airtable 等十多个 SaaS 工具</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🤖</div>
+                <h3 class="skill-title">自然语言触发</h3>
+                <p class="skill-description">每个 Skill 支持关键词触发和自然语言理解，无需记忆命令，像和人对话一样操作系统</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📊</div>
+                <h3 class="skill-title">多维表格数据底座</h3>
+                <p class="skill-description">所有 Skill 的数据存储基于飞书多维表格，结构化存储、灵活查询、可视化展示</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔗</div>
+                <h3 class="skill-title">Skill 间数据联动</h3>
+                <p class="skill-description">各 Skill 之间通过共享数据表实现联动，如 CRM 联系人自动出现在会议待办、晨间简报中</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 22大工作流 -->
+    <section id="workflows" class="section">
+        <h2 class="section-title">22 大工作流 Skill</h2>
+        <p class="section-subtitle">面向实际办公场景的端到端自动化流程</p>
+        <div class="workflow-list">
+            <div class="workflow-item">
+                <div class="workflow-num">1</div>
+                <div>
+                    <div class="workflow-name">个人 CRM</div>
+                    <div class="workflow-desc">自动扫描邮箱和日历，维护联系人关系热度分</div>
+                </div>
+            </div>
+            <div class="workflow-item">
+                <div class="workflow-num">2</div>
+                <div>
+                    <div class="workflow-name">会议待办追踪</div>
+                    <div class="workflow-desc">自动提取会议待办事项，跟踪执行进度</div>
+                </div>
+            </div>
+            <div class="workflow-item">
+                <div class="workflow-num">3</div>
+                <div>
+                    <div class="workflow-name">个人知识库</div>
+                    <div class="workflow-desc">一键保存文章到飞书知识库，智能分类管理</div>
+                </div>
+            </div>
+            <div class="workflow-item">
+                <div class="workflow-num">4</div>
+                <div>
+                    <div class="workflow-name">社交媒体追踪</div>
+                    <div class="workflow-desc">AI 搜索追踪社交动态，自动汇总到多维表格</div>
+                </div>
+            </div>
+            <div class="workflow-item">
+                <div class="workflow-num">5</div>
+                <div>
+                    <div class="workflow-name">AI 商业顾问团</div>
+                    <div class="workflow-desc">多角色 AI 顾问协同分析商业问题</div>
+                </div>
+            </div>
+            <div class="workflow-item">
+                <div class="workflow-num">6</div>
+                <div>
+                    <div class="workflow-name">内容创作管道</div>
+                    <div class="workflow-desc">从选题到发布全流程自动化管理</div>
+                </div>
+            </div>
+            <div class="workflow-item">
+                <div class="workflow-num">7</div>
+                <div>
+                    <div class="workflow-name">每日晨间简报</div>
+                    <div class="workflow-desc">汇总日程、邮件、任务生成每日早报</div>
+                </div>
+            </div>
+            <div class="workflow-item">
+                <div class="workflow-num">8</div>
+                <div>
+                    <div class="workflow-name">股票研究助手</div>
+                    <div class="workflow-desc">AI 搜索 + 多维表格追踪股票研究</div>
+                </div>
+            </div>
+            <div class="workflow-item">
+                <div class="workflow-num">9</div>
+                <div>
+                    <div class="workflow-name">多编程代理协同</div>
+                    <div class="workflow-desc">多个 AI 代理协同完成编程任务</div>
+                </div>
+            </div>
+            <div class="workflow-item">
+                <div class="workflow-num">10</div>
+                <div>
+                    <div class="workflow-name">健康日记</div>
+                    <div class="workflow-desc">自然语言记录饮食运动，自动统计分析</div>
+                </div>
+            </div>
+            <div class="workflow-item">
+                <div class="workflow-num">11</div>
+                <div>
+                    <div class="workflow-name">任务状态播报</div>
+                    <div class="workflow-desc">自动追踪任务进度并定时播报状态</div>
+                </div>
+            </div>
+            <div class="workflow-item">
+                <div class="workflow-num">12</div>
+                <div>
+                    <div class="workflow-name">日程冲突检测</div>
+                    <div class="workflow-desc">智能检测日程冲突并推荐最佳时间</div>
+                </div>
+            </div>
+            <div class="workflow-item">
+                <div class="workflow-num">13</div>
+                <div>
+                    <div class="workflow-name">群消息日报</div>
+                    <div class="workflow-desc">自动汇总群聊消息生成每日报告</div>
+                </div>
+            </div>
+            <div class="workflow-item">
+                <div class="workflow-num">14</div>
+                <div>
+                    <div class="workflow-name">会议纪要分发</div>
+                    <div class="workflow-desc">自动生成会议纪要并分发到参会人</div>
+                </div>
+            </div>
+            <div class="workflow-item">
+                <div class="workflow-num">15</div>
+                <div>
+                    <div class="workflow-name">新人入职向导</div>
+                    <div class="workflow-desc">引导新人完成入职流程，自动推送资料</div>
+                </div>
+            </div>
+            <div class="workflow-item">
+                <div class="workflow-num">16</div>
+                <div>
+                    <div class="workflow-name">文档权限管家</div>
+                    <div class="workflow-desc">智能管理文档权限，自动处理权限申请</div>
+                </div>
+            </div>
+            <div class="workflow-item">
+                <div class="workflow-num">17</div>
+                <div>
+                    <div class="workflow-name">智能表单收集</div>
+                    <div class="workflow-desc">飞书多维表格表单自动化数据收集</div>
+                </div>
+            </div>
+            <div class="workflow-item">
+                <div class="workflow-num">18</div>
+                <div>
+                    <div class="workflow-name">跨表数据同步</div>
+                    <div class="workflow-desc">多维表格间数据自动同步与关联</div>
+                </div>
+            </div>
+            <div class="workflow-item">
+                <div class="workflow-num">19</div>
+                <div>
+                    <div class="workflow-name">群公告管理</div>
+                    <div class="workflow-desc">自动生成和发布群公告，管理公告历史</div>
+                </div>
+            </div>
+            <div class="workflow-item">
+                <div class="workflow-num">20</div>
+                <div>
+                    <div class="workflow-name">审批催办机器人</div>
+                    <div class="workflow-desc">智能追踪审批进度，自动催办超时审批</div>
+                </div>
+            </div>
+            <div class="workflow-item">
+                <div class="workflow-num">21</div>
+                <div>
+                    <div class="workflow-name">进销存 ERP</div>
+                    <div class="workflow-desc">基于多维表格的轻量级进销存管理</div>
+                </div>
+            </div>
+            <div class="workflow-item">
+                <div class="workflow-num">22</div>
+                <div>
+                    <div class="workflow-name">团队 CRM</div>
+                    <div class="workflow-desc">团队级客户关系管理，多人协作共享</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作流程 -->
+    <section id="workflow" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">系统架构</h2>
+        <p class="section-subtitle">自然语言驱动的智能调度中枢</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">用户自然语言</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">Claude Code<br>意图识别+路由</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">Skill 任务编排</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">lark-cli<br>飞书 API</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">数据读写+通知</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #3b82f6;">飞书模块集成</h3>
+            <div class="skills-grid">
+                <div class="category-card">
+                    <div class="category-title">IM 消息通讯</div>
+                    <div class="category-content">
+                        所有 Skill 的通知通道，支持私聊和群聊消息推送，实现实时工作提醒和日报生成
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">日历 &amp; 任务</div>
+                    <div class="category-content">
+                        日程管理、会议安排、冲突检测，任务创建与追踪，待办事项自动化管理
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">多维表格 &amp; 电子表格</div>
+                    <div class="category-content">
+                        所有 Skill 的数据底座，结构化存储、灵活查询、表单收集、数据同步
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">文档 &amp; 知识库</div>
+                    <div class="category-content">
+                        知识管理、会议纪要生成、文档权限管理，支持云文档和 Wiki 空间
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">邮箱 &amp; 审批</div>
+                    <div class="category-content">
+                        邮件扫描提取联系人、审批催办追踪，打通企业协作流程
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">妙记 &amp; 通讯录</div>
+                    <div class="category-content">
+                        视频会议记录、新人入职引导、通讯录查询，全面覆盖办公场景
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SaaS映射 -->
+    <section id="saas-mapping" class="section">
+        <h2 class="section-title">SaaS 到飞书映射</h2>
+        <p class="section-subtitle">用飞书替代十几个 SaaS 工具，统一管理所有工作流</p>
+
+        <div class="saas-mapping-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>原始 SaaS</th>
+                        <th>飞书替代</th>
+                        <th>应用场景</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Gmail</td>
+                        <td>飞书邮箱</td>
+                        <td>CRM、晨间简报</td>
+                    </tr>
+                    <tr>
+                        <td>Google Calendar</td>
+                        <td>飞书日历</td>
+                        <td>CRM、晨间简报、日程冲突检测</td>
+                    </tr>
+                    <tr>
+                        <td>Telegram</td>
+                        <td>飞书消息 (IM)</td>
+                        <td>所有 Skill 的通知通道</td>
+                    </tr>
+                    <tr>
+                        <td>Todoist / Asana</td>
+                        <td>飞书任务</td>
+                        <td>会议待办、内容管道、任务播报</td>
+                    </tr>
+                    <tr>
+                        <td>Slack</td>
+                        <td>飞书消息 (群聊)</td>
+                        <td>内容管道、群消息日报</td>
+                    </tr>
+                    <tr>
+                        <td>Fathom</td>
+                        <td>飞书妙记 / 视频会议</td>
+                        <td>会议待办追踪、会议纪要分发</td>
+                    </tr>
+                    <tr>
+                        <td>Notion</td>
+                        <td>飞书知识库 + 云文档</td>
+                        <td>个人知识库</td>
+                    </tr>
+                    <tr>
+                        <td>Airtable</td>
+                        <td>飞书多维表格 (Base)</td>
+                        <td>所有 Skill 的数据存储</td>
+                    </tr>
+                    <tr>
+                        <td>Google Forms</td>
+                        <td>飞书多维表格表单</td>
+                        <td>智能表单收集</td>
+                    </tr>
+                    <tr>
+                        <td>钉钉审批 / 泛微</td>
+                        <td>飞书审批</td>
+                        <td>审批催办机器人</td>
+                    </tr>
+                    <tr>
+                        <td>Yahoo Finance</td>
+                        <td>AI WebSearch + 多维表格</td>
+                        <td>股票研究助手</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 安装配置 -->
+    <section id="install" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">安装与配置</h2>
+        <p class="section-subtitle">简单几步，搭建你的个人 AI 效率系统</p>
+
+        <div class="install-card">
+            <div class="install-title">1. 确认环境要求</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">确保已安装 Claude Code CLI 和 lark-cli：</p>
+            <pre class="code-block"># 检查 lark-cli 版本
+lark-cli --version
+
+# 检查登录状态（一次授权所有模块）
+lark-cli auth login --domain im,calendar,task,mail,base,docs,wiki,drive,vc,minutes,contact,sheets</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">2. 克隆项目</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">获取项目代码和 Skill 文件：</p>
+            <pre class="code-block">git clone https://github.com/liangdabiao/lark-workflow-feishu-cli.git
+cd lark-workflow-feishu-cli
+
+# 检查 Skill 是否就位
+ls .claude/skills/lark-workflow-*/</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">3. 开始使用</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">用自然语言触发工作流：</p>
+            <pre class="code-block"># 查看今天的安排
+你：今天有什么安排？
+
+# 记录饮食
+你：午餐吃了红烧牛肉面和一杯冰美式
+
+# 保存文章到知识库
+你：帮我保存这篇文章到知识库 https://example.com/article</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">4. 按需初始化</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">首次使用某个 Skill 时，AI 会提示创建所需的多维表格：</p>
+            <pre class="code-block"># 主动初始化各类系统
+你：帮我初始化个人CRM系统
+你：初始化健康日记
+你：设置晨间简报</pre>
+        </div>
+    </section>
+
+    <!-- 技术栈 -->
+    <section class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">基于 Claude Code 和飞书开放平台构建</p>
+        <div class="tech-stack">
+            <div class="tech-item">Claude Code</div>
+            <div class="tech-item">lark-cli</div>
+            <div class="tech-item">飞书开放平台 API</div>
+            <div class="tech-item">飞书多维表格</div>
+            <div class="tech-item">飞书 IM</div>
+            <div class="tech-item">飞书日历</div>
+            <div class="tech-item">飞书任务</div>
+            <div class="tech-item">飞书邮箱</div>
+            <div class="tech-item">飞书文档/知识库</div>
+            <div class="tech-item">飞书妙记</div>
+            <div class="tech-item">Node.js</div>
+            <div class="tech-item">SKILL.md 规范</div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section id="faq" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于飞书AI效率系统的常见疑问</p>
+
+        <div class="category-card">
+            <div class="category-title">Q: 需要哪些前置条件？</div>
+            <div class="category-content">
+                A: 需要安装 Claude Code CLI 工具和 lark-cli 命令行工具，并拥有飞书企业版账号。首次使用需通过 <code>lark-cli auth login</code> 完成登录授权，授权所有需要使用的飞书模块。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 支持哪些飞书模块？</div>
+            <div class="category-content">
+                A: 支持 IM 消息、日历、任务、邮箱、文档、知识库、多维表格、电子表格、通讯录、妙记、云空间、视频会议等飞书全生态模块。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 如何抓取社交网络数据？</div>
+            <div class="category-content">
+                A: 推荐配合 Apify Agent Skills 或 tikhub_api_skill 使用，可从 GitHub 安装对应 Skill，实现社交媒体数据自动抓取和分析。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 各 Skill 之间如何联动？</div>
+            <div class="category-content">
+                A: 各 Skill 通过共享飞书多维表格实现数据联动。例如，CRM 中维护的联系人会自动出现在会议待办追踪、晨间简报等相关 Skill 中。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 是否支持定时自动化？</div>
+            <div class="category-content">
+                A: 支持定时自动化配置，可以设置晨间简报定时推送、任务状态定时播报、审批催办定时检查等自动化任务。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 需要 OpenClaw 吗？</div>
+            <div class="category-content">
+                A: 本项目同时适配 Claude Code Skill 和 OpenClaw，两种框架均可使用。Claude Code 用户直接使用 SKILL.md 即可，OpenClaw 用户按照 OpenClaw 规范加载即可。
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于项目</h3>
+                    <p>基于 Claude Code Skill + 飞书 CLI 构建的个人 AI 效率基础设施。将 22 大实战用例完整迁移到飞书生态，实现工作流全平台统一管理。</p>
+                </div>
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="index.html">返回首页</a></li>
+                        <li><a href="https://github.com/liangdabiao/lark-workflow-feishu-cli">GitHub 仓库</a></li>
+                        <li><a href="https://linux.do/t/topic/1868703">社区讨论帖</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>联系我们</h3>
+                    <p>邮箱：497070928@qq.com</p>
+                    <p>GitHub：https://github.com/liangdabiao</p>
+                    <p>社区：https://linux.do/u/liangdabiao</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 飞书AI效率系统. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 移动端菜单
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

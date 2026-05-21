@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM-Wiki Agentic RAG | Claude Agent SDK知识编译器</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero { background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 100px 20px; text-align: center; }
+        .hero h1 { font-size: 3em; margin-bottom: 20px; }
+        .hero p { font-size: 1.3em; max-width: 800px; margin: 0 auto 30px; opacity: 0.95; }
+        .hero-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 10px 25px; border-radius: 25px; margin-bottom: 20px; font-size: 0.95em; }
+        .hero-stats { display: flex; justify-content: center; gap: 50px; margin-top: 50px; flex-wrap: wrap; }
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 2.5em; font-weight: bold; display: block; }
+        .stat-label { font-size: 0.9em; opacity: 0.9; }
+        .section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 2.5em; margin-bottom: 20px; color: var(--primary-color); }
+        .section-subtitle { text-align: center; color: var(--secondary-color); margin-bottom: 50px; font-size: 1.1em; }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-top: 40px; }
+        .skill-card { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s; border-left: 4px solid #06b6d4; }
+        .skill-card:hover { transform: translateY(-5px); box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+        .skill-icon { font-size: 2.5em; margin-bottom: 15px; }
+        .skill-title { font-size: 1.3em; font-weight: bold; margin-bottom: 10px; color: var(--text-color); }
+        .skill-description { color: var(--secondary-color); line-height: 1.8; }
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 30px; }
+        .tech-item { background: #06b6d4; color: white; padding: 12px 24px; border-radius: 25px; font-size: 0.95em; }
+        .workflow-diagram { background: white; border-radius: 12px; padding: 40px; margin: 40px 0; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .workflow-flow { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 30px 0; }
+        .flow-step { background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 20px 30px; border-radius: 10px; text-align: center; font-weight: bold; }
+        .flow-arrow { font-size: 2em; color: #06b6d4; }
+        .category-card { background: white; border-radius: 12px; padding: 30px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid #06b6d4; }
+        .category-title { font-size: 1.4em; font-weight: bold; margin-bottom: 15px; color: #06b6d4; }
+        .category-content { color: var(--secondary-color); line-height: 1.8; }
+        .feature-highlight { background: linear-gradient(135deg, #ecfeff 0%, #cffafe 100%); border-radius: 12px; padding: 30px; margin: 30px 0; border-left: 4px solid #06b6d4; }
+        .feature-highlight h3 { color: #155e75; margin-bottom: 15px; }
+        .feature-highlight p { color: #164e63; line-height: 1.8; }
+        pre.code-block { background: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 8px; margin: 20px 0; font-family: 'Courier New', monospace; line-height: 1.6; overflow-x: auto; white-space: pre-wrap; }
+        .install-card { background: #f8f9fa; border-radius: 12px; padding: 25px; margin: 15px 0; border-left: 4px solid #06b6d4; }
+        .install-title { font-size: 1.2em; font-weight: bold; margin-bottom: 10px; color: #06b6d4; }
+        @media (max-width: 768px) { .hero h1 { font-size: 2em; } .hero-stats { gap: 30px; } .skills-grid { grid-template-columns: 1fr; } .flow-arrow { transform: rotate(90deg); } }
+    </style>
+</head>
+<body>
+    <nav class="navbar"><div class="nav-container"><div class="nav-logo"><a href="index.html">🌐 AI工具集合</a></div><ul class="nav-menu"><li><a href="index.html">首页</a></li><li><a href="#features">核心功能</a></li><li><a href="#workflow">工作流程</a></li><li><a href="#install">安装配置</a></li><li><a href="#contact">联系我们</a></li></ul><div class="hamburger"><span></span><span></span><span></span></div></div></nav>
+
+    <section class="hero">
+        <div class="hero-badge">Claude Agent SDK + LLM-Wiki + Agentic RAG</div>
+        <h1>LLM-Wiki Agentic RAG</h1>
+        <p>Claude Agent SDK + LLM-wiki = 最强大的Agentic RAG。让AI当一个"知识编译器"，先把所有资料读一遍，整理成结构清晰的百科全书，以后提问AI直接翻百科书即可。</p>
+        <div class="hero-stats">
+            <div class="stat-item"><span class="stat-number">知识</span><span class="stat-label">编译器</span></div>
+            <div class="stat-item"><span class="stat-number">Agent</span><span class="stat-label">SDK驱动</span></div>
+            <div class="stat-item"><span class="stat-number">Agentic</span><span class="stat-label">RAG</span></div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/llm-wiki-claude-agent-sdk-agentic-rag" class="btn btn-primary" style="background: white; color: #06b6d4;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">为什么是 Agentic RAG？</h2>
+        <p class="section-subtitle">传统RAG vs Agentic RAG</p>
+        <div class="feature-highlight">
+            <h3>🧠 传统RAG的局限</h3>
+            <p>传统RAG只是简单的"检索-生成"：把文档切块、向量化，提问时检索相关片段再交给LLM回答。但实际场景中，用户的问题往往需要跨多个文档综合分析、多步推理才能回答。Agentic RAG通过Agent架构，让AI主动规划检索策略、多轮迭代，直到获得完整答案。</p>
+        </div>
+    </section>
+
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">LLM-Wiki + Claude Agent SDK 的强强联合</p>
+        <div class="skills-grid">
+            <div class="skill-card"><div class="skill-icon">📚</div><h3 class="skill-title">知识编译器</h3><p class="skill-description">AI自动读取所有资料，整理成结构清晰、彼此关联的百科全书，而非简单的文档堆砌</p></div>
+            <div class="skill-card"><div class="skill-icon">🔍</div><h3 class="skill-title">智能检索</h3><p class="skill-description">基于LLM-wiki的结构化知识库，Agent精确翻阅百科全书找到相关内容</p></div>
+            <div class="skill-card"><div class="skill-icon">🤖</div><h3 class="skill-title">Agent SDK驱动</h3><p class="skill-description">通过Claude Agent SDK调用Agent，实现自主规划、多步推理、工具调用的智能问答</p></div>
+            <div class="skill-card"><div class="skill-icon">🌐</div><h3 class="skill-title">API接口服务</h3><p class="skill-description">提供完整的API接口，支持外部系统调用Agentic RAG服务</p></div>
+            <div class="skill-card"><div class="skill-icon">📖</div><h3 class="skill-title">Quartz静态发布</h3><p class="skill-description">LLM-wiki通过Quartz发布为静态wiki网站，支持浏览器访问和搜索</p></div>
+            <div class="skill-card"><div class="skill-icon">🔄</div><h3 class="skill-title">多源素材整合</h3><p class="skill-description">支持网页、推特、公众号、小红书、YouTube、PDF等多种素材源自动整理</p></div>
+            <div class="skill-card"><div class="skill-icon">⚡</div><h3 class="skill-title">高效推理</h3><p class="skill-description">直接翻阅百科书而非重新阅读原始文档，大幅提升回答效率和准确度</p></div>
+            <div class="skill-card"><div class="skill-icon">🛠️</div><h3 class="skill-title">实战验证</h3><p class="skill-description">经过实际测试验证，效果非常好，可直接用于生产环境</p></div>
+        </div>
+    </section>
+
+    <section id="workflow" class="section">
+        <h2 class="section-title">工作流程</h2>
+        <p class="section-subtitle">从原始资料到Agentic RAG的完整链路</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">收集素材</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">LLM-Wiki整理</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">Quartz发布</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">Agent SDK接入</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">Agentic RAG</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="install" class="section">
+        <h2 class="section-title">安装与使用</h2>
+        <p class="section-subtitle">快速搭建你的Agentic RAG系统</p>
+        <div class="install-card">
+            <div class="install-title">1. 克隆项目</div>
+            <pre class="code-block">git clone https://github.com/liangdabiao/llm-wiki-claude-agent-sdk-agentic-rag.git</pre>
+        </div>
+        <div class="install-card">
+            <div class="install-title">2. 安装依赖</div>
+            <pre class="code-block">pip install -r requirements.txt</pre>
+        </div>
+        <div class="install-card">
+            <div class="install-title">3. 配置环境变量</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">配置Claude API Key和相关环境变量</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">基于Claude Agent SDK和LLM-Wiki构建</p>
+        <div class="tech-stack">
+            <div class="tech-item">Claude Agent SDK</div>
+            <div class="tech-item">LLM-Wiki</div>
+            <div class="tech-item">Quartz</div>
+            <div class="tech-item">Python</div>
+            <div class="tech-item">Agentic RAG</div>
+        </div>
+    </section>
+
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">常见问题</h2>
+        <div class="category-card"><div class="category-title">Q: 和传统RAG有什么区别？</div><div class="category-content">A: 传统RAG是被动检索，Agentic RAG通过Agent主动规划检索策略、多步推理，回答更准确完整。</div></div>
+        <div class="category-card"><div class="category-title">Q: 需要什么前置条件？</div><div class="category-content">A: 需要先搭建好LLM-Wiki知识库，然后通过Claude Agent SDK接入即可使用。</div></div>
+    </section>
+
+    <footer class="footer" id="contact"><div class="container">
+        <div class="footer-content">
+            <div class="footer-section"><h3>关于项目</h3><p>Claude Agent SDK + LLM-wiki构建的Agentic RAG系统，让AI成为你的知识编译器。</p></div>
+            <div class="footer-section"><h3>快速链接</h3><ul><li><a href="index.html">返回首页</a></li><li><a href="https://github.com/liangdabiao/llm-wiki-claude-agent-sdk-agentic-rag">GitHub 仓库</a></li></ul></div>
+            <div class="footer-section"><h3>联系我们</h3><p>邮箱：497070928@qq.com</p><p>GitHub：https://github.com/liangdabiao</p></div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2025 LLM-Wiki Agentic RAG. All rights reserved.</p></div>
+    </div></footer>
+    <script src="script.js"></script>
+    <script>document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){e.preventDefault();const t=document.querySelector(this.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'});});});const h=document.querySelector('.hamburger'),n=document.querySelector('.nav-menu');if(h)h.addEventListener('click',()=>{n.classList.toggle('active');h.classList.toggle('active');});</script>
+</body>
+</html>

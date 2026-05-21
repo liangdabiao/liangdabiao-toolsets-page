@@ -1,0 +1,770 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - link "Skip to content" [ref=e4] [cursor=pointer]:
+      - /url: "#start-of-content"
+    - banner [ref=e6]:
+      - heading "Navigation Menu" [level=2] [ref=e7]
+      - generic [ref=e8]:
+        - link "Homepage" [ref=e10] [cursor=pointer]:
+          - /url: /
+          - img [ref=e11]
+        - generic [ref=e13]:
+          - navigation "Global" [ref=e16]:
+            - list [ref=e17]:
+              - listitem [ref=e18]:
+                - button "Platform" [ref=e20] [cursor=pointer]:
+                  - text: Platform
+                  - img [ref=e21]
+              - listitem [ref=e23]:
+                - button "Solutions" [ref=e25] [cursor=pointer]:
+                  - text: Solutions
+                  - img [ref=e26]
+              - listitem [ref=e28]:
+                - button "Resources" [ref=e30] [cursor=pointer]:
+                  - text: Resources
+                  - img [ref=e31]
+              - listitem [ref=e33]:
+                - button "Open Source" [ref=e35] [cursor=pointer]:
+                  - text: Open Source
+                  - img [ref=e36]
+              - listitem [ref=e38]:
+                - button "Enterprise" [ref=e40] [cursor=pointer]:
+                  - text: Enterprise
+                  - img [ref=e41]
+              - listitem [ref=e43]:
+                - link "Pricing" [ref=e44] [cursor=pointer]:
+                  - /url: https://github.com/pricing
+                  - generic [ref=e45]: Pricing
+          - generic [ref=e46]:
+            - button "Search or jump to…" [ref=e49] [cursor=pointer]:
+              - img [ref=e51]
+            - link "Sign in" [ref=e54] [cursor=pointer]:
+              - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fliangdabiao%3Ftab%3Drepositories%26q%3D%26type%3D%26language%3D%26sort%3D
+            - link "Sign up" [ref=e55] [cursor=pointer]:
+              - /url: /signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2Fliangdabiao&source=header
+            - button "Appearance settings" [ref=e58] [cursor=pointer]:
+              - img
+  - main [ref=e61]:
+    - generic [ref=e64]:
+      - generic [ref=e65]:
+        - generic:
+          - generic:
+            - generic:
+              - img "@liangdabiao"
+            - generic:
+              - strong: liangdabiao
+              - generic:
+                - generic:
+                  - link "Follow":
+                    - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fliangdabiao%3Ftab%3Drepositories%26q%3D%26type%3D%26language%3D%26sort%3D
+      - navigation "User profile" [ref=e68]:
+        - link "Overview" [ref=e69] [cursor=pointer]:
+          - /url: /liangdabiao
+          - img [ref=e70]
+          - text: Overview
+        - link "Repositories 599" [ref=e72] [cursor=pointer]:
+          - /url: /liangdabiao?tab=repositories
+          - img [ref=e73]
+          - text: Repositories
+          - generic "599" [ref=e75]
+        - link "Projects" [ref=e76] [cursor=pointer]:
+          - /url: /liangdabiao?tab=projects
+          - img [ref=e77]
+          - text: Projects
+        - link "Packages" [ref=e79] [cursor=pointer]:
+          - /url: /liangdabiao?tab=packages
+          - img [ref=e80]
+          - text: Packages
+        - link "Stars 5k+" [ref=e82] [cursor=pointer]:
+          - /url: /liangdabiao?tab=stars
+          - img [ref=e83]
+          - text: Stars
+          - generic "5,000+" [ref=e85]: 5k+
+    - generic [ref=e87]:
+      - generic [ref=e89]:
+        - generic:
+          - generic:
+            - generic:
+              - img "@liangdabiao"
+            - generic:
+              - generic:
+                - strong: liangdabiao
+            - generic:
+              - generic:
+                - generic:
+                  - link "Follow":
+                    - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fliangdabiao%3Ftab%3Drepositories%26q%3D%26type%3D%26language%3D%26sort%3D
+        - generic [ref=e90]:
+          - generic [ref=e91]:
+            - generic [ref=e92]:
+              - link "View liangdabiao's full-sized avatar" [ref=e93] [cursor=pointer]:
+                - /url: https://avatars.githubusercontent.com/u/1232260?v=4
+                - img "View liangdabiao's full-sized avatar" [ref=e94]
+              - generic [ref=e97]:
+                - generic [ref=e99]: 🏠
+                - generic: Working from home
+            - heading "liangdabiao liangdabiao" [level=1] [ref=e101]:
+              - generic [ref=e102]: liangdabiao
+              - generic [ref=e103]: liangdabiao
+          - generic [ref=e104]:
+            - link "Follow" [ref=e111] [cursor=pointer]:
+              - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Fliangdabiao%3Ftab%3Drepositories%26q%3D%26type%3D%26language%3D%26sort%3D
+            - generic [ref=e112]:
+              - generic [ref=e114]: programmer in shenzhen https://www.liangdabiao.com/ https://liang.348349.xyz/
+              - generic [ref=e116]:
+                - link "282 followers" [ref=e117] [cursor=pointer]:
+                  - /url: https://github.com/liangdabiao?tab=followers
+                  - img [ref=e118]
+                  - text: 282 followers
+                - text: ·
+                - link "62 following" [ref=e120] [cursor=pointer]:
+                  - /url: https://github.com/liangdabiao?tab=following
+              - list [ref=e121]:
+                - 'listitem "Organization: AI , PHP" [ref=e122]':
+                  - img [ref=e123]
+                  - generic [ref=e126]: AI , PHP
+                - 'listitem "Home location: shenzhen" [ref=e127]':
+                  - img [ref=e128]
+                  - generic [ref=e130]: shenzhen
+                - listitem [ref=e131]:
+                  - img [ref=e132]
+                  - link "https://www.liangdabiao.com/" [ref=e134] [cursor=pointer]:
+                    - /url: https://www.liangdabiao.com/
+                - listitem [ref=e135]:
+                  - img [ref=e136]
+                  - link "https://linux.do/u/liangdabiao" [ref=e138] [cursor=pointer]:
+                    - /url: https://linux.do/u/liangdabiao
+                - listitem [ref=e139]:
+                  - img [ref=e140]
+                  - link "https://liang.348349.xyz/" [ref=e142] [cursor=pointer]:
+                    - /url: https://liang.348349.xyz/
+          - generic [ref=e143]:
+            - heading "Achievements" [level=2] [ref=e144]:
+              - link "Achievements" [ref=e145] [cursor=pointer]:
+                - /url: /liangdabiao?tab=achievements
+            - generic [ref=e146]:
+              - 'link "Achievement: Starstruck x3" [ref=e147] [cursor=pointer]':
+                - /url: /liangdabiao?achievement=starstruck&tab=achievements
+                - 'img "Achievement: Starstruck" [ref=e148]'
+                - generic [ref=e149]: x3
+              - 'link "Achievement: Arctic Code Vault Contributor" [ref=e150] [cursor=pointer]':
+                - /url: /liangdabiao?achievement=arctic-code-vault-contributor&tab=achievements
+                - 'img "Achievement: Arctic Code Vault Contributor" [ref=e151]'
+          - button "Block or report user" [ref=e153] [cursor=pointer]:
+            - generic [ref=e155]: Block or report user
+      - generic [ref=e158]:
+        - search "Repositories" [ref=e161]:
+          - generic [ref=e162]:
+            - searchbox "Find a repository…" [ref=e164]
+            - generic [ref=e165]:
+              - group [ref=e166]:
+                - button "Type" [ref=e167] [cursor=pointer]: Type
+              - group [ref=e169]:
+                - button "Language" [ref=e170] [cursor=pointer]: Language
+              - group [ref=e172]:
+                - button "Sort" [ref=e173] [cursor=pointer]: Sort
+        - generic [ref=e175]:
+          - list [ref=e176]:
+            - listitem [ref=e177]:
+              - generic [ref=e178]:
+                - heading "do-deepagents-skill Public" [level=3] [ref=e180]:
+                  - link "do-deepagents-skill" [ref=e181] [cursor=pointer]:
+                    - /url: /liangdabiao/do-deepagents-skill
+                  - generic [ref=e182]: Public
+                - paragraph [ref=e184]: skill指导AI正确的写代码-基于langchain deepagents框架。为什么需要 DeepAgents 这一套？单一提示词撑不住复杂任务真实业务往往是：多步推理、多工具组合、长会话、还要记用户偏好和历史决策。把一切都塞进一个 Chat 里，容易出现指令被淹没、行为漂移、失败不可定位。这就是为什么像Claude Code、Deep Research、Manus这样的应用能够脱颖而出…
+                - generic [ref=e185]:
+                  - link "star 4" [ref=e186] [cursor=pointer]:
+                    - /url: /liangdabiao/do-deepagents-skill/stargazers
+                    - img "star" [ref=e187]
+                    - text: "4"
+                  - link "fork 1" [ref=e189] [cursor=pointer]:
+                    - /url: /liangdabiao/do-deepagents-skill/forks
+                    - img "fork" [ref=e190]
+                    - text: "1"
+                  - text: Updated May 17, 20264 days ago
+              - img [ref=e194]
+            - listitem [ref=e197]:
+              - generic [ref=e198]:
+                - heading "Simple-Agentic-Stack Public" [level=3] [ref=e200]:
+                  - link "Simple-Agentic-Stack" [ref=e201] [cursor=pointer]:
+                    - /url: /liangdabiao/Simple-Agentic-Stack
+                  - generic [ref=e202]: Public
+                - paragraph [ref=e204]: 基于 MCP（Model Context Protocol）和 Skill 驱动的 AI Agent 编排系统。LLM 通过自然语言编写的 Skill 按步骤调用 MCP Server 提供的工具，完成复杂的多数据源联动任务。 > 传统编程和 LLM Agent 系统之间的对应关系：**Skill 是程序，MCP 是库，LLM 是语言**。
+                - generic [ref=e205]:
+                  - generic [ref=e206]: Python
+                  - link "star 2" [ref=e208] [cursor=pointer]:
+                    - /url: /liangdabiao/Simple-Agentic-Stack/stargazers
+                    - img "star" [ref=e209]
+                    - text: "2"
+                  - link "fork 2" [ref=e211] [cursor=pointer]:
+                    - /url: /liangdabiao/Simple-Agentic-Stack/forks
+                    - img "fork" [ref=e212]
+                    - text: "2"
+                  - text: Updated May 17, 20264 days ago
+              - img [ref=e216]
+            - listitem [ref=e219]:
+              - generic [ref=e220]:
+                - heading "SKILL-kefu Public" [level=3] [ref=e222]:
+                  - link "SKILL-kefu" [ref=e223] [cursor=pointer]:
+                    - /url: /liangdabiao/SKILL-kefu
+                  - generic [ref=e224]: Public
+                - paragraph [ref=e226]: SKILL智能客服系统 基于 LangChain/LangGraph 的完整智能客服解决方案。本系统整合了原教程 11 个章节的所有核心功能，包括对话记忆、RAG 知识库、情绪识别、意图分类、工单系统、监控评价、计划执行、多 Agent 系统、MCP 技能系统等。本系统目的是为了让skill能够变成公开服务。
+                - generic [ref=e227]:
+                  - generic [ref=e228]: Python
+                  - link "star 4" [ref=e230] [cursor=pointer]:
+                    - /url: /liangdabiao/SKILL-kefu/stargazers
+                    - img "star" [ref=e231]
+                    - text: "4"
+                  - link "fork 1" [ref=e233] [cursor=pointer]:
+                    - /url: /liangdabiao/SKILL-kefu/forks
+                    - img "fork" [ref=e234]
+                    - text: "1"
+                  - text: Updated May 15, 2026last week
+              - img [ref=e238]
+            - listitem [ref=e241]:
+              - generic [ref=e242]:
+                - heading "ecom-details-image Public" [level=3] [ref=e244]:
+                  - link "ecom-details-image" [ref=e245] [cursor=pointer]:
+                    - /url: /liangdabiao/ecom-details-image
+                  - generic [ref=e246]: Public
+                - paragraph [ref=e248]: 一个面向 claude code / Codex / OpenClaw 的跨境电商和国内电商通用视觉创作 Skill。我精选25个高质量案例，涵盖纯色底产品主图、场景化生活图、平铺图、电商详情图、真实场景等等，全部配完整提示词，都可以利用 GPT-Image-2 API生成最终效果。一键生成电商相关图片！输入产品图片和需求描述，自动生成完整的电商主图、详情页图片、社媒推广图、直播间场景图等全…
+                - generic [ref=e249]:
+                  - generic [ref=e250]: Python
+                  - link "star 228" [ref=e252] [cursor=pointer]:
+                    - /url: /liangdabiao/ecom-details-image/stargazers
+                    - img "star" [ref=e253]
+                    - text: "228"
+                  - link "fork 59" [ref=e255] [cursor=pointer]:
+                    - /url: /liangdabiao/ecom-details-image/forks
+                    - img "fork" [ref=e256]
+                    - text: "59"
+                  - text: Updated May 15, 2026last week
+              - img [ref=e260]
+            - listitem [ref=e263]:
+              - generic [ref=e264]:
+                - heading "Multimodal-RAG Public" [level=3] [ref=e266]:
+                  - link "Multimodal-RAG" [ref=e267] [cursor=pointer]:
+                    - /url: /liangdabiao/Multimodal-RAG
+                  - generic [ref=e268]: Public
+                - paragraph [ref=e270]: 基于多模态 Embedding + Zilliz + Qwen 视觉理解的多模态 RAG 系统。支持 **Cohere / DashScope Embedding** 和 **DashScope / OpenRouter LLM** 双引擎切换。上传 PDF，用自然语言提问，系统自动检索最相关的页面并由 AI 生成回答。 与传统 RAG 不同，本系统**不做文本提取和 OCR**，而是直接将…
+                - generic [ref=e271]:
+                  - generic [ref=e272]: Python
+                  - link "star 29" [ref=e274] [cursor=pointer]:
+                    - /url: /liangdabiao/Multimodal-RAG/stargazers
+                    - img "star" [ref=e275]
+                    - text: "29"
+                  - link "fork 6" [ref=e277] [cursor=pointer]:
+                    - /url: /liangdabiao/Multimodal-RAG/forks
+                    - img "fork" [ref=e278]
+                    - text: "6"
+                  - text: Updated May 12, 2026last week
+              - img [ref=e282]
+            - listitem [ref=e285]:
+              - generic [ref=e286]:
+                - heading "GEO-Content-Optimizer-Skill Public" [level=3] [ref=e288]:
+                  - link "GEO-Content-Optimizer-Skill" [ref=e289] [cursor=pointer]:
+                    - /url: /liangdabiao/GEO-Content-Optimizer-Skill
+                  - generic [ref=e290]: Public
+                - paragraph [ref=e292]: 输入一个 URL，自动抓取页面、执行多角度 Google 搜索、获取 Google AI 概览（AI Overview），对比分析后生成可执行的内容优化建议报告。 > **GEO** = Generative Engine Optimization（生成式引擎优化），针对 Google AI Overview、Perplexity 等 AI 搜索场景优化网页内容。 > 零依赖：无需 Pyth…
+                - generic [ref=e293]:
+                  - link "star 19" [ref=e294] [cursor=pointer]:
+                    - /url: /liangdabiao/GEO-Content-Optimizer-Skill/stargazers
+                    - img "star" [ref=e295]
+                    - text: "19"
+                  - link "fork 3" [ref=e297] [cursor=pointer]:
+                    - /url: /liangdabiao/GEO-Content-Optimizer-Skill/forks
+                    - img "fork" [ref=e298]
+                    - text: "3"
+                  - text: Updated May 10, 20262 weeks ago
+              - img [ref=e302]
+            - listitem [ref=e305]:
+              - generic [ref=e306]:
+                - heading "claude-data-analysis-ultra-main Public" [level=3] [ref=e308]:
+                  - link "claude-data-analysis-ultra-main" [ref=e309] [cursor=pointer]:
+                    - /url: /liangdabiao/claude-data-analysis-ultra-main
+                  - generic [ref=e310]: Public
+                - paragraph [ref=e312]: 让小白都可以一键进行数据分析，搞互联网的，搞电商的，搞各种各样的，那么其实就会用到 互联网的数据分析， 例如互联网会关心 拉新，留存，促活，推荐，转化，A/B test, 用户分析 等等很多有用的数据分析。
+                - link "claude-code" [ref=e314] [cursor=pointer]:
+                  - /url: /topics/claude-code
+                - generic [ref=e315]:
+                  - generic [ref=e316]: Python
+                  - link "star 225" [ref=e318] [cursor=pointer]:
+                    - /url: /liangdabiao/claude-data-analysis-ultra-main/stargazers
+                    - img "star" [ref=e319]
+                    - text: "225"
+                  - link "fork 34" [ref=e321] [cursor=pointer]:
+                    - /url: /liangdabiao/claude-data-analysis-ultra-main/forks
+                    - img "fork" [ref=e322]
+                    - text: "34"
+                  - text: Updated May 10, 20262 weeks ago
+              - img [ref=e326]
+            - listitem [ref=e329]:
+              - generic [ref=e330]:
+                - heading "hyperframes-fix Public" [level=3] [ref=e332]:
+                  - link "hyperframes-fix" [ref=e333] [cursor=pointer]:
+                    - /url: /liangdabiao/hyperframes-fix
+                  - generic [ref=e334]: Public
+                - paragraph [ref=e336]: HyperFrames-fix 一键生成可上传有流量视频 。目的是让 HyperFrames 生成视频适应国内需求，1 流畅的中文语音， 2 中文短视频样式新增， 3 优化整个生成视频流程。 基本上现在一键就可以完成横版竖版的快节奏短视频，例如随便丢给一个文章，一个doc，就能够制作视频！ 太棒！
+                - generic [ref=e337]:
+                  - link "star 94" [ref=e338] [cursor=pointer]:
+                    - /url: /liangdabiao/hyperframes-fix/stargazers
+                    - img "star" [ref=e339]
+                    - text: "94"
+                  - link "fork 24" [ref=e341] [cursor=pointer]:
+                    - /url: /liangdabiao/hyperframes-fix/forks
+                    - img "fork" [ref=e342]
+                    - text: "24"
+                  - text: Updated May 7, 20262 weeks ago
+              - img [ref=e346]
+            - listitem [ref=e349]:
+              - generic [ref=e350]:
+                - heading "easy_investment_Agent_crewai Public" [level=3] [ref=e352]:
+                  - link "easy_investment_Agent_crewai" [ref=e353] [cursor=pointer]:
+                    - /url: /liangdabiao/easy_investment_Agent_crewai
+                  - generic [ref=e354]: Public
+                - paragraph [ref=e356]: 基于AKShare和CrewAI的A股智能分析平台，通过多Agent协作提供专业的A股投资分析。 🚀 项目特色 📊 全面的A股数据分析：实时行情、财务数据、资金流向、市场情绪 🤖 多Agent协作：4个专业化AI角色协同工作 🇨🇳 A股市场特色：针对中国股市特点优化分析 📈 专业分析工具：基于AKShare的专业数据源 🎯 智能投资建议：综合分析提供投资决策参考
+                - link "agent" [ref=e358] [cursor=pointer]:
+                  - /url: /topics/agent
+                - generic [ref=e359]:
+                  - generic [ref=e360]: Python
+                  - link "star 427" [ref=e362] [cursor=pointer]:
+                    - /url: /liangdabiao/easy_investment_Agent_crewai/stargazers
+                    - img "star" [ref=e363]
+                    - text: "427"
+                  - link "fork 91" [ref=e365] [cursor=pointer]:
+                    - /url: /liangdabiao/easy_investment_Agent_crewai/forks
+                    - img "fork" [ref=e366]
+                    - text: "91"
+                  - text: Updated May 7, 20262 weeks ago
+              - img [ref=e370]
+            - listitem [ref=e373]:
+              - generic [ref=e374]:
+                - heading "Fashion-AI Public" [level=3] [ref=e376]:
+                  - link "Fashion-AI" [ref=e377] [cursor=pointer]:
+                    - /url: /liangdabiao/Fashion-AI
+                  - generic [ref=e378]: Public
+                - paragraph [ref=e380]: "电商 AI 生图爆款流水线 — 输入新品平铺图，自动检索相似爆款、分析风格，生成专业宣传图。 ## 项目简介 跨境电商场景中，商家每出一款新品都需要制作宣传图（模特穿着商品的照片）。传统方式需要请模特、搭场景、拍摄修图，成本高、周期长。 本项目实现了一套全自动的 AI 生图流水线"
+                - generic [ref=e381]:
+                  - generic [ref=e382]: Python
+                  - link "star 154" [ref=e384] [cursor=pointer]:
+                    - /url: /liangdabiao/Fashion-AI/stargazers
+                    - img "star" [ref=e385]
+                    - text: "154"
+                  - link "fork 41" [ref=e387] [cursor=pointer]:
+                    - /url: /liangdabiao/Fashion-AI/forks
+                    - img "fork" [ref=e388]
+                    - text: "41"
+                  - text: Updated May 6, 20262 weeks ago
+              - img [ref=e392]
+            - listitem [ref=e395]:
+              - generic [ref=e396]:
+                - heading "llm-wiki Public" [level=3] [ref=e398]:
+                  - link "llm-wiki" [ref=e399] [cursor=pointer]:
+                    - /url: /liangdabiao/llm-wiki
+                  - generic [ref=e400]: Public
+                - paragraph [ref=e402]: 基于 [Karpathy llm-wiki]方法论，利用 AI 持续构建和维护你的个人知识库。支持从多种素材源（网页、推特、公众号、小红书、知乎、YouTube、PDF、本地文件）自动整理为结构化的 wiki，并通过 Quartz 发布为静态wiki知识库网站。 并通过 claude_agent_sdk 调用 claude agent 使用 llm-wiki ,提供api接口对外访问服务 。
+                - generic [ref=e403]:
+                  - generic [ref=e404]: TypeScript
+                  - link "star 65" [ref=e406] [cursor=pointer]:
+                    - /url: /liangdabiao/llm-wiki/stargazers
+                    - img "star" [ref=e407]
+                    - text: "65"
+                  - link "fork 9" [ref=e409] [cursor=pointer]:
+                    - /url: /liangdabiao/llm-wiki/forks
+                    - img "fork" [ref=e410]
+                    - text: "9"
+                  - text: Updated Apr 29, 20263 weeks ago
+              - img [ref=e414]
+            - listitem [ref=e417]:
+              - generic [ref=e418]:
+                - heading "llm-wiki-claude-agent-sdk-agentic-rag Public" [level=3] [ref=e420]:
+                  - link "llm-wiki-claude-agent-sdk-agentic-rag" [ref=e421] [cursor=pointer]:
+                    - /url: /liangdabiao/llm-wiki-claude-agent-sdk-agentic-rag
+                  - generic [ref=e422]: Public
+                - paragraph [ref=e424]: Claude Agent SDK + LLM-wiki，就是最强大的agentic RAG 。让 AI 当一个“知识编译器”，先把你的所有资料读一遍，整理成一本结构清晰、彼此关联的百科全书。以后你再提问，AI 直接翻这本百科书就行了。 本项目主要展示了我制作的 llm-wiki 怎样通过 Claude Agent SDK 转为 agentic rag， 效果非常好的。使用方法：.venv\S…
+                - generic [ref=e425]:
+                  - generic [ref=e426]: Python
+                  - link "star 10" [ref=e428] [cursor=pointer]:
+                    - /url: /liangdabiao/llm-wiki-claude-agent-sdk-agentic-rag/stargazers
+                    - img "star" [ref=e429]
+                    - text: "10"
+                  - link "fork 2" [ref=e431] [cursor=pointer]:
+                    - /url: /liangdabiao/llm-wiki-claude-agent-sdk-agentic-rag/forks
+                    - img "fork" [ref=e432]
+                    - text: "2"
+                  - text: Updated Apr 28, 20263 weeks ago
+              - img [ref=e436]
+            - listitem [ref=e439]:
+              - generic [ref=e440]:
+                - heading "legowiki Public" [level=3] [ref=e442]:
+                  - link "legowiki" [ref=e443] [cursor=pointer]:
+                    - /url: /liangdabiao/legowiki
+                  - generic [ref=e444]: Public
+                - paragraph [ref=e446]: lego wiki
+                - generic [ref=e447]:
+                  - generic [ref=e448]: HTML
+                  - text: Updated Apr 26, 20263 weeks ago
+              - img [ref=e452]
+            - listitem [ref=e455]:
+              - generic [ref=e456]:
+                - heading "brickMosaic Public" [level=3] [ref=e458]:
+                  - link "brickMosaic" [ref=e459] [cursor=pointer]:
+                    - /url: /liangdabiao/brickMosaic
+                  - generic [ref=e460]: Public
+                - paragraph [ref=e462]: 本应用参考了Christoph Fritzsch开源项目 custombrickmosaic.github.io 进行大量深度定制开发，目前已经达到适应大部分图片生成像素画，还带有功能完全一致的微信小程序版本。用户可以在手机上完成从图片上传到下载说明书的全部流程，所有计算均在客户端完成，图片不会上传到任何服务器。
+                - generic [ref=e463]:
+                  - generic [ref=e464]: JavaScript
+                  - link "star 3" [ref=e466] [cursor=pointer]:
+                    - /url: /liangdabiao/brickMosaic/stargazers
+                    - img "star" [ref=e467]
+                    - text: "3"
+                  - link "fork 1" [ref=e469] [cursor=pointer]:
+                    - /url: /liangdabiao/brickMosaic/forks
+                    - img "fork" [ref=e470]
+                    - text: "1"
+                  - generic [ref=e472]:
+                    - img [ref=e473]
+                    - text: MIT License
+                  - text: Updated Apr 22, 2026last month
+              - img [ref=e477]
+            - listitem [ref=e480]:
+              - generic [ref=e481]:
+                - heading "Amazon-Skills-Liang Public" [level=3] [ref=e483]:
+                  - link "Amazon-Skills-Liang" [ref=e484] [cursor=pointer]:
+                    - /url: /liangdabiao/Amazon-Skills-Liang
+                  - generic [ref=e485]: Public
+                - paragraph [ref=e487]: 在nexscope-ai/Amazon-Skills的基础上二次开发，适合中国卖家更加深度更加方便的进行深度数据分析，加很多料
+                - generic [ref=e488]:
+                  - generic [ref=e489]: Python
+                  - link "star 15" [ref=e491] [cursor=pointer]:
+                    - /url: /liangdabiao/Amazon-Skills-Liang/stargazers
+                    - img "star" [ref=e492]
+                    - text: "15"
+                  - link "fork 1" [ref=e494] [cursor=pointer]:
+                    - /url: /liangdabiao/Amazon-Skills-Liang/forks
+                    - img "fork" [ref=e495]
+                    - text: "1"
+                  - text: Updated Apr 19, 2026on Apr 20
+              - img [ref=e499]
+            - listitem [ref=e502]:
+              - generic [ref=e503]:
+                - heading "exa-research-mcp-skill Public" [level=3] [ref=e505]:
+                  - link "exa-research-mcp-skill" [ref=e506] [cursor=pointer]:
+                    - /url: /liangdabiao/exa-research-mcp-skill
+                  - generic [ref=e507]: Public
+                - paragraph [ref=e509]: "基于 Claude Code 和 Exa 搜索引擎的 AI 驱动企业与市场研究工具。核心特性 - **智能公司研究**: 自动收集公司信息、新闻、社交媒体动态、财务数据和 LinkedIn 资料 - **竞争对手分析**: 快速构建竞争对手列表，分析市场定位 - **市场研究**: 跟踪行业趋势、并购活动、技术发展 - **上下文隔离**: 所有搜索在独立代理中运行，保持主对话整洁 - **…"
+                - generic [ref=e510]:
+                  - generic [ref=e511]: Shell
+                  - link "star 51" [ref=e513] [cursor=pointer]:
+                    - /url: /liangdabiao/exa-research-mcp-skill/stargazers
+                    - img "star" [ref=e514]
+                    - text: "51"
+                  - link "fork 13" [ref=e516] [cursor=pointer]:
+                    - /url: /liangdabiao/exa-research-mcp-skill/forks
+                    - img "fork" [ref=e517]
+                    - text: "13"
+                  - text: Updated Apr 19, 2026on Apr 19
+              - img [ref=e521]
+            - listitem [ref=e524]:
+              - generic [ref=e525]:
+                - heading "perlerBeadsApplet Public" [level=3] [ref=e527]:
+                  - link "perlerBeadsApplet" [ref=e528] [cursor=pointer]:
+                    - /url: /liangdabiao/perlerBeadsApplet
+                  - generic [ref=e529]: Public
+                - paragraph [ref=e531]: 一款基于 Taro + Vue3 开发的拼豆像素画创作小程序，支持像素画编辑、作品管理、图片导入，图纸导出等功能。 项目是基于和二开 开源程序： github.com/noir017/perlerBeadsApplet
+                - generic [ref=e532]:
+                  - generic [ref=e533]: TypeScript
+                  - link "star 6" [ref=e535] [cursor=pointer]:
+                    - /url: /liangdabiao/perlerBeadsApplet/stargazers
+                    - img "star" [ref=e536]
+                    - text: "6"
+                  - link "fork 8" [ref=e538] [cursor=pointer]:
+                    - /url: /liangdabiao/perlerBeadsApplet/forks
+                    - img "fork" [ref=e539]
+                    - text: "8"
+                  - text: Updated Apr 18, 2026on Apr 18
+              - img [ref=e543]
+            - listitem [ref=e546]:
+              - generic [ref=e547]:
+                - heading "perler-beads-ai Public" [level=3] [ref=e549]:
+                  - link "perler-beads-ai" [ref=e550] [cursor=pointer]:
+                    - /url: /liangdabiao/perler-beads-ai
+                  - generic [ref=e551]: Public
+                - paragraph [ref=e553]: 因为市面上的拼豆软件差强人意 ，所以我基于开源项目：Zippland/perler-beads ，带小程序（perlerBeadsApplet） 我加上AI优化了项目，AI辅助优化图片功能，写了一个专门生成拼豆图纸的网站。 经过大量测试，我觉得已经可以达到 一键生成拼豆图纸了！我还有乐高积木拼豆： github.com/liangdabiao/brickMosaic
+                - link "ai" [ref=e555] [cursor=pointer]:
+                  - /url: /topics/ai
+                - generic [ref=e556]:
+                  - generic [ref=e557]: TypeScript
+                  - link "star 120" [ref=e559] [cursor=pointer]:
+                    - /url: /liangdabiao/perler-beads-ai/stargazers
+                    - img "star" [ref=e560]
+                    - text: "120"
+                  - link "fork 50" [ref=e562] [cursor=pointer]:
+                    - /url: /liangdabiao/perler-beads-ai/forks
+                    - img "fork" [ref=e563]
+                    - text: "50"
+                  - generic [ref=e565]:
+                    - img [ref=e566]
+                    - text: Apache License 2.0
+                  - text: Updated Apr 17, 2026on Apr 18
+              - img [ref=e570]
+            - listitem [ref=e573]:
+              - generic [ref=e574]:
+                - heading "302Sprite Public" [level=3] [ref=e576]:
+                  - link "302Sprite" [ref=e577] [cursor=pointer]:
+                    - /url: /liangdabiao/302Sprite
+                  - generic [ref=e578]: Public
+                - paragraph [ref=e580]: 精灵图生成器，适合游戏开发使用。根据单个文本提示生成游戏就绪的精灵图动画。基于 [302.ai] 构建 — 一个 API key 驱动所有功能。继承二开于：github.com/lovisdotio/falsprite
+                - generic [ref=e581]:
+                  - generic [ref=e582]: JavaScript
+                  - link "star 11" [ref=e584] [cursor=pointer]:
+                    - /url: /liangdabiao/302Sprite/stargazers
+                    - img "star" [ref=e585]
+                    - text: "11"
+                  - link "fork 3" [ref=e587] [cursor=pointer]:
+                    - /url: /liangdabiao/302Sprite/forks
+                    - img "fork" [ref=e588]
+                    - text: "3"
+                  - text: Updated Apr 16, 2026on Apr 16
+              - img [ref=e592]
+            - listitem [ref=e595]:
+              - generic [ref=e596]:
+                - heading "Godogen Public" [level=3] [ref=e598]:
+                  - link "Godogen" [ref=e599] [cursor=pointer]:
+                    - /url: /liangdabiao/Godogen
+                  - generic [ref=e600]: Public
+                - paragraph [ref=e602]: "liang's Godogen: 使用 Claude Code 构建完整 Godot 4 项目的技能集,你描述你想要的内容。AI pipeline 会设计架构、生成美术资源、编写每一行代码、从运行的游戏引擎中截取截图，并修复看起来不对的地方。输出是一个真正的 Godot 4 项目，包含组织良好的场景、可读的脚本和正确的游戏架构。继承二开：github.com/htdt/godogen"
+                - generic [ref=e603]:
+                  - generic [ref=e604]: Python
+                  - link "star 53" [ref=e606] [cursor=pointer]:
+                    - /url: /liangdabiao/Godogen/stargazers
+                    - img "star" [ref=e607]
+                    - text: "53"
+                  - link "fork 13" [ref=e609] [cursor=pointer]:
+                    - /url: /liangdabiao/Godogen/forks
+                    - img "fork" [ref=e610]
+                    - text: "13"
+                  - generic [ref=e612]:
+                    - img [ref=e613]
+                    - text: MIT License
+                  - text: Updated Apr 15, 2026on Apr 15
+              - img [ref=e617]
+            - listitem [ref=e620]:
+              - generic [ref=e621]:
+                - heading "lark-workflow-feishu-cli Public" [level=3] [ref=e623]:
+                  - link "lark-workflow-feishu-cli" [ref=e624] [cursor=pointer]:
+                    - /url: /liangdabiao/lark-workflow-feishu-cli
+                  - generic [ref=e625]: Public
+                - paragraph [ref=e627]: "# 飞书 AI 效率系统 — 20 大工作流 Skill > 基于 Claude Agent/OpenClaw Skill + 飞书 CLI (lark-cli) 构建的个人 AI 效率基础设施。 > 将 Claude Agent/OpenClaw 10 大实战用例完整迁移到飞书生态，适合 Claude Agent Skill 和 OpenClaw，用飞书各模块实现所有工作流功能。"
+                - generic [ref=e628]:
+                  - link "star 37" [ref=e629] [cursor=pointer]:
+                    - /url: /liangdabiao/lark-workflow-feishu-cli/stargazers
+                    - img "star" [ref=e630]
+                    - text: "37"
+                  - link "fork 3" [ref=e632] [cursor=pointer]:
+                    - /url: /liangdabiao/lark-workflow-feishu-cli/forks
+                    - img "fork" [ref=e633]
+                    - text: "3"
+                  - text: Updated Apr 13, 2026on Apr 13
+              - img [ref=e637]
+            - listitem [ref=e640]:
+              - generic [ref=e641]:
+                - heading "kj-llm-wiki Public" [level=3] [ref=e643]:
+                  - link "kj-llm-wiki" [ref=e644] [cursor=pointer]:
+                    - /url: /liangdabiao/kj-llm-wiki
+                  - generic [ref=e645]: Public
+                - paragraph [ref=e647]: Karpathy-llm-wiki方法的实战-生成wiki网站-分享实战代码-跨境电商AI自动化相关wiki文档
+                - generic [ref=e648]:
+                  - generic [ref=e649]: JavaScript
+                  - link "star 1" [ref=e651] [cursor=pointer]:
+                    - /url: /liangdabiao/kj-llm-wiki/stargazers
+                    - img "star" [ref=e652]
+                    - text: "1"
+                  - text: Updated Apr 13, 2026on Apr 13
+              - img [ref=e656]
+            - listitem [ref=e659]:
+              - generic [ref=e660]:
+                - heading "dingtalk-cli-workflow Public" [level=3] [ref=e662]:
+                  - link "dingtalk-cli-workflow" [ref=e663] [cursor=pointer]:
+                    - /url: /liangdabiao/dingtalk-cli-workflow
+                  - generic [ref=e664]: Public
+                - paragraph [ref=e666]: 钉钉 AI 效率系统 — 10 大工作流 Skill > 基于 Claude Code /openclaw Skill + 钉钉 CLI (dws) 构建的个人 AI 效率基础设施。 > 将飞书版本的 10 大工作流完整迁移到钉钉生态，用钉钉各模块实现所有工作流功能。
+                - generic [ref=e667]:
+                  - generic [ref=e668]: Python
+                  - link "star 9" [ref=e670] [cursor=pointer]:
+                    - /url: /liangdabiao/dingtalk-cli-workflow/stargazers
+                    - img "star" [ref=e671]
+                    - text: "9"
+                  - link "fork 3" [ref=e673] [cursor=pointer]:
+                    - /url: /liangdabiao/dingtalk-cli-workflow/forks
+                    - img "fork" [ref=e674]
+                    - text: "3"
+                  - text: Updated Apr 6, 2026on Apr 6
+              - img [ref=e678]
+            - listitem [ref=e681]:
+              - generic [ref=e682]:
+                - heading "wecomcli_crm Public" [level=3] [ref=e684]:
+                  - link "wecomcli_crm" [ref=e685] [cursor=pointer]:
+                    - /url: /liangdabiao/wecomcli_crm
+                  - generic [ref=e686]: Public
+                - paragraph [ref=e688]: "企业微信 Agent 项目 `wecomcli-crm` 基于 [wecom-cli] 搭建的企业微信 Agent 工作台。通过 Claude Code/openclaw + Skills 实现 AI 驱动的 CRM 客户管理、消息处理、会议日程等企业微信操作。"
+                - generic [ref=e689]:
+                  - link "star 18" [ref=e690] [cursor=pointer]:
+                    - /url: /liangdabiao/wecomcli_crm/stargazers
+                    - img "star" [ref=e691]
+                    - text: "18"
+                  - link "fork 3" [ref=e693] [cursor=pointer]:
+                    - /url: /liangdabiao/wecomcli_crm/forks
+                    - img "fork" [ref=e694]
+                    - text: "3"
+                  - text: Updated Apr 2, 2026on Apr 2
+              - img [ref=e698]
+            - listitem [ref=e701]:
+              - generic [ref=e702]:
+                - heading "fetch-everything Public" [level=3] [ref=e704]:
+                  - link "fetch-everything" [ref=e705] [cursor=pointer]:
+                    - /url: /liangdabiao/fetch-everything
+                  - generic [ref=e706]: Public
+                - paragraph [ref=e708]: Agent Skills 工具箱fetch-everything 一套面向 **Claude Code**/openclaw 的高质量 Skills 合集，涵盖网页抓取、文档提取、电商数据处理、云端部署等场景，特别强化了对中文平台的支持。
+                - generic [ref=e709]:
+                  - generic [ref=e710]: Python
+                  - link "star 32" [ref=e712] [cursor=pointer]:
+                    - /url: /liangdabiao/fetch-everything/stargazers
+                    - img "star" [ref=e713]
+                    - text: "32"
+                  - link "fork 2" [ref=e715] [cursor=pointer]:
+                    - /url: /liangdabiao/fetch-everything/forks
+                    - img "fork" [ref=e716]
+                    - text: "2"
+                  - text: Updated Mar 30, 2026on Mar 30
+              - img [ref=e720]
+            - listitem [ref=e723]:
+              - generic [ref=e724]:
+                - heading "liangdabiao-toolsets-page Public" [level=3] [ref=e726]:
+                  - link "liangdabiao-toolsets-page" [ref=e727] [cursor=pointer]:
+                    - /url: /liangdabiao/liangdabiao-toolsets-page
+                  - generic [ref=e728]: Public
+                - paragraph [ref=e730]: liangdabiao toolsets page
+                - generic [ref=e731]:
+                  - generic [ref=e732]: HTML
+                  - link "star 3" [ref=e734] [cursor=pointer]:
+                    - /url: /liangdabiao/liangdabiao-toolsets-page/stargazers
+                    - img "star" [ref=e735]
+                    - text: "3"
+                  - text: Updated Mar 30, 2026on Mar 30
+              - img [ref=e739]
+            - listitem [ref=e742]:
+              - generic [ref=e743]:
+                - generic [ref=e744]:
+                  - heading "claude-skills Public" [level=3] [ref=e745]:
+                    - link "claude-skills" [ref=e746] [cursor=pointer]:
+                      - /url: /liangdabiao/claude-skills
+                    - generic [ref=e747]: Public
+                  - generic [ref=e748]:
+                    - text: Forked from
+                    - link "mmlong818/claude-skills" [ref=e749] [cursor=pointer]:
+                      - /url: /mmlong818/claude-skills
+                - generic [ref=e750]:
+                  - link "fork 1" [ref=e751] [cursor=pointer]:
+                    - /url: /liangdabiao/claude-skills/forks
+                    - img "fork" [ref=e752]
+                    - text: "1"
+                  - text: Updated Mar 29, 2026on Mar 30
+              - img [ref=e756]
+            - listitem [ref=e759]:
+              - generic [ref=e760]:
+                - heading "lark-crm-feishu-cli Public" [level=3] [ref=e762]:
+                  - link "lark-crm-feishu-cli" [ref=e763] [cursor=pointer]:
+                    - /url: /liangdabiao/lark-crm-feishu-cli
+                  - generic [ref=e764]: Public
+                - paragraph [ref=e766]: "`lark-crm` 是一个 基于飞书CLI 的 Agent Skill，它将你的「轻型 CRM 系统」多维表格封装成对话式管理工具。你不需要记住任何表名、字段名或命令参数，只需用自然语言描述你的意图，skill 就会自动："
+                - generic [ref=e767]:
+                  - link "star 11" [ref=e768] [cursor=pointer]:
+                    - /url: /liangdabiao/lark-crm-feishu-cli/stargazers
+                    - img "star" [ref=e769]
+                    - text: "11"
+                  - link "fork 1" [ref=e771] [cursor=pointer]:
+                    - /url: /liangdabiao/lark-crm-feishu-cli/forks
+                    - img "fork" [ref=e772]
+                    - text: "1"
+                  - text: Updated Mar 29, 2026on Mar 29
+              - img [ref=e776]
+            - listitem [ref=e779]:
+              - generic [ref=e780]:
+                - heading "make-prompt-seedance2 Public" [level=3] [ref=e782]:
+                  - link "make-prompt-seedance2" [ref=e783] [cursor=pointer]:
+                    - /url: /liangdabiao/make-prompt-seedance2
+                  - generic [ref=e784]: Public
+                - paragraph [ref=e786]: 一句话：试错成本越来越高，提示词的重要性从来没有像今天这样大。seedance2结构化提示语，整合了 Seedance 2.0（字节跳动 AI 视频生成模型）的结构化提示词使用方法，帮助用户快速上手并创作出高质量的视频内容。包含 16+ 个模板和 8+ 个示例 | 带货广告| TVC广告
+                - generic [ref=e787]:
+                  - link "star 464" [ref=e788] [cursor=pointer]:
+                    - /url: /liangdabiao/make-prompt-seedance2/stargazers
+                    - img "star" [ref=e789]
+                    - text: "464"
+                  - link "fork 80" [ref=e791] [cursor=pointer]:
+                    - /url: /liangdabiao/make-prompt-seedance2/forks
+                    - img "fork" [ref=e792]
+                    - text: "80"
+                  - text: Updated Mar 27, 2026on Mar 27
+              - img [ref=e796]
+            - listitem [ref=e799]:
+              - generic [ref=e800]:
+                - heading "Seedance2-Storyboard-Generator Public" [level=3] [ref=e802]:
+                  - link "Seedance2-Storyboard-Generator" [ref=e803] [cursor=pointer]:
+                    - /url: /liangdabiao/Seedance2-Storyboard-Generator
+                  - generic [ref=e804]: Public
+                - paragraph [ref=e806]: 一句话：试错成本越来越高，提示词的重要性从来没有像今天这样大。Seedance 2.0 Storyboard Generator 开源剧情剧本Skill工具，帮佬友一键写好剧本 - 将小说/故事转化为多集视频。 为什么做这个？ 因为 seedance2 已经改变了一切，需要新的剧本剧情制作工具，更好的利用新AI的能力和更方便的制作短剧
+                - link "agent" [ref=e808] [cursor=pointer]:
+                  - /url: /topics/agent
+                - generic [ref=e809]:
+                  - link "star 1,276" [ref=e810] [cursor=pointer]:
+                    - /url: /liangdabiao/Seedance2-Storyboard-Generator/stargazers
+                    - img "star" [ref=e811]
+                    - text: 1,276
+                  - link "fork 237" [ref=e813] [cursor=pointer]:
+                    - /url: /liangdabiao/Seedance2-Storyboard-Generator/forks
+                    - img "fork" [ref=e814]
+                    - text: "237"
+                  - text: Updated Mar 26, 2026on Mar 27
+              - img [ref=e818]
+          - navigation "Pagination" [ref=e822]:
+            - link "Previous page" [disabled] [ref=e823]: Previous
+            - link "Next page" [ref=e824] [cursor=pointer]:
+              - /url: /liangdabiao?language=&page=2&q=&sort=&tab=repositories
+              - text: Next
+  - contentinfo [ref=e825]:
+    - heading "Footer" [level=2] [ref=e826]
+    - generic [ref=e827]:
+      - generic [ref=e828]:
+        - link "GitHub Homepage" [ref=e829] [cursor=pointer]:
+          - /url: https://github.com
+          - img [ref=e830]
+        - generic [ref=e832]: © 2026 GitHub, Inc.
+      - navigation "Footer" [ref=e833]:
+        - heading "Footer navigation" [level=3] [ref=e834]
+        - list "Footer navigation" [ref=e835]:
+          - listitem [ref=e836]:
+            - link "Terms" [ref=e837] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/github-terms/github-terms-of-service
+          - listitem [ref=e838]:
+            - link "Privacy" [ref=e839] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/privacy-policies/github-privacy-statement
+          - listitem [ref=e840]:
+            - link "Security" [ref=e841] [cursor=pointer]:
+              - /url: https://github.com/security
+          - listitem [ref=e842]:
+            - link "Status" [ref=e843] [cursor=pointer]:
+              - /url: https://www.githubstatus.com/
+          - listitem [ref=e844]:
+            - link "Community" [ref=e845] [cursor=pointer]:
+              - /url: https://github.community/
+          - listitem [ref=e846]:
+            - link "Docs" [ref=e847] [cursor=pointer]:
+              - /url: https://docs.github.com/
+          - listitem [ref=e848]:
+            - link "Contact" [ref=e849] [cursor=pointer]:
+              - /url: https://support.github.com?tags=dotcom-footer
+          - listitem [ref=e850]:
+            - button "Manage cookies" [ref=e852] [cursor=pointer]
+          - listitem [ref=e853]:
+            - button "Do not share my personal information" [ref=e855] [cursor=pointer]

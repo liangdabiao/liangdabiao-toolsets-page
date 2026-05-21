@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lego Wiki - 基于Lego框架的知识库系统</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #84cc16 0%, #65a30d 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #84cc16;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .skill-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .skill-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .skill-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: #84cc16;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: #65a30d;
+        }
+        .workflow-diagram {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .workflow-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .flow-step {
+            background: linear-gradient(135deg, #84cc16 0%, #65a30d 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .flow-arrow {
+            font-size: 2em;
+            color: #84cc16;
+        }
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid #84cc16;
+        }
+        .category-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #84cc16;
+        }
+        .category-content {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .category-content ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .category-content li {
+            margin-bottom: 8px;
+        }
+        .feature-highlight {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #84cc16;
+        }
+        .feature-highlight h3 {
+            color: #14532d;
+            margin-bottom: 15px;
+        }
+        .feature-highlight p {
+            color: #166534;
+            line-height: 1.8;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        .install-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 4px solid #84cc16;
+        }
+        .install-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #84cc16;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero-stats {
+                gap: 30px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🌐 AI工具集合</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#faq">常见问题</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主视觉区 -->
+    <section class="hero">
+        <div class="hero-badge">Python + Markdown + AI辅助</div>
+        <h1>🧱 Lego Wiki</h1>
+        <p>基于Lego框架的知识库系统，帮助用户构建和管理个人知识体系。通过结构化管理和AI辅助整理，让知识积累更高效、更智能。</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">8+</span>
+                <span class="stat-label">核心功能</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">AI</span>
+                <span class="stat-label">辅助整理</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">本地运行</span>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/legowiki" class="btn btn-primary" style="background: white; color: #65a30d;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <!-- 项目背景 -->
+    <section class="section">
+        <h2 class="section-title">为什么选择 Lego Wiki？</h2>
+        <p class="section-subtitle">用结构化的方式管理和积累你的知识</p>
+        <div class="feature-highlight">
+            <h3>🧠 知识管理的挑战</h3>
+            <p>
+                在信息爆炸的时代，如何高效地组织、检索和利用知识成为一个重要课题。传统的笔记工具缺乏结构化管理，
+                难以建立知识之间的关联。Lego Wiki 基于Lego框架，提供了一套完整的知识库解决方案，
+                帮助你构建属于自己的知识体系。
+            </p>
+        </div>
+    </section>
+
+    <!-- 核心特性 -->
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">8大核心功能，全方位知识管理体验</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">📚</div>
+                <h3 class="skill-title">知识库构建</h3>
+                <p class="skill-description">基于Lego框架快速搭建个人知识库，支持多种内容类型和层级结构，让知识有序组织</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🏗️</div>
+                <h3 class="skill-title">结构化管理</h3>
+                <p class="skill-description">树形目录结构、标签分类、双向链接，让知识之间的关系清晰可见，方便导航和回顾</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🤖</div>
+                <h3 class="skill-title">AI辅助整理</h3>
+                <p class="skill-description">集成AI能力，自动生成摘要、提取关键词、推荐关联内容，大幅提升知识整理效率</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔍</div>
+                <h3 class="skill-title">搜索检索</h3>
+                <p class="skill-description">全文搜索引擎，支持模糊搜索、标签筛选、多维度过滤，快速定位所需知识内容</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📄</div>
+                <h3 class="skill-title">多格式支持</h3>
+                <p class="skill-description">支持Markdown、HTML等多种格式的内容编写，兼容主流文档格式，灵活导出和分享</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">👥</div>
+                <h3 class="skill-title">实时协作</h3>
+                <p class="skill-description">多人实时编辑和评论，支持团队协作构建知识库，知识共享更加便捷高效</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📋</div>
+                <h3 class="skill-title">版本控制</h3>
+                <p class="skill-description">完整的版本历史记录，支持版本对比和回滚，确保知识变更可追溯、可恢复</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📊</div>
+                <h3 class="skill-title">可视化展示</h3>
+                <p class="skill-description">知识图谱、思维导图等多种可视化方式，直观展示知识之间的关联关系和网络结构</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作流程 -->
+    <section id="workflow" class="section">
+        <h2 class="section-title">工作流程</h2>
+        <p class="section-subtitle">从创建到管理，简洁高效的知识工作流</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">创建知识库</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">编写内容</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">AI辅助整理</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">建立关联</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">搜索检索</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #84cc16;">核心工作流详解</h3>
+            <div class="skills-grid">
+                <div class="category-card">
+                    <div class="category-title">1. 知识库初始化</div>
+                    <div class="category-content">
+                        使用Lego框架快速初始化项目，预设目录结构和配置文件，开箱即用
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">2. 内容创建与编辑</div>
+                    <div class="category-content">
+                        支持Markdown语法编写内容，实时预览效果，自动保存草稿
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">3. AI智能整理</div>
+                    <div class="category-content">
+                        AI自动分析内容结构，生成摘要和标签，推荐相关知识条目
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">4. 知识关联与检索</div>
+                    <div class="category-content">
+                        通过双向链接和标签系统建立知识网络，支持全文搜索快速定位
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 安装配置 -->
+    <section id="install" class="section">
+        <h2 class="section-title">安装与配置</h2>
+        <p class="section-subtitle">简单几步，开始构建你的知识库</p>
+
+        <div class="install-card">
+            <div class="install-title">1. 克隆项目</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">获取项目代码：</p>
+            <pre class="code-block">git clone https://github.com/liangdabiao/legowiki.git
+cd legowiki</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">2. 安装依赖</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">安装Python依赖：</p>
+            <pre class="code-block">pip install -r requirements.txt</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">3. 初始化知识库</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">运行初始化命令：</p>
+            <pre class="code-block">python init.py</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">4. 启动服务</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">启动本地知识库服务：</p>
+            <pre class="code-block">python run.py
+# 访问 http://localhost:8080</pre>
+        </div>
+    </section>
+
+    <!-- 技术栈 -->
+    <section class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">基于成熟技术栈构建，稳定可靠</p>
+        <div class="tech-stack">
+            <div class="tech-item">Python</div>
+            <div class="tech-item">Markdown</div>
+            <div class="tech-item">知识管理</div>
+            <div class="tech-item">AI辅助</div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section id="faq" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于 Lego Wiki 的常见疑问</p>
+
+        <div class="category-card">
+            <div class="category-title">Q: Lego Wiki 适合什么场景使用？</div>
+            <div class="category-content">
+                A: Lego Wiki 适合个人知识管理、团队文档协作、技术文档整理、学习笔记管理等多种场景。无论是学生、开发者还是知识工作者，都可以通过它构建自己的知识体系。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: AI辅助功能需要联网吗？</div>
+            <div class="category-content">
+                A: 部分AI功能需要联网调用API，但也支持本地模型运行。具体取决于你的配置和使用的AI模型。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 支持哪些内容格式？</div>
+            <div class="category-content">
+                A: 主要支持Markdown格式编写，同时兼容HTML、纯文本等格式。支持导出为PDF、HTML等多种格式。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 数据存储在哪里？</div>
+            <div class="category-content">
+                A: 默认数据存储在本地文件系统中，完全掌控数据安全。也支持配置外部数据库存储。
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer" id="contact">
+        <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>基于Lego框架的知识库系统，帮助用户构建和管理个人知识体系，通过AI辅助让知识管理更高效。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/legowiki">GitHub 仓库</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Lego Wiki. All rights reserved.</p>
+        </div>
+            </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 移动端菜单
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

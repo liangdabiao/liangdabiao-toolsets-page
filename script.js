@@ -645,6 +645,267 @@ const products = [
         difficulty: '中等'
     },
     {
+        id: 'do-deepagents-skill',
+        name: 'DeepAgents Framework Skill',
+        description: '掌握 DeepAgents 框架的技能库，基于 LangChain + LangGraph 构建智能代理，提供规划、文件系统、子代理、上下文压缩等核心能力。',
+        icon: '🤖',
+        tags: ['DeepAgents', 'LangChain', 'LangGraph', 'AI代理', '技能库', '多智能体'],
+        githubUrl: 'https://github.com/liangdabiao/do-deepagents-skill',
+        features: [
+            '5大内置工具：规划(write_todos)、文件系统(read/write/edit等)、Shell执行、子代理(task)、上下文压缩',
+            '4种存储后端：StateBackend、FilesystemBackend、StoreBackend、Sandbox',
+            'Skills扩展机制：灵活的技能扩展系统，可自定义Agent能力',
+            '中间件系统：完整的中间件架构支持',
+            '流式输出：支持流式响应和人机协同',
+            '沙箱隔离：安全隔离的执行环境',
+            '子代理系统：上下文隔离的任务委派，支持多层嵌套',
+            '自动上下文管理：85%窗口时自动摘要压缩'
+        ],
+        techStack: ['DeepAgents', 'LangChain', 'LangGraph', 'Python', 'Claude Code Skills'],
+        category: 'AI工具',
+        difficulty: '进阶'
+    },
+    {
+        id: 'simple-agentic-stack',
+        name: 'Simple Agentic Stack',
+        description: '基于MCP和Skill驱动的AI Agent编排系统。LLM通过自然语言编写的Skill按步骤调用MCP Server提供的工具，完成复杂的多数据源联动任务。传统编程和Agent系统的对应：Skill是程序，MCP是库，LLM是语言。',
+        icon: '🔗',
+        tags: ['MCP', 'Skill驱动', 'AI Agent', 'DeepSeek', 'FastMCP', 'Python'],
+        githubUrl: 'https://github.com/liangdabiao/Simple-Agentic-Stack',
+        features: ['MCP工具协议标准化接口','Skill自然语言程序','LLM智能运行时','编排器引擎串联工具调用','多数据源联动','配置驱动架构','安全约束机制','独立测试支持'],
+        techStack: ['Python', 'MCP (FastMCP)', 'Anthropic SDK', 'DeepSeek API', 'SQLite', 'httpx'],
+        category: '基础设施',
+        difficulty: '中级'
+    },
+    {
+        id: 'skill-kefu',
+        name: 'SKILL智能客服系统',
+        description: '基于LangChain/LangGraph的完整智能客服解决方案。整合11个章节核心功能，包括对话记忆、RAG知识库、情绪识别、意图分类、工单系统、监控评价、计划执行、多Agent系统、MCP技能系统等。',
+        icon: '🤖',
+        tags: ['LangChain', 'LangGraph', 'RAG', 'FastAPI', 'Streamlit', '多Agent'],
+        githubUrl: 'https://github.com/liangdabiao/SKILL-kefu',
+        features: ['智能对话引擎','RAG知识库检索','7种情绪识别','16种意图分类','工单系统','智能转人工','对话记忆','工具函数集成'],
+        techStack: ['LangChain', 'LangGraph', 'FastAPI', 'Streamlit', 'ChromaDB', 'OpenAI API'],
+        category: '企业AI',
+        difficulty: '高级'
+    },
+    {
+        id: 'ecom-details-image',
+        name: '电商视觉创作Skill',
+        description: '面向Claude Code/Codex/OpenClaw的跨境电商和国内电商通用视觉创作Skill。精选25个高质量案例，涵盖纯色底产品主图、场景化生活图、平铺图、电商详情图等，一键生成电商全场景图片。',
+        icon: '📸',
+        tags: ['电商图片', 'GPT-Image-2', 'Claude Code', '提示词工程', '跨境电商'],
+        githubUrl: 'https://github.com/liangdabiao/ecom-details-image',
+        features: ['纯色底产品主图','场景化生活图','平铺图/摆拍图','电商详情页图片','社媒推广图','直播间场景图','完整提示词模板','跨境+国内双适配'],
+        techStack: ['Claude Code', 'GPT-Image-2', 'Agent Skill', 'Markdown', '提示词工程'],
+        category: '商业工具',
+        difficulty: '初级'
+    },
+    {
+        id: 'multimodal-rag',
+        name: '多模态RAG系统',
+        description: '基于多模态Embedding+Zilliz+Qwen视觉理解的多模态RAG系统。支持双引擎Embedding和LLM切换。上传PDF用自然语言提问，系统自动检索最相关页面由AI回答。不做文本提取和OCR，直接将页面图片向量化。',
+        icon: '📄',
+        tags: ['多模态Embedding', 'Zilliz', 'Qwen VL', 'RAG', 'PDF问答', 'DashScope'],
+        githubUrl: 'https://github.com/liangdabiao/Multimodal-RAG',
+        features: ['图片级PDF向量化','双引擎Embedding','双引擎LLM生成','Zilliz云向量数据库','自然语言问答','Web界面+API服务','极简依赖安装','灵活配置切换'],
+        techStack: ['Python', 'Flask', 'PyMuPDF', 'Cohere Embed', 'DashScope', 'Zilliz', 'Qwen VL'],
+        category: 'AI工具',
+        difficulty: '中级'
+    },
+    {
+        id: 'geo-content-optimizer',
+        name: 'GEO内容优化分析工具',
+        description: '输入URL自动抓取页面、执行多角度Google搜索、获取Google AI Overview，对比分析后生成可执行的内容优化建议报告。GEO=Generative Engine Optimization，针对AI搜索场景优化网页内容。零依赖。',
+        icon: '🔍',
+        tags: ['GEO优化', 'Claude Code', 'AI搜索', '内容优化', 'Google AI Overview', '零依赖'],
+        githubUrl: 'https://github.com/liangdabiao/GEO-Content-Optimizer-Skill',
+        features: ['自动页面抓取','多角度搜索扩展','Google AI Overview获取','搜索结果结构化摘要','智能对比分析','可执行优化报告','零依赖运行','自然语言触发'],
+        techStack: ['Claude Code', 'Claude Skill', 'WebSearch', 'Web Reader', 'Playwright MCP'],
+        category: '商业工具',
+        difficulty: '中级'
+    },
+    {
+        id: 'hyperframes-fix',
+        name: 'HyperFrames-fix',
+        description: '一键生成可上传有流量视频。让HyperFrames适应国内需求：流畅中文语音、News Flash信息流快消风格、优化整个生成视频流程。一键完成横版竖版快节奏短视频。',
+        icon: '🎬',
+        tags: ['HyperFrames', 'MiniMax TTS', '中文语音', '短视频', 'Pexels', '视频生成'],
+        githubUrl: 'https://github.com/liangdabiao/hyperframes-fix',
+        features: ['MiniMax流畅中文语音','News Flash快消风格','一键自动化视频生成','微信公众号文章解析','横版竖版多比例支持','Vibe Video对话式创作','Pexels图库自动匹配','批量生产优化'],
+        techStack: ['HyperFrames', 'MiniMax TTS', 'Pexels API', 'AI Agent', 'Python', 'Markdown'],
+        category: 'AI工具',
+        difficulty: '中级'
+    },
+    {
+        id: 'fashion-ai',
+        name: '电商AI生图爆款流水线',
+        description: '输入新品平铺图，自动检索相似爆款、分析风格，生成专业宣传图。跨境电商商家传统方式需要请模特拍摄修图，成本高周期长。本项目实现全自动AI生图流水线。',
+        icon: '👗',
+        tags: ['Milvus', 'Qwen', 'Gemini', 'GPT Image', '向量检索', '跨境电商'],
+        githubUrl: 'https://github.com/liangdabiao/Fashion-AI',
+        features: ['以图搜爆款混合检索','AI风格分析','AI生成宣传图','Dense+Sparse+标量三路检索','Milvus向量数据库','多模型灵活切换','多比例多分辨率','全云端API调用'],
+        techStack: ['Python', 'Milvus', 'OpenRouter API', 'Qwen', 'Gemini', 'GPT Image', 'NVIDIA Embedding'],
+        category: '商业工具',
+        difficulty: '中级'
+    },
+    {
+        id: 'llm-wiki',
+        name: 'LLM Wiki',
+        description: '基于Karpathy llm-wiki方法论，利用AI持续构建和维护个人知识库。支持从多种素材源自动整理为结构化wiki，通过Quartz发布为静态wiki网站。通过Claude Agent SDK提供API接口。',
+        icon: '📚',
+        tags: ['Claude Agent SDK', 'Quartz', 'FastAPI', '知识库', 'RAG', 'Markdown'],
+        githubUrl: 'https://github.com/liangdabiao/llm-wiki',
+        features: ['8种素材源采集','智能知识整理','批量素材处理','智能查询检索','深度综合分析','知识图谱可视化','健康检查维护','FastAPI服务接口'],
+        techStack: ['Claude Agent SDK', 'FastAPI', 'Quartz v4', 'Python', 'SSE', 'Mermaid', 'Cloudflare Pages'],
+        category: 'AI工具',
+        difficulty: '中级'
+    },
+    {
+        id: 'llm-wiki-agentic-rag',
+        name: 'LLM-Wiki Agentic RAG',
+        description: 'Claude Agent SDK + LLM-wiki = 最强大的Agentic RAG。让AI当知识编译器，先把所有资料整理成结构清晰的百科全书，以后提问AI直接翻百科书。',
+        icon: '🧠',
+        tags: ['Claude Agent SDK', 'LLM-Wiki', 'Agentic RAG', '知识编译器', 'Quartz'],
+        githubUrl: 'https://github.com/liangdabiao/llm-wiki-claude-agent-sdk-agentic-rag',
+        features: ['知识编译器','智能检索翻阅','Agent SDK驱动','API接口服务','Quartz静态发布','多源素材整合','高效推理','实战验证'],
+        techStack: ['Claude Agent SDK', 'LLM-Wiki', 'Quartz', 'Python', 'Agentic RAG'],
+        category: 'AI工具',
+        difficulty: '进阶'
+    },
+    {
+        id: 'legowiki',
+        name: 'Lego Wiki',
+        description: '基于Lego框架的知识库系统，帮助用户构建和管理个人知识体系，支持AI辅助整理和可视化展示。',
+        icon: '🧱',
+        tags: ['Python', 'Markdown', '知识管理', 'AI辅助'],
+        githubUrl: 'https://github.com/liangdabiao/legowiki',
+        features: ['知识库构建','结构化管理','AI辅助整理','搜索检索','多格式支持','实时协作','版本控制','可视化展示'],
+        techStack: ['Python', 'Markdown', '知识管理', 'AI辅助'],
+        category: '教育工具',
+        difficulty: '初级'
+    },
+    {
+        id: 'brick-mosaic',
+        name: '乐高积木马赛克生成器',
+        description: '参考开源项目深度定制开发的乐高积木马赛克/像素画生成应用，适应大部分图片生成像素画，还带有功能完全一致的微信小程序版本。所有计算在客户端完成。',
+        icon: '🧩',
+        tags: ['乐高积木', '像素画', 'Canvas', '微信小程序', '客户端计算'],
+        githubUrl: 'https://github.com/liangdabiao/brickMosaic',
+        features: ['图片转像素画','多种积木板尺寸','客户端本地计算','微信小程序版本','颜色优化算法','图纸导出PDF','乐高色号匹配','支持大部分图片'],
+        techStack: ['JavaScript', 'Canvas API', '微信小程序', 'Taro', 'Vue3'],
+        category: 'AI工具',
+        difficulty: '中等'
+    },
+    {
+        id: 'amazon-skills-liang',
+        name: 'Amazon深度分析Skill',
+        description: '在nexscope-ai/Amazon-Skills基础上二次开发的Claude Code Skill，适合中国卖家更加深度方便地进行数据分析。',
+        icon: '🛍️',
+        tags: ['Claude Code', 'Amazon', '跨境电商', '数据分析', '中国卖家'],
+        githubUrl: 'https://github.com/liangdabiao/Amazon-Skills-Liang',
+        features: ['深度数据分析','中国卖家优化','产品调研分析','竞品对比','市场趋势追踪','关键词研究','评论分析','利润计算'],
+        techStack: ['Claude Code', 'Agent Skill', 'Amazon API', 'Python', '数据分析'],
+        category: '商业工具',
+        difficulty: '进阶'
+    },
+    {
+        id: 'perler-beads-applet',
+        name: '拼豆像素画小程序',
+        description: '基于Taro+Vue3开发的拼豆像素画创作微信小程序，支持像素画编辑、作品管理、图片导入、图纸导出等功能。',
+        icon: '🎨',
+        tags: ['Taro', 'Vue3', '微信小程序', 'Canvas', '拼豆'],
+        githubUrl: 'https://github.com/liangdabiao/perlerBeadsApplet',
+        features: ['像素画编辑器','作品管理','图片导入生成','图纸导出','微信小程序','拼豆色号匹配','多种尺寸支持','作品分享'],
+        techStack: ['Taro', 'Vue3', '微信小程序', 'Canvas API', 'JavaScript'],
+        category: 'AI工具',
+        difficulty: '中等'
+    },
+    {
+        id: 'sprite-generator',
+        name: 'AI精灵图生成器',
+        description: '精灵图生成器，适合游戏开发使用。根据单个文本提示生成游戏就绪的精灵图动画。基于302.ai构建。',
+        icon: '🎮',
+        tags: ['302.ai', '精灵图', '游戏开发', 'Next.js', 'AI生图'],
+        githubUrl: 'https://github.com/liangdabiao/302Sprite',
+        features: ['文本生成精灵图','游戏就绪动画','多种精灵图类型','帧动画支持','透明背景','批量生成','像素风格','302.ai API集成'],
+        techStack: ['302.ai API', 'Next.js', 'React', 'TypeScript', 'Canvas API'],
+        category: 'AI工具',
+        difficulty: '初级'
+    },
+    {
+        id: 'godogen',
+        name: 'Godogen AI游戏开发助手',
+        description: '使用Claude Code构建完整Godot 4项目的技能集。AI pipeline设计架构、生成美术资源、编写代码、截取截图并修复问题。输出真正的Godot 4项目。',
+        icon: '🎯',
+        tags: ['Claude Code', 'Godot 4', 'GDScript', '游戏开发', 'AI生成'],
+        githubUrl: 'https://github.com/liangdabiao/Godogen',
+        features: ['AI生成Godot 4项目','自动架构设计','美术资源生成','代码自动编写','截图测试反馈','Bug自动修复','完整游戏场景','Claude Code Skills'],
+        techStack: ['Claude Code', 'Godot 4', 'GDScript', 'Agent Skills', 'Python'],
+        category: 'AI工具',
+        difficulty: '进阶'
+    },
+    {
+        id: 'lark-workflow',
+        name: '飞书AI效率系统',
+        description: '基于Claude Agent/OpenClaw Skill+飞书CLI构建的个人AI效率基础设施，22大工作流Skill覆盖CRM、会议、知识库、审批等全场景。',
+        icon: '🚀',
+        tags: ['Claude Code', '飞书CLI', 'OpenClaw', '工作流', 'AI效率'],
+        githubUrl: 'https://github.com/liangdabiao/lark-workflow-feishu-cli',
+        features: ['22大工作流Skill','17个原子Skill','10+飞书模块集成','智能调度中枢','SaaS替代方案','自然语言触发','多维表格操作','数据联动'],
+        techStack: ['Claude Code', '飞书CLI', 'lark-cli', 'OpenClaw', 'Python'],
+        category: '基础设施',
+        difficulty: '进阶'
+    },
+    {
+        id: 'kj-llm-wiki',
+        name: '跨境电商AI Wiki',
+        description: 'Karpathy-llm-wiki方法的实战应用，生成wiki网站分享实战代码，聚焦跨境电商AI自动化相关wiki文档。',
+        icon: '📖',
+        tags: ['LLM-Wiki', 'Quartz', '跨境电商', 'AI自动化', 'Wiki'],
+        githubUrl: 'https://github.com/liangdabiao/kj-llm-wiki',
+        features: ['LLM-Wiki方法实战','跨境电商文档','AI自动化代码','Wiki网站生成','实战案例分享','知识体系整理','Quartz静态发布','Markdown格式'],
+        techStack: ['LLM-Wiki', 'Quartz', 'Markdown', 'Python', '跨境电商'],
+        category: 'AI工具',
+        difficulty: '初级'
+    },
+    {
+        id: 'dingtalk-workflow',
+        name: '钉钉AI效率系统',
+        description: '基于Claude Code/openclaw Skill+钉钉CLI构建的个人AI效率基础设施，10大工作流Skill覆盖钉钉全场景。',
+        icon: '🔔',
+        tags: ['Claude Code', 'OpenClaw', 'dws', '钉钉CLI', '工作流'],
+        githubUrl: 'https://github.com/liangdabiao/dingtalk-cli-workflow',
+        features: ['10大工作流Skill','钉钉全模块覆盖','智能调度','自然语言触发','审批流程自动化','消息处理','日程管理','数据联动'],
+        techStack: ['Claude Code', 'OpenClaw Skill', 'dws', '钉钉CLI', 'Python'],
+        category: '基础设施',
+        difficulty: '进阶'
+    },
+    {
+        id: 'wecomcli-crm',
+        name: '企业微信Agent工作台',
+        description: '基于wecom-cli搭建的企业微信Agent工作台。通过Claude Code/openclaw+Skills实现AI驱动的CRM客户管理、消息处理、会议日程等企业微信操作。',
+        icon: '💬',
+        tags: ['wecom-cli', 'Claude Code', '企业微信', 'CRM', 'Agent'],
+        githubUrl: 'https://github.com/liangdabiao/wecomcli_crm',
+        features: ['CRM客户管理','消息自动处理','会议日程管理','AI驱动的客户服务','企业微信全模块覆盖','自然语言交互','工单系统','数据看板'],
+        techStack: ['Claude Code', 'OpenClaw Skill', 'wecom-cli', '企业微信', 'Python'],
+        category: '企业AI',
+        difficulty: '进阶'
+    },
+    {
+        id: 'fetch-everything',
+        name: 'Fetch Everything Skills工具箱',
+        description: '一套面向Claude Code/openclaw的高质量Skills合集，涵盖网页抓取、文档提取、电商数据处理、云端部署等场景，特别强化了对中文平台的支持。',
+        icon: '🔧',
+        tags: ['Claude Code', 'Agent Skills', '网页抓取', '数据处理', '中文平台'],
+        githubUrl: 'https://github.com/liangdabiao/fetch-everything',
+        features: ['网页抓取Skill','文档提取工具','电商数据处理','中文平台强化','云端部署辅助','API调用封装','数据清洗转换','批量处理支持'],
+        techStack: ['Claude Code', 'Agent Skills', 'Python', 'Web Scraping', '数据处理'],
+        category: '基础设施',
+        difficulty: '初级'
+    },
+    {
         id: 'amazon-sorftime-research',
         name: '亚马逊选品全维度分析工具',
         description: '基于 Sorftime MCP 服务和 Claude Skills 的亚马逊竞品分析工具集。包含 Listing 全维度穿透分析和全品类选品分析两大核心功能，支持五维评分模型和多站点分析。',
@@ -809,7 +1070,28 @@ function getProductPageUrl(productId) {
         'seedance-prompt-chat': 'https://liang.348349.xyz/seedance-prompt-chat',
         'seedance2-storyboard-generator': './seedance2-storyboard-generator.html',
         'perler-beads-ai': './perler-beads-ai.html',
-        'amazon-sorftime-research': './amazon-sorftime-research.html'
+        'amazon-sorftime-research': './amazon-sorftime-research.html',
+        'do-deepagents-skill': './do-deepagents-skill.html',
+        'simple-agentic-stack': './simple-agentic-stack.html',
+        'skill-kefu': './skill-kefu.html',
+        'ecom-details-image': './ecom-details-image.html',
+        'multimodal-rag': './multimodal-rag.html',
+        'geo-content-optimizer': './geo-content-optimizer.html',
+        'hyperframes-fix': './hyperframes-fix.html',
+        'fashion-ai': './fashion-ai.html',
+        'llm-wiki': './llm-wiki.html',
+        'llm-wiki-agentic-rag': './llm-wiki-agentic-rag.html',
+        'legowiki': './legowiki.html',
+        'brick-mosaic': './brick-mosaic.html',
+        'amazon-skills-liang': './amazon-skills-liang.html',
+        'perler-beads-applet': './perler-beads-applet.html',
+        'sprite-generator': './sprite-generator.html',
+        'godogen': './godogen.html',
+        'lark-workflow': './lark-workflow.html',
+        'kj-llm-wiki': './kj-llm-wiki.html',
+        'dingtalk-workflow': './dingtalk-workflow.html',
+        'wecomcli-crm': './wecomcli-crm.html',
+        'fetch-everything': './fetch-everything.html'
     };
     return productPages[productId] || `./${productId}.html`;
 }
@@ -1201,8 +1483,43 @@ function useProduct(productId) {
         return;
     }
 
+    // 如果是DeepAgents Framework Skill，跳转到专门的页面
+    if (productId === 'do-deepagents-skill') {
+        window.location.href = '/do-deepagents-skill.html';
+        return;
+    }
+
+    // 新增20个项目跳转
+    const newProductPages = {
+        'simple-agentic-stack': 'simple-agentic-stack.html',
+        'skill-kefu': 'skill-kefu.html',
+        'ecom-details-image': 'ecom-details-image.html',
+        'multimodal-rag': 'multimodal-rag.html',
+        'geo-content-optimizer': 'geo-content-optimizer.html',
+        'hyperframes-fix': 'hyperframes-fix.html',
+        'fashion-ai': 'fashion-ai.html',
+        'llm-wiki': 'llm-wiki.html',
+        'llm-wiki-agentic-rag': 'llm-wiki-agentic-rag.html',
+        'legowiki': 'legowiki.html',
+        'brick-mosaic': 'brick-mosaic.html',
+        'amazon-skills-liang': 'amazon-skills-liang.html',
+        'perler-beads-applet': 'perler-beads-applet.html',
+        'sprite-generator': 'sprite-generator.html',
+        'godogen': 'godogen.html',
+        'lark-workflow': 'lark-workflow.html',
+        'kj-llm-wiki': 'kj-llm-wiki.html',
+        'dingtalk-workflow': 'dingtalk-workflow.html',
+        'wecomcli-crm': 'wecomcli-crm.html',
+        'fetch-everything': 'fetch-everything.html'
+    };
+
+    if (newProductPages[productId]) {
+        window.location.href = '/' + newProductPages[productId];
+        return;
+    }
+
     // 对于其他产品，显示开发中提示
-    alert(`正在启动 ${product.name}...\\n\\n功能开发中，敬请期待！`);
+    alert(`正在启动 ${product.name}...\n\n功能开发中，敬请期待！`);
 
     // 关闭模态框
     document.querySelector('.product-modal')?.remove();

@@ -517,7 +517,7 @@
             </ul>
 
             <h3>1. 安装依赖</h3>
-            <div class="code-block">
+            <pre class="code-block">
 # 克隆项目
 git clone https://github.com/liangdabiao/SeekMoney-ai.git
 cd SeekMoney-ai
@@ -527,10 +527,10 @@ npm install
 
 # 安装 Python 依赖
 pip install -r requirements.txt
-            </div>
+            </pre>
 
             <h3>2. 配置环境变量</h3>
-            <div class="code-block">
+            <pre class="code-block">
 # 复制环境变量模板
 cp .env.example .env.local
 
@@ -547,10 +547,10 @@ TIKHUB_ENABLE_CACHE=true
 GLM_API_KEY=your_glm_api_key_here
 GLM_MODEL_NAME=glm-4.7
 GLM_EMBEDDING_MODEL=embedding-3
-            </div>
+            </pre>
 
             <h3>3. 运行项目</h3>
-            <div class="code-block">
+            <pre class="code-block">
 # 开发模式
 npm run dev
 
@@ -559,7 +559,7 @@ npm run build
 npm run start
 
 # 访问 http://localhost:3000
-            </div>
+            </pre>
 
             <h3>使用方法</h3>
             <ol style="line-height: 2;">
@@ -582,7 +582,8 @@ npm run start
     </section>
 
     <!-- 页脚 -->
-    <footer id="contact">
+    <footer class="footer" id="contact">
+        <div class="container">
         <div class="footer-content">
             <div class="footer-section">
                 <h3>关于项目</h3>
@@ -606,6 +607,7 @@ npm run start
         <div class="footer-bottom">
             <p>&copy; 2025 SeekMoney AI. All rights reserved.</p>
         </div>
+            </div>
     </footer>
 
     <script src="script.js"></script>

@@ -168,7 +168,7 @@
                 <div class="project-structure">
                     <div class="structure-card">
                         <h3>项目结构</h3>
-                        <div class="code-block">
+                        <pre class="code-block">
                             <pre><code>bailian_ai_chatbox/
 ├── backend/                    # Python 后端
 │   ├── app.py                 # Flask 主应用
@@ -184,7 +184,7 @@
 │   └── 阿里云百炼api文档.txt   # API 参考文档
 ├── CLAUDE.md                  # Claude Code 助手指南
 └── README.md                  # 项目文档</code></pre>
-                        </div>
+                        </pre>
                     </div>
                 </div>
                 <div class="arch-overview">
@@ -258,7 +258,7 @@
                 <div class="api-example">
                     <div class="example-card">
                         <h3>流式响应示例</h3>
-                        <div class="code-block">
+                        <pre class="code-block">
                             <pre><code>// 请求体
 {
     "last_prompt": "你好",
@@ -270,7 +270,7 @@
 data: {"success": true, "content": "你", "finished": false}
 data: {"success": true, "content": "好", "finished": false}
 data: {"success": true, "content": "！", "finished": true, "message": "Stream completed"}</code></pre>
-                        </div>
+                        </pre>
                     </div>
                 </div>
             </div>
@@ -295,15 +295,15 @@ data: {"success": true, "content": "！", "finished": true, "message": "Stream c
                                 <div class="step-item">
                                     <div class="step-number">1</div>
                                     <h4>克隆项目</h4>
-                                    <div class="code-block">
+                                    <pre class="code-block">
                                         <pre><code>git clone https://github.com/liangdabiao/bailian_ai_chatbox.git
 cd bailian_ai_chatbox/backend</code></pre>
-                                    </div>
+                                    </pre>
                                 </div>
                                 <div class="step-item">
                                     <div class="step-number">2</div>
                                     <h4>创建虚拟环境</h4>
-                                    <div class="code-block">
+                                    <pre class="code-block">
                                         <pre><code># Windows
 python -m venv venv
 venv\Scripts\activate
@@ -311,36 +311,36 @@ venv\Scripts\activate
 # Linux/macOS
 python3 -m venv venv
 source venv/bin/activate</code></pre>
-                                    </div>
+                                    </pre>
                                 </div>
                                 <div class="step-item">
                                     <div class="step-number">3</div>
                                     <h4>安装依赖</h4>
-                                    <div class="code-block">
+                                    <pre class="code-block">
                                         <pre><code>pip install -r requirements.txt</code></pre>
-                                    </div>
+                                    </pre>
                                 </div>
                                 <div class="step-item">
                                     <div class="step-number">4</div>
                                     <h4>配置环境变量</h4>
-                                    <div class="code-block">
+                                    <pre class="code-block">
                                         <pre><code>cp .env.example .env
 # 编辑 .env 文件，填入阿里云凭证
 API_KEY=sk-your-dashscope-api-key
 APP_ID=your-bailian-app-id</code></pre>
-                                    </div>
+                                    </pre>
                                 </div>
                                 <div class="step-item">
                                     <div class="step-number">5</div>
                                     <h4>启动服务</h4>
-                                    <div class="code-block">
+                                    <pre class="code-block">
                                         <pre><code># Windows
 start.bat
 
 # Linux/macOS
 chmod +x start.sh
 ./start.sh</code></pre>
-                                    </div>
+                                    </pre>
                                     <p>后端服务将在 http://localhost:8000 启动</p>
                                 </div>
                             </div>

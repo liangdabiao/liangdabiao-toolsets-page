@@ -471,14 +471,14 @@
         <div class="install-card">
             <div class="install-title">1. 克隆项目</div>
             <p style="margin-top: 10px; color: var(--secondary-color);">获取项目代码：</p>
-            <div class="code-block">git clone https://github.com/liangdabiao/Seedance2-Storyboard-Generator.git
-cd Seedance2-Storyboard-Generator</div>
+            <pre class="code-block">git clone https://github.com/liangdabiao/Seedance2-Storyboard-Generator.git
+cd Seedance2-Storyboard-Generator</pre>
         </div>
 
         <div class="install-card">
             <div class="install-title">2. 配置 Claude Code Skill</div>
             <p style="margin-top: 10px; color: var(--secondary-color);">将技能文件导入到 Claude Code 环境：</p>
-            <div class="code-block">cp -r .claude/skills/seedance-storyboard-generator ~/.claude/skills/</div>
+            <pre class="code-block">cp -r .claude/skills/seedance-storyboard-generator ~/.claude/skills/</pre>
         </div>
 
         <div class="install-card">
@@ -493,7 +493,7 @@ cd Seedance2-Storyboard-Generator</div>
         <div class="install-card">
             <div class="install-title">4. 开始创作</div>
             <p style="margin-top: 10px; color: var(--secondary-color);">在 Claude Code 中调用技能：</p>
-            <div class="code-block">请帮我为"林冲风雪山神庙"创作视频剧本</div>
+            <pre class="code-block">请帮我为"林冲风雪山神庙"创作视频剧本</pre>
         </div>
     </section>
 
@@ -580,7 +580,8 @@ cd Seedance2-Storyboard-Generator</div>
     </section>
 
     <!-- 页脚 -->
-    <footer id="contact">
+    <footer class="footer" id="contact">
+        <div class="container">
         <div class="footer-content">
             <div class="footer-section">
                 <h3>关于项目</h3>
@@ -604,6 +605,7 @@ cd Seedance2-Storyboard-Generator</div>
         <div class="footer-bottom">
             <p>&copy; 2025 Seedance 2.0 故事转视频工作流. All rights reserved.</p>
         </div>
+            </div>
     </footer>
 
     <script src="script.js"></script>

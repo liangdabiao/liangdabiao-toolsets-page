@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多模态RAG系统 | PDF智能问答</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #8b5cf6;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .skill-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .skill-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .skill-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: #8b5cf6;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: #7c3aed;
+        }
+        .workflow-diagram {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .workflow-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .flow-step {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .flow-arrow {
+            font-size: 2em;
+            color: #8b5cf6;
+        }
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid #8b5cf6;
+        }
+        .category-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #8b5cf6;
+        }
+        .category-content {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .category-content ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .category-content li {
+            margin-bottom: 8px;
+        }
+        .feature-highlight {
+            background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #8b5cf6;
+        }
+        .feature-highlight h3 {
+            color: #5b21b6;
+            margin-bottom: 15px;
+        }
+        .feature-highlight p {
+            color: #4c1d95;
+            line-height: 1.8;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        .install-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 4px solid #8b5cf6;
+        }
+        .install-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #8b5cf6;
+        }
+        .comparison-table {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .comparison-table th {
+            background: #ede9fe;
+            color: #5b21b6;
+            font-weight: bold;
+        }
+        .comparison-table tr:hover {
+            background: #f5f3ff;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero-stats {
+                gap: 30px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🌐 AI工具集合</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#comparison">技术对比</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主视觉区 -->
+    <section class="hero">
+        <div class="hero-badge">多模态Embedding + Zilliz + Qwen视觉理解</div>
+        <h1>多模态RAG系统</h1>
+        <p>基于多模态Embedding与视觉大模型的PDF智能问答系统。不做文本提取和OCR，直接将PDF页面图片向量化，完整保留表格、图表、排版、手写批注等所有视觉信息。上传PDF，用自然语言提问，AI直接"看图"回答问题。</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">9</span>
+                <span class="stat-label">轻量依赖包</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">2</span>
+                <span class="stat-label">Embedding引擎</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">0</span>
+                <span class="stat-label">本地GPU需求</span>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/Multimodal-RAG" class="btn btn-primary" style="background: white; color: #8b5cf6;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <!-- 项目背景 -->
+    <section class="section">
+        <h2 class="section-title">为什么做这个？</h2>
+        <p class="section-subtitle">传统RAG的局限，用多模态视觉理解来突破</p>
+        <div class="feature-highlight">
+            <h3>📄 传统RAG的痛点</h3>
+            <p>
+                传统RAG系统需要将PDF进行文本提取和OCR处理，面对扫描件PDF、图文混排文档、含公式与表格的专业资料时，文本提取往往丢失大量关键信息——表格结构被破坏、图表信息完全丢失、排版语义无法保留、手写批注被忽略。本系统跳过文本提取，直接将PDF页面当作图片向量化，由视觉大模型直接"看图"回答，完整保留所有视觉信息。
+            </p>
+        </div>
+    </section>
+
+    <!-- 核心特性 -->
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">无需本地GPU，全部AI计算通过云端API完成</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">🖼️</div>
+                <h3 class="skill-title">图片级PDF向量化</h3>
+                <p class="skill-description">不做任何文本提取和OCR，直接将PDF页面转为图片，通过视觉Embedding模型编码，完整保留表格、图表、排版、手写批注等所有视觉信息</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔄</div>
+                <h3 class="skill-title">双引擎Embedding</h3>
+                <p class="skill-description">支持Cohere embed-v4.0（1024维向量）和DashScope通义千问视觉Embedding（1152维向量），通过EMBED_PROVIDER环境变量一键切换</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🧠</div>
+                <h3 class="skill-title">双引擎LLM生成</h3>
+                <p class="skill-description">支持DashScope Qwen系列（qwen3.5-flash/plus、qwen3-vl-plus，国内推荐）和OpenRouter（海外可用），通过LLM_PROVIDER环境变量切换</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🗄️</div>
+                <h3 class="skill-title">Zilliz云向量数据库</h3>
+                <p class="skill-description">基于Zilliz Serverless云Milvus，使用IVF_FLAT索引和内积相似度搜索，零运维、免部署、按量计费</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">💬</div>
+                <h3 class="skill-title">自然语言问答</h3>
+                <p class="skill-description">上传PDF后，用自然语言提问，系统自动检索最相关页面，由多模态视觉大模型生成回答，支持指定文档或全局搜索</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🌐</div>
+                <h3 class="skill-title">Web界面 + API服务</h3>
+                <p class="skill-description">Flask Web服务（端口7860）提供完整Web界面，独立API服务（端口7861）供外部程序集成调用，轻量无框架依赖</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">⚡</div>
+                <h3 class="skill-title">极简依赖安装</h3>
+                <p class="skill-description">无需本地GPU，无需安装PyTorch或poppler，仅需9个轻量Python包，安装依赖只需几秒钟，所有AI计算通过云端API完成</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔧</div>
+                <h3 class="skill-title">灵活配置切换</h3>
+                <p class="skill-description">通过.env文件统一管理密钥和连接配置，Embedding和LLM引擎均可独立切换，国内用户推荐全部使用DashScope无需代理</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作流程 -->
+    <section id="workflow" class="section">
+        <h2 class="section-title">工作流程</h2>
+        <p class="section-subtitle">从PDF上传到AI回答的完整流程</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">上传PDF</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">页面转图片</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">视觉Embedding</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">写入Zilliz</div>
+            </div>
+            <div class="workflow-flow" style="margin-top: 30px;">
+                <div class="flow-step">用户提问</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">查询编码</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">相似度检索</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">视觉大模型回答</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #8b5cf6;">核心处理步骤</h3>
+            <div class="skills-grid">
+                <div class="category-card">
+                    <div class="category-title">1. PDF转图片</div>
+                    <div class="category-content">
+                        使用PyMuPDF (fitz) 将PDF每页转为150 DPI图片，纯Python实现，无需poppler，跨平台直接可用。
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">2. 视觉Embedding编码</div>
+                    <div class="category-content">
+                        通过云端多模态Embedding API对每页图片编码，Cohere输出1024维向量，DashScope输出1152维向量，每页图片对应1个向量。
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">3. 向量存储与检索</div>
+                    <div class="category-content">
+                        将doc_name + page_idx + vector写入Zilliz Serverless云向量数据库，使用IVF_FLAT索引和内积相似度进行Top-K搜索。
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">4. 视觉大模型生成</div>
+                    <div class="category-content">
+                        将检索到的最相关页面原始图片与用户问题一起发送给视觉大模型（Qwen系列），AI直接"看图"生成回答。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 技术对比 -->
+    <section id="comparison" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">与传统RAG对比</h2>
+        <p class="section-subtitle">多模态RAG vs 传统文本RAG</p>
+
+        <div class="comparison-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>特性</th>
+                        <th>传统文本RAG</th>
+                        <th>多模态RAG</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PDF处理</td>
+                        <td>文本提取 + OCR</td>
+                        <td>✅ 直接图片向量化</td>
+                    </tr>
+                    <tr>
+                        <td>表格信息</td>
+                        <td>结构被破坏</td>
+                        <td>✅ 完整保留</td>
+                    </tr>
+                    <tr>
+                        <td>图表/图片</td>
+                        <td>信息丢失</td>
+                        <td>✅ 视觉理解</td>
+                    </tr>
+                    <tr>
+                        <td>手写批注</td>
+                        <td>无法识别</td>
+                        <td>✅ 完整保留</td>
+                    </tr>
+                    <tr>
+                        <td>本地GPU</td>
+                        <td>通常需要</td>
+                        <td>✅ 无需，全云端API</td>
+                    </tr>
+                    <tr>
+                        <td>依赖安装</td>
+                        <td>PyTorch等重型依赖</td>
+                        <td>✅ 仅9个轻量包</td>
+                    </tr>
+                    <tr>
+                        <td>扫描件PDF</td>
+                        <td>OCR质量差</td>
+                        <td>✅ 直接图片处理</td>
+                    </tr>
+                    <tr>
+                        <td>公式识别</td>
+                        <td>容易出错</td>
+                        <td>✅ 视觉模型理解</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 安装配置 -->
+    <section id="install" class="section">
+        <h2 class="section-title">安装与配置</h2>
+        <p class="section-subtitle">简单几步，开始PDF智能问答</p>
+
+        <div class="install-card">
+            <div class="install-title">1. 克隆项目</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">获取项目代码：</p>
+            <pre class="code-block">git clone https://github.com/liangdabiao/Multimodal-RAG.git
+cd Multimodal-RAG</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">2. 安装依赖</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">仅需9个轻量Python包，无需PyTorch：</p>
+            <pre class="code-block">pip install -r requirements.txt</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">3. 配置环境变量</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">复制配置模板并填写密钥：</p>
+            <pre class="code-block">cp .env.example .env
+# 编辑 .env 文件，填写以下配置：
+# EMBED_PROVIDER=cohere        # 或 dashscope
+# LLM_PROVIDER=dashscope       # 或 openrouter
+# COHERE_API_KEY=your_key
+# DASHSCOPE_API_KEY=your_key
+# ZILLIZ_URI=your_zilliz_uri
+# ZILLIZ_TOKEN=your_zilliz_token</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">4. 启动Web服务</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">启动Flask Web服务：</p>
+            <pre class="code-block">python app.py
+# Web界面访问: http://localhost:7860</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">5. 启动API服务（可选）</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">启动独立API服务供外部调用：</p>
+            <pre class="code-block">python api_server.py
+# API服务: http://localhost:7861
+# 查询接口: POST /api/query
+# 文档列表: GET /api/docs</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">6. API调用示例</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">使用curl调用查询接口：</p>
+            <pre class="code-block">curl -X POST http://127.0.0.1:7861/api/query \
+  -H "Content-Type: application/json" \
+  -d '{"question": "文档的主要内容是什么？"}'</pre>
+        </div>
+    </section>
+
+    <!-- 技术栈 -->
+    <section class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">基于云端AI API构建，无需本地GPU</p>
+        <div class="tech-stack">
+            <div class="tech-item">Python</div>
+            <div class="tech-item">Flask</div>
+            <div class="tech-item">PyMuPDF</div>
+            <div class="tech-item">Cohere Embed v4</div>
+            <div class="tech-item">DashScope Embedding</div>
+            <div class="tech-item">Zilliz Serverless</div>
+            <div class="tech-item">Qwen VL</div>
+            <div class="tech-item">OpenRouter</div>
+        </div>
+
+        <div class="comparison-table" style="margin-top: 40px;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>组件</th>
+                        <th>技术</th>
+                        <th>说明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PDF转图片</td>
+                        <td>PyMuPDF (fitz)</td>
+                        <td>纯Python，无需poppler，跨平台</td>
+                    </tr>
+                    <tr>
+                        <td>图片/文本编码</td>
+                        <td>Cohere / DashScope</td>
+                        <td>云端多模态Embedding，引擎可切换</td>
+                    </tr>
+                    <tr>
+                        <td>向量数据库</td>
+                        <td>Zilliz Serverless</td>
+                        <td>IVF_FLAT索引，内积相似度，零运维</td>
+                    </tr>
+                    <tr>
+                        <td>生成模型</td>
+                        <td>DashScope / OpenRouter</td>
+                        <td>多模态视觉大模型，引擎可切换</td>
+                    </tr>
+                    <tr>
+                        <td>Web界面</td>
+                        <td>Flask + 原生HTML/JS</td>
+                        <td>轻量无框架依赖，本地运行</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于多模态RAG系统的常见疑问</p>
+
+        <div class="category-card">
+            <div class="category-title">Q: 需要本地GPU吗？</div>
+            <div class="category-content">
+                A: 完全不需要。所有AI计算（Embedding编码和LLM生成）均通过云端API完成，无需安装PyTorch或任何GPU驱动。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 国内用户推荐使用哪个引擎？</div>
+            <div class="category-content">
+                A: 国内用户推荐全部使用DashScope（Embedding + LLM），无需代理，直接可用。海外用户可以使用Cohere Embedding和OpenRouter LLM。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 支持哪些类型的PDF？</div>
+            <div class="category-content">
+                A: 支持所有类型的PDF，包括扫描件PDF、图文混排文档、含公式与表格的专业资料。因为系统直接将页面作为图片处理，不依赖文本提取和OCR。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: Zilliz云数据库如何配置？</div>
+            <div class="category-content">
+                A: 注册Zilliz Cloud账号，创建Serverless集群，获取URI和Token，填入.env配置文件即可。Zilliz Serverless提供免费额度。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 如何切换Embedding和LLM引擎？</div>
+            <div class="category-content">
+                A: 通过.env文件中的EMBED_PROVIDER和LLM_PROVIDER环境变量独立切换。Embedding支持cohere和dashscope，LLM支持dashscope和openrouter。
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer" id="contact">
+        <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>基于多模态Embedding + Zilliz + Qwen视觉理解的多模态RAG系统。不做文本提取和OCR，直接将PDF页面图片向量化，由AI"看图"回答问题，完整保留所有视觉信息。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/Multimodal-RAG">GitHub 仓库</a></li>
+                    <li><a href="https://zilliz.com/cloud">Zilliz Cloud</a></li>
+                    <li><a href="https://dashscope.aliyun.com/">DashScope</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 多模态RAG系统. All rights reserved.</p>
+        </div>
+            </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 移动端菜单
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

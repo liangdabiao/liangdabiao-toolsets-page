@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>钉钉AI效率系统 | 10大工作流Skill</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #2563eb;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .skill-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .skill-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .skill-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: #2563eb;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: #1d4ed8;
+        }
+        .workflow-diagram {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .workflow-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .flow-step {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .flow-arrow {
+            font-size: 2em;
+            color: #2563eb;
+        }
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid #2563eb;
+        }
+        .category-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #2563eb;
+        }
+        .category-content {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .category-content ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .category-content li {
+            margin-bottom: 8px;
+        }
+        .feature-highlight {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #2563eb;
+        }
+        .feature-highlight h3 {
+            color: #1e3a8a;
+            margin-bottom: 15px;
+        }
+        .feature-highlight p {
+            color: #1e40af;
+            line-height: 1.8;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        .install-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 4px solid #2563eb;
+        }
+        .install-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2563eb;
+        }
+        .comparison-table {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .comparison-table th {
+            background: #dbeafe;
+            color: #1e3a8a;
+            font-weight: bold;
+        }
+        .comparison-table tr:hover {
+            background: #eff6ff;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero-stats {
+                gap: 30px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🌐 AI工具集合</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">10大工作流</a></li>
+                <li><a href="#architecture">系统架构</a></li>
+                <li><a href="#comparison">功能映射</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主视觉区 -->
+    <section class="hero">
+        <div class="hero-badge">Claude Code / OpenClaw Skill + 钉钉 CLI (dws)</div>
+        <h1>钉钉AI效率系统</h1>
+        <p>10大工作流Skill，基于Claude Code/openclaw Skill + 钉钉CLI构建。将飞书版本的10大工作流完整迁移到钉钉生态，用钉钉各模块实现所有工作流功能。</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">10</span>
+                <span class="stat-label">工作流Skill</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">20+</span>
+                <span class="stat-label">底层Skills</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">5</span>
+                <span class="stat-label">钉钉独有功能</span>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/dingtalk-cli-workflow" class="btn btn-primary" style="background: white; color: #2563eb;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <!-- 项目背景 -->
+    <section class="section">
+        <h2 class="section-title">为什么做这个？</h2>
+        <p class="section-subtitle">将分散在十几个SaaS工具中的效率工作流，全部收敛到钉钉一个平台</p>
+        <div class="feature-highlight">
+            <h3>核心思想</h3>
+            <p>
+                用钉钉作为统一的数据底座和交互界面，用 Claude Code 作为智能调度中枢，把原本分散在 Gmail、Telegram、Todoist、Slack 等十几个 SaaS 工具中的个人效率工作流，全部收敛到钉钉一个平台内运行。每个工作流被封装为一个 Claude Code Skill（SKILL.md），通过自然语言对话或指令触发，调用 dws 操作钉钉 API 完成数据读写、消息通知、任务创建等操作。
+            </p>
+        </div>
+        <div class="feature-highlight">
+            <h3>钉钉独有优势（飞书版没有的功能）</h3>
+            <p>
+                OA审批系统集成 -- 晨间简报和商业分析可直接展示审批状态；考勤打卡数据 -- 健康日记可关联作息规律；工作日志(report) -- 晨间简报可展示日志摘要；DING紧急消息 -- 重要通知确保触达；开放平台文档搜索(devdoc) -- 内容创作管道增加技术研究来源。
+            </p>
+        </div>
+    </section>
+
+    <!-- 10大工作流 -->
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">10大工作流 Skill</h2>
+        <p class="section-subtitle">自然语言驱动，覆盖个人效率全场景</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">📰</div>
+                <h3 class="skill-title">Skill 1: 每日晨间简报</h3>
+                <p class="skill-description">整合钉钉日历、待办、OA审批、考勤、日志等数据，生成今日综合简报。支持发送到群聊、DING紧急发送、定时自动生成。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📋</div>
+                <h3 class="skill-title">Skill 2: 会议待办追踪</h3>
+                <p class="skill-description">从会议中提取待办事项，通过消息确认后自动创建待办并追踪进度，确保每次会议的行动项不遗漏。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">👥</div>
+                <h3 class="skill-title">Skill 3: 个人CRM</h3>
+                <p class="skill-description">联系人管理与关系热度追踪，记录每次互动，智能提醒维护重要人脉关系，构建个人社交网络图谱。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📚</div>
+                <h3 class="skill-title">Skill 4: 个人知识库</h3>
+                <p class="skill-description">链接保存、摘要提取、智能搜索，用钉钉AI表格索引替代传统知识库工具，快速积累和检索知识。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📱</div>
+                <h3 class="skill-title">Skill 5: 社交媒体追踪</h3>
+                <p class="skill-description">管理社交媒体账号，追踪粉丝增长和内容表现趋势，每日快照记录，分析增长数据给出优化建议。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">✍️</div>
+                <h3 class="skill-title">Skill 6: 内容创作管道</h3>
+                <p class="skill-description">创意评估到方案再到执行的完整内容创作流程，支持技术文档搜索和多种内容形式。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📈</div>
+                <h3 class="skill-title">Skill 7: 股票研究助手</h3>
+                <p class="skill-description">自选股监控、深度研究报告生成，利用AI WebSearch获取实时行情数据，辅助投资决策分析。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">💼</div>
+                <h3 class="skill-title">Skill 8: AI商业顾问团</h3>
+                <p class="skill-description">8位AI顾问综合分析，从不同角度审视商业问题，读取多个Skill数据生成综合商业分析报告。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🤖</div>
+                <h3 class="skill-title">Skill 9: 多编程代理协同</h3>
+                <p class="skill-description">竞赛/分工/流水线多种编程模式，多个AI代理协同完成复杂开发任务，提升编码效率。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">💪</div>
+                <h3 class="skill-title">Skill 10: 健康日记</h3>
+                <p class="skill-description">记录饮食和身体状态，AI自动发现食物与健康的隐藏关联，支持照片识别记录和健康周报生成。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 系统架构 -->
+    <section id="architecture" class="section">
+        <h2 class="section-title">系统架构</h2>
+        <p class="section-subtitle">自然语言驱动的智能调度系统</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">用户自然语言</div>
+                <div class="flow-arrow">&rarr;</div>
+                <div class="flow-step">Claude Code Agent</div>
+                <div class="flow-arrow">&rarr;</div>
+                <div class="flow-step">Skill路由 & 任务编排</div>
+                <div class="flow-arrow">&rarr;</div>
+                <div class="flow-step">dws CLI 调用</div>
+                <div class="flow-arrow">&rarr;</div>
+                <div class="flow-step">钉钉开放平台</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #2563eb;">核心数据流</h3>
+            <div class="skills-grid">
+                <div class="category-card">
+                    <div class="category-title">IM 消息</div>
+                    <div class="category-content">
+                        群聊消息发送、DING紧急通知、机器人消息推送，覆盖即时通讯全场景
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">日历 & 待办</div>
+                    <div class="category-content">
+                        日程管理、待办任务创建与追踪、会议信息提取，时间管理全覆盖
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">OA审批 & 考勤</div>
+                    <div class="category-content">
+                        审批状态查询、考勤打卡记录，钉钉独有企业级数据整合
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">AI表格 & 日志</div>
+                    <div class="category-content">
+                        多维数据存储、工作日志管理，智能表格作为统一数据底座
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 功能映射 -->
+    <section id="comparison" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">飞书 &rarr; 钉钉映射</h2>
+        <p class="section-subtitle">完整的工具替代方案，钉钉独有功能更多</p>
+
+        <div class="comparison-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>原始 SaaS</th>
+                        <th>飞书替代</th>
+                        <th>钉钉替代</th>
+                        <th>dws CLI 命令</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Google Calendar</td>
+                        <td>飞书日历</td>
+                        <td>钉钉日历</td>
+                        <td>dws calendar</td>
+                    </tr>
+                    <tr>
+                        <td>Telegram</td>
+                        <td>飞书消息(IM)</td>
+                        <td>钉钉群聊/DING</td>
+                        <td>dws chat + dws ding</td>
+                    </tr>
+                    <tr>
+                        <td>Todoist / Asana</td>
+                        <td>飞书任务</td>
+                        <td>钉钉待办</td>
+                        <td>dws todo</td>
+                    </tr>
+                    <tr>
+                        <td>Slack</td>
+                        <td>飞书群聊</td>
+                        <td>钉钉群聊</td>
+                        <td>dws chat</td>
+                    </tr>
+                    <tr>
+                        <td>Notion 知识库</td>
+                        <td>飞书知识库</td>
+                        <td>aitable 索引替代</td>
+                        <td>dws aitable</td>
+                    </tr>
+                    <tr>
+                        <td>Airtable</td>
+                        <td>飞书多维表格</td>
+                        <td>钉钉AI表格</td>
+                        <td>dws aitable</td>
+                    </tr>
+                    <tr>
+                        <td>OA审批</td>
+                        <td>--</td>
+                        <td>钉钉独有</td>
+                        <td>dws oa</td>
+                    </tr>
+                    <tr>
+                        <td>考勤打卡</td>
+                        <td>--</td>
+                        <td>钉钉独有</td>
+                        <td>dws attendance</td>
+                    </tr>
+                    <tr>
+                        <td>工作日志</td>
+                        <td>--</td>
+                        <td>钉钉独有</td>
+                        <td>dws report</td>
+                    </tr>
+                    <tr>
+                        <td>DING消息</td>
+                        <td>--</td>
+                        <td>钉钉独有</td>
+                        <td>dws ding</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 安装配置 -->
+    <section id="install" class="section">
+        <h2 class="section-title">安装与配置</h2>
+        <p class="section-subtitle">简单几步，开启钉钉AI效率之旅</p>
+
+        <div class="install-card">
+            <div class="install-title">1. 确认环境就绪</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">检查 dws 版本和登录状态：</p>
+            <pre class="code-block"># 检查 dws 版本
+dws --version
+
+# 检查登录状态
+dws auth status --yes -f json
+
+# 检查 Skill 是否就位
+ls .claude/skills/dingtalk-workflow-*/</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">2. 环境要求</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">确保以下组件已安装：</p>
+            <pre class="code-block"># Claude Code CLI 工具
+# dws (钉钉 CLI) v1.0.0+，已全局安装
+# 钉钉应用已在钉钉开放平台创建并开通 CLI 访问权限
+# 已通过 dws auth login 完成登录
+# Node.js（dws 依赖）</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">3. 选择 Skill 开始使用</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">每个 Skill 首次使用时会自动引导完成数据初始化：</p>
+            <pre class="code-block">你：今天有什么安排？
+你：午餐吃了红烧牛肉面和一杯冰美式
+你：帮我保存这篇文章到知识库 https://example.com/article
+你：添加 AAPL 到自选股，目标价 200</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">4. 按需初始化</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">也可以主动触发初始化：</p>
+            <pre class="code-block">你：帮我初始化个人CRM系统
+你：初始化健康日记
+你：设置晨间简报</pre>
+        </div>
+    </section>
+
+    <!-- 技术栈 -->
+    <section class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">基于Claude Code和钉钉开放平台构建</p>
+        <div class="tech-stack">
+            <div class="tech-item">Claude Code</div>
+            <div class="tech-item">OpenClaw Skill</div>
+            <div class="tech-item">dws (钉钉 CLI)</div>
+            <div class="tech-item">钉钉开放平台</div>
+            <div class="tech-item">钉钉AI表格</div>
+            <div class="tech-item">Node.js</div>
+            <div class="tech-item">AI WebSearch</div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于钉钉AI效率系统的常见疑问</p>
+
+        <div class="category-card">
+            <div class="category-title">Q: 需要什么前置条件？</div>
+            <div class="category-content">
+                A: 需要安装 Claude Code CLI、dws 钉钉 CLI v1.0.0+，并在钉钉开放平台创建应用并开通 CLI 访问权限，然后通过 dws auth login 完成登录。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 与飞书版本有什么区别？</div>
+            <div class="category-content">
+                A: 将飞书版本的10大工作流完整迁移到钉钉生态，并增加了钉钉独有功能：OA审批集成、考勤打卡数据、工作日志、DING紧急消息、开放平台文档搜索。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: Skill之间数据能联动吗？</div>
+            <div class="category-content">
+                A: 可以。例如晨间简报会读取日历、待办、OA审批、考勤、CRM、社交数据等；商业顾问团会读取多个Skill的数据生成综合分析报告。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 如何实现定时自动化？</div>
+            <div class="category-content">
+                A: 支持 CronCreate 配置定时任务，例如工作日早上8点自动生成晨间简报并发送到指定群聊。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 数据存储在哪里？</div>
+            <div class="category-content">
+                A: 所有数据统一存储在钉钉AI表格中，配置信息持久化到 Claude Code memory，跨会话保留。
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer" id="contact">
+        <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>基于 Claude Code / OpenClaw Skill + 钉钉 CLI (dws) 构建的个人AI效率基础设施。将飞书版本的10大工作流完整迁移到钉钉生态。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/dingtalk-cli-workflow">GitHub 仓库</a></li>
+                    <li><a href="https://linux.do/t/topic/1885908">社区讨论帖</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 钉钉AI效率系统. All rights reserved.</p>
+        </div>
+            </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 移动端菜单
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>
