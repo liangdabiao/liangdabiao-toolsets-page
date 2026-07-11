@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>i18n-helper-skills - 翻译Skills合集</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 50%, #1d4ed8 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #3b82f6;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .skill-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .skill-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .skill-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: #3b82f6;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: #2563eb;
+        }
+        .feature-highlight {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #3b82f6;
+        }
+        .feature-highlight h3 {
+            color: #1d4ed8;
+            margin-bottom: 15px;
+        }
+        .feature-highlight p {
+            color: #2563eb;
+            line-height: 1.8;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        .install-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 4px solid #3b82f6;
+        }
+        .install-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #3b82f6;
+        }
+        .compare-table {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .compare-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .compare-table th,
+        .compare-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .compare-table th {
+            background: #eff6ff;
+            color: #1d4ed8;
+            font-weight: bold;
+        }
+        .compare-table tr:hover {
+            background: #eff6ff;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🌐 AI工具集合</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#skills">双Skill对比</a></li>
+                <li><a href="#frameworks">框架支持</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-badge">国际化 / 本地化 · 静态网站 · 编程框架</div>
+        <h1>i18n-helper-skills</h1>
+        <p>两个互补不重叠的国际化/本地化 skill，覆盖「静态内容站点」和「编程框架源码」两大场景。支持 codex、claude code、workbuddy 等 agent skills。</p>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/i18n-helper-skills" class="btn btn-primary" style="background: white; color: #3b82f6;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">覆盖静态站点和编程框架两大场景</p>
+        
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">🌐</div>
+                <h3 class="skill-title">html-i18n · 静态HTML站点翻译</h3>
+                <p class="skill-description">扫描HTML提取可翻译文本，生成各语言独立HTML目录，共享CSS与图片资源，零JS依赖，SEO友好。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔧</div>
+                <h3 class="skill-title">i18n-helper · 编程框架源码国际化</h3>
+                <p class="skill-description">扫描源码硬编码文本，按框架生成对应语言文件，替换成翻译函数调用，检查翻译完整性。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">✅</div>
+                <h3 class="skill-title">简繁转换</h3>
+                <p class="skill-description">内置简繁转换功能，一键生成zh-TW版本，无需额外工具。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📋</div>
+                <h3 class="skill-title">翻译完整性检查</h3>
+                <p class="skill-description">检查翻译缺失/空值/完成度百分比，确保翻译质量。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🐍</div>
+                <h3 class="skill-title">Python标准库</h3>
+                <p class="skill-description">仅依赖Python标准库，无需pip安装任何第三方包。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔄</div>
+                <h3 class="skill-title">热更新支持</h3>
+                <p class="skill-description">源文件修改后自动更新翻译文件，保持同步。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <h2 class="section-title">双Skill对比</h2>
+        <p class="section-subtitle">如何选择合适的Skill</p>
+        
+        <div class="compare-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>对比维度</th>
+                        <th>html-i18n</th>
+                        <th>i18n-helper</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>适用场景</td>
+                        <td>书籍、文档站、博客、官网落地页</td>
+                        <td>React/Vue/Angular/Laravel/Symfony/WordPress等源码项目</td>
+                    </tr>
+                    <tr>
+                        <td>项目特征</td>
+                        <td>只有.html/.css/图片，无源码、无构建配置</td>
+                        <td>有.js/.jsx/.vue/.php/.py/.java等源码</td>
+                    </tr>
+                    <tr>
+                        <td>处理方式</td>
+                        <td>复制HTML文件成多语言目录</td>
+                        <td>把硬编码替换成翻译函数调用</td>
+                    </tr>
+                    <tr>
+                        <td>产物结构</td>
+                        <td>en/、ja/、zh-TW/等独立目录</td>
+                        <td>JSON/YAML/PO/XLIFF/PHP数组/Properties</td>
+                    </tr>
+                    <tr>
+                        <td>翻译函数</td>
+                        <td>无需翻译函数</td>
+                        <td>t() / __() / trans()等</td>
+                    </tr>
+                    <tr>
+                        <td>依赖</td>
+                        <td>Python标准库</td>
+                        <td>Python标准库</td>
+                    </tr>
+                    <tr>
+                        <td>SEO友好</td>
+                        <td>✅ 多语言独立URL</td>
+                        <td>✅ 客户端动态切换</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="feature-highlight">
+            <h3>📌 快速选择指南</h3>
+            <p>
+                • 纯静态HTML站点（书籍、文档、博客）→ html-i18n<br>
+                • 需要在代码里写翻译函数（React、Vue、Laravel等）→ i18n-helper<br>
+                • 一句话区分：要把HTML文件复制成多语言目录 → html-i18n；要写t()/__()翻译函数 → i18n-helper
+            </p>
+        </div>
+    </section>
+
+    <section id="frameworks" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">框架支持</h2>
+        <p class="section-subtitle">i18n-helper支持的编程框架</p>
+        
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">⚛️</div>
+                <h3 class="skill-title">前端框架</h3>
+                <p class="skill-description">React (react-intl)、Vue (vue-i18n)、Angular (@ngx-translate)、i18next</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🐘</div>
+                <h3 class="skill-title">PHP框架</h3>
+                <p class="skill-description">Laravel (__()/trans())、Symfony ($translator->trans())、WordPress (__()/_e())、原生gettext</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🐍</div>
+                <h3 class="skill-title">Python框架</h3>
+                <p class="skill-description">gettext、Flask-Babel</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">☕</div>
+                <h3 class="skill-title">Java框架</h3>
+                <p class="skill-description">ResourceBundle、Spring</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🐹</div>
+                <h3 class="skill-title">Go</h3>
+                <p class="skill-description">go-i18n</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="install" class="section">
+        <h2 class="section-title">安装配置</h2>
+        <p class="section-subtitle">快速开始国际化</p>
+
+        <div class="install-card">
+            <div class="install-title">安装方式</div>
+            <pre class="code-block"># 方式一：用户级（所有项目可用）
+cp -r skills/html-i18n ~/.agents/skills/
+cp -r skills/i18n-helper ~/.agents/skills/
+
+# 方式二：项目级（仅当前项目可用）
+cp -r skills/html-i18n 你的项目/.agents/skills/
+cp -r skills/i18n-helper 你的项目/.agents/skills/</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">html-i18n使用步骤</div>
+            <pre class="code-block"># 1. 提取翻译源
+python skills/html-i18n/scripts/extract.py 你的站点/
+
+# 2. 复制zh-CN.json改名并填译文
+# 3. 应用生成各语言目录
+python skills/html-i18n/scripts/apply.py 你的站点/ locales/en-US.json 你的站点/en --lang en
+
+# 4. 检查完整性
+python skills/html-i18n/scripts/check.py locales/</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">项目结构</div>
+            <pre class="code-block">.claude/
+├─ README.md
+└─ skills/
+ ├─ html-i18n/
+ │ ├─ SKILL.md
+ │ ├─ references/
+ │ │ ├─ extraction-rules.md
+ │ │ └─ glossary.md
+ │ └─ scripts/
+ │ ├─ extract.py
+ │ ├─ apply.py
+ │ ├─ check.py
+ │ ├─ htmlscanner.py
+ │ └─ zhconv.py
+ └─ i18n-helper/
+ ├─ SKILL.md
+ └─ references/
+ └─ php-i18n.md</pre>
+        </div>
+    </section>
+
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">纯Python实现，无第三方依赖</p>
+        <div class="tech-stack">
+            <div class="tech-item">Python 3.x</div>
+            <div class="tech-item">HTML5</div>
+            <div class="tech-item">CSS3</div>
+            <div class="tech-item">React</div>
+            <div class="tech-item">Vue</div>
+            <div class="tech-item">Laravel</div>
+            <div class="tech-item">WordPress</div>
+            <div class="tech-item">gettext</div>
+        </div>
+    </section>
+
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于项目</h3>
+                    <p>i18n-helper-skills — 两个互补不重叠的国际化/本地化skill，覆盖静态内容站点和编程框架源码两大场景，支持多种主流框架。</p>
+                </div>
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="index.html">返回首页</a></li>
+                        <li><a href="https://github.com/liangdabiao/i18n-helper-skills">GitHub 仓库</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>联系我们</h3>
+                    <p>邮箱：497070928@qq.com</p>
+                    <p>GitHub：https://github.com/liangdabiao</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 i18n-helper-skills. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

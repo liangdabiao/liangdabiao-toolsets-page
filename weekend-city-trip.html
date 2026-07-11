@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekend City Trip | AI周末城市旅行规划</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 { font-size: 3em; margin-bottom: 20px; }
+        .hero p { font-size: 1.3em; max-width: 800px; margin: 0 auto 30px; opacity: 0.95; }
+        .hero-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 10px 25px; border-radius: 25px; margin-bottom: 20px; font-size: 0.95em; }
+        .hero-stats { display: flex; justify-content: center; gap: 50px; margin-top: 50px; flex-wrap: wrap; }
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 2.5em; font-weight: bold; display: block; }
+        .stat-label { font-size: 0.9em; opacity: 0.9; }
+        .section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 2.5em; margin-bottom: 20px; color: var(--primary-color); }
+        .section-subtitle { text-align: center; color: var(--secondary-color); margin-bottom: 50px; font-size: 1.1em; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-top: 40px; }
+        .feature-card { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s; border-left: 4px solid #8b5cf6; }
+        .feature-card:hover { transform: translateY(-5px); box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+        .feature-icon { font-size: 2.5em; margin-bottom: 15px; }
+        .feature-title { font-size: 1.3em; font-weight: bold; margin-bottom: 10px; color: var(--text-color); }
+        .feature-description { color: var(--secondary-color); line-height: 1.8; }
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 30px; }
+        .tech-item { background: #8b5cf6; color: white; padding: 12px 24px; border-radius: 25px; font-size: 0.95em; transition: background 0.3s; }
+        .tech-item:hover { background: #7c3aed; }
+        .workflow-diagram { background: white; border-radius: 12px; padding: 40px; margin: 40px 0; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .workflow-flow { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 30px 0; }
+        .flow-step { background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 20px 30px; border-radius: 10px; text-align: center; font-weight: bold; }
+        .flow-arrow { font-size: 2em; color: #8b5cf6; }
+        .category-card { background: white; border-radius: 12px; padding: 30px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid #8b5cf6; }
+        .category-title { font-size: 1.4em; font-weight: bold; margin-bottom: 15px; color: #8b5cf6; }
+        .category-content { color: var(--secondary-color); line-height: 1.8; }
+        .feature-highlight { background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%); border-radius: 12px; padding: 30px; margin: 30px 0; border-left: 4px solid #8b5cf6; }
+        .feature-highlight h3 { color: #5b21b6; margin-bottom: 15px; }
+        .feature-highlight p { color: #4c1d95; line-height: 1.8; }
+        .code-block { background: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 8px; margin: 20px 0; font-family: 'Courier New', monospace; line-height: 1.6; overflow-x: auto; }
+        .install-card { background: #f8f9fa; border-radius: 12px; padding: 25px; margin: 15px 0; border-left: 4px solid #8b5cf6; }
+        .install-title { font-size: 1.2em; font-weight: bold; margin-bottom: 10px; color: #8b5cf6; }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2em; }
+            .hero-stats { gap: 30px; }
+            .features-grid { grid-template-columns: 1fr; }
+            .flow-arrow { transform: rotate(90deg); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo"><a href="index.html">🌐 AI工具集合</a></div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-badge">AI旅行规划 · 周末出游</div>
+        <h1>Weekend City Trip</h1>
+        <p>AI驱动的周末城市旅行规划工具，根据你的偏好、预算和时间，智能生成个性化的短途旅行方案，让每个周末都精彩无限。</p>
+        <div class="hero-stats">
+            <div class="stat-item"><span class="stat-number">🎨</span><span class="stat-label">个性化规划</span></div>
+            <div class="stat-item"><span class="stat-number">💰</span><span class="stat-label">预算控制</span></div>
+            <div class="stat-item"><span class="stat-number">⏰</span><span class="stat-label">时间优化</span></div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/weekend-city-trip" class="btn btn-primary" style="background: white; color: #8b5cf6;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">为什么需要 Weekend City Trip？</h2>
+        <p class="section-subtitle">告别周末选择困难症</p>
+        <div class="feature-highlight">
+            <h3>🌆 周末去哪儿？</h3>
+            <p>周末想出去玩，但不知道去哪里？Weekend City Trip 利用AI分析海量旅行数据，结合你的兴趣偏好和预算，为你生成完美的周末旅行方案。</p>
+        </div>
+    </section>
+
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">智能规划每一次周末出行</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🏙️</div>
+                <h3 class="feature-title">城市推荐</h3>
+                <p class="feature-description">根据距离、天气、季节等因素，智能推荐适合周末出游的城市</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📍</div>
+                <h3 class="feature-title">景点规划</h3>
+                <p class="feature-description">智能规划景点路线，优化游览顺序，避免走回头路</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🍽️</div>
+                <h3 class="feature-title">美食推荐</h3>
+                <p class="feature-description">根据你的口味偏好，推荐当地特色美食和餐厅</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🏨</div>
+                <h3 class="feature-title">住宿安排</h3>
+                <p class="feature-description">根据预算和位置偏好，推荐合适的住宿选项</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🚗</div>
+                <h3 class="feature-title">交通规划</h3>
+                <p class="feature-description">规划最佳出行路线，对比多种交通方式的时间和费用</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📅</div>
+                <h3 class="feature-title">行程优化</h3>
+                <p class="feature-description">智能优化行程安排，确保每个景点都有充足的游览时间</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="workflow" class="section">
+        <h2 class="section-title">工作流程</h2>
+        <p class="section-subtitle">从输入偏好到生成行程</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">输入偏好</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">选择城市</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">AI规划</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">生成行程</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">开始旅行</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="install" class="section">
+        <h2 class="section-title">安装与使用</h2>
+        <p class="section-subtitle">快速开始你的周末旅行规划</p>
+        <div class="install-card">
+            <div class="install-title">1. 克隆项目</div>
+            <pre class="code-block">git clone https://github.com/liangdabiao/weekend-city-trip.git</pre>
+        </div>
+        <div class="install-card">
+            <div class="install-title">2. 安装依赖</div>
+            <pre class="code-block">npm install</pre>
+        </div>
+        <div class="install-card">
+            <div class="install-title">3. 配置API密钥</div>
+            <pre class="code-block">export OPENAI_API_KEY=your-api-key</pre>
+        </div>
+        <div class="install-card">
+            <div class="install-title">4. 启动应用</div>
+            <pre class="code-block">npm run dev</pre>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">现代化AI旅行规划技术</p>
+        <div class="tech-stack">
+            <div class="tech-item">React</div>
+            <div class="tech-item">TypeScript</div>
+            <div class="tech-item">Next.js</div>
+            <div class="tech-item">OpenAI API</div>
+            <div class="tech-item">Google Maps API</div>
+            <div class="tech-item">Tailwind CSS</div>
+        </div>
+    </section>
+
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于 Weekend City Trip 的常见疑问</p>
+        <div class="category-card">
+            <div class="category-title">Q: 支持哪些城市？</div>
+            <div class="category-content">A: 目前支持国内大部分热门旅游城市，包括北京、上海、广州、深圳、杭州、成都、重庆等。</div>
+        </div>
+        <div class="category-card">
+            <div class="category-title">Q: 是否需要付费API？</div>
+            <div class="category-content">A: 需要配置大语言模型API密钥（如OpenAI），部分功能可能需要Google Maps等第三方API。</div>
+        </div>
+        <div class="category-card">
+            <div class="category-title">Q: 如何自定义旅行偏好？</div>
+            <div class="category-content">A: 可以设置旅行风格（休闲/探险/文化）、预算范围、出行人数、交通方式等偏好参数。</div>
+        </div>
+    </section>
+
+    <footer class="footer" id="contact">
+        <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>AI驱动的周末城市旅行规划工具，让每个周末都精彩无限。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/weekend-city-trip">GitHub 仓库</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Weekend City Trip. All rights reserved.</p>
+        </div>
+            </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+            });
+        });
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        if (hamburger) {
+            hamburger.addEventListener('click', () => { navMenu.classList.toggle('active'); hamburger.classList.toggle('active'); });
+        }
+    </script>
+</body>
+</html>

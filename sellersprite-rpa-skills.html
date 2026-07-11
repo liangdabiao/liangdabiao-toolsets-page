@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sellersprite-rpa-skills - 卖家精灵RPA工具集</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 50%, #0e7490 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #06b6d4;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .skill-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .skill-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .skill-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+            font-size: 0.95em;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: #06b6d4;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: #0891b2;
+        }
+        .feature-highlight {
+            background: linear-gradient(135deg, #ecfeff 0%, #cffafe 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #06b6d4;
+        }
+        .feature-highlight h3 {
+            color: #0e7490;
+            margin-bottom: 15px;
+        }
+        .feature-highlight p {
+            color: #0891b2;
+            line-height: 1.8;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        .install-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 4px solid #06b6d4;
+        }
+        .install-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #06b6d4;
+        }
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 40px;
+        }
+        .module-item {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        .module-item:hover {
+            transform: translateY(-3px);
+        }
+        .module-icon {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .module-name {
+            font-weight: bold;
+            color: var(--text-color);
+            font-size: 0.9em;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero-stats {
+                gap: 30px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🌐 AI工具集合</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#modules">模块覆盖</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-badge">Browser-RPA · sellersprite.com · 10站点支持</div>
+        <h1>sellersprite-rpa-skills</h1>
+        <p>基于浏览器RPA + 数据分析的卖家精灵工具集，覆盖sellersprite.com全部5个核心亚马逊数据分析模块。通过Kimi WebBridge驱动用户已登录的浏览器，自动抓取数据并生成分析报告。</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">5</span>
+                <span class="stat-label">核心模块</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">10</span>
+                <span class="stat-label">Amazon站点</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">API-first</span>
+                <span class="stat-label">3个模块</span>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/sellersprite-rpa-skills" class="btn btn-primary" style="background: white; color: #06b6d4;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">卖家精灵全维度亚马逊数据分析</p>
+        
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">📦</div>
+                <h3 class="skill-title">选产品</h3>
+                <p class="skill-description">各站点+类目下的热销ASIN，支持多站点对比，API-first模式直接调用接口。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔤</div>
+                <h3 class="skill-title">关键词选品</h3>
+                <p class="skill-description">各站点关键词搜索/点击/PPC数据，DOM-scrape模式抓取渲染后的HTML表格。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🌐</div>
+                <h3 class="skill-title">选市场</h3>
+                <p class="skill-description">细分市场规模+集中度，DOM-scrape模式，POST表单提交+表格抽取。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📊</div>
+                <h3 class="skill-title">ABA数据</h3>
+                <p class="skill-description">亚马逊Brand Analytics关键词搜索频率排行，API-first模式。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎯</div>
+                <h3 class="skill-title">查竞品</h3>
+                <p class="skill-description">按关键词/品牌/卖家/ASIN反查竞品，API-first模式，搜索驱动。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📈</div>
+                <h3 class="skill-title">多站点对比</h3>
+                <p class="skill-description">一键多站点抓取并自动切分，生成对比分析报告。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="modules" class="section">
+        <h2 class="section-title">模块覆盖</h2>
+        <p class="section-subtitle">5个独立skill，每个模块独立运行</p>
+        
+        <div class="module-grid">
+            <div class="module-item"><div class="module-icon">📦</div><div class="module-name">选产品</div></div>
+            <div class="module-item"><div class="module-icon">🔤</div><div class="module-name">关键词选品</div></div>
+            <div class="module-item"><div class="module-icon">🌐</div><div class="module-name">选市场</div></div>
+            <div class="module-item"><div class="module-icon">📊</div><div class="module-name">ABA数据</div></div>
+            <div class="module-item"><div class="module-icon">🎯</div><div class="module-name">查竞品</div></div>
+        </div>
+
+        <div class="feature-highlight">
+            <h3>🚀 使用示例</h3>
+            <p>
+                • "帮我分析美国站flashlight关键词数据"<br>
+                • "帮我调研LED细分市场规模"<br>
+                • "帮我反查yoga mat关键词的竞品ASIN"
+            </p>
+        </div>
+    </section>
+
+    <section id="install" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">安装配置</h2>
+        <p class="section-subtitle">快速开始亚马逊数据分析</p>
+
+        <div class="install-card">
+            <div class="install-title">前置要求</div>
+            <pre class="code-block"># Kimi WebBridge daemon运行且扩展已连接
+~/.kimi-webbridge/bin/kimi-webbridge status
+# 期望：running: true, extension_connected: true
+
+# Python 3.10+（无第三方依赖）
+# 已登录sellersprite的浏览器</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">快速开始</div>
+            <pre class="code-block"># 1. 验证守护进程
+~/.kimi-webbridge/bin/kimi-webbridge status
+
+# 2. 选产品 — 美国站Top 100 ASIN
+python .claude/skills/sellersprite-products/scripts/fetch_products.py \
+ --market US --pages 5 --out data/us_top100.csv
+
+# 3. 关键词选品 — 3站点flashlight搜索数据
+python .claude/skills/sellersprite-keywords/scripts/fetch_keywords.py \
+ --station US,JP,GB --keyword flashlight --pages 2 \
+ --out data/keywords_by_station.csv
+
+# 4. 生成对比报告
+python .claude/skills/sellersprite-products/scripts/analyze.py \
+ --products data/us_top100.csv --out-md reports/products.md</pre>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">基于浏览器RPA的数据分析</p>
+        <div class="tech-stack">
+            <div class="tech-item">Python 3.10+</div>
+            <div class="tech-item">Kimi WebBridge</div>
+            <div class="tech-item">API-first</div>
+            <div class="tech-item">DOM-scrape</div>
+            <div class="tech-item">CSV导出</div>
+            <div class="tech-item">Markdown报告</div>
+        </div>
+    </section>
+
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于项目</h3>
+                    <p>sellersprite-rpa-skills — 基于浏览器RPA的卖家精灵工具集，覆盖5个核心亚马逊数据分析模块，支持10个亚马逊站点，自动抓取数据并生成分析报告。</p>
+                </div>
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="index.html">返回首页</a></li>
+                        <li><a href="https://github.com/liangdabiao/sellersprite-rpa-skills">GitHub 仓库</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>联系我们</h3>
+                    <p>邮箱：497070928@qq.com</p>
+                    <p>GitHub：https://github.com/liangdabiao</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 sellersprite-rpa-skills. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

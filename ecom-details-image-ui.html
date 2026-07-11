@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecom Details Image UI | 电商详情页图片提取与展示</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 { font-size: 3em; margin-bottom: 20px; }
+        .hero p { font-size: 1.3em; max-width: 800px; margin: 0 auto 30px; opacity: 0.95; }
+        .hero-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 10px 25px; border-radius: 25px; margin-bottom: 20px; font-size: 0.95em; }
+        .hero-stats { display: flex; justify-content: center; gap: 50px; margin-top: 50px; flex-wrap: wrap; }
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 2.5em; font-weight: bold; display: block; }
+        .stat-label { font-size: 0.9em; opacity: 0.9; }
+        .section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 2.5em; margin-bottom: 20px; color: var(--primary-color); }
+        .section-subtitle { text-align: center; color: var(--secondary-color); margin-bottom: 50px; font-size: 1.1em; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-top: 40px; }
+        .feature-card { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s; border-left: 4px solid #10b981; }
+        .feature-card:hover { transform: translateY(-5px); box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+        .feature-icon { font-size: 2.5em; margin-bottom: 15px; }
+        .feature-title { font-size: 1.3em; font-weight: bold; margin-bottom: 10px; color: var(--text-color); }
+        .feature-description { color: var(--secondary-color); line-height: 1.8; }
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 30px; }
+        .tech-item { background: #10b981; color: white; padding: 12px 24px; border-radius: 25px; font-size: 0.95em; transition: background 0.3s; }
+        .tech-item:hover { background: #059669; }
+        .workflow-diagram { background: white; border-radius: 12px; padding: 40px; margin: 40px 0; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .workflow-flow { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 30px 0; }
+        .flow-step { background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 20px 30px; border-radius: 10px; text-align: center; font-weight: bold; }
+        .flow-arrow { font-size: 2em; color: #10b981; }
+        .category-card { background: white; border-radius: 12px; padding: 30px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid #10b981; }
+        .category-title { font-size: 1.4em; font-weight: bold; margin-bottom: 15px; color: #10b981; }
+        .category-content { color: var(--secondary-color); line-height: 1.8; }
+        .feature-highlight { background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); border-radius: 12px; padding: 30px; margin: 30px 0; border-left: 4px solid #10b981; }
+        .feature-highlight h3 { color: #065f46; margin-bottom: 15px; }
+        .feature-highlight p { color: #064e3b; line-height: 1.8; }
+        .code-block { background: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 8px; margin: 20px 0; font-family: 'Courier New', monospace; line-height: 1.6; overflow-x: auto; }
+        .install-card { background: #f8f9fa; border-radius: 12px; padding: 25px; margin: 15px 0; border-left: 4px solid #10b981; }
+        .install-title { font-size: 1.2em; font-weight: bold; margin-bottom: 10px; color: #10b981; }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2em; }
+            .hero-stats { gap: 30px; }
+            .features-grid { grid-template-columns: 1fr; }
+            .flow-arrow { transform: rotate(90deg); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo"><a href="index.html">🌐 AI工具集合</a></div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-badge">电商详情页图片提取</div>
+        <h1>Ecom Details Image UI</h1>
+        <p>电商详情页图片提取与展示工具，支持主流电商平台商品图片批量提取、分类整理和智能展示，助力商品内容创作和数据分析。</p>
+        <div class="hero-stats">
+            <div class="stat-item"><span class="stat-number">多平台</span><span class="stat-label">支持</span></div>
+            <div class="stat-item"><span class="stat-number">批量</span><span class="stat-label">提取</span></div>
+            <div class="stat-item"><span class="stat-label">智能分类</span></div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/ecom-details-image-ui" class="btn btn-primary" style="background: white; color: #10b981;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">为什么需要这个工具？</h2>
+        <p class="section-subtitle">电商内容创作的痛点</p>
+        <div class="feature-highlight">
+            <h3>🎯 电商图片提取的挑战</h3>
+            <p>电商详情页包含大量图片素材，但手动提取效率低下。需要支持多平台、批量提取、智能分类和格式转换，帮助内容创作者快速获取和管理商品图片资源。</p>
+        </div>
+    </section>
+
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">一站式电商图片提取解决方案</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🛒</div>
+                <h3 class="feature-title">多平台支持</h3>
+                <p class="feature-description">支持淘宝、京东、拼多多、亚马逊等主流电商平台商品详情页图片提取</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📥</div>
+                <h3 class="feature-title">批量提取</h3>
+                <p class="feature-description">支持批量输入商品链接，一次性提取多个商品的所有图片资源</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📁</div>
+                <h3 class="feature-title">智能分类</h3>
+                <p class="feature-description">自动识别商品主图、详情图、规格图等，按类别分类整理</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🖼️</div>
+                <h3 class="feature-title">图片展示</h3>
+                <p class="feature-description">提供美观的图片画廊展示界面，支持预览、缩放、下载等操作</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔄</div>
+                <h3 class="feature-title">格式转换</h3>
+                <p class="feature-description">支持多种图片格式转换，自动压缩优化图片大小</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3 class="feature-title">数据分析</h3>
+                <p class="feature-description">统计商品图片数量、大小、分辨率等信息，生成数据报告</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="workflow" class="section">
+        <h2 class="section-title">工作流程</h2>
+        <p class="section-subtitle">简单几步完成图片提取</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">输入商品链接</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">解析页面</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">提取图片</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">智能分类</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">展示下载</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="install" class="section">
+        <h2 class="section-title">安装与使用</h2>
+        <p class="section-subtitle">快速开始</p>
+        <div class="install-card">
+            <div class="install-title">1. 克隆项目</div>
+            <pre class="code-block">git clone https://github.com/liangdabiao/ecom-details-image-ui.git</pre>
+        </div>
+        <div class="install-card">
+            <div class="install-title">2. 安装依赖</div>
+            <pre class="code-block">npm install</pre>
+        </div>
+        <div class="install-card">
+            <div class="install-title">3. 启动开发服务器</div>
+            <pre class="code-block">npm run dev</pre>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">现代化前端技术</p>
+        <div class="tech-stack">
+            <div class="tech-item">React</div>
+            <div class="tech-item">TypeScript</div>
+            <div class="tech-item">Vite</div>
+            <div class="tech-item">Tailwind CSS</div>
+            <div class="tech-item">Node.js</div>
+        </div>
+    </section>
+
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于 Ecom Details Image UI 的常见疑问</p>
+        <div class="category-card">
+            <div class="category-title">Q: 支持哪些电商平台？</div>
+            <div class="category-content">A: 目前支持淘宝、天猫、京东、拼多多、亚马逊、速卖通等主流电商平台的商品详情页图片提取。</div>
+        </div>
+        <div class="category-card">
+            <div class="category-title">Q: 是否需要登录电商平台账号？</div>
+            <div class="category-content">A: 大部分公开商品页面不需要登录即可提取图片，部分需要登录的页面需要配置 Cookie。</div>
+        </div>
+        <div class="category-card">
+            <div class="category-title">Q: 图片下载是否有限制？</div>
+            <div class="category-content">A: 下载速度取决于网络状况和目标网站的反爬机制，建议合理控制提取频率。</div>
+        </div>
+    </section>
+
+    <footer class="footer" id="contact">
+        <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>电商详情页图片提取与展示工具，助力商品内容创作和数据分析。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/ecom-details-image-ui">GitHub 仓库</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Ecom Details Image UI. All rights reserved.</p>
+        </div>
+            </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+            });
+        });
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        if (hamburger) {
+            hamburger.addEventListener('click', () => { navMenu.classList.toggle('active'); hamburger.classList.toggle('active'); });
+        }
+    </script>
+</body>
+</html>

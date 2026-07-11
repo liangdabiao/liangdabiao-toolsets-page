@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>liurun-bookwriter-skills - 双风格长文写作Skill集</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 50%, #b91c1c 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #ef4444;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .skill-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .skill-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .skill-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: #ef4444;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: #dc2626;
+        }
+        .feature-highlight {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #ef4444;
+        }
+        .feature-highlight h3 {
+            color: #b91c1c;
+            margin-bottom: 15px;
+        }
+        .feature-highlight p {
+            color: #dc2626;
+            line-height: 1.8;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        .install-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 4px solid #ef4444;
+        }
+        .install-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #ef4444;
+        }
+        .compare-table {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .compare-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .compare-table th,
+        .compare-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .compare-table th {
+            background: #fef2f2;
+            color: #b91c1c;
+            font-weight: bold;
+        }
+        .compare-table tr:hover {
+            background: #fef2f2;
+        }
+        .heart-card {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        .heart-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        .heart-card p {
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🌐 AI工具集合</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#skills">双风格对比</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-badge">Claude Skills · 刘润风格 · 罗振宇风格</div>
+        <h1>liurun-bookwriter-skills</h1>
+        <p>双风格长文写作 Skill 集，两个 skill，两种风格，一个目的——让你写出有"作家味"的长文。包含刘润商业洞察风格和罗振宇启发式风格两套完整写作体系。</p>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/liurun-bookwriter-skills" class="btn btn-primary" style="background: white; color: #ef4444;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">两套完整的中文长文写作体系</p>
+        
+        <div class="heart-card">
+            <h3>"心里装的不是'我'，是'你'"</h3>
+            <p>刘润 28 年商业写作经验 + 罗振宇 14 年内容创作经验，完整复刻两套写作心法</p>
+        </div>
+
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">📚</div>
+                <h3 class="skill-title">刘润商业洞察风格</h3>
+                <p class="skill-description">8大心法、3种结构、SCQA逻辑势能、5商派SCA++模板、7种callout，专为商业长文创作设计。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">💡</div>
+                <h3 class="skill-title">罗振宇启发式风格</h3>
+                <p class="skill-description">12大心法、3种结构、3种SCQA变体、7种核心callout，专为认知/启发/商业长文创作设计。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">✅</div>
+                <h3 class="skill-title">质量保证</h3>
+                <p class="skill-description">每篇长文自动执行12项QC检查：结构检查、风格检查、内容检查，确保文章质量。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📄</div>
+                <h3 class="skill-title">多格式输出</h3>
+                <p class="skill-description">支持Markdown、PDF导出，PDF样式优化（思源宋体、11pt、行距1.5）。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🤝</div>
+                <h3 class="skill-title">多Agent协作</h3>
+                <p class="skill-description">主编/调研/写作/编辑/排版五角色协作，支持复杂长文的多人协作。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">⚙️</div>
+                <h3 class="skill-title">结构验证</h3>
+                <p class="skill-description">自动识别3段式/10点式/32条/5商派结构，验证段落数正确性和编号连续性。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <h2 class="section-title">双风格对比</h2>
+        <p class="section-subtitle">选择适合你的写作风格</p>
+        
+        <div class="compare-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>对比维度</th>
+                        <th>liurun-bookwriter（刘润风格）</th>
+                        <th>luozhenyu-bookwriter（罗振宇风格）</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>风格定位</td>
+                        <td>商业洞察 / 方法论</td>
+                        <td>认知 / 启发 / 商业</td>
+                    </tr>
+                    <tr>
+                        <td>核心主张</td>
+                        <td>心里装的不是"我"，是"你"</td>
+                        <td>做事的人，不是评论家</td>
+                    </tr>
+                    <tr>
+                        <td>最适合</td>
+                        <td>商业评论、企业案例、参访游记</td>
+                        <td>认知升级、AI时代应对、个人成长</td>
+                    </tr>
+                    <tr>
+                        <td>写作心法</td>
+                        <td>8大心法</td>
+                        <td>12大心法</td>
+                    </tr>
+                    <tr>
+                        <td>结构类型</td>
+                        <td>3段式、10点式、32条、5商派</td>
+                        <td>罗胖60秒、罗辑思维长文、跨年演讲稿</td>
+                    </tr>
+                    <tr>
+                        <td>SCQA变体</td>
+                        <td>ASC、CSA、QSCA</td>
+                        <td>TQA、CAA、PEI</td>
+                    </tr>
+                    <tr>
+                        <td>篇幅范围</td>
+                        <td>1500-4000字</td>
+                        <td>60-150字（60秒）/ 2000-4000字（长文）/ 10000+字（演讲）</td>
+                    </tr>
+                    <tr>
+                        <td>金句要求</td>
+                        <td>商业格言型</td>
+                        <td>必须现场原创，禁止套代表作原句</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="feature-highlight">
+            <h3>📌 快速选择指南</h3>
+            <p>
+                • 商业评论、企业财报分析、5分钟商学院体 → liurun-bookwriter<br>
+                • 商业洞察、商业方法论、参访游记 → liurun-bookwriter<br>
+                • 认知升级、启发式短文、长期主义主张 → luozhenyu-bookwriter<br>
+                • 跨年演讲、AI时代应对、个人成长 → luozhenyu-bookwriter<br>
+                • 不确定？看核心问题：你的文章是"解决问题"还是"激发思考"？前者选刘润，后者选罗振宇。
+            </p>
+        </div>
+    </section>
+
+    <section id="workflow" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">工作流程</h2>
+        <p class="section-subtitle">从一句话到完整长文</p>
+        
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">1️⃣</div>
+                <h3 class="skill-title">触发Skill</h3>
+                <p class="skill-description">直接对Agent说："用刘润的风格写一篇关于鸿蒙的32条评论"</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">2️⃣</div>
+                <h3 class="skill-title">识别结构</h3>
+                <p class="skill-description">Agent自动识别结构类型，选定SCQA变体，确认选题角度</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">3️⃣</div>
+                <h3 class="skill-title">调研素材</h3>
+                <p class="skill-description">自动调研案例、数据、金句等素材</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">4️⃣</div>
+                <h3 class="skill-title">撰写</h3>
+                <p class="skill-description">遵循写作心法逐段撰写，每写完一段等待用户确认</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">5️⃣</div>
+                <h3 class="skill-title">QC自检</h3>
+                <p class="skill-description">执行12项质量检查，确保文章质量</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">6️⃣</div>
+                <h3 class="skill-title">导出</h3>
+                <p class="skill-description">支持Markdown、PDF格式导出，方便分享和打印</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="install" class="section">
+        <h2 class="section-title">安装配置</h2>
+        <p class="section-subtitle">快速开始写作</p>
+
+        <div class="install-card">
+            <div class="install-title">安装方式</div>
+            <pre class="code-block"># 复制到Agent skills目录
+cp -r liurun-bookwriter ~/.claude/skills/
+cp -r luozhenyu-bookwriter ~/.claude/skills/
+
+# 或作为本地Skill目录
+直接告诉Agent skill所在路径即可</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">PDF导出依赖</div>
+            <pre class="code-block"># macOS
+brew install pandoc
+brew install --cask mactex
+brew install --cask font-source-han-serif
+
+# Linux (Ubuntu/Debian)
+sudo apt install pandoc texlive-xetex texlive-lang-chinese fonts-noto-cjk
+
+# Windows
+winget install --id JohnMacFarlane.Pandoc
+winget install --id MiKTeX.MiKTeX</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">命令行工具</div>
+            <pre class="code-block"># PDF导出
+python scripts/export_pdf.py article.md
+
+# 结构验证
+python scripts/validate_structure.py article.md
+
+# 多Agent协作调度
+python scripts/agent_scheduler.py --init "32-tiao-hongmeng" --type "32条"</pre>
+        </div>
+    </section>
+
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">纯Python实现，无第三方依赖</p>
+        <div class="tech-stack">
+            <div class="tech-item">Python 3.8+</div>
+            <div class="tech-item">Claude Code CLI</div>
+            <div class="tech-item">Pandoc</div>
+            <div class="tech-item">XeLaTeX</div>
+            <div class="tech-item">Markdown</div>
+            <div class="tech-item">PDF导出</div>
+        </div>
+    </section>
+
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于项目</h3>
+                    <p>liurun-bookwriter-skills — 双风格长文写作 Skill 集，包含刘润商业洞察风格和罗振宇启发式风格两套完整写作体系，让你写出有"作家味"的长文。</p>
+                </div>
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="index.html">返回首页</a></li>
+                        <li><a href="https://github.com/liangdabiao/liurun-bookwriter-skills">GitHub 仓库</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>联系我们</h3>
+                    <p>邮箱：497070928@qq.com</p>
+                    <p>GitHub：https://github.com/liangdabiao</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 liurun-bookwriter-skills. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

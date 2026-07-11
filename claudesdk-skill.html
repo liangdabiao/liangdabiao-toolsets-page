@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClaudeSDK Skill - AI自学SDK构建Web应用</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 50%, #0e7490 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #06b6d4;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .skill-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .skill-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .skill-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: #06b6d4;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: #0891b2;
+        }
+        .feature-highlight {
+            background: linear-gradient(135deg, #ecfeff 0%, #cffafe 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #06b6d4;
+        }
+        .feature-highlight h3 {
+            color: #0e7490;
+            margin-bottom: 15px;
+        }
+        .feature-highlight p {
+            color: #0891b2;
+            line-height: 1.8;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        .install-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 4px solid #06b6d4;
+        }
+        .install-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #06b6d4;
+        }
+        .skill-vs-mcp {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .skill-vs-mcp table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .skill-vs-mcp th,
+        .skill-vs-mcp td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .skill-vs-mcp th {
+            background: #cffafe;
+            color: #0e7490;
+            font-weight: bold;
+        }
+        .skill-vs-mcp tr:hover {
+            background: #ecfeff;
+        }
+        .project-structure {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.8;
+            overflow-x: auto;
+            font-size: 0.9em;
+        }
+        .gotcha-card {
+            background: #fffbeb;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 4px solid #f59e0b;
+        }
+        .gotcha-title {
+            font-weight: bold;
+            color: #d97706;
+            margin-bottom: 8px;
+        }
+        .gotcha-desc {
+            color: #b45309;
+            line-height: 1.6;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🌐 AI工具集合</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#concept">核心概念</a></li>
+                <li><a href="#skill-system">Skill系统</a></li>
+                <li><a href="#project">项目结构</a></li>
+                <li><a href="#gotchas">常见坑位</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-badge">Claude Agent SDK + Skill 系统</div>
+        <h1>ClaudeSDK Skill</h1>
+        <p>探索 Claude Agent SDK 能力的实验项目。通过 Skill 系统让 AI 理解 SDK 文档，进而自主构建了一个 TikHub 社交媒体数据对话助手。</p>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/claudesdk-skill" class="btn btn-primary" style="background: white; color: #06b6d4;">查看 GitHub</a>
+            <a href="#concept" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <section id="concept" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心原理</h2>
+        <p class="section-subtitle">AI自学SDK的创新方法</p>
+        
+        <div class="feature-highlight">
+            <h3>🧠 项目背景</h3>
+            <p>Claude Agent SDK 是 Anthropic 推出的用于构建 AI Agent 应用的框架。为了让 AI 理解这个 SDK 的能力和用法，我们利用 SDK 自身的 Skill 系统来实现"AI 自学 SDK"——AI 阅读 SKILL.md 中的 SDK 文档，理解了 query()、settingSources、allowedTools、MessageQueue 等 API，然后基于这些知识设计了技术方案并实现了 tikhub-chat 项目。</p>
+        </div>
+
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">📚</div>
+                <h3 class="skill-title">准备知识源</h3>
+                <p class="skill-description">.claude/skills/claude-agent-sdk/SKILL.md → AI 理解 SDK 能力</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🛠️</div>
+                <h3 class="skill-title">准备业务能力</h3>
+                <p class="skill-description">tikhub-chat/.claude/skills/tikhub-api-helper/ → AI 获得调用 TikHub API 的能力</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎯</div>
+                <h3 class="skill-title">AI 自主设计方案</h3>
+                <p class="skill-description">研读 SDK 文档 → 输出 TECHNICAL_PROPOSAL.md</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">⚡</div>
+                <h3 class="skill-title">逐步实现</h3>
+                <p class="skill-description">后端 (Express + WebSocket + SDK) → 前端 (React + Vite + Tailwind) → 集成测试</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skill-system" class="section">
+        <h2 class="section-title">Skill 系统详解</h2>
+        <p class="section-subtitle">理解 Skill 机制是掌握 Claude Agent SDK 的关键</p>
+        
+        <div class="feature-highlight">
+            <h3>📝 什么是 Skill？</h3>
+            <p>Skill 是放置在 .claude/skills/ 目录下的 SKILL.md 文件。SDK 通过 settingSources: ["project"] 配置自动扫描并加载这些文件。AI 在对话中会根据用户需求自主决定是否使用某个 Skill。</p>
+        </div>
+
+        <div class="skill-vs-mcp">
+            <h3 style="color: #0e7490; margin-bottom: 20px;">Skill 不等于 MCP Tool</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>对比维度</th>
+                        <th>Custom MCP Tool</th>
+                        <th>Skill</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>定义方式</td>
+                        <td>编写 TypeScript 代码注册 tool</td>
+                        <td>写一个 SKILL.md 文件</td>
+                    </tr>
+                    <tr>
+                        <td>调用方式</td>
+                        <td>mcp__server__tool_name</td>
+                        <td>AI 读 SKILL.md → 用 Bash/Read 等内置工具执行</td>
+                    </tr>
+                    <tr>
+                        <td>灵活性</td>
+                        <td>固定接口，参数预定义</td>
+                        <td>AI 自主探索，决定如何使用</td>
+                    </tr>
+                    <tr>
+                        <td>维护成本</td>
+                        <td>需同步维护代码和底层脚本</td>
+                        <td>只维护 SKILL.md 和底层脚本</td>
+                    </tr>
+                    <tr>
+                        <td>适用场景</td>
+                        <td>确定性操作</td>
+                        <td>开放式、需要 AI 判断的任务</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="feature-highlight">
+            <h3>🔄 Skill 工作流程示例</h3>
+            <p>
+                用户: "小红书今天热门"<br>
+                ↓<br>
+                AI 判断需要调用 TikHub API<br>
+                ↓<br>
+                触发 tikhub-api-helper Skill<br>
+                ↓<br>
+                AI 读取 SKILL.md，理解工作流程<br>
+                ↓<br>
+                AI 自主决定执行：<br>
+                1. Bash: python api_searcher.py "小红书" → 搜索端点<br>
+                2. Bash: python api_searcher.py detail:xxx → 查看参数<br>
+                3. Bash: python api_client.py POST /api/... → 调用 API<br>
+                4. 整理结果，中文回复用户
+            </p>
+        </div>
+    </section>
+
+    <section id="project" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">项目结构</h2>
+        <p class="section-subtitle">tikhub-chat Web 应用的完整架构</p>
+        
+        <div class="project-structure">
+claudesdk-skill/<br>
+├── .claude/skills/<br>
+│   └── claude-agent-sdk/      # SDK 知识源（让 AI 理解 SDK）<br>
+│       ├── SKILL.md<br>
+│       ├── references/<br>
+│       └── scripts/<br>
+│<br>
+├── tikhub-chat/               # 主项目：TikHub AI Chat Webapp<br>
+│   ├── .claude/skills/<br>
+│   │   └── tikhub-api-helper/ # 业务 Skill（让 AI 能操作 TikHub API）<br>
+│   │       ├── SKILL.md<br>
+│   │       ├── api_searcher.py<br>
+│   │       ├── api_client.py<br>
+│   │       └── openapi.json<br>
+│   │<br>
+│   ├── server/                # 后端<br>
+│   │   ├── index.ts           # Express + WebSocket 服务<br>
+│   │   ├── agent-client.ts    # SDK 核心配置<br>
+│   │   ├── message-queue.ts   # 异步消息队列<br>
+│   │   └── logger.ts          # 文件日志系统<br>
+│   │<br>
+│   ├── src/                   # 前端 (React + Vite + Tailwind)<br>
+│   │   ├── App.tsx<br>
+│   │   ├── components/<br>
+│   │   ├── hooks/useWebSocket.ts<br>
+│   │   └── types.ts<br>
+│   │<br>
+│   ├── logs/                  # 运行日志<br>
+│   ├── .env                  # 环境变量<br>
+│   └── README.md<br>
+└── README.md                  # ← 本文件
+        </div>
+
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">⚙️</div>
+                <h3 class="skill-title">后端架构</h3>
+                <p class="skill-description">Express.js + WebSocket (ws)，集成 Claude Agent SDK，通过 Skill 系统调用业务能力。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎨</div>
+                <h3 class="skill-title">前端架构</h3>
+                <p class="skill-description">React 18 + Vite + Tailwind CSS，提供流畅的聊天界面和实时消息交互。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📡</div>
+                <h3 class="skill-title">实时通信</h3>
+                <p class="skill-description">WebSocket 双向通信，支持流式消息传输，实时展示 AI 思考过程。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔍</div>
+                <h3 class="skill-title">多平台支持</h3>
+                <p class="skill-description">通过 TikHub API 支持 40+ 社交媒体平台的数据获取和分析。</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">快速开始</h2>
+        <p class="section-subtitle">运行 tikhub-chat 项目</p>
+
+        <div class="install-card">
+            <div class="install-title">前置要求</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">
+                Node.js 20+、Python 3.x、Claude Code CLI、有效的 Anthropic API Key
+            </p>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">启动项目</div>
+            <pre class="code-block">cd tikhub-chat
+npm install
+
+# 配置 .env
+# ANTHROPIC_API_KEY=xxx
+# TIKHUB_TOKEN=xxx
+
+npm run dev</pre>
+            <p style="margin-top: 10px; color: var(--secondary-color);">访问 http://localhost:5173</p>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">示例对话</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">
+                • "TikHub 支持哪些平台" → 搜索 API tags，列出 55 个平台<br>
+                • "搜索 TikTok 上游戏的视频" → 搜索 API → 调用 search_video<br>
+                • "抖音美食热门视频" → 搜索 API → 调用抖音搜索<br>
+                • "小红书今天热门" → 搜索 API → 调用首页推荐
+            </p>
+        </div>
+    </section>
+
+    <section id="gotchas" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">常见坑位预警</h2>
+        <p class="section-subtitle">省你踩雷时间</p>
+        
+        <div class="gotcha-card">
+            <div class="gotcha-title">环境变量被系统覆盖</div>
+            <div class="gotcha-desc">系统环境变量（用户全局设置的 ANTHROPIC_*）优先级高于 .env 文件。dotenv.config() 默认不覆盖已有的 env var。解决：dotenv.config({ override: true }) 强制 .env 优先。</div>
+        </div>
+
+        <div class="gotcha-card">
+            <div class="gotcha-title">React 18 StrictMode 导致重复连接</div>
+            <div class="gotcha-desc">React 18 的 StrictMode 在开发模式下会双重挂载组件，导致 WebSocket 连接重复。解决：用 mountedRef 守卫防止重复连接，cleanup 时正确关闭旧连接。</div>
+        </div>
+
+        <div class="gotcha-card">
+            <div class="gotcha-title">Permission Mode 选择</div>
+            <div class="gotcha-desc">使用 permissionMode: "acceptEdits" 时，Agent 执行 Bash 命令会卡住等待权限确认。Webapp 场景下没有交互式终端。解决：使用 permissionMode: "bypassPermissions"。</div>
+        </div>
+
+        <div class="gotcha-card">
+            <div class="gotcha-title">SDK 懒初始化</div>
+            <div class="gotcha-desc">不要在构造函数中调用 query()。解决：懒初始化模式 — ensureStarted() 在第一次 sendMessage() 时才调用 query()。</div>
+        </div>
+
+        <div class="gotcha-card">
+            <div class="gotcha-title">maxTurns 需要足够大</div>
+            <div class="gotcha-desc">Skill 驱动的任务每一步都是一轮。调试和错误恢复消耗大量轮次。解决：复杂任务 maxTurns 设为 50+，同时设 maxBudgetUsd 控制成本。</div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">Claude Agent SDK + 全栈技术</p>
+        <div class="tech-stack">
+            <div class="tech-item">Claude Agent SDK</div>
+            <div class="tech-item">Express.js</div>
+            <div class="tech-item">WebSocket</div>
+            <div class="tech-item">React 18</div>
+            <div class="tech-item">Vite</div>
+            <div class="tech-item">Tailwind CSS</div>
+            <div class="tech-item">TikHub API</div>
+        </div>
+    </section>
+
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于项目</h3>
+                    <p>ClaudeSDK Skill — 通过 Skill 系统让 AI 自学 Claude Agent SDK，自主构建 Web 应用。展示了将任意 Skill 转为对外开放 Agent 的完整流程。</p>
+                </div>
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="index.html">返回首页</a></li>
+                        <li><a href="https://github.com/liangdabiao/claudesdk-skill">GitHub 仓库</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>联系我们</h3>
+                    <p>邮箱：497070928@qq.com</p>
+                    <p>GitHub：https://github.com/liangdabiao</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ClaudeSDK Skill. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

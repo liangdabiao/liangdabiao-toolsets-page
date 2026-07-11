@@ -925,6 +925,90 @@ const products = [
         techStack: ['Claude Code CLI', 'MCP Protocol', 'Sorftime API', 'Python', 'YAML', 'Bash', 'Excel/HTML生成'],
         category: '数据分析',
         difficulty: '进阶'
+    },
+    {
+        id: 'sif-amazon-research',
+        name: 'Sif Amazon Research Platform',
+        description: '基于 Sif MCP 的 Amazon 卖家智能调研平台，提供流量分析、关键词反查、竞品研究、广告分析和 AI 智能诊断等能力，支持 Web UI 可视化仪表盘和 RESTful API 两种使用方式。',
+        icon: '📊',
+        tags: ['Amazon调研', 'Sif MCP', '流量分析', '关键词研究', '广告分析', '竞品分析'],
+        githubUrl: 'https://github.com/liangdabiao/sif-amazon-research',
+        features: ['运营分析：流量趋势、销量分析、渠道构成、变体分布','关键词研究：反查关键词、需求分析、竞争评估、机会挖掘','广告分析：广告结构、活动分析、关键词表现、CPC评估','竞品分析：多维度竞品强度评估、攻击点识别、弱点分析','智能诊断：AI驱动的根因分析、异常检测、改进建议','机会挖掘：批量关键词评估、市场验证、价格带分析','综合调研：全维度整合分析、一站式决策报告','13个Amazon站点支持'],
+        techStack: ['Node.js', 'Sif MCP', 'Express.js', 'RESTful API', 'Web UI Dashboard', 'JavaScript SDK'],
+        category: '商业工具',
+        difficulty: '中级'
+    },
+    {
+        id: 'flue-framework-skill',
+        name: 'Flue Framework Skill',
+        description: '探索 Flue Agent Framework 的完整指南，涵盖 createAgent、init、defineTool、defineAgentProfile、路由、SSE 流式传输、生产部署和所有已知陷阱。深入对比 Flue 与 Claude Agent SDK 的架构差异与选型建议。',
+        icon: '🏗️',
+        tags: ['Flue', 'Agent Framework', 'TypeScript', 'Sandbox', 'AI Agent'],
+        githubUrl: 'https://github.com/liangdabiao/flue-framework-skill',
+        features: ['Flue框架核心概念解析','三层沙箱策略详解','与Claude Agent SDK深度对比','架构六维逐层拆解','实战选型决策树','常见坑位预警','生产部署指南','完整技术方案'],
+        techStack: ['TypeScript', '@flue/sdk', '@flue/cli', '@flue/connectors', 'Cloudflare Workers', 'Node.js'],
+        category: 'AI工具',
+        difficulty: '进阶'
+    },
+    {
+        id: 'claudesdk-skill',
+        name: 'ClaudeSDK Skill',
+        description: '通过 Skill 系统让 AI 自学 Claude Agent SDK，自主构建了一个 TikHub 社交媒体数据对话助手。展示了将任意 Skill 转为对外开放 Agent 的完整流程，包含完整的技术方案和端对端测试。',
+        icon: '🧠',
+        tags: ['Claude Agent SDK', 'Skill系统', 'TikTok', '社交媒体', 'AI助手'],
+        githubUrl: 'https://github.com/liangdabiao/claudesdk-skill',
+        features: ['AI自学SDK：通过Skill系统理解SDK文档','自动构建Web应用：从技术方案到实现','多平台支持：40+社交媒体平台','实时消息交互：WebSocket双向通信','完整日志系统：调试和监控','前后端分离：Express+React','端对端测试：自动化验证','生产部署：多种方案支持'],
+        techStack: ['Claude Agent SDK', 'Express.js', 'WebSocket', 'React 18', 'Vite', 'Tailwind CSS', 'TikHub API'],
+        category: 'AI工具',
+        difficulty: '进阶'
+    },
+    {
+        id: 'claudesdk-ecom-image-chat',
+        name: 'EcomImageChat',
+        description: '基于 Claude Agent SDK 构建的 AI 电商视觉创作 Web 应用。用户通过自然语言描述产品信息，AI 自动匹配 25 个电商场景模板，生成专业的图片 Prompt，并可选调用 GPT-Image-2 API 直接生成商品图片。',
+        icon: '🎨',
+        tags: ['电商视觉', 'AI生图', 'Claude Agent SDK', '场景模板', 'GPT-Image-2'],
+        githubUrl: 'https://github.com/liangdabiao/claudesdk-ecom-image-chat',
+        features: ['25个场景模板覆盖电商全场景','两种模式：Prompt模式+Generate模式','Campaign Style Lock确保风格一致','转化驱动力诊断','完整PDP图片包一键生成','图片画廊预览','参考产品图上传','13种图片尺寸支持'],
+        techStack: ['Claude Agent SDK', 'Express.js', 'WebSocket', 'React 18', 'Tailwind CSS 4', 'Vite 6', 'GPT-Image-2', 'Python 3'],
+        category: '商业工具',
+        difficulty: '中级'
+    },
+    {
+        id: 'ecom-details-image-ui',
+        name: 'Ecom Details Image UI',
+        description: '电商详情页图片提取与展示工具，支持淘宝、京东、拼多多、亚马逊等主流电商平台商品图片批量提取、分类整理和智能展示，助力商品内容创作和数据分析。',
+        icon: '🖼️',
+        tags: ['电商图片', '批量提取', '图片展示', '多平台支持', '智能分类'],
+        githubUrl: 'https://github.com/liangdabiao/ecom-details-image-ui',
+        features: ['多平台支持：淘宝、京东、拼多多、亚马逊等主流电商平台','批量提取：支持批量输入商品链接，一次性提取多个商品图片','智能分类：自动识别商品主图、详情图、规格图等','图片展示：美观的图片画廊展示界面，支持预览、缩放、下载','格式转换：支持多种图片格式转换，自动压缩优化','数据分析：统计商品图片数量、大小、分辨率等信息'],
+        techStack: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Node.js'],
+        category: '商业工具',
+        difficulty: '初级'
+    },
+    {
+        id: 'ai-investor',
+        name: 'AI Investor',
+        description: '基于大语言模型的智能投资助手，提供股票分析、市场预测、投资建议和风险评估等全方位投资决策支持，帮助投资者做出更理性、更精准的投资决策。',
+        icon: '📈',
+        tags: ['AI投资', '股票分析', '市场预测', '风险评估', '投资建议'],
+        githubUrl: 'https://github.com/liangdabiao/ai-investor',
+        features: ['股票分析：深度分析股票基本面、技术面、财务指标','市场预测：基于历史数据和AI模型预测市场走势','投资建议：根据风险偏好和投资目标提供个性化建议','风险评估：全面评估投资风险，提供风险控制策略','资讯聚合：自动收集和分析财经资讯','投资组合管理：跟踪收益表现，优化资产配置'],
+        techStack: ['Python', 'OpenAI API', 'LangChain', 'Pandas', 'FastAPI', 'React'],
+        category: '数据分析',
+        difficulty: '进阶'
+    },
+    {
+        id: 'weekend-city-trip',
+        name: 'Weekend City Trip',
+        description: 'AI驱动的周末城市旅行规划工具，根据你的偏好、预算和时间，智能生成个性化的短途旅行方案，让每个周末都精彩无限。',
+        icon: '🏙️',
+        tags: ['AI旅行', '周末出游', '城市推荐', '行程规划', '个性化'],
+        githubUrl: 'https://github.com/liangdabiao/weekend-city-trip',
+        features: ['城市推荐：根据距离、天气、季节智能推荐','景点规划：智能规划景点路线，优化游览顺序','美食推荐：根据口味偏好推荐当地特色美食','住宿安排：根据预算和位置偏好推荐住宿','交通规划：规划最佳出行路线，对比多种交通方式','行程优化：智能优化行程安排，确保充足游览时间'],
+        techStack: ['React', 'TypeScript', 'Next.js', 'OpenAI API', 'Google Maps API', 'Tailwind CSS'],
+        category: 'AI工具',
+        difficulty: '中级'
     }
 ];
 
@@ -1091,7 +1175,10 @@ function getProductPageUrl(productId) {
         'kj-llm-wiki': './kj-llm-wiki.html',
         'dingtalk-workflow': './dingtalk-workflow.html',
         'wecomcli-crm': './wecomcli-crm.html',
-        'fetch-everything': './fetch-everything.html'
+        'fetch-everything': './fetch-everything.html',
+        'ecom-details-image-ui': './ecom-details-image-ui.html',
+        'ai-investor': './ai-investor.html',
+        'weekend-city-trip': './weekend-city-trip.html'
     };
     return productPages[productId] || `./${productId}.html`;
 }
@@ -1489,7 +1576,7 @@ function useProduct(productId) {
         return;
     }
 
-    // 新增20个项目跳转
+    // 新增项目跳转
     const newProductPages = {
         'simple-agentic-stack': 'simple-agentic-stack.html',
         'skill-kefu': 'skill-kefu.html',
@@ -1510,7 +1597,14 @@ function useProduct(productId) {
         'kj-llm-wiki': 'kj-llm-wiki.html',
         'dingtalk-workflow': 'dingtalk-workflow.html',
         'wecomcli-crm': 'wecomcli-crm.html',
-        'fetch-everything': 'fetch-everything.html'
+        'fetch-everything': 'fetch-everything.html',
+        'sif-amazon-research': 'sif-amazon-research.html',
+        'flue-framework-skill': 'flue-framework-skill.html',
+        'claudesdk-skill': 'claudesdk-skill.html',
+        'claudesdk-ecom-image-chat': 'claudesdk-ecom-image-chat.html',
+        'ecom-details-image-ui': 'ecom-details-image-ui.html',
+        'ai-investor': 'ai-investor.html',
+        'weekend-city-trip': 'weekend-city-trip.html'
     };
 
     if (newProductPages[productId]) {

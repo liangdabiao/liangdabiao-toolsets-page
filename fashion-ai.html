@@ -231,6 +231,114 @@
         .comparison-table tr:hover {
             background: #fdf2f8;
         }
+        .model-table {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .model-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .model-table th,
+        .model-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .model-table th {
+            background: #f3f4f6;
+            color: #1f2937;
+            font-weight: bold;
+        }
+        .model-table tr:hover {
+            background: #f9fafb;
+        }
+        .project-structure {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.8;
+            overflow-x: auto;
+            font-size: 0.9em;
+        }
+        .cost-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .cost-card h3 {
+            color: #ec4899;
+            margin-bottom: 20px;
+        }
+        .cost-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .cost-item {
+            background: #fdf2f8;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .cost-name {
+            font-weight: bold;
+            color: #9d174d;
+            margin-bottom: 5px;
+        }
+        .cost-value {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #ec4899;
+        }
+        .cli-section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .cli-section h3 {
+            color: #ec4899;
+            margin-bottom: 20px;
+        }
+        .cli-command {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            border-left: 4px solid #ec4899;
+        }
+        .cli-params {
+            margin-top: 15px;
+        }
+        .cli-param {
+            display: flex;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+        .param-name {
+            font-weight: bold;
+            color: #ec4899;
+            min-width: 120px;
+            font-family: 'Courier New', monospace;
+        }
+        .param-desc {
+            color: var(--secondary-color);
+        }
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2em;
@@ -259,7 +367,9 @@
                 <li><a href="#features">核心功能</a></li>
                 <li><a href="#workflow">工作流程</a></li>
                 <li><a href="#comparison">检索对比</a></li>
+                <li><a href="#models">生图模型</a></li>
                 <li><a href="#install">安装配置</a></li>
+                <li><a href="#cost">成本参考</a></li>
                 <li><a href="#contact">联系我们</a></li>
             </ul>
             <div class="hamburger">
@@ -301,10 +411,7 @@
         <p class="section-subtitle">电商最核心的资产是大量经过市场验证的爆款图</p>
         <div class="feature-highlight">
             <h3>📸 传统宣传图制作的痛点</h3>
-            <p>
-                跨境电商场景中，商家每出一款新品都需要制作宣传图（模特穿着商品的照片）。传统方式需要请模特、搭场景、拍摄修图，成本高、周期长。
-                模特表现力、场景构图、光影质感，都是花钱试出来的。与其每次从零写 prompt，不如直接从历史爆款中检索最相似的视觉特征，让 AI 继承"爆款基因"。
-            </p>
+            <p>跨境电商场景中，商家每出一款新品都需要制作宣传图（模特穿着商品的照片）。传统方式需要请模特、搭场景、拍摄修图，成本高、周期长。模特表现力、场景构图、光影质感，都是花钱试出来的。与其每次从零写 prompt，不如直接从历史爆款中检索最相似的视觉特征，让 AI 继承"爆款基因"。这正是 Milvus 混合检索发挥作用的地方。</p>
         </div>
     </section>
 
@@ -403,6 +510,29 @@
                 </div>
             </div>
         </div>
+
+        <div style="margin-top: 50px;">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #ec4899;">项目结构</h3>
+            <div class="project-structure">
+Fashion-AI/<br>
+├── main.py # CLI 入口 (setup / search / generate)<br>
+├── config.py # 配置管理，从 .env 读取<br>
+├── utils.py # 工具函数 (图片编解码)<br>
+├── embeddings.py # Dense/Sparse 向量生成<br>
+├── milvus_store.py # Milvus 建库、插入、混合检索<br>
+├── style_analyzer.py # Qwen3.5 风格分析<br>
+├── image_generator.py # Nano Banana 2 宣传图生成<br>
+├── data_setup.py # 示例数据生成 (CSV + 占位图)<br>
+├── requirements.txt # Python 依赖<br>
+├── .env # API Key 配置 (需自行填写)<br>
+│<br>
+├── images/ # 历史爆款商品图片<br>
+├── new_products/ # 新品平铺图<br>
+├── products.csv # 历史商品元数据 (40条示例)<br>
+├── new_products.csv # 新品元数据 (4条示例)<br>
+└── output/ # 生成的宣传图输出目录<br>
+            </div>
+        </div>
     </section>
 
     <!-- 检索对比 -->
@@ -443,57 +573,94 @@
                 </tbody>
             </table>
         </div>
+    </section>
 
-        <div style="margin-top: 40px;">
-            <h3 style="text-align: center; margin-bottom: 30px; color: #ec4899;">生图模型对比</h3>
-            <div class="comparison-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>特性</th>
-                            <th>Nano Banana 2 (Gemini)</th>
-                            <th>GPT Image 系列</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>超宽/超高比例</td>
-                            <td>支持 4:1, 1:4, 8:1, 1:8</td>
-                            <td>标准比例</td>
-                        </tr>
-                        <tr>
-                            <td>分辨率控制</td>
-                            <td>支持 0.5K ~ 4K</td>
-                            <td>自动</td>
-                        </tr>
-                        <tr>
-                            <td>文字渲染</td>
-                            <td>支持多语言、手写体</td>
-                            <td>支持</td>
-                        </tr>
-                        <tr>
-                            <td>参考图融合</td>
-                            <td>支持 14 张</td>
-                            <td>支持多张</td>
-                        </tr>
-                        <tr>
-                            <td>人像融合</td>
-                            <td>偶有服装贴合问题</td>
-                            <td>更自然</td>
-                        </tr>
-                        <tr>
-                            <td>网络要求</td>
-                            <td>无地区限制</td>
-                            <td>需海外网络环境</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+    <!-- 生图模型 -->
+    <section id="models" class="section">
+        <h2 class="section-title">生图模型对比</h2>
+        <p class="section-subtitle">4种生图模型，一键切换</p>
+
+        <div class="model-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>特性</th>
+                        <th>Nano Banana 2 (Gemini)</th>
+                        <th>GPT Image 系列</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>超宽/超高比例</td>
+                        <td>支持 4:1, 1:4, 8:1, 1:8</td>
+                        <td>标准比例</td>
+                    </tr>
+                    <tr>
+                        <td>分辨率控制</td>
+                        <td>支持 0.5K ~ 4K</td>
+                        <td>自动</td>
+                    </tr>
+                    <tr>
+                        <td>文字渲染</td>
+                        <td>支持多语言、手写体</td>
+                        <td>支持</td>
+                    </tr>
+                    <tr>
+                        <td>参考图融合</td>
+                        <td>支持 14 张</td>
+                        <td>支持多张</td>
+                    </tr>
+                    <tr>
+                        <td>人像融合</td>
+                        <td>偶有服装贴合问题</td>
+                        <td>更自然</td>
+                    </tr>
+                    <tr>
+                        <td>网络要求</td>
+                        <td>无地区限制</td>
+                        <td>需海外网络环境</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="model-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>别名</th>
+                        <th>模型</th>
+                        <th>说明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>nano-banana</code>（默认）</td>
+                        <td>google/gemini-3.1-flash-image-preview</td>
+                        <td>支持多参考图融合、多比例（含 8:1/1:8 超宽超高）、文字渲染，单张约 $0.067，无地区限制</td>
+                    </tr>
+                    <tr>
+                        <td><code>gpt-image</code></td>
+                        <td>openai/gpt-5.4-image-2</td>
+                        <td>OpenAI 最新生图模型，人像融合效果好，需海外网络环境</td>
+                    </tr>
+                    <tr>
+                        <td><code>gpt-image-pro</code></td>
+                        <td>openai/gpt-5-image</td>
+                        <td>OpenAI 生图 Pro 版，质量更高，需海外网络环境</td>
+                    </tr>
+                    <tr>
+                        <td><code>gpt-image-mini</code></td>
+                        <td>openai/gpt-5-image-mini</td>
+                        <td>OpenAI 生图轻量版，成本更低，需海外网络环境</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </section>
 
     <!-- 安装配置 -->
-    <section id="install" class="section">
+    <section id="install" class="section" style="background: #f8f9fa;">
         <h2 class="section-title">安装与配置</h2>
         <p class="section-subtitle">简单几步，启动电商AI生图流水线</p>
 
@@ -544,12 +711,106 @@ python main.py search --new-id NEW001
 python main.py generate --new-id NEW001
 
 # 使用 GPT-5.4 Image 2 生图
-python main.py generate --new-id NEW001 --model gpt-image</pre>
+python main.py generate --new-id NEW001 --model gpt-image
+
+# 使用 GPT-5 Image Pro 生图
+python main.py generate --new-id NEW001 --model gpt-image-pro</pre>
+        </div>
+
+        <div class="cli-section">
+            <h3>CLI 参数说明</h3>
+            
+            <div style="margin-bottom: 30px;">
+                <h4 style="color: #ec4899; margin-bottom: 15px;">setup - 初始化数据</h4>
+                <div class="cli-command">python main.py setup</div>
+                <p style="color: var(--secondary-color); font-size: 0.95em;">初始化数据，生成向量，创建 Milvus Collection 并入库。重复运行会重建 Collection。</p>
+            </div>
+
+            <div style="margin-bottom: 30px;">
+                <h4 style="color: #ec4899; margin-bottom: 15px;">search - 为新品检索相似爆款</h4>
+                <div class="cli-command">python main.py search [OPTIONS]</div>
+                <div class="cli-params">
+                    <div class="cli-param">
+                        <span class="param-name">--new-id</span>
+                        <span class="param-desc">指定新品 ID，如 --new-id NEW001（默认：全部）</span>
+                    </div>
+                    <div class="cli-param">
+                        <span class="param-name">--top-k</span>
+                        <span class="param-desc">返回结果数量（默认：3）</span>
+                    </div>
+                    <div class="cli-param">
+                        <span class="param-name">--sales-threshold</span>
+                        <span class="param-desc">最低销量过滤门槛（默认：1500）</span>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h4 style="color: #ec4899; margin-bottom: 15px;">generate - 完整流水线</h4>
+                <div class="cli-command">python main.py generate [OPTIONS]</div>
+                <div class="cli-params">
+                    <div class="cli-param">
+                        <span class="param-name">--new-id</span>
+                        <span class="param-desc">指定处理某个新品（默认：全部）</span>
+                    </div>
+                    <div class="cli-param">
+                        <span class="param-name">--top-k</span>
+                        <span class="param-desc">参考爆款数量（默认：3）</span>
+                    </div>
+                    <div class="cli-param">
+                        <span class="param-name">--sales-threshold</span>
+                        <span class="param-desc">最低销量过滤门槛（默认：1500）</span>
+                    </div>
+                    <div class="cli-param">
+                        <span class="param-name">--aspect-ratio</span>
+                        <span class="param-desc">生成图宽高比，支持 1:1, 3:4, 4:1, 9:16 等（默认：3:4）</span>
+                    </div>
+                    <div class="cli-param">
+                        <span class="param-name">--image-size</span>
+                        <span class="param-desc">生成图分辨率：512px, 1K, 2K, 4K（默认：2K）</span>
+                    </div>
+                    <div class="cli-param">
+                        <span class="param-name">--model</span>
+                        <span class="param-desc">生图模型：nano-banana, gpt-image, gpt-image-pro, gpt-image-mini（默认：nano-banana）</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 成本参考 -->
+    <section id="cost" class="section">
+        <h2 class="section-title">成本参考</h2>
+        <p class="section-subtitle">透明的成本估算，帮助您规划预算</p>
+        
+        <div class="cost-card">
+            <h3>💰 单次新品处理成本</h3>
+            <div class="cost-grid">
+                <div class="cost-item">
+                    <div class="cost-name">Embedding (nvidia)</div>
+                    <div class="cost-value">免费</div>
+                </div>
+                <div class="cost-item">
+                    <div class="cost-name">Qwen 3.5 风格分析</div>
+                    <div class="cost-value">~$0.001</div>
+                </div>
+                <div class="cost-item">
+                    <div class="cost-name">Nano Banana 2 生图</div>
+                    <div class="cost-value">~$0.067</div>
+                </div>
+                <div class="cost-item">
+                    <div class="cost-name">合计</div>
+                    <div class="cost-value">~$0.07</div>
+                </div>
+            </div>
+            <p style="margin-top: 20px; color: var(--secondary-color); font-size: 0.95em;">
+                处理一个新品（1次检索 + 1次风格分析 + 1张生图）约 $0.07，相比传统模特拍摄（数百元）成本降低 99% 以上。
+            </p>
         </div>
     </section>
 
     <!-- 技术栈 -->
-    <section class="section">
+    <section class="section" style="background: #f8f9fa;">
         <h2 class="section-title">技术栈</h2>
         <p class="section-subtitle">基于向量数据库 + 多模态大模型构建的全链路AI系统</p>
         <div class="tech-stack">
@@ -565,7 +826,7 @@ python main.py generate --new-id NEW001 --model gpt-image</pre>
     </section>
 
     <!-- 常见问题 -->
-    <section class="section" style="background: #f8f9fa;">
+    <section class="section">
         <h2 class="section-title">常见问题</h2>
         <p class="section-subtitle">关于电商AI生图爆款流水线的常见疑问</p>
 
@@ -603,6 +864,13 @@ python main.py generate --new-id NEW001 --model gpt-image</pre>
                 A: 支持 1:1、3:4、4:1、9:16 等多种宽高比，通过 --aspect-ratio 参数指定。分辨率支持 512px 到 4K，通过 --image-size 参数控制。Gemini 系列还支持 8:1/1:8 超宽超高比例。
             </div>
         </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 已知限制有哪些？</div>
+            <div class="category-content">
+                A: 占位图无法用于实际检索和生图，必须替换为真实商品照片；图片分辨率影响 Embedding 质量，建议商品图不低于 800x800；Nano Banana 2 在服装与人体融合上偶尔不自然，可通过分步生图或使用 Pro 版本改善；Milvus Lite 不支持 Windows，本项目使用 Zilliz Cloud 替代。
+            </div>
+        </div>
     </section>
 
     <!-- 页脚 -->
@@ -635,7 +903,6 @@ python main.py generate --new-id NEW001 --model gpt-image</pre>
 
     <script src="script.js"></script>
     <script>
-        // 平滑滚动
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -649,7 +916,6 @@ python main.py generate --new-id NEW001 --model gpt-image</pre>
             });
         });
 
-        // 移动端菜单
         const hamburger = document.querySelector('.hamburger');
         const navMenu = document.querySelector('.nav-menu');
 

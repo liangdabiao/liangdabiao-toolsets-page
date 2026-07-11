@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcomImageChat - AI电商视觉创作助手</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 50%, #c2410c 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #f97316;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .skill-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .skill-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .skill-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: #f97316;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: #ea580c;
+        }
+        .feature-highlight {
+            background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #f97316;
+        }
+        .feature-highlight h3 {
+            color: #c2410c;
+            margin-bottom: 15px;
+        }
+        .feature-highlight p {
+            color: #ea580c;
+            line-height: 1.8;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        .install-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 4px solid #f97316;
+        }
+        .install-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #f97316;
+        }
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 40px;
+        }
+        .template-item {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        .template-item:hover {
+            transform: translateY(-3px);
+        }
+        .template-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        .template-name {
+            font-weight: bold;
+            color: var(--text-color);
+            font-size: 0.95em;
+        }
+        .workflow-diagram {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .workflow-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .flow-step {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .flow-arrow {
+            font-size: 2em;
+            color: #f97316;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero-stats {
+                gap: 30px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🌐 AI工具集合</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#templates">场景模板</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-badge">Claude Agent SDK + GPT-Image-2 + 25场景模板</div>
+        <h1>EcomImageChat</h1>
+        <p>基于 Claude Agent SDK 构建的 AI 电商视觉创作 Web 应用。用户通过自然语言描述产品信息，AI 自动匹配 25 个电商场景模板，生成专业的图片 Prompt，并可选调用 GPT-Image-2 API 直接生成商品图片。</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">25</span>
+                <span class="stat-label">场景模板</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">2</span>
+                <span class="stat-label">使用模式</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">13</span>
+                <span class="stat-label">图片尺寸</span>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/claudesdk-ecom-image-chat" class="btn btn-primary" style="background: white; color: #f97316;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">AI驱动的电商视觉创作能力</p>
+        
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">📷</div>
+                <h3 class="skill-title">25个场景模板</h3>
+                <p class="skill-description">白底主图、场景图、平铺图、细节微距、海报、社媒、UGC、模特展示、信息图、爆炸图等全覆盖。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎨</div>
+                <h3 class="skill-title">两种模式</h3>
+                <p class="skill-description">Prompt 模式（只输出 Prompt）+ Generate 模式（调用 API 直接生图），灵活满足不同需求。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔒</div>
+                <h3 class="skill-title">Campaign Style Lock</h3>
+                <p class="skill-description">多图任务自动锁定色板、冷暖调、字体、背景、光线，确保风格一致。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">💡</div>
+                <h3 class="skill-title">转化驱动力诊断</h3>
+                <p class="skill-description">商品/营销任务自动判断视觉驱动/痛点驱动/情感驱动型。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📦</div>
+                <h3 class="skill-title">完整 PDP 图片包</h3>
+                <p class="skill-description">5 张主图 + 7-9 张详情页信息图，一键生成。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🖼️</div>
+                <h3 class="skill-title">图片画廊</h3>
+                <p class="skill-description">左侧边栏展示生成图片的缩略图，点击放大预览。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔍</div>
+                <h3 class="skill-title">参考产品图</h3>
+                <p class="skill-description">上传产品照片传入 --image 参数，提升生图一致性。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📊</div>
+                <h3 class="skill-title">执行日志</h3>
+                <p class="skill-description">右侧面板显示工具调用实时状态，方便调试和监控。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="templates" class="section">
+        <h2 class="section-title">25个场景模板</h2>
+        <p class="section-subtitle">覆盖电商视觉全场景</p>
+        
+        <div class="template-grid">
+            <div class="template-item"><div class="template-icon">⬜</div><div class="template-name">白底主图</div></div>
+            <div class="template-item"><div class="template-icon">🏠</div><div class="template-name">场景图</div></div>
+            <div class="template-item"><div class="template-icon">📐</div><div class="template-name">平铺图</div></div>
+            <div class="template-item"><div class="template-icon">🔬</div><div class="template-name">细节微距</div></div>
+            <div class="template-item"><div class="template-icon">🎭</div><div class="template-name">海报横幅</div></div>
+            <div class="template-item"><div class="template-icon">📱</div><div class="template-name">社交媒体</div></div>
+            <div class="template-item"><div class="template-icon">👥</div><div class="template-name">UGC风格</div></div>
+            <div class="template-item"><div class="template-icon">🧑</div><div class="template-name">模特展示</div></div>
+            <div class="template-item"><div class="template-icon">🔄</div><div class="template-name">前后对比</div></div>
+            <div class="template-item"><div class="template-icon">🎁</div><div class="template-name">包装礼盒</div></div>
+            <div class="template-item"><div class="template-icon">📈</div><div class="template-name">信息图</div></div>
+            <div class="template-item"><div class="template-icon">💡</div><div class="template-name">创意概念</div></div>
+            <div class="template-item"><div class="template-icon">📏</div><div class="template-name">尺寸规格</div></div>
+            <div class="template-item"><div class="template-icon">🎁</div><div class="template-name">套装组合</div></div>
+            <div class="template-item"><div class="template-icon">🎬</div><div class="template-name">直播图</div></div>
+            <div class="template-item"><div class="template-icon">👗</div><div class="template-name">虚拟试穿</div></div>
+            <div class="template-item"><div class="template-icon">💥</div><div class="template-name">爆炸图</div></div>
+            <div class="template-item"><div class="template-icon">👻</div><div class="template-name">隐形模特</div></div>
+            <div class="template-item"><div class="template-icon">📐</div><div class="template-name">多角度网格</div></div>
+            <div class="template-item"><div class="template-icon">📖</div><div class="template-name">杂志封面</div></div>
+            <div class="template-item"><div class="template-icon">🌅</div><div class="template-name">季节营销</div></div>
+            <div class="template-item"><div class="template-icon">✨</div><div class="template-name">奢华氛围</div></div>
+            <div class="template-item"><div class="template-icon">🖥️</div><div class="template-name">设备模型</div></div>
+            <div class="template-item"><div class="template-icon">🏪</div><div class="template-name">店铺空间</div></div>
+            <div class="template-item"><div class="template-icon">🏃</div><div class="template-name">运动健身</div></div>
+        </div>
+
+        <div class="feature-highlight">
+            <h3>🚀 使用示例</h3>
+            <p>
+                • "帮我设计一款蓝牙耳机的白底主图"<br>
+                • "帮我生成完整的咖啡杯 PDP 详情页图片"<br>
+                • "帮我做一组小红书风格的护肤品产品图"<br>
+                • "帮我生成一张电商海报，主题是夏季促销"
+            </p>
+        </div>
+    </section>
+
+    <section id="workflow" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">工作流程</h2>
+        <p class="section-subtitle">从需求到成品的完整流程</p>
+        
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">描述产品</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">转化驱动力诊断</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">匹配场景模板</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">生成 Prompt</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">生图/输出</div>
+            </div>
+        </div>
+
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">1️⃣</div>
+                <h3 class="skill-title">描述需求</h3>
+                <p class="skill-description">用自然语言描述产品和图片需求，AI 自动理解意图。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">2️⃣</div>
+                <h3 class="skill-title">诊断驱动类型</h3>
+                <p class="skill-description">AI 判断是视觉驱动、痛点驱动还是情感驱动型任务。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">3️⃣</div>
+                <h3 class="skill-title">匹配模板</h3>
+                <p class="skill-description">根据需求自动匹配最合适的场景模板。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">4️⃣</div>
+                <h3 class="skill-title">生成 Prompt</h3>
+                <p class="skill-description">基于模板生成专业的图片生成 Prompt，包含颜色码、数字占比、否定清单等。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">5️⃣</div>
+                <h3 class="skill-title">生图输出</h3>
+                <p class="skill-description">调用 GPT-Image-2 API 直接生成图片，或输出 Prompt 供手动使用。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="install" class="section">
+        <h2 class="section-title">快速开始</h2>
+        <p class="section-subtitle">启动 AI 电商视觉创作助手</p>
+
+        <div class="install-card">
+            <div class="install-title">安装依赖</div>
+            <pre class="code-block">cd ecom-image-chat
+npm install</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">配置环境变量</div>
+            <pre class="code-block"># .env（Claude API）
+ANTHROPIC_API_KEY=your-api-key
+ANTHROPIC_BASE_URL=https://api.deepseek.com/anthropic
+MODEL=deepseek-v4-flash
+PORT=3006
+
+# .claude/skills/ecom-details-image/.env（图片生成 API）
+IMG_BASE_URL=https://api.apimart.ai/v1
+IMG_MODEL=gpt-image-2
+IMG_API_KEY=your-apimart-api-key</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">启动开发服务器</div>
+            <pre class="code-block">npm run dev</pre>
+            <p style="margin-top: 10px; color: var(--secondary-color);">浏览器访问 Vite 显示的地址（自动代理到 3006 端口）</p>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">生产构建</div>
+            <pre class="code-block">npm run build
+npm start</pre>
+        </div>
+    </section>
+
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">支持的图片尺寸</h2>
+        <p class="section-subtitle">13 种比例，适配各种平台需求</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
+            <span style="background: #fff7ed; padding: 12px 24px; border-radius: 25px; color: #c2410c;">1:1</span>
+            <span style="background: #fff7ed; padding: 12px 24px; border-radius: 25px; color: #c2410c;">3:2</span>
+            <span style="background: #fff7ed; padding: 12px 24px; border-radius: 25px; color: #c2410c;">2:3</span>
+            <span style="background: #fff7ed; padding: 12px 24px; border-radius: 25px; color: #c2410c;">4:3</span>
+            <span style="background: #fff7ed; padding: 12px 24px; border-radius: 25px; color: #c2410c;">3:4</span>
+            <span style="background: #fff7ed; padding: 12px 24px; border-radius: 25px; color: #c2410c;">5:4</span>
+            <span style="background: #fff7ed; padding: 12px 24px; border-radius: 25px; color: #c2410c;">4:5</span>
+            <span style="background: #fff7ed; padding: 12px 24px; border-radius: 25px; color: #c2410c;">16:9</span>
+            <span style="background: #fff7ed; padding: 12px 24px; border-radius: 25px; color: #c2410c;">9:16</span>
+            <span style="background: #fff7ed; padding: 12px 24px; border-radius: 25px; color: #c2410c;">2:1</span>
+            <span style="background: #fff7ed; padding: 12px 24px; border-radius: 25px; color: #c2410c;">1:2</span>
+            <span style="background: #fff7ed; padding: 12px 24px; border-radius: 25px; color: #c2410c;">21:9</span>
+            <span style="background: #fff7ed; padding: 12px 24px; border-radius: 25px; color: #c2410c;">9:21</span>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">Claude Agent SDK + 全栈技术</p>
+        <div class="tech-stack">
+            <div class="tech-item">Claude Agent SDK</div>
+            <div class="tech-item">Express.js</div>
+            <div class="tech-item">WebSocket</div>
+            <div class="tech-item">React 18</div>
+            <div class="tech-item">Tailwind CSS 4</div>
+            <div class="tech-item">Vite 6</div>
+            <div class="tech-item">GPT-Image-2</div>
+            <div class="tech-item">Python 3</div>
+        </div>
+    </section>
+
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于项目</h3>
+                    <p>EcomImageChat — AI 电商视觉创作助手，基于 Claude Agent SDK 构建，支持 25 个场景模板，自动生成专业商品图片。</p>
+                </div>
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="index.html">返回首页</a></li>
+                        <li><a href="https://github.com/liangdabiao/claudesdk-ecom-image-chat">GitHub 仓库</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>联系我们</h3>
+                    <p>邮箱：497070928@qq.com</p>
+                    <p>GitHub：https://github.com/liangdabiao</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 EcomImageChat. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>
