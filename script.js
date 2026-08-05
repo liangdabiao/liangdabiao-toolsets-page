@@ -16,7 +16,7 @@ const products = [
             '帧管理系统：完整的帧编辑、删除、移动功能'
         ],
         techStack: ['Next.js', 'Gemini Nano', 'Framer Motion', 'React', 'TypeScript', 'pnpm'],
-        category: 'AI工具',
+        category: '视频生成',
         difficulty: '中等'
     },
     {
@@ -133,7 +133,7 @@ const products = [
             '多模型接入：OpenAI、DeepSeek、Moonshot、Azure、通义千问、Gemini等'
         ],
         techStack: ['Streamlit', 'FastAPI', 'FFmpeg', 'ImageMagick', 'Azure TTS', 'OpenAI TTS', 'Whisper', 'Pexels API', 'Python 3.11'],
-        category: 'AI工具',
+        category: '视频生成',
         difficulty: '中等'
     },
     {
@@ -238,7 +238,7 @@ const products = [
             '响应式设计：支持桌面和移动设备，实时打字动画效果'
         ],
         techStack: ['Python 3.7+', 'Flask 2.3.3', '阿里云百炼', '通义千问', 'SSE流式响应', 'JavaScript'],
-        category: 'AI工具',
+        category: 'AI对话',
         difficulty: '初级'
     },
     {
@@ -322,7 +322,7 @@ const products = [
             '灵活配置：支持全球范围、时间范围、来源类型、报告格式等多种研究参数定制'
         ],
         techStack: ['Claude Code', 'Graph of Thoughts', 'MCP Protocol', 'WebSearch', 'WebFetch', 'Playwright', '多智能体协作'],
-        category: 'AI工具',
+        category: '深度研究',
         difficulty: '高级'
     },
     {
@@ -343,7 +343,7 @@ const products = [
             '高度可定制：可编辑skills文件自定义研究策略和代理行为'
         ],
         techStack: ['Claude Code', 'Claude Code Skills', 'MCP Protocol', 'Playwright', 'WebSearch', 'WebFetch', 'Task工具'],
-        category: 'AI工具',
+        category: '深度研究',
         difficulty: '初级'
     },
     {
@@ -408,7 +408,7 @@ const products = [
             '长期运行与自主智能体：自主智能体的提示词工程'
         ],
         techStack: ['AI', 'Prompt Engineering', 'Natural Language Processing', 'Conversation AI'],
-        category: 'AI工具',
+        category: 'AI对话',
         difficulty: '初级'
     },
     {
@@ -429,7 +429,7 @@ const products = [
             '模块化架构：10个独立Skill，易于扩展和定制'
         ],
         techStack: ['Claude Code', 'Agent Skills', 'Markdown', 'YAML', 'Prompt Engineering', 'AI'],
-        category: 'AI工具',
+        category: 'Skill框架',
         difficulty: '中级'
     },
     {
@@ -598,7 +598,7 @@ const products = [
             '快捷提示按钮：预设常用分镜场景，一键快速生成专业提示词'
         ],
         techStack: ['HTML5', 'CSS3', 'JavaScript', '阿里云百炼', '通义千问', 'SSE流式响应', 'FastAPI', 'Python'],
-        category: 'AI工具',
+        category: 'AI对话',
         difficulty: '初级',
         externalUrl: 'https://liang.348349.xyz/seedance-prompt-chat'
     },
@@ -620,7 +620,7 @@ const products = [
             '示例项目：林冲水浒传、聂风风云、莫泊桑项链等实战案例'
         ],
         techStack: ['Claude Code', 'Agent Skills', 'Seedance 2.0', 'Nana Banana Pro', 'Markdown', 'Python'],
-        category: 'AI工具',
+        category: '视频生成',
         difficulty: '进阶'
     },
     {
@@ -641,7 +641,7 @@ const products = [
             '17项核心功能：从底稿生成到专心拼豆模式的全流程支持'
         ],
         techStack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', '火山引擎即梦AI', 'Canvas API', 'BFS算法'],
-        category: 'AI工具',
+        category: '图像创作',
         difficulty: '中等'
     },
     {
@@ -662,7 +662,7 @@ const products = [
             '自动上下文管理：85%窗口时自动摘要压缩'
         ],
         techStack: ['DeepAgents', 'LangChain', 'LangGraph', 'Python', 'Claude Code Skills'],
-        category: 'AI工具',
+        category: 'Skill框架',
         difficulty: '进阶'
     },
     {
@@ -710,7 +710,7 @@ const products = [
         githubUrl: 'https://github.com/liangdabiao/Multimodal-RAG',
         features: ['图片级PDF向量化','双引擎Embedding','双引擎LLM生成','Zilliz云向量数据库','自然语言问答','Web界面+API服务','极简依赖安装','灵活配置切换'],
         techStack: ['Python', 'Flask', 'PyMuPDF', 'Cohere Embed', 'DashScope', 'Zilliz', 'Qwen VL'],
-        category: 'AI工具',
+        category: '知识库',
         difficulty: '中级'
     },
     {
@@ -734,7 +734,7 @@ const products = [
         githubUrl: 'https://github.com/liangdabiao/hyperframes-fix',
         features: ['MiniMax流畅中文语音','News Flash快消风格','一键自动化视频生成','微信公众号文章解析','横版竖版多比例支持','Vibe Video对话式创作','Pexels图库自动匹配','批量生产优化'],
         techStack: ['HyperFrames', 'MiniMax TTS', 'Pexels API', 'AI Agent', 'Python', 'Markdown'],
-        category: 'AI工具',
+        category: '视频生成',
         difficulty: '中级'
     },
     {
@@ -758,7 +758,7 @@ const products = [
         githubUrl: 'https://github.com/liangdabiao/llm-wiki',
         features: ['8种素材源采集','智能知识整理','批量素材处理','智能查询检索','深度综合分析','知识图谱可视化','健康检查维护','FastAPI服务接口'],
         techStack: ['Claude Agent SDK', 'FastAPI', 'Quartz v4', 'Python', 'SSE', 'Mermaid', 'Cloudflare Pages'],
-        category: 'AI工具',
+        category: '知识库',
         difficulty: '中级'
     },
     {
@@ -770,7 +770,7 @@ const products = [
         githubUrl: 'https://github.com/liangdabiao/llm-wiki-claude-agent-sdk-agentic-rag',
         features: ['知识编译器','智能检索翻阅','Agent SDK驱动','API接口服务','Quartz静态发布','多源素材整合','高效推理','实战验证'],
         techStack: ['Claude Agent SDK', 'LLM-Wiki', 'Quartz', 'Python', 'Agentic RAG'],
-        category: 'AI工具',
+        category: '知识库',
         difficulty: '进阶'
     },
     {
@@ -794,7 +794,7 @@ const products = [
         githubUrl: 'https://github.com/liangdabiao/brickMosaic',
         features: ['图片转像素画','多种积木板尺寸','客户端本地计算','微信小程序版本','颜色优化算法','图纸导出PDF','乐高色号匹配','支持大部分图片'],
         techStack: ['JavaScript', 'Canvas API', '微信小程序', 'Taro', 'Vue3'],
-        category: 'AI工具',
+        category: '图像创作',
         difficulty: '中等'
     },
     {
@@ -818,7 +818,7 @@ const products = [
         githubUrl: 'https://github.com/liangdabiao/perlerBeadsApplet',
         features: ['像素画编辑器','作品管理','图片导入生成','图纸导出','微信小程序','拼豆色号匹配','多种尺寸支持','作品分享'],
         techStack: ['Taro', 'Vue3', '微信小程序', 'Canvas API', 'JavaScript'],
-        category: 'AI工具',
+        category: '图像创作',
         difficulty: '中等'
     },
     {
@@ -830,7 +830,7 @@ const products = [
         githubUrl: 'https://github.com/liangdabiao/302Sprite',
         features: ['文本生成精灵图','游戏就绪动画','多种精灵图类型','帧动画支持','透明背景','批量生成','像素风格','302.ai API集成'],
         techStack: ['302.ai API', 'Next.js', 'React', 'TypeScript', 'Canvas API'],
-        category: 'AI工具',
+        category: '图像创作',
         difficulty: '初级'
     },
     {
@@ -842,7 +842,7 @@ const products = [
         githubUrl: 'https://github.com/liangdabiao/Godogen',
         features: ['AI生成Godot 4项目','自动架构设计','美术资源生成','代码自动编写','截图测试反馈','Bug自动修复','完整游戏场景','Claude Code Skills'],
         techStack: ['Claude Code', 'Godot 4', 'GDScript', 'Agent Skills', 'Python'],
-        category: 'AI工具',
+        category: 'Skill框架',
         difficulty: '进阶'
     },
     {
@@ -866,7 +866,7 @@ const products = [
         githubUrl: 'https://github.com/liangdabiao/kj-llm-wiki',
         features: ['LLM-Wiki方法实战','跨境电商文档','AI自动化代码','Wiki网站生成','实战案例分享','知识体系整理','Quartz静态发布','Markdown格式'],
         techStack: ['LLM-Wiki', 'Quartz', 'Markdown', 'Python', '跨境电商'],
-        category: 'AI工具',
+        category: '知识库',
         difficulty: '初级'
     },
     {
@@ -947,7 +947,7 @@ const products = [
         githubUrl: 'https://github.com/liangdabiao/flue-framework-skill',
         features: ['Flue框架核心概念解析','三层沙箱策略详解','与Claude Agent SDK深度对比','架构六维逐层拆解','实战选型决策树','常见坑位预警','生产部署指南','完整技术方案'],
         techStack: ['TypeScript', '@flue/sdk', '@flue/cli', '@flue/connectors', 'Cloudflare Workers', 'Node.js'],
-        category: 'AI工具',
+        category: 'Skill框架',
         difficulty: '进阶'
     },
     {
@@ -959,7 +959,7 @@ const products = [
         githubUrl: 'https://github.com/liangdabiao/claudesdk-skill',
         features: ['AI自学SDK：通过Skill系统理解SDK文档','自动构建Web应用：从技术方案到实现','多平台支持：40+社交媒体平台','实时消息交互：WebSocket双向通信','完整日志系统：调试和监控','前后端分离：Express+React','端对端测试：自动化验证','生产部署：多种方案支持'],
         techStack: ['Claude Agent SDK', 'Express.js', 'WebSocket', 'React 18', 'Vite', 'Tailwind CSS', 'TikHub API'],
-        category: 'AI工具',
+        category: 'Skill框架',
         difficulty: '进阶'
     },
     {
@@ -1007,7 +1007,7 @@ const products = [
         githubUrl: 'https://github.com/liangdabiao/weekend-city-trip',
         features: ['城市推荐：根据距离、天气、季节智能推荐','景点规划：智能规划景点路线，优化游览顺序','美食推荐：根据口味偏好推荐当地特色美食','住宿安排：根据预算和位置偏好推荐住宿','交通规划：规划最佳出行路线，对比多种交通方式','行程优化：智能优化行程安排，确保充足游览时间'],
         techStack: ['React', 'TypeScript', 'Next.js', 'OpenAI API', 'Google Maps API', 'Tailwind CSS'],
-        category: 'AI工具',
+        category: '生活工具',
         difficulty: '中级'
     },
     {
@@ -1043,7 +1043,7 @@ const products = [
         githubUrl: 'https://github.com/liangdabiao/podcast-shorts-remotion',
         features: ['Whisper转录→Remotion渲染完整流水线','快速模式：ffmpeg+whisper+npm install并行执行','字幕宽度规则（≤20视觉宽度；CN=1, ASCII=0.6）自动换行','5种场景类型：封面/列表/数据/对比/结尾','6款预设主题配色方案','预渲染预览（540×960）作为最终剪辑参考'],
         techStack: ['Python 3.10+', 'OpenAI Whisper', 'FFmpeg', 'Remotion 4', 'React 19', 'TypeScript', 'Node.js 16+'],
-        category: 'AI工具',
+        category: '视频生成',
         difficulty: '进阶'
     },
     {
@@ -1055,7 +1055,7 @@ const products = [
         githubUrl: 'https://github.com/liangdabiao/story-handdrawn-remotion',
         features: ['每句三阶段横向擦除呈现（文字→黑白→彩色）','免费默认后端：Agnes Image 2.1 Flash + edge-tts','付费可选：apiz CLI（fal-ai/nano-banana-2）手写字幕','两种输入模式：故事文本或上传手绘扫描稿','两种转场：硬切（默认）或翻页效果','Agent加载器中按主题关键词自动激活'],
         techStack: ['Remotion 4.x', 'React', 'Agnes Image 2.1 Flash', 'apiz CLI', 'MiniMax T2A v2', 'edge-tts', 'FFmpeg', 'MaShanZheng字体'],
-        category: 'AI工具',
+        category: '视频生成',
         difficulty: '进阶'
     },
     {
@@ -1067,7 +1067,7 @@ const products = [
         githubUrl: 'https://github.com/liangdabiao/wechat-article-remotion',
         features: ['通过ideaflow API进行文章转Markdown抓取','7种场景类型：封面/列表/数据/对比/结尾/文章图片/图片堆栈','双TTS引擎：MiniMax T2A v2（付费）+ edge-tts（免费无Key）','跨Skill共享素材库（9款字体+7款音效）','1080×1920 @ 30fps，无画中画让原文图片主导','关键词字幕高亮（蓝色 #2f6fff）'],
         techStack: ['Remotion 4.0.484', 'React 19.1.0', 'TypeScript 5.8.3', 'Node.js 20/22', 'Python 3.10+', 'edge-tts', 'ideaflow API', 'FFmpeg'],
-        category: 'AI工具',
+        category: '视频生成',
         difficulty: '进阶'
     },
     {
@@ -1091,7 +1091,7 @@ const products = [
         githubUrl: 'https://github.com/liangdabiao/paper-cutout-remotion',
         features: ['4层模型（背景→背景角色→主角→前景）显式zIndex','apiz生成绿幕角色表，split_sheet_green.py色键抠像','TTS 3层回退：apiz speak→MiniMax直连→edge-tts（免费）','PaperActor组件含primary/secondary/tertiary角色运动预设','锁定样式文件（theme.ts/ui.tsx/cutout.tsx），仅Root.tsx+scenes.tsx可编辑','Config.setConcurrency(2)避免Windows临时目录竞争'],
         techStack: ['Remotion 4', 'React 19', 'apiz CLI', 'Python', 'Pillow', 'NumPy', 'edge-tts', 'MiniMax TTS'],
-        category: 'AI工具',
+        category: '视频生成',
         difficulty: '高级'
     },
     {
@@ -1115,7 +1115,7 @@ const products = [
         githubUrl: 'https://github.com/liangdabiao/apiz-skill',
         features: ['6款图像模型（Image 4.0、Nano Banana Pro、Gemini 3 Pro Image、ChatGPT Images 2.0）','24款视频模型（Kling V3/O3、Seedance 2.0、Sora 2、Veo 3.1、Grok Imagine Video）','7款音频模型（海螺TTS/克隆/音乐、火山ASR/字幕）','所有模型ID、成功率、参数内嵌——Agent无需查询命令','电商剧本：先样本后批量、apiz upload防热链、负面提示词','覆盖图片本地化、角色微表情控制、对口型、分镜脚本'],
         techStack: ['apiz CLI', 'Node.js', 'MCP Server', 'Python SDK', 'Claude Code', 'Codex', 'WorkBuddy'],
-        category: 'AI工具',
+        category: 'Skill框架',
         difficulty: '中等'
     },
     {
@@ -1163,7 +1163,7 @@ const products = [
         githubUrl: 'https://github.com/liangdabiao/video-skills-toolkit',
         features: ['talking-head-remotion：演播厅风格谈话头像模板','wechat-article-remotion：公众号文章转视频（图片不被裁剪）','geometry-math-proof-remotion：3Blue1Brown风格数学证明动画','paper-cutout-remotion：多层剪纸景深动画','sketch-story-remotion：手绘"学习AI"故事模板','audio-to-subtitles：音频/视频转SRT/VTT/JSON字幕'],
         techStack: ['Remotion', 'React/TypeScript', 'Python脚本', 'MiniMax TTS', 'SVG几何', 'FFMPEG', 'Bun'],
-        category: 'AI工具',
+        category: '视频生成',
         difficulty: '高级'
     },
     {
