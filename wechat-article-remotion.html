@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>公众号文章视频生成器 | WeChat Article Remotion</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero { background: linear-gradient(135deg, #059669 0%, #047857 100%); color: white; padding: 100px 20px; text-align: center; }
+        .hero h1 { font-size: 3em; margin-bottom: 20px; }
+        .hero p { font-size: 1.3em; max-width: 800px; margin: 0 auto 30px; opacity: 0.95; }
+        .hero-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 10px 25px; border-radius: 25px; margin-bottom: 20px; font-size: 0.95em; }
+        .hero-stats { display: flex; justify-content: center; gap: 50px; margin-top: 50px; flex-wrap: wrap; }
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 2.5em; font-weight: bold; display: block; }
+        .stat-label { font-size: 0.9em; opacity: 0.9; }
+        .section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 2.5em; margin-bottom: 20px; color: var(--primary-color); }
+        .section-subtitle { text-align: center; color: var(--secondary-color); margin-bottom: 50px; font-size: 1.1em; }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-top: 40px; }
+        .skill-card { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s; border-left: 4px solid #059669; }
+        .skill-card:hover { transform: translateY(-5px); box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+        .skill-icon { font-size: 2.5em; margin-bottom: 15px; }
+        .skill-title { font-size: 1.3em; font-weight: bold; margin-bottom: 10px; color: var(--text-color); }
+        .skill-description { color: var(--secondary-color); line-height: 1.8; }
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 30px; }
+        .tech-item { background: #059669; color: white; padding: 12px 24px; border-radius: 25px; font-size: 0.95em; transition: background 0.3s; }
+        .tech-item:hover { background: #047857; }
+        .category-card { background: white; border-radius: 12px; padding: 30px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid #059669; }
+        .category-title { font-size: 1.4em; font-weight: bold; margin-bottom: 15px; color: #059669; }
+        .category-content { color: var(--secondary-color); line-height: 1.8; }
+        .feature-highlight { background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); border-radius: 12px; padding: 30px; margin: 30px 0; border-left: 4px solid #059669; }
+        .feature-highlight h3 { color: #065f46; margin-bottom: 15px; }
+        .feature-highlight p { color: #064e3b; line-height: 1.8; }
+        .code-block { background: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 8px; margin: 20px 0; font-family: 'Courier New', monospace; line-height: 1.6; overflow-x: auto; }
+        .install-card { background: #f8f9fa; border-radius: 12px; padding: 25px; margin: 15px 0; border-left: 4px solid #059669; }
+        .install-title { font-size: 1.2em; font-weight: bold; margin-bottom: 10px; color: #059669; }
+        .scene-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 30px; }
+        .scene-card { background: white; border-radius: 12px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid #059669; text-align: center; }
+        .scene-icon { font-size: 2em; margin-bottom: 10px; }
+        .scene-title { font-size: 1.1em; font-weight: bold; margin-bottom: 8px; color: var(--text-color); }
+        .scene-desc { color: var(--secondary-color); font-size: 0.9em; line-height: 1.6; }
+        @media (max-width: 768px) { .hero h1 { font-size: 2em; } .skills-grid, .scene-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo"><a href="index.html">🌐 AI工具集合</a></div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#scenes">场景类型</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-badge">Remotion 4.0 + 1080×1920 + 原图完整保留</div>
+        <h1>公众号文章视频生成器</h1>
+        <p>Agent Skill将任意微信公众号文章（mp.weixin.qq.com/s/...）转换为演播厅风格Remotion竖屏视频，暖白画布、镜像透视网格背景、顶部章节进度条，完整保留原图不被裁剪。</p>
+        <div class="hero-stats">
+            <div class="stat-item"><span class="stat-number">7</span><span class="stat-label">场景类型</span></div>
+            <div class="stat-item"><span class="stat-number">2</span><span class="stat-label">TTS引擎</span></div>
+            <div class="stat-item"><span class="stat-number">30</span><span class="stat-label">FPS流畅</span></div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/wechat-article-remotion" class="btn btn-primary" style="background: white; color: #059669;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">为什么需要文章转视频？</h2>
+        <p class="section-subtitle">让优质公众号文章焕发视频新生</p>
+        <div class="feature-highlight">
+            <h3>文章→视频，跨越内容形态鸿沟</h3>
+            <p>公众号优质长文阅读门槛高、传播受限。本Skill将文章一键转化为演播厅风格视频，保留原文图片不被裁剪（无PIP），让优质内容跨越形态鸿沟触达视频受众，特别适合科技博客、行业分析、深度报道等场景。</p>
+        </div>
+    </section>
+
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">保留原貌，演播厅级视觉呈现</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">📥</div>
+                <h3 class="skill-title">文章智能抓取</h3>
+                <p class="skill-description">通过ideaflow API进行文章转Markdown抓取，保留完整结构</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎬</div>
+                <h3 class="skill-title">7种场景类型</h3>
+                <p class="skill-description">封面/列表/数据/对比/结尾/文章图片/图片堆栈，匹配不同内容</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔊</div>
+                <h3 class="skill-title">双TTS引擎</h3>
+                <p class="skill-description">MiniMax T2A v2（付费）+ edge-tts（免费无Key）灵活切换</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎨</div>
+                <h3 class="skill-title">共享素材库</h3>
+                <p class="skill-description">跨Skill共享素材库（9款字体+7款音效）</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🖼️</div>
+                <h3 class="skill-title">原图完整保留</h3>
+                <p class="skill-description">1080×1920 @ 30fps，无画中画让原文图片主导</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔍</div>
+                <h3 class="skill-title">关键词高亮</h3>
+                <p class="skill-description">关键词字幕高亮（蓝色 #2f6fff），强化记忆点</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="scenes" class="section">
+        <h2 class="section-title">7种场景类型</h2>
+        <p class="section-subtitle">匹配不同内容叙事需求</p>
+        <div class="scene-grid">
+            <div class="scene-card"><div class="scene-icon">🖼️</div><div class="scene-title">封面场景</div><div class="scene-desc">视频开头，展示文章标题与作者</div></div>
+            <div class="scene-card"><div class="scene-icon">📋</div><div class="scene-title">列表场景</div><div class="scene-desc">逐条展示要点，适合总结类内容</div></div>
+            <div class="scene-card"><div class="scene-icon">📊</div><div class="scene-title">数据场景</div><div class="scene-desc">突出关键数字与统计</div></div>
+            <div class="scene-card"><div class="scene-icon">⚖️</div><div class="scene-title">对比场景</div><div class="scene-desc">左右对比，强化观点冲突</div></div>
+            <div class="scene-card"><div class="scene-icon">🖼️</div><div class="scene-title">文章图片</div><div class="scene-desc">完整保留原文配图，不裁剪不压缩</div></div>
+            <div class="scene-card"><div class="scene-icon">📚</div><div class="scene-title">图片堆栈</div><div class="scene-desc">多图叠加展示，节奏紧凑</div></div>
+            <div class="scene-card"><div class="scene-icon">🎬</div><div class="scene-title">结尾场景</div><div class="scene-desc">引导关注、点赞、转发</div></div>
+        </div>
+    </section>
+
+    <section id="install" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">安装与配置</h2>
+        <p class="section-subtitle">一行命令生成公众号文章视频</p>
+        <div class="install-card">
+            <div class="install-title">前置条件</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">Node.js 20/22、Python 3.10+、FFmpeg。可选MiniMax T2A v2付费TTS。</p>
+        </div>
+        <div class="install-card">
+            <div class="install-title">1. 创建项目</div>
+            <pre class="code-block">python3 scripts/scaffold_wechat_article_project.py \
+  --project-dir ./my-wx-video \
+  --title "示例公众号文章" \
+  --article-url "https://mp.weixin.qq.com/s/xxxxx"</pre>
+        </div>
+        <div class="install-card">
+            <div class="install-title">2. Agent触发</div>
+            <pre class="code-block">wechat-article-remotion skill 制作视频：https://mp.weixin.qq.com/s/...</pre>
+        </div>
+        <div class="install-card">
+            <div class="install-title">3. 渲染输出</div>
+            <pre class="code-block">npm install
+npm run render
+# 输出：1080×1920 @ 30fps 演播厅风格视频</pre>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">锁定版本，保证可复现渲染</p>
+        <div class="tech-stack">
+            <div class="tech-item">Remotion 4.0.484</div>
+            <div class="tech-item">React 19.1.0</div>
+            <div class="tech-item">TypeScript 5.8.3</div>
+            <div class="tech-item">Node.js 20/22</div>
+            <div class="tech-item">Python 3.10+</div>
+            <div class="tech-item">edge-tts</div>
+            <div class="tech-item">ideaflow API</div>
+            <div class="tech-item">FFmpeg</div>
+        </div>
+    </section>
+
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">常见问题</h2>
+        <div class="category-card">
+            <div class="category-title">Q: 是否支持任意公众号文章？</div>
+            <div class="category-content">A: 支持mp.weixin.qq.com/s/...格式的公开文章。需登录或付费墙保护的文章可能无法抓取。</div>
+        </div>
+        <div class="category-card">
+            <div class="category-title">Q: MiniMax和edge-tts如何选择？</div>
+            <div class="category-content">A: MiniMax T2A v2音质更自然但需付费；edge-tts免费无Key，适合快速起步。可在配置中切换。</div>
+        </div>
+        <div class="category-card">
+            <div class="category-title">Q: 为什么强调"无PIP"？</div>
+            <div class="category-content">A: PIP（画中画）会缩小原文图片，影响阅读。本Skill让原文图片完整占据画面，最大化信息呈现。</div>
+        </div>
+    </section>
+
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于项目</h3>
+                    <p>Agent Skill将微信公众号文章转换为演播厅风格Remotion竖屏视频，暖白画布、镜像透视网格背景，完整保留原文图片不被裁剪。</p>
+                </div>
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="index.html">返回首页</a></li>
+                        <li><a href="https://github.com/liangdabiao/wechat-article-remotion">GitHub 仓库</a></li>
+                        <li><a href="https://linux.do">Linux.do 社区</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>联系我们</h3>
+                    <p>邮箱：497070928@qq.com</p>
+                    <p>GitHub：https://github.com/liangdabiao</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 公众号文章视频生成器. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

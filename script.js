@@ -1009,6 +1009,186 @@ const products = [
         techStack: ['React', 'TypeScript', 'Next.js', 'OpenAI API', 'Google Maps API', 'Tailwind CSS'],
         category: 'AI工具',
         difficulty: '中级'
+    },
+    {
+        id: 'amazon-listing-alexa-optimizer',
+        name: 'Amazon Listing Alexa 优化检查器',
+        description: '面向Alexa for Shopping时代的Amazon Listing诊断与优化Skill，从关键词堆砌升级为AI可理解的产品信号，输出8维评分、P0/P1/P2问题清单和7天行动计划。',
+        icon: '🛒',
+        tags: ['Amazon', 'Listing优化', 'Alexa', 'AI电商', 'Claude Skill'],
+        githubUrl: 'https://github.com/liangdabiao/amazon-listing-alexa-optimizer',
+        features: ['8维评分框架：每维度0-10分，换算为100分制综合得分','AI四问覆盖检查：是什么/给谁/解决什么问题/差异化','硬性规则强制：标题≤75字符，Highlights≤125字符','自动触发：检测到Listing优化意图即自动启用','结构化报告：评分+问题清单+改写前后对比+7天行动计划','5大常见误区自检清单，避免AI搜索时代优化陷阱'],
+        techStack: ['Claude Code Skill', 'Markdown', 'References框架', 'Prompt驱动', 'WorkBuddy Agent', 'Codex Loader'],
+        category: '商业工具',
+        difficulty: '进阶'
+    },
+    {
+        id: 'geolook',
+        name: 'GeoLook GEO全流程平台',
+        description: '自托管的端到端GEO（生成式引擎优化）实施平台，帮助品牌获得DeepSeek、豆包、ChatGPT、Perplexity等AI引擎的引用，覆盖分析-诊断-计划-工单-执行-验收全流程。',
+        icon: '🌐',
+        tags: ['GEO', 'AI搜索优化', '品牌曝光', '302.AI', 'OpenRouter'],
+        githubUrl: 'https://github.com/liangdabiao/geolook',
+        features: ['全流程管线：分析→诊断→计划→工单→执行→验收闭环','一个API Key聚合10家LLM平台+9家搜索提供商（302.AI）','每引擎引用份额/位置/提及率量化追踪','六维站点审计+差距诊断，定位优化空间','自动生成实施工单，86%可程序化验收','OpenRouter模式适配西方开源模型（Llama/Mistral/Qwen等）'],
+        techStack: ['Python', '302.AI', 'OpenRouter', 'Bocha', 'Tavily', 'Exa', 'Perplexity', 'Markdown Skill'],
+        category: '商业工具',
+        difficulty: '高级'
+    },
+    {
+        id: 'podcast-shorts-remotion',
+        name: '播客短视频生成器',
+        description: '将播客/配音音频转换为1080×1920竖屏短视频的Remotion Skill，自动生成中文字幕、章节场景、底部进度条和主题配色，一站式流水线。',
+        icon: '🎙️',
+        tags: ['播客视频', 'Remotion', 'Whisper', '竖屏短视频', '字幕生成'],
+        githubUrl: 'https://github.com/liangdabiao/podcast-shorts-remotion',
+        features: ['Whisper转录→Remotion渲染完整流水线','快速模式：ffmpeg+whisper+npm install并行执行','字幕宽度规则（≤20视觉宽度；CN=1, ASCII=0.6）自动换行','5种场景类型：封面/列表/数据/对比/结尾','6款预设主题配色方案','预渲染预览（540×960）作为最终剪辑参考'],
+        techStack: ['Python 3.10+', 'OpenAI Whisper', 'FFmpeg', 'Remotion 4', 'React 19', 'TypeScript', 'Node.js 16+'],
+        category: 'AI工具',
+        difficulty: '进阶'
+    },
+    {
+        id: 'story-handdrawn-remotion',
+        name: '手绘日记漫画视频生成器',
+        description: 'Remotion Skill将中文故事文本转化为"手绘日记漫画"风格竖屏视频，采用完全免费管线（Agnes Image + edge-tts），每句子三阶段呈现：文字→黑白线稿→彩色插画。',
+        icon: '✏️',
+        tags: ['手绘漫画', 'Remotion', '故事视频', 'Agnes Image', 'edge-tts'],
+        githubUrl: 'https://github.com/liangdabiao/story-handdrawn-remotion',
+        features: ['每句三阶段横向擦除呈现（文字→黑白→彩色）','免费默认后端：Agnes Image 2.1 Flash + edge-tts','付费可选：apiz CLI（fal-ai/nano-banana-2）手写字幕','两种输入模式：故事文本或上传手绘扫描稿','两种转场：硬切（默认）或翻页效果','Agent加载器中按主题关键词自动激活'],
+        techStack: ['Remotion 4.x', 'React', 'Agnes Image 2.1 Flash', 'apiz CLI', 'MiniMax T2A v2', 'edge-tts', 'FFmpeg', 'MaShanZheng字体'],
+        category: 'AI工具',
+        difficulty: '进阶'
+    },
+    {
+        id: 'wechat-article-remotion',
+        name: '公众号文章视频生成器',
+        description: 'Agent Skill将任意微信公众号文章（mp.weixin.qq.com/s/...）转换为演播厅风格Remotion竖屏视频，暖白画布、镜像透视网格背景、顶部章节进度条，完整保留原图不被裁剪。',
+        icon: '💬',
+        tags: ['公众号', '文章转视频', 'Remotion', '内容创作', 'TTS'],
+        githubUrl: 'https://github.com/liangdabiao/wechat-article-remotion',
+        features: ['通过ideaflow API进行文章转Markdown抓取','7种场景类型：封面/列表/数据/对比/结尾/文章图片/图片堆栈','双TTS引擎：MiniMax T2A v2（付费）+ edge-tts（免费无Key）','跨Skill共享素材库（9款字体+7款音效）','1080×1920 @ 30fps，无画中画让原文图片主导','关键词字幕高亮（蓝色 #2f6fff）'],
+        techStack: ['Remotion 4.0.484', 'React 19.1.0', 'TypeScript 5.8.3', 'Node.js 20/22', 'Python 3.10+', 'edge-tts', 'ideaflow API', 'FFmpeg'],
+        category: 'AI工具',
+        difficulty: '进阶'
+    },
+    {
+        id: 'geometry-math-proof-remotion',
+        name: '数学证明动画生成器',
+        description: 'Agent Skill自动将数学证明（勾股定理、欧拉公式、积分等）转换为3Blue1Brown/Khan Academy风格的Remotion视频，代码绘制几何图形与分步揭示公式。',
+        icon: '📐',
+        tags: ['数学证明', 'Remotion', '教育动画', '3Blue1Brown', '几何'],
+        githubUrl: 'https://github.com/liangdabiao/geometry-math-proof-remotion',
+        features: ['深色背景#0d0d12搭配高饱和4色配色（红/蓝/绿/黄）','SVG代码绘制几何+strokeDasharray绘制动画（无位图）','右侧公式面板分步揭示，关键变量黄色高亮','TTS驱动时间轴（真实音频帧写回F/durationInFrames）','章节聚焦变暗（1.0激活 vs 0.45变暗）','Q.E.D.结尾卡片含历史/作者署名'],
+        techStack: ['Remotion 4.0', 'React 19', 'TypeScript', 'Python 3.8+', 'MiniMax TTS', 'edge-tts', 'FFmpeg', 'Pillow'],
+        category: '教育工具',
+        difficulty: '高级'
+    },
+    {
+        id: 'paper-cutout-remotion',
+        name: '剪纸分层动画生成器',
+        description: 'Agent Skill将故事板脚本转换为剪纸分层视频：背景、主角、配角、前景分别渲染为独立PNG，以不同节奏运动，通过遮挡（非3D）创造纵深感。',
+        icon: '🏯',
+        tags: ['剪纸动画', 'Remotion', '分层动画', '故事板', 'apiz'],
+        githubUrl: 'https://github.com/liangdabiao/paper-cutout-remotion',
+        features: ['4层模型（背景→背景角色→主角→前景）显式zIndex','apiz生成绿幕角色表，split_sheet_green.py色键抠像','TTS 3层回退：apiz speak→MiniMax直连→edge-tts（免费）','PaperActor组件含primary/secondary/tertiary角色运动预设','锁定样式文件（theme.ts/ui.tsx/cutout.tsx），仅Root.tsx+scenes.tsx可编辑','Config.setConcurrency(2)避免Windows临时目录竞争'],
+        techStack: ['Remotion 4', 'React 19', 'apiz CLI', 'Python', 'Pillow', 'NumPy', 'edge-tts', 'MiniMax TTS'],
+        category: 'AI工具',
+        difficulty: '高级'
+    },
+    {
+        id: 'edulab',
+        name: 'EduLab 互动教学Skill套件',
+        description: '8个Agent Skill集合，自动生成自包含的互动HTML教学页面，覆盖化学、物理、几何、科普领域，配备Canvas 2D/Three.js动画、分步讲解和滑块参数控制。',
+        icon: '📚',
+        tags: ['教育工具', '互动教学', 'Three.js', 'Canvas', 'STEM'],
+        githubUrl: 'https://github.com/liangdabiao/edulab',
+        features: ['8个Skill横跨3个架构家族（Canvas教程、sympy内核、单文件科普）','化学：edu-chem-reaction（3D分子形变/机理引擎）、edu-chem-tutorial（分步课程）','物理：edu-physics（2D Canvas）、edu-physics-3d（Three.js+OrbitControls）','几何：edu-plane/solid/analytic-geometry覆盖平面/立体/解析','edu-sci-viz科普风格（暖奶油纸+海军蓝实验区+KaTeX）','3种输入模式：文字题、随机生成、图片上传（视觉OCR）'],
+        techStack: ['Python', 'sympy', 'JavaScript', 'Three.js', 'Canvas 2D', 'KaTeX', 'MathJax', 'HTML5'],
+        category: '教育工具',
+        difficulty: '高级'
+    },
+    {
+        id: 'apiz-skill',
+        name: 'APIZ 多模型创作Skill',
+        description: '两个互补的Claude/Codex Skill封装apiz.ai网关——apiz（图像/视频/音频模型CLI完整参考）+ apiz-use（中国电商实战剧本：淘宝主图改版、产品视频、角色一致性、图片本地化）。',
+        icon: '🎨',
+        tags: ['APIZ', 'AI创作', '电商主图', '视频生成', 'Claude Skill'],
+        githubUrl: 'https://github.com/liangdabiao/apiz-skill',
+        features: ['6款图像模型（Image 4.0、Nano Banana Pro、Gemini 3 Pro Image、ChatGPT Images 2.0）','24款视频模型（Kling V3/O3、Seedance 2.0、Sora 2、Veo 3.1、Grok Imagine Video）','7款音频模型（海螺TTS/克隆/音乐、火山ASR/字幕）','所有模型ID、成功率、参数内嵌——Agent无需查询命令','电商剧本：先样本后批量、apiz upload防热链、负面提示词','覆盖图片本地化、角色微表情控制、对口型、分镜脚本'],
+        techStack: ['apiz CLI', 'Node.js', 'MCP Server', 'Python SDK', 'Claude Code', 'Codex', 'WorkBuddy'],
+        category: 'AI工具',
+        difficulty: '中等'
+    },
+    {
+        id: 'staticshield-skill',
+        name: 'StaticShield 静态加密Skill',
+        description: 'Agent Skill将静态HTML（及整站）加密为自解密页面，采用AES-256-CBC + PBKDF2（100万次迭代）+ HMAC-SHA256，全程自然语言控制，零后端零依赖，可部署任意静态托管。',
+        icon: '🔐',
+        tags: ['HTML加密', 'AES-256', '网络安全', '静态站点', 'Claude Skill'],
+        githubUrl: 'https://github.com/liangdabiao/staticshield-skill',
+        features: ['AES-256-CBC（PKCS#7）+ PBKDF2-SHA256 100万次迭代 + HMAC Encrypt-then-MAC','--bundle内联CSS/JS/图片为单一加密HTML；--directory批量加密为ZIP','CSPRNG自动生成16位密码，可选SHA-512模式','分享链接#pwd=URL哈希（密码永不发送服务器），N天记住密码','自定义Logo（默认原favicon）、密码提示、分层/叠加加密','WebCrypto客户端完全解密，HTTPS/localhost/file://均可'],
+        techStack: ['Node.js ≥18', 'Web Crypto API', 'HTML5', 'CSS3', 'GitHub Pages', 'Vercel', 'Netlify', 'S3'],
+        category: '基础设施',
+        difficulty: '进阶'
+    },
+    {
+        id: 'geogebra-webchat',
+        name: 'GeoGebra WebChat',
+        description: 'AI驱动的数学几何白板，将自然语言描述转化为浏览器中的交互GeoGebra图形，支持实时拖拽/缩放/旋转、2D/3D几何、KaTeX公式渲染和多模型切换。',
+        icon: '📐',
+        tags: ['GeoGebra', '数学白板', 'AI绘图', '交互几何', 'SolidJS'],
+        githubUrl: 'https://github.com/liangdabiao/Geogebra-WebChat',
+        features: ['自然语言绘图：AI自动生成并执行GeoGebra命令','实时交互画布（拖拽/缩放/旋转）与代数面板同步','流式Markdown+KaTeX公式渲染','2D和3D几何支持','OpenAI兼容API多模型支持（DeepSeek、Qwen、GPT等）','服务端API Key注入，对浏览器隐藏密钥'],
+        techStack: ['SolidJS', 'Vite', 'Vercel AI SDK v6', 'GeoGebra CDN', 'marked', 'KaTeX', 'Bun'],
+        category: '教育工具',
+        difficulty: '进阶'
+    },
+    {
+        id: 'textbooks',
+        name: 'Mathigon 互动教科书',
+        description: '屡获殊荣的Mathigon互动数学教育平台fork，面向12-18岁学生，搭配自研"mathigon textbooks skill"实现一行命令生成STEM课程。',
+        icon: '📚',
+        tags: ['Mathigon', '互动教材', 'STEM教育', '在线课程', '数学'],
+        githubUrl: 'https://github.com/liangdabiao/textbooks',
+        features: ['基于Markdown的互动课程内容（content.md）','TypeScript互动元素（functions.ts）','每课程独立SCSS样式','YAML提示系统支持虚拟导师','共享bios、词汇表、Web组件','GitLocalize翻译工作流+Google Cloud TTS音频解说'],
+        techStack: ['Node.js 14+', '@mathigon/core', '@mathigon/fermat', '@mathigon/hilbert', '@mathigon/euclid', '@mathigon/boost', '@mathigon/studio', 'FFmpeg'],
+        category: '教育工具',
+        difficulty: '中等'
+    },
+    {
+        id: 'video-skills-toolkit',
+        name: '视频Skill工具包',
+        description: '6个可复用Remotion Agent Skill集合，将短视频制作（脚本→音频→字幕→动画→音效/BGM）转化为可重复的流水线，覆盖谈话头像、公众号、数学证明、剪纸、手绘故事、字幕生成。',
+        icon: '🎬',
+        tags: ['Remotion', '视频制作', 'Skill集合', '短视频', 'AI视频'],
+        githubUrl: 'https://github.com/liangdabiao/video-skills-toolkit',
+        features: ['talking-head-remotion：演播厅风格谈话头像模板','wechat-article-remotion：公众号文章转视频（图片不被裁剪）','geometry-math-proof-remotion：3Blue1Brown风格数学证明动画','paper-cutout-remotion：多层剪纸景深动画','sketch-story-remotion：手绘"学习AI"故事模板','audio-to-subtitles：音频/视频转SRT/VTT/JSON字幕'],
+        techStack: ['Remotion', 'React/TypeScript', 'Python脚本', 'MiniMax TTS', 'SVG几何', 'FFMPEG', 'Bun'],
+        category: 'AI工具',
+        difficulty: '高级'
+    },
+    {
+        id: 'course-site-skill',
+        name: 'Course Site 课程网站Skill',
+        description: 'Agent Skill将任意Markdown文件夹转化为精美的零代码静态课程网站，包含课程、测验、进度追踪，支持⌘K全局搜索和AI学习路径建议。',
+        icon: '🎓',
+        tags: ['课程网站', 'Markdown', '静态站点', '在线教育', 'Claude Skill'],
+        githubUrl: 'https://github.com/liangdabiao/course-site-skill',
+        features: ['自动扫描MD仓库，建议阶段/课程边界','将原始MD重写为专业中文课程格式','每课程生成6道题（1预习+3检测+2课后）','通过templates/.brand.json自定义品牌','⌘K全局搜索+AI学习路径建议','部署到EdgeOne Pages、Cloudflare、Vercel、GitHub Pages、OSS/S3'],
+        techStack: ['Python', 'HTML/CSS模板', 'Markdown', 'JSON', 'Claude Code', 'Codex', 'Workbuddy', 'EdgeOne Pages'],
+        category: '教育工具',
+        difficulty: '中等'
+    },
+    {
+        id: 'stem-illustration-skill',
+        name: 'STEM插图生成Skill',
+        description: '面向STEM领域的AI图像生成Skill，制作科研示意图、教学插图、技术图表，覆盖6个学科24个场景模板，4种风格变体，内置学术诚信守卫与10条STEM提示铁律。',
+        icon: '🔬',
+        tags: ['STEM插图', '科研图', '示意图', '教学插画', 'Claude Skill'],
+        githubUrl: 'https://github.com/liangdabiao/stem-illustration-skill',
+        features: ['24个场景模板（信号通路、机理、质粒、架构等）','6个学科：生命科学、医学、化学、物理、工程、数学','4种风格变体：学术/教科书/信息图/3D渲染','双图像API支持（OpenAI同步+apimart.ai异步）','学术诚信守卫（拦截伪造实验数据）','10条STEM提示铁律（十六进制颜色、字体、术语等）'],
+        techStack: ['Python', 'OpenAI图像API', 'apimart.ai', 'JSON模板', 'matplotlib', 'LLM Agents', 'SKILL.md', 'Pillow'],
+        category: '教育工具',
+        difficulty: '进阶'
     }
 ];
 
@@ -1178,7 +1358,22 @@ function getProductPageUrl(productId) {
         'fetch-everything': './fetch-everything.html',
         'ecom-details-image-ui': './ecom-details-image-ui.html',
         'ai-investor': './ai-investor.html',
-        'weekend-city-trip': './weekend-city-trip.html'
+        'weekend-city-trip': './weekend-city-trip.html',
+        'amazon-listing-alexa-optimizer': './amazon-listing-alexa-optimizer.html',
+        'geolook': './geolook.html',
+        'podcast-shorts-remotion': './podcast-shorts-remotion.html',
+        'story-handdrawn-remotion': './story-handdrawn-remotion.html',
+        'wechat-article-remotion': './wechat-article-remotion.html',
+        'geometry-math-proof-remotion': './geometry-math-proof-remotion.html',
+        'paper-cutout-remotion': './paper-cutout-remotion.html',
+        'edulab': './edulab.html',
+        'apiz-skill': './apiz-skill.html',
+        'staticshield-skill': './staticshield-skill.html',
+        'geogebra-webchat': './geogebra-webchat.html',
+        'textbooks': './textbooks.html',
+        'video-skills-toolkit': './video-skills-toolkit.html',
+        'course-site-skill': './course-site-skill.html',
+        'stem-illustration-skill': './stem-illustration-skill.html'
     };
     return productPages[productId] || `./${productId}.html`;
 }
@@ -1604,7 +1799,22 @@ function useProduct(productId) {
         'claudesdk-ecom-image-chat': 'claudesdk-ecom-image-chat.html',
         'ecom-details-image-ui': 'ecom-details-image-ui.html',
         'ai-investor': 'ai-investor.html',
-        'weekend-city-trip': 'weekend-city-trip.html'
+        'weekend-city-trip': 'weekend-city-trip.html',
+        'amazon-listing-alexa-optimizer': 'amazon-listing-alexa-optimizer.html',
+        'geolook': 'geolook.html',
+        'podcast-shorts-remotion': 'podcast-shorts-remotion.html',
+        'story-handdrawn-remotion': 'story-handdrawn-remotion.html',
+        'wechat-article-remotion': 'wechat-article-remotion.html',
+        'geometry-math-proof-remotion': 'geometry-math-proof-remotion.html',
+        'paper-cutout-remotion': 'paper-cutout-remotion.html',
+        'edulab': 'edulab.html',
+        'apiz-skill': 'apiz-skill.html',
+        'staticshield-skill': 'staticshield-skill.html',
+        'geogebra-webchat': 'geogebra-webchat.html',
+        'textbooks': 'textbooks.html',
+        'video-skills-toolkit': 'video-skills-toolkit.html',
+        'course-site-skill': 'course-site-skill.html',
+        'stem-illustration-skill': 'stem-illustration-skill.html'
     };
 
     if (newProductPages[productId]) {

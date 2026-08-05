@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数学证明动画生成器 | 3Blue1Brown风格Remotion</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero { background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%); color: white; padding: 100px 20px; text-align: center; }
+        .hero h1 { font-size: 3em; margin-bottom: 20px; }
+        .hero p { font-size: 1.3em; max-width: 800px; margin: 0 auto 30px; opacity: 0.95; }
+        .hero-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 10px 25px; border-radius: 25px; margin-bottom: 20px; font-size: 0.95em; }
+        .hero-stats { display: flex; justify-content: center; gap: 50px; margin-top: 50px; flex-wrap: wrap; }
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 2.5em; font-weight: bold; display: block; }
+        .stat-label { font-size: 0.9em; opacity: 0.9; }
+        .section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 2.5em; margin-bottom: 20px; color: var(--primary-color); }
+        .section-subtitle { text-align: center; color: var(--secondary-color); margin-bottom: 50px; font-size: 1.1em; }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-top: 40px; }
+        .skill-card { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s; border-left: 4px solid #7c3aed; }
+        .skill-card:hover { transform: translateY(-5px); box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+        .skill-icon { font-size: 2.5em; margin-bottom: 15px; }
+        .skill-title { font-size: 1.3em; font-weight: bold; margin-bottom: 10px; color: var(--text-color); }
+        .skill-description { color: var(--secondary-color); line-height: 1.8; }
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 30px; }
+        .tech-item { background: #7c3aed; color: white; padding: 12px 24px; border-radius: 25px; font-size: 0.95em; transition: background 0.3s; }
+        .tech-item:hover { background: #6d28d9; }
+        .category-card { background: white; border-radius: 12px; padding: 30px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid #7c3aed; }
+        .category-title { font-size: 1.4em; font-weight: bold; margin-bottom: 15px; color: #7c3aed; }
+        .category-content { color: var(--secondary-color); line-height: 1.8; }
+        .feature-highlight { background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%); border-radius: 12px; padding: 30px; margin: 30px 0; border-left: 4px solid #7c3aed; }
+        .feature-highlight h3 { color: #5b21b6; margin-bottom: 15px; }
+        .feature-highlight p { color: #4c1d95; line-height: 1.8; }
+        .code-block { background: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 8px; margin: 20px 0; font-family: 'Courier New', monospace; line-height: 1.6; overflow-x: auto; }
+        .install-card { background: #f8f9fa; border-radius: 12px; padding: 25px; margin: 15px 0; border-left: 4px solid #7c3aed; }
+        .install-title { font-size: 1.2em; font-weight: bold; margin-bottom: 10px; color: #7c3aed; }
+        .palette-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 30px; }
+        .palette-card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; }
+        .palette-color { width: 100%; height: 60px; border-radius: 8px; margin-bottom: 10px; }
+        .palette-name { font-weight: bold; color: var(--text-color); }
+        @media (max-width: 768px) { .hero h1 { font-size: 2em; } .skills-grid, .palette-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo"><a href="index.html">🌐 AI工具集合</a></div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#palette">视觉风格</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-badge">3Blue1Brown风格 + SVG代码绘制 + TTS配音</div>
+        <h1>数学证明动画生成器</h1>
+        <p>Agent Skill自动将数学证明（勾股定理、欧拉公式、积分等）转换为3Blue1Brown/Khan Academy风格的Remotion视频，代码绘制几何图形与分步揭示公式。</p>
+        <div class="hero-stats">
+            <div class="stat-item"><span class="stat-number">4</span><span class="stat-label">高饱和配色</span></div>
+            <div class="stat-item"><span class="stat-number">∞</span><span class="stat-label">几何证明</span></div>
+            <div class="stat-item"><span class="stat-number">2</span><span class="stat-label">TTS引擎</span></div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/geometry-math-proof-remotion" class="btn btn-primary" style="background: white; color: #7c3aed;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">为什么需要数学证明动画？</h2>
+        <p class="section-subtitle">抽象证明可视化，让数学不再难懂</p>
+        <div class="feature-highlight">
+            <h3>3Blue1Brown式可视化数学之美</h3>
+            <p>数学证明抽象难懂，3Blue1Brown、Khan Academy等通过动画揭示数学之美。本Skill自动将文字证明转化为代码绘制的几何动画，配合TTS配音与分步公式揭示，让勾股定理、欧拉公式、积分等抽象证明变得直观易懂。</p>
+        </div>
+    </section>
+
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">代码绘制几何，分步揭示公式</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">🎨</div>
+                <h3 class="skill-title">深色高端配色</h3>
+                <p class="skill-description">背景#0d0d12搭配高饱和4色配色（红/蓝/绿/黄），3Blue1Brown同款</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">✏️</div>
+                <h3 class="skill-title">SVG代码绘制</h3>
+                <p class="skill-description">SVG代码绘制几何+strokeDasharray绘制动画，矢量清晰无位图</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📐</div>
+                <h3 class="skill-title">分步公式揭示</h3>
+                <p class="skill-description">右侧公式面板分步揭示，关键变量黄色高亮</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔊</div>
+                <h3 class="skill-title">TTS驱动时间轴</h3>
+                <p class="skill-description">真实音频帧写回F/durationInFrames，音画严格同步</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">💡</div>
+                <h3 class="skill-title">章节聚焦变暗</h3>
+                <p class="skill-description">1.0激活 vs 0.45变暗，聚焦当前讲解内容</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📜</div>
+                <h3 class="skill-title">Q.E.D.结尾卡片</h3>
+                <p class="skill-description">Q.E.D.结尾卡片含历史/作者署名，致敬数学传统</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="palette" class="section">
+        <h2 class="section-title">视觉风格</h2>
+        <p class="section-subtitle">3Blue1Brown / Khan Academy同款配色</p>
+        <div class="palette-grid">
+            <div class="palette-card"><div class="palette-color" style="background: #0d0d12;"></div><div class="palette-name">深背景 #0d0d12</div></div>
+            <div class="palette-card"><div class="palette-color" style="background: #ef4444;"></div><div class="palette-name">红色（关键变量）</div></div>
+            <div class="palette-card"><div class="palette-color" style="background: #3b82f6;"></div><div class="palette-name">蓝色（几何主体）</div></div>
+            <div class="palette-card"><div class="palette-color" style="background: #22c55e;"></div><div class="palette-name">绿色（辅助线）</div></div>
+            <div class="palette-card"><div class="palette-color" style="background: #eab308;"></div><div class="palette-name">黄色高亮</div></div>
+        </div>
+    </section>
+
+    <section id="install" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">安装与配置</h2>
+        <p class="section-subtitle">从证明文本到动画视频</p>
+        <div class="install-card">
+            <div class="install-title">前置条件</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">Node.js 16+、Python 3.8+、FFmpeg、系统Chrome。可选MiniMax TTS付费或edge-tts免费。</p>
+        </div>
+        <div class="install-card">
+            <div class="install-title">1. 复制模板</div>
+            <pre class="code-block">cp -R templates/remotion-project/* &lt;new-proof&gt;/
+cd &lt;new-proof&gt;
+npm install</pre>
+        </div>
+        <div class="install-card">
+            <div class="install-title">2. 生成TTS</div>
+            <pre class="code-block">python scripts/generate_tts.py --provider edge
+# 或 --provider minimax 使用付费TTS</pre>
+        </div>
+        <div class="install-card">
+            <div class="install-title">3. 渲染输出</div>
+            <pre class="code-block">npm run render:preview  # 0.5x预览
+npm run render         # 1080p最终版</pre>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">矢量几何 + TTS同步</p>
+        <div class="tech-stack">
+            <div class="tech-item">Remotion 4.0</div>
+            <div class="tech-item">React 19</div>
+            <div class="tech-item">TypeScript</div>
+            <div class="tech-item">Python 3.8+</div>
+            <div class="tech-item">MiniMax TTS</div>
+            <div class="tech-item">edge-tts</div>
+            <div class="tech-item">FFmpeg</div>
+            <div class="tech-item">Pillow</div>
+        </div>
+    </section>
+
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">常见问题</h2>
+        <div class="category-card">
+            <div class="category-title">Q: 支持哪些数学证明？</div>
+            <div class="category-content">A: 支持勾股定理、欧拉公式、积分、几何恒等式、代数不等式等。SVG代码绘制几何，配合LaTeX风格公式面板。</div>
+        </div>
+        <div class="category-card">
+            <div class="category-title">Q: MiniMax和edge-tts哪个更好？</div>
+            <div class="category-content">A: MiniMax音质更自然，适合正式教学；edge-tts免费无Key，适合快速预览。两者均完全驱动时间轴。</div>
+        </div>
+        <div class="category-card">
+            <div class="category-title">Q: 为什么用SVG而不是位图？</div>
+            <div class="category-content">A: SVG矢量图任意缩放清晰，配合strokeDasharray可实现"绘制动画"，让线条像手写一样出现，效果远优于位图。</div>
+        </div>
+    </section>
+
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于项目</h3>
+                    <p>Agent Skill将数学证明（勾股定理、欧拉公式、积分等）转换为3Blue1Brown风格Remotion视频，SVG代码绘制几何，分步揭示公式，TTS同步配音。</p>
+                </div>
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="index.html">返回首页</a></li>
+                        <li><a href="https://github.com/liangdabiao/geometry-math-proof-remotion">GitHub 仓库</a></li>
+                        <li><a href="https://linux.do">Linux.do 社区</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>联系我们</h3>
+                    <p>邮箱：497070928@qq.com</p>
+                    <p>GitHub：https://github.com/liangdabiao</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 数学证明动画生成器. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

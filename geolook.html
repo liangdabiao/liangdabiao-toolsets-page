@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GeoLook GEO全流程平台 | AI搜索引擎优化</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero { background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%); color: white; padding: 100px 20px; text-align: center; }
+        .hero h1 { font-size: 3em; margin-bottom: 20px; }
+        .hero p { font-size: 1.3em; max-width: 800px; margin: 0 auto 30px; opacity: 0.95; }
+        .hero-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 10px 25px; border-radius: 25px; margin-bottom: 20px; font-size: 0.95em; }
+        .hero-stats { display: flex; justify-content: center; gap: 50px; margin-top: 50px; flex-wrap: wrap; }
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 2.5em; font-weight: bold; display: block; }
+        .stat-label { font-size: 0.9em; opacity: 0.9; }
+        .section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 2.5em; margin-bottom: 20px; color: var(--primary-color); }
+        .section-subtitle { text-align: center; color: var(--secondary-color); margin-bottom: 50px; font-size: 1.1em; }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-top: 40px; }
+        .skill-card { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s; border-left: 4px solid #4f46e5; }
+        .skill-card:hover { transform: translateY(-5px); box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+        .skill-icon { font-size: 2.5em; margin-bottom: 15px; }
+        .skill-title { font-size: 1.3em; font-weight: bold; margin-bottom: 10px; color: var(--text-color); }
+        .skill-description { color: var(--secondary-color); line-height: 1.8; }
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 30px; }
+        .tech-item { background: #4f46e5; color: white; padding: 12px 24px; border-radius: 25px; font-size: 0.95em; transition: background 0.3s; }
+        .tech-item:hover { background: #4338ca; }
+        .category-card { background: white; border-radius: 12px; padding: 30px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid #4f46e5; }
+        .category-title { font-size: 1.4em; font-weight: bold; margin-bottom: 15px; color: #4f46e5; }
+        .category-content { color: var(--secondary-color); line-height: 1.8; }
+        .feature-highlight { background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%); border-radius: 12px; padding: 30px; margin: 30px 0; border-left: 4px solid #4f46e5; }
+        .feature-highlight h3 { color: #3730a3; margin-bottom: 15px; }
+        .feature-highlight p { color: #312e81; line-height: 1.8; }
+        .code-block { background: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 8px; margin: 20px 0; font-family: 'Courier New', monospace; line-height: 1.6; overflow-x: auto; }
+        .install-card { background: #f8f9fa; border-radius: 12px; padding: 25px; margin: 15px 0; border-left: 4px solid #4f46e5; }
+        .install-title { font-size: 1.2em; font-weight: bold; margin-bottom: 10px; color: #4f46e5; }
+        .pipeline-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 30px; }
+        .pipeline-step { background: white; border-radius: 12px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 4px solid #4f46e5; }
+        .pipeline-step-number { display: inline-block; background: #4f46e5; color: white; width: 32px; height: 32px; border-radius: 50%; text-align: center; line-height: 32px; font-weight: bold; margin-bottom: 10px; }
+        .pipeline-step-title { font-size: 1.2em; font-weight: bold; margin-bottom: 8px; color: var(--text-color); }
+        .pipeline-step-desc { color: var(--secondary-color); line-height: 1.6; }
+        @media (max-width: 768px) { .hero h1 { font-size: 2em; } .skills-grid, .pipeline-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo"><a href="index.html">🌐 AI工具集合</a></div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">全流程</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-badge">302.AI / OpenRouter + 自托管 + 全流程闭环</div>
+        <h1>GeoLook GEO全流程平台</h1>
+        <p>自托管的端到端GEO（生成式引擎优化）实施平台，帮助品牌获得DeepSeek、豆包、ChatGPT、Perplexity等AI引擎的引用，覆盖分析-诊断-计划-工单-执行-验收全流程。</p>
+        <div class="hero-stats">
+            <div class="stat-item"><span class="stat-number">10</span><span class="stat-label">LLM平台</span></div>
+            <div class="stat-item"><span class="stat-number">9</span><span class="stat-label">搜索提供商</span></div>
+            <div class="stat-item"><span class="stat-number">86%</span><span class="stat-label">自动验收率</span></div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/geolook" class="btn btn-primary" style="background: white; color: #4f46e5;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">为什么需要GEO？</h2>
+        <p class="section-subtitle">AI搜索正在重新定义品牌曝光</p>
+        <div class="feature-highlight">
+            <h3>GEO = Generative Engine Optimization</h3>
+            <p>用户越来越多使用DeepSeek、豆包、ChatGPT、Perplexity等AI引擎获取信息。如果你的品牌不被这些AI"看见"和"引用"，就失去了新时代的曝光机会。GeoLook帮助你系统性提升在各AI引擎中的引用份额、位置和提及率。</p>
+        </div>
+    </section>
+
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">从分析到验收的完整GEO实施闭环</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">🔄</div>
+                <h3 class="skill-title">全流程管线</h3>
+                <p class="skill-description">分析→诊断→计划→工单→执行→验收，闭环式GEO实施流程</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔑</div>
+                <h3 class="skill-title">一Key聚合</h3>
+                <p class="skill-description">302.AI聚合10家LLM平台+9家搜索提供商，单一API Key搞定</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📈</div>
+                <h3 class="skill-title">引用份额量化</h3>
+                <p class="skill-description">每引擎引用份额/位置/提及率量化追踪，精准衡量GEO效果</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔍</div>
+                <h3 class="skill-title">六维站点审计</h3>
+                <p class="skill-description">六维度站点审计+差距诊断，精准定位GEO优化空间</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎫</div>
+                <h3 class="skill-title">自动工单生成</h3>
+                <p class="skill-description">自动生成实施工单，86%可程序化验收，大幅降低人力成本</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🌐</div>
+                <h3 class="skill-title">OpenRouter模式</h3>
+                <p class="skill-description">OpenRouter模式适配西方开源模型（Llama/Mistral/Qwen等）</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="workflow" class="section">
+        <h2 class="section-title">GEO实施全流程</h2>
+        <p class="section-subtitle">从分析到验收的6阶段闭环</p>
+        <div class="pipeline-grid">
+            <div class="pipeline-step"><div class="pipeline-step-number">1</div><div class="pipeline-step-title">分析</div><div class="pipeline-step-desc">扫描品牌在各大AI引擎中的当前引用情况，建立基线</div></div>
+            <div class="pipeline-step"><div class="pipeline-step-number">2</div><div class="pipeline-step-title">诊断</div><div class="pipeline-step-desc">六维度站点审计+差距诊断，定位GEO优化空间</div></div>
+            <div class="pipeline-step"><div class="pipeline-step-number">3</div><div class="pipeline-step-title">计划</div><div class="pipeline-step-desc">基于诊断结果生成阶段性优化计划，明确目标与节奏</div></div>
+            <div class="pipeline-step"><div class="pipeline-step-number">4</div><div class="pipeline-step-title">工单</div><div class="pipeline-step-desc">将计划拆解为可执行的具体工单，分配执行责任</div></div>
+            <div class="pipeline-step"><div class="pipeline-step-number">5</div><div class="pipeline-step-title">执行</div><div class="pipeline-step-desc">按工单完成内容生产、发布、外链、结构化数据等</div></div>
+            <div class="pipeline-step"><div class="pipeline-step-number">6</div><div class="pipeline-step-title">验收</div><div class="pipeline-step-desc">程序化验收86%工单，量化追踪GEO效果提升</div></div>
+        </div>
+    </section>
+
+    <section id="install" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">安装与配置</h2>
+        <p class="section-subtitle">快速部署自托管GEO平台</p>
+        <div class="install-card">
+            <div class="install-title">前置条件</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">需要302.AI或OpenRouter的API Key，Python 3.10+环境。</p>
+        </div>
+        <div class="install-card">
+            <div class="install-title">1. 克隆项目</div>
+            <pre class="code-block">git clone https://github.com/liangdabiao/geolook.git
+cd geolook</pre>
+        </div>
+        <div class="install-card">
+            <div class="install-title">2. 配置API Key</div>
+            <pre class="code-block"># 配置 302.AI 或 OpenRouter API Key
+export API_KEY=your_key_here</pre>
+        </div>
+        <div class="install-card">
+            <div class="install-title">3. 启动使用</div>
+            <pre class="code-block">import sample
+sample.search("GeoLook GEO 工具", provider="bocha", count=5)
+r = sample.ask("doubao", "什么是 GEO 优化？", timeout=60)</pre>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">双聚合后端，多搜索引擎覆盖</p>
+        <div class="tech-stack">
+            <div class="tech-item">Python</div>
+            <div class="tech-item">302.AI</div>
+            <div class="tech-item">OpenRouter</div>
+            <div class="tech-item">Bocha</div>
+            <div class="tech-item">Tavily</div>
+            <div class="tech-item">Exa</div>
+            <div class="tech-item">Perplexity</div>
+            <div class="tech-item">Markdown Skill</div>
+        </div>
+    </section>
+
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">常见问题</h2>
+        <div class="category-card">
+            <div class="category-title">Q: 302.AI和OpenRouter如何选择？</div>
+            <div class="category-content">A: 302.AI更适合国内场景，聚合DeepSeek、豆包等国内模型；OpenRouter适合适配西方开源模型如Llama、Mistral、Qwen等。两者可同时配置使用。</div>
+        </div>
+        <div class="category-card">
+            <div class="category-title">Q: 9家搜索提供商有什么区别？</div>
+            <div class="category-content">A: 包括bocha、tavily、exa、metaso、firecrawl、perplexity、search1、unifuncs等，覆盖国内外主流搜索API，可根据场景灵活切换。</div>
+        </div>
+        <div class="category-card">
+            <div class="category-title">Q: 86%自动验收率如何实现？</div>
+            <div class="category-content">A: 通过程序化检查工单完成情况（如外链是否生效、内容是否被收录、引用是否出现），结合LLM语义判断，达到86%的自动验收覆盖率。</div>
+        </div>
+    </section>
+
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于项目</h3>
+                    <p>自托管端到端GEO实施平台，帮助品牌获得DeepSeek、豆包、ChatGPT、Perplexity等AI引擎的引用，覆盖分析-诊断-计划-工单-执行-验收全流程。</p>
+                </div>
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="index.html">返回首页</a></li>
+                        <li><a href="https://github.com/liangdabiao/geolook">GitHub 仓库</a></li>
+                        <li><a href="https://linux.do">Linux.do 社区</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>联系我们</h3>
+                    <p>邮箱：497070928@qq.com</p>
+                    <p>GitHub：https://github.com/liangdabiao</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 GeoLook GEO全流程平台. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>
