@@ -1189,6 +1189,85 @@ const products = [
         techStack: ['Python', 'OpenAI图像API', 'apimart.ai', 'JSON模板', 'matplotlib', 'LLM Agents', 'SKILL.md', 'Pillow'],
         category: '教育工具',
         difficulty: '进阶'
+    },
+    {
+        id: 'fastmoss-rpa-skills',
+        name: 'FastMoss RPA Skills - TikTok Shop数据分析',
+        description: '基于浏览器RPA + 数据分析的TikTok Shop分析工具集，覆盖fastmoss.com全部7个核心模块。通过Kimi WebBridge驱动用户已登录的浏览器，自动抓取数据并生成分析报告。',
+        icon: '🛒',
+        tags: ['TikTok Shop', 'RPA', 'Browser自动化', 'Kimi WebBridge', '跨境电商', '数据分析'],
+        githubUrl: 'https://github.com/liangdabiao/fastmoss-rpa-skills',
+        features: ['7个核心模块全覆盖','Kimi WebBridge驱动已登录浏览器','自动抓取商品/店铺/达人数据','数据可视化分析报告','跨境选品辅助决策','反爬虫规避（使用真实用户Session）','批量任务编排','一键导出Excel/JSON'],
+        techStack: ['Browser RPA', 'Kimi WebBridge', 'Claude Code', 'Agent Skill', 'Python', '数据分析'],
+        category: '商业工具',
+        difficulty: '进阶',
+        pageUrl: './fastmoss-rpa-skills.html'
+    },
+    {
+        id: 'i18n-helper-skills',
+        name: 'i18n Helper Skills - 翻译Skills合集',
+        description: '两个互补不重叠的国际化/本地化 skill，覆盖「静态内容站点」和「编程框架源码」两大场景。支持 codex、claude code、workbuddy 等 agent skills。',
+        icon: '🌐',
+        tags: ['i18n', '国际化', '本地化', '翻译', 'Claude Skill', '静态站点', '编程框架'],
+        githubUrl: 'https://github.com/liangdabiao/i18n-helper-skills',
+        features: ['静态内容站点翻译（Markdown/HTML）','编程框架源码翻译（保留代码结构）','多语言同时支持','支持 codex/claude code/workbuddy','保留frontmatter与代码块','术语表统一管理','增量翻译','多文件批量处理'],
+        techStack: ['Claude Code', 'Agent Skill', 'Markdown', 'Frontmatter', '多语言NLP'],
+        category: 'Skill框架',
+        difficulty: '中等',
+        pageUrl: './i18n-helper-skills.html'
+    },
+    {
+        id: 'liurun-bookwriter-skills',
+        name: '刘润·罗振宇双风格长文写作Skill集',
+        description: '双风格长文写作 Skill 集，两个 skill，两种风格，一个目的——让你写出有"作家味"的长文。包含刘润商业洞察风格和罗振宇启发式风格两套完整写作体系。',
+        icon: '✍️',
+        tags: ['Claude Skill', '长文写作', '刘润风格', '罗振宇风格', '内容创作', '商业洞察'],
+        githubUrl: 'https://github.com/liangdabiao/liurun-bookwriter-skills',
+        features: ['刘润风格：商业洞察+结构化论证','罗振宇风格：启发式+故事化表达','两套独立可切换的Skill','完整写作流程（选题→框架→正文→打磨）','金句库自动调用','文章节奏控制','开头结尾模板','输出可读性与传播力双提升'],
+        techStack: ['Claude Code', 'Agent Skill', 'Prompt Engineering', '中文长文'],
+        category: 'Skill框架',
+        difficulty: '中等',
+        pageUrl: './liurun-bookwriter-skills.html'
+    },
+    {
+        id: 'sellersprite-rpa-skills',
+        name: 'Sellersprite RPA Skills - 卖家精灵亚马逊工具集',
+        description: '基于浏览器RPA + 数据分析的卖家精灵工具集，覆盖sellersprite.com全部5个核心亚马逊数据分析模块。通过Kimi WebBridge驱动用户已登录的浏览器，自动抓取数据并生成分析报告。',
+        icon: '📊',
+        tags: ['亚马逊', '卖家精灵', 'RPA', 'Browser自动化', '跨境电商', '数据分析'],
+        githubUrl: 'https://github.com/liangdabiao/sellersprite-rpa-skills',
+        features: ['5个核心模块全覆盖','Kimi WebBridge驱动真实浏览器','选品/关键词/竞品/Listing/反查全流程','反查ASIN与市场容量分析','批量任务自动化','多站点支持（10+亚马逊站点）','数据导出与可视化','规避反爬虫'],
+        techStack: ['Browser RPA', 'Kimi WebBridge', 'Claude Code', 'Agent Skill', 'Python'],
+        category: '商业工具',
+        difficulty: '进阶',
+        pageUrl: './sellersprite-rpa-skills.html'
+    },
+    {
+        id: 'sorftime-rpa-skills',
+        name: 'Sorftime RPA Skills - Amazon选品RPA工具集',
+        description: '基于浏览器RPA + 数据分析的Amazon选品工具集，覆盖sorftime.com全部11个核心模块。通过Kimi WebBridge驱动用户已登录的浏览器，自动抓取数据并生成分析报告。',
+        icon: '🎯',
+        tags: ['Amazon', '选品', 'RPA', 'Browser自动化', '跨境电商', 'Sorftime'],
+        githubUrl: 'https://github.com/liangdabiao/sorftime-rpa-skills',
+        features: ['11个核心模块全覆盖（14站点）','Kimi WebBridge驱动真实Session','选品/市场分析/竞品监控','Fees计算器与利润测算','变体与评论深度分析','关键词排名追踪','批量任务编排','多维度数据可视化'],
+        techStack: ['Browser RPA', 'Kimi WebBridge', 'Claude Code', 'Agent Skill', 'Python', '数据分析'],
+        category: '商业工具',
+        difficulty: '进阶',
+        pageUrl: './sorftime-rpa-skills.html'
+    },
+    {
+        id: 'seedance-prompt-ads',
+        name: 'Seedance 2.0 视频广告制作助手',
+        description: '专业的 AI 视频广告提示词生成专家，帮助你制作品牌广告和带货广告。提供品牌广告和带货广告两种模式，生成符合 Seedance 2.0 风格的专业提示词。',
+        icon: '🎬',
+        tags: ['Seedance', 'AI视频', '广告创意', '提示词生成', '品牌广告', '带货广告', '在线工具'],
+        githubUrl: '',
+        features: ['品牌广告模式：构建品牌调性与视觉风格','带货广告模式：突出产品卖点与转化路径','专业提示词模板库','实时预览与调优','在线零安装使用','多场景案例参考','Markdown 渲染输出','适配 Seedance 2.0 模型'],
+        techStack: ['HTML5', 'CSS3', 'JavaScript', '阿里云百炼', '通义千问', 'SSE流式响应'],
+        category: 'AI对话',
+        difficulty: '初级',
+        externalUrl: 'https://liang.348349.xyz/seedance-prompt-ads',
+        pageUrl: './seedance-prompt-ads.html'
     }
 ];
 
@@ -1373,7 +1452,14 @@ function getProductPageUrl(productId) {
         'textbooks': './textbooks.html',
         'video-skills-toolkit': './video-skills-toolkit.html',
         'course-site-skill': './course-site-skill.html',
-        'stem-illustration-skill': './stem-illustration-skill.html'
+        'stem-illustration-skill': './stem-illustration-skill.html',
+        'fastmoss-rpa-skills': './fastmoss-rpa-skills.html',
+        'i18n-helper-skills': './i18n-helper-skills.html',
+        'liurun-bookwriter-skills': './liurun-bookwriter-skills.html',
+        'sellersprite-rpa-skills': './sellersprite-rpa-skills.html',
+        'sorftime-rpa-skills': './sorftime-rpa-skills.html',
+        'seedance-prompt-ads': './seedance-prompt-ads.html',
+        'lego-ai-handbook': './lego-ai-handbook.html'
     };
     return productPages[productId] || `./${productId}.html`;
 }
@@ -1575,7 +1661,7 @@ function useProduct(productId) {
 
     // 如果是AI定格动画生成器，直接跳转到产品详情页
     if (productId === 'ai-stop-motion') {
-        window.location.href = '/product.html';
+        window.location.href = '/ai-stop-motion.html';
         return;
     }
 
@@ -1814,7 +1900,14 @@ function useProduct(productId) {
         'textbooks': 'textbooks.html',
         'video-skills-toolkit': 'video-skills-toolkit.html',
         'course-site-skill': 'course-site-skill.html',
-        'stem-illustration-skill': 'stem-illustration-skill.html'
+        'stem-illustration-skill': 'stem-illustration-skill.html',
+        'fastmoss-rpa-skills': 'fastmoss-rpa-skills.html',
+        'i18n-helper-skills': 'i18n-helper-skills.html',
+        'liurun-bookwriter-skills': 'liurun-bookwriter-skills.html',
+        'sellersprite-rpa-skills': 'sellersprite-rpa-skills.html',
+        'sorftime-rpa-skills': 'sorftime-rpa-skills.html',
+        'seedance-prompt-ads': 'seedance-prompt-ads.html',
+        'lego-ai-handbook': 'lego-ai-handbook.html'
     };
 
     if (newProductPages[productId]) {
