@@ -2394,3 +2394,88 @@ section {
         padding: 1rem;
     }
 }
+/* ===== 全局悬浮二维码挂件 ===== */
+.qr-float {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--primary-color, #2563eb);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9998;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.qr-float:hover {
+    transform: scale(1.08);
+    box-shadow: 0 8px 26px rgba(37, 99, 235, 0.5);
+}
+.qr-panel {
+    position: fixed;
+    bottom: 92px;
+    right: 24px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+    padding: 18px;
+    display: none;
+    gap: 16px;
+    z-index: 9999;
+    max-width: 360px;
+}
+.qr-panel.qr-open { display: flex; }
+.qr-item {
+    flex: 1;
+    text-align: center;
+    min-width: 140px;
+}
+.qr-item img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    display: block;
+    margin: 0 auto 8px;
+}
+.qr-item-title {
+    font-weight: 600;
+    font-size: 14px;
+    color: #1f2937;
+    margin-bottom: 2px;
+}
+.qr-item-desc {
+    font-size: 12px;
+    color: #6b7280;
+}
+.qr-close {
+    position: absolute;
+    top: 6px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #9ca3af;
+    cursor: pointer;
+    line-height: 1;
+}
+.qr-close:hover { color: #374151; }
+@media (max-width: 480px) {
+    .qr-panel {
+        right: 12px;
+        left: 12px;
+        max-width: none;
+        flex-direction: column;
+        gap: 12px;
+    }
+    .qr-item img { width: 160px; height: 160px; }
+    .qr-float { bottom: 16px; right: 16px; }
+}

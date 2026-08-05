@@ -1509,9 +1509,10 @@ function renderProducts() {
 function renderFooterProducts() {
     if (!footerProducts) return;
 
-    footerProducts.innerHTML = products.map(product => `
+    const featuredProducts = products.slice(0, 4);
+    footerProducts.innerHTML = featuredProducts.map(product => `
         <li><a href="/product/${product.id}" data-product-id="${product.id}">${product.name}</a></li>
-    `).join('');
+    `).join('') + '<li><a href="docs/">所有产品使用指南 →</a></li>';
 
     footerProducts.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', function(e) {
@@ -2125,3 +2126,44 @@ activeNavStyle.textContent = `
     }
 `;
 document.head.appendChild(activeNavStyle);
+// ===== 全局悬浮二维码挂件 =====
+(function () {
+    function initQRWidget() {
+        if (document.getElementById('qrFloat')) return;
+
+        const panel = document.createElement('div');
+        panel.className = 'qr-panel';
+        panel.id = 'qrPanel';
+        panel.innerHTML = `
+            <button class="qr-close" id="qrClose" aria-label="关闭">&times;</button>
+            <div class="qr-item">
+                <img src="./me.jpg" alt="扫码加微信" loading="lazy">
+                <div class="qr-item-title">扫码加微信</div>
+                <div class="qr-item-desc">一对一咨询交流</div>
+            </div>
+            <div class="qr-item">
+                <img src="./donation-qr.jpg" alt="赞赏支持" loading="lazy">
+                <div class="qr-item-title">赞赏支持</div>
+                <div class="qr-item-desc">请作者喝杯咖啡</div>
+            </div>
+        `;
+
+        const btn = document.createElement('button');
+        btn.className = 'qr-float';
+        btn.id = 'qrFloat';
+        btn.setAttribute('aria-label', '扫码联系');
+        btn.innerHTML = '📱';
+
+        document.body.appendChild(panel);
+        document.body.appendChild(btn);
+
+        btn.addEventListener('click', () => panel.classList.toggle('qr-open'));
+        document.getElementById('qrClose').addEventListener('click', () => panel.classList.remove('qr-open'));
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initQRWidget);
+    } else {
+        initQRWidget();
+    }
+})();
