@@ -26,7 +26,7 @@ D:\liangdabiao-toolsets-page\
 ├── package.json                         # 项目依赖配置
 ├── README.md                            # 项目说明文档
 ├── DEPLOYMENT.md                        # 详细部署指南
-├── CLAUDE.md                            # Claude Code开发文档
+├── CLAUDE.md                            # Claude Code/Codex/Workbuddy 开发文档
 ├── 需求.txt                             # 项目需求说明
 ├── 子项目*.md                           # 各子项目详细文档
 └── *.html                               # 其他产品详情页面
@@ -41,7 +41,7 @@ D:\liangdabiao-toolsets-page\
 - **部署**: Cloudflare Workers, Wrangler CLI
 
 ### AI技术框架
-- **大语言模型**: Claude Code, OpenAI GPT, Gemini Nano
+- **大语言模型**: Claude Code/Codex/Workbuddy , OpenAI GPT, Gemini Nano
 - **多智能体**: CrewAI, LangGraph, LangChain
 - **向量数据库**: Chroma, Milvus, Qdrant
 - **数据处理**: Pandas, Numpy, Scikit-learn

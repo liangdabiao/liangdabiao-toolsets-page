@@ -218,7 +218,7 @@ if (productsGrid) {
 ### AI技术集成
 - **Gemini Nano**: 图片动画生成
 - **OpenAI API**: 数据分析
-- **Claude Code**: 代码分析
+- **Claude Code/Codex/Workbuddy **: 代码分析
 - **CrewAI**: 多智能体协作
 - **LangGraph**: RAG客服系统
 

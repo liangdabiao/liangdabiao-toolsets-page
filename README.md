@@ -28,7 +28,7 @@
 
 ### 📊 Claude数据分析助手
 - **GitHub**: https://github.com/liangdabiao/claude-data-analysis
-- **技术栈**: Claude Code, Python, Pandas, Streamlit
+- **技术栈**: Claude Code/Codex/Workbuddy , Python, Pandas, Streamlit
 - **描述**: 智能数据分析平台，利用Claude进行自动化数据处理和可视化分析
 - **功能**:
   - 智能数据清洗
@@ -125,7 +125,7 @@
 - **部署**: Cloudflare Workers, Wrangler CLI
 
 ### AI技术框架
-- **大语言模型**: Claude Code, OpenAI GPT, Gemini Nano
+- **大语言模型**: Claude Code/Codex/Workbuddy , OpenAI GPT, Gemini Nano
 - **多智能体**: CrewAI, LangGraph, LangChain
 - **向量数据库**: Chroma, Milvus, Qdrant
 - **数据处理**: Pandas, Numpy, Scikit-learn
@@ -370,7 +370,7 @@ MIT License - 详见 [LICENSE](LICENSE) 文件
 ### AI项目展示
 本网站展示的所有AI项目均为开源项目，感谢以下技术框架的支持：
 - [Gemini Nano](https://ai.google.dev/) - Google的轻量级AI模型
-- [Claude Code](https://claude.com/claude-code) - Anthropic的代码助手
+- [Claude Code/Codex/Workbuddy ](https://claude.com/claude-code) - Anthropic的代码助手
 - [CrewAI](https://crewai.com/) - 多智能体协作框架
 - [LangGraph](https://langchain-ai.github.io/langgraph/) - AI工作流框架
 - [Chroma](https://www.trychroma.com/) - 开源向量数据库
@@ -380,7 +380,7 @@ MIT License - 详见 [LICENSE](LICENSE) 文件
 ## 📚 相关文档
 
 - [DEPLOYMENT.md](./DEPLOYMENT.md) - 详细部署指南
-- [CLAUDE.md](./CLAUDE.md) - Claude Code开发文档
+- [CLAUDE.md](./CLAUDE.md) - Claude Code/Codex/Workbuddy 开发文档
 - [需求文档](./需求.txt) - 项目需求说明
 
 ---

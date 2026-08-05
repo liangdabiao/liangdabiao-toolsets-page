@@ -1,10 +1,10 @@
 # Exa企业与市场研究工具SKILL
 
-基于 Claude Code 和 Exa 搜索引擎的 AI 驱动企业与市场研究工具。
+基于 Claude Code/Codex/Workbuddy  和 Exa 搜索引擎的 AI 驱动企业与市场研究工具。
 
 ## 项目简介
 
-这不是传统的软件应用程序，而是一个专门的研究工具，通过 Claude Code 的技能系统和代理架构，利用 Exa 的高级网络搜索能力进行公司情报、竞争对手分析和市场研究。
+这不是传统的软件应用程序，而是一个专门的研究工具，通过 Claude Code/Codex/Workbuddy  的技能系统和代理架构，利用 Exa 的高级网络搜索能力进行公司情报、竞争对手分析和市场研究。
 参考来源： https://exa.ai/docs/reference/company-research-claude-skill
 
 github地址：https://github.com/liangdabiao/exa-research-mcp-skill 
@@ -39,7 +39,7 @@ github地址：https://github.com/liangdabiao/exa-research-mcp-skill
 claude mcp add --transport http exa "https://mcp.exa.ai/mcp?tools=web_search_advanced_exa"
 
 ```
-然后打开 claude code 进入，则可以使用。
+然后打开 Claude Code/Codex/Workbuddy  进入，则可以使用。
 
 
 ### 触发研究技能

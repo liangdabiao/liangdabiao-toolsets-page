@@ -13,9 +13,9 @@ const products = [
     {
         id: 'claude-data-analysis',
         name: 'Claude 数据分析助手',
-        description: '基于 Claude Code 的智能数据分析平台，使用 AI 子代理和斜杠命令革新数据分析工作流程。',
+        description: '基于 Claude Code/Codex/Workbuddy  的智能数据分析平台，使用 AI 子代理和斜杠命令革新数据分析工作流程。',
         icon: '📊',
-        tags: ['数据分析', 'Claude Code', 'AI子代理', '自动化'],
+        tags: ['数据分析', 'Claude Code/Codex/Workbuddy ', 'AI子代理', '自动化'],
         githubUrl: 'https://github.com/liangdabiao/claude-data-analysis',
         category: '数据分析',
         difficulty: '进阶'
@@ -122,10 +122,10 @@ const products = [
     },
     {
         id: 'claude-code-stock-deep-research-agent',
-        name: 'Claude Code 股票深度研究代理',
-        description: '基于 Claude Code 的专业股票投资尽调系统，采用8阶段研究框架和28个并行智能体，支持A股、港股、美股的全面基本面分析。',
+        name: 'Claude Code/Codex/Workbuddy  股票深度研究代理',
+        description: '基于 Claude Code/Codex/Workbuddy  的专业股票投资尽调系统，采用8阶段研究框架和28个并行智能体，支持A股、港股、美股的全面基本面分析。',
         icon: '🔬',
-        tags: ['股票研究', 'Claude Code', '投资尽调', '多智能体', '基本面分析', 'A股', '港股', '美股'],
+        tags: ['股票研究', 'Claude Code/Codex/Workbuddy ', '投资尽调', '多智能体', '基本面分析', 'A股', '港股', '美股'],
         githubUrl: 'https://github.com/liangdabiao/Claude-Code-Stock-Deep-Research-Agent',
         category: '金融科技',
         difficulty: '高级'
@@ -143,19 +143,19 @@ const products = [
     {
         id: 'claude-data-analysis-ultra',
         name: 'Claude 数据分析终极版',
-        description: '基于 Claude Code Skills 的互联网数据分析全自动化智能体，专注拉新、留存、促活、推荐、转化、A/B测试等互联网场景，一键完成多技能分析。',
+        description: '基于 Claude Code/Codex/Workbuddy  Skills 的互联网数据分析全自动化智能体，专注拉新、留存、促活、推荐、转化、A/B测试等互联网场景，一键完成多技能分析。',
         icon: '🚀',
-        tags: ['数据分析', 'Claude Code Skills', '互联网分析', '电商分析', '自动化', '全栈'],
+        tags: ['数据分析', 'Claude Code/Codex/Workbuddy  Skills', '互联网分析', '电商分析', '自动化', '全栈'],
         githubUrl: 'https://github.com/liangdabiao/claude-data-analysis-ultra-main',
         category: '数据分析',
         difficulty: '进阶'
     },
     {
         id: 'claude-code-deep-research',
-        name: 'Claude Code Deep Research',
-        description: '基于 Claude Code 的深度研究 Agent 系统，实现类似 OpenAI 和 Google 的 Deep Research 功能，通过 Graph of Thoughts 框架和多智能体协作完成专业研究。',
+        name: 'Claude Code/Codex/Workbuddy  Deep Research',
+        description: '基于 Claude Code/Codex/Workbuddy  的深度研究 Agent 系统，实现类似 OpenAI 和 Google 的 Deep Research 功能，通过 Graph of Thoughts 框架和多智能体协作完成专业研究。',
         icon: '🔍',
-        tags: ['深度研究', 'Claude Code', 'Graph of Thoughts', '多智能体', '自动化研究', 'GoT框架'],
+        tags: ['深度研究', 'Claude Code/Codex/Workbuddy ', 'Graph of Thoughts', '多智能体', '自动化研究', 'GoT框架'],
         githubUrl: 'https://github.com/liangdabiao/Claude-Code-Deep-Research-main',
         category: 'AI工具',
         difficulty: '高级'
@@ -163,9 +163,9 @@ const products = [
     {
         id: 'simple-claude-deep-research-agent',
         name: 'Simple Claude Deep Research Agent',
-        description: '简化版多智能体深度研究系统，完全小白友好，通过 Claude Code Skills 技术实现并行子代理执行综合性网络研究，支持直接查询、广度优先和深度优先三种模式。',
+        description: '简化版多智能体深度研究系统，完全小白友好，通过 Claude Code/Codex/Workbuddy  Skills 技术实现并行子代理执行综合性网络研究，支持直接查询、广度优先和深度优先三种模式。',
         icon: '🎯',
-        tags: ['深度研究', 'Claude Code', 'Skills', '多智能体', '小白友好', '并行处理'],
+        tags: ['深度研究', 'Claude Code/Codex/Workbuddy ', 'Skills', '多智能体', '小白友好', '并行处理'],
         githubUrl: 'https://github.com/liangdabiao/simple_claude_deep_research_agent',
         category: 'AI工具',
         difficulty: '初级'
@@ -183,9 +183,9 @@ const products = [
     {
         id: 'tikhub-api-skill',
         name: 'TikHub API Helper',
-        description: 'Claude Code Agent Skill，帮助用户搜索、发现和调用 TikHub API，实现对抖音、TikTok、小红书等12+主流社交平台数据的自动化调研，通过对话即可轻松调用API。',
+        description: 'Claude Code/Codex/Workbuddy  Agent Skill，帮助用户搜索、发现和调用 TikHub API，实现对抖音、TikTok、小红书等12+主流社交平台数据的自动化调研，通过对话即可轻松调用API。',
         icon: '🔌',
-        tags: ['TikHub API', '社交媒体', '数据分析', 'Claude Code', '多平台', 'API集成'],
+        tags: ['TikHub API', '社交媒体', '数据分析', 'Claude Code/Codex/Workbuddy ', '多平台', 'API集成'],
         githubUrl: 'https://github.com/liangdabiao/tikhub_api_skill',
         category: 'API工具',
         difficulty: '初级'
@@ -203,9 +203,9 @@ const products = [
     {
         id: 'skill-ten-prompt-generator',
         name: 'Skill Ten - Prompt Generator',
-        description: '基于 Claude Code Agent Skills 的 AI 提示词工程系统 - 10个场景化专家，自动路由，精准生成优秀提示词。通过自然语言请求，系统会自动路由到对应的专业 Skill，帮助用户写出高质量的 AI 提示词。',
+        description: '基于 Claude Code/Codex/Workbuddy  Agent Skills 的 AI 提示词工程系统 - 10个场景化专家，自动路由，精准生成优秀提示词。通过自然语言请求，系统会自动路由到对应的专业 Skill，帮助用户写出高质量的 AI 提示词。',
         icon: '🎨',
-        tags: ['Claude Code', 'Agent Skills', '提示词工程', 'AI', '自动化路由', '多场景'],
+        tags: ['Claude Code/Codex/Workbuddy ', 'Agent Skills', '提示词工程', 'AI', '自动化路由', '多场景'],
         githubUrl: 'https://github.com/liangdabiao/skill-ten-prompt-generator',
         category: 'AI工具',
         difficulty: '中级'
@@ -213,9 +213,9 @@ const products = [
     {
         id: 'social-research-agent',
         name: '社媒调研智能体',
-        description: '基于 Claude Code Skills 的社媒舆情深度调研系统，将社媒分析和深度研究两个技能合二为一，实现对抖音、小红书、微博等12+主流社交平台的自动化舆情分析和市场调研。',
+        description: '基于 Claude Code/Codex/Workbuddy  Skills 的社媒舆情深度调研系统，将社媒分析和深度研究两个技能合二为一，实现对抖音、小红书、微博等12+主流社交平台的自动化舆情分析和市场调研。',
         icon: '🔍',
-        tags: ['社媒调研', '舆情分析', 'Claude Code', 'Skills', 'TikHub API', '多平台', '自动化调研'],
+        tags: ['社媒调研', '舆情分析', 'Claude Code/Codex/Workbuddy ', 'Skills', 'TikHub API', '多平台', '自动化调研'],
         githubUrl: 'https://github.com/liangdabiao/social_research_agent',
         category: '商业工具',
         difficulty: '进阶'
@@ -223,9 +223,9 @@ const products = [
     {
         id: 'bright-data-mcp-research',
         name: 'Bright Data 深度调研工具',
-        description: '基于 Bright Data MCP 和 Claude Code Skills 的电商平台深度调研系统，利用专业网络爬虫技术实现 Amazon 等电商平台的市场分析、竞争研究和产品调研。',
+        description: '基于 Bright Data MCP 和 Claude Code/Codex/Workbuddy  Skills 的电商平台深度调研系统，利用专业网络爬虫技术实现 Amazon 等电商平台的市场分析、竞争研究和产品调研。',
         icon: '🌐',
-        tags: ['Bright Data', 'MCP', 'Claude Code', '电商调研', '网络爬虫', '深度研究', '数据分析'],
+        tags: ['Bright Data', 'MCP', 'Claude Code/Codex/Workbuddy ', '电商调研', '网络爬虫', '深度研究', '数据分析'],
         githubUrl: 'https://github.com/liangdabiao/Bright-Data-MCP-Claude-Skill-deep-research',
         category: '商业工具',
         difficulty: '进阶'
@@ -233,9 +233,9 @@ const products = [
     {
         id: 'market-insight-claude-skill',
         name: '市场洞察 Claude 技能',
-        description: '基于 Claude Code Agent Skills 的智能市场洞察系统，采用三段式分析框架（事实调研 → 结构化洞察 → 行动机会清单），将海量信息转化为可落地的商业洞察。',
+        description: '基于 Claude Code/Codex/Workbuddy  Agent Skills 的智能市场洞察系统，采用三段式分析框架（事实调研 → 结构化洞察 → 行动机会清单），将海量信息转化为可落地的商业洞察。',
         icon: '🎯',
-        tags: ['市场洞察', 'Claude Code', 'Agent Skills', '商业分析', '竞品研究', '机会识别'],
+        tags: ['市场洞察', 'Claude Code/Codex/Workbuddy ', 'Agent Skills', '商业分析', '竞品研究', '机会识别'],
         githubUrl: 'https://github.com/liangdabiao/market-insight-claude-skill',
         category: '商业工具',
         difficulty: '初级'
@@ -243,9 +243,9 @@ const products = [
     {
         id: 'exa-research-mcp-skill',
         name: 'Exa企业与市场研究工具',
-        description: '基于 Claude Code 和 Exa 搜索引擎的 AI 驱动企业与市场研究工具，通过技能系统和代理架构进行公司情报、竞争对手分析和市场研究。',
+        description: '基于 Claude Code/Codex/Workbuddy  和 Exa 搜索引擎的 AI 驱动企业与市场研究工具，通过技能系统和代理架构进行公司情报、竞争对手分析和市场研究。',
         icon: '🏢',
-        tags: ['Exa搜索', '公司研究', '竞争对手分析', 'Claude Code', '市场研究', 'MCP集成'],
+        tags: ['Exa搜索', '公司研究', '竞争对手分析', 'Claude Code/Codex/Workbuddy ', '市场研究', 'MCP集成'],
         githubUrl: 'https://github.com/liangdabiao/exa-research-mcp-skill',
         category: '商业工具',
         difficulty: '中级'
@@ -253,9 +253,9 @@ const products = [
     {
         id: 'monica-crm-claude-skill',
         name: 'Monica CRM Claude 技能',
-        description: '聊天就是 CRM - 基于 Monica 开源 CRM 的 Claude Code 技能，通过自然对话轻松管理客户关系、联系人信息、提醒事项和待办任务。',
+        description: '聊天就是 CRM - 基于 Monica 开源 CRM 的 Claude Code/Codex/Workbuddy  技能，通过自然对话轻松管理客户关系、联系人信息、提醒事项和待办任务。',
         icon: '👥',
-        tags: ['CRM', 'Claude Code', 'OpenClaw', '客户管理', '联系人', '开源'],
+        tags: ['CRM', 'Claude Code/Codex/Workbuddy ', 'OpenClaw', '客户管理', '联系人', '开源'],
         githubUrl: 'https://github.com/liangdabiao/monica-crm-claude-skill',
         category: '商业工具',
         difficulty: '初级'
@@ -283,9 +283,9 @@ const products = [
     {
         id: 'seedance2-storyboard-generator',
         name: 'Seedance 2.0 故事转视频工作流',
-        description: '基于 Claude Code + Skill + Seedance 2.0 的完整 AI 视频制作工作流，将小说、故事一键转化为多集视频系列。从剧本创作到素材规划，再到分镜脚本生成，实现全流程自动化。',
+        description: '基于 Claude Code/Codex/Workbuddy  + Skill + Seedance 2.0 的完整 AI 视频制作工作流，将小说、故事一键转化为多集视频系列。从剧本创作到素材规划，再到分镜脚本生成，实现全流程自动化。',
         icon: '🎥',
-        tags: ['AI视频制作', 'Seedance 2.0', 'Claude Code', '剧本创作', '分镜脚本', '视频工作流'],
+        tags: ['AI视频制作', 'Seedance 2.0', 'Claude Code/Codex/Workbuddy ', '剧本创作', '分镜脚本', '视频工作流'],
         githubUrl: 'https://github.com/liangdabiao/Seedance2-Storyboard-Generator',
         category: 'AI工具',
         difficulty: '进阶'

@@ -6,7 +6,7 @@ https://github.com/liangdabiao/claude-data-analysis
 
 # Claude Data Analysis Assistant
 
-A modern, intelligent data analysis platform built with Claude Code's sub-agents, slash-commands, and hooks. Transform your data analysis workflow with AI-powered assistance.
+A modern, intelligent data analysis platform built with Claude Code/Codex/Workbuddy 's sub-agents, slash-commands, and hooks. Transform your data analysis workflow with AI-powered assistance.
 
 ## 🚀 Quick Start
 
@@ -93,7 +93,7 @@ claude-data-analysis/
 │   ├── agents/          # Sub-agent configurations
 │   ├── commands/        # Slash command definitions
 │   ├── hooks/          # Automation scripts
-│   └── settings.json   # Claude Code settings
+│   └── settings.json   # Claude Code/Codex/Workbuddy  settings
 ├── data_storage/       # Your data files
 ├── visualizations/     # Generated charts
 ├── generated_code/     # Analysis code
@@ -112,7 +112,7 @@ The project includes sample data to get you started:
 ## 🔧 Configuration
 
 ### Environment Setup
-The project uses Claude Code's configuration system. Key settings:
+The project uses Claude Code/Codex/Workbuddy 's configuration system. Key settings:
 
 1. **Hooks**: Automated validation and context loading
 2. **Sub-agents**: Specialized AI assistants for different tasks
@@ -120,7 +120,7 @@ The project uses Claude Code's configuration system. Key settings:
 
 ### Requirements
 - Python 3.8+ for data analysis
-- Claude Code with sub-agents enabled
+- Claude Code/Codex/Workbuddy  with sub-agents enabled
 - Data files in CSV, JSON, or Excel format
 
 ## 📚 Getting Started Guide
@@ -234,7 +234,7 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 ## 🙏 Acknowledgments
 
-- Built with [Claude Code](https://claude.ai/code)
+- Built with [Claude Code/Codex/Workbuddy ](https://claude.ai/code)
 - Inspired by the [DATAGEN](https://github.com/starpig1129/DATAGEN) project
 - Powered by modern data science tools and frameworks
 
