@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepSeek Harness 插件开发 Skill | dsh 插件全流程工作流</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #0284c7;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .skill-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .skill-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .skill-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: #0284c7;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: #0369a1;
+        }
+        .workflow-diagram {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .workflow-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .flow-step {
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .flow-arrow {
+            font-size: 2em;
+            color: #0284c7;
+        }
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid #0284c7;
+        }
+        .category-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #0284c7;
+        }
+        .category-content {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .category-content ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .category-content li {
+            margin-bottom: 8px;
+        }
+        .feature-highlight {
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #0284c7;
+        }
+        .feature-highlight h3 {
+            color: #075985;
+            margin-bottom: 15px;
+        }
+        .feature-highlight p {
+            color: #0c4a6e;
+            line-height: 1.8;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        .install-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 4px solid #0284c7;
+        }
+        .install-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #0284c7;
+        }
+        .comparison-table {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .comparison-table th {
+            background: #bae6fd;
+            color: #075985;
+            font-weight: bold;
+        }
+        .comparison-table tr:hover {
+            background: #e0f2fe;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero-stats {
+                gap: 30px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🌐 AI工具集合</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主视觉区 -->
+    <section class="hero">
+        <div class="hero-badge">Node.js 22+ + Cordis + junction + tsdown</div>
+        <h1>DeepSeek Harness 插件开发 Skill</h1>
+        <p>指导 AI Agent 从 0 到 1 开发、构建、安装、测试 DeepSeek Harness（dsh）插件的完整工作流 Skill。基于 dsh 0.1.1-rc.2 与 dsh-openmaic 项目实战经验，内置两个已通过 web 界面实测的整包参考案例：天气插件与电商出图插件。</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">4种</span>
+                <span class="stat-label">插件类型</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">9篇</span>
+                <span class="stat-label">深度参考文档</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">2个</span>
+                <span class="stat-label">实测案例</span>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/dsh-plugin-developer-skill" class="btn btn-primary" style="background: white; color: #0284c7;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <!-- 项目背景 -->
+    <section class="section">
+        <h2 class="section-title">为什么做这个？</h2>
+        <p class="section-subtitle">dsh 插件开发缺乏规范，需要一套可复用工作流</p>
+        <div class="feature-highlight">
+            <h3>🔌 dsh 插件开发的痛点</h3>
+            <p>
+                DeepSeek Harness（dsh）采用"无特权内核、万物皆插件"的设计：模型适配器、工具注册表、Agent 循环、网页界面都是插件。给 dsh 增加新能力 = 写一个插件包挂到 Cordis 容器上，不需要 fork 源码。但插件开发存在诸多坑：必须用 Node 22+、宿主依赖要用 junction 链接不能手动 npm 装、npm install 顺序会清掉 junction、浏览器产物必须是单文件无动态 import、命令行跑通不算完还要 web 界面验收。这个 Skill 把"写一个 dsh 插件"做成一套可复用工作流，附带踩坑总结与参考案例。
+            </p>
+        </div>
+    </section>
+
+    <!-- 核心特性 -->
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">从骨架生成到 web 界面验收的全流程支持</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">🧩</div>
+                <h3 class="skill-title">四类插件支持</h3>
+                <p class="skill-description">覆盖 Provider（模型适配器）、Interceptor（拦截器）、Tool（可执行动作）、AgentLoop（Agent 循环）四种插件类型，附选型指南按场景推荐</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">⚙️</div>
+                <h3 class="skill-title">一键生成骨架</h3>
+                <p class="skill-description">提供 scaffold_plugin.py 脚本一键生成插件项目骨架，自动替换包名等占位符，省去手工搭建目录与配置的繁琐</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🛠️</div>
+                <h3 class="skill-title">defineTool 工具开发</h3>
+                <p class="skill-description">完整 defineTool 指南 + presentationMeta，把结构化数据投影给浏览器渲染，让"模型多一个可执行动作"覆盖 90% 需求</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📚</div>
+                <h3 class="skill-title">SkillProvider 技能开发</h3>
+                <p class="skill-description">SkillProvider { name, list(), get() } 开发指南，教模型按规范产出，正文按需加载，引导模型何时用工具通过 systemPrompt.section 注入</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🖥️</div>
+                <h3 class="skill-title">浏览器端 Toolview</h3>
+                <p class="skill-description">浏览器端 ctx.slots.inject('tool.call.toolview', ...) + keyed React 组件，把工具结果画成好看界面，附沙箱与 CSP 约束说明</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎬</div>
+                <h3 class="skill-title">纯 CSS 动效</h3>
+                <p class="skill-description">案例内置 6 种天气动效零外部依赖可作模板，纯 CSS 动画实现"动起来/有特效"，无需引入额外库</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📦</div>
+                <h3 class="skill-title">双端构建打包</h3>
+                <p class="skill-description">junction + tsdown 双端打包，ModuleLoader 加载机制，浏览器产物必须单文件、无动态 import、无多 chunk、带 __ModuleLoader__ banner/footer</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🧪</div>
+                <h3 class="skill-title">实测参考案例</h3>
+                <p class="skill-description">两个已通过 web 界面实测的整包案例：天气插件（查天气 + 动效卡片）、电商出图插件（Claude Skill 改造成 dsh 插件 + 代理异步出图 + 画廊卡片）</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作流程 -->
+    <section id="workflow" class="section">
+        <h2 class="section-title">工作流程</h2>
+        <p class="section-subtitle">从诊断需求到 web 界面验收交付</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">诊断需求</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">环境准备</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">生成骨架</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">实现逻辑</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">双端构建</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">安装测试</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">交付</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #0284c7;">关键环节说明</h3>
+            <div class="skills-grid">
+                <div class="category-card">
+                    <div class="category-title">1. 诊断需求与选型</div>
+                    <div class="category-content">
+                        <ul>
+                            <li><strong>Tool 插件</strong>：让模型多一个可执行动作（90% 需求）</li>
+                            <li><strong>Skill 插件</strong>：教模型按规范产出</li>
+                            <li><strong>systemPrompt</strong>：引导模型何时用工具</li>
+                            <li><strong>Toolview</strong>：把工具结果画成好看界面</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">2. 环境准备与骨架生成</div>
+                    <div class="category-content">
+                        Node 必须 22+（dsh 0.1.x 与 tsdown 0.22 都依赖 Promise.withResolvers 等新 API）；运行 scaffold_plugin.py 自动生成骨架并替换占位符，对照 assets/examples 案例填充逻辑。
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">3. 双端构建与安装</div>
+                    <div class="category-content">
+                        junction 链 dsh 发布包里的 @deepseek-ai/*（不要手动 npm 装一份，版本会不一致）；npm install 会清掉 junction，link_deps.py 必须在 npm install 之后跑；安装用 dsh plugin --profile &lt;名&gt; add file:&lt;绝对路径&gt;。
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">4. 测试与验收</div>
+                    <div class="category-content">
+                        命令行跑通不算完，最终要在 web 界面（http://127.0.0.1:3080）看到工具调用 + 渲染效果。浏览器产物必须是单文件、无动态 import、无多 chunk、带 __ModuleLoader__ banner/footer。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 安装配置 -->
+    <section id="install" class="section">
+        <h2 class="section-title">安装与配置</h2>
+        <p class="section-subtitle">简单几步，开始 dsh 插件开发之旅</p>
+
+        <div class="install-card">
+            <div class="install-title">1. 克隆项目</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">获取 Skill 代码：</p>
+            <pre class="code-block">git clone https://github.com/liangdabiao/dsh-plugin-developer-skill.git
+cd dsh-plugin-developer-skill</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">2. 准备环境</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">Node 必须为 22+ 版本：</p>
+            <pre class="code-block">node --version   # 必须 v22.x 或更高
+# 推荐用 fnm/nvm 管理 Node 版本
+fnm install 22 && fnm use 22</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">3. 生成插件骨架</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">一键生成插件项目骨架，自动替换占位符：</p>
+            <pre class="code-block">python scripts/scaffold_plugin.py &lt;目录&gt; --name @scope/name
+# 然后填充逻辑：工具/技能/系统提示/浏览器端</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">4. 安装依赖与链接宿主</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">注意顺序：先 npm install，再跑 link_deps.py：</p>
+            <pre class="code-block">npm install
+# 然后链接 dsh 发布包里的 @deepseek-ai/* 依赖
+python link_deps.py   # 必须在 npm install 之后跑</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">5. 双端构建</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">junction + tsdown 双端打包：</p>
+            <pre class="code-block">npm run build   # 生成浏览器端单文件产物
+# 产物带 __ModuleLoader__ banner/footer</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">6. 安装进 profile 并验收</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">安装插件并在 web 界面验收：</p>
+            <pre class="code-block">dsh plugin --profile &lt;名&gt; add file:&lt;绝对路径&gt;
+# 启动 dsh web 界面访问 http://127.0.0.1:3080
+# 改代码后用 sync_profile.py 同步</pre>
+        </div>
+    </section>
+
+    <!-- 技术栈 -->
+    <section class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">基于现代 Node 生态与 Cordis 容器构建</p>
+        <div class="tech-stack">
+            <div class="tech-item">Node.js 22+</div>
+            <div class="tech-item">Cordis</div>
+            <div class="tech-item">junction</div>
+            <div class="tech-item">tsdown 0.22</div>
+            <div class="tech-item">React</div>
+            <div class="tech-item">dsh 0.1.1-rc.2</div>
+            <div class="tech-item">Python（骨架脚本）</div>
+            <div class="tech-item">Agent Skill</div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于 dsh 插件开发 Skill 的常见疑问</p>
+
+        <div class="category-card">
+            <div class="category-title">Q: 为什么要强制 Node 22+？</div>
+            <div class="category-content">
+                A: dsh 0.1.x 与 tsdown 0.22 都依赖 Promise.withResolvers 等新 API，低于 22 版本会直接报错。这是硬约束，无法绕过。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 为什么不能用 npm 直接装 @deepseek-ai/*？</div>
+            <div class="category-content">
+                A: 宿主依赖必须用 junction 链接 dsh 发布包里的 @deepseek-ai/*，手动 npm 装一份会导致版本不一致，运行时出错。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: npm install 之后为什么还要跑 link_deps.py？</div>
+            <div class="category-content">
+                A: npm install 会清掉 junction 链接，所以 link_deps.py 必须在 npm install 之后跑，重新建立与 dsh 发布包的依赖链接。顺序不能颠倒。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 浏览器端产物有什么约束？</div>
+            <div class="category-content">
+                A: 浏览器产物必须是单文件、无动态 import、无多 chunk；必须带 __ModuleLoader__ banner/footer。违反任一约束会导致插件在 web 界面无法加载。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 命令行跑通了就算完成吗？</div>
+            <div class="category-content">
+                A: 不算。最终验收要在 web 界面（http://127.0.0.1:3080）看到工具调用 + 渲染效果。命令行测试只是中间环节，web 界面验收才是交付标准。
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer" id="contact">
+        <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>指导 AI Agent 从 0 到 1 开发、构建、安装、测试 DeepSeek Harness（dsh）插件的完整工作流 Skill。基于 dsh 0.1.1-rc.2 实战经验，内置两个已实测的整包参考案例。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/dsh-plugin-developer-skill">GitHub 仓库</a></li>
+                    <li><a href="mailto:497070928@qq.com">邮箱 497070928@qq.com</a></li>
+                    <li><a href="https://linux.do/u/liangdabiao">linux.do 社区</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 DeepSeek Harness 插件开发 Skill. All rights reserved.</p>
+        </div>
+            </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 移动端菜单
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

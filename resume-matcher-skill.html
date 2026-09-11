@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简历批评家 | AI 简历深度优化助手</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #4f46e5;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .skill-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .skill-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .skill-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: #4f46e5;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: #4338ca;
+        }
+        .workflow-diagram {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .workflow-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .flow-step {
+            background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .flow-arrow {
+            font-size: 2em;
+            color: #4f46e5;
+        }
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid #4f46e5;
+        }
+        .category-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #4f46e5;
+        }
+        .category-content {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .category-content ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .category-content li {
+            margin-bottom: 8px;
+        }
+        .feature-highlight {
+            background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #4f46e5;
+        }
+        .feature-highlight h3 {
+            color: #3730a3;
+            margin-bottom: 15px;
+        }
+        .feature-highlight p {
+            color: #312e81;
+            line-height: 1.8;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        .install-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 4px solid #4f46e5;
+        }
+        .install-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #4f46e5;
+        }
+        .comparison-table {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .comparison-table th {
+            background: #e0e7ff;
+            color: #3730a3;
+            font-weight: bold;
+        }
+        .comparison-table tr:hover {
+            background: #eef2ff;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero-stats {
+                gap: 30px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🌐 AI工具集合</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主视觉区 -->
+    <section class="hero">
+        <div class="hero-badge">AI Skill · Python · a4cv 编辑器</div>
+        <h1>简历批评家</h1>
+        <p>一个 AI 简历深度优化助手。把你的简历和目标岗位的 JD（职位描述）发给它，它会像一个资深的 HRBP + 技术面试官一样，帮你找出简历的问题，给出修改建议，并直接交付一份优化后的简历。</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">5步</span>
+                <span class="stat-label">审计报告</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">3种</span>
+                <span class="stat-label">简历格式</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">0</span>
+                <span class="stat-label">外部 API</span>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/resume-matcher-skill" class="btn btn-primary" style="background: white; color: #4f46e5;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <!-- 项目背景 -->
+    <section class="section">
+        <h2 class="section-title">为什么做这个？</h2>
+        <p class="section-subtitle">投简历之前，让 AI 像资深 HR 一样先帮你审一遍</p>
+        <div class="feature-highlight">
+            <h3>📄 简历优化的痛点</h3>
+            <p>
+                投简历前没人帮你看一眼，面试没过不知道差在哪，想换方向不确定简历能不能匹配目标岗位，
+                简历写好了想从 HR 视角找找毛病。传统简历工具只能做排版，不能结合具体 JD 做深度匹配分析，
+                更不会直接交付一份改好的简历。你需要的是一个懂招聘、懂技术、还能动手改简历的"批评家"。
+            </p>
+        </div>
+    </section>
+
+    <!-- 核心特性 -->
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">从审计到交付，一条龙简历优化能力</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">📋</div>
+                <h3 class="skill-title">5步审计报告</h3>
+                <p class="skill-description">第一印象 30 秒判断、地毯式逐条审计、修改蓝图、优化后简历、最终裁决，五步完整闭环</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📄</div>
+                <h3 class="skill-title">多格式支持</h3>
+                <p class="skill-description">PDF、DOCX、纯文本三种简历格式，直接发文件即可，由 extract-text/parser 脚本统一解析</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎯</div>
+                <h3 class="skill-title">JD 匹配度分析</h3>
+                <p class="skill-description">把简历与目标岗位职位描述深度比对，找出能力差距与关键词缺失，精准定位问题</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">✏️</div>
+                <h3 class="skill-title">一键优化交付</h3>
+                <p class="skill-description">直接交付一份改好的简历，无需自己二次加工，配合修改蓝图理解每处改动的原因</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎨</div>
+                <h3 class="skill-title">a4cv 可视化编辑器</h3>
+                <p class="skill-description">内置 A4 简历编辑器，导入优化后的 Markdown 简历，继续微调排版并导出为 PDF</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔌</div>
+                <h3 class="skill-title">文件解析脚本</h3>
+                <p class="skill-description">extract-text.py、normalize-markdown.py、parser.py、serve.py 一套脚本搞定文件处理与编辑器启动</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🧠</div>
+                <h3 class="skill-title">纯推理无需 API Key</h3>
+                <p class="skill-description">使用 AI 自身推理能力，零外部 API Key 即可工作；仅 PDF 解析需要 pdfminer.six</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔄</div>
+                <h3 class="skill-title">多次反复优化</h3>
+                <p class="skill-description">同一份简历可针对不同岗位反复优化，每次都生成独立的审计报告与优化版本</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作流程 -->
+    <section id="workflow" class="section">
+        <h2 class="section-title">优化工作流程</h2>
+        <p class="section-subtitle">从发送需求到拿到优化简历的完整链路</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">发送需求</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">提供简历+JD</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">文件解析</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">5步审计</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">交付优化简历</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">a4cv 微调</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #4f46e5;">核心原理与步骤</h3>
+            <div class="skills-grid">
+                <div class="category-card">
+                    <div class="category-title">1. 第一印象判断</div>
+                    <div class="category-content">
+                        模拟 HR 快筛场景，30 秒内判断简历能否过筛，给出最直接的"留/弃"判断与核心理由。
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">2. 地毯式审计</div>
+                    <div class="category-content">
+                        逐条指出简历中的问题，每条都带可执行的修改建议，从措辞、量化、关键词到结构全覆盖，不留死角。
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">3. 修改蓝图</div>
+                    <div class="category-content">
+                        给公式、给例子、给启发式问题，授人以渔——让你理解改动的底层逻辑，下次自己也能写更好。
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">4. a4cv 微调衔接</div>
+                    <div class="category-content">
+                        优化后的简历以 Markdown 形式交付，可一键导入 a4cv 编辑器继续精修排版，再导出为最终 PDF。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 安装配置 -->
+    <section id="install" class="section">
+        <h2 class="section-title">安装与配置</h2>
+        <p class="section-subtitle">只需一个 Python 依赖，即可启动完整流程</p>
+
+        <div class="install-card">
+            <div class="install-title">1. 克隆 skill 仓库</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">获取 skill 文件：</p>
+            <pre class="code-block">git clone https://github.com/liangdabiao/resume-matcher-skill.git
+cd resume-matcher-skill</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">2. 安装依赖</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">仅 PDF 解析需要 pdfminer.six；DOCX 与纯文本可不装：</p>
+            <pre class="code-block">pip install -r ".agents/skills/resume-matcher/requirements.txt"</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">3. 启动 a4cv 可视化编辑器</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">需要 Python，无需额外安装：</p>
+            <pre class="code-block">python ".agents/skills/resume-matcher/scripts/serve.py"</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">4. 访问编辑器</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">在浏览器中打开：</p>
+            <pre class="code-block">http://localhost:8765/a4cv/</pre>
+        </div>
+    </section>
+
+    <!-- 技术栈 -->
+    <section class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">轻量、零外部 API、纯本地可运行</p>
+        <div class="tech-stack">
+            <div class="tech-item">Python</div>
+            <div class="tech-item">pdfminer.six</div>
+            <div class="tech-item">HTML</div>
+            <div class="tech-item">a4cv 编辑器</div>
+            <div class="tech-item">Markdown</div>
+            <div class="tech-item">AI 推理</div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于简历批评家 skill 的常见疑问</p>
+
+        <div class="category-card">
+            <div class="category-title">Q: 需要外部 API Key 吗？</div>
+            <div class="category-content">
+                A: 不需要。skill 使用 AI 自身的推理能力，零外部 API Key 即可工作。仅 PDF 解析需要安装 pdfminer.six。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 支持哪些简历格式？</div>
+            <div class="category-content">
+                A: 支持 PDF、DOCX、纯文本三种格式。图片格式的简历（扫描件/JPG/PNG）无法解析文字，加密 PDF 也无法处理。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 没有现成 JD 可以用吗？</div>
+            <div class="category-content">
+                A: 可以。告诉 AI 你想投什么岗位，AI 也可以基于岗位描述帮你分析；JD 越详细，分析越精准。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 和 resume-matcher-agent-cn 是什么关系？</div>
+            <div class="category-content">
+                A: 两者形态不同：resume-matcher-agent-cn 是 Next.js + FastAPI 全栈 Web 应用；本仓库是 Skill 形态，作为 AI Agent 的技能包加载，更轻量，可直接在 Agent 对话中调用，无需部署服务。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 可以多次优化同一份简历吗？</div>
+            <div class="category-content">
+                A: 可以。针对不同岗位反复优化同一份简历，每次都生成独立的审计报告与优化版本，配合 a4cv 编辑器微调最终排版。
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer" id="contact">
+        <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>一个 AI 简历深度优化助手 skill，像资深 HRBP + 技术面试官一样审计简历并交付优化版本，附带 a4cv 可视化编辑器，零外部 API Key 即可使用。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/resume-matcher-skill">GitHub 仓库</a></li>
+                    <li><a href="mailto:497070928@qq.com">邮箱 497070928@qq.com</a></li>
+                    <li><a href="https://linux.do/u/liangdabiao">linux.do 主页</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 简历批评家. All rights reserved.</p>
+        </div>
+            </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 移动端菜单
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

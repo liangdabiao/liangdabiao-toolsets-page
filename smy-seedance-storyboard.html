@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上美影风格短剧生成器 | 一键生成上美影AI短剧制作文档</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #ea580c;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .skill-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .skill-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .skill-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: #ea580c;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: #c2410c;
+        }
+        .workflow-diagram {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .workflow-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .flow-step {
+            background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .flow-arrow {
+            font-size: 2em;
+            color: #ea580c;
+        }
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid #ea580c;
+        }
+        .category-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #ea580c;
+        }
+        .category-content {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .category-content ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .category-content li {
+            margin-bottom: 8px;
+        }
+        .feature-highlight {
+            background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #ea580c;
+        }
+        .feature-highlight h3 {
+            color: #9a3412;
+            margin-bottom: 15px;
+        }
+        .feature-highlight p {
+            color: #7c2d12;
+            line-height: 1.8;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        .install-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 4px solid #ea580c;
+        }
+        .install-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #ea580c;
+        }
+        .comparison-table {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .comparison-table th {
+            background: #ffedd5;
+            color: #9a3412;
+            font-weight: bold;
+        }
+        .comparison-table tr:hover {
+            background: #fff7ed;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero-stats {
+                gap: 30px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🌐 AI工具集合</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主视觉区 -->
+    <section class="hero">
+        <div class="hero-badge">Claude Code + 即梦/Seedream + Seedance 2.0</div>
+        <h1>上美影风格短剧生成器</h1>
+        <p>你给一个故事，它还你一套能直接拿去出图、出视频的上美影短剧制作文档。上海美术电影制片厂复古手绘动画味道——概括造型、手工线条、大片平涂矿物颜料色，从剧本到分镜全流程中文交付，复制就能用。</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">5样</span>
+                <span class="stat-label">交付文档</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">4种</span>
+                <span class="stat-label">子风格</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">15s</span>
+                <span class="stat-label">单集时长</span>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/smy-seedance-storyboard" class="btn btn-primary" style="background: white; color: #ea580c;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <!-- 项目背景 -->
+    <section class="section">
+        <h2 class="section-title">为什么做这个？</h2>
+        <p class="section-subtitle">让 AI 不再跑偏成"假上美影"，把好故事变成能直接出片的制作文档</p>
+        <div class="feature-highlight">
+            <h3>🎬 上美影短剧制作的痛点</h3>
+            <p>
+                直接让 AI 生成上美影风格视频，画面常常跑偏成油画感的"假上美影"——出现阴影、渐变、3D 体积感，
+                失去纯 2D 平涂的手工味道。同时跨集制作时颜色容易跑色，角色造型难以保持一致，
+                编导需要逐帧手填分镜表、来回调提示词，效率低下。这个项目把"风格咒语、色盘、狠命令、尾帧衔接"
+                等实测机关固化进 Skill，一句话需求就能产出五件套制作文档，让即梦/Seedream 出图、Seedance 2.0 出片全程稳定可控。
+            </p>
+        </div>
+    </section>
+
+    <!-- 核心特性 -->
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">从故事到成片的全套中文制作文档，复制就能用</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">📜</div>
+                <h3 class="skill-title">故事转剧本</h3>
+                <p class="skill-description">把一句话、小说、神话典故转成四幕结构分集剧本，推荐说书人旁白体制，带台词、字幕卡点，每集15秒</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎨</div>
+                <h3 class="skill-title">专剧专色盘</h3>
+                <p class="skill-description">为每部剧声明专用色盘（主四色+0-2扩展色，如朱砂红/鎏金/墨黑/青瓷绿），所有提示词逐字引用同一串颜色名，跨集不跑色</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📦</div>
+                <h3 class="skill-title">素材出图清单</h3>
+                <p class="skill-description">角色(C01-C99)、场景(S01-S99)、道具(P01-P99)编号提示词，贴到即梦/Seedream/豆包直接出图，Midjourney用英文对照版</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎬</div>
+                <h3 class="skill-title">每集分镜脚本</h3>
+                <p class="skill-description">Seedance 2.0专用时间轴格式(0-3s/3-6s/6-9s/9-12s/12-15s)，首行固定上美影风格行+色盘，整段粘贴即可出片</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔗</div>
+                <h3 class="skill-title">尾帧无缝衔接</h3>
+                <p class="skill-description">每集最后一帧画面描述，下一集起把上一集视频传上去选"延长"，集与集画面无缝衔接</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎭</div>
+                <h3 class="skill-title">上美影风格咒语</h3>
+                <p class="skill-description">固定风格块贴在每条提示词开头+结尾两句狠命令（必须纯2D平涂！绝对不要阴影渐变3D体积感！），防止AI跑偏成油画感假上美影</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🖼️</div>
+                <h3 class="skill-title">多种子风格切换</h3>
+                <p class="skill-description">石蓝淡墨绘本、水墨淡彩、剪纸风、敦煌重彩四种子风格点名即切换，参照新中式绘本/小蝌蚪找妈妈/葫芦兄弟/九色鹿</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📚</div>
+                <h3 class="skill-title">示例项目抄作业</h3>
+                <p class="skill-description">内置鲁智深醉闹五台山项目（醉闹喜剧），含剧本、素材清单、E01-E05分镜、使用指南四件套，照着抄即可上手</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作流程 -->
+    <section id="workflow" class="section">
+        <h2 class="section-title">制作流程</h2>
+        <p class="section-subtitle">三步走：说人话提需求 → 回答几个小问题 → 照文档去平台干活</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">说人话提需求</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">回答集数画幅基调</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">生成制作文档</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">出图出片</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #ea580c;">风格不跑偏的核心机关</h3>
+            <div class="skills-grid">
+                <div class="category-card">
+                    <div class="category-title">1. 风格咒语</div>
+                    <div class="category-content">
+                        每条提示词开头贴一段固定的上美影风格块，定义手绘墨线、水粉平涂、矿物颜料色、胶片颗粒感
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">2. 结尾狠命令</div>
+                    <div class="category-content">
+                        结尾两句狠命令：必须纯2D平涂！绝对不要阴影、不要渐变、不要3D体积感！必须大面积留白！没有它AI容易渲染成油画感假上美影
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">3. 一剧一色盘</div>
+                    <div class="category-content">
+                        所有提示词逐字引用同一串颜色名，跨集不跑色；角色用专属主色+专属纹样+怪色点缀区分
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">4. 视频延长衔接</div>
+                    <div class="category-content">
+                        第一集直接生成，第二集起把上一集视频传上去选"延长"，尾帧描述保证集与集画面无缝衔接
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 安装配置 -->
+    <section id="install" class="section">
+        <h2 class="section-title">安装与配置</h2>
+        <p class="section-subtitle">作为 Claude Code Skill 使用，几步开始上美影短剧创作</p>
+
+        <div class="install-card">
+            <div class="install-title">1. 克隆项目</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">获取 Skill 源码：</p>
+            <pre class="code-block">git clone https://github.com/liangdabiao/smy-seedance-storyboard.git
+cd smy-seedance-storyboard</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">2. 安装到 Skill 目录</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">将项目放入 Claude Code 的 skills 目录：</p>
+            <pre class="code-block"># 复制到 .claude/skills/ 下
+cp -r smy-seedance-storyboard ~/.claude/skills/</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">3. 在 Claude Code 中调用</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">通过 skill 命令启动上美影短剧生成流程：</p>
+            <pre class="code-block">/skill smy-seedance-storyboard</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">4. 提供故事并回答问题</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">说一句话提需求（如"做一个武松打虎的上美影短剧，5集"），回答集数、画幅、基调，不想答就说"都用默认"。</p>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">5. 拿文档去平台干活</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">拿素材清单去即梦/Seedream出图，拿每集分镜去Seedance 2.0出片，剪辑软件拼集配旁白和锣鼓点完片。</p>
+        </div>
+    </section>
+
+    <!-- 技术栈 -->
+    <section class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">打通剧本生成、出图、出视频的国产AI全链路</p>
+        <div class="tech-stack">
+            <div class="tech-item">Claude Code</div>
+            <div class="tech-item">即梦</div>
+            <div class="tech-item">Seedream</div>
+            <div class="tech-item">Seedance 2.0</div>
+            <div class="tech-item">Midjourney</div>
+            <div class="tech-item">GPT-Image-2</div>
+            <div class="tech-item">Nano Banana Pro</div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于上美影风格短剧生成器的常见疑问</p>
+
+        <div class="category-card">
+            <div class="category-title">Q：出图变成3D/有阴影渐变怎么办？</div>
+            <div class="category-content">
+                A：检查提示词结尾的两句狠命令是不是被删了；还不行就追加负面词：不要阴影，不要渐变，不要3D渲染，不要体积光，不要写实照片。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q：每集多长？多少集合适？</div>
+            <div class="category-content">
+                A：每集15秒。故事紧凑用5集（75秒），完整叙事10-20集。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q：为什么提示词都是中文？</div>
+            <div class="category-content">
+                A：默认面向即梦/Seedream/豆包等中文平台。用Midjourney时换素材清单里保留的英文对照版风格块即可。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q：可以不用上美影风格吗？</div>
+            <div class="category-content">
+                A：这个skill就是为上美影而生的，风格是立身之本。其他风格请用通用视频制作流程。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q：和通用 Seedance 分镜生成器有什么区别？</div>
+            <div class="category-content">
+                A：通用分镜生成器面向任意风格视频，本 Skill 专门锁定上美影复古手绘动画风格，内置风格咒语、色盘声明、狠命令、尾帧衔接等机关，确保跨集稳定不跑偏，是为上美影而生的专属工作流。
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer" id="contact">
+        <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>上美影风格短剧生成器，把故事转成上美影复古手绘动画短剧制作文档，打通Claude Code剧本、即梦/Seedream出图、Seedance 2.0出片的全流程，风格咒语+色盘+狠命令确保跨集不跑偏。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/smy-seedance-storyboard">GitHub 仓库</a></li>
+                    <li><a href="https://linux.do/u/liangdabiao">linux.do 主页</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 上美影风格短剧生成器. All rights reserved.</p>
+        </div>
+            </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 移动端菜单
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

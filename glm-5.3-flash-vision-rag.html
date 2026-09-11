@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLM-5.3-Flash 视觉RAG技能集 | AI看懂PDF与视频</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #65a30d 0%, #4d7c0f 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #65a30d;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .skill-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .skill-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .skill-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: #65a30d;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: #4d7c0f;
+        }
+        .workflow-diagram {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .workflow-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .flow-step {
+            background: linear-gradient(135deg, #65a30d 0%, #4d7c0f 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .flow-arrow {
+            font-size: 2em;
+            color: #65a30d;
+        }
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid #65a30d;
+        }
+        .category-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #65a30d;
+        }
+        .category-content {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .category-content ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .category-content li {
+            margin-bottom: 8px;
+        }
+        .feature-highlight {
+            background: linear-gradient(135deg, #f7fee7 0%, #ecfccb 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #65a30d;
+        }
+        .feature-highlight h3 {
+            color: #4d7c0f;
+            margin-bottom: 15px;
+        }
+        .feature-highlight p {
+            color: #365314;
+            line-height: 1.8;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        .install-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 4px solid #65a30d;
+        }
+        .install-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #65a30d;
+        }
+        .comparison-table {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .comparison-table th {
+            background: #ecfccb;
+            color: #4d7c0f;
+            font-weight: bold;
+        }
+        .comparison-table tr:hover {
+            background: #f7fee7;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero-stats {
+                gap: 30px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🌐 AI工具集合</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主视觉区 -->
+    <section class="hero">
+        <div class="hero-badge">Python + 智谱 GLM-5.3-Flash 视觉大模型</div>
+        <h1>GLM-5.3-Flash 视觉RAG技能集</h1>
+        <p>同一套"让 AI 看懂资料"的技术嫁接到智谱 GLM-5.3-Flash 视觉大模型上，做成三件趁手工具：看懂 PDF、看懂视频、把带货视频变成提示词。回答必须可核对：PDF 版给原页截图、视频版给关键时刻关键帧和可播放片段、提示词版给逐镜头原片画面对照。</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">3个</span>
+                <span class="stat-label">视觉技能</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">2阶段</span>
+                <span class="stat-label">漏斗省钱</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">答案可核对</span>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/glm-5.3-flash-vision-rag" class="btn btn-primary" style="background: white; color: #65a30d;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <!-- 项目背景 -->
+    <section class="section">
+        <h2 class="section-title">为什么做这个？</h2>
+        <p class="section-subtitle">把整份资料反复塞给 AI 又贵又慢，需要"先做笔记再翻笔记"</p>
+        <div class="feature-highlight">
+            <h3>🔍 视觉 RAG 的痛点</h3>
+            <p>
+                直接把整份 PDF 或整段视频反复塞给视觉大模型，既贵又慢——120 页的书每次提问都要全读一遍，
+                15 秒的视频逐帧分析要烧大量 token。而且答案往往无法核对，模型可能编造。本工具集采用
+                "先做笔记，再翻笔记"的两阶段漏斗：通读一遍写卡片（每份资料只做一次，永久缓存），
+                提问时本地查卡片筛候选（免费），模型只精读命中部分（1次调用）。
+                120 页的书问一次只需读六七页，省下大量成本，且答案带页码、关键帧、原片对照，可核对不编造。
+            </p>
+        </div>
+    </section>
+
+    <!-- 核心特性 -->
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">三大视觉技能，从 PDF 到视频到带货提示词的全场景覆盖</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">📄</div>
+                <h3 class="skill-title">PDF 视觉 RAG</h3>
+                <p class="skill-description">把整本 PDF 读一遍建索引，提问秒级回答，答案带页码和原页截图。支持通读型、定位型、细节型问题，兼容扫描版 PDF 与图表表格代码</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎬</div>
+                <h3 class="skill-title">视频视觉 RAG</h3>
+                <p class="skill-description">把视频按时间轴读一遍建索引，提问回答带时间戳，能切出可播放片段。输出关键帧 + 短视频片段 + 内嵌播放器的 HTML 预览页</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🛒</div>
+                <h3 class="skill-title">带货视频→Seedance提示词</h3>
+                <p class="skill-description">拆解带货视频镜头语言，按 S-A-C-S-C 编导方法论生成可直接粘贴进即梦 Seedance 的完整提示词包，含逐镜头对照原片关键帧</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">⏳</div>
+                <h3 class="skill-title">两阶段漏斗省钱</h3>
+                <p class="skill-description">阶段一通读写卡片（每份资料只做一次，永久缓存）；阶段二本地查卡片筛候选（免费），模型只精读命中部分。120页书问一次只读六七页</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔬</div>
+                <h3 class="skill-title">两级采样+微观层</h3>
+                <p class="skill-description">平时低密度看全局省 token；问到快速动作时自动对该时刻以 12fps 高密度重新抽帧放大分析，一次甩枪 150 毫秒也不漏</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎨</div>
+                <h3 class="skill-title">三种风格一键切换</h3>
+                <p class="skill-description">带货提示词支持 faithful（忠实复刻）、organic（自然流种草）、paid（千川付费）三种风格，一次拆解缓存复用三次生成</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">✅</div>
+                <h3 class="skill-title">答案必须可核对</h3>
+                <p class="skill-description">三个技能遵守同一约定：PDF 版给原页截图、视频版给关键时刻关键帧和可播放片段、提示词版给逐镜头原片画面对照，拒绝编造</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">💾</div>
+                <h3 class="skill-title">指纹缓存复用</h3>
+                <p class="skill-description">索引永远只建一次，缓存键=文件内容指纹，文件一变自动重算。同一条带货视频出三种风格=1次拆解缓存复用+3次生成</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作流程 -->
+    <section id="workflow" class="section">
+        <h2 class="section-title">AI 工作流程</h2>
+        <p class="section-subtitle">先"做笔记"，再"翻笔记"的两阶段漏斗</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">通读资料</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">写卡片</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">本地查卡片</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">模型看图确认</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">深度阅读作答</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #65a30d;">两阶段核心原理</h3>
+            <div class="skills-grid">
+                <div class="category-card">
+                    <div class="category-title">阶段一：通读写卡片（ingest/analyze）</div>
+                    <div class="category-content">
+                        每份资料只做一次，永久缓存。PDF：每页渲染成图片→视觉模型逐页阅读→每页一张卡片（讲什么/标题/关键词/有无图表）；视频：抽帧→视觉模型逐帧观看→每帧一张卡片（画面有什么/发生了什么/可见文字/运动强度）
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">阶段二：按卡片定位精读（ask/replicate）</div>
+                    <div class="category-content">
+                        每次只需几秒。你的问题→本地查卡片筛出候选（免费）→模型看图确认（1次调用）→只对命中部分深度阅读作答（1次调用）。省钱的秘密就在这个漏斗：不全读，只读命中的部分
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">微观层：快速动作高密度采样</div>
+                    <div class="category-content">
+                        问题里含"瞄准/击杀/瞬间/轨迹"这类词会自动触发微观层，对该时刻以 12fps 高密度重新抽帧放大分析，捕捉宏观 1fps 根本看不到的细节，也可手动指定时间窗
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">指纹缓存：索引只建一次</div>
+                    <div class="category-content">
+                        缓存键=文件内容指纹，文件一变自动重算，文件不变永不重算。同一条带货视频出三种风格=1次拆解缓存复用+3次生成，最大程度复用已有结果
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 安装配置 -->
+    <section id="install" class="section">
+        <h2 class="section-title">安装与配置</h2>
+        <p class="section-subtitle">给 AI 你的 GLM key，直接对话使用</p>
+
+        <div class="install-card">
+            <div class="install-title">1. 克隆项目</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">获取三个视觉技能源码：</p>
+            <pre class="code-block">git clone https://github.com/liangdabiao/glm-5.3-flash-vision-rag.git
+cd glm-5.3-flash-vision-rag</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">2. 安装依赖</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">安装 Python 运行依赖：</p>
+            <pre class="code-block">pip install -r requirements.txt</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">3. 配置 GLM API Key</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">在 codex/workbuddy 等 agent 中给 AI 你的智谱 GLM key：</p>
+            <pre class="code-block"># 设置智谱 GLM-5.3-Flash API Key
+export ZHIPU_API_KEY=your_glm_api_key</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">4. 加载技能</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">在 codex/workbuddy 等 agent 中直接给 url 下载 skill：</p>
+            <pre class="code-block"># 将对应子目录作为 skill 加载到 AI 助手
+# glm-5.3-flash-vision-rag        → PDF 视觉 RAG
+# glm-5.3-flash-vision-video-rag  → 视频视觉 RAG
+# glm-ecom-video-seedance-prompt  → 带货视频→提示词</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">5. 开始对话使用</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">
+                直接对 AI 说话即可，例如：扔给它一本 120 页手册问"四种模式是哪四种"；
+                给它一段录像问"关羽和吕布交战的动作细节"；给它一条爆款广告问"复刻它，改成自然流版本"。
+            </p>
+        </div>
+    </section>
+
+    <!-- 技术栈 -->
+    <section class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">基于 Python 与智谱 GLM-5.3-Flash 视觉大模型构建</p>
+        <div class="tech-stack">
+            <div class="tech-item">Python</div>
+            <div class="tech-item">智谱 GLM-5.3-Flash</div>
+            <div class="tech-item">视觉大模型</div>
+            <div class="tech-item">RAG 检索</div>
+            <div class="tech-item">两级采样</div>
+            <div class="tech-item">S-A-C-S-C 方法论</div>
+            <div class="tech-item">即梦 Seedance</div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于 GLM-5.3-Flash 视觉 RAG 技能集的常见疑问</p>
+
+        <div class="category-card">
+            <div class="category-title">Q: 索引建一次要多久？贵吗？</div>
+            <div class="category-content">
+                A: PDF 索引（120 页）约 6 次 API 调用、3 分钟；视频索引（15~30 秒短片）1~2 次调用、约 20 秒。索引永远只建一次，永久缓存，文件不变不重算。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 提问一次要花多少？</div>
+            <div class="category-content">
+                A: PDF 提问约 2 次调用、十几秒；视频普通提问 2 次调用，动作类触发微观层 3 次调用；带货视频拆解 5 次约 40 秒，复刻提示词生成任一风格 1 次约 80 秒。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 答案能核对吗？会不会编造？</div>
+            <div class="category-content">
+                A: 三个技能都遵守"答案必须可核对"约定：PDF 版给原页截图、视频版给关键时刻关键帧和可播放片段、提示词版给逐镜头原片画面对照。只索引前 8 页时追问全书问题，会明确回答"§03 正文不在提供页面中"，不编造。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 无音频理解怎么处理？</div>
+            <div class="category-content">
+                A: 视频里的说话声/BGM 内容不在能力范围（音效线索只能从画面推断）。时间戳为采样估计 ±2 秒，要精确请播放切出的片段。超长素材建议先切片处理。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 三种带货风格有什么区别？</div>
+            <div class="category-content">
+                A: faithful 忠实复刻最大还原原片；organic 自然流种草追求真实感、补促单镜头、缓节奏；paid 千川付费强钩子、极致特写、快节奏行动号召。一次拆解缓存可复用生成三种风格。
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer" id="contact">
+        <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>嫁接到智谱 GLM-5.3-Flash 视觉大模型上的三件视觉 RAG 技能：看懂 PDF、看懂视频、把带货视频变成提示词。采用两阶段漏斗省钱，答案必须可核对。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/glm-5.3-flash-vision-rag">GitHub 仓库</a></li>
+                    <li><a href="https://linux.do/u/liangdabiao">linux.do 主页</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 GLM-5.3-Flash 视觉RAG技能集. All rights reserved.</p>
+        </div>
+            </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 移动端菜单
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepSeek V4-Flash 视觉RAG问答系统 | PDF深度问答与检索</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #c026d3 0%, #a21caf 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #c026d3;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .skill-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .skill-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .skill-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: #c026d3;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: #a21caf;
+        }
+        .workflow-diagram {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .workflow-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .flow-step {
+            background: linear-gradient(135deg, #c026d3 0%, #a21caf 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .flow-arrow {
+            font-size: 2em;
+            color: #c026d3;
+        }
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid #c026d3;
+        }
+        .category-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #c026d3;
+        }
+        .category-content {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .category-content ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .category-content li {
+            margin-bottom: 8px;
+        }
+        .feature-highlight {
+            background: linear-gradient(135deg, #fae8ff 0%, #f5d0fe 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #c026d3;
+        }
+        .feature-highlight h3 {
+            color: #86198f;
+            margin-bottom: 15px;
+        }
+        .feature-highlight p {
+            color: #701a75;
+            line-height: 1.8;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        .install-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 4px solid #c026d3;
+        }
+        .install-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #c026d3;
+        }
+        .comparison-table {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .comparison-table th {
+            background: #f5d0fe;
+            color: #86198f;
+            font-weight: bold;
+        }
+        .comparison-table tr:hover {
+            background: #fae8ff;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero-stats {
+                gap: 30px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🌐 AI工具集合</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主视觉区 -->
+    <section class="hero">
+        <div class="hero-badge">Python + DeepSeek 视觉大模型 + PyMuPDF</div>
+        <h1>DeepSeek V4-Flash 视觉RAG问答系统</h1>
+        <p>基于 DeepSeek 视觉大模型 deepseek-v4-flash-vision-exp 的 PDF 深度问答与检索 agent skill。让 AI 真正"看懂"一份 PDF，回答时标注答案在第几页，并把那一页原图展示给你核对——支持文字版与扫描版，能看懂图表、表格、代码块、公式。</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">2次</span>
+                <span class="stat-label">每次提问API调用</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">135秒</span>
+                <span class="stat-label">建索引(120页)</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">100万</span>
+                <span class="stat-label">token上下文</span>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/deepseek-v4-flash-vision-rag" class="btn btn-primary" style="background: white; color: #c026d3;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <!-- 项目背景 -->
+    <section class="section">
+        <h2 class="section-title">为什么做这个？</h2>
+        <p class="section-subtitle">传统 PDF 问答方案的痛点，需要视觉 RAG 来突破</p>
+        <div class="feature-highlight">
+            <h3>📄 传统 PDF 问答方案的痛点</h3>
+            <p>
+                给 PDF 提问，市面上有几条路但都不完美：A 方案每次把整本 PDF 塞给模型，单次就要数万图片 token、几十秒响应；B 方案传统文本 RAG 只搜文字，看不懂图表/扫描件，页码引用常常错误；C 方案 PageIndex 只生成目录树、没有问答，靠模型猜+修复循环。本 skill 用"视觉阅读 + 三层漏斗检索"，让模型真正看页面图作答，页码来自物理事实天然精确，每次提问仅 2 次 API 调用、秒级响应。
+            </p>
+        </div>
+    </section>
+
+    <!-- 核心特性 -->
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">从建立索引到跨页召回，让 AI 真正读懂每一页</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">👁️</div>
+                <h3 class="skill-title">逐页视觉阅读</h3>
+                <p class="skill-description">将 PDF 每页渲染为图片上传至 DeepSeek 文件服务器，视觉模型逐页"阅读"，能看懂图表、表格、代码块、公式，而不只是认字</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📑</div>
+                <h3 class="skill-title">读书卡片索引</h3>
+                <p class="skill-description">每页生成一张 JSON 卡片记录标题、摘要、关键词，120 张卡片 + 每页文字层 + 全书大纲一起存进缓存，一次建立永久复用</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎯</div>
+                <h3 class="skill-title">三层漏斗检索</h3>
+                <p class="skill-description">本地 TF-IDF 粗筛 12 页(零费用) → 模型看图确认挑 4 页(关推理) → 推理深读作答(开推理)，便宜方法粗定位、贵的眼睛做确认</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📍</div>
+                <h3 class="skill-title">天然精确页码</h3>
+                <p class="skill-description">每张图就是"第 N 页"渲染出来，卡片标注 [第N页] 后交模型，页码来自物理事实不需要模型猜，章节定位与人工核对完全吻合</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔍</div>
+                <h3 class="skill-title">跨页召回</h3>
+                <p class="skill-description">"审批策略"能找齐分散在 p5/6/14/15/16 的全部 5 处提及，跨页召回所有相关页，不让答案遗漏</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📊</div>
+                <h3 class="skill-title">扫描版 PDF 支持</h3>
+                <p class="skill-description">索引靠视觉阅读，扫描版纯图片无文字层也能用；本地粗筛更依赖摘要/关键词，通常多一两秒精排兜底，准确性不受影响</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🖼️</div>
+                <h3 class="skill-title">自包含 HTML 预览</h3>
+                <p class="skill-description">每次回答生成自包含 HTML 预览页，答案 + 全部引用页原图内嵌其中，双击浏览器打开即可查看，无需联网</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">💡</div>
+                <h3 class="skill-title">成本极低</h3>
+                <p class="skill-description">建索引 5 次批量调用 + 120 次上传约 4.6 万 token 一次性付费；提问仅 2 次调用约 0.6~1.5 万 token；看指定页 0 次调用纯本地渲染</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作流程 -->
+    <section id="workflow" class="section">
+        <h2 class="section-title">工作流程</h2>
+        <p class="section-subtitle">读一遍书做笔记 + 按笔记翻书回答问题</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">PDF渲染</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">页图上传</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">视觉索引</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">粗筛12页</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">精排4页</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">推理作答</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #c026d3;">两阶段工作原理</h3>
+            <div class="skills-grid">
+                <div class="category-card">
+                    <div class="category-title">阶段一：读一遍书，做笔记（ingest，一次性）</div>
+                    <div class="category-content">
+                        PDF 渲染为每页一张图片 → 上传 DeepSeek 文件服务器 → 视觉模型逐页阅读（25 页打包进 1 个请求，吃满 100 万 token 上下文）→ 生成 index.json 读书卡片。模型每读一页写一张卡片记录标题、摘要、关键词，120 张卡片 + 每页文字层 + 全书大纲一起存进缓存。从此这本书被"读过了"，永远不用再做。
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">阶段二：按笔记翻书，回答问题（ask，每次提问）</div>
+                    <div class="category-content">
+                        <ul>
+                            <li><strong>① 查卡片</strong>：本地在 index.json 用 TF-IDF 关键词打分筛出最可能 12 页（毫秒级，零费用）</li>
+                            <li><strong>② 看图确认</strong>：模型看这 12 页截图，挑出真正相关的 4 页（第 1 次 API 调用）</li>
+                            <li><strong>③ 深读作答</strong>：这 4 页 ± 前后邻页原图摊开，开推理模式仔细读（第 2 次 API 调用）</li>
+                            <li>输出：答案（每个论点标 [第N页]）+ 引用页图片 + 自包含 HTML 预览</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">TF-IDF 本地检索细节</div>
+                    <div class="category-content">
+                        中文按二字滑窗分词（"审批策略"→审批/批策/策略），英文按整词取，去停用词；每页文档 = 标题/摘要/关键词各重复 3 遍 + 整页文字层 1 遍（权重×3）；打分 = Σ 词稀有度(idf) × min(出现次数,8)，idf 让稀有词值钱、次数封顶 8 防霸榜。
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">为什么页码天然精确</div>
+                    <div class="category-content">
+                        每张图片就是"第 N 页"渲染出来的，卡片上标注 [第N页] 标签后交给模型——页码来自物理事实，不需要模型猜。PageIndex 项目 80% 代码花在"让文字模型猜章节页码 → 验证 → 修复"上，本方案让这个环节整体不存在。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 安装配置 -->
+    <section id="install" class="section">
+        <h2 class="section-title">安装与配置</h2>
+        <p class="section-subtitle">简单几步，开始 PDF 视觉问答之旅</p>
+
+        <div class="install-card">
+            <div class="install-title">1. 安装依赖</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">本机一般已装好 pip 包：</p>
+            <pre class="code-block">pip install openai pymupdf</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">2. 配置 API Key（可选）</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">API key 默认内置；可用环境变量覆盖：</p>
+            <pre class="code-block">export DEEPSEEK_API_KEY="你的密钥"</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">3. 建立索引（每份 PDF 一次）</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">120 页约 2~3 分钟；重复运行命中缓存瞬间返回：</p>
+            <pre class="code-block">python scripts/ingest.py "你的文件.pdf"
+# 常用参数：
+# --force       重建索引
+# --limit 50    先索引前 50 页试水
+# --clean       清缓存</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">4. 提问</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">输出答案、引用页、页面图片、HTML 预览四段：</p>
+            <pre class="code-block">python scripts/ask.py "你的文件.pdf" "审批策略出厂默认是什么？"
+# 可调参数：--top 4 深读页数 | --cands 12 粗筛候选数 | --no-images 不出图片</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">5. 看指定页</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">高清渲染指定页，无需先建索引：</p>
+            <pre class="code-block">python scripts/show.py "你的文件.pdf" --pages 6,33 --dpi 220</pre>
+        </div>
+    </section>
+
+    <!-- 技术栈 -->
+    <section class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">基于 Python 与 DeepSeek 视觉大模型构建</p>
+        <div class="tech-stack">
+            <div class="tech-item">Python</div>
+            <div class="tech-item">DeepSeek API</div>
+            <div class="tech-item">deepseek-v4-flash-vision-exp</div>
+            <div class="tech-item">PyMuPDF</div>
+            <div class="tech-item">TF-IDF 检索</div>
+            <div class="tech-item">Files API</div>
+            <div class="tech-item">JSON Output</div>
+            <div class="tech-item">Agent Skill</div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于视觉 RAG 问答系统的常见疑问</p>
+
+        <div class="category-card">
+            <div class="category-title">Q: 索引建到一半断了或换电脑了，要重来吗？</div>
+            <div class="category-content">
+                A: 页图上传支持断点续传（files.json 记录进度），模型分析按批推进，重跑同一条命令会从断点继续。换电脑则服务端 file_id 仍在，只需拷走 .cache/ 目录。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: PDF 改了一个字，索引会更新吗？</div>
+            <div class="category-content">
+                A: 缓存键是 PDF 内容哈希，内容变了会自动另建新缓存，不会读旧索引。旧缓存可用 --clean 删（服务端文件配额 25GiB/1 万个，一般不用管）。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 扫描版（纯图片、无文字层）能用吗？</div>
+            <div class="category-content">
+                A: 能。索引靠视觉阅读；只是本地粗筛少了文字层加持，会更依赖摘要/关键词，通常多一两秒精排兜底，准确性不受影响。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 一本 500 页的书要建多久？</div>
+            <div class="category-content">
+                A: 大致线性外推：500 页约 10 分钟索引（21 次批量调用），之后每次提问仍是 2 次调用秒级响应。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 为什么答案页码和 PDF 阅读器显示的有时差 1~2 页？</div>
+            <div class="category-content">
+                A: 本 skill 用物理页码（第 1 张图 = 第 1 页）。书有自己的印刷页码（正文从"第 1 页"起算），两者天然差一个前言偏移。答案统一按物理页码引用，展示的原图就是证据，不会有歧义。
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer" id="contact">
+        <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>基于 DeepSeek 视觉大模型 deepseek-v4-flash-vision-exp 的 PDF 深度问答与检索 agent skill。让 AI 真正"看懂"PDF，回答时标注页码并展示原图核对。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/deepseek-v4-flash-vision-rag">GitHub 仓库</a></li>
+                    <li><a href="mailto:497070928@qq.com">邮箱 497070928@qq.com</a></li>
+                    <li><a href="https://linux.do/u/liangdabiao">linux.do 社区</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 DeepSeek V4-Flash 视觉RAG问答系统. All rights reserved.</p>
+        </div>
+            </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 移动端菜单
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

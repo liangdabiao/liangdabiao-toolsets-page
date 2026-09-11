@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小红书业务创意验证器 Skill | 对话式市场验证</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #db2777 0%, #be185d 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #db2777;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .skill-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .skill-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .skill-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: #db2777;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: #be185d;
+        }
+        .workflow-diagram {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .workflow-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .flow-step {
+            background: linear-gradient(135deg, #db2777 0%, #be185d 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .flow-arrow {
+            font-size: 2em;
+            color: #db2777;
+        }
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid #db2777;
+        }
+        .category-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #db2777;
+        }
+        .category-content {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .category-content ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .category-content li {
+            margin-bottom: 8px;
+        }
+        .feature-highlight {
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #db2777;
+        }
+        .feature-highlight h3 {
+            color: #9d174d;
+            margin-bottom: 15px;
+        }
+        .feature-highlight p {
+            color: #831843;
+            line-height: 1.8;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        .install-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 4px solid #db2777;
+        }
+        .install-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #db2777;
+        }
+        .comparison-table {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .comparison-table th {
+            background: #fce7f3;
+            color: #9d174d;
+            font-weight: bold;
+        }
+        .comparison-table tr:hover {
+            background: #fdf2f8;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero-stats {
+                gap: 30px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🌐 AI工具集合</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主视觉区 -->
+    <section class="hero">
+        <div class="hero-badge">Agent Skill + TikHub API + AI 分析</div>
+        <h1>小红书业务创意验证器</h1>
+        <p>把你的商业想法扔到小红书里验证一下，看看市场反应如何。一个 Agent Skill 技能，让你直接在对话中验证业务创意——不需要写代码、不需要跑脚本，说一句话就行。</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">0-100</span>
+                <span class="stat-label">综合评分</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">2种</span>
+                <span class="stat-label">验证模式</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">HTML</span>
+                <span class="stat-label">市场报告</span>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/xhs-business-validator-skill" class="btn btn-primary" style="background: white; color: #db2777;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <!-- 项目背景 -->
+    <section class="section">
+        <h2 class="section-title">为什么做这个？</h2>
+        <p class="section-subtitle">验证业务创意不该是开发者的专利</p>
+        <div class="feature-highlight">
+            <h3>🧠 传统业务验证的痛点</h3>
+            <p>
+                想验证一个商业想法，通常需要写代码爬数据、跑分析脚本、再人工整理结论——门槛高、耗时长，让很多不错的创意还没验证就搁置了。
+                而市面上又缺乏把"市场反馈"直接搬进对话里的工具。本 Skill 把整个流程封装成一句话触发：
+                搜索小红书相关笔记与评论 → AI 提取用户痛点与市场信号 → 给出 0-100 评分与可执行的判断，
+                让任何人都能在 1-15 分钟内拿到一份完整的市场验证报告。
+            </p>
+        </div>
+    </section>
+
+    <!-- 核心特性 -->
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">一句话触发，从想法到市场验证报告全流程打通</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">💬</div>
+                <h3 class="skill-title">对话内激活</h3>
+                <p class="skill-description">直接在对话中说出业务想法，技能自动触发验证流程，无需写代码、无需跑脚本，开箱即用。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔎</div>
+                <h3 class="skill-title">小红书笔记检索</h3>
+                <p class="skill-description">通过 TikHub API 搜索与你想法相关的笔记与评论，拿到真实用户讨论数据作为验证依据。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🧩</div>
+                <h3 class="skill-title">用户痛点分析</h3>
+                <p class="skill-description">用 AI 分析用户到底在抱怨什么、需要什么，提取关键痛点、现有解决方案与潜在市场机会。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📊</div>
+                <h3 class="skill-title">0-100 综合评分</h3>
+                <p class="skill-description">基于讨论热度、用户反馈、竞争情况等综合维度给想法打分，明确告诉你值不值得做。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">⚡</div>
+                <h3 class="skill-title">两种验证模式</h3>
+                <p class="skill-description">快速模式（1-2 分钟，搜 1 页看 5 条评论）适合初步判断；完整模式（5-15 分钟，搜 2 页看 20 条评论）适合认真分析出报告。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📄</div>
+                <h3 class="skill-title">HTML 验证报告</h3>
+                <p class="skill-description">每次运行生成完整 HTML 市场验证报告，保存在 reports/ 目录，浏览器双击即可查看，可分享可归档。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🗂️</div>
+                <h3 class="skill-title">历史报告回看</h3>
+                <p class="skill-description">一句"看看上次的报告"即可调出最近一次验证结果，附评分与主要问题摘要，方便对比多次创意。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎨</div>
+                <h3 class="skill-title">四色评分等级</h3>
+                <p class="skill-description">80-100 绿（机会很大可冲）/ 60-79 黄（有潜力值得深入）/ 40-59 橙（需再验证别急投）/ 0-39 红（建议换方向），结果一目了然。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作流程 -->
+    <section id="workflow" class="section">
+        <h2 class="section-title">验证工作流程</h2>
+        <p class="section-subtitle">从一句话想法到一份带评分的市场验证报告</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">说出想法</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">检索笔记评论</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">AI 痛点分析</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">综合评分</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">HTML 报告</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #db2777;">核心原理与步骤</h3>
+            <div class="skills-grid">
+                <div class="category-card">
+                    <div class="category-title">1. 触发与模式选择</div>
+                    <div class="category-content">
+                        在对话中说出业务创意，技能自动触发并询问使用快速模式还是完整模式；也可手动加载 <code>/xhs-business-validator</code>。
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">2. 数据采集</div>
+                    <div class="category-content">
+                        通过 TikHub API 搜索小红书与想法相关的笔记及评论，按模式决定抓取页数与评论条数，拿到一手用户讨论数据。
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">3. AI 信号提取</div>
+                    <div class="category-content">
+                        用 AI 分析内容，提取用户痛点、现有解决方案与市场机会，作为评分与结论的事实依据。
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">4. 综合评分与报告</div>
+                    <div class="category-content">
+                        基于讨论热度、用户反馈、竞争情况等综合评分（0-100），给出四色等级判断，并在 reports/ 生成可浏览器打开的 HTML 报告。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 安装配置 -->
+    <section id="install" class="section">
+        <h2 class="section-title">安装与配置</h2>
+        <p class="section-subtitle">Skill 形态，配置好 TikHub 密钥即可开箱即用</p>
+
+        <div class="install-card">
+            <div class="install-title">1. 获取 Skill</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">克隆仓库或放置到 skills 目录：</p>
+            <pre class="code-block">git clone https://github.com/liangdabiao/xhs-business-validator-skill.git
+cd xhs-business-validator-skill</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">2. 文件结构</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">Skill 目录结构如下：</p>
+            <pre class="code-block">./skills/xhs-business-validator/
+├── SKILL.md   # 技能定义（给 AI 看的）
+└── README.md  # 说明文件（给你看的）</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">3. 配置 TikHub 密钥</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">
+                技能已配置好 TikHub（https://tikhub.io/）密钥，开箱即用。如需使用自己的密钥，按 SKILL.md 说明配置。
+            </p>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">4. 在对话中使用</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">直接说出需求自动触发，或手动加载：</p>
+            <pre class="code-block">用户：帮我验证一下在深圳卖陈皮这个想法
+AI：  好的！用快速模式还是完整模式？
+
+# 手动加载
+/xhs-business-validator 帮我看看在深圳卖陈皮怎么样</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">5. 查看结果与报告</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">运行完成后浏览器打开 HTML 报告：</p>
+            <pre class="code-block">reports/在深圳卖陈皮_20260818_143022.html</pre>
+        </div>
+    </section>
+
+    <!-- 技术栈 -->
+    <section class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">轻量 Skill 架构，聚焦对话式市场验证</p>
+        <div class="tech-stack">
+            <div class="tech-item">Agent Skill</div>
+            <div class="tech-item">TikHub API</div>
+            <div class="tech-item">小红书数据</div>
+            <div class="tech-item">AI 痛点分析</div>
+            <div class="tech-item">综合评分模型</div>
+            <div class="tech-item">HTML 报告</div>
+            <div class="tech-item">SKILL.md 规范</div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于小红书业务创意验证器 Skill 的常见疑问</p>
+
+        <div class="category-card">
+            <div class="category-title">Q: 这个 Skill 和 xhs-business-idea-validator 是什么关系？</div>
+            <div class="category-content">
+                A: xhs-business-idea-validator 是 MCP 架构的全栈 Web 应用；本仓库 xhs-business-validator-skill 是它的 Skill 形态——直接在对话中触发，无需启动 Web 服务，更适合随想随验的场景。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 需要自己申请 TikHub 密钥吗？</div>
+            <div class="category-content">
+                A: 技能已配置好 TikHub（https://tikhub.io/）密钥，开箱即用。如需更高配额可自行配置自己的密钥。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 快速模式和完整模式怎么选？</div>
+            <div class="category-content">
+                A: 快速模式约 1-2 分钟，搜 1 页看 5 条评论，适合随便看看、初步判断；完整模式约 5-15 分钟，搜 2 页看 20 条评论，适合认真分析、要出报告。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 评分 70 分代表什么？</div>
+            <div class="category-content">
+                A: 评分采用四色等级：80-100 🟢 市场机会很大可以冲；60-79 🟡 有一定潜力值得深入；40-59 🟠 需要再验证别急着投钱；0-39 🔴 风险较高建议换个方向。70 分属于"有一定市场潜力"的黄色档。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 生成的 HTML 报告保存在哪？</div>
+            <div class="category-content">
+                A: 报告保存在 reports/ 目录，文件名形如「在深圳卖陈皮_20260818_143022.html」，浏览器双击即可打开查看。用"看看上次的报告"可回看最近一次结果。
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer" id="contact">
+        <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>小红书业务创意验证器 Skill：把商业想法扔进小红书验证市场反应。Agent Skill 形态，对话内一句话触发，AI 提取痛点并打分，生成 HTML 市场验证报告。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/xhs-business-validator-skill">GitHub 仓库</a></li>
+                    <li><a href="mailto:497070928@qq.com">邮箱联系</a></li>
+                    <li><a href="https://linux.do/u/liangdabiao">linux.do 主页</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>linux.do：https://linux.do/u/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 小红书业务创意验证器 Skill. All rights reserved.</p>
+        </div>
+            </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 移动端菜单
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

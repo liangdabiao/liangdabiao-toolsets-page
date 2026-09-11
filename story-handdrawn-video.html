@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>故事手绘视频生成器 | 中文故事变9:16竖屏手绘蜡笔风视频Skill</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #8b5cf6;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .skill-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .skill-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .skill-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: #8b5cf6;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: #6d28d9;
+        }
+        .workflow-diagram {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .workflow-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .flow-step {
+            background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .flow-arrow {
+            font-size: 2em;
+            color: #8b5cf6;
+        }
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid #8b5cf6;
+        }
+        .category-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #8b5cf6;
+        }
+        .category-content {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .category-content ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .category-content li {
+            margin-bottom: 8px;
+        }
+        .feature-highlight {
+            background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #8b5cf6;
+        }
+        .feature-highlight h3 {
+            color: #5b21b6;
+            margin-bottom: 15px;
+        }
+        .feature-highlight p {
+            color: #4c1d95;
+            line-height: 1.8;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        .install-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 4px solid #8b5cf6;
+        }
+        .install-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #8b5cf6;
+        }
+        .comparison-table {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .comparison-table th {
+            background: #ede9fe;
+            color: #5b21b6;
+            font-weight: bold;
+        }
+        .comparison-table tr:hover {
+            background: #f5f3ff;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero-stats {
+                gap: 30px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🌐 AI工具集合</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主视觉区 -->
+    <section class="hero">
+        <div class="hero-badge">Remotion 4.x + Agnes Video V2.0 + edge-tts</div>
+        <h1>故事手绘视频生成器</h1>
+        <p>把一段中文/英文故事文本变成 9:16 竖屏（720×1280）手绘蜡笔风短视频的 Remotion Skill。基于 Agnes Video V2.0 纯文生视频 + edge-tts 免费旁白的全免费视频制作方案，先 TTS 定时长，再逐场文生视频，画面自己会动。</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">9:16</span>
+                <span class="stat-label">竖屏成片</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">$0/秒</span>
+                <span class="stat-label">全免费方案</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">2种</span>
+                <span class="stat-label">视觉风格</span>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/story-handdrawn-video" class="btn btn-primary" style="background: white; color: #8b5cf6;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <!-- 项目背景 -->
+    <section class="section">
+        <h2 class="section-title">为什么做这个？</h2>
+        <p class="section-subtitle">让普通人也能零成本把故事变成会动的手绘短视频</p>
+        <div class="feature-highlight">
+            <h3>🎨 传统故事视频制作的痛点</h3>
+            <p>
+                手工制作故事短视频门槛很高：要会画分镜、要付费的视频/配音 API、字幕渲染难做到确定性一致。
+                常见的 AI 视频方案要么靠静帧翻页观感呆板，要么让视频模型直接画文字导致画面乱码中文，
+                要么依赖昂贵的图生视频接口。本 Skill 用「先 TTS 定时长，再纯文生视频」的方法论，
+                每场直接生成会动的视频片段，字幕永远由 Remotion 确定性渲染（MaShanZheng 毛笔字），
+                全程 Agnes + edge-tts 免费，真正做到零成本、可复用、一句话触发。
+            </p>
+        </div>
+    </section>
+
+    <!-- 核心特性 -->
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">从故事文本到 9:16 竖屏手绘蜡笔风短视频的全流程能力</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">🎬</div>
+                <h3 class="skill-title">纯文生视频</h3>
+                <p class="skill-description">每场直接调用 Agnes Video V2.0 生成一段会动的视频片段，画面自带运动；不用静帧、不用擦除、不用翻页，告别呆板观感。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🖌️</div>
+                <h3 class="skill-title">手绘蜡笔风</h3>
+                <p class="skill-description">默认 --style crayon：Q 版蜡笔色 + 记号笔轮廓，童话 / 生活 / 日记题材首选，三段式 prompt 拼接固定风格头 + 动作主体 + 运动尾。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📖</div>
+                <h3 class="skill-title">英文教学模式</h3>
+                <p class="skill-description">--style textbook 切换 Oxford 教材叙事插画风，由 TeachingCard.tsx 确定性叠加透明教学卡（关键词 / IPA / 释义 / 定义 / 例句），专做英语课文听力词汇视频。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔊</div>
+                <h3 class="skill-title">免费 TTS 旁白</h3>
+                <p class="skill-description">音频后端固定 edge-tts，免费、无需 API key。中文默认 zh-CN-XiaoyiNeural，英文 en-US-JennyNeural，在 narration.yaml 配置 voice / speed 即可。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">✍️</div>
+                <h3 class="skill-title">毛笔字字幕</h3>
+                <p class="skill-description">字幕永远由 Remotion 确定性渲染（MaShanZheng 毛笔字），prompt 里 negative 强制排除画面文字，禁止让视频模型画中文，杜绝画面乱码。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">⏱️</div>
+                <h3 class="skill-title">TTS 定时长</h3>
+                <p class="skill-description">ffprobe 量每段旁白真实时长，按 24fps、8n+1 规则算 num_frames（上限 441 ≈ 18.3s），先定时长再生成视频，时序精准对齐。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎯</div>
+                <h3 class="skill-title">9:16 竖屏成片</h3>
+                <p class="skill-description">720×1280 预览即默认成片，npm run render:preview 一键出片；需要高清时 npm run render 输出 1080×1920，适配手机短视频平台。</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">💰</div>
+                <h3 class="skill-title">全免费方案</h3>
+                <p class="skill-description">Agnes Video V2.0 当前 $0/秒 + edge-tts 免费，整体零成本。免费 key 限流 1 req/min，默认 --concurrency 1 串行，429 自动等 65s 重试不中断。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作流程 -->
+    <section id="workflow" class="section">
+        <h2 class="section-title">视频生成流程</h2>
+        <p class="section-subtitle">先 TTS 定时长，再纯文生视频，Remotion 确定性渲染</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">故事文本</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">TTS 定时长</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">逐场文生视频</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">Remotion 组装</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">渲染成片</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #8b5cf6;">核心环节说明</h3>
+            <div class="skills-grid">
+                <div class="category-card">
+                    <div class="category-title">1. 故事切句与 TTS</div>
+                    <div class="category-content">
+                        一句一拍，英文按 . ! ? ; 切、中文按 。！？；切，单句有字符上限，自然段空行分隔。每句对应一场视频，调用 edge-tts 生成旁白音频。
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">2. 时长反算帧数</div>
+                    <div class="category-content">
+                        ffprobe 量每段旁白真实时长，按 24fps 与 8n+1 规则计算 num_frames（上限 441 ≈ 18.3s）。旁白过长则提示在 story.txt 拆短句子。
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">3. 逐场纯文生视频</div>
+                    <div class="category-content">
+                        每场 prompt 三段式拼接：固定风格头 STYLE_HEADER + 该场动作主体 + 固定运动尾 MOTION_FOOTER（locked camera / paper cutouts / no drift），调 Agnes Video V2.0 异步任务 + 轮询出 mp4。
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">4. Remotion 确定性渲染</div>
+                    <div class="category-content">
+                        Remotion 4.x 组装视频片段 + MaShanZheng 毛笔字字幕 + 音轨，textbook 模式再叠加透明教学卡。720×1280 预览即成片，按需升 1080×1920。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 安装配置 -->
+    <section id="install" class="section">
+        <h2 class="section-title">安装与配置</h2>
+        <p class="section-subtitle">作为 Skill 安装，一句话触发视频生成</p>
+
+        <div class="install-card">
+            <div class="install-title">1. 安装 Skill</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">在 workbuddy、codex、Claude Code 中直接命令要求安装：</p>
+            <pre class="code-block">在 workbuddy, codex, claude code，直接命令要求安装 skill:
+https://github.com/liangdabiao/story-handdrawn-video</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">2. 安装依赖</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">进入项目目录后用原生 npm 安装（rtk npm install 会失败）：</p>
+            <pre class="code-block">npm install</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">3. 生成视频</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">中文故事默认蜡笔风；英文教学用 textbook 风格：</p>
+            <pre class="code-block">python scripts/gen_story_videos.py story.txt --title "我的小猫"
+
+python scripts/gen_story_videos.py story.txt \
+  --title "CQ001 What is the supreme law" \
+  --style textbook --lang en \
+  --teaching-content teaching_content.json</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">4. 渲染成片</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">720×1280 预览即默认成片，需要高清时跑 render：</p>
+            <pre class="code-block">npm run render:preview   # -> out/story-preview.mp4
+npm run render           # -> out/story.mp4 (1080x1920)</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">5. 配置 Agnes API Key（可选）</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">
+                视频后端固定 Agnes Video V2.0，免费 key 申请地址 https://agnes-ai.com/，限流 1 req/min，音频后端 edge-tts 无需 key。
+            </p>
+        </div>
+    </section>
+
+    <!-- 技术栈 -->
+    <section class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">全免费、可复用的视频制作工具链</p>
+        <div class="tech-stack">
+            <div class="tech-item">Remotion 4.x</div>
+            <div class="tech-item">Agnes Video V2.0</div>
+            <div class="tech-item">edge-tts</div>
+            <div class="tech-item">ffprobe</div>
+            <div class="tech-item">MaShanZheng 字体</div>
+            <div class="tech-item">Python</div>
+            <div class="tech-item">Node.js / npm</div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于故事手绘视频生成器的常见疑问</p>
+
+        <div class="category-card">
+            <div class="category-title">Q: 生成一段视频要花多少钱？</div>
+            <div class="category-content">
+                A: 视频用 Agnes Video V2.0 当前 $0/秒，旁白用 edge-tts 免费、无需 API key，整体零成本。免费 key 限流 1 req/min，每段 30s–2.5min，15 段约 15–40 分钟。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 视频里出现乱码中文/英文怎么办？</div>
+            <div class="category-content">
+                A: 说明该场 prompt 漏了 negative。不要重跑整轮，把缺失项写进下一场的 negative 即可；已有片段按 70% 接受，或只删那一个 &lt;sid&gt;.mp4 单跑。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: crayon 和 textbook 风格怎么选？</div>
+            <div class="category-content">
+                A: 默认 --style crayon 适合中文童话 / 生活 / 日记；--style textbook 适合英语课文 / 听力 / 词汇教学，会用 TeachingCard 叠加关键词、IPA、释义、定义、例句的透明教学卡。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 旁白超过 18 秒画面会怎样？</div>
+            <div class="category-content">
+                A: num_frames 上限 441（≈18.3s @ 24fps），旁白过长画面会早结束。解决办法是在 story.txt 里把长句拆短，一句一拍、单句不超字符上限。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 可以用自己录好的 mp3 + LRC 吗？</div>
+            <div class="category-content">
+                A: 可以。用 slice_from_lrc.py 切片，再 gen_story_videos.py --skip-tts --paragraph-beats 跳过 TTS，适合自带专业录音和 LRC 的教学片。
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer" id="contact">
+        <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>把中英文故事文本变成 9:16 竖屏手绘蜡笔风短视频的 Remotion Skill。基于 Agnes Video V2.0 纯文生视频 + edge-tts 免费旁白的全免费方案，先 TTS 定时长再逐场文生视频，字幕由 Remotion 确定性渲染。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/story-handdrawn-video">GitHub 仓库</a></li>
+                    <li><a href="mailto:497070928@qq.com">联系邮箱</a></li>
+                    <li><a href="https://linux.do/u/liangdabiao">linux.do 主页</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 故事手绘视频生成器. All rights reserved.</p>
+        </div>
+            </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 移动端菜单
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>boardgame.io 开发技能 | Agent 回合制游戏开发指南</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #e11d48;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .skill-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .skill-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .skill-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: #e11d48;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: #be123c;
+        }
+        .workflow-diagram {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .workflow-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .flow-step {
+            background: linear-gradient(135deg, #e11d48 0%, #be123c 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .flow-arrow {
+            font-size: 2em;
+            color: #e11d48;
+        }
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid #e11d48;
+        }
+        .category-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #e11d48;
+        }
+        .category-content {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .category-content ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .category-content li {
+            margin-bottom: 8px;
+        }
+        .feature-highlight {
+            background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #e11d48;
+        }
+        .feature-highlight h3 {
+            color: #9f1239;
+            margin-bottom: 15px;
+        }
+        .feature-highlight p {
+            color: #881337;
+            line-height: 1.8;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        .install-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 4px solid #e11d48;
+        }
+        .install-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #e11d48;
+        }
+        .comparison-table {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .comparison-table th {
+            background: #ffe4e6;
+            color: #9f1239;
+            font-weight: bold;
+        }
+        .comparison-table tr:hover {
+            background: #fff1f2;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero-stats {
+                gap: 30px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🌐 AI工具集合</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主视觉区 -->
+    <section class="hero">
+        <div class="hero-badge">boardgame.io v0.50.x · Agent Skill</div>
+        <h1>boardgame.io 开发技能</h1>
+        <p>一个指导 Codex/Workbuddy/ZCode 等 Agent 使用 boardgame.io（v0.50.x）开发回合制游戏的 skill。让模型按实战验证的工作流、API 精要和项目模板来创建游戏，而不是凭训练记忆写代码——避免过时 API、隐蔽的状态管理坑和不可用的 UI 接线。</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">5+</span>
+                <span class="stat-label">深度参考</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">2个</span>
+                <span class="stat-label">项目模板</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">v0.50.x</span>
+                <span class="stat-label">版本锁定</span>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/boardgame-io-skill" class="btn btn-primary" style="background: white; color: #e11d48;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <!-- 项目背景 -->
+    <section class="section">
+        <h2 class="section-title">为什么做这个？</h2>
+        <p class="section-subtitle">让 Agent 凭核实过的 API 写游戏，而不是凭训练记忆</p>
+        <div class="feature-highlight">
+            <h3>🎲 凭记忆写 boardgame.io 的痛点</h3>
+            <p>
+                Agent 凭训练记忆写 boardgame.io 代码会踩一堆坑：使用已过时的 (G, ctx) 双参回调写法、
+                在 phase 内做回合子流程导致强制结束回合、用 Math.random 破坏确定性随机、
+                Node ESM 导入路径失败、静态资产 import 在纯 Node 环境报错、unsetStage 调用直接报错。
+                这些隐蔽问题让 AI 生成的游戏代码看似能跑实则不可用，调试成本极高。
+            </p>
+        </div>
+    </section>
+
+    <!-- 核心特性 -->
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">覆盖回合制游戏开发全流程，从规则到演出</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">🎲</div>
+                <h3 class="skill-title">回合制游戏支持</h3>
+                <p class="skill-description">棋盘/卡牌/骰子类游戏全栈方案：状态设计、moves、回合/阶段、胜负判定、AI 对手，一套搞定</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎴</div>
+                <h3 class="skill-title">隐藏信息游戏</h3>
+                <p class="skill-description">playerView 秘密状态、server-only moves，安全实现手牌、暗牌等隐藏信息机制</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">👥</div>
+                <h3 class="skill-title">多人模式</h3>
+                <p class="skill-description">本地热座、Local() 双视角、SocketIO 联机、服务端与大厅（创建/加入对局）全场景覆盖</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🧪</div>
+                <h3 class="skill-title">工程化测试</h3>
+                <p class="skill-description">无头规则测试、整局自动化对局测试、TypeScript 模式、调试面板，工程化交付</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📚</div>
+                <h3 class="skill-title">API 精要</h3>
+                <p class="skill-description">针对 v0.50.x 逐项核实的关键事实：回调签名、阶段语义、导入路径、确定性随机、events 队列</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📦</div>
+                <h3 class="skill-title">开箱即用模板</h3>
+                <p class="skill-description">minimal（井字棋骨架）与 card-game（卡牌对战完整模板，美术就绪）两个起点，干净目录验证通过</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🤖</div>
+                <h3 class="skill-title">AI 对手</h3>
+                <p class="skill-description">框架内置 bots 与脚本机器人两种模式，支持 Local master 共享，给单人玩法托底</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎵</div>
+                <h3 class="skill-title">游戏演出层</h3>
+                <p class="skill-description">状态差分 FX 引擎、Web Audio 合成音效、BGM 生成、CSS 动效集，让游戏真正"动"起来</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作流程 -->
+    <section id="workflow" class="section">
+        <h2 class="section-title">Skill 工作流程</h2>
+        <p class="section-subtitle">从触发到产出可用游戏代码的完整链路</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">触发需求</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">模板路由</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">SKILL.md 加载</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">references 深入</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">生成代码</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">测试验证</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #e11d48;">核心原理与步骤</h3>
+            <div class="skills-grid">
+                <div class="category-card">
+                    <div class="category-title">1. 模板路由</div>
+                    <div class="category-content">
+                        简单棋盘游戏（井字棋/五子棋/跳棋类）走 minimal/ 模板；卡牌对战、隐藏手牌、回合内子阶段走 card-game/ 模板。SKILL.md 内建路由逻辑自动选择。
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">2. API 精要核实</div>
+                    <div class="category-content">
+                        所有签名对照 boardgame.io 0.50.2 源码逐项验证，结合本地仓库源码 + DeepWiki 交叉验证，杜绝凭训练记忆写过时 API。
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">3. 双环境兼容</div>
+                    <div class="category-content">
+                        静态资产用 <code>new URL(file, import.meta.url).href</code> 写法，打包器与纯 Node 环境通用；测试/脚本走深层导入 <code>boardgame.io/dist/esm/*.js</code>。
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">4. 经验回灌</div>
+                    <div class="category-content">
+                        类游戏王卡牌游戏、西游斗法等实战踩出的教训，全部沉淀为 SKILL.md 的"UI 可玩性清单"、"game feel 清单"与 references 深度文档。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 安装配置 -->
+    <section id="install" class="section">
+        <h2 class="section-title">安装与配置</h2>
+        <p class="section-subtitle">几步把 skill 装进你的 Agent 工具集</p>
+
+        <div class="install-card">
+            <div class="install-title">1. 克隆 skill 仓库</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">获取 skill 文件：</p>
+            <pre class="code-block">git clone https://github.com/liangdabiao/boardgame-io-skill.git
+cd boardgame-io-skill</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">2. 放入 Agent skills 目录</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">将整个目录放入 Codex/Workbuddy/ZCode 等 Agent 的 skills 加载路径：</p>
+            <pre class="code-block">.agents/skills/boardgame-io-skill/
+├── SKILL.md
+├── references/
+└── assets/templates/</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">3. 自动触发或手动调用</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">涉及"用 boardgame.io 做个游戏 / 回合制 / 棋牌 / 桌游 / multiplayer / phases / moves"的请求会自动加载；也可手动触发：</p>
+            <pre class="code-block">/skill boardgame-io &lt;你的需求&gt;</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">4. 选择模板并生成游戏</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">让 Agent 基于模板生成游戏代码，并安装 boardgame.io 依赖：</p>
+            <pre class="code-block">npm install boardgame.io
+npm run dev</pre>
+        </div>
+    </section>
+
+    <!-- 技术栈 -->
+    <section class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">基于 boardgame.io 0.50.x 与现代前端工具链</p>
+        <div class="tech-stack">
+            <div class="tech-item">boardgame.io 0.50.x</div>
+            <div class="tech-item">React</div>
+            <div class="tech-item">TypeScript</div>
+            <div class="tech-item">SocketIO</div>
+            <div class="tech-item">Web Audio</div>
+            <div class="tech-item">JavaScript</div>
+            <div class="tech-item">CSS</div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于 boardgame.io skill 的常见疑问</p>
+
+        <div class="category-card">
+            <div class="category-title">Q: 这个 skill 和直接读 boardgame.io 官方文档有什么区别？</div>
+            <div class="category-content">
+                A: skill 把文档核实过的 API、踩过的坑、项目模板和工作流封装好，Agent 加载后直接产出可用代码，避免凭训练记忆写过时的 (G, ctx) 双参写法或调用已移除的 unsetStage。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 支持哪些类型的游戏？</div>
+            <div class="category-content">
+                A: 覆盖棋盘/卡牌/骰子类回合制游戏、隐藏信息游戏、本地热座与 SocketIO 联机多人模式。实时游戏不在擅长范围。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 需要联网吗？</div>
+            <div class="category-content">
+                A: 加载 skill 后生成代码不需要联网；但安装 boardgame.io npm 依赖、联机模式运行时需要网络。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 如何升级到新版本 boardgame.io？</div>
+            <div class="category-content">
+                A: 重点复查三处：回调签名、Node exports 映射（若官方加上可简化深层导入）、events API 列表。详见仓库维护指南。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 模板可以独立使用吗？</div>
+            <div class="category-content">
+                A: 可以。minimal 与 card-game 两个模板都已在干净目录通过安装、测试、构建验证，可直接克隆作为项目起点。
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer" id="contact">
+        <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>一个指导 Agent 使用 boardgame.io（v0.50.x）开发回合制游戏的 skill，包含 API 精要、项目模板与实战经验回灌，让模型产出可直接运行的棋盘/卡牌游戏代码。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/boardgame-io-skill">GitHub 仓库</a></li>
+                    <li><a href="mailto:497070928@qq.com">邮箱 497070928@qq.com</a></li>
+                    <li><a href="https://linux.do/u/liangdabiao">linux.do 主页</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 boardgame.io 开发技能. All rights reserved.</p>
+        </div>
+            </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 移动端菜单
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

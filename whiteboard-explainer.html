@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>白板讲解动画 | 把讲解稿变成真手绘过程视频</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #9333ea 0%, #7e22ce 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 10px 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            display: block;
+        }
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+            font-size: 1.1em;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .skill-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #9333ea;
+        }
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        .skill-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        .skill-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+        .skill-description {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .tech-item {
+            background: #9333ea;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: background 0.3s;
+        }
+        .tech-item:hover {
+            background: #7e22ce;
+        }
+        .workflow-diagram {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .workflow-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        .flow-step {
+            background: linear-gradient(135deg, #9333ea 0%, #7e22ce 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .flow-arrow {
+            font-size: 2em;
+            color: #9333ea;
+        }
+        .category-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid #9333ea;
+        }
+        .category-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #9333ea;
+        }
+        .category-content {
+            color: var(--secondary-color);
+            line-height: 1.8;
+        }
+        .category-content ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        .category-content li {
+            margin-bottom: 8px;
+        }
+        .feature-highlight {
+            background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #9333ea;
+        }
+        .feature-highlight h3 {
+            color: #581c87;
+            margin-bottom: 15px;
+        }
+        .feature-highlight p {
+            color: #6b21a8;
+            line-height: 1.8;
+        }
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+        .install-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 4px solid #9333ea;
+        }
+        .install-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #9333ea;
+        }
+        .comparison-table {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .comparison-table th {
+            background: #f3e8ff;
+            color: #581c87;
+            font-weight: bold;
+        }
+        .comparison-table tr:hover {
+            background: #faf5ff;
+        }
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero-stats {
+                gap: 30px;
+            }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">🌐 AI工具集合</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主视觉区 -->
+    <section class="hero">
+        <div class="hero-badge">Python + whiteboard-animator + CRAFT + edge-tts</div>
+        <h1>白板讲解动画</h1>
+        <p>把讲解稿变成「真手绘过程」视频——图形一笔笔描出、文字逐笔写出、讲到哪画到哪（帧级音画对齐）。像素级笔画绘制，帧帧确定、本地零成本、可秒级重渲，支持单画布模式逐元素生长。</p>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">2种</span>
+                <span class="stat-label">绘制模式</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">帧级</span>
+                <span class="stat-label">音画对齐</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">0</span>
+                <span class="stat-label">本地成本</span>
+            </div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/whiteboard-explainer" class="btn btn-primary" style="background: white; color: #9333ea;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <!-- 项目背景 -->
+    <section class="section">
+        <h2 class="section-title">为什么做这个？</h2>
+        <p class="section-subtitle">讲解类视频的制作痛点与白板动画的解决思路</p>
+        <div class="feature-highlight">
+            <h3>🎬 讲解视频制作的痛点</h3>
+            <p>
+                制作教学讲解视频存在诸多问题：真人录制成本高、需设备场地；通用动画工具学习曲线陡，普通用户难以快速产出；
+                动画与旁白对齐困难，需手动卡点调整时间轴；现有方案渲染慢、修改一次重渲整段；无法做到「一图逐元素生长」的数学推导/流程图效果。
+                白板讲解动画 skill 用像素级笔画绘制，帧帧确定、本地零成本、可秒级重渲，并支持元素级 cue 对齐「讲到哪画到哪」，让教学视频制作变得简单可控。
+            </p>
+        </div>
+    </section>
+
+    <!-- 核心特性 -->
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">从讲解稿到真手绘视频的完整制作能力</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">✍️</div>
+                <h3 class="skill-title">像素级笔画绘制</h3>
+                <p class="skill-description">图形一笔笔描出、文字逐笔写出，真手绘过程呈现。帧帧确定可复现，本地零成本渲染，支持秒级重渲快速迭代</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎯</div>
+                <h3 class="skill-title">帧级音画对齐</h3>
+                <p class="skill-description">元素级 cue 对齐「讲到哪画到哪」，旁白与绘制帧级同步。子句 TTS 生成精确 cue 点，确保讲解节奏与画面绘制完美匹配</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🖼️</div>
+                <h3 class="skill-title">单画布生长模式</h3>
+                <p class="skill-description">一张大图逐元素生长，适合数学推导、流程图、知识图谱。元素按 cue 依次出现，构建复杂的推理过程可视化</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📽️</div>
+                <h3 class="skill-title">Slide 模式</h3>
+                <p class="skill-description">一拍一图的幻灯片模式，适合步骤讲解、产品介绍、教学课程。每张 slide 独立绘制，切换流畅自然</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔊</div>
+                <h3 class="skill-title">多语种旁白</h3>
+                <p class="skill-description">支持中文、英文、任意语种旁白，基于 edge-tts 神经语音合成。自然流畅的发音，无需录制真人配音</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🖥️</div>
+                <h3 class="skill-title">跨平台支持</h3>
+                <p class="skill-description">支持 macOS、Windows、Linux 三大平台。一键安装脚本自动检测依赖，配置简单开箱即用</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎨</div>
+                <h3 class="skill-title">Agnes 白板生图</h3>
+                <p class="skill-description">可选 Agnes API 生成白板底图，配合 CRAFT 文字检测模型自动定位文字区域。无 API key 时用 PIL 程序化绘制兜底</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🧪</div>
+                <h3 class="skill-title">自检与确定性</h3>
+                <p class="skill-description">内置 self_test.py 自检脚本（CRAFT/渲染/cue对齐三关），毛笔字 MaShanZheng 字体差异化设计，PIL 确定性中文文字层</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 工作流程 -->
+    <section id="workflow" class="section">
+        <h2 class="section-title">渲染工作流程</h2>
+        <p class="section-subtitle">从讲解稿到成片的完整流水线</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">讲解稿</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">TTS+cue</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">白板生图</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">笔画渲染</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">音画合成</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px;">
+            <h3 style="text-align: center; margin-bottom: 30px; color: #9333ea;">核心流程原理</h3>
+            <div class="skills-grid">
+                <div class="category-card">
+                    <div class="category-title">1. 旁白 TTS 与精确 cue</div>
+                    <div class="category-content">
+                        build_narration.py 子句级 TTS 合成，生成精确 cue 时间点，为后续帧级音画对齐提供时间基准
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">2. 白板底图生成</div>
+                    <div class="category-content">
+                        gen_board_images.py 调用 Agnes HTTP 客户端生成白板底图（带重试），无 key 时 PIL 程序化绘制兜底
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">3. 文字层与笔画绘制</div>
+                    <div class="category-content">
+                        make_text_layer.py PIL 确定性中文文字层，CRAFT 模型检测文字区域定位笔画轨迹，render_explainer.py 主渲染
+                    </div>
+                </div>
+                <div class="category-card">
+                    <div class="category-title">4. 音画帧级合成</div>
+                    <div class="category-content">
+                        按元素级 cue 对齐「讲到哪画到哪」，ffmpeg/ffprobe 系统二进制完成最终 concat 合成成片
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 安装配置 -->
+    <section id="install" class="section">
+        <h2 class="section-title">安装与配置</h2>
+        <p class="section-subtitle">简单几步，开始制作白板讲解动画</p>
+
+        <div class="install-card">
+            <div class="install-title">1. 克隆项目</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">获取项目代码：</p>
+            <pre class="code-block">git clone https://github.com/liangdabiao/whiteboard-explainer.git
+cd whiteboard-explainer</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">2. 一键安装依赖</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">使用 setup 脚本自动安装 pip 依赖与检测系统二进制：</p>
+            <pre class="code-block"># macOS / Linux
+bash scripts/setup.sh
+
+# Windows PowerShell
+powershell -ExecutionPolicy Bypass -File scripts/setup.ps1</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">3. 安装 Skill 到 AI Agent</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">在 workbuddy、codex、claude code 中安装：</p>
+            <pre class="code-block">命令要求安装 skill：
+https://github.com/liangdabiao/whiteboard-explainer</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">4. 运行自检</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">验证 CRAFT 模型、渲染、cue 对齐三关：</p>
+            <pre class="code-block">python scripts/self_test.py</pre>
+        </div>
+
+        <div class="install-card">
+            <div class="install-title">5. 配置 Agnes API（可选）</div>
+            <p style="margin-top: 10px; color: var(--secondary-color);">配置 AGNES_API_KEY 启用白板生图功能：</p>
+            <pre class="code-block"># .env 寻找顺序：cwd → 父目录 → ~/.env → ~/.workbuddy/.env
+AGNES_API_KEY=your_agnes_api_key_here
+# 无 key 时自动用 PIL 程序化绘制兜底</pre>
+        </div>
+    </section>
+
+    <!-- 技术栈 -->
+    <section class="section">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">基于 Python 与现代 AI 渲染引擎构建</p>
+        <div class="tech-stack">
+            <div class="tech-item">Python</div>
+            <div class="tech-item">whiteboard-animator</div>
+            <div class="tech-item">CRAFT (onnxruntime)</div>
+            <div class="tech-item">edge-tts</div>
+            <div class="tech-item">Pillow / numpy</div>
+            <div class="tech-item">ffmpeg / ffprobe</div>
+            <div class="tech-item">Agnes API</div>
+            <div class="tech-item">MaShanZheng 字体</div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于白板讲解动画 skill 的常见疑问</p>
+
+        <div class="category-card">
+            <div class="category-title">Q: 能制作真人物或复杂场景视频吗？</div>
+            <div class="category-content">
+                A: 不能。白板风不适合真人物、照片、复杂场景，这类需求请用真人视频或别的 skill。本 skill 专注讲解类、推导类、流程图类内容。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 输出分辨率最高多少？</div>
+            <div class="category-content">
+                A: 引擎最大输出 1280 长边。如需 8K/超高清，请在 final concat 步骤自行 upscale 提升分辨率。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: Agnes API 必须配置吗？</div>
+            <div class="category-content">
+                A: Agnes 是付费 API（免费档便宜）。不放 key 时自动用 PIL 程序化绘制兜底，templates/chart-recipes/eclipse.py 是程序化绘制示范。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 支持哪些语种旁白？</div>
+            <div class="category-content">
+                A: 支持中文、英文、任意语种旁白，基于 edge-tts 神经语音合成，自然流畅无需录制真人配音。
+            </div>
+        </div>
+
+        <div class="category-card">
+            <div class="category-title">Q: 有哪些依赖？</div>
+            <div class="category-content">
+                A: pip 包：whiteboard-animator、onnxruntime、edge-tts、Pillow、numpy；系统二进制：ffmpeg、ffprobe；可选：AGNES_API_KEY。setup 脚本会自动检测并安装。
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer" id="contact">
+        <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>白板讲解动画 skill。把讲解稿变成「真手绘过程」视频——图形一笔笔描出、文字逐笔写出、讲到哪画到哪。基于 whiteboard-animator 引擎增强，帧级音画对齐。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/whiteboard-explainer">GitHub 仓库</a></li>
+                    <li><a href="mailto:497070928@qq.com">联系邮箱</a></li>
+                    <li><a href="https://linux.do/u/liangdabiao">linux.do 主页</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 白板讲解动画. All rights reserved.</p>
+        </div>
+            </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 移动端菜单
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>
