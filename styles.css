@@ -2397,7 +2397,7 @@ section {
 /* ===== 全局悬浮二维码挂件 ===== */
 .qr-float {
     position: fixed;
-    bottom: 24px;
+    bottom: 64px;
     right: 24px;
     width: 56px;
     height: 56px;
