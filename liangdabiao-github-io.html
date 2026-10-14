@@ -3,351 +3,236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>liangdabiao.github.io - AI技术框架教学站</title>
+    <title>Agent 技术教学站 | AI Agent 框架 · 系统课程</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         .hero {
-            background: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%);
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
             color: white;
             padding: 100px 20px;
             text-align: center;
         }
-        .hero h1 {
-            font-size: 3em;
-            margin-bottom: 20px;
-        }
-        .hero p {
-            font-size: 1.3em;
-            max-width: 800px;
-            margin: 0 auto 30px;
-            opacity: 0.95;
-        }
-        .hero-badge {
-            display: inline-block;
-            background: rgba(255,255,255,0.2);
-            padding: 10px 25px;
-            border-radius: 25px;
-            margin-bottom: 20px;
-            font-size: 0.95em;
-        }
-        .section {
-            padding: 80px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .section-title {
-            text-align: center;
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            color: var(--primary-color);
-        }
-        .section-subtitle {
-            text-align: center;
-            color: var(--secondary-color);
-            margin-bottom: 50px;
-            font-size: 1.1em;
-        }
-        .course-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
-        }
-        .course-card {
-            background: white;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-top: 4px solid #10b981;
-        }
-        .course-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-        }
-        .course-category {
-            display: inline-block;
-            background: #ecfdf5;
-            color: #059669;
-            padding: 5px 15px;
-            border-radius: 15px;
-            font-size: 0.85em;
-            margin-bottom: 15px;
-        }
-        .course-title {
-            font-size: 1.3em;
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: var(--text-color);
-        }
-        .course-desc {
-            color: var(--secondary-color);
-            line-height: 1.8;
-            font-size: 0.95em;
-        }
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 30px;
-        }
-        .tech-item {
-            background: #10b981;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 25px;
-            font-size: 0.95em;
-            transition: background 0.3s;
-        }
-        .tech-item:hover {
-            background: #059669;
-        }
-        .feature-highlight {
-            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
-            border-radius: 12px;
-            padding: 30px;
-            margin: 30px 0;
-            border-left: 4px solid #10b981;
-        }
-        .feature-highlight h3 {
-            color: #047857;
-            margin-bottom: 15px;
-        }
-        .feature-highlight p {
-            color: #059669;
-            line-height: 1.8;
-        }
-        .reading-guide {
-            background: white;
-            border-radius: 12px;
-            padding: 30px;
-            margin: 30px 0;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        }
-        .reading-guide h3 {
-            color: #047857;
-            margin-bottom: 20px;
-            font-size: 1.5em;
-        }
-        .reading-step {
-            margin-bottom: 20px;
-            padding: 15px;
-            background: #f0fdf4;
-            border-radius: 8px;
-        }
-        .reading-step strong {
-            color: #059669;
-            display: block;
-            margin-bottom: 5px;
-        }
+        .hero h1 { font-size: 3em; margin-bottom: 20px; }
+        .hero p { font-size: 1.3em; max-width: 800px; margin: 0 auto 30px; opacity: 0.95; }
+        .hero-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 10px 25px; border-radius: 25px; margin-bottom: 20px; font-size: 0.95em; }
+        .hero-stats { display: flex; justify-content: center; gap: 50px; margin-top: 50px; flex-wrap: wrap; }
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 2.5em; font-weight: bold; display: block; }
+        .stat-label { font-size: 0.9em; opacity: 0.9; }
+        .section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 2.5em; margin-bottom: 20px; color: var(--primary-color); }
+        .section-subtitle { text-align: center; color: var(--secondary-color); margin-bottom: 50px; font-size: 1.1em; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-top: 40px; }
+        .feature-card { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s; border-left: 4px solid #3b82f6; }
+        .feature-card:hover { transform: translateY(-5px); box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+        .feature-icon { font-size: 2.5em; margin-bottom: 15px; }
+        .feature-title { font-size: 1.3em; font-weight: bold; margin-bottom: 10px; color: var(--text-color); }
+        .feature-description { color: var(--secondary-color); line-height: 1.8; }
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 30px; }
+        .tech-item { background: #3b82f6; color: white; padding: 12px 24px; border-radius: 25px; font-size: 0.95em; transition: background 0.3s; }
+        .tech-item:hover { background: #2563eb; }
+        .workflow-diagram { background: white; border-radius: 12px; padding: 40px; margin: 40px 0; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .workflow-flow { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 30px 0; }
+        .flow-step { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; padding: 20px 30px; border-radius: 10px; text-align: center; font-weight: bold; }
+        .flow-arrow { font-size: 2em; color: #3b82f6; }
+        .category-card { background: white; border-radius: 12px; padding: 30px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid #3b82f6; }
+        .category-title { font-size: 1.4em; font-weight: bold; margin-bottom: 15px; color: #3b82f6; }
+        .category-content { color: var(--secondary-color); line-height: 1.8; }
+        .feature-highlight { background: linear-gradient(135deg, #eff6ff 0%, #eff6ff 100%); border-radius: 12px; padding: 30px; margin: 30px 0; border-left: 4px solid #3b82f6; }
+        .feature-highlight h3 { color: #2563eb; margin-bottom: 15px; }
+        .feature-highlight p { color: var(--text-primary); line-height: 1.8; }
+        .code-block { background: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 8px; margin: 20px 0; font-family: 'Courier New', monospace; line-height: 1.6; overflow-x: auto; }
+        .install-card { background: #f8f9fa; border-radius: 12px; padding: 25px; margin: 15px 0; border-left: 4px solid #3b82f6; }
+        .install-title { font-size: 1.2em; font-weight: bold; margin-bottom: 10px; color: #3b82f6; }
+        .showcase-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 40px; }
+        .showcase-item { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); text-align: center; }
+        .showcase-item img { max-width: 100%; border-radius: 8px; }
+        .showcase-caption { margin-top: 15px; color: var(--secondary-color); font-size: 0.95em; }
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2em;
-            }
-            .course-grid {
-                grid-template-columns: 1fr;
-            }
+            .hero h1 { font-size: 2em; }
+            .hero-stats { gap: 30px; }
+            .features-grid { grid-template-columns: 1fr; }
+            .flow-arrow { transform: rotate(90deg); }
         }
     </style>
 </head>
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo">
-                <a href="index.html">🌐 AI工具集合</a>
-            </div>
+            <div class="nav-logo"><a href="index.html">🌐 AI工具集合</a></div>
             <ul class="nav-menu">
                 <li><a href="index.html">首页</a></li>
-                <li><a href="#courses">课程目录</a></li>
-                <li><a href="#reading">阅读指南</a></li>
-                <li><a href="#features">特色亮点</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#install">安装配置</a></li>
                 <li><a href="#contact">联系我们</a></li>
             </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <div class="hamburger"><span></span><span></span><span></span></div>
         </div>
     </nav>
 
     <section class="hero">
-        <div class="hero-badge">GitHub Pages · AI Agent教程合集</div>
-        <h1>liangdabiao.github.io</h1>
-        <p>多个 AI 技术框架的「从入门到精通」教程合集——讲人话、能跑通、能上线。包含阿里云百炼、LangGraph、Claude Agent SDK、OpenAI Agents SDK、DeepAgents、Flue、Vercel Eve 等多门课程。</p>
+        <div class="hero-badge">AI Agent 框架 · 系统课程</div>
+        <h1>Agent 技术教学站</h1>
+        <p>liangdabiao 的 Agent 小册子：阿里云百炼、LangGraph、Claude/OpenAI Agent SDK、DeepAgents、EdgeOne Makers 等主流框架系统课程，免费阅读。</p>
+        <div class="hero-stats">
+            <div class="stat-item"><span class="stat-number">17</span><span class="stat-label">GitHub Star</span></div>
+            <div class="stat-item"><span class="stat-number">📚</span><span class="stat-label">教育工具</span></div>
+            <div class="stat-item"><span class="stat-number">入门</span><span class="stat-label">上手难度</span></div>
+        </div>
         <div style="margin-top: 40px;">
-            <a href="https://github.com/liangdabiao/liangdabiao.github.io" class="btn btn-primary" style="background: white; color: #10b981;">查看 GitHub</a>
-            <a href="https://gitee.com/liangdabiao/liangdabiao.github.io" class="btn btn-primary" style="background: white; color: #10b981;">查看 Gitee</a>
-            <a href="#courses" class="btn btn-secondary" style="border: 2px solid white; color: white;">浏览课程</a>
-        </div>
-    </section>
-
-    <section id="courses" class="section" style="background: #f8f9fa;">
-        <h2 class="section-title">课程目录</h2>
-        <p class="section-subtitle">12门课程，从入门到精通</p>
-        
-        <div class="course-grid">
-            <div class="course-card">
-                <span class="course-category">入门先行</span>
-                <h3 class="course-title">真·AI Agent 小蓝书</h3>
-                <p class="course-desc">想懂概念看这本，系统梳理AI Agent核心概念和工作原理。</p>
-            </div>
-            <div class="course-card">
-                <span class="course-category">入门先行</span>
-                <h3 class="course-title">阿里云百炼从入门到精通</h3>
-                <p class="course-desc">零代码出活首选，阿里云百炼平台完整使用指南。</p>
-            </div>
-            <div class="course-card">
-                <span class="course-category">入门先行</span>
-                <h3 class="course-title">LangGraph从入门到精通</h3>
-                <p class="course-desc">从代码开始学习Agent开发，LangGraph框架深度讲解。</p>
-            </div>
-            <div class="course-card">
-                <span class="course-category">入门先行</span>
-                <h3 class="course-title">Agent Skills从入门到精通</h3>
-                <p class="course-desc">把经验沉淀成可复用技能，Skill系统完整指南。</p>
-            </div>
-            <div class="course-card">
-                <span class="course-category">Agent框架</span>
-                <h3 class="course-title">Claude Agent SDK从入门到精通</h3>
-                <p class="course-desc">Anthropic官方Agent框架，从基础到进阶实战。</p>
-            </div>
-            <div class="course-card">
-                <span class="course-category">Agent框架</span>
-                <h3 class="course-title">OpenAI Agents SDK从入门到精通</h3>
-                <p class="course-desc">OpenAI官方Agent框架，构建智能应用的利器。</p>
-            </div>
-            <div class="course-card">
-                <span class="course-category">Agent框架</span>
-                <h3 class="course-title">DeepAgents从入门到精通</h3>
-                <p class="course-desc">深度探索DeepAgents框架，打造深度智能Agent。</p>
-            </div>
-            <div class="course-card">
-                <span class="course-category">Agent框架</span>
-                <h3 class="course-title">Flue框架从入门到精通</h3>
-                <p class="course-desc">基于harness-driven架构的TypeScript AI Agent框架。</p>
-            </div>
-            <div class="course-card">
-                <span class="course-category">Agent框架</span>
-                <h3 class="course-title">DeerFlow 2.0从入门到精通</h3>
-                <p class="course-desc">DeerFlow工作流引擎，构建复杂Agent应用。</p>
-            </div>
-            <div class="course-card">
-                <span class="course-category">Agent框架</span>
-                <h3 class="course-title">Vercel Eve从入门到精通</h3>
-                <p class="course-desc">Vercel推出的AI Agent框架，Edge计算部署。</p>
-            </div>
-            <div class="course-card">
-                <span class="course-category">Agent部署</span>
-                <h3 class="course-title">Cloudflare Agents从入门到精通</h3>
-                <p class="course-desc">在Cloudflare上部署Agent，边缘计算加持。</p>
-            </div>
-            <div class="course-card">
-                <span class="course-category">Agent部署</span>
-                <h3 class="course-title">EdgeOne Makers从入门到精通</h3>
-                <p class="course-desc">腾讯云EdgeOne Makers部署指南，Serverless托管。</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="reading" class="section">
-        <h2 class="section-title">阅读指南</h2>
-        <p class="section-subtitle">三步学习路径</p>
-        
-        <div class="reading-guide">
-            <h3>📚 学习路径</h3>
-            <div class="reading-step">
-                <strong>第一步：入门先行</strong>
-                <span>从四本入门书里挑：想懂概念看《真·AI Agent小蓝书》；想零代码出活看阿里云百炼；想从代码开始看LangGraph；想把经验沉淀成可复用技能看Agent Skills。</span>
-            </div>
-            <div class="reading-step">
-                <strong>第二步：进阶深入</strong>
-                <span>挑一个Agent框架深入学习（Claude Agent SDK / OpenAI Agents SDK / Flue / Vercel Eve / DeepAgents / DeerFlow），掌握框架核心能力。</span>
-            </div>
-            <div class="reading-step">
-                <strong>第三步：托管上线</strong>
-                <span>学习Cloudflare Agents / EdgeOne Makers部署指南，把Agent部署到边缘/云平台，不用管运维，实现真正的生产上线。</span>
-            </div>
-        </div>
-    </section>
-
-    <section id="features" class="section" style="background: #f8f9fa;">
-        <h2 class="section-title">特色亮点</h2>
-        <p class="section-subtitle">为什么选择这些教程</p>
-        
-        <div class="course-grid">
-            <div class="course-card">
-                <span class="course-category">讲人话</span>
-                <h3 class="course-title">通俗易懂</h3>
-                <p class="course-desc">先说结论，再给证据，最后上代码。短句为主，能断言就不含糊。</p>
-            </div>
-            <div class="course-card">
-                <span class="course-category">能跑通</span>
-                <h3 class="course-title">实战导向</h3>
-                <p class="course-desc">每个教程都附带可运行的代码示例和完整的操作步骤，确保你能上手实践。</p>
-            </div>
-            <div class="course-card">
-                <span class="course-category">能上线</span>
-                <h3 class="course-title">生产可用</h3>
-                <p class="course-desc">不仅教你开发，还教你部署上线，从开发到运维一站式搞定。</p>
-            </div>
-            <div class="course-card">
-                <span class="course-category">向前桥接</span>
-                <h3 class="course-title">循序渐进</h3>
-                <p class="course-desc">每章末尾有「向前桥接」点出下一章看点，学习路径清晰。</p>
-            </div>
-            <div class="course-card">
-                <span class="course-category">阅读计划</span>
-                <h3 class="course-title">学习规划</h3>
-                <p class="course-desc">每本书都附6天/7天阅读计划与附录速查表，学习效率更高。</p>
-            </div>
-            <div class="course-card">
-                <span class="course-category">持续更新</span>
-                <h3 class="course-title">最新资料</h3>
-                <p class="course-desc">资料截至2026年7月，涵盖最新技术动态和框架版本。</p>
-            </div>
+            <a href="https://github.com/liangdabiao/liangdabiao.github.io" class="btn btn-primary" style="background: white; color: #3b82f6;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
         </div>
     </section>
 
     <section class="section">
+        <h2 class="section-title">为什么需要 Agent 技术教学站？</h2>
+        <p class="section-subtitle">学 Agent 开发，资料散落在各处，缺一张系统地图</p>
+        <div class="feature-highlight">
+            <h3>学 Agent 开发，资料散落在各处，缺一张系统地图</h3>
+            <p>这个站点把主流 Agent 框架课程按体系组织：阿里云百炼、LangGraph、Claude Agent SDK、OpenAI Agents SDK、DeepAgents、DeerFlow、Flue、Vercel Eve、Cloudflare Agents、EdgeOne Makers、Agent Skills——每门课从概念讲到实战，免费阅读、持续更新。</p>
+        </div>
+    </section>
+
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">Agent 技术教学站 的六大能力</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🗺️</div>
+                <h3 class="feature-title">多框架系统课程</h3>
+                <p class="feature-description">主流 Agent 框架各设专题，从入门到精通</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🧪</div>
+                <h3 class="feature-title">概念到实战</h3>
+                <p class="feature-description">每门课程不止讲概念，配套可跑通的实战示例</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🆓</div>
+                <h3 class="feature-title">免费阅读</h3>
+                <p class="feature-description">全部课程免费开放，浏览器直接学</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔄</div>
+                <h3 class="feature-title">持续更新</h3>
+                <p class="feature-description">跟随框架版本持续修订，不过时</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📝</div>
+                <h3 class="feature-title">文章 + 示例</h3>
+                <p class="feature-description">图文讲解配合代码示例，学练结合</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3 class="feature-title">按框架逐个学</h3>
+                <p class="feature-description">课程模块化，建议选定框架逐个攻克</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">效果预览</h2>
+        <p class="section-subtitle">小黑手绘风格插图</p>
+        <div class="showcase-grid">
+            <div class="showcase-item">
+                <img src="assets/liangdabiao-github-io/01.png" alt="Agent 技术教学站 配图" loading="lazy">
+                <div class="showcase-caption">01.png</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="workflow" class="section">
+        <h2 class="section-title">工作流程</h2>
+        <p class="section-subtitle">从输入到产出，一步到位</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">访问教学站</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">选择框架课程</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">按章节学习</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">跑通示例</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">动手实战</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="install" class="section">
+        <h2 class="section-title">安装与使用</h2>
+        <p class="section-subtitle">快速开始</p>
+        <div class="install-card">
+            <div class="install-title">1. 在线学习</div>
+            <pre class="code-block">浏览器访问 GitHub Pages 站点即可阅读全部课程</pre>
+        </div>
+        <div class="install-card">
+            <div class="install-title">2. 本地部署（可选）</div>
+            <pre class="code-block">git clone https://github.com/liangdabiao/liangdabiao.github.io.git
+按静态站点方式部署</pre>
+        </div>
+        <div class="install-card">
+            <div class="install-title">3. 按框架学习</div>
+            <pre class="code-block">建议选定一个框架，按课程顺序逐个章节攻克</pre>
+        </div>
+    </section>
+
+    <section class="section" style="background: #f8f9fa;">
         <h2 class="section-title">技术栈</h2>
-        <p class="section-subtitle">纯静态站点，无构建工具</p>
+        <p class="section-subtitle">现代化技术组合</p>
         <div class="tech-stack">
             <div class="tech-item">GitHub Pages</div>
-            <div class="tech-item">Markdown</div>
-            <div class="tech-item">HTML5</div>
-            <div class="tech-item">CSS3</div>
-            <div class="tech-item">静态托管</div>
+            <div class="tech-item">阿里云百炼</div>
+            <div class="tech-item">LangGraph</div>
+            <div class="tech-item">Claude Agent SDK</div>
+            <div class="tech-item">OpenAI Agents SDK</div>
+            <div class="tech-item">DeepAgents</div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于 Agent 技术教学站 的常见疑问</p>
+        <div class="category-card">
+            <div class="category-title">Q: 完全小白能学吗？</div>
+            <div class="category-content">A: 课程覆盖从入门开始的内容，但具备基础编程知识会学得更顺。</div>
+        </div>
+        <div class="category-card">
+            <div class="category-title">Q: 课程更新频率如何？</div>
+            <div class="category-content">A: 持续更新中，框架有新版本时会跟进修订。</div>
+        </div>
+        <div class="category-card">
+            <div class="category-title">Q: 可以和站上其他项目对照学吗？</div>
+            <div class="category-content">A: 可以。站上很多项目就是这些框架的实战案例，学完课程直接看源码。</div>
         </div>
     </section>
 
     <footer class="footer" id="contact">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>关于项目</h3>
-                    <p>liangdabiao.github.io — AI技术框架教学站，包含12门从入门到精通的教程，覆盖阿里云百炼、LangGraph、Claude Agent SDK、OpenAI Agents SDK等主流技术框架。</p>
-                </div>
-                <div class="footer-section">
-                    <h3>快速链接</h3>
-                    <ul>
-                        <li><a href="index.html">返回首页</a></li>
-                        <li><a href="https://github.com/liangdabiao/liangdabiao.github.io">GitHub 仓库</a></li>
-                        <li><a href="https://gitee.com/liangdabiao/liangdabiao.github.io">Gitee 仓库</a></li>
-                        <li><a href="https://liangdabiao.com">官方站</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>联系我们</h3>
-                    <p>邮箱：497070928@qq.com</p>
-                    <p>GitHub：https://github.com/liangdabiao</p>
-                </div>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>Agent 技术教学站：百炼/LangGraph/Claude/OpenAI Agent SDK/DeepAgents/EdgeOne 等系统课程。</p>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 liangdabiao.github.io. All rights reserved.</p>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/liangdabiao.github.io">GitHub 仓库</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
             </div>
         </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Agent 技术教学站. All rights reserved.</p>
+        </div>
+            </div>
     </footer>
 
     <script src="script.js"></script>
@@ -356,18 +241,13 @@
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+                if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
             });
         });
         const hamburger = document.querySelector('.hamburger');
         const navMenu = document.querySelector('.nav-menu');
         if (hamburger) {
-            hamburger.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
-                hamburger.classList.toggle('active');
-            });
+            hamburger.addEventListener('click', () => { navMenu.classList.toggle('active'); hamburger.classList.toggle('active'); });
         }
     </script>
 </body>

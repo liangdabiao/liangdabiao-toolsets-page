@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STEM 概念动画生成器 | 豆包大模型 · 教学动画</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #6d28d9 0%, #5b21b6 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 { font-size: 3em; margin-bottom: 20px; }
+        .hero p { font-size: 1.3em; max-width: 800px; margin: 0 auto 30px; opacity: 0.95; }
+        .hero-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 10px 25px; border-radius: 25px; margin-bottom: 20px; font-size: 0.95em; }
+        .hero-stats { display: flex; justify-content: center; gap: 50px; margin-top: 50px; flex-wrap: wrap; }
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 2.5em; font-weight: bold; display: block; }
+        .stat-label { font-size: 0.9em; opacity: 0.9; }
+        .section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 2.5em; margin-bottom: 20px; color: var(--primary-color); }
+        .section-subtitle { text-align: center; color: var(--secondary-color); margin-bottom: 50px; font-size: 1.1em; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-top: 40px; }
+        .feature-card { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s; border-left: 4px solid #6d28d9; }
+        .feature-card:hover { transform: translateY(-5px); box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+        .feature-icon { font-size: 2.5em; margin-bottom: 15px; }
+        .feature-title { font-size: 1.3em; font-weight: bold; margin-bottom: 10px; color: var(--text-color); }
+        .feature-description { color: var(--secondary-color); line-height: 1.8; }
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 30px; }
+        .tech-item { background: #6d28d9; color: white; padding: 12px 24px; border-radius: 25px; font-size: 0.95em; transition: background 0.3s; }
+        .tech-item:hover { background: #5b21b6; }
+        .workflow-diagram { background: white; border-radius: 12px; padding: 40px; margin: 40px 0; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .workflow-flow { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 30px 0; }
+        .flow-step { background: linear-gradient(135deg, #6d28d9 0%, #5b21b6 100%); color: white; padding: 20px 30px; border-radius: 10px; text-align: center; font-weight: bold; }
+        .flow-arrow { font-size: 2em; color: #6d28d9; }
+        .category-card { background: white; border-radius: 12px; padding: 30px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid #6d28d9; }
+        .category-title { font-size: 1.4em; font-weight: bold; margin-bottom: 15px; color: #6d28d9; }
+        .category-content { color: var(--secondary-color); line-height: 1.8; }
+        .feature-highlight { background: linear-gradient(135deg, #f5f3ff 0%, #f5f3ff 100%); border-radius: 12px; padding: 30px; margin: 30px 0; border-left: 4px solid #6d28d9; }
+        .feature-highlight h3 { color: #5b21b6; margin-bottom: 15px; }
+        .feature-highlight p { color: var(--text-primary); line-height: 1.8; }
+        .code-block { background: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 8px; margin: 20px 0; font-family: 'Courier New', monospace; line-height: 1.6; overflow-x: auto; }
+        .install-card { background: #f8f9fa; border-radius: 12px; padding: 25px; margin: 15px 0; border-left: 4px solid #6d28d9; }
+        .install-title { font-size: 1.2em; font-weight: bold; margin-bottom: 10px; color: #6d28d9; }
+        .showcase-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 40px; }
+        .showcase-item { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); text-align: center; }
+        .showcase-item img { max-width: 100%; border-radius: 8px; }
+        .showcase-caption { margin-top: 15px; color: var(--secondary-color); font-size: 0.95em; }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2em; }
+            .hero-stats { gap: 30px; }
+            .features-grid { grid-template-columns: 1fr; }
+            .flow-arrow { transform: rotate(90deg); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo"><a href="index.html">🌐 AI工具集合</a></div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-badge">豆包大模型 · 教学动画</div>
+        <h1>STEM 概念动画生成器</h1>
+        <p>基于豆包大模型的 STEM 教学动画生成器：输入一个概念，多智能体自动拆解、生成 Manim 动画、配旁白字幕，出完整教学视频。</p>
+        <div class="hero-stats">
+            <div class="stat-item"><span class="stat-number">18</span><span class="stat-label">GitHub Star</span></div>
+            <div class="stat-item"><span class="stat-number">🔬</span><span class="stat-label">教育工具</span></div>
+            <div class="stat-item"><span class="stat-number">进阶</span><span class="stat-label">上手难度</span></div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/STEMViz" class="btn btn-primary" style="background: white; color: #6d28d9;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">为什么需要 STEM 概念动画生成器？</h2>
+        <p class="section-subtitle">"讲解勾股定理"——这句话进去，一条带旁白字幕的教学视频出来</p>
+        <div class="feature-highlight">
+            <h3>"讲解勾股定理"——这句话进去，一条带旁白字幕的教学视频出来</h3>
+            <p>STEMViz 串起豆包大模型的全套能力：LLM 推理拆解概念、生成 Manim 动画代码，多模态模型"观看"无声动画后写出时间轴旁白，TTS 合成语音，FFmpeg 合成烧录字幕。概念解析、动画生成、脚本、配音、合成，五个 Agent 一条流水线。</p>
+        </div>
+    </section>
+
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">STEM 概念动画生成器 的六大能力</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎬</div>
+                <h3 class="feature-title">全自动动画生成</h3>
+                <p class="feature-description">输入概念 → 输出带旁白的完整教学视频，无需手动剪辑</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h3 class="feature-title">多智能体架构</h3>
+                <p class="feature-description">概念解析 + Manim 代码生成 + 视频理解多 Agent 协作</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎙️</div>
+                <h3 class="feature-title">AI 旁白生成</h3>
+                <p class="feature-description">多模态大模型观看动画后生成情境化旁白（SRT）</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔊</div>
+                <h3 class="feature-title">豆包 TTS 语音</h3>
+                <p class="feature-description">高质量中文语音合成，支持多音色与语速调整</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3 class="feature-title">并行处理</h3>
+                <p class="feature-description">多场景代码并发生成，渲染失败自动修复重试</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🖥️</div>
+                <h3 class="feature-title">Gradio Web 界面</h3>
+                <p class="feature-description">简洁易用的浏览器界面，也支持命令行调用</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="workflow" class="section">
+        <h2 class="section-title">工作流程</h2>
+        <p class="section-subtitle">从输入到产出，一步到位</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">输入 STEM 概念</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">概念解析拆子概念</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">Manim 生成动画</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">视频理解写旁白</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">TTS 配音合成</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="install" class="section">
+        <h2 class="section-title">安装与使用</h2>
+        <p class="section-subtitle">快速开始</p>
+        <div class="install-card">
+            <div class="install-title">1. 克隆项目</div>
+            <pre class="code-block">git clone https://github.com/liangdabiao/STEMViz.git</pre>
+        </div>
+        <div class="install-card">
+            <div class="install-title">2. 安装依赖</div>
+            <pre class="code-block">pip install -r requirements.txt
+# 另需安装 FFmpeg 与 LaTeX（MiKTeX）</pre>
+        </div>
+        <div class="install-card">
+            <div class="install-title">3. 配置密钥</div>
+            <pre class="code-block">cp .env.example .env
+# 填入豆包火山方舟 API Key 与 TTS API Key</pre>
+        </div>
+        <div class="install-card">
+            <div class="install-title">4. 启动使用</div>
+            <pre class="code-block">python app.py  # 浏览器打开 http://127.0.0.1:7860</pre>
+        </div>
+    </section>
+
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">现代化技术组合</p>
+        <div class="tech-stack">
+            <div class="tech-item">豆包大模型</div>
+            <div class="tech-item">Manim</div>
+            <div class="tech-item">火山方舟</div>
+            <div class="tech-item">FFmpeg</div>
+            <div class="tech-item">Gradio</div>
+            <div class="tech-item">TTS</div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于 STEM 概念动画生成器 的常见疑问</p>
+        <div class="category-card">
+            <div class="category-title">Q: 生成一条视频要多久？</div>
+            <div class="category-content">A: 约 10-30 分钟，取决于概念复杂度与场景数量。</div>
+        </div>
+        <div class="category-card">
+            <div class="category-title">Q: 需要哪些 API？</div>
+            <div class="category-content">A: 豆包火山方舟 API Key（LLM + 多模态理解）和豆包 TTS API Key（语音合成）。</div>
+        </div>
+        <div class="category-card">
+            <div class="category-title">Q: 数学公式渲染异常怎么办？</div>
+            <div class="category-content">A: 确保 MiKTeX 已安装并加入 PATH；不装 LaTeX 会降级为纯文本渲染，效果较差。</div>
+        </div>
+    </section>
+
+    <footer class="footer" id="contact">
+        <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>豆包大模型 STEM 教学动画生成器：概念进、带旁白字幕的动画视频出。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/STEMViz">GitHub 仓库</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 STEM 概念动画生成器. All rights reserved.</p>
+        </div>
+            </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+            });
+        });
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        if (hamburger) {
+            hamburger.addEventListener('click', () => { navMenu.classList.toggle('active'); hamburger.classList.toggle('active'); });
+        }
+    </script>
+</body>
+</html>

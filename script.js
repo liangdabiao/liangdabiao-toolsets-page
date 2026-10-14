@@ -1450,7 +1450,798 @@ const products = [
         category: '视频生成',
         difficulty: '进阶',
         pageUrl: './whiteboard-explainer.html'
-    }
+    },
+    {
+        id: 'make-prompt-seedance2',
+        name: 'Seedance 2.0 分镜提示词助手',
+        description: '即梦 Seedance 2.0 提示词专家：看懂参考图、自动判断创作路线，产出可直接使用的结构化分镜提示词。',
+        icon: '🎬',
+        tags: ['Seedance 2.0', '提示词工程', '分镜', 'AI 视频', '即梦'],
+        githubUrl: 'https://github.com/liangdabiao/make-prompt-seedance2',
+        pageUrl: './make-prompt-seedance2.html',
+        features: [
+            '参考图理解：先看懂你上传的产品图：颜色、材质、形态直接写进提示词，让 AI 生成更贴近原物',
+            '路线自动判断：自动判断该走通用创意、抖音带货、品牌广告片、真人感探店还是改已有视频路线',
+            '结构化分镜写法：带货按黄金 3 秒钩子 + 卖点演示 + 促单结构；广告片追求电影级质感',
+            '素材引用语法：支持 @图片1 作为首帧、@视频1 参考运镜，把你的图/视频喂给模型锁住主体',
+            '多平台即用：写好的提示词可直接粘贴到即梦、小云雀、豆包使用，无需改写',
+            '带货专项优化：针对电商带货场景的钩子结构与强制约束库，专门提升完播和转化'
+        ],
+        techStack: [
+            'Claude Code / Codex / Workbuddy',
+            'Seedance 2.0',
+            '即梦',
+            '小云雀',
+            '豆包',
+            '提示词工程'
+        ],
+        category: '视频生成',
+        difficulty: '入门'
+    },
+    {
+        id: 'crewai-stock-analysis-system',
+        name: 'CrewAI 智能股票分析系统',
+        description: '基于 CrewAI 的股票分析系统：多维度分析、批量处理、实时监控、智能预警，带 Web 管理界面。',
+        icon: '📈',
+        tags: ['CrewAI', '股票分析', '多智能体', '实时监控', 'Web 界面'],
+        githubUrl: 'https://github.com/liangdabiao/crewai_stock_analysis_system',
+        pageUrl: './crewai-stock-analysis-system.html',
+        features: [
+            'AI 多维度分析：多个智能体分工协作，从基本面到技术面给出立体的股票分析',
+            '批量分析处理：一次添加多只股票，系统自动排队分析，无需逐只手动操作',
+            '价格指标实时监控：持续跟踪股价与关键指标变化，异常波动及时捕捉',
+            '智能预警通知：触发预设条件自动预警并通知，不用一直盯盘',
+            'Web 管理界面：直观的浏览器管理后台：添加股票、查看分析、管理预警',
+            'CrewAI 多 Agent 协作：基于 CrewAI 框架的角色分工与流程控制，工程结构清晰'
+        ],
+        techStack: [
+            'CrewAI',
+            'Python',
+            '多智能体协作',
+            'Web 管理界面',
+            '金融数据',
+            '智能预警'
+        ],
+        category: '金融科技',
+        difficulty: '进阶'
+    },
+    {
+        id: 'autogen-financial-analysis',
+        name: 'AutoGen 企业级金融分析系统',
+        description: '微软 AutoGen 企业级金融分析系统：财务分析、风险评估、VaR、压力测试、蒙特卡洛、量化选股。',
+        icon: '🏦',
+        tags: ['AutoGen', '金融分析', 'VaR', '蒙特卡洛', '量化投资'],
+        githubUrl: 'https://github.com/liangdabiao/autogen-financial-analysis',
+        pageUrl: './autogen-financial-analysis.html',
+        features: [
+            '多数据源整合：整合 Yahoo Finance、Alpha Vantage、Quandl 等金融数据源',
+            '多 Agent 协作分析：基于 AutoGen 的多智能体架构，分工完成智能财务分析',
+            'VaR 与压力测试：风险价值计算与压力测试，量化评估组合风险敞口',
+            '蒙特卡洛模拟：海量路径模拟收益分布，给投资决策概率化依据',
+            '因子模型与组合优化：因子选股、投资组合优化、机器学习预测一应俱全',
+            '可视化报告：实时监控告警 + 交互式可视化报告，结果一目了然'
+        ],
+        techStack: [
+            'Microsoft AutoGen',
+            'Python',
+            'Yahoo Finance',
+            'Alpha Vantage',
+            'VaR / 蒙特卡洛',
+            '机器学习'
+        ],
+        category: '金融科技',
+        difficulty: '高级'
+    },
+    {
+        id: 'video-clone-lite',
+        name: '轻量视频复刻工具',
+        description: '轻量视频复刻：给一条参考视频，自动换商品换效果产出同结构新片，过程可控可改。',
+        icon: '🎞️',
+        tags: ['视频复刻', '电商短视频', '轻量部署', 'AI 视频', '素材替换'],
+        githubUrl: 'https://github.com/liangdabiao/video-clone-lite',
+        pageUrl: './video-clone-lite.html',
+        features: [
+            '视频结构分析：自动分析参考视频的叙事结构和镜头语言',
+            '商品效果替换：把参考视频里的商品、效果替换成你的，保留原结构',
+            '全流程自动化：从分析到生成自动完成，人工只需提供素材和需求',
+            '过程可控可改：关键环节可人工介入调整，不满意就改那一版',
+            '轻量依赖：不装大型组件，普通环境即可跑起来',
+            '电商场景适配：为带货、种草类短视频复刻场景优化'
+        ],
+        techStack: [
+            'AI Agent Skill',
+            '视频分析',
+            '视频生成',
+            '电商短视频',
+            '轻量部署'
+        ],
+        category: '视频生成',
+        difficulty: '入门'
+    },
+    {
+        id: 'wordpress-kefu-ai-agent',
+        name: 'WordPress AI 智能客服',
+        description: '不用 Coze/Dify 的 WordPress 自适应智能客服，两个文件即可部署上线。',
+        icon: '💬',
+        tags: ['WordPress', '智能客服', '自适应 Agent', '极简部署', '独立站'],
+        githubUrl: 'https://github.com/liangdabiao/wordpress_kefu_ai_agent',
+        pageUrl: './wordpress-kefu-ai-agent.html',
+        features: [
+            '两个文件部署：极简结构，不用搭平台、不用引一堆依赖，放上就能跑',
+            '自适应智能客服：Agentic 设计，能根据访客问题自适应回答，不是关键词机器人',
+            '不依赖第三方平台：不用 Coze、不用 Dify，无平台绑定，数据自主可控',
+            '不限于 WordPress：为 WP 打造，同样适合挂到其他独立站点使用',
+            '程序员友好：需要一点点代码配置能力，改哪里、怎么改都清清楚楚',
+            '快速上线：填好模型 API 配置即可投入使用'
+        ],
+        techStack: [
+            'WordPress',
+            '自适应 Agent',
+            '大模型 API',
+            '极简部署',
+            '独立站'
+        ],
+        category: '企业AI',
+        difficulty: '入门'
+    },
+    {
+        id: 'investment-agent-langgraph-crewai',
+        name: 'CrewAI 多智能体 A 股投研系统',
+        description: 'CrewAI 多智能体 A 股投研系统，角色分工协作输出投资决策参考（教育研究用途）。',
+        icon: '📊',
+        tags: ['CrewAI', 'A 股', '多智能体', '投资分析', 'LangGraph'],
+        githubUrl: 'https://github.com/liangdabiao/investment_Agent_langgraph_crewai',
+        pageUrl: './investment-agent-langgraph-crewai.html',
+        features: [
+            '多智能体协作：多个 Agent 分工协作，各管一个分析维度',
+            '角色分工清晰：每个智能体职责明确，流程可控、易于理解',
+            'A 股场景适配：面向 A 股市场数据与分析口径设计',
+            '投资决策参考：输出结构化的决策参考，而非简单结论',
+            'LangGraph / CrewAI 生态：紧跟主流多智能体框架生态，便于二次开发',
+            '教育研究定位：仅供教育和研究目的，不构成实际投资建议'
+        ],
+        techStack: [
+            'CrewAI',
+            'LangGraph',
+            'Python',
+            'A 股数据',
+            '多智能体'
+        ],
+        category: '金融科技',
+        difficulty: '进阶'
+    },
+    {
+        id: 'simple-review-analyzer',
+        name: '电商评论 VOC 分析工具',
+        description: '电商评论 VOC 分析：22 维度打标、用户画像、竞品对比，输出洞察报告和可视化看板。',
+        icon: '🔍',
+        tags: ['VOC', '评论分析', '用户画像', '竞品分析', '可视化看板'],
+        githubUrl: 'https://github.com/liangdabiao/simple-review-analyzer',
+        pageUrl: './simple-review-analyzer.html',
+        features: [
+            '22 维度智能打标：人群、场景、功能、质量、服务、体验、竞品对比、复购意愿全维度自动贴标',
+            '用户画像归纳：从评论里归纳 3–4 类典型用户，每类配精选"黄金样本"评论',
+            'VOC 客户之声：汇总用户痛点、情感分布和关键词，知道大家到底在意什么',
+            '黑金可视化看板：一个黑金风格 HTML 页面，6 个交互图表，浏览器直接打开就能展示',
+            '竞品对比分析：把对手的评论也喂进去，对比双方优劣势，找差异化机会',
+            'CSV 进、三件套出：输入评论 CSV，输出打标明细 + 洞察报告 + 可视化看板'
+        ],
+        techStack: [
+            'AI Agent Skill',
+            'CSV 数据分析',
+            '22 维标签体系',
+            'VOC 洞察',
+            'HTML 可视化看板',
+            '竞品分析'
+        ],
+        category: '商业工具',
+        difficulty: '入门'
+    },
+    {
+        id: 'claudesdk-amazon-skills-chat',
+        name: '亚马逊 54 技能 AI 助手',
+        description: 'Claude Agent SDK 版亚马逊助手：对话调用 54 个技能，覆盖选品/Listing/FBA/PPC 全链路。',
+        icon: '🛒',
+        tags: ['Claude Agent SDK', '亚马逊', '54 技能', '选品', 'PPC'],
+        githubUrl: 'https://github.com/liangdabiao/claudesdk-amazon-skills-chat',
+        pageUrl: './claudesdk-amazon-skills-chat.html',
+        features: [
+            '54 个专业技能：亚马逊运营全链路技能一站集成，随叫随到',
+            '自然语言对话：不用学工具操作，说人话就能完成运营工作',
+            '选品调研：市场、竞品、关键词数据调研技能开箱即用',
+            'Listing 优化：标题、五点、详情文案优化技能随时调用',
+            'FBA 费用计算：利润、费用结构快速核算，辅助定价决策',
+            'PPC 广告：广告投放分析与优化技能，省钱提效'
+        ],
+        techStack: [
+            'Claude Agent SDK',
+            'Express',
+            'Node.js',
+            '亚马逊运营技能',
+            '自然语言交互'
+        ],
+        category: '商业工具',
+        difficulty: '进阶'
+    },
+    {
+        id: 'deep-search-write',
+        name: '双智能体写作方案',
+        description: '写作+知识库双智能体协作，自动配图配资料，产出图文并茂的公众号/小红书/博客帖子。',
+        icon: '✍️',
+        tags: ['AI 写作', '双智能体', '公众号', '小红书', '知识库'],
+        githubUrl: 'https://github.com/liangdabiao/deep_search_write',
+        pageUrl: './deep-search-write.html',
+        features: [
+            '双 Agent 协作：写作智能体 + 知识库智能体，一个管成文、一个管资料',
+            '自动找资料：知识库 Agent 自动检索组织素材，不用手动翻资料',
+            '自动配图：根据内容自动安排配图位置与素材',
+            '多平台文体：适配公众号、小红书、博客等不同平台的内容风格',
+            '轻量易接入：方案轻量，不挑环境，容易集成到现有工作流',
+            '初稿即用：产出真正可用的图文初稿，人工润色后即可发布'
+        ],
+        techStack: [
+            'AI Agent',
+            '知识库 RAG',
+            '多智能体协作',
+            '内容创作',
+            '公众号 / 小红书'
+        ],
+        category: '商业工具',
+        difficulty: '入门'
+    },
+    {
+        id: 'claudesdk-seedance-chat',
+        name: 'Seedance 脚本分镜对话应用',
+        description: 'Claude Agent SDK 版 Seedance 2.0 视频脚本与分镜创作 Web 应用，对话式全流程。',
+        icon: '🎬',
+        tags: ['Claude Agent SDK', 'Seedance 2.0', '视频脚本', '分镜', 'Web 应用'],
+        githubUrl: 'https://github.com/liangdabiao/claudesdk-seedance-chat',
+        pageUrl: './claudesdk-seedance-chat.html',
+        features: [
+            '对话生成脚本：自然语言描述故事，自动生成专业视频脚本',
+            '自动分镜提示词：脚本自动拆解为分镜，并生成对应提示词',
+            '故事分析：先分析故事结构与节奏，再落分镜，不跳步',
+            '全流程覆盖：从故事分析到分镜脚本，一个应用内完成',
+            'Web 界面：浏览器直接使用，无需命令行基础',
+            'SDK 驱动：基于 Claude Agent SDK，能力可持续扩展'
+        ],
+        techStack: [
+            'Claude Agent SDK',
+            'React / Node',
+            'Seedance 2.0',
+            '视频脚本',
+            '分镜设计'
+        ],
+        category: 'AI对话',
+        difficulty: '入门'
+    },
+    {
+        id: 'hstech-2026-ai-summary',
+        name: '恒生科技 2026 AI 全景报告',
+        description: '用股票尽调 Agent 对恒生科技成分股做的 2026 年度全景分析报告，多空观点兼备。',
+        icon: '🇭🇰',
+        tags: ['恒生科技', '港股', '尽调报告', 'AI 分析', '2026'],
+        githubUrl: 'https://github.com/liangdabiao/HSTECH_2026_AI_SUMMARY',
+        pageUrl: './hstech-2026-ai-summary.html',
+        features: [
+            '成分股逐一分析：对恒生科技指数成分股公司逐家深度分析',
+            '多智能体尽调生成：基于成熟的股票尽调 Agent 系统自动产出',
+            '2026 年度全景：覆盖年度维度的全景式梳理',
+            '多空观点呈现：不只讲多头逻辑，看空风险同样列出',
+            '开源可查：报告全文在仓库公开，随时查阅引用',
+            '理性参考定位：帮助理性了解公司，不构成投资建议'
+        ],
+        techStack: [
+            'Claude Code Stock Agent',
+            '尽调框架',
+            '恒生科技指数',
+            '多空分析',
+            '开源报告'
+        ],
+        category: '金融科技',
+        difficulty: '入门'
+    },
+    {
+        id: 'product-motion-gif',
+        name: '产品动图 GIF 生成器',
+        description: 'GPT-Image 2.5 一次生成多格帧图并合成产品循环动图 GIF，零设计基础可用。',
+        icon: '🎞️',
+        tags: ['GPT-Image 2.5', 'GIF', '产品动图', '电商素材', '零基础'],
+        githubUrl: 'https://github.com/liangdabiao/product-motion-gif',
+        pageUrl: './product-motion-gif.html',
+        features: [
+            '单图生多格帧：一张产品照片，自动生成连贯的多格帧图序列',
+            '自动合成 GIF：帧图序列自动合成为循环播放的产品动图',
+            '一次 API 调用：整个流程一次调用完成，不用逐帧操作',
+            '零设计基础：不需要 AE/PS，会打字就能用',
+            '电商适配：为电商卖家和运营的素材需求优化',
+            '开箱即用：提供产品照和简单描述即可生成'
+        ],
+        techStack: [
+            'GPT-Image 2.5',
+            'GIF 合成',
+            'AI Agent Skill',
+            '电商素材',
+            '零基础'
+        ],
+        category: '图像创作',
+        difficulty: '入门'
+    },
+    {
+        id: 'liangdabiao-github-io',
+        name: 'Agent 技术教学站',
+        description: 'Agent 技术教学站：百炼/LangGraph/Claude/OpenAI Agent SDK/DeepAgents/EdgeOne 等系统课程。',
+        icon: '📚',
+        tags: ['Agent 教学', 'LangGraph', 'Claude Agent SDK', 'DeepAgents', 'EdgeOne'],
+        githubUrl: 'https://github.com/liangdabiao/liangdabiao.github.io',
+        pageUrl: './liangdabiao-github-io.html',
+        features: [
+            '多框架系统课程：主流 Agent 框架各设专题，从入门到精通',
+            '概念到实战：每门课程不止讲概念，配套可跑通的实战示例',
+            '免费阅读：全部课程免费开放，浏览器直接学',
+            '持续更新：跟随框架版本持续修订，不过时',
+            '文章 + 示例：图文讲解配合代码示例，学练结合',
+            '按框架逐个学：课程模块化，建议选定框架逐个攻克'
+        ],
+        techStack: [
+            'GitHub Pages',
+            '阿里云百炼',
+            'LangGraph',
+            'Claude Agent SDK',
+            'OpenAI Agents SDK',
+            'DeepAgents'
+        ],
+        category: '教育工具',
+        difficulty: '入门'
+    },
+    {
+        id: 'claudesdk-financial-chart-chat',
+        name: 'A 股财经图表对话助手',
+        description: '自然语言查 A 股数据自动出 6 种专业图表，Baostock 主用 + akshare 自动降级。',
+        icon: '📈',
+        tags: ['Claude Agent SDK', 'A 股', '财报图表', 'Baostock', '可视化'],
+        githubUrl: 'https://github.com/liangdabiao/claudesdk-financial-chart-chat',
+        pageUrl: './claudesdk-financial-chart-chat.html',
+        features: [
+            '自然语言查数：输入公司名或需求，自动查询 A 股上市公司数据',
+            '6 种专业图表：营收利润、毛利率、趋势、对比等专业图表自动生成',
+            'Baostock 主用：以 Baostock 为主要数据源，数据稳定可靠',
+            'akshare 自动降级：主数据源不可用时自动切换 akshare，保证可用性',
+            '图表管理：生成的图表可管理、可回看',
+            '执行日志：完整执行日志，查数和生成过程可追溯'
+        ],
+        techStack: [
+            'Claude Agent SDK',
+            'Baostock',
+            'akshare',
+            'A 股财务数据',
+            '图表可视化'
+        ],
+        category: 'AI对话',
+        difficulty: '入门'
+    },
+    {
+        id: 'claudesdk-market-insight-chat',
+        name: '用户需求洞察对话平台',
+        description: '三段式用户需求洞察平台：画像→情绪→机会，10 分钟产出可落地分析。',
+        icon: '💡',
+        tags: ['Claude Agent SDK', '用户洞察', '需求分析', '产品机会', '三段式'],
+        githubUrl: 'https://github.com/liangdabiao/claudesdk-market-insight-chat',
+        pageUrl: './claudesdk-market-insight-chat.html',
+        features: [
+            '三段式洞察框架：用户画像 → 情绪洞察 → 产品机会，标准流程自动执行',
+            '用户画像输出：目标用户是谁、特征是什么，结构化呈现',
+            '情绪动因分析：不止于行为，深挖背后的情绪驱动',
+            '产品机会识别：从洞察落到具体产品机会，可执行',
+            '对话式操作：不用写代码，输入描述即可开跑',
+            'SDK 驱动：基于 Claude Agent SDK，能力可持续扩展'
+        ],
+        techStack: [
+            'Claude Agent SDK',
+            '用户洞察',
+            '三段式框架',
+            '产品机会分析',
+            'Web 应用'
+        ],
+        category: '商业工具',
+        difficulty: '入门'
+    },
+    {
+        id: 'claudesdk-exa-chat',
+        name: 'Exa 对话式调研平台',
+        description: 'Claude Agent SDK + Exa 的对话式调研平台：企业/外贸/竞品多维搜索研究。',
+        icon: '🔎',
+        tags: ['Claude Agent SDK', 'Exa', '企业调研', '外贸分析', '竞品研究'],
+        githubUrl: 'https://github.com/liangdabiao/claudesdk-exa-chat',
+        pageUrl: './claudesdk-exa-chat.html',
+        features: [
+            '企业调研：公司背景、业务、动态一站式调研技能',
+            '外贸市场分析：目标国市场、行业格局结构化分析',
+            '竞品研究：竞品动态与差异化信息收集整理',
+            'Exa 高质量检索：Exa 搜索引擎提供语义级高质量检索能力',
+            '结构化报告：调研结果自动整理为结构化报告',
+            '对话式操作：浏览器对话提问，无需命令行'
+        ],
+        techStack: [
+            'Claude Agent SDK',
+            'Exa Search',
+            'Express',
+            '企业调研',
+            '外贸分析'
+        ],
+        category: '深度研究',
+        difficulty: '进阶'
+    },
+    {
+        id: 'claudesdk-amazon-chat',
+        name: '亚马逊竞品 Listing 穿透分析',
+        description: '亚马逊竞品 Listing 穿透分析：文案/评论情感/关键词/市场动态，情报报告自动存档。',
+        icon: '🕵️',
+        tags: ['Claude Agent SDK', '亚马逊', '竞品分析', 'Listing', '情报报告'],
+        githubUrl: 'https://github.com/liangdabiao/claudesdk-amazon-chat',
+        pageUrl: './claudesdk-amazon-chat.html',
+        features: [
+            '文案逻辑分析：拆解竞品标题、五点、详情文案的写法与说服逻辑',
+            '评论情感分析：评论情感倾向与高频反馈点自动归纳',
+            '关键词布局分析：竞品关键词覆盖与布局结构解析',
+            '市场动态跟踪：竞品及所在市场的动态变化跟踪',
+            '报告自动存档：情报报告自动生成并保存，便于回溯对比',
+            'ASIN 即输即用：输入竞品 ASIN 即可启动全维度分析'
+        ],
+        techStack: [
+            'Claude Agent SDK',
+            '亚马逊数据',
+            '竞品分析',
+            '情感分析',
+            'Listing 优化'
+        ],
+        category: '商业工具',
+        difficulty: '进阶'
+    },
+    {
+        id: 'ecom-details-image-plugin',
+        name: 'DeepSeek Harness 电商图插件',
+        description: 'ecom-details-image 的 DeepSeek Harness 插件版：对话写合规 Prompt 并真实出图。',
+        icon: '🖼️',
+        tags: ['DeepSeek Harness', 'dsh 插件', '电商图', 'AI 生图', 'Prompt'],
+        githubUrl: 'https://github.com/liangdabiao/ecom-details-image-plugin',
+        pageUrl: './ecom-details-image-plugin.html',
+        features: [
+            'dsh 插件形态：作为 DeepSeek Harness 插件安装使用，与对话流程无缝融合',
+            '真实出图：不止写提示词，直接调用生图接口生成真实图片',
+            '全场景覆盖：主图、详情页、社媒图、直播、广告素材全覆盖',
+            '画廊卡片展示：生成结果以画廊卡片形式在网页界面呈现',
+            'Prompt 合规校验：提示词自带合规校验，降低违规风险',
+            '一句话生成：直接说"生成一张白色马克杯的电商主图"即可'
+        ],
+        techStack: [
+            'DeepSeek Harness',
+            'dsh 插件',
+            '电商 Prompt',
+            'AI 生图',
+            '画廊 UI'
+        ],
+        category: '图像创作',
+        difficulty: '进阶'
+    },
+    {
+        id: 'lego-cinematic-remix',
+        name: '乐高积木动画制片 Skill',
+        description: '乐高积木小镇动画制片 Skill：一句话让积木小人演戏，电影镜头成片。',
+        icon: '🧱',
+        tags: ['乐高', '动画制片', 'AI 视频', '亲子内容', '一句话生成'],
+        githubUrl: 'https://github.com/liangdabiao/lego-cinematic-remix',
+        pageUrl: './lego-cinematic-remix.html',
+        features: [
+            '一句话生成：描述故事即可启动整套动画制片流程',
+            '场景角色全自动：积木场景、角色、镜头全部自动生成',
+            '电影级镜头：按电影镜头语言拍摄积木小人的表演',
+            '小说改编友好：适合把小说、故事改编为积木动画',
+            '完整制片流程：从剧本到成片的完整动画制片管线',
+            '亲子内容适配：乐高爱好者与亲子内容创作者的趁手工具'
+        ],
+        techStack: [
+            'AI Agent Skill',
+            '乐高风格',
+            '动画制片',
+            '视频生成',
+            '亲子内容'
+        ],
+        category: '视频生成',
+        difficulty: '入门'
+    },
+    {
+        id: 'simple-ai-toolset',
+        name: '后端程序员轻量 Coze 框架',
+        description: '面向后端程序员的类 Coze 框架：FastAPI/搜索/RPA/Agent/Mongo/多模态按需启用。',
+        icon: '🧰',
+        tags: ['FastAPI', 'AI 框架', 'RPA', 'Agent', 'MongoDB'],
+        githubUrl: 'https://github.com/liangdabiao/simple_ai_toolset',
+        pageUrl: './simple-ai-toolset.html',
+        features: [
+            'FastAPI 后端：以后端程序员最熟悉的方式组织 AI 服务接口',
+            '搜索与向量化：文档解析与向量化能力开箱即用',
+            'RPA 与爬虫：RPA、爬虫模块助力数据获取自动化',
+            '自定义 Agent：Agent 框架按需组合，构建业务智能体',
+            'MongoDB 对接：主流数据库与第三方接口对接支持',
+            '多模态理解生成：多模态能力 + 可控 JSON 结构返回'
+        ],
+        techStack: [
+            'FastAPI',
+            'Python',
+            'MongoDB',
+            'RAG 向量化',
+            'RPA',
+            '多模态'
+        ],
+        category: '基础设施',
+        difficulty: '进阶'
+    },
+    {
+        id: 'langgraph-runtime-skill-agent',
+        name: 'Skill 转 HTTP API 运行时',
+        description: '把本地 Agent Skill 包装成 HTTP/SSE API 服务：模型编排 + 脚本确定性执行。',
+        icon: '🔌',
+        tags: ['langgraph-runtime', 'Agent Skill', 'HTTP API', 'SSE', '技能服务化'],
+        githubUrl: 'https://github.com/liangdabiao/langgraph-runtime-skill-agent',
+        pageUrl: './langgraph-runtime-skill-agent.html',
+        features: [
+            'Skill 自动包装：本地 Agent Skill 自动包装为 HTTP/SSE API',
+            '模型判断编排：模型负责选择技能、规划执行路径',
+            '脚本确定执行：脚本负责确定性执行，结果稳定可复现',
+            'SSE 流式返回：流式输出，前端接入体验流畅',
+            '前端易接入：标准 HTTP 接口，任意前端都能接',
+            '技能产品化：把个人技能快速变成可对外服务的能力'
+        ],
+        techStack: [
+            'langgraph-runtime',
+            'Agent Skill',
+            'HTTP / SSE API',
+            'Python',
+            '流式响应'
+        ],
+        category: '基础设施',
+        difficulty: '进阶'
+    },
+    {
+        id: 'lark-crm-feishu-cli',
+        name: '飞书多维表格 CRM',
+        description: '飞书多维表格变身会聊天的 CRM：自然语言增删改查客户信息。',
+        icon: '📋',
+        tags: ['飞书', '多维表格', 'CRM', 'lark-cli', '自然语言'],
+        githubUrl: 'https://github.com/liangdabiao/lark-crm-feishu-cli',
+        pageUrl: './lark-crm-feishu-cli.html',
+        features: [
+            '表格封装 CRM：多维表格自动封装为对话式 CRM 系统',
+            '自然语言增删改查：说人话即可完成客户信息管理操作',
+            '零命令记忆：不用记表名、字段名和命令参数',
+            'lark-cli 驱动：基于 lark-cli 运行，与飞书生态无缝衔接',
+            '小团队适配：适合用飞书表格管客户的小团队',
+            '轻量 CRM：不上一套重系统，表格即 CRM'
+        ],
+        techStack: [
+            '飞书 CLI',
+            '多维表格',
+            'Agent Skill',
+            'CRM',
+            '自然语言交互'
+        ],
+        category: '企业AI',
+        difficulty: '进阶'
+    },
+    {
+        id: 'directing-xiaohei-videos',
+        name: '小黑动画视频导演',
+        description: '小黑手绘动画导演：给主题或文章，全流程产出约 1 分钟竖屏成片，默认免费管线。',
+        icon: '✏️',
+        tags: ['小黑动画', '手绘视频', '短视频', '零成本', '分镜导演'],
+        githubUrl: 'https://github.com/liangdabiao/directing-xiaohei-videos',
+        pageUrl: './directing-xiaohei-videos.html',
+        features: [
+            '一句话出片：「用小黑视频讲讲注意力是怎么被切碎的」，等一会儿拿到成片',
+            '全流程导演：隐喻构图 → 六场分镜 → 解说词 → 动画 → 配音 → 叠字 → 质检',
+            '两阶段确认：先出导演方案（分镜+解说词+批注规划），你点头才开做',
+            '默认免费管线：Agnes 免费首帧图 + 免费关键帧动画 + edge-tts 配音，一条 0 元',
+            '隐喻构图发明：低科技怪机器 + 小黑动作主体，把抽象道理变成可视动作',
+            '旁白字幕批注：旁白 240-270 字配手写批注，知识区观点类视频利器'
+        ],
+        techStack: [
+            'AI Agent Skill',
+            '手绘动画',
+            'Agnes 生图',
+            'edge-tts 配音',
+            '分镜导演',
+            '短视频'
+        ],
+        category: '视频生成',
+        difficulty: '入门'
+    },
+    {
+        id: 'stock-deep-research',
+        name: '股票尽调一体化引擎',
+        description: '股票尽调一体化引擎：问清需求→8 阶段并行尽调→交叉验证→带引用报告（只研究不荐股）。',
+        icon: '🔬',
+        tags: ['股票尽调', '投研', '多智能体', '交叉验证', '引用评级'],
+        githubUrl: 'https://github.com/liangdabiao/stock-deep-research-skill',
+        pageUrl: './stock-deep-research.html',
+        features: [
+            '需求澄清先行：先问清投资风格、持有周期、关注点和风险偏好，再生成研究计划',
+            '8 阶段尽调：公司事实、行业周期、业务拆解、财务质量、股权治理、市场分歧、估值护城河 + 综合报告',
+            '多研究员并行：多个 AI 研究员分头干活，比串行快得多',
+            '强制交叉验证：经营现金流对账净利润、同行全面对标，必列 3-5 个看空风险',
+            'A-E 来源评级：每个声明标来源并评级（A 年报/E 论坛），附幻觉检测',
+            '信号灯评级：报告末尾给三绿/三黄/两红信号灯，但明确不预测股价、不荐股'
+        ],
+        techStack: [
+            'AI Agent Skill',
+            '8 阶段尽调',
+            'GoT 图控制',
+            '引用评级',
+            '幻觉检测',
+            '投研框架'
+        ],
+        category: '深度研究',
+        difficulty: '进阶'
+    },
+    {
+        id: 'deep-research-agent',
+        name: '深度研究报告生成器',
+        description: '多研究员并行深度研究：丢个主题进去，吐出带完整引用和权威评级的报告文件夹。',
+        icon: '📑',
+        tags: ['深度研究', '多研究员', '引用验证', '调研报告', 'AI Agent Skill'],
+        githubUrl: 'https://github.com/liangdabiao/deep-research-agent-skill',
+        pageUrl: './deep-research-agent.html',
+        features: [
+            '需求主动确认：先确认研究范围、格式、时间段和来源要求，不一上来瞎搜',
+            '多研究员并行：同时派出多个 AI 研究员分头查资料，效率倍增',
+            '图式思考规划：像下棋一样规划研究路径、给每条线索打分',
+            '矛盾来源分析：不同来源说法矛盾时，分析谁更可信，共识与分歧都摆出',
+            'A-E 权威评级：每个数据标来源并按权威度评级，附编造数据检测',
+            '完整报告文件夹：执行摘要、全文、关键数据、参考文献、来源质量表、引用验证报告'
+        ],
+        techStack: [
+            'AI Agent Skill',
+            '多研究员并行',
+            'GoT 图思考',
+            '引用验证',
+            '报告生成'
+        ],
+        category: '深度研究',
+        difficulty: '进阶'
+    },
+    {
+        id: 'datalogic',
+        name: '咖哥数据分析实战教程',
+        description: 'AI 加强版数据分析案例教程：裂变策略评估到 XGBoost Uplift 建模完整实战。',
+        icon: '📊',
+        tags: ['数据分析', '案例教程', 'XGBoost', 'Uplift 建模', '增长模型'],
+        githubUrl: 'https://github.com/liangdabiao/datalogic',
+        pageUrl: './datalogic.html',
+        features: [
+            '五步分析流程：效果评估 → 用户细分 → 深度剖析 → 成本效益 → 增长建模，由浅入深',
+            '裂变策略效果评估：对比助力砍价、拼团狂买、无裂变三种策略的整体转化率',
+            '用户细分策略：设备、城市、RFM、历史行为多维交叉，找个性化策略依据',
+            '策略协同洞察：挖掘"助力+拼团"协同效应与策略匹配度影响',
+            'XGBoost Uplift 建模：识别对策略响应差异最大的用户，实现精准营销',
+            'Qini 曲线分析：用 Qini 曲线评估增量模型区分度，区分相关与因果'
+        ],
+        techStack: [
+            'Python',
+            'pandas',
+            'XGBoost',
+            'scikit-learn',
+            'RFM 模型',
+            'Qini 曲线'
+        ],
+        category: '数据分析',
+        difficulty: '进阶'
+    },
+    {
+        id: 'ai-engineering-from-scratch',
+        name: 'AI 工程从零学教程',
+        description: '503 节课 20 阶段约 320 小时的 AI 工程系统教程，每个算法从数学手推，MIT 开源。',
+        icon: '🎓',
+        tags: ['AI 教程', 'Agent', '系统课程', 'MIT', '从零手推'],
+        githubUrl: 'https://github.com/liangdabiao/ai-engineering-from-scratch',
+        pageUrl: './ai-engineering-from-scratch.html',
+        features: [
+            '503 节系统课：20 个阶段线性进阶，数学是地板、agent 与生产是屋顶',
+            '从数学到手推：每个算法先从原始数学推导，再写代码，不吃夹生饭',
+            '四语言实现：Python、TypeScript、Rust、Julia 四种语言对照实现',
+            '每课产出工件：提示词、技能、agent、MCP server，学完即有沉淀',
+            'MIT 免费开源：完全免费开放，可在自己笔记本上跑通',
+            '持续更新：2026 持续更新中，已有 15 万+ 读者'
+        ],
+        techStack: [
+            'Python',
+            'TypeScript',
+            'Rust',
+            'Julia',
+            '线性代数',
+            'Agent / MCP'
+        ],
+        category: '教育工具',
+        difficulty: '高级'
+    },
+    {
+        id: 'reddit-research',
+        name: 'Reddit 免认证调研方法论',
+        description: '免认证 Reddit 调研方法论：Arctic Shift 档案 API + 五坑规避 + 10 模块深度调研框架。',
+        icon: '🔍',
+        tags: ['Reddit', '调研方法论', 'Arctic Shift', '痛点挖掘', 'AI Agent Skill'],
+        githubUrl: 'https://github.com/liangdabiao/reddit-research',
+        pageUrl: './reddit-research.html',
+        features: [
+            '免认证采集：不用申请 Reddit API、不用登录态、不用代理，走 Arctic Shift 档案',
+            '五个必知坑：URL 加 .json 已封、关键词过滤失效、样本量先算、展示帖剔除、软文剔除',
+            '深度调研 10 模块：讨论总结/痛点/现有方案/看重特性/竞品提及/场景/客户语言/搜索意图/PAA/图片创意',
+            '软文剔除机制：电商类 sub 的 KOC 软文自动剔除，避免结论反向',
+            '标题级痛点分析：自动规避作品展示帖霸榜，标题级判据收敛样本',
+            'AI agent 直接读：SKILL.md 自带 frontmatter，装进 agent 命中场景自动加载'
+        ],
+        techStack: [
+            'Arctic Shift API',
+            'Python 脚本',
+            'AI Agent Skill',
+            '分页重试',
+            '痛点 SOP'
+        ],
+        category: '深度研究',
+        difficulty: '进阶'
+    },
+    {
+        id: 'nce-flow',
+        name: '新概念英语在线点读',
+        description: '新概念英语在线点读站：点句连读、中英三态、纯静态零依赖，可直接 Pages 部署。',
+        icon: '🎧',
+        tags: ['新概念英语', '点读', '英语学习', '零依赖', 'GitHub Pages'],
+        githubUrl: 'https://github.com/liangdabiao/NCE-Flow',
+        pageUrl: './nce-flow.html',
+        features: [
+            '句子级点读：点击任意一句从该句连读，自动高亮并居中',
+            '三态语言视图：EN / EN+CN / CN 一键切换，偏好持久化保存',
+            '现代 UI：Apple 风格、浅深色自适应、顺滑过渡动画',
+            '零依赖部署：纯静态站点，GitHub Pages / EdgeOne 等任意平台可跑',
+            'LRC 双语兼容：支持同行双语与同时间戳上下两行两种 LRC 格式',
+            '批量翻译脚本：内置 translate_lrc.py，纯英文 LRC 一键转双语'
+        ],
+        techStack: [
+            '纯静态 HTML/CSS/JS',
+            'LRC 歌词',
+            'GitHub Pages',
+            'EdgeOne',
+            '零依赖'
+        ],
+        category: '教育工具',
+        difficulty: '入门'
+    },
+    {
+        id: 'stemviz',
+        name: 'STEM 概念动画生成器',
+        description: '豆包大模型 STEM 教学动画生成器：概念进、带旁白字幕的动画视频出。',
+        icon: '🔬',
+        tags: ['STEM', '教学动画', 'Manim', '豆包大模型', '多智能体'],
+        githubUrl: 'https://github.com/liangdabiao/STEMViz',
+        pageUrl: './stemviz.html',
+        features: [
+            '全自动动画生成：输入概念 → 输出带旁白的完整教学视频，无需手动剪辑',
+            '多智能体架构：概念解析 + Manim 代码生成 + 视频理解多 Agent 协作',
+            'AI 旁白生成：多模态大模型观看动画后生成情境化旁白（SRT）',
+            '豆包 TTS 语音：高质量中文语音合成，支持多音色与语速调整',
+            '并行处理：多场景代码并发生成，渲染失败自动修复重试',
+            'Gradio Web 界面：简洁易用的浏览器界面，也支持命令行调用'
+        ],
+        techStack: [
+            '豆包大模型',
+            'Manim',
+            '火山方舟',
+            'FFmpeg',
+            'Gradio',
+            'TTS'
+        ],
+        category: '教育工具',
+        difficulty: '进阶'
+    },
 ];
 
 // DOM元素
@@ -1655,7 +2446,37 @@ function getProductPageUrl(productId) {
         'deepseek-v4-flash-vision-rag': './deepseek-v4-flash-vision-rag.html',
         'dsh-plugin-developer-skill': './dsh-plugin-developer-skill.html',
         'seekword': './seekword.html',
-        'whiteboard-explainer': './whiteboard-explainer.html'
+        'whiteboard-explainer': './whiteboard-explainer.html',
+        'make-prompt-seedance2': './make-prompt-seedance2.html',
+        'crewai-stock-analysis-system': './crewai-stock-analysis-system.html',
+        'autogen-financial-analysis': './autogen-financial-analysis.html',
+        'video-clone-lite': './video-clone-lite.html',
+        'wordpress-kefu-ai-agent': './wordpress-kefu-ai-agent.html',
+        'investment-agent-langgraph-crewai': './investment-agent-langgraph-crewai.html',
+        'simple-review-analyzer': './simple-review-analyzer.html',
+        'claudesdk-amazon-skills-chat': './claudesdk-amazon-skills-chat.html',
+        'deep-search-write': './deep-search-write.html',
+        'claudesdk-seedance-chat': './claudesdk-seedance-chat.html',
+        'hstech-2026-ai-summary': './hstech-2026-ai-summary.html',
+        'product-motion-gif': './product-motion-gif.html',
+        'liangdabiao-github-io': './liangdabiao-github-io.html',
+        'claudesdk-financial-chart-chat': './claudesdk-financial-chart-chat.html',
+        'claudesdk-market-insight-chat': './claudesdk-market-insight-chat.html',
+        'claudesdk-exa-chat': './claudesdk-exa-chat.html',
+        'claudesdk-amazon-chat': './claudesdk-amazon-chat.html',
+        'ecom-details-image-plugin': './ecom-details-image-plugin.html',
+        'lego-cinematic-remix': './lego-cinematic-remix.html',
+        'simple-ai-toolset': './simple-ai-toolset.html',
+        'langgraph-runtime-skill-agent': './langgraph-runtime-skill-agent.html',
+        'lark-crm-feishu-cli': './lark-crm-feishu-cli.html',
+        'directing-xiaohei-videos': './directing-xiaohei-videos.html',
+        'stock-deep-research': './stock-deep-research.html',
+        'deep-research-agent': './deep-research-agent.html',
+        'datalogic': './datalogic.html',
+        'ai-engineering-from-scratch': './ai-engineering-from-scratch.html',
+        'reddit-research': './reddit-research.html',
+        'nce-flow': './nce-flow.html',
+        'stemviz': './stemviz.html',
     };
     return productPages[productId] || `./${productId}.html`;
 }

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>咖哥数据分析实战教程 | 数据分析 · 案例教程</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #b45309 0%, #92400e 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 { font-size: 3em; margin-bottom: 20px; }
+        .hero p { font-size: 1.3em; max-width: 800px; margin: 0 auto 30px; opacity: 0.95; }
+        .hero-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 10px 25px; border-radius: 25px; margin-bottom: 20px; font-size: 0.95em; }
+        .hero-stats { display: flex; justify-content: center; gap: 50px; margin-top: 50px; flex-wrap: wrap; }
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 2.5em; font-weight: bold; display: block; }
+        .stat-label { font-size: 0.9em; opacity: 0.9; }
+        .section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 2.5em; margin-bottom: 20px; color: var(--primary-color); }
+        .section-subtitle { text-align: center; color: var(--secondary-color); margin-bottom: 50px; font-size: 1.1em; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-top: 40px; }
+        .feature-card { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s; border-left: 4px solid #b45309; }
+        .feature-card:hover { transform: translateY(-5px); box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+        .feature-icon { font-size: 2.5em; margin-bottom: 15px; }
+        .feature-title { font-size: 1.3em; font-weight: bold; margin-bottom: 10px; color: var(--text-color); }
+        .feature-description { color: var(--secondary-color); line-height: 1.8; }
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 30px; }
+        .tech-item { background: #b45309; color: white; padding: 12px 24px; border-radius: 25px; font-size: 0.95em; transition: background 0.3s; }
+        .tech-item:hover { background: #92400e; }
+        .workflow-diagram { background: white; border-radius: 12px; padding: 40px; margin: 40px 0; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .workflow-flow { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 30px 0; }
+        .flow-step { background: linear-gradient(135deg, #b45309 0%, #92400e 100%); color: white; padding: 20px 30px; border-radius: 10px; text-align: center; font-weight: bold; }
+        .flow-arrow { font-size: 2em; color: #b45309; }
+        .category-card { background: white; border-radius: 12px; padding: 30px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid #b45309; }
+        .category-title { font-size: 1.4em; font-weight: bold; margin-bottom: 15px; color: #b45309; }
+        .category-content { color: var(--secondary-color); line-height: 1.8; }
+        .feature-highlight { background: linear-gradient(135deg, #fffbeb 0%, #fffbeb 100%); border-radius: 12px; padding: 30px; margin: 30px 0; border-left: 4px solid #b45309; }
+        .feature-highlight h3 { color: #92400e; margin-bottom: 15px; }
+        .feature-highlight p { color: var(--text-primary); line-height: 1.8; }
+        .code-block { background: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 8px; margin: 20px 0; font-family: 'Courier New', monospace; line-height: 1.6; overflow-x: auto; }
+        .install-card { background: #f8f9fa; border-radius: 12px; padding: 25px; margin: 15px 0; border-left: 4px solid #b45309; }
+        .install-title { font-size: 1.2em; font-weight: bold; margin-bottom: 10px; color: #b45309; }
+        .showcase-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 40px; }
+        .showcase-item { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); text-align: center; }
+        .showcase-item img { max-width: 100%; border-radius: 8px; }
+        .showcase-caption { margin-top: 15px; color: var(--secondary-color); font-size: 0.95em; }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2em; }
+            .hero-stats { gap: 30px; }
+            .features-grid { grid-template-columns: 1fr; }
+            .flow-arrow { transform: rotate(90deg); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo"><a href="index.html">🌐 AI工具集合</a></div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-badge">数据分析 · 案例教程</div>
+        <h1>咖哥数据分析实战教程</h1>
+        <p>继承佳哥开源项目、注入大量 AI 分析的数据分析案例教程：从裂变策略效果评估到 XGBoost Uplift 建模，完整走一遍数据驱动增长。</p>
+        <div class="hero-stats">
+            <div class="stat-item"><span class="stat-number">40</span><span class="stat-label">GitHub Star</span></div>
+            <div class="stat-item"><span class="stat-number">📊</span><span class="stat-label">数据分析</span></div>
+            <div class="stat-item"><span class="stat-number">进阶</span><span class="stat-label">上手难度</span></div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/datalogic" class="btn btn-primary" style="background: white; color: #b45309;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">为什么需要 咖哥数据分析实战教程？</h2>
+        <p class="section-subtitle">数据分析不能只停在"哪个策略转化率高"</p>
+        <div class="feature-highlight">
+            <h3>数据分析不能只停在"哪个策略转化率高"</h3>
+            <p>这个项目以《数据分析咖哥十话》第 10 话"裂变驱动增长循环"为蓝本，用一个模拟电商裂变数据集，从宏观策略评估一路做到 Uplift 因果建模，完整演示"从相关到因果"的分析思维。每个步骤都有可运行代码、分析报告和可视化图表。</p>
+        </div>
+    </section>
+
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">咖哥数据分析实战教程 的六大能力</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🧪</div>
+                <h3 class="feature-title">五步分析流程</h3>
+                <p class="feature-description">效果评估 → 用户细分 → 深度剖析 → 成本效益 → 增长建模，由浅入深</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3 class="feature-title">裂变策略效果评估</h3>
+                <p class="feature-description">对比助力砍价、拼团狂买、无裂变三种策略的整体转化率</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">👥</div>
+                <h3 class="feature-title">用户细分策略</h3>
+                <p class="feature-description">设备、城市、RFM、历史行为多维交叉，找个性化策略依据</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3 class="feature-title">策略协同洞察</h3>
+                <p class="feature-description">挖掘"助力+拼团"协同效应与策略匹配度影响</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h3 class="feature-title">XGBoost Uplift 建模</h3>
+                <p class="feature-description">识别对策略响应差异最大的用户，实现精准营销</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📉</div>
+                <h3 class="feature-title">Qini 曲线分析</h3>
+                <p class="feature-description">用 Qini 曲线评估增量模型区分度，区分相关与因果</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="workflow" class="section">
+        <h2 class="section-title">工作流程</h2>
+        <p class="section-subtitle">从输入到产出，一步到位</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">克隆项目</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">按目录顺序</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">运行分析脚本</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">阅读分析报告</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">二次开发</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="install" class="section">
+        <h2 class="section-title">安装与使用</h2>
+        <p class="section-subtitle">快速开始</p>
+        <div class="install-card">
+            <div class="install-title">1. 克隆项目</div>
+            <pre class="code-block">git clone https://github.com/liangdabiao/datalogic.git</pre>
+        </div>
+        <div class="install-card">
+            <div class="install-title">2. 安装依赖</div>
+            <pre class="code-block">pip install pandas numpy matplotlib seaborn scipy scikit-learn xgboost</pre>
+        </div>
+        <div class="install-card">
+            <div class="install-title">3. 按序运行</div>
+            <pre class="code-block">cd "10 增长模型"
+python "01_裂变策略效果评估\conversion_analysis.py"</pre>
+        </div>
+        <div class="install-card">
+            <div class="install-title">4. 核心建模</div>
+            <pre class="code-block">python "05_增长建模_xgboost_qini\xgboost_uplift_modeling.py"
+python "05_增长建模_xgboost_qini\qini_curve_analysis.py"</pre>
+        </div>
+    </section>
+
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">现代化技术组合</p>
+        <div class="tech-stack">
+            <div class="tech-item">Python</div>
+            <div class="tech-item">pandas</div>
+            <div class="tech-item">XGBoost</div>
+            <div class="tech-item">scikit-learn</div>
+            <div class="tech-item">RFM 模型</div>
+            <div class="tech-item">Qini 曲线</div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于 咖哥数据分析实战教程 的常见疑问</p>
+        <div class="category-card">
+            <div class="category-title">Q: 适合什么水平的人？</div>
+            <div class="category-content">A: 适合有 Python 基础、想系统学习增长分析的同学，每个步骤都有详细报告可对照。</div>
+        </div>
+        <div class="category-card">
+            <div class="category-title">Q: 数据集是什么？</div>
+            <div class="category-content">A: 一个模拟的电商用户裂变行为数据集（裂变.csv），随项目提供。</div>
+        </div>
+        <div class="category-card">
+            <div class="category-title">Q: 能复现结果吗？</div>
+            <div class="category-content">A: 可以。按目录顺序运行脚本即可复现全部分析与图表。</div>
+        </div>
+    </section>
+
+    <footer class="footer" id="contact">
+        <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>AI 加强版数据分析案例教程：裂变策略评估到 XGBoost Uplift 建模完整实战。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/datalogic">GitHub 仓库</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 咖哥数据分析实战教程. All rights reserved.</p>
+        </div>
+            </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+            });
+        });
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        if (hamburger) {
+            hamburger.addEventListener('click', () => { navMenu.classList.toggle('active'); hamburger.classList.toggle('active'); });
+        }
+    </script>
+</body>
+</html>

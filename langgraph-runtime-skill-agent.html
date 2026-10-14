@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill 转 HTTP API 运行时 | langgraph-runtime · 技能服务化</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 { font-size: 3em; margin-bottom: 20px; }
+        .hero p { font-size: 1.3em; max-width: 800px; margin: 0 auto 30px; opacity: 0.95; }
+        .hero-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 10px 25px; border-radius: 25px; margin-bottom: 20px; font-size: 0.95em; }
+        .hero-stats { display: flex; justify-content: center; gap: 50px; margin-top: 50px; flex-wrap: wrap; }
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 2.5em; font-weight: bold; display: block; }
+        .stat-label { font-size: 0.9em; opacity: 0.9; }
+        .section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 2.5em; margin-bottom: 20px; color: var(--primary-color); }
+        .section-subtitle { text-align: center; color: var(--secondary-color); margin-bottom: 50px; font-size: 1.1em; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-top: 40px; }
+        .feature-card { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s; border-left: 4px solid #7c3aed; }
+        .feature-card:hover { transform: translateY(-5px); box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+        .feature-icon { font-size: 2.5em; margin-bottom: 15px; }
+        .feature-title { font-size: 1.3em; font-weight: bold; margin-bottom: 10px; color: var(--text-color); }
+        .feature-description { color: var(--secondary-color); line-height: 1.8; }
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 30px; }
+        .tech-item { background: #7c3aed; color: white; padding: 12px 24px; border-radius: 25px; font-size: 0.95em; transition: background 0.3s; }
+        .tech-item:hover { background: #6d28d9; }
+        .workflow-diagram { background: white; border-radius: 12px; padding: 40px; margin: 40px 0; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .workflow-flow { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 30px 0; }
+        .flow-step { background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%); color: white; padding: 20px 30px; border-radius: 10px; text-align: center; font-weight: bold; }
+        .flow-arrow { font-size: 2em; color: #7c3aed; }
+        .category-card { background: white; border-radius: 12px; padding: 30px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid #7c3aed; }
+        .category-title { font-size: 1.4em; font-weight: bold; margin-bottom: 15px; color: #7c3aed; }
+        .category-content { color: var(--secondary-color); line-height: 1.8; }
+        .feature-highlight { background: linear-gradient(135deg, #f5f3ff 0%, #f5f3ff 100%); border-radius: 12px; padding: 30px; margin: 30px 0; border-left: 4px solid #7c3aed; }
+        .feature-highlight h3 { color: #6d28d9; margin-bottom: 15px; }
+        .feature-highlight p { color: var(--text-primary); line-height: 1.8; }
+        .code-block { background: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 8px; margin: 20px 0; font-family: 'Courier New', monospace; line-height: 1.6; overflow-x: auto; }
+        .install-card { background: #f8f9fa; border-radius: 12px; padding: 25px; margin: 15px 0; border-left: 4px solid #7c3aed; }
+        .install-title { font-size: 1.2em; font-weight: bold; margin-bottom: 10px; color: #7c3aed; }
+        .showcase-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 40px; }
+        .showcase-item { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); text-align: center; }
+        .showcase-item img { max-width: 100%; border-radius: 8px; }
+        .showcase-caption { margin-top: 15px; color: var(--secondary-color); font-size: 0.95em; }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2em; }
+            .hero-stats { gap: 30px; }
+            .features-grid { grid-template-columns: 1fr; }
+            .flow-arrow { transform: rotate(90deg); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo"><a href="index.html">🌐 AI工具集合</a></div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-badge">langgraph-runtime · 技能服务化</div>
+        <h1>Skill 转 HTTP API 运行时</h1>
+        <p>基于 langgraph-runtime 的 agent：把本地 Agent Skill 包装成 HTTP/SSE API，模型负责编排、脚本负责执行、流式返回。</p>
+        <div class="hero-stats">
+            <div class="stat-item"><span class="stat-number">12</span><span class="stat-label">GitHub Star</span></div>
+            <div class="stat-item"><span class="stat-number">🔌</span><span class="stat-label">基础设施</span></div>
+            <div class="stat-item"><span class="stat-number">进阶</span><span class="stat-label">上手难度</span></div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/langgraph-runtime-skill-agent" class="btn btn-primary" style="background: white; color: #7c3aed;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">为什么需要 Skill 转 HTTP API 运行时？</h2>
+        <p class="section-subtitle">本地 Skill 很好用，但产品化还差一个 API 的距离</p>
+        <div class="feature-highlight">
+            <h3>本地 Skill 很好用，但产品化还差一个 API 的距离</h3>
+            <p>这套基于 langgraph-runtime 的 agent 把本地 Skill 包装成 HTTP 服务：用户发 SSE 请求，模型自动选择技能、读取 SKILL.md、调用脚本或搜索网页，再流式返回结果——模型管判断编排，脚本管确定性执行，技能产品化的最短路径。</p>
+        </div>
+    </section>
+
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">Skill 转 HTTP API 运行时 的六大能力</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📦</div>
+                <h3 class="feature-title">Skill 自动包装</h3>
+                <p class="feature-description">本地 Agent Skill 自动包装为 HTTP/SSE API</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h3 class="feature-title">模型判断编排</h3>
+                <p class="feature-description">模型负责选择技能、规划执行路径</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📜</div>
+                <h3 class="feature-title">脚本确定执行</h3>
+                <p class="feature-description">脚本负责确定性执行，结果稳定可复现</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌊</div>
+                <h3 class="feature-title">SSE 流式返回</h3>
+                <p class="feature-description">流式输出，前端接入体验流畅</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔗</div>
+                <h3 class="feature-title">前端易接入</h3>
+                <p class="feature-description">标准 HTTP 接口，任意前端都能接</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🚀</div>
+                <h3 class="feature-title">技能产品化</h3>
+                <p class="feature-description">把个人技能快速变成可对外服务的能力</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">效果预览</h2>
+        <p class="section-subtitle">小黑手绘风格插图</p>
+        <div class="showcase-grid">
+            <div class="showcase-item">
+                <img src="assets/langgraph-runtime-skill-agent/01.png" alt="Skill 转 HTTP API 运行时 配图" loading="lazy">
+                <div class="showcase-caption">01.png</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="workflow" class="section">
+        <h2 class="section-title">工作流程</h2>
+        <p class="section-subtitle">从输入到产出，一步到位</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">放入 Skill 目录</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">启动 runtime</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">发送 SSE 请求</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">自动选择技能</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">流式返回结果</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="install" class="section">
+        <h2 class="section-title">安装与使用</h2>
+        <p class="section-subtitle">快速开始</p>
+        <div class="install-card">
+            <div class="install-title">1. 克隆项目</div>
+            <pre class="code-block">git clone https://github.com/liangdabiao/langgraph-runtime-skill-agent.git</pre>
+        </div>
+        <div class="install-card">
+            <div class="install-title">2. 安装依赖</div>
+            <pre class="code-block">pip install -r requirements.txt</pre>
+        </div>
+        <div class="install-card">
+            <div class="install-title">3. 放入 Skill</div>
+            <pre class="code-block">将 Agent Skill 目录放入指定 skills 目录</pre>
+        </div>
+        <div class="install-card">
+            <div class="install-title">4. 启动调用</div>
+            <pre class="code-block">启动 runtime，按接口文档发送 SSE 请求</pre>
+        </div>
+    </section>
+
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">现代化技术组合</p>
+        <div class="tech-stack">
+            <div class="tech-item">langgraph-runtime</div>
+            <div class="tech-item">Agent Skill</div>
+            <div class="tech-item">HTTP / SSE API</div>
+            <div class="tech-item">Python</div>
+            <div class="tech-item">流式响应</div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于 Skill 转 HTTP API 运行时 的常见疑问</p>
+        <div class="category-card">
+            <div class="category-title">Q: 什么是 Skill 服务化？</div>
+            <div class="category-content">A: 把原本装在本地 agent 里的技能，包装成可被任意客户端调用的 HTTP API。</div>
+        </div>
+        <div class="category-card">
+            <div class="category-title">Q: 适合什么任务？</div>
+            <div class="category-content">A: 适合流程清晰、可被技能描述覆盖的任务，例如文档处理、数据查询等。</div>
+        </div>
+        <div class="category-card">
+            <div class="category-title">Q: 前端怎么接入？</div>
+            <div class="category-content">A: 通过标准 SSE 接口接收流式结果，浏览器和客户端均可直接对接。</div>
+        </div>
+    </section>
+
+    <footer class="footer" id="contact">
+        <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>把本地 Agent Skill 包装成 HTTP/SSE API 服务：模型编排 + 脚本确定性执行。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/langgraph-runtime-skill-agent">GitHub 仓库</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Skill 转 HTTP API 运行时. All rights reserved.</p>
+        </div>
+            </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+            });
+        });
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        if (hamburger) {
+            hamburger.addEventListener('click', () => { navMenu.classList.toggle('active'); hamburger.classList.toggle('active'); });
+        }
+    </script>
+</body>
+</html>

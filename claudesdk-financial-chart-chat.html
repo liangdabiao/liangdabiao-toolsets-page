@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A 股财经图表对话助手 | Claude Agent SDK · 财经图表</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #65a30d 0%, #4d7c0f 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 { font-size: 3em; margin-bottom: 20px; }
+        .hero p { font-size: 1.3em; max-width: 800px; margin: 0 auto 30px; opacity: 0.95; }
+        .hero-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 10px 25px; border-radius: 25px; margin-bottom: 20px; font-size: 0.95em; }
+        .hero-stats { display: flex; justify-content: center; gap: 50px; margin-top: 50px; flex-wrap: wrap; }
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 2.5em; font-weight: bold; display: block; }
+        .stat-label { font-size: 0.9em; opacity: 0.9; }
+        .section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 2.5em; margin-bottom: 20px; color: var(--primary-color); }
+        .section-subtitle { text-align: center; color: var(--secondary-color); margin-bottom: 50px; font-size: 1.1em; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-top: 40px; }
+        .feature-card { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s; border-left: 4px solid #65a30d; }
+        .feature-card:hover { transform: translateY(-5px); box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+        .feature-icon { font-size: 2.5em; margin-bottom: 15px; }
+        .feature-title { font-size: 1.3em; font-weight: bold; margin-bottom: 10px; color: var(--text-color); }
+        .feature-description { color: var(--secondary-color); line-height: 1.8; }
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 30px; }
+        .tech-item { background: #65a30d; color: white; padding: 12px 24px; border-radius: 25px; font-size: 0.95em; transition: background 0.3s; }
+        .tech-item:hover { background: #4d7c0f; }
+        .workflow-diagram { background: white; border-radius: 12px; padding: 40px; margin: 40px 0; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .workflow-flow { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 30px 0; }
+        .flow-step { background: linear-gradient(135deg, #65a30d 0%, #4d7c0f 100%); color: white; padding: 20px 30px; border-radius: 10px; text-align: center; font-weight: bold; }
+        .flow-arrow { font-size: 2em; color: #65a30d; }
+        .category-card { background: white; border-radius: 12px; padding: 30px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid #65a30d; }
+        .category-title { font-size: 1.4em; font-weight: bold; margin-bottom: 15px; color: #65a30d; }
+        .category-content { color: var(--secondary-color); line-height: 1.8; }
+        .feature-highlight { background: linear-gradient(135deg, #f7fee7 0%, #f7fee7 100%); border-radius: 12px; padding: 30px; margin: 30px 0; border-left: 4px solid #65a30d; }
+        .feature-highlight h3 { color: #4d7c0f; margin-bottom: 15px; }
+        .feature-highlight p { color: var(--text-primary); line-height: 1.8; }
+        .code-block { background: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 8px; margin: 20px 0; font-family: 'Courier New', monospace; line-height: 1.6; overflow-x: auto; }
+        .install-card { background: #f8f9fa; border-radius: 12px; padding: 25px; margin: 15px 0; border-left: 4px solid #65a30d; }
+        .install-title { font-size: 1.2em; font-weight: bold; margin-bottom: 10px; color: #65a30d; }
+        .showcase-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 40px; }
+        .showcase-item { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); text-align: center; }
+        .showcase-item img { max-width: 100%; border-radius: 8px; }
+        .showcase-caption { margin-top: 15px; color: var(--secondary-color); font-size: 0.95em; }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2em; }
+            .hero-stats { gap: 30px; }
+            .features-grid { grid-template-columns: 1fr; }
+            .flow-arrow { transform: rotate(90deg); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo"><a href="index.html">🌐 AI工具集合</a></div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-badge">Claude Agent SDK · 财经图表</div>
+        <h1>A 股财经图表对话助手</h1>
+        <p>说句话就能查 A 股数据画图表：自然语言输入公司名或需求，自动查询上市公司财务数据，生成 6 种专业图表。</p>
+        <div class="hero-stats">
+            <div class="stat-item"><span class="stat-number">16</span><span class="stat-label">GitHub Star</span></div>
+            <div class="stat-item"><span class="stat-number">📈</span><span class="stat-label">AI对话</span></div>
+            <div class="stat-item"><span class="stat-number">入门</span><span class="stat-label">上手难度</span></div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/claudesdk-financial-chart-chat" class="btn btn-primary" style="background: white; color: #65a30d;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">为什么需要 A 股财经图表对话助手？</h2>
+        <p class="section-subtitle">看财报要的数据，翻网站、导表格、做图表太折腾</p>
+        <div class="feature-highlight">
+            <h3>看财报要的数据，翻网站、导表格、做图表太折腾</h3>
+            <p>「看下茅台近三年营收」——这句话以前意味着开网站、找数据、拉表格、画图四步。这个助手把四步合并成一次对话：自然语言进去，专业图表出来，财务数据查询和可视化一次完成。</p>
+        </div>
+    </section>
+
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">A 股财经图表对话助手 的六大能力</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">💬</div>
+                <h3 class="feature-title">自然语言查数</h3>
+                <p class="feature-description">输入公司名或需求，自动查询 A 股上市公司数据</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3 class="feature-title">6 种专业图表</h3>
+                <p class="feature-description">营收利润、毛利率、趋势、对比等专业图表自动生成</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🗄️</div>
+                <h3 class="feature-title">Baostock 主用</h3>
+                <p class="feature-description">以 Baostock 为主要数据源，数据稳定可靠</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔄</div>
+                <h3 class="feature-title">akshare 自动降级</h3>
+                <p class="feature-description">主数据源不可用时自动切换 akshare，保证可用性</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🗂️</div>
+                <h3 class="feature-title">图表管理</h3>
+                <p class="feature-description">生成的图表可管理、可回看</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📜</div>
+                <h3 class="feature-title">执行日志</h3>
+                <p class="feature-description">完整执行日志，查数和生成过程可追溯</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">效果预览</h2>
+        <p class="section-subtitle">小黑手绘风格插图</p>
+        <div class="showcase-grid">
+            <div class="showcase-item">
+                <img src="assets/claudesdk-financial-chart-chat/01.png" alt="A 股财经图表对话助手 配图" loading="lazy">
+                <div class="showcase-caption">01.png</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="workflow" class="section">
+        <h2 class="section-title">工作流程</h2>
+        <p class="section-subtitle">从输入到产出，一步到位</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">启动服务</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">对话提问</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">自动查数</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">生成图表</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">管理导出</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="install" class="section">
+        <h2 class="section-title">安装与使用</h2>
+        <p class="section-subtitle">快速开始</p>
+        <div class="install-card">
+            <div class="install-title">1. 克隆项目</div>
+            <pre class="code-block">git clone https://github.com/liangdabiao/claudesdk-financial-chart-chat.git</pre>
+        </div>
+        <div class="install-card">
+            <div class="install-title">2. 安装依赖</div>
+            <pre class="code-block">npm install</pre>
+        </div>
+        <div class="install-card">
+            <div class="install-title">3. 配置密钥</div>
+            <pre class="code-block">配置 Claude API Key</pre>
+        </div>
+        <div class="install-card">
+            <div class="install-title">4. 启动对话</div>
+            <pre class="code-block">npm run dev  # 例如提问：看下茅台近三年营收</pre>
+        </div>
+    </section>
+
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">现代化技术组合</p>
+        <div class="tech-stack">
+            <div class="tech-item">Claude Agent SDK</div>
+            <div class="tech-item">Baostock</div>
+            <div class="tech-item">akshare</div>
+            <div class="tech-item">A 股财务数据</div>
+            <div class="tech-item">图表可视化</div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于 A 股财经图表对话助手 的常见疑问</p>
+        <div class="category-card">
+            <div class="category-title">Q: 支持哪些类型的图表？</div>
+            <div class="category-content">A: 覆盖营收利润、毛利率、趋势、对比等 6 种专业图表类型。</div>
+        </div>
+        <div class="category-card">
+            <div class="category-title">Q: 数据可靠吗？</div>
+            <div class="category-content">A: 数据以公开数据源（Baostock/akshare）为准，关键数据建议交叉核对。</div>
+        </div>
+        <div class="category-card">
+            <div class="category-title">Q: 能查港股、美股吗？</div>
+            <div class="category-content">A: 当前面向 A 股上市公司数据，其他市场需自行扩展数据源。</div>
+        </div>
+    </section>
+
+    <footer class="footer" id="contact">
+        <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>自然语言查 A 股数据自动出 6 种专业图表，Baostock 主用 + akshare 自动降级。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/claudesdk-financial-chart-chat">GitHub 仓库</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 A 股财经图表对话助手. All rights reserved.</p>
+        </div>
+            </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+            });
+        });
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        if (hamburger) {
+            hamburger.addEventListener('click', () => { navMenu.classList.toggle('active'); hamburger.classList.toggle('active'); });
+        }
+    </script>
+</body>
+</html>

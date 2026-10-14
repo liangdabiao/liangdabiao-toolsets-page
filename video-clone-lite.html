@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轻量视频复刻工具 | AI 视频复刻 · 电商短视频</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 { font-size: 3em; margin-bottom: 20px; }
+        .hero p { font-size: 1.3em; max-width: 800px; margin: 0 auto 30px; opacity: 0.95; }
+        .hero-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 10px 25px; border-radius: 25px; margin-bottom: 20px; font-size: 0.95em; }
+        .hero-stats { display: flex; justify-content: center; gap: 50px; margin-top: 50px; flex-wrap: wrap; }
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 2.5em; font-weight: bold; display: block; }
+        .stat-label { font-size: 0.9em; opacity: 0.9; }
+        .section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 2.5em; margin-bottom: 20px; color: var(--primary-color); }
+        .section-subtitle { text-align: center; color: var(--secondary-color); margin-bottom: 50px; font-size: 1.1em; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-top: 40px; }
+        .feature-card { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s; border-left: 4px solid #ef4444; }
+        .feature-card:hover { transform: translateY(-5px); box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+        .feature-icon { font-size: 2.5em; margin-bottom: 15px; }
+        .feature-title { font-size: 1.3em; font-weight: bold; margin-bottom: 10px; color: var(--text-color); }
+        .feature-description { color: var(--secondary-color); line-height: 1.8; }
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 30px; }
+        .tech-item { background: #ef4444; color: white; padding: 12px 24px; border-radius: 25px; font-size: 0.95em; transition: background 0.3s; }
+        .tech-item:hover { background: #dc2626; }
+        .workflow-diagram { background: white; border-radius: 12px; padding: 40px; margin: 40px 0; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .workflow-flow { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 30px 0; }
+        .flow-step { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); color: white; padding: 20px 30px; border-radius: 10px; text-align: center; font-weight: bold; }
+        .flow-arrow { font-size: 2em; color: #ef4444; }
+        .category-card { background: white; border-radius: 12px; padding: 30px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid #ef4444; }
+        .category-title { font-size: 1.4em; font-weight: bold; margin-bottom: 15px; color: #ef4444; }
+        .category-content { color: var(--secondary-color); line-height: 1.8; }
+        .feature-highlight { background: linear-gradient(135deg, #fef2f2 0%, #fef2f2 100%); border-radius: 12px; padding: 30px; margin: 30px 0; border-left: 4px solid #ef4444; }
+        .feature-highlight h3 { color: #dc2626; margin-bottom: 15px; }
+        .feature-highlight p { color: var(--text-primary); line-height: 1.8; }
+        .code-block { background: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 8px; margin: 20px 0; font-family: 'Courier New', monospace; line-height: 1.6; overflow-x: auto; }
+        .install-card { background: #f8f9fa; border-radius: 12px; padding: 25px; margin: 15px 0; border-left: 4px solid #ef4444; }
+        .install-title { font-size: 1.2em; font-weight: bold; margin-bottom: 10px; color: #ef4444; }
+        .showcase-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 40px; }
+        .showcase-item { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); text-align: center; }
+        .showcase-item img { max-width: 100%; border-radius: 8px; }
+        .showcase-caption { margin-top: 15px; color: var(--secondary-color); font-size: 0.95em; }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2em; }
+            .hero-stats { gap: 30px; }
+            .features-grid { grid-template-columns: 1fr; }
+            .flow-arrow { transform: rotate(90deg); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo"><a href="index.html">🌐 AI工具集合</a></div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-badge">AI 视频复刻 · 电商短视频</div>
+        <h1>轻量视频复刻工具</h1>
+        <p>刷到一条好视频想照着做？给它一条参考视频，自动换成你的商品和效果，产出同结构新片，过程可控可改，还不用装一堆重型组件。</p>
+        <div class="hero-stats">
+            <div class="stat-item"><span class="stat-number">113</span><span class="stat-label">GitHub Star</span></div>
+            <div class="stat-item"><span class="stat-number">🎞️</span><span class="stat-label">视频生成</span></div>
+            <div class="stat-item"><span class="stat-number">入门</span><span class="stat-label">上手难度</span></div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/video-clone-lite" class="btn btn-primary" style="background: white; color: #ef4444;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">为什么需要 轻量视频复刻工具？</h2>
+        <p class="section-subtitle">同类工具要装 10G 奇怪组件，效果还很一般</p>
+        <div class="feature-highlight">
+            <h3>同类工具要装 10G 奇怪组件，效果还很一般</h3>
+            <p>想复刻一条带货视频的结构，何必被重型工具劝退？video-clone-lite 把「分析参考视频 → 替换商品/效果 → 生成同结构新片」做成轻量流程，依赖克制、过程可干预，生成结果不满意随时改。</p>
+        </div>
+    </section>
+
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">轻量视频复刻工具 的六大能力</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🔍</div>
+                <h3 class="feature-title">视频结构分析</h3>
+                <p class="feature-description">自动分析参考视频的叙事结构和镜头语言</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔄</div>
+                <h3 class="feature-title">商品效果替换</h3>
+                <p class="feature-description">把参考视频里的商品、效果替换成你的，保留原结构</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚙️</div>
+                <h3 class="feature-title">全流程自动化</h3>
+                <p class="feature-description">从分析到生成自动完成，人工只需提供素材和需求</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">✋</div>
+                <h3 class="feature-title">过程可控可改</h3>
+                <p class="feature-description">关键环节可人工介入调整，不满意就改那一版</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🪶</div>
+                <h3 class="feature-title">轻量依赖</h3>
+                <p class="feature-description">不装大型组件，普通环境即可跑起来</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛒</div>
+                <h3 class="feature-title">电商场景适配</h3>
+                <p class="feature-description">为带货、种草类短视频复刻场景优化</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">效果预览</h2>
+        <p class="section-subtitle">小黑手绘风格插图</p>
+        <div class="showcase-grid">
+            <div class="showcase-item">
+                <img src="assets/video-clone-lite/01.png" alt="轻量视频复刻工具 配图" loading="lazy">
+                <div class="showcase-caption">01.png</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="workflow" class="section">
+        <h2 class="section-title">工作流程</h2>
+        <p class="section-subtitle">从输入到产出，一步到位</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">提供参考视频</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">AI 分析结构镜头</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">替换商品效果</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">生成新视频</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">人工调整确认</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="install" class="section">
+        <h2 class="section-title">安装与使用</h2>
+        <p class="section-subtitle">快速开始</p>
+        <div class="install-card">
+            <div class="install-title">1. 获取项目</div>
+            <pre class="code-block">git clone https://github.com/liangdabiao/video-clone-lite.git</pre>
+        </div>
+        <div class="install-card">
+            <div class="install-title">2. 安装为 AI 技能</div>
+            <pre class="code-block">将技能目录放入 ~/.workbuddy/skills/ 或 ~/.claude/skills/</pre>
+        </div>
+        <div class="install-card">
+            <div class="install-title">3. 提供素材</div>
+            <pre class="code-block">给出参考视频 + 想替换的商品/效果描述</pre>
+        </div>
+        <div class="install-card">
+            <div class="install-title">4. 按流程执行</div>
+            <pre class="code-block">AI 按技能流程复刻，中途可随时调整需求</pre>
+        </div>
+    </section>
+
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">现代化技术组合</p>
+        <div class="tech-stack">
+            <div class="tech-item">AI Agent Skill</div>
+            <div class="tech-item">视频分析</div>
+            <div class="tech-item">视频生成</div>
+            <div class="tech-item">电商短视频</div>
+            <div class="tech-item">轻量部署</div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于 轻量视频复刻工具 的常见疑问</p>
+        <div class="category-card">
+            <div class="category-title">Q: 和市面上的视频复刻工具比呢？</div>
+            <div class="category-content">A: 最大区别是轻量：不依赖一堆重型组件，普通环境就能跑，且复刻过程开放可改。</div>
+        </div>
+        <div class="category-card">
+            <div class="category-title">Q: 哪些部分可以替换？</div>
+            <div class="category-content">A: 主要是商品和效果，视频的结构、镜头节奏会参考原片保留。</div>
+        </div>
+        <div class="category-card">
+            <div class="category-title">Q: 有版权风险吗？</div>
+            <div class="category-content">A: 请仅用于复刻你自己有权使用的内容，注意原片版权和平台规则。</div>
+        </div>
+    </section>
+
+    <footer class="footer" id="contact">
+        <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>轻量视频复刻：给一条参考视频，自动换商品换效果产出同结构新片，过程可控可改。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/video-clone-lite">GitHub 仓库</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 轻量视频复刻工具. All rights reserved.</p>
+        </div>
+            </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+            });
+        });
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        if (hamburger) {
+            hamburger.addEventListener('click', () => { navMenu.classList.toggle('active'); hamburger.classList.toggle('active'); });
+        }
+    </script>
+</body>
+</html>

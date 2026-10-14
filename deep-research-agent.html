@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深度研究报告生成器 | 多研究员 · 深度研究</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero {
+            background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+        .hero h1 { font-size: 3em; margin-bottom: 20px; }
+        .hero p { font-size: 1.3em; max-width: 800px; margin: 0 auto 30px; opacity: 0.95; }
+        .hero-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 10px 25px; border-radius: 25px; margin-bottom: 20px; font-size: 0.95em; }
+        .hero-stats { display: flex; justify-content: center; gap: 50px; margin-top: 50px; flex-wrap: wrap; }
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 2.5em; font-weight: bold; display: block; }
+        .stat-label { font-size: 0.9em; opacity: 0.9; }
+        .section { padding: 80px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 2.5em; margin-bottom: 20px; color: var(--primary-color); }
+        .section-subtitle { text-align: center; color: var(--secondary-color); margin-bottom: 50px; font-size: 1.1em; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-top: 40px; }
+        .feature-card { background: white; border-radius: 12px; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: transform 0.3s, box-shadow 0.3s; border-left: 4px solid #4f46e5; }
+        .feature-card:hover { transform: translateY(-5px); box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+        .feature-icon { font-size: 2.5em; margin-bottom: 15px; }
+        .feature-title { font-size: 1.3em; font-weight: bold; margin-bottom: 10px; color: var(--text-color); }
+        .feature-description { color: var(--secondary-color); line-height: 1.8; }
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 30px; }
+        .tech-item { background: #4f46e5; color: white; padding: 12px 24px; border-radius: 25px; font-size: 0.95em; transition: background 0.3s; }
+        .tech-item:hover { background: #4338ca; }
+        .workflow-diagram { background: white; border-radius: 12px; padding: 40px; margin: 40px 0; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .workflow-flow { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin: 30px 0; }
+        .flow-step { background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%); color: white; padding: 20px 30px; border-radius: 10px; text-align: center; font-weight: bold; }
+        .flow-arrow { font-size: 2em; color: #4f46e5; }
+        .category-card { background: white; border-radius: 12px; padding: 30px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-top: 4px solid #4f46e5; }
+        .category-title { font-size: 1.4em; font-weight: bold; margin-bottom: 15px; color: #4f46e5; }
+        .category-content { color: var(--secondary-color); line-height: 1.8; }
+        .feature-highlight { background: linear-gradient(135deg, #eef2ff 0%, #eef2ff 100%); border-radius: 12px; padding: 30px; margin: 30px 0; border-left: 4px solid #4f46e5; }
+        .feature-highlight h3 { color: #4338ca; margin-bottom: 15px; }
+        .feature-highlight p { color: var(--text-primary); line-height: 1.8; }
+        .code-block { background: #1e1e1e; color: #d4d4d4; padding: 20px; border-radius: 8px; margin: 20px 0; font-family: 'Courier New', monospace; line-height: 1.6; overflow-x: auto; }
+        .install-card { background: #f8f9fa; border-radius: 12px; padding: 25px; margin: 15px 0; border-left: 4px solid #4f46e5; }
+        .install-title { font-size: 1.2em; font-weight: bold; margin-bottom: 10px; color: #4f46e5; }
+        .showcase-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 40px; }
+        .showcase-item { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); text-align: center; }
+        .showcase-item img { max-width: 100%; border-radius: 8px; }
+        .showcase-caption { margin-top: 15px; color: var(--secondary-color); font-size: 0.95em; }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2em; }
+            .hero-stats { gap: 30px; }
+            .features-grid { grid-template-columns: 1fr; }
+            .flow-arrow { transform: rotate(90deg); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo"><a href="index.html">🌐 AI工具集合</a></div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="#features">核心功能</a></li>
+                <li><a href="#workflow">工作流程</a></li>
+                <li><a href="#install">安装配置</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+            <div class="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-badge">多研究员 · 深度研究</div>
+        <h1>深度研究报告生成器</h1>
+        <p>丢个主题进去，多个 AI 研究员并行搜索、交叉比对，吐出一份带完整引用的结构化研究报告文件夹。</p>
+        <div class="hero-stats">
+            <div class="stat-item"><span class="stat-number">4</span><span class="stat-label">GitHub Star</span></div>
+            <div class="stat-item"><span class="stat-number">📑</span><span class="stat-label">深度研究</span></div>
+            <div class="stat-item"><span class="stat-number">进阶</span><span class="stat-label">上手难度</span></div>
+        </div>
+        <div style="margin-top: 40px;">
+            <a href="https://github.com/liangdabiao/deep-research-agent-skill" class="btn btn-primary" style="background: white; color: #4f46e5;">查看 GitHub</a>
+            <a href="#features" class="btn btn-secondary" style="border: 2px solid white; color: white;">了解更多</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">为什么需要 深度研究报告生成器？</h2>
+        <p class="section-subtitle">搜三小时，收藏夹塞满，拼出来的东西自己都没底</p>
+        <div class="feature-highlight">
+            <h3>搜三小时，收藏夹塞满，拼出来的东西自己都没底</h3>
+            <p>老板甩来一句"研究一下 AI 在医疗行业的现状"，普通做法是开浏览器搜到天黑。deep-research-agent 真去网上搜、多方比对、再整理成可交差的文档：多个研究员并行，图式思考规划路径，矛盾来源分析可信度，每个数据标来源和 A-E 评级。</p>
+        </div>
+    </section>
+
+    <section id="features" class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">核心功能</h2>
+        <p class="section-subtitle">深度研究报告生成器 的六大能力</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3 class="feature-title">需求主动确认</h3>
+                <p class="feature-description">先确认研究范围、格式、时间段和来源要求，不一上来瞎搜</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">👥</div>
+                <h3 class="feature-title">多研究员并行</h3>
+                <p class="feature-description">同时派出多个 AI 研究员分头查资料，效率倍增</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h3 class="feature-title">图式思考规划</h3>
+                <p class="feature-description">像下棋一样规划研究路径、给每条线索打分</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚖️</div>
+                <h3 class="feature-title">矛盾来源分析</h3>
+                <p class="feature-description">不同来源说法矛盾时，分析谁更可信，共识与分歧都摆出</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📚</div>
+                <h3 class="feature-title">A-E 权威评级</h3>
+                <p class="feature-description">每个数据标来源并按权威度评级，附编造数据检测</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📁</div>
+                <h3 class="feature-title">完整报告文件夹</h3>
+                <p class="feature-description">执行摘要、全文、关键数据、参考文献、来源质量表、引用验证报告</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">效果预览</h2>
+        <p class="section-subtitle">小黑手绘风格插图</p>
+        <div class="showcase-grid">
+            <div class="showcase-item">
+                <img src="assets/deep-research-agent/01.png" alt="深度研究报告生成器 配图" loading="lazy">
+                <div class="showcase-caption">01.png</div>
+            </div>
+            <div class="showcase-item">
+                <img src="assets/deep-research-agent/02.png" alt="深度研究报告生成器 配图" loading="lazy">
+                <div class="showcase-caption">02.png</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="workflow" class="section">
+        <h2 class="section-title">工作流程</h2>
+        <p class="section-subtitle">从输入到产出，一步到位</p>
+        <div class="workflow-diagram">
+            <div class="workflow-flow">
+                <div class="flow-step">给出研究主题</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">确认范围格式</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">并行搜索</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">整合比对</div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">输出报告文件夹</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="install" class="section">
+        <h2 class="section-title">安装与使用</h2>
+        <p class="section-subtitle">快速开始</p>
+        <div class="install-card">
+            <div class="install-title">1. 安装技能到 AI 助手</div>
+            <pre class="code-block">git clone https://github.com/liangdabiao/deep-research-agent-skill.git
+# 放入 ~/.workbuddy/skills/ 或 ~/.claude/skills/</pre>
+        </div>
+        <div class="install-card">
+            <div class="install-title">2. 给出主题</div>
+            <pre class="code-block">对 AI 说：帮我深度研究一下 2025 年 AI Agent 的产业趋势</pre>
+        </div>
+        <div class="install-card">
+            <div class="install-title">3. 确认要求</div>
+            <pre class="code-block">确认范围、格式、时间范围与来源要求</pre>
+        </div>
+        <div class="install-card">
+            <div class="install-title">4. 获取报告</div>
+            <pre class="code-block">获得包含摘要、全文、文献与验证报告的完整文件夹</pre>
+        </div>
+    </section>
+
+    <section class="section" style="background: #f8f9fa;">
+        <h2 class="section-title">技术栈</h2>
+        <p class="section-subtitle">现代化技术组合</p>
+        <div class="tech-stack">
+            <div class="tech-item">AI Agent Skill</div>
+            <div class="tech-item">多研究员并行</div>
+            <div class="tech-item">GoT 图思考</div>
+            <div class="tech-item">引用验证</div>
+            <div class="tech-item">报告生成</div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">关于 深度研究报告生成器 的常见疑问</p>
+        <div class="category-card">
+            <div class="category-title">Q: 复杂主题要跑多久？</div>
+            <div class="category-content">A: 一般 5 到 20 分钟，视主题复杂度而定，中途可打断调整方向。</div>
+        </div>
+        <div class="category-card">
+            <div class="category-title">Q: 主题多具体合适？</div>
+            <div class="category-content">A: 越具体越好："研究 2025 年 AI 在医疗影像诊断的应用现状"优于"研究 AI"。</div>
+        </div>
+        <div class="category-card">
+            <div class="category-title">Q: 引用怎么评级？</div>
+            <div class="category-content">A: 按 A 到 E 评级：A 是年报、政府文件等一手资料，E 是论坛传闻等不可靠内容。</div>
+        </div>
+    </section>
+
+    <footer class="footer" id="contact">
+        <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>关于项目</h3>
+                <p>多研究员并行深度研究：丢个主题进去，吐出带完整引用和权威评级的报告文件夹。</p>
+            </div>
+            <div class="footer-section">
+                <h3>快速链接</h3>
+                <ul>
+                    <li><a href="index.html">返回首页</a></li>
+                    <li><a href="https://github.com/liangdabiao/deep-research-agent-skill">GitHub 仓库</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>联系我们</h3>
+                <p>邮箱：497070928@qq.com</p>
+                <p>GitHub：https://github.com/liangdabiao</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 深度研究报告生成器. All rights reserved.</p>
+        </div>
+            </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+            });
+        });
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        if (hamburger) {
+            hamburger.addEventListener('click', () => { navMenu.classList.toggle('active'); hamburger.classList.toggle('active'); });
+        }
+    </script>
+</body>
+</html>
